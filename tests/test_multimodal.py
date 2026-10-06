@@ -8,7 +8,7 @@ import pytest
 from rag_benchmark.multimodal import (
     PrecomputedAdapter, UnsupportedConfiguration, aggregate_metrics, base_rankings,
     cached_encode, channel_allocations, encoding_cache_identity, exact_dot_rankings,
-    fuse_rankings, graded_metrics, load_dataset, matrix_registry, run_matrix,
+    fuse_rankings, graded_metrics, load_dataset, matrix_registry, public_adapter_spec, run_matrix,
 )
 
 
@@ -486,3 +486,127 @@ def test_direct_adapter_usage_is_sanitized_and_cache_latency_not_replayed(tmp_pa
     assert cached["query_encoding"]["inference_seconds"] is None
     assert cached["query_encoding"]["cache_hits"] == 2
     assert "PRIVATE" not in json.dumps(fresh) and "PRIVATE" not in json.dumps(cached)
+
+
+def test_public_adapter_specs_unwrap_known_adapters_and_exclude_private_configuration():
+    from types import SimpleNamespace
+    config = {"model_id": "organization/model", "revision": "a" * 40, "base_model_id": "organization/base",
+        "base_revision": "b" * 40, "model_sha256": "c" * 64, "projector_sha256": "d" * 64,
+        "device": "mps", "dtype": "bfloat16", "batch_size": 8, "dimension": 768,
+        "max_length": 8192, "text_overflow_policy": "truncate_to_model_limit", "vision_budget": 280,
+        "video_fps": 1, "video_max_frames": 16, "temperature": 0, "seed": 42,
+        "model_path": "/PRIVATE/model.gguf", "cache_dir": "/PRIVATE/cache", "base_url": "http://PRIVATE",
+        "api_key": "PRIVATE_KEY", "query_prompt": "PRIVATE_PROMPT", "query": "PRIVATE_QUERY"}
+    model = SimpleNamespace(config=config, dimension=768, identity="e" * 64)
+    segmenter = SimpleNamespace(identity="f" * 64, protocol={
+        "source_coverage": "exact_concatenation_no_overlap_no_normalization_no_dropped_characters",
+        "max_tokens_after_native_document_formatting": 8192,
+        "tokenizers": {"bge": config, "embeddinggemma": config, "PRIVATE": config},
+        "native_document_formats": {"bge": "PRIVATE_PROMPT"}, "cache_dir": "/PRIVATE/cache"})
+    wrapper = SimpleNamespace(base=SimpleNamespace(adapter=model), encoder=model, embedder=model,
+        generator=SimpleNamespace(verifier=model), segmenter=segmenter)
+    spec = public_adapter_spec(wrapper)
+    assert spec["base"]["adapter"]["config"]["revision"] == "a" * 40
+    assert spec["encoder"]["config"]["model_id"] == "organization/model"
+    assert spec["generator"]["verifier"]["config"]["projector_sha256"] == "d" * 64
+    assert spec["segmenter"]["protocol"]["tokenizers"]["bge"]["max_length"] == 8192
+    serialized = json.dumps(spec)
+    assert "PRIVATE" not in serialized
+    assert not any(key in serialized for key in ("model_path", "cache_dir", "api_key", "query_prompt", "native_document_formats"))
+    assert spec["embedder"]["config"]["vision_budget"] == 280
+    assert spec["embedder"]["config"]["text_overflow_policy"] == "truncate_to_model_limit"
+    model.config = {"model_id": "/private/local/model", "dtype": ["PRIVATE"], "seed": float("nan")}
+    assert public_adapter_spec(model)["config"] == {}
+    wrapper.base = wrapper
+    assert public_adapter_spec(wrapper)["base"]["recursive_reference_omitted"] is True
+
+
+def test_report_exposes_adapter_configs_without_altering_existing_cache_identity(tmp_path):
+    root = fixture_dataset(tmp_path)
+    dataset = load_dataset(root)
+    encoder = CountingEncoder()
+    encoder.config = {"model_id": "organization/dense", "revision": "1" * 40, "batch_size": 2,
+                      "dtype": "float32", "device": "cpu", "prompt": "PRIVATE_PROMPT"}
+    reranker = RecordingReranker("fixed-rerank")
+    reranker.config = {"model_id": "organization/rerank", "revision": "2" * 40, "batch_size": 3}
+    kwargs = dict(adapters={"G": encoder}, rerankers={"bge_reranker_text": reranker}, requested_channels=["G"],
+                  candidate_grid=(50,), budget_modes=("per_channel",))
+    before = encoding_cache_identity(dataset, encoder, "document")
+    first = run_matrix(root, tmp_path / "run", **kwargs)
+    assert first["adapter_specs"]["channels"]["G"]["config"]["batch_size"] == 2
+    assert first["adapter_specs"]["rerankers"]["bge_reranker_text"]["config"]["model_id"] == "organization/rerank"
+    # Reporting reads configuration but does not introduce a second identity scheme.
+    encoder.config["batch_size"] = 4
+    again = run_matrix(root, tmp_path / "run", **kwargs)
+    assert again["adapter_specs"]["channels"]["G"]["config"]["batch_size"] == 4
+    assert before == encoding_cache_identity(dataset, encoder, "document")
+    assert first["configuration"] == again["configuration"]
+    assert [row.get("identity") for row in first["cells"]] == [row.get("identity") for row in again["cells"]]
+    assert again["channels"]["G"]["ranking_cache_hit"] is True
+    assert "PRIVATE" not in (tmp_path / "run/report.json").read_text()
+
+
+def test_code_rerank_diagnostics_preserve_processing_but_count_only_fresh_work(tmp_path):
+    import sqlite3
+    root = fixture_dataset(tmp_path)
+    class CodeReranker(RecordingReranker):
+        def score(self, query, candidates):
+            scores = super().score(query, candidates)
+            self.last_usage = {"original_function_count": len(candidates), "chunk_count": len(candidates) * 2,
+                "segmented_function_count": len(candidates), "native_short_function_count": 0,
+                "source_utf8_bytes": 100, "covered_source_utf8_bytes": 100,
+                "aggregation": "maximum_actual_base_relevance_score_per_original_function",
+                "segmentation_identity": "a" * 64,
+                "protocol": {"candidate_policy": "one_score_per_original_function_in_original_order;no_drops_or_score_floor",
+                             "native_document_formats": "PRIVATE_PROMPT"},
+                "base_usage": {"query": "PRIVATE_QUERY", "cache_dir": "/PRIVATE/cache"}}
+            return scores
+    reranker = CodeReranker("code-rerank-r1")
+    kwargs = dict(adapters={"G": CountingEncoder(), "E": CountingEncoder()},
+        rerankers={"bge_reranker_text": reranker}, requested_channels=["G", "E"],
+        candidate_grid=(20, 50), budget_modes=("per_channel", "total"))
+    first = run_matrix(root, tmp_path / "run", **kwargs)
+    reranked = [row for row in first["cells"] if "fresh_adapter_diagnostics" in row]
+    assert sum(row["new_score_pairs"] for row in reranked) == 6
+    assert sum(row["fresh_adapter_diagnostics"]["processing_counts_observed"].get("chunk_count", 0)
+               for row in reranked) == 12
+    assert sum(row["fresh_adapter_diagnostics"]["processing_counts_observed"].get("original_function_count", 0)
+               for row in reranked) == 6
+    initial = next(row for row in reranked if row["new_score_pairs"])
+    assert initial["adapter_diagnostics"]["processing_counts_observed"]["covered_source_utf8_bytes"] == 200
+    assert initial["adapter_diagnostics"]["processing_policies"][0]["aggregation"].startswith("maximum_actual_base")
+    again = run_matrix(root, tmp_path / "run", **kwargs)
+    repeated = next(row for row in again["cells"] if row.get("identity") == initial["identity"])
+    assert repeated["adapter_diagnostics"] == initial["adapter_diagnostics"]
+    assert repeated["fresh_adapter_diagnostics"]["total_rows"] == 0
+    assert repeated["fresh_adapter_diagnostics"]["processing_counts_observed"] == {}
+    assert "previous_invocations" in repeated["adapter_diagnostics"]["scope"]
+    assert len(reranker.calls) == 2
+    with sqlite3.connect(tmp_path / "run/progress.sqlite3") as db:
+        payloads = [json.loads(row[0]) for row in db.execute("SELECT payload FROM results")]
+    usage = next(row["usage"] for row in payloads if row.get("usage", {}).get("new_pairs"))
+    assert usage["adapter_diagnostics"]["chunk_count"] == 6
+    assert usage["adapter_diagnostics_scope"].startswith("fresh_score_pairs_only")
+    assert "PRIVATE" not in json.dumps(usage)
+
+
+def test_direct_code_processing_survives_cache_without_replaying_work_time(tmp_path):
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    class Direct:
+        identity = "segmented-code-r1"
+
+        def rank(self, documents, queries, **kwargs):
+            ranking = [{"id": row["id"], "score": 1.0} for row in documents]
+            return [ranking.copy() for _ in queries], {"segmentation_seconds": 10,
+                "original_function_count": 3, "chunk_count": 7, "segmented_function_count": 1,
+                "source_utf8_bytes": 123, "covered_source_utf8_bytes": 123,
+                "condition": "shared_segmentation_function_max_cosine", "segmentation_identity": "f" * 64,
+                "protocol": {"function_score": "maximum_cosine_over_all_its_chunks",
+                             "native_document_formats": "PRIVATE_PROMPT"}}
+    _, first = base_rankings(dataset, "G", {"G": Direct()}, tmp_path / "cache")
+    _, again = base_rankings(dataset, "G", {"G": Direct()}, tmp_path / "cache")
+    assert first["segmentation_seconds"] == 10 and again["segmentation_seconds"] is None
+    assert again["ranking_cache_hit"] is True
+    assert again["chunk_count"] == 7 and again["source_utf8_bytes"] == again["covered_source_utf8_bytes"] == 123
+    assert again["protocol"]["function_score"] == "maximum_cosine_over_all_its_chunks"
+    assert "PRIVATE" not in json.dumps(first) and "PRIVATE" not in json.dumps(again)

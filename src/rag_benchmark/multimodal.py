@@ -38,10 +38,96 @@ TRACKS = {
 }
 RERANKERS = ("none", "laya_text", "bge_reranker_text", "gemma4_relevance")
 ENGINE_VERSION = "multimodal-v1"
+_PROCESSING_COUNTS = ("original_function_count", "chunk_count", "segmented_function_count",
+    "native_short_function_count", "unchanged_function_count", "source_characters", "covered_source_characters",
+    "source_utf8_bytes", "covered_source_utf8_bytes", "original_query_count")
 
 
 class UnsupportedConfiguration(RuntimeError):
     """An explicit capability gap, not a lower-quality substitute implementation."""
+
+
+def _safe_model_config(config: Any) -> dict:
+    """Publish only declared numerical settings, model identifiers and checksums."""
+    if not isinstance(config, dict):
+        return {}
+    result = {}
+    for key in ("batch_size", "dimension", "max_length", "max_len", "context_limit", "native_text_limit",
+                "vision_budget", "video_vision_budget", "video_fps", "video_max_frames", "max_image_patches",
+                "score_query_batch", "score_chunk_elements", "max_tokens", "max_new_tokens", "temperature", "seed",
+                "image_max_side", "video_max_duration_seconds", "audio_max_duration_seconds", "threshold",
+                "max_tokens_after_native_document_formatting", "maximum_characters_per_chunk_for_overflowing_functions"):
+        value = config.get(key)
+        if value is None and key in config:
+            result[key] = None
+        elif isinstance(value, (int, float, np.integer, np.floating)) and not isinstance(value, bool) and math.isfinite(value):
+            result[key] = value.item() if isinstance(value, np.generic) else value
+    for key in ("model_id", "base_model_id"):
+        value = config.get(key)
+        if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*", value):
+            result[key] = value
+    for key in ("revision", "base_revision", "model_sha256", "projector_sha256"):
+        value = config.get(key)
+        if isinstance(value, str) and re.fullmatch(r"[a-f0-9]{40}|[a-f0-9]{64}", value):
+            result[key] = value
+    enums = {"dtype": {"float32", "bfloat16", "float16"}, "score_dtype": {"float32", "bfloat16"},
+             "text_overflow_policy": {"error", "truncate_to_model_limit"}, "backend": {"sdk", "http"},
+             "mode": {"native", "joint", "text"}}
+    for key, allowed in enums.items():
+        if isinstance(config.get(key), str) and config[key] in allowed:
+            result[key] = config[key]
+    for key in ("device", "score_device"):
+        if isinstance(config.get(key), str) and re.fullmatch(r"(?:cpu|mps|cuda)(?::[0-9]+)?", config[key]):
+            result[key] = config[key]
+    for key in ("model", "quantization", "pooling", "scoring", "token_mask", "token_normalization"):
+        if isinstance(config.get(key), str) and re.fullmatch(r"[A-Za-z0-9_.:-]{1,128}", config[key]):
+            result[key] = config[key]
+    for key in ("local_files_only", "enable_thinking"):
+        if isinstance(config.get(key), bool):
+            result[key] = config[key]
+    return result
+
+
+def _safe_protocol(protocol: Any) -> dict:
+    if not isinstance(protocol, dict):
+        return {}
+    result = _safe_model_config(protocol)
+    for key in ("version", "condition", "boundary_policy", "native_single_chunk_policy", "source_coverage",
+                "function_score", "query_policy", "context_policy", "candidate_policy", "base_identity", "segmentation_identity"):
+        value = protocol.get(key)
+        if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_.;:-]{1,256}", value):
+            result[key] = value
+    tokenizers = protocol.get("tokenizers", {})
+    if isinstance(tokenizers, dict):
+        result["tokenizers"] = {name: _safe_model_config(tokenizers[name])
+                                for name in ("bge", "embeddinggemma") if name in tokenizers}
+    return result
+
+
+def public_adapter_spec(adapter: Any, *, _seen: set[int] | None = None) -> dict:
+    """Unwrap known adapters without serializing paths, prompts or private state."""
+    seen = set() if _seen is None else _seen
+    result = {"class": type(adapter).__module__ + "." + type(adapter).__qualname__}
+    if id(adapter) in seen:
+        result["recursive_reference_omitted"] = True
+        return result
+    seen.add(id(adapter))
+    identity = getattr(adapter, "identity", None)
+    if isinstance(identity, str) and re.fullmatch(r"[a-f0-9]{64}", identity):
+        result["identity"] = identity
+    result["config"] = _safe_model_config(getattr(adapter, "config", {}))
+    for name in ("dimension", "native_text_limit"):
+        value = getattr(adapter, name, None)
+        if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+            result[name] = value
+    if hasattr(adapter, "protocol"):
+        result["protocol"] = _safe_protocol(adapter.protocol)
+    for name in ("embedder", "base", "adapter", "encoder", "segmenter", "generator", "verifier"):
+        child = getattr(adapter, name, None)
+        if child is not None:
+            result[name] = public_adapter_spec(child, _seen=seen)
+    seen.remove(id(adapter))
+    return result
 
 
 def matrix_registry(track: str | None = None) -> list[dict]:
@@ -528,6 +614,7 @@ def _capture_diagnostics(usage: Any, item_ids: list[str]) -> dict:
         result["dtype"] = usage["dtype"]
     if usage.get("empty_candidate_policy") == "native_model_score":
         result["empty_candidate_policy"] = "native_model_score"
+    result.update(_processing_diagnostics(usage))
     records = usage.get("items", [])
     if isinstance(records, list) and records:
         if len(records) != len(item_ids):
@@ -557,6 +644,25 @@ def _capture_diagnostics(usage: Any, item_ids: list[str]) -> dict:
     return result
 
 
+def _processing_diagnostics(usage: dict) -> dict:
+    """Aggregate source/chunk counts cannot be attributed to cached score pairs."""
+    result = {}
+    for key in _PROCESSING_COUNTS:
+        value = usage.get(key)
+        if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value >= 0:
+            result[key] = int(value)
+    for key in ("condition", "aggregation"):
+        value = usage.get(key)
+        if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_.:-]{1,128}", value):
+            result[key] = value
+    identity = usage.get("segmentation_identity")
+    if isinstance(identity, str) and re.fullmatch(r"[a-f0-9]{64}", identity):
+        result["segmentation_identity"] = identity
+    if isinstance(usage.get("protocol"), dict):
+        result["protocol"] = _safe_protocol(usage["protocol"])
+    return result
+
+
 def _merge_diagnostics(blocks: list[dict], total_rows: int) -> dict:
     reported = sum(block["rows"] for block in blocks if block.get("reported"))
     records = [record for block in blocks for record in block.get("items", [])]
@@ -575,6 +681,12 @@ def _merge_diagnostics(blocks: list[dict], total_rows: int) -> dict:
                 if any("original_tokens" in record for record in records) else None,
             "retained_tokens_total": sum(record.get("retained_tokens", 0) for record in records)
                 if any("retained_tokens" in record for record in records) else None,
+            "processing_counts_observed": {key: sum(block.get(key, 0) for block in blocks)
+                for key in _PROCESSING_COUNTS if any(key in block for block in blocks)},
+            "processing_counts_scope": "sum_over_reported_calls; repeated_function_candidates_count_again",
+            "processing_policies": [json.loads(value) for value in sorted({json.dumps(
+                {key: block[key] for key in ("condition", "aggregation", "segmentation_identity", "protocol") if key in block},
+                sort_keys=True) for block in blocks if any(key in block for key in ("condition", "aggregation", "protocol"))})],
             "items": records, "cache_reads_are_inference": False}
 
 
@@ -685,7 +797,7 @@ def _direct_usage_public(usage: Any) -> dict:
     if not isinstance(usage, dict):
         return {}
     result = {}
-    for key in ("inference_seconds", "scoring_seconds", "exact_search_seconds", "exact", "total_items", "new_items",
+    for key in ("inference_seconds", "scoring_seconds", "exact_search_seconds", "segmentation_seconds", "exact", "total_items", "new_items",
                 "cache_hits", "token_count_min", "token_count_max", "token_count_total", "truncated_text_items"):
         value = usage.get(key)
         if value is None or isinstance(value, (int, float, bool)) and math.isfinite(value):
@@ -698,6 +810,7 @@ def _direct_usage_public(usage: Any) -> dict:
     for key in ("document_encoding", "query_encoding"):
         if key in usage:
             result[key] = _direct_usage_public(usage[key])
+    result.update(_processing_diagnostics(usage))
     verification = usage.get("projection_verification", {})
     if isinstance(verification, dict) and isinstance(verification.get("projection_verified"), bool):
         result["projection_verification"] = {"projection_verified": verification["projection_verified"]}
@@ -820,7 +933,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
             "query": stable_hash(query_item), "prompts": getattr(adapter, "prompt_identity", None)}
     pointwise = getattr(adapter, "pointwise", False)
     cached_count, seconds = 0, 0.0
-    diagnostics = {"rows": len(candidates), "reported": False, "items": []}
+    diagnostics = {"rows": 0, "reported": False, "items": []}
     if pointwise:
         keys = [stable_hash({**base, "candidate": stable_hash(item)}) for item in candidates]
         values = [store.score(key) for key in keys]
@@ -857,6 +970,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
                 "cache_pairs": cached_count, "new_pairs": len(candidates) - cached_count,
                 "inference_seconds": seconds if len(candidates) > cached_count else None,
                 "adapter_diagnostics": diagnostics,
+                "adapter_diagnostics_scope": "fresh_score_pairs_only; cached_pair_processing_unknown",
                 "cache_reads_are_inference": False}
 
 
@@ -910,6 +1024,14 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
               "evaluated_query_count": len(queries), "configuration": configuration,
               "planned_global_family_count": 1284, "planned_global_retrieval_subset_count": 321,
               "cache_reads_are_inference": False, "channels": {}, "families": matrix_registry(dataset.track), "cells": []}
+    # Descriptive provenance is deliberately outside cache-key configuration.
+    report["adapter_specs"] = {"channels": {channel: public_adapter_spec(adapters[channel])
+        for channel in requested if channel in adapters and channel != "B"},
+        "rerankers": {name: public_adapter_spec(rerankers[name]) for name in RERANKERS if name in rerankers}}
+    if "B" in requested:
+        report["adapter_specs"]["channels"]["B"] = {"class": "bm25s.BM25", "config": {
+            "k1": 1.5, "b": 0.75, "method": "lucene",
+            "tokenizer": "code-identifiers-v1" if dataset.track == "code" else "turkish-unicode-v1"}}
     _write_report(output_dir, report)
     rankings, channel_states = {}, {}
     for channel in requested:
@@ -926,6 +1048,8 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
             if channel in adapters and hasattr(adapters[channel], "unload"):
                 adapters[channel].unload()
         report["channels"] = channel_states
+        if channel in adapters and channel != "B":
+            report["adapter_specs"]["channels"][channel] = public_adapter_spec(adapters[channel])
         _write_report(output_dir, report)
         if progress_callback:
             progress_callback({"stage": "channel", "channel": channel, **channel_states[channel]})
@@ -977,7 +1101,7 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                                                  "reranker": getattr(reranker, "identity", None),
                                                  "reranker_prompts": getattr(reranker, "prompt_identity", None)})
                     cell["identity"] = cell_identity
-                    metric_rows, pools, fresh_seconds, rerank_diagnostics = [], [], [], []
+                    metric_rows, pools, fresh_seconds, rerank_diagnostics, fresh_diagnostics = [], [], [], [], []
                     result_cache_hits, pair_cache_hits, new_pairs = 0, 0, 0
                     try:
                         for query_index, query in enumerate(queries):
@@ -998,6 +1122,8 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                                 store.put_result(cell_identity, query["id"], result)
                                 pair_cache_hits += usage.get("cache_pairs", 0)
                                 new_pairs += usage.get("new_pairs", 0)
+                                if usage.get("new_pairs", 0) and usage.get("adapter_diagnostics"):
+                                    fresh_diagnostics.append(usage["adapter_diagnostics"])
                                 if usage.get("inference_seconds") is not None:
                                     fresh_seconds.append(usage["inference_seconds"])
                             metric_rows.append(result["metrics"])
@@ -1016,6 +1142,9 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                         if reranker is not None:
                             cell["adapter_diagnostics"] = _merge_diagnostics(rerank_diagnostics,
                                 sum(pool["rerank_candidates"] for pool in pools))
+                            cell["adapter_diagnostics"]["scope"] = "recorded_result_provenance; may_include_previous_invocations"
+                            cell["fresh_adapter_diagnostics"] = _merge_diagnostics(fresh_diagnostics, new_pairs)
+                            cell["fresh_adapter_diagnostics"]["scope"] = "current_invocation_fresh_score_pairs_only"
                         family["completed_cells"] += 1
                     except Exception as exc:
                         status = "unsupported" if isinstance(exc, UnsupportedConfiguration) else "failed"
@@ -1028,6 +1157,8 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
             family["status"] = "failed" if "failed" in states else "unsupported" if "unsupported" in states else "completed"
             if reason:
                 family["reason"] = reason
+            if reranker_name in rerankers:
+                report["adapter_specs"]["rerankers"][reranker_name] = public_adapter_spec(rerankers[reranker_name])
             report["family_status_counts"] = {status: sum(row["status"] == status for row in report["families"])
                                                for status in ("completed", "planned", "failed", "unsupported")}
             _write_report(output_dir, report)
