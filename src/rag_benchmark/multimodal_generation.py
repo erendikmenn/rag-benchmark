@@ -272,8 +272,8 @@ class MultimodalLayaReranker:
         if len(values) != len(candidates) or any(not math.isfinite(x) for x in values.values()):
             raise RuntimeError("Laya did not preserve all pointwise candidates.")
         self.last_usage = {**self.adapter.last_usage,
-                           "empty_text_policy": "score_explicit_empty_passage_with_actual_model",
-                           "empty_candidate_text_count": sum(not x["text"].strip() for x in candidates)}
+                           "empty_candidate_policy": "native_model_score",
+                           "empty_candidate_text_items": sum(not x["text"].strip() for x in candidates)}
         return [values[row["id"]] for row in candidates]
 
     def unload(self):

@@ -65,7 +65,8 @@ def test_laya_scores_explicit_empty_passages_with_actual_adapter(monkeypatch):
     candidates = [{"id": "empty", "text": ""}, {"id": "full", "text": "source"}]
     assert reranker.score({"text": "query"}, candidates) == [.37, .8]
     assert seen == candidates
-    assert reranker.last_usage["empty_candidate_text_count"] == 1
+    assert reranker.last_usage["empty_candidate_text_items"] == 1
+    assert reranker.last_usage["empty_candidate_policy"] == "native_model_score"
     from rag_benchmark.multimodal import UnsupportedConfiguration
     with pytest.raises(UnsupportedConfiguration, match="fixed candidate"):
         reranker.score({"text": "query"}, [{"id": "missing"}])

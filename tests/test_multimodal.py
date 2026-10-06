@@ -518,6 +518,50 @@ def test_bge_empty_candidate_uses_real_model_input_no_score_floor(monkeypatch):
         reranker.score({"text": "question"}, [{"id": "b"}])
 
 
+def test_laya_empty_diagnostics_persist_without_private_fields_or_cached_work(tmp_path, monkeypatch):
+    import sqlite3
+    from rag_benchmark.multimodal_generation import MultimodalLayaReranker
+    root = fixture_dataset(tmp_path, track="document", corpus=[{"id": "c", "text": ""},
+        {"id": "a", "text": "read file"}, {"id": "b", "text": "write file"}])
+    manifest = json.loads((root / "dataset.json").read_text())
+    manifest["text_provenance"]["source"] = "published_markdown"
+    (root / "dataset.json").write_text(json.dumps(manifest))
+    reranker = MultimodalLayaReranker({"device": "cpu"})
+    identity, calls = reranker.identity, []
+
+    def score(query, candidates):
+        calls.append(candidates)
+        reranker.adapter.last_usage = {"query": "PRIVATE_QUERY", "prompt": "PRIVATE_PROMPT",
+                                       "path": "/PRIVATE/model", "candidates": len(candidates)}
+        return [{"id": item["id"], "laya_score": {"a": .9, "b": .4, "c": .02}[item["id"]]}
+                for item in candidates]
+
+    monkeypatch.setattr(reranker.adapter, "rerank", score)
+    kwargs = dict(adapters={"G": CountingEncoder()}, rerankers={"laya_text": reranker},
+                  requested_channels=["G"], candidate_grid=(20, 50), budget_modes=("per_channel",))
+    first = run_matrix(root, tmp_path / "run", **kwargs)
+    first_cell = next(row for row in first["cells"] if row["variant_id"] == "document__g__laya_text" and row["candidate_k"] == 20)
+    assert first_cell["adapter_diagnostics"]["empty_candidate_text_items_observed"] == 2
+    assert first_cell["fresh_adapter_diagnostics"]["empty_candidate_text_items_observed"] == 2
+    assert len(calls) == 2 and all(any(item["id"] == "c" and item["text"] == "" for item in call) for call in calls)
+    with sqlite3.connect(tmp_path / "run/progress.sqlite3") as db:
+        payloads = [json.loads(row[0]) for row in db.execute("SELECT payload FROM results")]
+    freshly_scored = [row for row in payloads if row.get("usage", {}).get("new_pairs")]
+    assert len(freshly_scored) == 2
+    for result in freshly_scored:
+        assert result["usage"]["adapter_diagnostics"]["empty_candidate_text_items"] == 1
+        assert result["usage"]["adapter_diagnostics"]["empty_candidate_policy"] == "native_model_score"
+        assert next(row for row in result["ranking"] if row["id"] == "c")["score"] == .02
+        assert "PRIVATE" not in json.dumps(result["usage"])
+    again = run_matrix(root, tmp_path / "run", **kwargs)
+    repeated = next(row for row in again["cells"] if row.get("identity") == first_cell["identity"])
+    assert repeated["adapter_diagnostics"] == first_cell["adapter_diagnostics"]
+    assert repeated["fresh_adapter_diagnostics"]["empty_candidate_text_items_observed"] == 0
+    assert repeated["new_score_pairs"] == 0 and len(calls) == 2
+    assert reranker.identity == identity
+    assert "PRIVATE" not in (tmp_path / "run/report.json").read_text()
+
+
 def test_direct_adapter_usage_is_sanitized_and_cache_latency_not_replayed(tmp_path):
     dataset = load_dataset(fixture_dataset(tmp_path))
     class Direct:
