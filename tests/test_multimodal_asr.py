@@ -175,7 +175,7 @@ def test_word_errors_and_posthoc_wer_include_empty_transcripts(tmp_path, fake_tr
 
 
 def test_native_asr_call_uses_transcribe_language_no_prompt_and_checks_eos(monkeypatch, tmp_path):
-    import torch
+    torch = pytest.importorskip("torch")
     path = tmp_path / "audio.wav"
     path.write_bytes(b"source")
     monkeypatch.setattr(asr, "load_audio", lambda path, rate: (np.zeros(16000, dtype=np.float32), {"duration_seconds": 1.0}))
@@ -217,7 +217,7 @@ def test_identity_changes_with_language_and_settings_but_not_cache_location():
 
 
 def test_long_form_nonintegral_frame_is_kept_and_eos_checked(monkeypatch, tmp_path):
-    import torch
+    torch = pytest.importorskip("torch")
     path = tmp_path / "audio.wav"
     path.write_bytes(b"source")
     monkeypatch.setattr(asr, "load_audio", lambda path, rate: (np.zeros(496001, dtype=np.float32), {"duration_seconds": 31.0000625}))
