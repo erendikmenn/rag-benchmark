@@ -210,8 +210,12 @@ def test_matrix_same_pools_resume_and_public_report_has_no_text(tmp_path):
     assert report["family_status_counts"] == {"completed": 28, "planned": 0, "failed": 0, "unsupported": 0}
     assert report["cell_status_counts"]["completed"] == 140
     for reranker in rerankers.values():
-        assert len(reranker.calls) == 2  # all later families reuse the same independent pairs
-        assert all(set(ids) == {"a", "b", "c"} for _, ids in reranker.calls)
+        # Sparse lexical pools can require later dense-only pairs, but each pair
+        # is actually scored once across all subsets, cutoffs and budget modes.
+        pairs = [(query, identifier) for query, identifiers in reranker.calls for identifier in identifiers]
+        assert len(pairs) == len(set(pairs)) == 6
+        assert set(pairs) == {(query, identifier) for query in ("q1", "q2") for identifier in ("a", "b", "c")}
+    assert all(reranker.calls == rerankers["laya_text"].calls for reranker in rerankers.values())
     before_calls = sum(len(encoder.calls) for encoder in encoders.values())
     again = run_matrix(root, tmp_path / "run", **kwargs)
     assert sum(len(encoder.calls) for encoder in encoders.values()) == before_calls
@@ -267,6 +271,48 @@ def test_bm25_code_identifiers_are_split(tmp_path):
     dataset = load_dataset(fixture_dataset(tmp_path))
     rankings, _ = base_rankings(dataset, "B", {}, tmp_path / "cache")
     assert {row["id"] for row in rankings[0][:2]} == {"a", "b"}
+
+
+def test_bm25_positive_only_no_padding_exclusions_and_exact_boundary_ties(tmp_path):
+    corpus = [{"id": "z/source", "text": "needle evidence"}, {"id": "a:source", "text": "needle evidence"},
+              {"id": "zero", "text": "unrelated document"}]
+    queries = [{"id": "matches", "text": "needle"}, {"id": "unknown", "text": "absentvocabulary"},
+               {"id": "excluded", "text": "needle", "metadata": {"exclude_ids": ["a:source"]}},
+               {"id": "no_tokens", "text": "!!!"}]
+    qrels = [{"query_id": query["id"], "corpus_id": "z/source", "relevance": 1} for query in queries]
+    dataset = load_dataset(fixture_dataset(tmp_path, corpus=corpus, queries=queries, qrels=qrels))
+    ranks, _ = base_rankings(dataset, "B", {}, tmp_path / "cache", top_k=10)
+    assert [row["id"] for row in ranks[0]] == ["a:source", "z/source"]
+    assert ranks[0][0]["score"] == ranks[0][1]["score"] > 0
+    assert ranks[1] == [] and ranks[3] == []
+    assert [row["id"] for row in ranks[2]] == ["z/source"]
+    short, _ = base_rankings(dataset, "B", {}, tmp_path / "cache", top_k=1)
+    assert short[0] == ranks[0][:1]
+    assert short[2] == ranks[2]
+
+
+def test_bm25_policy_invalidates_legacy_b_cache_only_and_is_public(tmp_path):
+    from rag_benchmark.models import package_versions, stable_hash
+    from rag_benchmark.multimodal import BM25_CANDIDATE_SELECTION, ENGINE_VERSION, _channel_identity
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    legacy_model = {"tokenizer": "code-identifiers-v1", "bm25": {"k1": 1.5, "b": 0.75, "method": "lucene"},
+                    "packages": package_versions(("bm25s",))}
+    legacy_identity = stable_hash({"engine": ENGINE_VERSION, "dataset": dataset.identity, "channel": "B", "model": legacy_model})
+    old_path = tmp_path / "cache/rankings" / stable_hash({"identity": legacy_identity, "top_k": 100}) / "rankings.json"
+    old_path.parent.mkdir(parents=True)
+    old_path.write_text(json.dumps({"rankings": [[{"id": "c", "score": 0, "rank": 1}]] * 2, "usage": {}}))
+    rows, usage = base_rankings(dataset, "B", {}, tmp_path / "cache")
+    assert usage["identity"] != legacy_identity and usage["ranking_cache_hit"] is False
+    assert [row["id"] for row in rows[1]] == ["a"]
+    assert old_path.exists()  # Older observations remain available.
+    adapter = CountingEncoder()
+    legacy_dense = {role: encoding_cache_identity(dataset, adapter, role) for role in ("document", "query")}
+    assert _channel_identity(dataset, "G", {"G": adapter}) == stable_hash({"engine": ENGINE_VERSION,
+        "dataset": dataset.identity, "channel": "G", "model": legacy_dense})
+    report = run_matrix(dataset.root, tmp_path / "run", requested_channels=["B"],
+                        candidate_grid=(50,), budget_modes=("per_channel",))
+    assert report["adapter_specs"]["channels"]["B"]["config"]["candidate_selection"] == BM25_CANDIDATE_SELECTION
+    assert BM25_CANDIDATE_SELECTION == "positive_scores_only_v1"
 
 
 def test_text_provenance_must_be_explicit(tmp_path):
@@ -362,7 +408,9 @@ def test_declared_empty_source_extraction_is_preserved_without_filler(tmp_path):
     assert dataset.public_summary()["missing_candidate_text_count"] == 0
     assert dataset.model_item(dataset.corpus[0])["text"] == ""
     rankings, _ = base_rankings(dataset, "B", {}, tmp_path / "cache")
-    assert all({row["id"] for row in ranking} == {"a", "b", "c"} for ranking in rankings)
+    assert {row["id"] for row in rankings[0]} == {"a", "b"}
+    assert rankings[1] == []  # No positive lexical match for "write".
+    assert {row["id"] for row in dataset.corpus} == {"a", "b", "c"}
 
 
 class DiagnosticEncoder(CountingEncoder):

@@ -38,6 +38,7 @@ TRACKS = {
 }
 RERANKERS = ("none", "laya_text", "bge_reranker_text", "gemma4_relevance")
 ENGINE_VERSION = "multimodal-v1"
+BM25_CANDIDATE_SELECTION = "positive_scores_only_v1"
 _PROCESSING_COUNTS = ("original_function_count", "chunk_count", "segmented_function_count",
     "native_short_function_count", "unchanged_function_count", "source_characters", "covered_source_characters",
     "source_utf8_bytes", "covered_source_utf8_bytes", "original_query_count")
@@ -765,21 +766,31 @@ def _bm25_rankings(dataset: Dataset, top_k: int) -> list[list[dict]]:
         raise UnsupportedConfiguration("The corpus has no lexical terms")
     model = bm25s.BM25(k1=1.5, b=0.75, method="lucene", csc_backend="numpy")
     model.index(tokens, show_progress=False)
-    identifiers = np.asarray([row["id"] for row in dataset.corpus])
+    document_ids = [row["id"] for row in dataset.corpus]
+    identifiers = np.asarray(document_ids)
     results = []
     for query in dataset.queries:
-        scores = np.asarray(model.get_scores(tokenize(dataset.model_item(query, text_only=True)["text"])))
+        query_tokens = tokenize(dataset.model_item(query, text_only=True)["text"])
+        if not query_tokens:
+            results.append([])
+            continue
+        scores = np.asarray(model.get_scores(query_tokens))
+        eligible = np.flatnonzero(scores > 0)
         excluded = dataset.excluded_ids(query)
-        order = [int(i) for i in np.lexsort((identifiers, -scores)) if str(identifiers[i]) not in excluded][:top_k]
-        results.append([{"id": str(identifiers[i]), "score": float(scores[i]), "rank": rank}
-                        for rank, i in enumerate(order, 1)])
+        if excluded:
+            eligible = np.asarray([i for i in eligible if document_ids[i] not in excluded], dtype=np.int64)
+        order = np.lexsort((identifiers[eligible], -scores[eligible]))
+        keep = eligible[order[:top_k]]
+        results.append([{"id": document_ids[i], "score": float(scores[i]), "rank": rank}
+                        for rank, i in enumerate(keep, 1)])
     return results
 
 
 def _channel_identity(dataset: Dataset, channel: str, adapters: dict) -> str:
     if channel == "B":
         model = {"tokenizer": "code-identifiers-v1" if dataset.track == "code" else "turkish-unicode-v1",
-                 "bm25": {"k1": 1.5, "b": 0.75, "method": "lucene"}, "packages": package_versions(("bm25s",))}
+                 "bm25": {"k1": 1.5, "b": 0.75, "method": "lucene"}, "packages": package_versions(("bm25s",)),
+                 "candidate_selection": BM25_CANDIDATE_SELECTION}
     else:
         if channel not in adapters:
             raise UnsupportedConfiguration(f"No {channel} adapter configured")
@@ -1031,6 +1042,7 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
     if "B" in requested:
         report["adapter_specs"]["channels"]["B"] = {"class": "bm25s.BM25", "config": {
             "k1": 1.5, "b": 0.75, "method": "lucene",
+            "candidate_selection": BM25_CANDIDATE_SELECTION,
             "tokenizer": "code-identifiers-v1" if dataset.track == "code" else "turkish-unicode-v1"}}
     _write_report(output_dir, report)
     rankings, channel_states = {}, {}
