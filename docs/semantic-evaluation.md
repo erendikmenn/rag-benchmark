@@ -1,12 +1,14 @@
-# Semantic answer evaluation with Jev
+# Semantic answer evaluation and judge comparison
 
 **Status: the hosted Jev pilot is complete, with human calibration still pending.** OpenRouter returned validated responses for **319/319 unique judging tasks**, covering both passes for **200 saved answers from 20 unique questions × ten variants**. No benchmark tasks failed or remain pending. These are exploratory model judgments; inspection found a grounding error described below. Live reproduction requires `OPENROUTER_API_KEY`.
+
+A separate, frozen [Jev–Sol comparison](../reports/semantic-judge-comparison/report.md) is also complete on those same saved answers. Human adjudication remains pending for both evaluators.
 
 EM and token F1 compare wording. They can penalize a correct Turkish paraphrase or reward an answer that repeats many reference words but changes a crucial number. This workflow adds explicit semantic judgments alongside the existing retrieval and lexical metrics; it preserves the original reports and does not generate new Gemma answers.
 
 ## Measured pilot results
 
-The [public semantic report](../reports/semantic-pilot-openrouter/report.md) and [summary](../reports/semantic-pilot-openrouter/summary.json) cover the same 20 questions for every variant. Two passes on 200 answers produced 400 logical tasks, deduplicated to 319 distinct payloads. Every planned answer received both judgments. Missing, failed and `unjudgeable` counts are zero in this completed benchmark evaluation; the separate controls had an invalid initial response and two label mismatches.
+The [public semantic report](../reports/semantic-pilot-openrouter/report.md) and [summary](../reports/semantic-pilot-openrouter/summary.json) cover the same 20 questions for every variant. Two passes on 200 answers produced 400 logical tasks, deduplicated to 319 distinct payloads. Every planned answer received both judgments. Missing, failed and `unjudgeable` counts are zero in this completed Jev benchmark evaluation; the separate controls had an invalid initial response and two label mismatches.
 
 | Retrieval | Jev-judged correct, Laya off | Jev-judged correct, Laya on |
 |---|---:|---:|
@@ -23,6 +25,35 @@ Jev labeled every answer it judged correct as supported, so the **Jev-judged cor
 **Observed judge limitation:** for `web:01964chipcomtr_0c5b701a#q0001`, the BM25+EmbeddingGemma 2 answer attributed Snapdragon 820 / Adreno 530 to the Xperia Z5. A supplied context explicitly described Snapdragon 810 / Adreno 430. Jev labeled correctness `partial` (confidence 0.42) but grounding `supported` (confidence 0.79), missing that contradiction. Its 20/20 supported labels for this pipeline therefore do not prove perfect grounding. Keep the raw judgments and this limitation together; changing labels after inspection would require a separately reported adjudication.
 
 The served model was `typesafe/jev-1.13-20260917`, provider TypeSafe, through OpenRouter. The evaluation bundle fingerprint is `c23741a72bec24bf52a2790a126582f3426f428971332965f481ccda4cd1a579`; rubric fingerprint `f01c641ac31d93ecb2638a57a22b711c04b62e7f303a3185cb4935260f2df9fe`. The evaluated RAG run fingerprint is `045252d34c401a7286e7c03cea4c7059b283219a02ad1a618d1aa8cb0830ba10`.
+
+## Frozen Jev–Sol comparison
+
+The [comparison report](../reports/semantic-judge-comparison/report.md), [summary](../reports/semantic-judge-comparison/summary.json), [per-answer labels](../reports/semantic-judge-comparison/per-answer-comparison.jsonl) and [Turkish analysis](../reports/semantic-judge-comparison/analysis.tr.md) compare the same **200 saved Gemma answers, 20 unique questions and ten variants**. No answers were regenerated and the original Jev results remain intact. Each evaluator completed the same 319 unique benchmark tasks, using identical rubrics and case-specific evidence; synthetic controls are separate. Input, verdict and comparison-code hashes are recorded in the summary.
+
+Three fresh parallel Codex agents were configured with requested model **`gpt-6.1-sol`** and reasoning effort **`ultra`**, with no inherited conversation (`fork_turns="none"`). One judged correctness and two judged separate grounding shards. They were blinded to Jev labels and pipeline identities while judging; only after verdicts were frozen were results joined. This records the requested Codex configuration: the workflow did **not verify a served checkpoint or expose API token usage or USD cost**. Jev's served snapshot and measured usage above have a different provenance scope.
+
+**Method limitation:** Sol received cases grouped by question and retained context across cases in each agent. Jev received independent judging calls. Correctness and grounding remained separate, and each case's permitted evidence was unchanged, but the grouped presentation and persistent context can affect judgments. This is a comparison of these evaluation workflows, not a controlled estimate of model quality alone.
+
+| Retrieval variant | Jev correct | Sol correct | Sol correct + supported |
+|---|---:|---:|---:|
+| BM25 | 11/20 | 14/20 | 13/20 |
+| BM25 + Laya | 9/20 | 9/20 | 9/20 |
+| BGE-M3 | 12/20 | 12/20 | 11/20 |
+| BGE-M3 + Laya | 9/20 | 9/20 | 9/20 |
+| EmbeddingGemma 2 | 14/20 | 11/20 | 10/20 |
+| EmbeddingGemma 2 + Laya | 8/20 | 9/20 | 9/20 |
+| BM25 + BGE-M3 | 13/20 | 13/20 | 12/20 |
+| BM25 + BGE-M3 + Laya | 8/20 | 8/20 | 8/20 |
+| BM25 + EmbeddingGemma 2 | 14/20 | 14/20 | 13/20 |
+| BM25 + EmbeddingGemma 2 + Laya | 7/20 | 8/20 | 8/20 |
+
+Across variants, Jev labeled **105/200 (52.5%)** answers correct and Sol **107/200 (53.5%)**. Joint correct-and-supported counts were 105/200 and 102/200 respectively. These totals pool different retrieval configurations; they are **not the success rate of one system**, and higher counts do not establish the better judge. All planned answers, including abstentions and uncertainty, remain in the denominators.
+
+Correctness labels agreed on **150/200 (75%)**, and grounding labels on **166/200 (83%)**. After counting identical correctness tasks only once, agreement was **83/130 (63.85%)**; unique grounding agreement was 158/189 (83.60%). The answer-level and unique-task rates weight repeated payloads differently. Repeated outputs across variants do not create 200 independent questions, and agreement is not human-verified accuracy.
+
+Even matching totals can hide different decisions: BM25+EmbeddingGemma 2 received **14/20 correct from both judges, but only 11 cases were correct according to both**. Its Sol joint count was **13/20**. Sol retained 19 `unjudgeable` correctness labels across the 200 answers, while Jev had none; those are uncertainty outcomes, not proven model errors.
+
+The same separate assistant-authored controls matched intended behavior on 12/12 Sol labels and 10/12 Jev labels. These small synthetic controls are not human reference labels or an estimate of judge accuracy and do not establish Sol's superiority. Turkish human review and adjudication of disagreements remain pending; the 12,530-question final test is still unevaluated.
 
 ## Separate roles and data boundaries
 
@@ -120,6 +151,14 @@ The live command sends the prepared question/evidence/answer payloads through Op
 Omitting `--variants` selects every variant in the source run. `--variants bm25_embeddinggemma` can create a separate 20-answer subset for manual inspection, but it is not the all-ten bundle shown above. Use a new output directory for a different selection or rubric, preserving earlier artifacts.
 
 ## Usage and cost
+
+The completed local agent verdicts can be validated and their comparison rebuilt without any model calls:
+
+```bash
+uv run --locked python -m rag_benchmark.judge_comparison --jev-dir runs/semantic-pilot-openrouter --agent-dir runs/semantic-sol-ultra-pilot --output-dir reports/semantic-judge-comparison --controls reports/semantic-controls-tr/results.json
+```
+
+This command requires the private, frozen agent input packs and completed verdict files already produced by the Codex agents. It does not launch agents or reconstruct missing judgments. It rejects missing/duplicate verdicts, changed per-case evidence, invalid labels, unprovided evidence references, incomplete controls and input/output path overlap. Public exports contain hashes and labels, while raw answers, source passages and judge explanations remain in ignored local run files.
 
 For the completed benchmark evaluation, OpenRouter reported **761,303 input tokens, 20,523 output tokens and US$0.031974726** across 319 successful validated requests. This is the main benchmark judging cost; it excludes the separate synthetic controls and their diagnostic retry. It also excludes the earlier local retrieval/generation work.
 

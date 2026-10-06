@@ -1,0 +1,1739 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "interpretation": "Same saved answers, different automated judges. Agreement is not accuracy; no human adjudication has been performed.",
+  "jev_model": "typesafe/jev-1.13",
+  "jev_served_model": "typesafe/jev-1.13-20260917",
+  "sol_model": "gpt-6.1-sol",
+  "sol_reasoning_effort": "ultra",
+  "sol_execution_method": "Codex parallel subagents; independent of Jev verdicts; role-separated correctness and grounding",
+  "agent_configuration": [
+    {
+      "shard": "correctness",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "ultra",
+      "fork_turns": "none"
+    },
+    {
+      "shard": "grounding_a",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "ultra",
+      "fork_turns": "none"
+    },
+    {
+      "shard": "grounding_b",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "ultra",
+      "fork_turns": "none"
+    }
+  ],
+  "sol_model_identity_scope": "Model and effort configured in Codex spawn_agent; a served snapshot, token usage and USD cost are not exposed by this workflow.",
+  "source_run_fingerprint": "045252d34c401a7286e7c03cea4c7059b283219a02ad1a618d1aa8cb0830ba10",
+  "source_jev_bundle_fingerprint": "c23741a72bec24bf52a2790a126582f3426f428971332965f481ccda4cd1a579",
+  "rubric_fingerprint": "f01c641ac31d93ecb2638a57a22b711c04b62e7f303a3185cb4935260f2df9fe",
+  "agent_input_files_sha256": {
+    "grounding_a.json": "7c6c9e7579cc84e149693f66177ce74753e237c228b8b6a9b02b735e9e81e0c1",
+    "correctness.json": "9bf62b1ddc9fe96cb20bf860c134aa849e182cbb8c3ffbd95e5aad8263a20bf9",
+    "private-mapping.json": "b26c1c0a32bf451a5c400fec2066533a6d44044afbc67e022b39d4bc70868ceb",
+    "grounding_b.json": "4a8ba117af744b23271787998da4b7bc2a5b2f867f8a56796634023eda253a4a"
+  },
+  "agent_verdict_files_sha256": {
+    "correctness.verdicts.jsonl": "96e3c8e90150147d308aaf0648b6b40925e5bb52946a9d3923449a379516c2c3",
+    "grounding_a.verdicts.jsonl": "23b6338d18b6efd72ab52dd1903d517b37c6eea5b01c4287293b07839ef4ba54",
+    "grounding_b.verdicts.jsonl": "21f5476ae7eb554a7e58e124350d40ed373297df2d66cb57d049344977ec4f5c"
+  },
+  "comparison_code_sha256": "28df1d380891c109cd3b465a67d3a50e2012910737713e041f00fe44d0a8c7b9",
+  "unique_benchmark_tasks": 319,
+  "unique_control_tasks": 12,
+  "overall": {
+    "answers": 200,
+    "unique_questions": 20,
+    "jev": {
+      "correctness_labels": {
+        "correct": 105,
+        "partial": 62,
+        "abstained": 30,
+        "incorrect": 3
+      },
+      "grounding_labels": {
+        "supported": 176,
+        "abstained": 20,
+        "partly_supported": 4
+      },
+      "correct_count": 105,
+      "correct_rate": 0.525,
+      "correct_and_supported_count": 105,
+      "correct_and_supported_rate": 0.525
+    },
+    "sol": {
+      "correctness_labels": {
+        "correct": 107,
+        "unjudgeable": 19,
+        "abstained": 24,
+        "partial": 50
+      },
+      "grounding_labels": {
+        "supported": 148,
+        "partly_supported": 24,
+        "abstained": 24,
+        "contradicted": 4
+      },
+      "correct_count": 107,
+      "correct_rate": 0.535,
+      "correct_and_supported_count": 102,
+      "correct_and_supported_rate": 0.51
+    },
+    "agreement": {
+      "correctness": {
+        "n": 200,
+        "agree": 150,
+        "agreement_rate": 0.75,
+        "matrix": {
+          "abstained": {
+            "abstained": 24,
+            "partial": 5,
+            "unjudgeable": 1
+          },
+          "correct": {
+            "correct": 92,
+            "partial": 8,
+            "unjudgeable": 5
+          },
+          "incorrect": {
+            "partial": 3
+          },
+          "partial": {
+            "unjudgeable": 13,
+            "partial": 34,
+            "correct": 15
+          }
+        },
+        "cells": [
+          {
+            "jev": "abstained",
+            "sol": "abstained",
+            "count": 24
+          },
+          {
+            "jev": "abstained",
+            "sol": "partial",
+            "count": 5
+          },
+          {
+            "jev": "abstained",
+            "sol": "unjudgeable",
+            "count": 1
+          },
+          {
+            "jev": "correct",
+            "sol": "correct",
+            "count": 92
+          },
+          {
+            "jev": "correct",
+            "sol": "partial",
+            "count": 8
+          },
+          {
+            "jev": "correct",
+            "sol": "unjudgeable",
+            "count": 5
+          },
+          {
+            "jev": "incorrect",
+            "sol": "partial",
+            "count": 3
+          },
+          {
+            "jev": "partial",
+            "sol": "correct",
+            "count": 15
+          },
+          {
+            "jev": "partial",
+            "sol": "partial",
+            "count": 34
+          },
+          {
+            "jev": "partial",
+            "sol": "unjudgeable",
+            "count": 13
+          }
+        ]
+      },
+      "grounding": {
+        "n": 200,
+        "agree": 166,
+        "agreement_rate": 0.83,
+        "matrix": {
+          "abstained": {
+            "abstained": 20
+          },
+          "partly_supported": {
+            "supported": 3,
+            "partly_supported": 1
+          },
+          "supported": {
+            "supported": 145,
+            "partly_supported": 23,
+            "contradicted": 4,
+            "abstained": 4
+          }
+        },
+        "cells": [
+          {
+            "jev": "abstained",
+            "sol": "abstained",
+            "count": 20
+          },
+          {
+            "jev": "partly_supported",
+            "sol": "partly_supported",
+            "count": 1
+          },
+          {
+            "jev": "partly_supported",
+            "sol": "supported",
+            "count": 3
+          },
+          {
+            "jev": "supported",
+            "sol": "abstained",
+            "count": 4
+          },
+          {
+            "jev": "supported",
+            "sol": "contradicted",
+            "count": 4
+          },
+          {
+            "jev": "supported",
+            "sol": "partly_supported",
+            "count": 23
+          },
+          {
+            "jev": "supported",
+            "sol": "supported",
+            "count": 145
+          }
+        ]
+      }
+    }
+  },
+  "by_variant": {
+    "bge": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 12,
+          "partial": 7,
+          "abstained": 1
+        },
+        "grounding_labels": {
+          "supported": 19,
+          "abstained": 1
+        },
+        "correct_count": 12,
+        "correct_rate": 0.6,
+        "correct_and_supported_count": 12,
+        "correct_and_supported_rate": 0.6
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 12,
+          "unjudgeable": 4,
+          "abstained": 1,
+          "partial": 3
+        },
+        "grounding_labels": {
+          "supported": 15,
+          "partly_supported": 3,
+          "abstained": 1,
+          "contradicted": 1
+        },
+        "correct_count": 12,
+        "correct_rate": 0.6,
+        "correct_and_supported_count": 11,
+        "correct_and_supported_rate": 0.55
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 13,
+          "agreement_rate": 0.65,
+          "matrix": {
+            "abstained": {
+              "abstained": 1
+            },
+            "correct": {
+              "correct": 10,
+              "partial": 1,
+              "unjudgeable": 1
+            },
+            "partial": {
+              "unjudgeable": 3,
+              "partial": 2,
+              "correct": 2
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 10
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "unjudgeable",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 2
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 2
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 3
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 1
+            },
+            "supported": {
+              "supported": 15,
+              "partly_supported": 3,
+              "contradicted": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "contradicted",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 3
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 15
+            }
+          ]
+        }
+      }
+    },
+    "bge_laya": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 9,
+          "abstained": 4,
+          "partial": 7
+        },
+        "grounding_labels": {
+          "supported": 17,
+          "abstained": 3
+        },
+        "correct_count": 9,
+        "correct_rate": 0.45,
+        "correct_and_supported_count": 9,
+        "correct_and_supported_rate": 0.45
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 9,
+          "abstained": 3,
+          "partial": 6,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 14,
+          "abstained": 3,
+          "partly_supported": 2,
+          "contradicted": 1
+        },
+        "correct_count": 9,
+        "correct_rate": 0.45,
+        "correct_and_supported_count": 9,
+        "correct_and_supported_rate": 0.45
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 15,
+          "agreement_rate": 0.75,
+          "matrix": {
+            "abstained": {
+              "abstained": 3,
+              "partial": 1
+            },
+            "correct": {
+              "correct": 8,
+              "partial": 1
+            },
+            "partial": {
+              "partial": 4,
+              "unjudgeable": 2,
+              "correct": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 3
+            },
+            {
+              "jev": "abstained",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 8
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 4
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 2
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 17,
+          "agreement_rate": 0.85,
+          "matrix": {
+            "abstained": {
+              "abstained": 3
+            },
+            "supported": {
+              "supported": 14,
+              "partly_supported": 2,
+              "contradicted": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 3
+            },
+            {
+              "jev": "supported",
+              "sol": "contradicted",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 2
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 14
+            }
+          ]
+        }
+      }
+    },
+    "bm25": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 11,
+          "partial": 7,
+          "abstained": 2
+        },
+        "grounding_labels": {
+          "supported": 20
+        },
+        "correct_count": 11,
+        "correct_rate": 0.55,
+        "correct_and_supported_count": 11,
+        "correct_and_supported_rate": 0.55
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 14,
+          "partial": 4,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 19,
+          "partly_supported": 1
+        },
+        "correct_count": 14,
+        "correct_rate": 0.7,
+        "correct_and_supported_count": 13,
+        "correct_and_supported_rate": 0.65
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 14,
+          "agreement_rate": 0.7,
+          "matrix": {
+            "abstained": {
+              "partial": 1,
+              "unjudgeable": 1
+            },
+            "correct": {
+              "correct": 11
+            },
+            "partial": {
+              "correct": 3,
+              "partial": 3,
+              "unjudgeable": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "abstained",
+              "sol": "unjudgeable",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 11
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 1
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 19,
+          "agreement_rate": 0.95,
+          "matrix": {
+            "supported": {
+              "supported": 19,
+              "partly_supported": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 19
+            }
+          ]
+        }
+      }
+    },
+    "bm25_bge": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 13,
+          "partial": 6,
+          "abstained": 1
+        },
+        "grounding_labels": {
+          "supported": 20
+        },
+        "correct_count": 13,
+        "correct_rate": 0.65,
+        "correct_and_supported_count": 13,
+        "correct_and_supported_rate": 0.65
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 13,
+          "partial": 6,
+          "unjudgeable": 1
+        },
+        "grounding_labels": {
+          "supported": 16,
+          "partly_supported": 4
+        },
+        "correct_count": 13,
+        "correct_rate": 0.65,
+        "correct_and_supported_count": 12,
+        "correct_and_supported_rate": 0.6
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 15,
+          "agreement_rate": 0.75,
+          "matrix": {
+            "abstained": {
+              "partial": 1
+            },
+            "correct": {
+              "correct": 11,
+              "partial": 1,
+              "unjudgeable": 1
+            },
+            "partial": {
+              "partial": 4,
+              "correct": 2
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 11
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "unjudgeable",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 2
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 4
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "supported": {
+              "supported": 16,
+              "partly_supported": 4
+            }
+          },
+          "cells": [
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 4
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 16
+            }
+          ]
+        }
+      }
+    },
+    "bm25_bge_laya": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 8,
+          "abstained": 5,
+          "partial": 7
+        },
+        "grounding_labels": {
+          "supported": 16,
+          "abstained": 3,
+          "partly_supported": 1
+        },
+        "correct_count": 8,
+        "correct_rate": 0.4,
+        "correct_and_supported_count": 8,
+        "correct_and_supported_rate": 0.4
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 8,
+          "abstained": 4,
+          "partial": 6,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 14,
+          "abstained": 4,
+          "partly_supported": 2
+        },
+        "correct_count": 8,
+        "correct_rate": 0.4,
+        "correct_and_supported_count": 8,
+        "correct_and_supported_rate": 0.4
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 15,
+          "agreement_rate": 0.75,
+          "matrix": {
+            "abstained": {
+              "abstained": 4,
+              "partial": 1
+            },
+            "correct": {
+              "correct": 7,
+              "partial": 1
+            },
+            "partial": {
+              "partial": 4,
+              "unjudgeable": 2,
+              "correct": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 4
+            },
+            {
+              "jev": "abstained",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 7
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 4
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 2
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 3
+            },
+            "partly_supported": {
+              "supported": 1
+            },
+            "supported": {
+              "supported": 13,
+              "abstained": 1,
+              "partly_supported": 2
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 3
+            },
+            {
+              "jev": "partly_supported",
+              "sol": "supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 2
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 13
+            }
+          ]
+        }
+      }
+    },
+    "bm25_embeddinggemma": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 14,
+          "partial": 6
+        },
+        "grounding_labels": {
+          "supported": 20
+        },
+        "correct_count": 14,
+        "correct_rate": 0.7,
+        "correct_and_supported_count": 14,
+        "correct_and_supported_rate": 0.7
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 14,
+          "partial": 4,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 16,
+          "partly_supported": 4
+        },
+        "correct_count": 14,
+        "correct_rate": 0.7,
+        "correct_and_supported_count": 13,
+        "correct_and_supported_rate": 0.65
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 14,
+          "agreement_rate": 0.7,
+          "matrix": {
+            "correct": {
+              "correct": 11,
+              "partial": 1,
+              "unjudgeable": 2
+            },
+            "partial": {
+              "partial": 3,
+              "correct": 3
+            }
+          },
+          "cells": [
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 11
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "unjudgeable",
+              "count": 2
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 3
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "supported": {
+              "supported": 16,
+              "partly_supported": 4
+            }
+          },
+          "cells": [
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 4
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 16
+            }
+          ]
+        }
+      }
+    },
+    "bm25_embeddinggemma_laya": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 7,
+          "abstained": 5,
+          "partial": 7,
+          "incorrect": 1
+        },
+        "grounding_labels": {
+          "supported": 15,
+          "abstained": 4,
+          "partly_supported": 1
+        },
+        "correct_count": 7,
+        "correct_rate": 0.35,
+        "correct_and_supported_count": 7,
+        "correct_and_supported_rate": 0.35
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 8,
+          "abstained": 5,
+          "partial": 6,
+          "unjudgeable": 1
+        },
+        "grounding_labels": {
+          "supported": 13,
+          "abstained": 5,
+          "partly_supported": 2
+        },
+        "correct_count": 8,
+        "correct_rate": 0.4,
+        "correct_and_supported_count": 8,
+        "correct_and_supported_rate": 0.4
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 17,
+          "agreement_rate": 0.85,
+          "matrix": {
+            "abstained": {
+              "abstained": 5
+            },
+            "correct": {
+              "correct": 7
+            },
+            "incorrect": {
+              "partial": 1
+            },
+            "partial": {
+              "partial": 5,
+              "unjudgeable": 1,
+              "correct": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 5
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 7
+            },
+            {
+              "jev": "incorrect",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 5
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 1
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 4
+            },
+            "partly_supported": {
+              "supported": 1
+            },
+            "supported": {
+              "supported": 12,
+              "partly_supported": 2,
+              "abstained": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 4
+            },
+            {
+              "jev": "partly_supported",
+              "sol": "supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 2
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 12
+            }
+          ]
+        }
+      }
+    },
+    "bm25_laya": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 9,
+          "abstained": 5,
+          "incorrect": 1,
+          "partial": 5
+        },
+        "grounding_labels": {
+          "supported": 15,
+          "abstained": 4,
+          "partly_supported": 1
+        },
+        "correct_count": 9,
+        "correct_rate": 0.45,
+        "correct_and_supported_count": 9,
+        "correct_and_supported_rate": 0.45
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 9,
+          "abstained": 5,
+          "partial": 5,
+          "unjudgeable": 1
+        },
+        "grounding_labels": {
+          "supported": 13,
+          "abstained": 5,
+          "partly_supported": 1,
+          "contradicted": 1
+        },
+        "correct_count": 9,
+        "correct_rate": 0.45,
+        "correct_and_supported_count": 9,
+        "correct_and_supported_rate": 0.45
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 5
+            },
+            "correct": {
+              "correct": 8,
+              "partial": 1
+            },
+            "incorrect": {
+              "partial": 1
+            },
+            "partial": {
+              "partial": 3,
+              "unjudgeable": 1,
+              "correct": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 5
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 8
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "incorrect",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 1
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 4
+            },
+            "partly_supported": {
+              "supported": 1
+            },
+            "supported": {
+              "supported": 12,
+              "abstained": 1,
+              "partly_supported": 1,
+              "contradicted": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 4
+            },
+            {
+              "jev": "partly_supported",
+              "sol": "supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "contradicted",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 12
+            }
+          ]
+        }
+      }
+    },
+    "embeddinggemma": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 14,
+          "abstained": 2,
+          "partial": 4
+        },
+        "grounding_labels": {
+          "supported": 18,
+          "abstained": 2
+        },
+        "correct_count": 14,
+        "correct_rate": 0.7,
+        "correct_and_supported_count": 14,
+        "correct_and_supported_rate": 0.7
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 11,
+          "partial": 5,
+          "abstained": 2,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 15,
+          "partly_supported": 3,
+          "abstained": 2
+        },
+        "correct_count": 11,
+        "correct_rate": 0.55,
+        "correct_and_supported_count": 10,
+        "correct_and_supported_rate": 0.5
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 16,
+          "agreement_rate": 0.8,
+          "matrix": {
+            "abstained": {
+              "abstained": 2
+            },
+            "correct": {
+              "correct": 11,
+              "partial": 2,
+              "unjudgeable": 1
+            },
+            "partial": {
+              "partial": 3,
+              "unjudgeable": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 2
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 11
+            },
+            {
+              "jev": "correct",
+              "sol": "partial",
+              "count": 2
+            },
+            {
+              "jev": "correct",
+              "sol": "unjudgeable",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 1
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 17,
+          "agreement_rate": 0.85,
+          "matrix": {
+            "abstained": {
+              "abstained": 2
+            },
+            "supported": {
+              "supported": 15,
+              "partly_supported": 3
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 2
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 3
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 15
+            }
+          ]
+        }
+      }
+    },
+    "embeddinggemma_laya": {
+      "answers": 20,
+      "unique_questions": 20,
+      "jev": {
+        "correctness_labels": {
+          "correct": 8,
+          "partial": 6,
+          "abstained": 5,
+          "incorrect": 1
+        },
+        "grounding_labels": {
+          "supported": 16,
+          "abstained": 3,
+          "partly_supported": 1
+        },
+        "correct_count": 8,
+        "correct_rate": 0.4,
+        "correct_and_supported_count": 8,
+        "correct_and_supported_rate": 0.4
+      },
+      "sol": {
+        "correctness_labels": {
+          "correct": 9,
+          "partial": 5,
+          "abstained": 4,
+          "unjudgeable": 2
+        },
+        "grounding_labels": {
+          "supported": 13,
+          "abstained": 4,
+          "partly_supported": 2,
+          "contradicted": 1
+        },
+        "correct_count": 9,
+        "correct_rate": 0.45,
+        "correct_and_supported_count": 9,
+        "correct_and_supported_rate": 0.45
+      },
+      "agreement": {
+        "correctness": {
+          "n": 20,
+          "agree": 15,
+          "agreement_rate": 0.75,
+          "matrix": {
+            "abstained": {
+              "abstained": 4,
+              "partial": 1
+            },
+            "correct": {
+              "correct": 8
+            },
+            "incorrect": {
+              "partial": 1
+            },
+            "partial": {
+              "correct": 1,
+              "partial": 3,
+              "unjudgeable": 2
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 4
+            },
+            {
+              "jev": "abstained",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "correct",
+              "sol": "correct",
+              "count": 8
+            },
+            {
+              "jev": "incorrect",
+              "sol": "partial",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "correct",
+              "count": 1
+            },
+            {
+              "jev": "partial",
+              "sol": "partial",
+              "count": 3
+            },
+            {
+              "jev": "partial",
+              "sol": "unjudgeable",
+              "count": 2
+            }
+          ]
+        },
+        "grounding": {
+          "n": 20,
+          "agree": 17,
+          "agreement_rate": 0.85,
+          "matrix": {
+            "abstained": {
+              "abstained": 3
+            },
+            "partly_supported": {
+              "partly_supported": 1
+            },
+            "supported": {
+              "supported": 13,
+              "abstained": 1,
+              "partly_supported": 1,
+              "contradicted": 1
+            }
+          },
+          "cells": [
+            {
+              "jev": "abstained",
+              "sol": "abstained",
+              "count": 3
+            },
+            {
+              "jev": "partly_supported",
+              "sol": "partly_supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "abstained",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "contradicted",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "partly_supported",
+              "count": 1
+            },
+            {
+              "jev": "supported",
+              "sol": "supported",
+              "count": 13
+            }
+          ]
+        }
+      }
+    }
+  },
+  "unique_task_agreement": {
+    "correctness": {
+      "n": 130,
+      "agree": 83,
+      "agreement_rate": 0.6384615384615384,
+      "matrix": {
+        "abstained": {
+          "unjudgeable": 1,
+          "abstained": 10,
+          "partial": 5
+        },
+        "correct": {
+          "correct": 43,
+          "partial": 7,
+          "unjudgeable": 5
+        },
+        "incorrect": {
+          "partial": 3
+        },
+        "partial": {
+          "unjudgeable": 11,
+          "partial": 30,
+          "correct": 15
+        }
+      },
+      "cells": [
+        {
+          "jev": "abstained",
+          "sol": "abstained",
+          "count": 10
+        },
+        {
+          "jev": "abstained",
+          "sol": "partial",
+          "count": 5
+        },
+        {
+          "jev": "abstained",
+          "sol": "unjudgeable",
+          "count": 1
+        },
+        {
+          "jev": "correct",
+          "sol": "correct",
+          "count": 43
+        },
+        {
+          "jev": "correct",
+          "sol": "partial",
+          "count": 7
+        },
+        {
+          "jev": "correct",
+          "sol": "unjudgeable",
+          "count": 5
+        },
+        {
+          "jev": "incorrect",
+          "sol": "partial",
+          "count": 3
+        },
+        {
+          "jev": "partial",
+          "sol": "correct",
+          "count": 15
+        },
+        {
+          "jev": "partial",
+          "sol": "partial",
+          "count": 30
+        },
+        {
+          "jev": "partial",
+          "sol": "unjudgeable",
+          "count": 11
+        }
+      ]
+    },
+    "grounding": {
+      "n": 189,
+      "agree": 158,
+      "agreement_rate": 0.8359788359788359,
+      "matrix": {
+        "abstained": {
+          "abstained": 16
+        },
+        "partly_supported": {
+          "supported": 3,
+          "partly_supported": 1
+        },
+        "supported": {
+          "supported": 141,
+          "partly_supported": 21,
+          "contradicted": 3,
+          "abstained": 4
+        }
+      },
+      "cells": [
+        {
+          "jev": "abstained",
+          "sol": "abstained",
+          "count": 16
+        },
+        {
+          "jev": "partly_supported",
+          "sol": "partly_supported",
+          "count": 1
+        },
+        {
+          "jev": "partly_supported",
+          "sol": "supported",
+          "count": 3
+        },
+        {
+          "jev": "supported",
+          "sol": "abstained",
+          "count": 4
+        },
+        {
+          "jev": "supported",
+          "sol": "contradicted",
+          "count": 3
+        },
+        {
+          "jev": "supported",
+          "sol": "partly_supported",
+          "count": 21
+        },
+        {
+          "jev": "supported",
+          "sol": "supported",
+          "count": 141
+        }
+      ]
+    }
+  },
+  "synthetic_controls": {
+    "interpretation": "Assistant-authored behavioral expectations, not human labels or a judge accuracy estimate.",
+    "source_sha256": "91091c9e2f5f2c47f91db7e79e29873fdbe8d5e90b3b1168c3154b57137a6201",
+    "judgments": 12,
+    "rows": [
+      {
+        "case": "insufficient_reference",
+        "kind": "correctness",
+        "expected": "unjudgeable",
+        "jev": "incorrect",
+        "sol": "unjudgeable"
+      },
+      {
+        "case": "incomplete",
+        "kind": "correctness",
+        "expected": "partial",
+        "jev": "partial",
+        "sol": "partial"
+      },
+      {
+        "case": "unprovided_evidence",
+        "kind": "correctness",
+        "expected": "correct",
+        "jev": "correct",
+        "sol": "correct"
+      },
+      {
+        "case": "negation",
+        "kind": "correctness",
+        "expected": "incorrect",
+        "jev": "incorrect",
+        "sol": "incorrect"
+      },
+      {
+        "case": "paraphrase",
+        "kind": "correctness",
+        "expected": "correct",
+        "jev": "correct",
+        "sol": "correct"
+      },
+      {
+        "case": "wrong_number",
+        "kind": "correctness",
+        "expected": "incorrect",
+        "jev": "incorrect",
+        "sol": "incorrect"
+      },
+      {
+        "case": "insufficient_reference",
+        "kind": "grounding",
+        "expected": "unsupported",
+        "jev": "contradicted",
+        "sol": "unsupported"
+      },
+      {
+        "case": "incomplete",
+        "kind": "grounding",
+        "expected": "supported",
+        "jev": "supported",
+        "sol": "supported"
+      },
+      {
+        "case": "negation",
+        "kind": "grounding",
+        "expected": "contradicted",
+        "jev": "contradicted",
+        "sol": "contradicted"
+      },
+      {
+        "case": "unprovided_evidence",
+        "kind": "grounding",
+        "expected": "unsupported",
+        "jev": "unsupported",
+        "sol": "unsupported"
+      },
+      {
+        "case": "wrong_number",
+        "kind": "grounding",
+        "expected": "contradicted",
+        "jev": "contradicted",
+        "sol": "contradicted"
+      },
+      {
+        "case": "paraphrase",
+        "kind": "grounding",
+        "expected": "supported",
+        "jev": "supported",
+        "sol": "supported"
+      }
+    ],
+    "jev_matches": 10,
+    "sol_matches": 12
+  }
+}

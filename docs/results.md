@@ -7,13 +7,14 @@
 | Evidence | Current status | What it establishes |
 |---|---|---|
 | Dataset inventory and normalization | Prepared and manifest inspected, 2026-10-06 | 37,511 passages; 14,530 usable QA records; 2,000 development / 12,530 test |
-| Infrastructure checks | 108 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
+| Infrastructure checks | 124 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
 | BM25 development baseline | Completed 2,000/2,000 real questions against all 37,511 passages | Full development retrieval metrics; no answer generation in this run |
 | BGE-M3 and EmbeddingGemma 2 integration | Both full 37,511-passage indexes built and validated; pilot completed in FP32/MPS | Real local dense retrieval over the complete corpus |
 | Local Laya integration | All five 20-question reranking pairs completed in FP32/MPS | Same candidate pools within each pair; observed quality is reported below |
 | Local Gemma 4 integration | 200/200 full-matrix pilot outputs; 11 cache hits; three length limits at 512 | Real local generation with the pinned GGUF and verified server identity |
 | Ten-variant development pilot | Completed all 20 questions per variant | Complete pilot table, not a full-development or final-test result |
 | OpenRouter Jev semantic pilot | Completed 200 answers / 319 unique requests; 108 local tests pass | Exploratory semantic labels, with documented judge errors; human calibration pending |
+| GPT 6.1 Sol Ultra parallel-agent comparison | Completed 319 benchmark + 12 separate control judgments | Same 200 answers and rubric; agreement measured, human accuracy not established |
 | Ten-variant full-development comparison | Not run | Only BM25 retrieval currently covers all 2,000 development questions |
 | Frozen final test comparison | Not run/reported | No final leaderboard |
 
@@ -67,6 +68,16 @@ BM25 + EmbeddingGemma 2 retains its token F1 of **0.5326**; Jev classifies **14 
 **These are uncalibrated model judgments.** In a verified Xperia/Z5 example, Jev missed an explicit source contradiction in the grounding pass. Separate synthetic controls also exposed uncertainty-handling errors. A blind assistant audit disagreed with some interpretation labels; human calibration is still pending. The 20-question slice and differences of one or two answers cannot establish a general winner or predict the probability that a new user question will be answered correctly.
 
 Main judge usage was 761,303 input tokens, 20,523 output tokens and **US$0.031974726** reported by OpenRouter. Controls and diagnostics are separate. Public artifacts: [results and review notes](../reports/semantic-pilot-openrouter/review-notes.md), [summary](../reports/semantic-pilot-openrouter/summary.json), [per-answer judgments](../reports/semantic-pilot-openrouter/per-answer-judgments.jsonl), [synthetic controls](../reports/semantic-controls-tr/report.md). The [semantic protocol](semantic-evaluation.md) records the data boundaries, rubric and limitations. No final-test questions were evaluated.
+
+## Blinded comparison with GPT 6.1 Sol Ultra
+
+Three fresh Codex agents were explicitly configured with `gpt-6.1-sol` and reasoning effort `ultra`. One judged correctness and two judged grounding, with Jev labels and method identities withheld until verdicts were complete. All 319 unique benchmark judgments and 12 separate control judgments were completed; each reconstructed case input matches the original Jev input. No answer generation or Jev judging was rerun.
+
+Across 200 answer rows, correctness-label agreement is **150/200 (75%)** and grounding agreement is **166/200 (83%)**. Unique-task agreement is **83/130 (63.85%)** for correctness and **158/189 (83.60%)** for grounding. Repeated answer rows across variants receive their normal per-variant weight; they are not independent questions.
+
+Jev labeled 105 answers correct and Sol labeled 107; this pool spans ten systems and is not a deployment success rate. Sol also returned 19 unjudgeable labels. BM25 + EmbeddingGemma 2 without Laya received **14/20 correct from both judges, with only 11 answers jointly labeled correct**. Sol classified its other answers as four partial and two unjudgeable, and rated 13/20 both correct and supported.
+
+The [full comparison](../reports/semantic-judge-comparison/analysis.tr.md), [summary](../reports/semantic-judge-comparison/summary.json) and [per-answer labels](../reports/semantic-judge-comparison/per-answer-comparison.jsonl) preserve disagreements. Sol matched 12/12 synthetic control expectations versus Jev's 10/12; these controls are not human calibration. Human adjudication remains pending. Sol processed grouped cases with persistent agent context, whereas Jev received isolated API requests; this is an exploratory agent-workflow comparison, not an identical-serving benchmark. The configured model/effort is recorded, but this workflow exposes no served snapshot, token usage or USD cost.
 
 ## Development retrieval baseline
 

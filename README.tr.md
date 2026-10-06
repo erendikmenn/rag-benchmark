@@ -109,6 +109,12 @@ Laya'nın verdiği 0–1 puanı bu görev için doğrulanmış bir güven yüzde
 
 [Jev pilotu](reports/semantic-pilot-openrouter/report.md) tamamlandı: **20 farklı sorudan 200 cevap**, 400 değerlendirme görevinin tekrarları birleştirilince **319/319 doğrulanmış istek**. Laya kapalı EmbeddingGemma 2 ve BM25+EmbeddingGemma 2 kollarının ikisinde de **14/20 cevap `correct` etiketi aldı (%70)**. Kontroller hariç değerlendirme maliyeti **0,031974726 ABD doları** oldu. Bu, insanın doğruladığı kesin doğruluk oranı değildir: incelemede Jev'in kaynakla açık çelişen bir donanım bilgisini desteklenmiş saydığı görüldü; [sentetik kontrollerde](reports/semantic-controls-tr/report.md) de hatalar vardı. Türkçe insan kalibrasyonu henüz yapılmadı; 12.530 soruluk son test değerlendirilmedi. [Ayrıntılı yorum](docs/semantic-evaluation.md).
 
+## Jev ile GPT 6.1 Sol Ultra karşılaştırması
+
+[Aynı 200 cevabın ikinci hakem değerlendirmesi](reports/semantic-judge-comparison/analysis.tr.md) tamamlandı. `gpt-6.1-sol` ve `ultra` ayarıyla çalışan üç paralel Codex ajanı, Jev etiketlerini ve yöntem adlarını görmeden aynı kuralları uyguladı. Doğruluk etiketlerinde uyum **150/200 (%75)**, kaynak desteğinde **166/200 (%83)** oldu. Tekrarsız görevlerde doğruluk uyumu **83/130 (%63,85)**; cevaplar yalnızca 20 farklı soruya aittir.
+
+BM25 + EmbeddingGemma 2, Laya kapalı yolda iki hakem de **14/20 (%70)** tam doğru dedi; ancak **yalnızca 11 cevabı ortak olarak tam doğru** saydılar. Sol 14 doğru, 4 kısmi ve 2 değerlendirilemez etiket verdi; hem doğru hem kaynakla destekli saydığı cevap **13/20 (%65)**. Bu, değişmeyen Gemma cevaplarına verilen farklı notlardır. İnsan değerlendirmesi henüz yapılmadı; hakemlerin aynı notu vermesi veya birinin daha yüksek toplam puan vermesi doğruluğunu kanıtlamaz. Sol ajanları gruplu ve kalıcı bağlamla çalıştığı için yöntem, izole Jev API çağrılarıyla birebir aynı çalışma düzeni değildir.
+
 ## İlk ölçümler
 
 [On varyantlı pilotta](reports/matrix-dev-pilot-512/report.md), **Laya kapalı BM25 + EmbeddingGemma 2** en yüksek gözlenen Recall@5 (**0,9500**) ve cevap F1'ini (**0,5326**) verdi. BM25 + BGE-M3 bu iki ölçümde yakındı; nDCG@10 değeri en yüksekti. Laya, bu 20 soruda beş arama kolunun tamamında Recall@5 ve F1'i düşürdü. Küçük bir geliştirme örnekleminden nihai kazanan çıkarılamaz.
