@@ -14,6 +14,12 @@ dependencies = ["numpy>=2.0,<3", "bm25s>=0.3.12,<0.4", "httpx>=0.28,<1", "huggin
 
 [project.optional-dependencies]
 models = ["sentence-transformers[image]>=6.1,<7", "torch>=2.8,<3", "accelerate>=1.0,<2", "transformers>=5.19,<6", "laya==0.3.28"]
+multimodal = [
+    "av>=14,<20",
+    "librosa>=0.11,<1",
+    "pyarrow>=19,<24",
+    "soundfile>=0.13,<1",
+]
 
 [dependency-groups]
 dev = ["pytest>=8.3,<10", "ruff>=0.12"]
