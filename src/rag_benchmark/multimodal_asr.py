@@ -417,7 +417,7 @@ def evaluate_asr_wer(source: Path | str, view: Path | str) -> dict:
     return result
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path, nargs="?")
     parser.add_argument("destination", type=Path, nargs="?")
@@ -427,7 +427,7 @@ def main() -> None:
     parser.add_argument("--language")
     parser.add_argument("--dtype", choices=("float32", "bfloat16"))
     parser.add_argument("--score-wer", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     config = json.loads(args.config.read_text()) if args.config else {}
     config.update({key: getattr(args, key) for key in ("device", "language", "dtype") if getattr(args, key) is not None})
     if args.download:

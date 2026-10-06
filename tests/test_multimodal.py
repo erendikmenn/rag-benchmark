@@ -443,7 +443,7 @@ def test_text_only_item_removes_media_after_resolving_complete_surrogate(tmp_pat
 
 
 def test_bge_empty_candidate_uses_real_model_input_no_score_floor(monkeypatch):
-    import torch
+    torch = pytest.importorskip("torch")
     from types import SimpleNamespace
     from rag_benchmark.multimodal import BGETextReranker
     from rag_benchmark import multimodal_models

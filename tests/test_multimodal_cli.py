@@ -6,6 +6,15 @@ import pytest
 from rag_benchmark.multimodal_cli import export_report, generation_server_command
 
 
+@pytest.mark.parametrize("command", ["asr", "prepare", "preflight"])
+def test_delegated_command_help_preserves_argument_contract(command, capsys):
+    from rag_benchmark.multimodal_cli import main
+    with pytest.raises(SystemExit) as result:
+        main([command, "--help"])
+    assert result.value.code == 0
+    assert "usage:" in capsys.readouterr().out
+
+
 def test_export_retains_coverage_and_never_copies_local_errors(tmp_path):
     run, out = tmp_path / "run", tmp_path / "public"
     run.mkdir()

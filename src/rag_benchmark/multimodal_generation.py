@@ -124,12 +124,12 @@ def media_content(item: dict, config: dict) -> list[dict]:
             content.append({"type": "input_audio", "input_audio": {
                 "data": base64.b64encode(buffer.getvalue()).decode("ascii"), "format": "wav"}})
         elif kind == "video":
-            from PIL import Image
             from .multimodal_models import sample_video
             duration = _video_duration_seconds(path)
             maximum = float(config.get("video_max_duration_seconds", 60))
             if duration > maximum:
                 raise ValueError(f"Gemma 4 video exceeds {maximum:g} seconds; explicit segmentation is required.")
+            from PIL import Image
             frames, details = sample_video(path, config["video_fps"], config["video_max_frames"])
             content.append({"type": "text", "text": f"Chronologically sampled visual-only video frames; source duration {duration:.3f} seconds:"})
             for frame, timestamp in zip(frames, details["timestamps_seconds"], strict=True):
