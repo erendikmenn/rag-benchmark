@@ -83,11 +83,13 @@ def export_report(run_dir: Path, output_dir: Path) -> dict:
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and argv[0] in {"prepare", "preflight", "asr"}:
+    if argv and argv[0] in {"prepare", "preflight", "asr", "analyze"}:
         if argv[0] == "prepare":
             from .multimodal_data import main as delegated
         elif argv[0] == "asr":
             from .multimodal_asr import main as delegated
+        elif argv[0] == "analyze":
+            from .multimodal_analysis import main as delegated
         else:
             from .multimodal_models import main as delegated
         return delegated(argv[1:]) or 0
@@ -108,6 +110,8 @@ def main(argv=None) -> int:
     p.add_argument("--vision-budget", type=int, choices=(70, 140, 280, 560, 1120), default=280)
     p.add_argument("--specialist-text-overflow", choices=("error", "truncate_to_model_limit"), default="error",
                    help="Explicit native specialist query limit policy; clipping is recorded in diagnostics.")
+    p.add_argument("--code-overlength", choices=("error", "shared_segments_max"), default="error",
+                   help="Separate source-complete function-level aggregation protocol for long code.")
     p.add_argument("--candidate-k", default="20,50,100")
     p.add_argument("--budget-modes", default="per_channel,total")
     p.add_argument("--cache-dir", type=Path, default=Path(".cache/multimodal"))
@@ -175,8 +179,18 @@ def main(argv=None) -> int:
             text_config = {**common, "batch_size": args.text_batch_size}
             eg = {**common, "dimension": args.dimension, "vision_budget": args.vision_budget}
             adapters = {}
+            segmenter = None
+            if args.code_overlength == "shared_segments_max":
+                if dataset.track != "code":
+                    raise ValueError("--code-overlength shared_segments_max is a code-only protocol")
+                from .multimodal_code import SharedCodeSegmenter
+                segmenter = SharedCodeSegmenter()
             for channel in channels:
-                if channel == "G":
+                if channel in {"G", "E"} and segmenter is not None:
+                    from .multimodal_code import SegmentedCodeAdapter
+                    adapters[channel] = SegmentedCodeAdapter("bge" if channel == "G" else "embeddinggemma",
+                                                             text_config, segmenter=segmenter)
+                elif channel == "G":
                     adapters[channel] = TextEmbeddingAdapter("bge", text_config)
                 elif channel == "E":
                     adapters[channel] = TextEmbeddingAdapter("embeddinggemma", text_config)
