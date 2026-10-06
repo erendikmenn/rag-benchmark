@@ -61,15 +61,16 @@
     "model_path": "<local>"
   },
   "local_input_sha256": {
-    "manifest.json": "3ffc8cde8937cae04c06f528216dbdc94dafa60dc44b3366eb67499ae246a1d3",
-    "predictions.jsonl": "d3211ca13967307f6ee4ac34980145efd68af85fcd2630f3512024941651925e",
-    "summary.json": "d85c25920ed527cecef755f7359b2d5ee3d6342bff63514cc0d6f66cc1919d5a"
+    "manifest.json": "69d996350bcf96e904dd286abcb6e2cf5ea888272e17c37d3b44cbeaf98eb705",
+    "predictions.jsonl": "17f6961ba8be6d32df7a8bb665d0c008988cf0348560a639024996dfcbc23079",
+    "summary.json": "4f9dfcdc9ae374bef306762c70852c022d590c6ef7122f1c7470569cd4d3da8c"
   },
   "question_count": 2000,
   "questions_sha256": "cde642d95acbdb25af01fa138bef671e9ff9d543e28d94fd4ca76447e0f3fbb4",
   "retrieval_only": true,
-  "run_fingerprint": "41696b1bbd15f3cb8c4be5b0195937e974db65037eafdc8e6bf785cd97387a53",
+  "run_fingerprint": "ec557103a353c35f81e4ed7b2642d77f36860178bbfdf4299075b4289cd040f1",
   "runtime": {
+    "git_revision": "0b573f4ea6c1a85b46bc3c297faccc8ccd1054b0",
     "packages": {
       "bm25s": "0.3.12",
       "laya": "0.3.28",
@@ -81,7 +82,7 @@
     },
     "platform": "macOS-27.0-arm64-arm-64bit",
     "python": "3.12.12",
-    "source_hash": "d45bd82c0dfa8c73782f7bd7766f6f109e506815dbaa090e8df324e3f3ed077d"
+    "source_hash": "efcd83ff2d593c85d8a3b7bbbbb1087a273ff90ef8a1e02bff6e007f2240ba27"
   },
   "schema_version": 1,
   "settings": {
@@ -116,7 +117,7 @@
       "base_url": "<local>",
       "enable_thinking": false,
       "filename": "gemma-4-26B_q4_0-it.gguf",
-      "max_tokens": 256,
+      "max_tokens": 512,
       "model": "gemma4",
       "model_id": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
       "model_path": "<local>",

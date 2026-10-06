@@ -1,0 +1,4 @@
+uv.lock linguist-generated=true
+reports/**/per-query-metrics.jsonl linguist-generated=true
+reports/**/summary.json linguist-generated=true
+reports/**/provenance.json linguist-generated=true

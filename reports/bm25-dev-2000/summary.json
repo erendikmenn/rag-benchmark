@@ -9,6 +9,7 @@
         "FACTUAL": {
           "generation_cache_hits": 0,
           "generation_s": null,
+          "length_limited_answers": 0,
           "metrics": {
             "all_evidence@1": 0.7376068376068377,
             "all_evidence@10": 0.9085470085470085,
@@ -40,13 +41,14 @@
           },
           "retrieval_s": {
             "n": 1170,
-            "p50": 0.0009390005143359303,
-            "p95": 0.0019675412331707776
+            "p50": 0.006737124524079263,
+            "p95": 0.05043903911719096
           }
         },
         "INTERPRETATION": {
           "generation_cache_hits": 0,
           "generation_s": null,
+          "length_limited_answers": 0,
           "metrics": {
             "all_evidence@1": 0.012048192771084338,
             "all_evidence@10": 0.7686746987951807,
@@ -78,8 +80,8 @@
           },
           "retrieval_s": {
             "n": 829,
-            "p50": 0.0020329169929027557,
-            "p95": 0.0022717328276485203
+            "p50": 0.012526917038485408,
+            "p95": 0.07995113343931716
           }
         }
       },
@@ -87,6 +89,7 @@
         "web": {
           "generation_cache_hits": 0,
           "generation_s": null,
+          "length_limited_answers": 0,
           "metrics": {
             "all_evidence@1": 0.47729083665338645,
             "all_evidence@10": 0.8270916334661355,
@@ -118,13 +121,14 @@
           },
           "retrieval_s": {
             "n": 1254,
-            "p50": 0.0015950630186125636,
-            "p95": 0.002217070641927421
+            "p50": 0.00843743747100234,
+            "p95": 0.05769158067414535
           }
         },
         "wikipedia": {
           "generation_cache_hits": 0,
           "generation_s": null,
+          "length_limited_answers": 0,
           "metrics": {
             "all_evidence@1": 0.36778523489932885,
             "all_evidence@10": 0.8899328859060402,
@@ -156,14 +160,15 @@
           },
           "retrieval_s": {
             "n": 745,
-            "p50": 0.001740291016176343,
-            "p95": 0.0021861248183995484
+            "p50": 0.009862334001809359,
+            "p95": 0.0764522421639412
           }
         }
       },
       "complete": true,
       "generation_cache_hits": 0,
       "generation_s": null,
+      "length_limited_answers": 0,
       "metrics": {
         "all_evidence@1": 0.4365,
         "all_evidence@10": 0.8505,
@@ -195,8 +200,8 @@
       },
       "retrieval_s": {
         "n": 1999,
-        "p50": 0.0016756670083850622,
-        "p95": 0.0022110710851848125
+        "p50": 0.008991958107799292,
+        "p95": 0.0649905412457883
       }
     }
   }

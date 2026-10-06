@@ -7,7 +7,7 @@
 | Evidence | Current status | What it establishes |
 |---|---|---|
 | Dataset inventory and normalization | Prepared and manifest inspected, 2026-10-06 | 37,511 passages; 14,530 usable QA records; 2,000 development / 12,530 test |
-| Infrastructure checks | Latest local suite: 55 passing tests; [earlier GitHub CI succeeded](https://github.com/erendikmenn/rag-benchmark/actions/runs/37523395067) | Code behavior and failure handling, not pretrained model quality |
+| Infrastructure checks | Latest local suite: 55 passing tests; [GitHub CI succeeded](https://github.com/erendikmenn/rag-benchmark/actions/runs/37524719483) | Code behavior and failure handling, not pretrained model quality |
 | BM25 development baseline | Completed 2,000/2,000 real questions against all 37,511 passages | Full development retrieval metrics; no answer generation in this run |
 | BGE-M3 and EmbeddingGemma 2 integration | Real FP32/MPS checks passed on a small Turkish fixture | Actual local encoding works; full-corpus retrieval comparison still pending |
 | Local Laya integration | Real FP32/MPS fixture check and 20-question BM25 reranking pilot completed | Scoring/reranking works; observed quality is reported below |
@@ -17,7 +17,7 @@
 
 Update this ledger only from actual commands, manifests and inspected artifacts. Include the checked code/config revision and exact scope when changing a row.
 
-The linked CI run completed successfully for commit `a0c3a760f01c70be05e971baa52830c46384eab3`, before the latest export and runtime checks; its 44-test scope is separate from the later 55-test local result. Local real-model checks are also separate from CI. The run reports, completion markers and summaries below were inspected; the full test split remains untouched.
+The linked CI run completed successfully for commit `0b573f4ea6c1a85b46bc3c297faccc8ccd1054b0` with the 55-test suite. Local real-model checks are also separate from CI. The run reports, completion markers and summaries below were inspected; the full test split remains untouched.
 
 ## Development retrieval baseline
 
@@ -27,7 +27,7 @@ Run `bm25-dev-2000` evaluated all 2,000 development questions against 37,511 pas
 |---|---:|---:|---:|---:|---:|---:|
 | BM25 | 2,000 | 0.9350 | 0.8591 | 0.9180 | 0.8632 | 0.8434 |
 
-Recall is the fraction of labeled relevant passages found; Hit@5 means at least one was found. They differ when a question has multiple gold passages. Retrieval p50 was 1.676 ms and p95 2.211 ms across 1,999 measured queries after excluding the first query. These are local stage timings, not end-to-end response latency or a comparison with dense retrieval. The run fingerprint is `41696b1bbd15f3cb8c4be5b0195937e974db65037eafdc8e6bf785cd97387a53`.
+Recall is the fraction of labeled relevant passages found; Hit@5 means at least one was found. They differ when a question has multiple gold passages. Retrieval p50 was 8.992 ms and p95 64.991 ms across 1,999 measured queries after excluding the first query. These are local stage timings, not end-to-end response latency or a comparison with dense retrieval. These metrics were reproduced on committed source `0b573f4`. The run fingerprint is `ec557103a353c35f81e4ed7b2642d77f36860178bbfdf4299075b4289cd040f1`.
 
 ## Twenty-question end-to-end pilot
 
@@ -53,7 +53,7 @@ This development finding motivated a shared **512-token cap for every variant in
 
 Each timing column contains 19 observations after the disclosed warm-up exclusions. Stage percentiles cannot be summed to obtain end-to-end percentiles. These are measurements from this pilot on the M4 Max host, not general serving benchmarks.
 
-The pilot used llama.cpp `b11451-2207c8e57`, a verified Q4_0 GGUF, 8,192-token server context, temperature 0, seed 42, thinking disabled and a 256-token output limit. Run fingerprint: `de38b96ddcd74e2f25f6553cac022abb70207383433d1d0254cb5fde14139bb6`. The manifest records package versions, source hash, model revisions, GGUF checksum and server properties; the pilot's Git revision field is unset, so its source hash supplies the recorded code identity.
+The pilot used llama.cpp `b11451-2207c8e57`, a verified Q4_0 GGUF, 8,192-token server context, temperature 0, seed 42, thinking disabled and a 256-token output limit. Run fingerprint: `de38b96ddcd74e2f25f6553cac022abb70207383433d1d0254cb5fde14139bb6`. The manifest records package versions, source hash, model revisions, GGUF checksum and server properties; the pilot's Git revision field was unset at execution, and its recorded source hash was subsequently verified to match commit `a0c3a76` exactly.
 
 Pilot stage timings are diagnostic: model checks and index preparation may overlap on the same GPU. They are not controlled comparative latency measurements. Final timing runs must use an otherwise idle inference workload.
 
