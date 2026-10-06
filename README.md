@@ -4,7 +4,7 @@
 
 [Türkçe anlatım](README.tr.md) · [Evaluation protocol](docs/protocol.md) · [Results and validation status](docs/results.md)
 
-**Status:** the dataset is audited; real-model integration checks, a **2,000-question BM25 development run**, and a **20-question BM25/Laya/Gemma pilot** are complete. [CI passes](https://github.com/erendikmenn/rag-benchmark/actions/runs/37523395067). The full ten-variant comparison and final test remain pending. See [measured development results and limitations](docs/results.md).
+**Status:** the dataset is audited; real-model checks and a **2,000-question BM25 development run** are complete. The **20-question BM25/Laya/Gemma pilot at 512 tokens** completed all 40 outputs without truncation. The full ten-variant comparison and final test remain pending. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured development results](docs/results.md).
 
 ## What the benchmark does
 
@@ -128,6 +128,20 @@ That mode has no generated answers and must not be reported as end-to-end RAG qu
 
 CLI retrieval IDs are `bm25`, `bge`, `embeddinggemma`, `bm25_bge` and `bm25_embeddinggemma`. Append `_laya` for the paired reranking variant. Omit `--variants` to use the matrix in the configuration.
 
+Run the **full ten-variant pilot** on 20 development questions by omitting `--variants`:
+
+```bash
+uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --limit 20 --run-dir runs/matrix-dev-pilot
+```
+
+After checking that pilot, omit `--limit` for all **2,000 development questions × ten variants**, using a new run directory:
+
+```bash
+uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --run-dir runs/matrix-dev-full
+```
+
+Reserve `--split test` for the 12,530 test questions after all settings are frozen, and use a separate run directory. Development runs are the place to diagnose or adjust prompts, fusion and output budgets.
+
 Run the small development slice before attempting the full matrix. The current generator policy is temperature 0, seed 42, at most 512 output tokens and thinking disabled. The earlier pilot used 256 tokens; the shared cap was raised after it exposed truncated interpretation answers. The exact model revisions, local backend, context budget and effective settings belong in the configuration and run manifest. Do not substitute a smaller generator for selected variants and present the output as the same experiment.
 
 Initial dataset/model downloads require network access and any upstream access terms to be satisfied. Once all required artifacts are available locally, the evaluation is intended to run without hosted inference calls. “Local” does not mean model files are bundled in this repository, and “no API charge” does not mean zero hardware or electricity cost.
@@ -150,7 +164,7 @@ See [the protocol](docs/protocol.md) for split rules, ties, budgets, cache inter
 
 ## Results and reproducibility
 
-[BM25 completed retrieval on all 2,000 development questions](reports/bm25-dev-2000/report.md): Recall@50 **0.9350**, Recall@5 **0.8591**. The separate [20-question end-to-end pilot](reports/gemma-dev-pilot-256/report.md) completed both BM25 and BM25+Laya with the same Gemma 4 generator. Laya reduced Recall@5 and answer token F1 on that small slice; this is a development finding, not a general model ranking. Eight of the pilot's 40 answers reached its 256-token cap. Those historical scores remain reported under that setting; the next full-matrix pilot uses 512 tokens for every variant. See the [results page](docs/results.md) for denominators, paired measurements and limits.
+[BM25 completed retrieval on all 2,000 development questions](reports/bm25-dev-2000/report.md): Recall@50 **0.9350**, Recall@5 **0.8591**. In the [20-question pilot at 512 tokens](reports/gemma-dev-pilot-512/report.md), BM25 and BM25+Laya produced answer token F1 scores of **0.5100** and **0.4085**, with zero length-limited answers. Laya also reduced Recall@5 on this slice; these are development findings, not a general model ranking. The earlier [256-token pilot](reports/gemma-dev-pilot-256/report.md) remains available. See [results and limitations](docs/results.md), including the concurrent-workload timing caveat.
 
 Each published comparison identifies its dataset revision and audit, configuration, code/model revisions, backend/dtype, query count, exclusions, hardware and cache policy. Per-query candidate/context IDs and stage measurements are retained locally; compact aggregate exports can be checked without redistributing source text.
 

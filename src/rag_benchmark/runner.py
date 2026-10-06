@@ -6,6 +6,8 @@ import fcntl
 import hashlib
 import importlib.metadata
 import json
+import math
+from numbers import Real
 import os
 from pathlib import Path
 import platform
@@ -20,6 +22,14 @@ from .storage import Store, atomic_json, digest
 
 METHODS = ("bm25", "bge", "embeddinggemma", "bm25_bge", "bm25_embeddinggemma")
 VARIANTS = tuple(v for method in METHODS for v in (method, method + "_laya"))
+
+
+def _record_scores(documents):
+    """Capture aligned model scores without accepting strings or nonfinite values."""
+    values = [document["score"] for document in documents]
+    if any(isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(value) for value in values):
+        raise ValueError("Candidate/ranked scores must be finite numbers")
+    return [float(value) for value in values]
 
 
 def read_config(path: Path) -> dict:
@@ -152,6 +162,8 @@ def run(config, run_dir: Path, split="dev", limit=None, variants=None, retrieval
                 candidates = index.search(q["question"], method=method, top_k=config["experiment"]["candidates"], cache_query=False)
                 retrieval_s = time.perf_counter() - tick
                 original_ids = [c["id"] for c in candidates]
+                original_scores = _record_scores(candidates)
+                candidate_score_type = "bm25" if method == "bm25" else "rrf" if method.startswith("bm25_") else "cosine_similarity"
                 tick = time.perf_counter()
                 ranked = reranker.rerank(q["question"], candidates) if with_laya else candidates
                 rerank_s = time.perf_counter() - tick if with_laya else 0.0
@@ -165,6 +177,9 @@ def run(config, run_dir: Path, split="dev", limit=None, variants=None, retrieval
                     "source": q.get("source", "unknown"), "article_id": q["article_id"],
                     "question": q["question"], "reference_answers": q["answers"], "gold_ids": q["gold_ids"],
                     "candidate_ids": original_ids, "ranked_ids": [c["id"] for c in ranked],
+                    "candidate_scores": original_scores, "ranked_scores": _record_scores(ranked),
+                    "candidate_score_type": candidate_score_type,
+                    "ranked_score_type": "laya_p_true" if with_laya else candidate_score_type,
                     "context_ids": [c["id"] for c in contexts], "metrics": metrics,
                     "retrieval_s": retrieval_s, "rerank_s": rerank_s, "generation_s": None,
                     "generation_cache_hit": False, "index_preparation_s": build_seconds,
@@ -281,6 +296,7 @@ def report(run_dir: Path):
         m = v["metrics"]
         lines.append(f"| {variant} | {v['n']} | {v['complete']} | {fmt(m, 'recall@5')} | {fmt(m, 'ndcg@10')} | {fmt(m, 'answer_em')} | {fmt(m, 'answer_token_f1')} |")
     lines += ["", "Answer EM/token F1 are lexical agreement, not factuality or faithfulness. Interpretive answers need separate review.",
-              "", "summary.json includes source/category breakdowns, paired article-bootstrap intervals, measured stage latency and generation-cache hits. Cached generations and the first question after each preparation/resumption are excluded from latency summaries. Raw timings remain in predictions.jsonl. Index preparation/model loading are separate. Known source citation markers are removed for lexical scoring; raw answers are preserved."]
+              "", "summary.json includes source/category breakdowns, paired article-bootstrap intervals, measured stage latency and generation-cache hits. Cached generations and the first question after each preparation/resumption are excluded from latency summaries. Raw timings remain in predictions.jsonl. Index preparation/model loading are separate. Known source citation markers are removed for lexical scoring; raw answers are preserved.",
+              "", "When present, candidate_scores align with candidate_ids and ranked_scores align with ranked_ids. Score types: bm25 = lexical BM25 score; cosine_similarity = normalized dense-vector dot product; rrf = reciprocal-rank fusion score; laya_p_true = Laya's relevance P(true) model output, not a calibrated probability. Higher scores rank first; scores from different types are not directly comparable. Older runs may omit score arrays."]
     (run_dir / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return result

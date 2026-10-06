@@ -1,23 +1,23 @@
 # Results and validation status
 
-**Development measurements are available; the full ten-variant comparison and final test are pending.** BM25 has completed all 2,000 development questions, and a two-variant pilot has produced 40 real Gemma 4 answers. These runs do not establish a general model winner.
+**Development measurements are available; the full ten-variant comparison and final test are pending.** BM25 has completed all 2,000 development questions. The two-variant Gemma 4 pilot has completed at both 256 and 512 tokens; the 512-token follow-up produced 40 answers without truncation. These runs do not establish a general model winner.
 
 ## Evidence ledger
 
 | Evidence | Current status | What it establishes |
 |---|---|---|
 | Dataset inventory and normalization | Prepared and manifest inspected, 2026-10-06 | 37,511 passages; 14,530 usable QA records; 2,000 development / 12,530 test |
-| Infrastructure checks | Latest local suite: 55 passing tests; [GitHub CI succeeded](https://github.com/erendikmenn/rag-benchmark/actions/runs/37524719483) | Code behavior and failure handling, not pretrained model quality |
+| Infrastructure checks | 68 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
 | BM25 development baseline | Completed 2,000/2,000 real questions against all 37,511 passages | Full development retrieval metrics; no answer generation in this run |
 | BGE-M3 and EmbeddingGemma 2 integration | Real FP32/MPS checks passed on a small Turkish fixture | Actual local encoding works; full-corpus retrieval comparison still pending |
 | Local Laya integration | Real FP32/MPS fixture check and 20-question BM25 reranking pilot completed | Scoring/reranking works; observed quality is reported below |
-| Local Gemma 4 integration | 40/40 pilot outputs completed, 20 questions × two variants | Real local generation with the pinned GGUF and verified server identity |
+| Local Gemma 4 integration | 40/40 outputs completed at each cap; zero length limits at 512 | Real local generation with the pinned GGUF and verified server identity |
 | Ten-variant development comparison | Dense index construction in progress | No complete ten-variant table yet |
 | Frozen final test comparison | Not run/reported | No final leaderboard |
 
 Update this ledger only from actual commands, manifests and inspected artifacts. Include the checked code/config revision and exact scope when changing a row.
 
-The linked CI run completed successfully for commit `0b573f4ea6c1a85b46bc3c297faccc8ccd1054b0` with the 55-test suite. Local real-model checks are also separate from CI. The run reports, completion markers and summaries below were inspected; the full test split remains untouched.
+CI was verified successful for commit `42d376d` with the 55-test suite. Local real-model checks are separate from CI. The run reports, completion markers and summaries below were inspected; the full test split remains untouched.
 
 ## Development retrieval baseline
 
@@ -54,6 +54,14 @@ This development finding motivated a shared **512-token cap for every variant in
 Each timing column contains 19 observations after the disclosed warm-up exclusions. Stage percentiles cannot be summed to obtain end-to-end percentiles. These are measurements from this pilot on the M4 Max host, not general serving benchmarks.
 
 The pilot used llama.cpp `b11451-2207c8e57`, a verified Q4_0 GGUF, 8,192-token server context, temperature 0, seed 42, thinking disabled and a 256-token output limit. Run fingerprint: `de38b96ddcd74e2f25f6553cac022abb70207383433d1d0254cb5fde14139bb6`. The manifest records package versions, source hash, model revisions, GGUF checksum and server properties; the pilot's Git revision field was unset at execution, and its recorded source hash was subsequently verified to match commit `a0c3a76` exactly.
+
+## Follow-up at 512 tokens
+
+The [512-token pilot report](../reports/gemma-dev-pilot-512/report.md) records **40/40 completed answers, zero cache hits and zero length-limited answers**. BM25 answer EM/F1 were **0.0500 / 0.5100**; BM25+Laya were **0.0000 / 0.4085**. Retrieval results were unchanged. The paired F1 difference was −0.1015, with an article-bootstrap 95% interval of [-0.2159, 0.0274]. This remains a small development comparison.
+
+The configured generation cap was the only experiment-setting change from the earlier pilot. Query IDs, candidate lists, final contexts and reported server identity match. The run therefore confirms that the higher cap removed observed truncation on these questions; the historical 256-token results remain visible. Its recorded Git revision is `0b573f4ea6c1a85b46bc3c297faccc8ccd1054b0`; later source changes do not rewrite that provenance. Public [summary](../reports/gemma-dev-pilot-512/summary.json), [provenance](../reports/gemma-dev-pilot-512/provenance.json) and [per-query metrics](../reports/gemma-dev-pilot-512/per-query-metrics.jsonl) are available.
+
+**Timing caveat:** dense indexing was running concurrently with this follow-up. Its generation p50 values, 13.650 s for BM25 and 9.192 s for BM25+Laya, are therefore not a controlled speed comparison with the earlier pilot or between variants. Preserve these raw measurements as run evidence, and measure latency separately without competing indexing work before making speed claims.
 
 Pilot stage timings are diagnostic: model checks and index preparation may overlap on the same GPU. They are not controlled comparative latency measurements. Final timing runs must use an otherwise idle inference workload.
 

@@ -89,6 +89,16 @@ def _row(row):
     result = _fields(row, ("variant", "query_id", "article_id", "category", "source"))
     for key in ("gold_ids", "candidate_ids", "ranked_ids", "context_ids"):
         result[key] = [_label(value) for value in row.get(key, [])]
+    for stage in ("candidate", "ranked"):
+        key, type_key = f"{stage}_scores", f"{stage}_score_type"
+        if key in row:
+            values = row[key]
+            if (not isinstance(values, list) or len(values) != len(result[f"{stage}_ids"])
+                    or any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in values)):
+                raise ValueError("Public score arrays must contain finite numbers aligned with their IDs")
+            if row.get(type_key) not in {"bm25", "cosine_similarity", "rrf", "laya_p_true"}:
+                raise ValueError("Unsupported public score type")
+            result[key], result[type_key] = values, row[type_key]
     result["metrics"] = _numbers(row.get("metrics"), METRICS)
     result.update(_numbers(row, (*TIMINGS, "generation_cache_hit", "first_question_after_preparation", "first_fresh_generation")))
     for key in ("retrieval_usage", "reranker_usage", "generator_usage"):
@@ -177,7 +187,8 @@ def export_report(run_dir: Path, output_dir: Path) -> dict:
             scores = [f"{stats['metrics'][key]:.4f}" if key in stats["metrics"] else "—" for key in ("recall@5", "ndcg@10", "answer_em", "answer_token_f1")]
             lines.append(f"| {name} | {stats.get('n', 0)} | {stats.get('complete', False)} | " + " | ".join(scores) + " |")
         lines += ["", "Answer scores measure lexical agreement, not factual correctness. Synthetic labels and source-quality limitations apply.", "",
-                  "The JSON files contain provenance, aggregate breakdowns, paired intervals, and per-query IDs/metrics. Source text, questions, reference answers, generated answers, prompts, and local paths are excluded."]
+                  "The JSON files contain provenance, aggregate breakdowns, paired intervals, and per-query IDs/metrics. Source text, questions, reference answers, generated answers, prompts, and local paths are excluded.", "",
+                  "Optional candidate_scores and ranked_scores align with their respective ID arrays. Score types: bm25 = lexical BM25 score; cosine_similarity = normalized dense-vector dot product; rrf = reciprocal-rank fusion score; laya_p_true = Laya's relevance P(true) model output, not a calibrated probability. Higher scores rank first. Different score types are not directly comparable; older runs may omit scores."]
         (temporary / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         for name, value in (("summary.json", summary), ("provenance.json", provenance)):
             (temporary / name).write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")

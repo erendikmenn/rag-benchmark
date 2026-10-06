@@ -89,3 +89,51 @@ def test_retrieval_only_never_initializes_generator(tmp_path, monkeypatch):
     summary = runner.run(config, tmp_path / "retrieval", retrieval_only=True)
     assert calls == []
     assert "answer_em" not in summary["variants"]["bm25"]["metrics"]
+
+
+def test_records_retrieval_and_laya_scores_in_their_own_orders(tmp_path, monkeypatch):
+    config, _ = fixture_run(tmp_path, monkeypatch)
+    config["laya"] = {}
+    config["experiment"]["variants"] = ["bm25", "bm25_laya"]
+
+    class Index:
+        last_usage = {}
+        def __init__(self, *args, **kwargs):
+            pass
+        def build(self, method):
+            pass
+        def search(self, *args, **kwargs):
+            return [{"id": "a#c1", "text": "Ankara", "score": 12.5}, {"id": "a#c2", "text": "Other", "score": 3.25}]
+
+    class Reranker:
+        last_usage = {}
+        def __init__(self, config):
+            pass
+        def rerank(self, question, candidates):
+            # Real adapter returns new dictionaries; this deliberately mutates
+            # originals too, proving retrieval scores were captured beforehand.
+            candidates[0]["score"], candidates[1]["score"] = .1, .9
+            return list(reversed(candidates))
+
+    monkeypatch.setattr("rag_benchmark.retrieval.RetrievalIndex", Index)
+    monkeypatch.setattr("rag_benchmark.models.LayaReranker", Reranker)
+    directory = tmp_path / "scored"
+    runner.run(config, directory, retrieval_only=True)
+    rows = [json.loads(line) for line in (directory / "predictions.jsonl").read_text().splitlines()]
+    for row in rows:
+        assert row["candidate_ids"] == ["a#c1", "a#c2"]
+        assert row["candidate_scores"] == [12.5, 3.25]
+        assert row["candidate_score_type"] == "bm25"
+        if row["variant"] == "bm25_laya":
+            assert row["ranked_ids"] == ["a#c2", "a#c1"]
+            assert row["ranked_scores"] == [.9, .1]
+            assert row["ranked_score_type"] == "laya_p_true"
+        else:
+            assert row["ranked_scores"] == row["candidate_scores"]
+            assert row["ranked_score_type"] == "bm25"
+
+
+@pytest.mark.parametrize("value", ["private text", float("nan"), float("inf"), True])
+def test_record_scores_rejects_non_numeric_or_nonfinite_values(value):
+    with pytest.raises(ValueError, match="finite numbers"):
+        runner._record_scores([{"score": value}])

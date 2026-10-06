@@ -117,3 +117,32 @@ def test_rejects_text_in_identifier_without_partial_export(tmp_path):
         export_report(run, output)
     assert not output.exists()
     assert not list(tmp_path.glob(".rag-export-*"))
+
+
+def test_export_preserves_aligned_scores_and_their_distinct_meanings(tmp_path):
+    run, _ = make_run(tmp_path)
+    row = json.loads((run / "predictions.jsonl").read_text())
+    row.update(candidate_scores=[12.5], candidate_score_type="bm25", ranked_scores=[.85], ranked_score_type="laya_p_true")
+    (run / "predictions.jsonl").write_text(json.dumps(row) + "\n")
+    output = tmp_path / "scored-export"
+    export_report(run, output)
+    exported = json.loads((output / "per-query-metrics.jsonl").read_text())
+    assert exported["candidate_scores"] == [12.5]
+    assert exported["ranked_scores"] == [.85]
+    assert exported["candidate_score_type"] == "bm25"
+    assert exported["ranked_score_type"] == "laya_p_true"
+    assert "not a calibrated probability" in (output / "report.md").read_text()
+
+
+@pytest.mark.parametrize("scores,score_type", [(["PRIVATE_FREEFORM_SCORE"], "bm25"), ([float("nan")], "bm25"),
+                                               ([float("inf")], "bm25"), ([True], "bm25"), ([], "bm25"),
+                                               ([.5, .3], "bm25"), ([.5], "PRIVATE_FREEFORM_SCORE_TYPE")])
+def test_export_rejects_unsafe_or_misaligned_score_arrays(tmp_path, scores, score_type):
+    run, _ = make_run(tmp_path)
+    row = json.loads((run / "predictions.jsonl").read_text())
+    row.update(candidate_scores=scores, candidate_score_type=score_type)
+    (run / "predictions.jsonl").write_text(json.dumps(row) + "\n")
+    output = tmp_path / "bad-scores"
+    with pytest.raises(ValueError, match="score"):
+        export_report(run, output)
+    assert not output.exists()

@@ -4,7 +4,7 @@
 
 [English](README.md) · [Deney protokolü](docs/protocol.md) · [Sonuçlar ve doğrulama durumu](docs/results.md)
 
-**Mevcut durum:** veri denetimi, gerçek model bağlantı kontrolleri, **2.000 soruluk BM25 geliştirme deneyi** ve **20 soruluk BM25/Laya/Gemma pilotu** tamamlandı. [CI başarılı](https://github.com/erendikmenn/rag-benchmark/actions/runs/37523395067). On varyantın tamamı ve son test henüz tamamlanmadı. [Ölçümler ve sınırları](docs/results.md).
+**Mevcut durum:** veri denetimi, gerçek model kontrolleri ve **2.000 soruluk BM25 geliştirme deneyi** tamamlandı. **512 token sınırındaki 20 soruluk BM25/Laya/Gemma pilotu**, 40 çıktının tamamını kesilmeden üretti. On varyantın tamamı ve son test henüz tamamlanmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Geliştirme ölçümleri](docs/results.md).
 
 ## Sistem ne yapıyor?
 
@@ -73,6 +73,20 @@ uv run --locked --extra models rag-benchmark export-report --run-dir runs/pilot 
 
 Yalnız aramayı sınamak için `run` komutuna `--retrieval-only` eklenebilir; bu mod cevap üretmediğinden uçtan uca RAG sonucu değildir. Hazırlanan veriler `data/ragturk/` altında tutulur. Yöntem kimlikleri `bm25`, `bge`, `embeddinggemma`, `bm25_bge`, `bm25_embeddinggemma`; Laya'lı kola `_laya` eklenir.
 
+**On varyantın tamamını 20 geliştirme sorusunda** çalıştırmak için `--variants` seçeneğini kullanmayın; ayar dosyasındaki bütün kollar çalışır:
+
+```bash
+uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --limit 20 --run-dir runs/matrix-dev-pilot
+```
+
+Pilotu kontrol ettikten sonra **2.000 geliştirme sorusu × on varyant** için `--limit` seçeneğini kaldırın ve yeni bir çıktı dizini kullanın:
+
+```bash
+uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --run-dir runs/matrix-dev-full
+```
+
+`--split test`, bütün ayarlar sabitlendikten sonra 12.530 son test sorusu için, ayrı bir deney diziniyle kullanılır. Prompt, birleştirme veya çıktı bütçesi ayarları geliştirme verisiyle seçilir.
+
 Önce 20 soruluk geliştirme kontrolü yapılır. Tam deney bundan sonra çalıştırılır. İlk veri/model indirmeleri internet gerektirir; gerekli dosyalar hazır olduğunda değerlendirme yerel çalışacak şekilde tasarlanır. Ücretli bir inference API'si kullanmak planın parçası değildir. Yerelde çalışmak donanım, bellek ve elektrik maliyetini ortadan kaldırmaz.
 
 ## Sonuçları nasıl okumalı?
@@ -91,7 +105,7 @@ Laya'nın verdiği 0–1 puanı bu görev için doğrulanmış bir güven yüzde
 
 ## İlk ölçümler
 
-[BM25, 2.000 geliştirme sorusunda](reports/bm25-dev-2000/report.md) **Recall@50: 0,9350**, **Recall@5: 0,8591** verdi. Ayrı [20 soruluk pilotta](reports/gemma-dev-pilot-256/report.md) aynı Gemma 4 ile BM25 ve BM25+Laya kolları çalıştı. Bu küçük örneklemde Laya, ilk 5 kaynağın recall değerini ve cevap F1'ini düşürdü; henüz genel bir model sıralaması çıkarmıyoruz. Toplam 40 cevabın 8'i pilotun 256 token sınırına ulaştı; bunlar 20 yorum cevabının %40'ıydı. Bu ilk sonuçlar 256 token ayarıyla korunuyor. Sonraki on kollu pilotun tamamında 512 token kullanılacak. Ayrıntılar [sonuçlar](docs/results.md) sayfasında; son test verisine geçilmedi.
+[BM25, 2.000 geliştirme sorusunda](reports/bm25-dev-2000/report.md) **Recall@50: 0,9350**, **Recall@5: 0,8591** verdi. [512 token sınırındaki 20 soruluk pilotta](reports/gemma-dev-pilot-512/report.md) BM25'in cevap F1'i **0,5100**, BM25+Laya'nınki **0,4085** oldu; 40 cevabın hiçbiri token sınırında kesilmedi. Laya bu küçük örneklemde kaynak recall değerini de düşürdü; bu sonuç genel bir model sıralaması değildir. Önceki [256 tokenlı pilot](reports/gemma-dev-pilot-256/report.md) korunuyor. Ayrıntılar ve aynı anda süren indeksleme nedeniyle hız karşılaştırmasının sınırları [sonuçlar](docs/results.md) sayfasında; son test verisine geçilmedi.
 
 ## Lisans
 
