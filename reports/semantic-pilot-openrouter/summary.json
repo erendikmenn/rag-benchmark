@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "judge_model": "typesafe/jev-1.13",
+  "expected_served_model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "served_models": [
+    "typesafe/jev-1.13-20260917"
+  ],
+  "bundle_fingerprint": "c23741a72bec24bf52a2790a126582f3426f428971332965f481ccda4cd1a579",
+  "run_fingerprint": "045252d34c401a7286e7c03cea4c7059b283219a02ad1a618d1aa8cb0830ba10",
+  "dataset_revision": "86d35335d01b30869ab8eb392e380921fa1e2185",
+  "dataset_fingerprint": "71289eaa5e6b4d6f5c8285ab0336fdc3568c1828972645d9b4456337b8326d1c",
+  "low_confidence_threshold": 0.7,
+  "judge_code_sha256": "360cd7fae93c05c27baeaedadb4af054e6aa69a4dcf2786c2f9c67f409be9eaf",
+  "reporting_code_sha256": "360cd7fae93c05c27baeaedadb4af054e6aa69a4dcf2786c2f9c67f409be9eaf",
+  "rubric_fingerprint": "f01c641ac31d93ecb2638a57a22b711c04b62e7f303a3185cb4935260f2df9fe",
+  "interpretation": "Jev-judged estimates requiring human calibration, not human-verified accuracy. Rates are unavailable until their required judgments finish and then use all planned answers, including unjudgeable outcomes. No average probability is called accuracy.",
+  "complete": true,
+  "workload": {
+    "unique_questions": 20,
+    "planned_answers": 200,
+    "tasks_before_deduplication": 400,
+    "unique_tasks": 319,
+    "successful_tasks": 319,
+    "failed_tasks": 0,
+    "inflight_tasks": 0,
+    "pending_tasks": 0
+  },
+  "overall": {
+    "planned_answers": 200,
+    "correctness_labels": {
+      "correct": 105,
+      "partial": 62,
+      "abstained": 30,
+      "incorrect": 3
+    },
+    "grounding_labels": {
+      "supported": 176,
+      "abstained": 20,
+      "partly_supported": 4
+    },
+    "correctness_status": {
+      "success": 200
+    },
+    "correctness_low_confidence": 58,
+    "correctness_judged": 200,
+    "grounding_status": {
+      "success": 200
+    },
+    "grounding_low_confidence": 47,
+    "grounding_judged": 200,
+    "semantic_correct_count": 105,
+    "correct_and_supported_count": 105,
+    "judged_both": 200,
+    "unjudgeable_answers": 0,
+    "semantic_correct_rate_of_planned": 0.525,
+    "correct_and_supported_rate_of_planned": 0.525
+  },
+  "usage": {
+    "input_tokens": 761303,
+    "output_tokens": 20523,
+    "cost": 0.031974726
+  },
+  "usage_scope": "Known usage and USD cost of successful validated requests only; failed/inflight requests may have unreported billable usage.",
+  "by_variant": {
+    "bge": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 12,
+        "partial": 7,
+        "abstained": 1
+      },
+      "grounding_labels": {
+        "supported": 19,
+        "abstained": 1
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 5,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 3,
+      "grounding_judged": 20,
+      "semantic_correct_count": 12,
+      "correct_and_supported_count": 12,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.6,
+      "correct_and_supported_rate_of_planned": 0.6
+    },
+    "bge_laya": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 9,
+        "abstained": 4,
+        "partial": 7
+      },
+      "grounding_labels": {
+        "supported": 17,
+        "abstained": 3
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 6,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 6,
+      "grounding_judged": 20,
+      "semantic_correct_count": 9,
+      "correct_and_supported_count": 9,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.45,
+      "correct_and_supported_rate_of_planned": 0.45
+    },
+    "bm25": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 11,
+        "partial": 7,
+        "abstained": 2
+      },
+      "grounding_labels": {
+        "supported": 20
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 7,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 2,
+      "grounding_judged": 20,
+      "semantic_correct_count": 11,
+      "correct_and_supported_count": 11,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.55,
+      "correct_and_supported_rate_of_planned": 0.55
+    },
+    "bm25_bge": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 13,
+        "partial": 6,
+        "abstained": 1
+      },
+      "grounding_labels": {
+        "supported": 20
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 4,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 2,
+      "grounding_judged": 20,
+      "semantic_correct_count": 13,
+      "correct_and_supported_count": 13,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.65,
+      "correct_and_supported_rate_of_planned": 0.65
+    },
+    "bm25_bge_laya": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 8,
+        "abstained": 5,
+        "partial": 7
+      },
+      "grounding_labels": {
+        "supported": 16,
+        "abstained": 3,
+        "partly_supported": 1
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 7,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 7,
+      "grounding_judged": 20,
+      "semantic_correct_count": 8,
+      "correct_and_supported_count": 8,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.4,
+      "correct_and_supported_rate_of_planned": 0.4
+    },
+    "bm25_embeddinggemma": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 14,
+        "partial": 6
+      },
+      "grounding_labels": {
+        "supported": 20
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 3,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 0,
+      "grounding_judged": 20,
+      "semantic_correct_count": 14,
+      "correct_and_supported_count": 14,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.7,
+      "correct_and_supported_rate_of_planned": 0.7
+    },
+    "bm25_embeddinggemma_laya": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 7,
+        "abstained": 5,
+        "partial": 7,
+        "incorrect": 1
+      },
+      "grounding_labels": {
+        "supported": 15,
+        "abstained": 4,
+        "partly_supported": 1
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 6,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 10,
+      "grounding_judged": 20,
+      "semantic_correct_count": 7,
+      "correct_and_supported_count": 7,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.35,
+      "correct_and_supported_rate_of_planned": 0.35
+    },
+    "bm25_laya": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 9,
+        "abstained": 5,
+        "incorrect": 1,
+        "partial": 5
+      },
+      "grounding_labels": {
+        "supported": 15,
+        "abstained": 4,
+        "partly_supported": 1
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 5,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 5,
+      "grounding_judged": 20,
+      "semantic_correct_count": 9,
+      "correct_and_supported_count": 9,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.45,
+      "correct_and_supported_rate_of_planned": 0.45
+    },
+    "embeddinggemma": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 14,
+        "abstained": 2,
+        "partial": 4
+      },
+      "grounding_labels": {
+        "supported": 18,
+        "abstained": 2
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 6,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 3,
+      "grounding_judged": 20,
+      "semantic_correct_count": 14,
+      "correct_and_supported_count": 14,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.7,
+      "correct_and_supported_rate_of_planned": 0.7
+    },
+    "embeddinggemma_laya": {
+      "planned_answers": 20,
+      "correctness_labels": {
+        "correct": 8,
+        "partial": 6,
+        "abstained": 5,
+        "incorrect": 1
+      },
+      "grounding_labels": {
+        "supported": 16,
+        "abstained": 3,
+        "partly_supported": 1
+      },
+      "correctness_status": {
+        "success": 20
+      },
+      "correctness_low_confidence": 9,
+      "correctness_judged": 20,
+      "grounding_status": {
+        "success": 20
+      },
+      "grounding_low_confidence": 9,
+      "grounding_judged": 20,
+      "semantic_correct_count": 8,
+      "correct_and_supported_count": 8,
+      "judged_both": 20,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.4,
+      "correct_and_supported_rate_of_planned": 0.4
+    }
+  },
+  "by_source": {
+    "web": {
+      "planned_answers": 100,
+      "correctness_labels": {
+        "correct": 44,
+        "partial": 30,
+        "abstained": 23,
+        "incorrect": 3
+      },
+      "grounding_labels": {
+        "supported": 81,
+        "abstained": 15,
+        "partly_supported": 4
+      },
+      "correctness_status": {
+        "success": 100
+      },
+      "correctness_low_confidence": 38,
+      "correctness_judged": 100,
+      "grounding_status": {
+        "success": 100
+      },
+      "grounding_low_confidence": 35,
+      "grounding_judged": 100,
+      "semantic_correct_count": 44,
+      "correct_and_supported_count": 44,
+      "judged_both": 100,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.44,
+      "correct_and_supported_rate_of_planned": 0.44
+    },
+    "wikipedia": {
+      "planned_answers": 100,
+      "correctness_labels": {
+        "partial": 32,
+        "correct": 61,
+        "abstained": 7
+      },
+      "grounding_labels": {
+        "supported": 95,
+        "abstained": 5
+      },
+      "correctness_status": {
+        "success": 100
+      },
+      "correctness_low_confidence": 20,
+      "correctness_judged": 100,
+      "grounding_status": {
+        "success": 100
+      },
+      "grounding_low_confidence": 12,
+      "grounding_judged": 100,
+      "semantic_correct_count": 61,
+      "correct_and_supported_count": 61,
+      "judged_both": 100,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.61,
+      "correct_and_supported_rate_of_planned": 0.61
+    }
+  },
+  "by_category": {
+    "FACTUAL": {
+      "planned_answers": 100,
+      "correctness_labels": {
+        "correct": 74,
+        "abstained": 21,
+        "partial": 5
+      },
+      "grounding_labels": {
+        "supported": 83,
+        "abstained": 17
+      },
+      "correctness_status": {
+        "success": 100
+      },
+      "correctness_low_confidence": 12,
+      "correctness_judged": 100,
+      "grounding_status": {
+        "success": 100
+      },
+      "grounding_low_confidence": 12,
+      "grounding_judged": 100,
+      "semantic_correct_count": 74,
+      "correct_and_supported_count": 74,
+      "judged_both": 100,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.74,
+      "correct_and_supported_rate_of_planned": 0.74
+    },
+    "INTERPRETATION": {
+      "planned_answers": 100,
+      "correctness_labels": {
+        "partial": 57,
+        "correct": 31,
+        "abstained": 9,
+        "incorrect": 3
+      },
+      "grounding_labels": {
+        "supported": 93,
+        "partly_supported": 4,
+        "abstained": 3
+      },
+      "correctness_status": {
+        "success": 100
+      },
+      "correctness_low_confidence": 46,
+      "correctness_judged": 100,
+      "grounding_status": {
+        "success": 100
+      },
+      "grounding_low_confidence": 35,
+      "grounding_judged": 100,
+      "semantic_correct_count": 31,
+      "correct_and_supported_count": 31,
+      "judged_both": 100,
+      "unjudgeable_answers": 0,
+      "semantic_correct_rate_of_planned": 0.31,
+      "correct_and_supported_rate_of_planned": 0.31
+    }
+  }
+}

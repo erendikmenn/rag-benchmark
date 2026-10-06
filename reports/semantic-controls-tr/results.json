@@ -1,0 +1,438 @@
+{
+  "purpose": "Assistant-authored synthetic Turkish smoke controls; these are not benchmark questions, human calibration, or a measure of judge accuracy.",
+  "human_calibration_performed": false,
+  "rubric_fingerprint": "f01c641ac31d93ecb2638a57a22b711c04b62e7f303a3185cb4935260f2df9fe",
+  "cases": 6,
+  "logical_judgments": 12,
+  "control_requests": 13,
+  "validated_judgments": 12,
+  "matching_intended_labels": 10,
+  "initial_invalid_responses": 1,
+  "invalid_response_cause": "Not retained; rounding was suspected but not established. The affected control was explicitly retried and validated.",
+  "usage_scope": "Successful validated control requests only. Excludes the one invalid control response and a separate connection smoke request whose usage was not recorded.",
+  "usage": {
+    "input_tokens": 9197,
+    "output_tokens": 765,
+    "cost": 0.000386274
+  },
+  "results": [
+    {
+      "case": "paraphrase",
+      "kind": "correctness",
+      "state": {
+        "question": "Ada yarışmayı kaçıncı sırada bitirdi?",
+        "answer": "Verilen bilgiye göre Ada, yarışmanın sonunda ikinci sırada yer almıştır.",
+        "reference_answers": [
+          "2. sırada."
+        ],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Ada yarışmayı ikinci sırada bitirdi."
+          }
+        ]
+      },
+      "expected_label": "correct",
+      "actual_label": "correct",
+      "matches": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "abstained": 0,
+        "partial": 0,
+        "unjudgeable": 0,
+        "correct": 1,
+        "incorrect": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 774,
+        "output_tokens": 57,
+        "cost": 3.2508e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "paraphrase",
+      "kind": "grounding",
+      "state": {
+        "question": "Ada yarışmayı kaçıncı sırada bitirdi?",
+        "answer": "Verilen bilgiye göre Ada, yarışmanın sonunda ikinci sırada yer almıştır.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Ada yarışmayı ikinci sırada bitirdi."
+          }
+        ]
+      },
+      "expected_label": "supported",
+      "actual_label": "supported",
+      "matches": true,
+      "confidence": 0.98,
+      "probabilities": {
+        "supported": 0.99,
+        "abstained": 0,
+        "unjudgeable": 0,
+        "unsupported": 0.01,
+        "partly_supported": 0,
+        "contradicted": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 773,
+        "output_tokens": 69,
+        "cost": 3.2466e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "wrong_number",
+      "kind": "correctness",
+      "state": {
+        "question": "Ada yarışmayı kaçıncı sırada bitirdi?",
+        "answer": "Ada yarışmayı üçüncü sırada bitirdi.",
+        "reference_answers": [
+          "2. sırada."
+        ],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Ada yarışmayı ikinci sırada bitirdi."
+          }
+        ]
+      },
+      "expected_label": "incorrect",
+      "actual_label": "incorrect",
+      "matches": true,
+      "confidence": 0.86,
+      "probabilities": {
+        "unjudgeable": 0.09,
+        "incorrect": 0.89,
+        "correct": 0.02,
+        "partial": 0,
+        "abstained": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 767,
+        "output_tokens": 57,
+        "cost": 3.2214e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "wrong_number",
+      "kind": "grounding",
+      "state": {
+        "question": "Ada yarışmayı kaçıncı sırada bitirdi?",
+        "answer": "Ada yarışmayı üçüncü sırada bitirdi.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Ada yarışmayı ikinci sırada bitirdi."
+          }
+        ]
+      },
+      "expected_label": "contradicted",
+      "actual_label": "contradicted",
+      "matches": true,
+      "confidence": 0.97,
+      "probabilities": {
+        "unjudgeable": 0.01,
+        "partly_supported": 0,
+        "abstained": 0,
+        "unsupported": 0.01,
+        "contradicted": 0.98,
+        "supported": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 766,
+        "output_tokens": 72,
+        "cost": 3.2172e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "negation",
+      "kind": "correctness",
+      "state": {
+        "question": "Müze pazartesi günleri açık mı?",
+        "answer": "Evet, müze pazartesi günleri açıktır.",
+        "reference_answers": [
+          "Hayır, kapalı."
+        ],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Müze pazartesi günleri kapalıdır."
+          }
+        ]
+      },
+      "expected_label": "incorrect",
+      "actual_label": "incorrect",
+      "matches": true,
+      "confidence": 0.95,
+      "probabilities": {
+        "partial": 0,
+        "incorrect": 0.97,
+        "unjudgeable": 0.03,
+        "abstained": 0,
+        "correct": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 766,
+        "output_tokens": 57,
+        "cost": 3.2172e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "negation",
+      "kind": "grounding",
+      "state": {
+        "question": "Müze pazartesi günleri açık mı?",
+        "answer": "Evet, müze pazartesi günleri açıktır.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Müze pazartesi günleri kapalıdır."
+          }
+        ]
+      },
+      "expected_label": "contradicted",
+      "actual_label": "contradicted",
+      "matches": true,
+      "confidence": 0.98,
+      "probabilities": {
+        "partly_supported": 0,
+        "unjudgeable": 0.01,
+        "contradicted": 0.99,
+        "supported": 0,
+        "unsupported": 0,
+        "abstained": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 764,
+        "output_tokens": 72,
+        "cost": 3.2088e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "incomplete",
+      "kind": "correctness",
+      "state": {
+        "question": "Uygulama hangi dosya biçimlerini destekliyor?",
+        "answer": "Uygulama PDF dosyalarını destekler.",
+        "reference_answers": [
+          "PDF ve TXT."
+        ],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Uygulama PDF ve TXT dosyalarını destekler."
+          }
+        ]
+      },
+      "expected_label": "partial",
+      "actual_label": "partial",
+      "matches": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "unjudgeable": 0,
+        "partial": 1,
+        "abstained": 0,
+        "correct": 0,
+        "incorrect": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 764,
+        "output_tokens": 57,
+        "cost": 3.2088e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "incomplete",
+      "kind": "grounding",
+      "state": {
+        "question": "Uygulama hangi dosya biçimlerini destekliyor?",
+        "answer": "Uygulama PDF dosyalarını destekler.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Uygulama PDF ve TXT dosyalarını destekler."
+          }
+        ]
+      },
+      "expected_label": "supported",
+      "actual_label": "supported",
+      "matches": true,
+      "confidence": 0.9,
+      "probabilities": {
+        "abstained": 0,
+        "unsupported": 0,
+        "supported": 0.92,
+        "unjudgeable": 0,
+        "partly_supported": 0.06,
+        "contradicted": 0.02
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 765,
+        "output_tokens": 69,
+        "cost": 3.213e-05
+      },
+      "required_explicit_retry": true
+    },
+    {
+      "case": "unprovided_evidence",
+      "kind": "correctness",
+      "state": {
+        "question": "Şirketin merkezi hangi şehirdedir?",
+        "answer": "Şirketin merkezi Ankara şehrindedir.",
+        "reference_answers": [
+          "Ankara."
+        ],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Şirketin merkezi Ankara şehrindedir."
+          }
+        ]
+      },
+      "expected_label": "correct",
+      "actual_label": "correct",
+      "matches": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "correct": 0.99,
+        "partial": 0,
+        "abstained": 0,
+        "incorrect": 0,
+        "unjudgeable": 0.01
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 753,
+        "output_tokens": 57,
+        "cost": 3.1626e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "unprovided_evidence",
+      "kind": "grounding",
+      "state": {
+        "question": "Şirketin merkezi hangi şehirdedir?",
+        "answer": "Şirketin merkezi Ankara şehrindedir.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Şirket 2020 yılında kurulmuştur."
+          }
+        ]
+      },
+      "expected_label": "unsupported",
+      "actual_label": "unsupported",
+      "matches": true,
+      "confidence": 1,
+      "probabilities": {
+        "contradicted": 0,
+        "abstained": 0,
+        "partly_supported": 0,
+        "unsupported": 1,
+        "unjudgeable": 0,
+        "supported": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 758,
+        "output_tokens": 69,
+        "cost": 3.1836e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "insufficient_reference",
+      "kind": "correctness",
+      "state": {
+        "question": "Kütüphane sabah saat kaçta açılır?",
+        "answer": "Kütüphane sabah 09.00 saatinde açılır.",
+        "reference_answers": [],
+        "gold_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Kütüphanenin çalışma saatleri henüz açıklanmamıştır."
+          }
+        ]
+      },
+      "expected_label": "unjudgeable",
+      "actual_label": "incorrect",
+      "matches": false,
+      "confidence": 0.92,
+      "probabilities": {
+        "unjudgeable": 0.06,
+        "correct": 0,
+        "abstained": 0,
+        "partial": 0,
+        "incorrect": 0.9400000000000001
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 770,
+        "output_tokens": 57,
+        "cost": 3.234e-05
+      },
+      "required_explicit_retry": false
+    },
+    {
+      "case": "insufficient_reference",
+      "kind": "grounding",
+      "state": {
+        "question": "Kütüphane sabah saat kaçta açılır?",
+        "answer": "Kütüphane sabah 09.00 saatinde açılır.",
+        "context_passages": [
+          {
+            "source_id": "control",
+            "title": "",
+            "text": "Kütüphanenin çalışma saatleri henüz açıklanmamıştır."
+          }
+        ]
+      },
+      "expected_label": "unsupported",
+      "actual_label": "contradicted",
+      "matches": false,
+      "confidence": 0.4,
+      "probabilities": {
+        "unjudgeable": 0,
+        "contradicted": 0.51,
+        "partly_supported": 0,
+        "unsupported": 0.49,
+        "abstained": 0,
+        "supported": 0
+      },
+      "served_model": "typesafe/jev-1.13-20260917",
+      "usage": {
+        "input_tokens": 777,
+        "output_tokens": 72,
+        "cost": 3.2634e-05
+      },
+      "required_explicit_retry": false
+    }
+  ]
+}

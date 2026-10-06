@@ -1,4 +1,4 @@
-"""Preparation may use the network; benchmark inference is local only."""
+"""Local RAG inference; hosted evaluation is a separate, explicitly selected command."""
 
 import argparse
 import hashlib
@@ -117,8 +117,37 @@ def main(argv=None):
     p = sub.add_parser("export-report")
     p.add_argument("--run-dir", type=Path, required=True)
     p.add_argument("--output-dir", type=Path, required=True)
+    p = sub.add_parser("semantic-prepare", help="Freeze existing answers for optional Jev evaluation; no API calls")
+    p.add_argument("--run-dir", type=Path, required=True)
+    p.add_argument("--output-dir", type=Path, required=True)
+    p.add_argument("--variants", help="Comma-separated variant IDs; default: all variants in the source run")
+    p = sub.add_parser("semantic-judge", help="Evaluate a frozen bundle; defaults to a local dry run")
+    p.add_argument("--evaluation-dir", type=Path, required=True)
+    p.add_argument("--max-requests", type=int, default=0, help="Maximum new hosted requests; 0 sends nothing")
+    p.add_argument("--allow-hosted-judge", action="store_true", help="Allow sending evaluation text to OpenRouter / TypeSafe")
+    p = sub.add_parser("semantic-report", help="Summarize saved Jev judgments without new requests")
+    p.add_argument("--evaluation-dir", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
+        if args.command == "semantic-prepare":
+            from .semantic import prepare_evaluation
+            prepare_evaluation(args.run_dir, args.output_dir, args.variants.split(",") if args.variants else None)
+            print(args.output_dir / "report.md")
+            return 0
+        if args.command == "semantic-judge":
+            if args.max_requests < 0:
+                raise ValueError("--max-requests must be non-negative")
+            if args.max_requests and not args.allow_hosted_judge:
+                raise ValueError("Jev evaluation sends text to OpenRouter / TypeSafe. Add --allow-hosted-judge to enable this separate hosted step.")
+            from .semantic import evaluate_bundle
+            evaluate_bundle(args.evaluation_dir, max_requests=args.max_requests)
+            print(args.evaluation_dir / "report.md")
+            return 0
+        if args.command == "semantic-report":
+            from .semantic import summarize_evaluation
+            summarize_evaluation(args.evaluation_dir)
+            print(args.evaluation_dir / "report.md")
+            return 0
         if args.command == "report":
             report(args.run_dir)
             print(args.run_dir / "report.md")

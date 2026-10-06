@@ -1,6 +1,6 @@
 # Local model contracts
 
-The benchmark never calls hosted inference. Downloading weights is an explicit preparation operation (`fetch_model`), using immutable Hugging Face commit IDs. Inference only loads those local snapshots. Missing models, unsupported architectures, invalid vectors, truncated passages and silent device fallbacks fail the run; there is no substitute model or fabricated ranking.
+The core RAG pipeline never calls hosted inference. Downloading weights is an explicit preparation operation (`fetch_model`), using immutable Hugging Face commit IDs. RAG inference only loads those local snapshots. Missing models, unsupported architectures, invalid vectors, truncated passages and silent device fallbacks fail the run; there is no substitute model or fabricated ranking. The optional [Jev semantic evaluation](semantic-evaluation.md) is a separate hosted step over saved outputs and requires explicit selection; it does not change the local retrieval or generation pipeline.
 
 ## Models
 

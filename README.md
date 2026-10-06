@@ -2,7 +2,7 @@
 
 **A reproducible local benchmark for Turkish retrieval-augmented generation.** Compare BM25, BGE-M3 and EmbeddingGemma 2 retrieval, measure what Laya reranking adds, and keep the Gemma 4 answer model fixed.
 
-[Türkçe anlatım](README.tr.md) · [Evaluation protocol](docs/protocol.md) · [Results and validation status](docs/results.md)
+[Türkçe anlatım](README.tr.md) · [Evaluation protocol](docs/protocol.md) · [Results and validation status](docs/results.md) · [Semantic evaluation](docs/semantic-evaluation.md)
 
 **Status:** the **ten-variant pilot is complete: 20 questions × ten variants, 200/200 outputs**, searching all 37,511 passages. Both dense indexes are built. The separate 2,000-question BM25 retrieval baseline is complete; the ten-variant 2,000-question development run and 12,530-question final test have not run. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured results and limitations](docs/results.md).
 
@@ -144,7 +144,7 @@ Reserve `--split test` for the 12,530 test questions after all settings are froz
 
 Run the small development slice before attempting the full matrix. The current generator policy is temperature 0, seed 42, at most 512 output tokens and thinking disabled. The earlier pilot used 256 tokens; the shared cap was raised after it exposed truncated interpretation answers. The exact model revisions, local backend, context budget and effective settings belong in the configuration and run manifest. Do not substitute a smaller generator for selected variants and present the output as the same experiment.
 
-Initial dataset/model downloads require network access and any upstream access terms to be satisfied. Once all required artifacts are available locally, the evaluation is intended to run without hosted inference calls. “Local” does not mean model files are bundled in this repository, and “no API charge” does not mean zero hardware or electricity cost.
+Initial dataset/model downloads require network access and any upstream access terms to be satisfied. Once all required artifacts are available locally, the core RAG benchmark runs without hosted inference calls. The optional Jev evaluator described below is a separate hosted step. “Local” does not mean model files are bundled in this repository, and “no API charge” does not mean zero hardware or electricity cost.
 
 ## Read the measurements correctly
 
@@ -161,6 +161,12 @@ Initial dataset/model downloads require network access and any upstream access t
 Reranking cannot recover evidence outside its candidate pool. Laya probabilities are not a correctness guarantee; its multilingual checkpoint is not calibrated for this Turkish task. The initial comparison ranks candidates without a hard relevance threshold. Thresholding or fine-tuning requires separate development evidence.
 
 See [the protocol](docs/protocol.md) for split rules, ties, budgets, cache interpretation and publication requirements.
+
+## Optional semantic evaluation
+
+The [Jev evaluation workflow](docs/semantic-evaluation.md) judges saved answers in two separate passes: semantic correctness against references/gold evidence, and grounding using only the passages Gemma actually received. The core RAG pipeline stays local; hosted judging uses OpenRouter's native Decisions API with `typesafe/jev-1.13`, `OPENROUTER_API_KEY`, explicit opt-in and a request budget that defaults to zero. The verified served snapshot is `typesafe/jev-1.13-20260917`.
+
+The [Jev pilot](reports/semantic-pilot-openrouter/report.md) is complete: **200 answers, 20 unique questions, 319/319 validated requests** after deduplicating 400 logical tasks. EmbeddingGemma 2 and BM25+EmbeddingGemma 2 without Laya each received **14/20 `correct` labels (70%)**. Reported benchmark judging cost was **US$0.031974726**, excluding controls. These are exploratory Jev labels, not human-verified accuracy: inspection found a missed grounding contradiction, and the [synthetic controls](reports/semantic-controls-tr/report.md) also exposed errors. Turkish human calibration remains pending; the 12,530-question final test has not been evaluated. See [the full interpretation](docs/semantic-evaluation.md).
 
 ## Results and reproducibility
 

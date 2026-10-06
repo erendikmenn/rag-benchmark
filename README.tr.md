@@ -2,7 +2,7 @@
 
 **Türkçe RAG sistemlerini aynı koşullarda, yerel modellerle karşılaştırmak için bir deney düzeneği.** BM25, BGE-M3 ve EmbeddingGemma 2 belge aramasını; Laya'nın yeniden sıralamaya katkısını; aynı Gemma 4 modelinin ürettiği cevapları ölçer.
 
-[English](README.md) · [Deney protokolü](docs/protocol.md) · [Sonuçlar ve doğrulama durumu](docs/results.md)
+[English](README.md) · [Deney protokolü](docs/protocol.md) · [Sonuçlar ve doğrulama durumu](docs/results.md) · [Anlamsal değerlendirme](docs/semantic-evaluation.md)
 
 **Mevcut durum:** **20 soru × on varyant pilotu tamamlandı: 200/200 çıktı**, 37.511 parçanın tamamında arama yapıldı. İki dense indeks de hazır. Ayrı 2.000 soruluk BM25 arama deneyi tamamlandı; on varyantın 2.000 soruluk geliştirme deneyi ve 12.530 soruluk son test henüz çalıştırılmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Ölçümler ve sınırları](docs/results.md).
 
@@ -87,7 +87,7 @@ uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml -
 
 `--split test`, bütün ayarlar sabitlendikten sonra 12.530 son test sorusu için, ayrı bir deney diziniyle kullanılır. Prompt, birleştirme veya çıktı bütçesi ayarları geliştirme verisiyle seçilir.
 
-Önce 20 soruluk geliştirme kontrolü yapılır. Tam deney bundan sonra çalıştırılır. İlk veri/model indirmeleri internet gerektirir; gerekli dosyalar hazır olduğunda değerlendirme yerel çalışacak şekilde tasarlanır. Ücretli bir inference API'si kullanmak planın parçası değildir. Yerelde çalışmak donanım, bellek ve elektrik maliyetini ortadan kaldırmaz.
+Önce 20 soruluk geliştirme kontrolü yapılır. Tam deney bundan sonra çalıştırılır. İlk veri/model indirmeleri internet gerektirir; gerekli dosyalar hazır olduğunda temel RAG deneyi yerel çalışır. Aşağıdaki isteğe bağlı Jev değerlendirmesi ayrı bir hosted API adımıdır. Yerelde çalışmak donanım, bellek ve elektrik maliyetini ortadan kaldırmaz.
 
 ## Sonuçları nasıl okumalı?
 
@@ -102,6 +102,12 @@ uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml -
 Laya'nın verdiği 0–1 puanı bu görev için doğrulanmış bir güven yüzdesi değildir. İlk deneyde düşük puanlı her metni otomatik silen eşik kullanılmaz; puana göre ilk 5 seçilir. Eşik, prompt veya model ayarı gerekiyorsa geliştirme verisinde seçilir; son test sonuçlarına bakılarak ayar değiştirilmez.
 
 Önbellekteki aynı cevabı yeniden kullanmak zaman kazandırabilir. Token sınırında durma bilgisi önbellekte korunur; önbellekten okuma süresi yeni cevap üretme hızına dahil edilmez. Deneyde soru embedding'leri yeniden hesaplanır. Hazırlık sonrası ilk soru ve ilk gerçek cevap üretimi ilgili gecikme özetlerinden çıkarılır. Sunucunun bildirdiği derleme ve çalışma ayarları deney/önbellek kimliğine katılır.
+
+## İsteğe bağlı anlamsal değerlendirme
+
+[Jev değerlendirme akışı](docs/semantic-evaluation.md), kaydedilmiş cevapları iki ayrı görevde inceler: referans ve doğru kaynaklara göre **cevabın anlamca doğruluğu**; yalnızca Gemma'ya gerçekten verilmiş metinlere göre **cevabın kaynaklarla desteklenmesi**. Yerel RAG deneyi sonrasında OpenRouter'ın native Decisions API'si, `typesafe/jev-1.13` modeli ve `OPENROUTER_API_KEY` kullanılır. Doğrulanan servis sürümü `typesafe/jev-1.13-20260917`'dir. Jev bu adımda Laya'nın yerini almaz.
+
+[Jev pilotu](reports/semantic-pilot-openrouter/report.md) tamamlandı: **20 farklı sorudan 200 cevap**, 400 değerlendirme görevinin tekrarları birleştirilince **319/319 doğrulanmış istek**. Laya kapalı EmbeddingGemma 2 ve BM25+EmbeddingGemma 2 kollarının ikisinde de **14/20 cevap `correct` etiketi aldı (%70)**. Kontroller hariç değerlendirme maliyeti **0,031974726 ABD doları** oldu. Bu, insanın doğruladığı kesin doğruluk oranı değildir: incelemede Jev'in kaynakla açık çelişen bir donanım bilgisini desteklenmiş saydığı görüldü; [sentetik kontrollerde](reports/semantic-controls-tr/report.md) de hatalar vardı. Türkçe insan kalibrasyonu henüz yapılmadı; 12.530 soruluk son test değerlendirilmedi. [Ayrıntılı yorum](docs/semantic-evaluation.md).
 
 ## İlk ölçümler
 

@@ -7,12 +7,13 @@
 | Evidence | Current status | What it establishes |
 |---|---|---|
 | Dataset inventory and normalization | Prepared and manifest inspected, 2026-10-06 | 37,511 passages; 14,530 usable QA records; 2,000 development / 12,530 test |
-| Infrastructure checks | 68 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
+| Infrastructure checks | 108 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
 | BM25 development baseline | Completed 2,000/2,000 real questions against all 37,511 passages | Full development retrieval metrics; no answer generation in this run |
 | BGE-M3 and EmbeddingGemma 2 integration | Both full 37,511-passage indexes built and validated; pilot completed in FP32/MPS | Real local dense retrieval over the complete corpus |
 | Local Laya integration | All five 20-question reranking pairs completed in FP32/MPS | Same candidate pools within each pair; observed quality is reported below |
 | Local Gemma 4 integration | 200/200 full-matrix pilot outputs; 11 cache hits; three length limits at 512 | Real local generation with the pinned GGUF and verified server identity |
 | Ten-variant development pilot | Completed all 20 questions per variant | Complete pilot table, not a full-development or final-test result |
+| OpenRouter Jev semantic pilot | Completed 200 answers / 319 unique requests; 108 local tests pass | Exploratory semantic labels, with documented judge errors; human calibration pending |
 | Ten-variant full-development comparison | Not run | Only BM25 retrieval currently covers all 2,000 development questions |
 | Frozen final test comparison | Not run/reported | No final leaderboard |
 
@@ -48,6 +49,24 @@ Prompt suitability and output budgets need evaluation on broader development dat
 The run's recorded session duration was **768.514 seconds (12 minutes 49 seconds)**, after both dense indexes had been built. This is a run-completion measurement, not an end-to-end request percentile or the cost of preparing the full corpus. The summary retains diagnostic stage timings with 19 retrieval observations per variant and 16–19 fresh-generation observations, excluding cache hits and the disclosed warm-up rows. These small samples are not production latency guarantees.
 
 Provenance is fixed to source commit `e094aa4719a381ce9786e21d9503a2f61596ee76` and source hash `983fd297fcfc49976612e6c734e565da692d69538cc0f7661ab43321b2c47158`. Run fingerprint: `045252d34c401a7286e7c03cea4c7059b283219a02ad1a618d1aa8cb0830ba10`. The local server reported llama.cpp `b11451-2207c8e57`, with server fingerprint `862c23d56e3fbdcc8b2f01edf3885120b86baf93e165e133ca9bfe61979cf352`. Its verified Gemma Q4_0 GGUF SHA-256 is `3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d`; context size is 8,192, temperature 0, seed 42, thinking disabled, and the output cap is 512 for every variant. Model revisions, package versions and dataset hashes are in the linked provenance artifact.
+
+## Exploratory semantic evaluation through OpenRouter
+
+The saved 200 pilot answers now have separate Jev correctness and grounding judgments. **All 319 distinct hosted requests succeeded**, covering 20 unique questions × ten variants × two judgment types, with identical payloads deduplicated. Requested model: `typesafe/jev-1.13`; served snapshot: `typesafe/jev-1.13-20260917`. RAG generation remained local and was not rerun.
+
+| Retrieval | Jev correct without Laya | Jev correct with Laya |
+|---|---:|---:|
+| BM25 | 11/20 (55%) | 9/20 (45%) |
+| BGE-M3 | 12/20 (60%) | 9/20 (45%) |
+| EmbeddingGemma 2 | 14/20 (70%) | 8/20 (40%) |
+| BM25 + BGE-M3 | 13/20 (65%) | 8/20 (40%) |
+| BM25 + EmbeddingGemma 2 | 14/20 (70%) | 7/20 (35%) |
+
+BM25 + EmbeddingGemma 2 retains its token F1 of **0.5326**; Jev classifies **14 answers as correct and six as partial**. F1 is lexical overlap, while this new percentage counts semantic labels. Pooled correctness across all variants is 105/200; that mixes different systems and is not any single system's success probability.
+
+**These are uncalibrated model judgments.** In a verified Xperia/Z5 example, Jev missed an explicit source contradiction in the grounding pass. Separate synthetic controls also exposed uncertainty-handling errors. A blind assistant audit disagreed with some interpretation labels; human calibration is still pending. The 20-question slice and differences of one or two answers cannot establish a general winner or predict the probability that a new user question will be answered correctly.
+
+Main judge usage was 761,303 input tokens, 20,523 output tokens and **US$0.031974726** reported by OpenRouter. Controls and diagnostics are separate. Public artifacts: [results and review notes](../reports/semantic-pilot-openrouter/review-notes.md), [summary](../reports/semantic-pilot-openrouter/summary.json), [per-answer judgments](../reports/semantic-pilot-openrouter/per-answer-judgments.jsonl), [synthetic controls](../reports/semantic-controls-tr/report.md). The [semantic protocol](semantic-evaluation.md) records the data boundaries, rubric and limitations. No final-test questions were evaluated.
 
 ## Development retrieval baseline
 
