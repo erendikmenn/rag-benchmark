@@ -1,0 +1,94 @@
+{
+  "scope": "synthetic_backend_health_only",
+  "device": "cpu",
+  "context_limit": 8192,
+  "model_sha256": "676c35070db6dbe52f93e9c864ee0fba4eddea94b9c875d9cb10daff453fbaee",
+  "projector_sha256": "7498a37cb619e55f2fcf87eb931f56e99389ed6d432e4c5c66110694c0d65578",
+  "conditions": [
+    {
+      "modality": "image",
+      "status": "passed",
+      "seconds": 18.00050695799291,
+      "output_characters": 63,
+      "usage": {
+        "seconds": 17.986462791915983,
+        "usage": {
+          "completion_tokens": 13,
+          "prompt_tokens": 160,
+          "total_tokens": 173,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "finish_reason": "stop",
+        "cached": false,
+        "context_limit": 8192,
+        "requested_output_tokens": 192
+      }
+    },
+    {
+      "modality": "audio",
+      "status": "passed",
+      "seconds": 4.24636016599834,
+      "output_characters": 59,
+      "usage": {
+        "seconds": 3.630430500023067,
+        "usage": {
+          "completion_tokens": 14,
+          "prompt_tokens": 129,
+          "total_tokens": 143,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "finish_reason": "stop",
+        "cached": false,
+        "context_limit": 8192,
+        "requested_output_tokens": 192
+      }
+    },
+    {
+      "modality": "video",
+      "status": "passed",
+      "seconds": 38.53018658282235,
+      "output_characters": 137,
+      "usage": {
+        "seconds": 38.31930129090324,
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 283,
+          "total_tokens": 321,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "finish_reason": "stop",
+        "cached": false,
+        "context_limit": 8192,
+        "requested_output_tokens": 192
+      }
+    },
+    {
+      "modality": "relevance_json",
+      "status": "passed",
+      "scores": [
+        1.0
+      ],
+      "usage": {
+        "seconds": 21.390212208032608,
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 187,
+          "total_tokens": 203,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "finish_reason": "stop",
+        "cached": false,
+        "context_limit": 8192,
+        "requested_output_tokens": 32
+      }
+    }
+  ]
+}

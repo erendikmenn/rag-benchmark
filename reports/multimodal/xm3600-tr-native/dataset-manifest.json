@@ -1,0 +1,70 @@
+{
+  "counts": {
+    "corpus": 3600,
+    "media_files": 3600,
+    "qrels": 7233,
+    "queries": 7233
+  },
+  "expected_counts": {
+    "corpus": 3600,
+    "queries": 7233
+  },
+  "files": {
+    "assets.jsonl": {
+      "sha256": "d3ab55644165a0c99d637ffc623cd22e9965183ba10c6224283f8756337b458b",
+      "size_bytes": 497935
+    },
+    "corpus.jsonl": {
+      "sha256": "ddd1a0620bd6a65fd0b127b8fdc763be188842b4ccbb5d909cf3ddcd07fd04f3",
+      "size_bytes": 543800
+    },
+    "qrels.jsonl": {
+      "sha256": "99dcb6fa5c1e03eb42c99bde23ea0259e849fde78783d4841b1e129cff885ed1",
+      "size_bytes": 643737
+    },
+    "queries.jsonl": {
+      "sha256": "d5d67ddd6bf96680cb69e2e4e0dc4f86ed0830a657bf58e14370350667224c9f",
+      "size_bytes": 1575063
+    }
+  },
+  "full_gallery": true,
+  "id": "xm3600-tr",
+  "license": "annotations: CC-BY-4.0; images: per-image attribution CSV",
+  "metadata": {
+    "gold_captions_in_candidate_text": false,
+    "language": "tr",
+    "source": "https://google.github.io/crossmodal-3600/",
+    "split": "evaluation"
+  },
+  "name": "xm3600-tr",
+  "revision": "ad44c380c86cb1240666361caabaf5684507d0ef",
+  "schema_version": 1,
+  "sources": [
+    {
+      "file": "captions.zip",
+      "sha256": "7964f969d39319a96769499b199042015754f8d5607b6aad2d1c2c2e55f5e562",
+      "size_bytes": 16778794,
+      "url": "https://google.github.io/crossmodal-3600/web-data/captions.zip"
+    },
+    {
+      "file": "images.tgz",
+      "sha256": "ba57c58d7f7a35d95315157b609ca280d55ba10a107026f67d2e98371e221188",
+      "size_bytes": 316290330,
+      "url": "https://open-images-dataset.s3.amazonaws.com/crossmodal-3600/images.tgz"
+    },
+    {
+      "file": "image_attributions.csv",
+      "sha256": "288de413d25e9c70dadfd42ee59256aa1082673e615d0eda02c3875fe2b36ecd",
+      "size_bytes": 1301946,
+      "url": "https://google.github.io/crossmodal-3600/web-data/image_attributions.csv"
+    }
+  ],
+  "status": "ready",
+  "text_provenance": {
+    "gold_fields_used": false,
+    "query_independent": true,
+    "source": "absent_requires_generation"
+  },
+  "text_ready": false,
+  "track": "photo"
+}

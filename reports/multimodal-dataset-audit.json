@@ -1,0 +1,1129 @@
+{
+  "audit_time_utc": "2026-10-06T23:24:46.765044+00:00",
+  "code_document_token_lengths": {
+    "datasets": [
+      {
+        "dataset": "codesearchnet-go-test",
+        "models": {
+          "bge": {
+            "corpus_count": 28120,
+            "format": "<code>",
+            "max_tokens": 2295,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 22,
+              "2048": 1,
+              "4096": 0,
+              "512": 695,
+              "8192": 0
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 28120,
+            "format": "title: none | text: <code>",
+            "max_tokens": 2285,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 18,
+              "2048": 1,
+              "4096": 0,
+              "512": 586,
+              "8192": 0
+            }
+          }
+        }
+      },
+      {
+        "dataset": "codesearchnet-java-test",
+        "models": {
+          "bge": {
+            "corpus_count": 40347,
+            "format": "<code>",
+            "max_tokens": 1871,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 25,
+              "2048": 0,
+              "4096": 0,
+              "512": 1400,
+              "8192": 0
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 40347,
+            "format": "title: none | text: <code>",
+            "max_tokens": 3714,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 15,
+              "2048": 1,
+              "4096": 0,
+              "512": 1067,
+              "8192": 0
+            }
+          }
+        }
+      },
+      {
+        "dataset": "codesearchnet-javascript-test",
+        "models": {
+          "bge": {
+            "corpus_count": 13981,
+            "format": "<code>",
+            "max_tokens": 50390,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 2,
+            "over_threshold_counts": {
+              "1024": 25,
+              "2048": 3,
+              "4096": 3,
+              "512": 562,
+              "8192": 2
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 13981,
+            "format": "title: none | text: <code>",
+            "max_tokens": 54503,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 2,
+            "over_threshold_counts": {
+              "1024": 22,
+              "2048": 3,
+              "4096": 3,
+              "512": 567,
+              "8192": 2
+            }
+          }
+        }
+      },
+      {
+        "dataset": "codesearchnet-php-test",
+        "models": {
+          "bge": {
+            "corpus_count": 52660,
+            "format": "<code>",
+            "max_tokens": 2928,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 47,
+              "2048": 2,
+              "4096": 0,
+              "512": 2132,
+              "8192": 0
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 52660,
+            "format": "title: none | text: <code>",
+            "max_tokens": 2612,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 24,
+              "2048": 3,
+              "4096": 0,
+              "512": 1473,
+              "8192": 0
+            }
+          }
+        }
+      },
+      {
+        "dataset": "codesearchnet-python-test",
+        "models": {
+          "bge": {
+            "corpus_count": 43827,
+            "format": "<code>",
+            "max_tokens": 2240,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 87,
+              "2048": 2,
+              "4096": 0,
+              "512": 2144,
+              "8192": 0
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 43827,
+            "format": "title: none | text: <code>",
+            "max_tokens": 2099,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 127,
+              "2048": 1,
+              "4096": 0,
+              "512": 2519,
+              "8192": 0
+            }
+          }
+        }
+      },
+      {
+        "dataset": "codesearchnet-ruby-test",
+        "models": {
+          "bge": {
+            "corpus_count": 4360,
+            "format": "<code>",
+            "max_tokens": 1315,
+            "model_id": "BAAI/bge-m3",
+            "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 10,
+              "2048": 0,
+              "4096": 0,
+              "512": 99,
+              "8192": 0
+            }
+          },
+          "embeddinggemma": {
+            "corpus_count": 4360,
+            "format": "title: none | text: <code>",
+            "max_tokens": 1190,
+            "model_id": "google/embeddinggemma-2",
+            "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+            "over_8192_count": 0,
+            "over_threshold_counts": {
+              "1024": 9,
+              "2048": 0,
+              "4096": 0,
+              "512": 93,
+              "8192": 0
+            }
+          }
+        }
+      }
+    ],
+    "finding": "Two JavaScript candidates exceed 8192 tokens with each tokenizer; other five language corpora fit both limits",
+    "limit_tokens": 8192,
+    "required_handling": "Use an explicitly identified source-complete chunk aggregation protocol or mark the affected dense channel failed; do not silently truncate",
+    "totals_by_model": {
+      "bge": {
+        "corpus_count": 183295,
+        "max_tokens": 50390,
+        "over_8192_count": 2
+      },
+      "embeddinggemma": {
+        "corpus_count": 183295,
+        "max_tokens": 54503,
+        "over_8192_count": 2
+      }
+    },
+    "truncation_applied_in_audit": false
+  },
+  "datasets": [
+    {
+      "candidate_text": {
+        "absent_count": 3600,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_generation"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 3600,
+        "media_files": 3600,
+        "positive_qrels": 7233,
+        "qrels": 7233,
+        "queries": 7233
+      },
+      "dataset": "xm3600-tr",
+      "fingerprints": {
+        "asset_manifest_sha256": "d3ab55644165a0c99d637ffc623cd22e9965183ba10c6224283f8756337b458b",
+        "corpus_sha256": "ddd1a0620bd6a65fd0b127b8fdc763be188842b4ccbb5d909cf3ddcd07fd04f3",
+        "manifest_sha256": "a9d214e69153ba42a1d5f617a05004c9b1f56f29879e7815b9d8db5692c3805a",
+        "qrels_sha256": "99dcb6fa5c1e03eb42c99bde23ea0259e849fde78783d4841b1e129cff885ed1",
+        "queries_sha256": "d5d67ddd6bf96680cb69e2e4e0dc4f86ed0830a657bf58e14370350667224c9f"
+      },
+      "full_gallery": true,
+      "revision": "ad44c380c86cb1240666361caabaf5684507d0ef",
+      "split": "evaluation",
+      "status": "ready",
+      "track": "photo"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 3600,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_generation"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 3600,
+        "media_files": 3600,
+        "positive_qrels": 7200,
+        "qrels": 7200,
+        "queries": 7200
+      },
+      "dataset": "xm3600-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "d3ab55644165a0c99d637ffc623cd22e9965183ba10c6224283f8756337b458b",
+        "corpus_sha256": "ddd1a0620bd6a65fd0b127b8fdc763be188842b4ccbb5d909cf3ddcd07fd04f3",
+        "manifest_sha256": "e3857cf70a73ca09b4c68d7b110c73d8ac7415ec503df32eacdf7e7b4c4c3a8c",
+        "qrels_sha256": "00a066215cd524e75e412bbf3fc19fd1cc42e2d0f58737dcda0a7c7e0737f45c",
+        "queries_sha256": "ea96e8af5d7f280b46257376c954c77fd1eada9ba614227f37a8d9517f1f1352"
+      },
+      "full_gallery": true,
+      "revision": "ad44c380c86cb1240666361caabaf5684507d0ef",
+      "split": "evaluation",
+      "status": "ready",
+      "track": "photo"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 2,
+        "gold_fields_used": false,
+        "nonempty_count": 1358,
+        "present_count": 1360,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1360,
+        "media_files": 1360,
+        "positive_qrels": 1049,
+        "qrels": 1049,
+        "queries": 215
+      },
+      "dataset": "vidore-v3-computer_science-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "e9f29dcb806fb805f2dd89668d373f60aff64e99572f4c428f92b4007757a5f7",
+        "corpus_sha256": "145fef258708f5796c5cefa0d9fb363923d9f51381d089c13a506c3234bf358e",
+        "manifest_sha256": "20d464b6546be9d9c0e054c17773525c0a6abeeeb57ea2a9c75d25d502a58dca",
+        "qrels_sha256": "99e7d19adc037c9cfaa12752f8439a24c1caf362f96831318ec20da6e600b3d8",
+        "queries_sha256": "e3890cc540a19318bab168eddf2efddbc003bb95e12652194ba9a152840a9b5f"
+      },
+      "full_gallery": true,
+      "revision": "d5cc75883d92e294f0c0fc2662551c9708a06ebc",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 12,
+        "gold_fields_used": false,
+        "nonempty_count": 1098,
+        "present_count": 1110,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1110,
+        "media_files": 1110,
+        "positive_qrels": 1731,
+        "qrels": 1731,
+        "queries": 318
+      },
+      "dataset": "vidore-v3-hr-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "c78997ca31a4d11539596615f1e8688d4aac3d8620e6c52e65688da2b0d6bb43",
+        "corpus_sha256": "0d59bb9aa4e5d68a6fe508aa4bb46af7565e212c877e07354824e51adfdaf43d",
+        "manifest_sha256": "798abf416c28f84f651d28d6024793eced406f3557eb4871a9a371ae7f8e12cc",
+        "qrels_sha256": "6e6ddebb59c6726fdd27a6bc7ee4a9f5506eadf966ec0ceeb4a18bc4f046ae8f",
+        "queries_sha256": "96af03bf525b29edcbd229a94d97bfc445c9873471ae846a0ee7cdf65210845a"
+      },
+      "full_gallery": true,
+      "revision": "0cdf0979f2c5a0fd3e335e6373b9da48a9fe3bc3",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 19,
+        "gold_fields_used": false,
+        "nonempty_count": 2923,
+        "present_count": 2942,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 2942,
+        "media_files": 2942,
+        "positive_qrels": 1461,
+        "qrels": 1461,
+        "queries": 309
+      },
+      "dataset": "vidore-v3-finance_en-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "bed6aafc41a9aef536dbf866a0e2967f68c1c8fdc68146f718670bf2783f74e8",
+        "corpus_sha256": "70b9bbee06cb0d715aab771b9d29de05477ac4d4a32c8d2dae4430db0f8d304c",
+        "manifest_sha256": "c7e6ae38778ad32c8157106c61f4c986505556b64147bcce0530a7e13c407186",
+        "qrels_sha256": "78fa615082e190d30a08d0ef1e6d722f69b9a8c9a056042c06f9203d4d38455e",
+        "queries_sha256": "0ff23db1c1870ca6cfa2f6b075a7c7a8b4cfeef82524f5f56d51df095d4e82bd"
+      },
+      "full_gallery": true,
+      "revision": "7f432c176d82e27546501ad8064a713ac3071809",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 205,
+        "gold_fields_used": false,
+        "nonempty_count": 5039,
+        "present_count": 5244,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 5244,
+        "media_files": 5244,
+        "positive_qrels": 1614,
+        "qrels": 1614,
+        "queries": 283
+      },
+      "dataset": "vidore-v3-industrial-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "c2e5745be789483015ea4ceae3790ab60877b04c85e800c649d280ba8480ce35",
+        "corpus_sha256": "607c2c46e6229ecfbc5305b505f7f3daf9d1cbb50fa036a6c4caa2fac6db02b2",
+        "manifest_sha256": "6784077a070285b476d1ea2ad194d860c715894c2079aa3f6d9c9866c8ef8c6f",
+        "qrels_sha256": "7f9719a9c910c9fb83ea87ab8e5d8df72bb76d8136e6bf2091ab301ca355ead7",
+        "queries_sha256": "311fc5941d2168a61454be8dbddc775c05288cecfc4f4d473b8d6bf1e9e927e2"
+      },
+      "full_gallery": true,
+      "revision": "e26c864724f5dd71a3d7d739272d95637764cee9",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 2313,
+        "present_count": 2313,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 2313,
+        "media_files": 2313,
+        "positive_qrels": 1732,
+        "qrels": 1732,
+        "queries": 364
+      },
+      "dataset": "vidore-v3-pharmaceuticals-en",
+      "fingerprints": {
+        "asset_manifest_sha256": "cdc121af216c1f0e5dc0df8521b36f4d5c5fe7d5a6c702b3f0e5ea86039c1d12",
+        "corpus_sha256": "b8ffbd5fa3b0d923faaef378ac7e25d4a4799f476ea6f5a0dfd6aae01597354c",
+        "manifest_sha256": "273be849f7be26c5a1235608599cd21e56aa0190b0570e2e003dfd2cb4fd976e",
+        "qrels_sha256": "4c2064885b09ef6de699c93b54f7d9877c4e963a70f444c535245e96a7526590",
+        "queries_sha256": "23c06ee2e45e25215561e665e4cc72f1ff9d345af13948fae08eb231da01a7a1"
+      },
+      "full_gallery": true,
+      "revision": "3abd4aa8a9445fb5538a78a19ba50bd57bd22b5c",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 15,
+        "gold_fields_used": false,
+        "nonempty_count": 2210,
+        "present_count": 2225,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 2225,
+        "media_files": 2225,
+        "positive_qrels": 1103,
+        "qrels": 1103,
+        "queries": 308
+      },
+      "dataset": "vidore-v3-energy-fr",
+      "fingerprints": {
+        "asset_manifest_sha256": "ff7c5b30970bce1dfa4fa30758436f105e7bb22a89433b072c438f60812c3a83",
+        "corpus_sha256": "f02498bca35d4b19bcda93b317df54393783a6197c0fa502877ac7e5aef5e7a5",
+        "manifest_sha256": "712021e7dd694fbef131e21e1d239ecf92db40f1cc2d9d2b0a6d63bcef2c189a",
+        "qrels_sha256": "ffde2abcfb7ab40716ac802c7e9e82e407aa27fce04b74637635563c6447f799",
+        "queries_sha256": "ed6d8997ef501e0fd14d704c81de362ad08960f360498afb93c3b33120b0e781"
+      },
+      "full_gallery": true,
+      "revision": "caec06d3c73434d635f710f93bcd898331c59f20",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 1674,
+        "present_count": 1674,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1674,
+        "media_files": 1674,
+        "positive_qrels": 2178,
+        "qrels": 2178,
+        "queries": 302
+      },
+      "dataset": "vidore-v3-physics-fr",
+      "fingerprints": {
+        "asset_manifest_sha256": "7df074a546e2be6f91438af25a316fbd75fb920f6d1b74e21cbbfb66f1ed69ae",
+        "corpus_sha256": "a083323ff888ccc7f374ad224a651f8ec499c8c7f85323180fcfc32d59cbde22",
+        "manifest_sha256": "3ec00f9615f6781960ac3b20b8425befaf7411fff75503e9a0bff776697b3d96",
+        "qrels_sha256": "aeee4803ae4e06d24087e5b25727a205ac508a935a7929e9a86db129a77393bd",
+        "queries_sha256": "8c269e3b9a9f481832f37b1804d6467441a1aeefd98f09d6abfd3bfa3c4c013e"
+      },
+      "full_gallery": true,
+      "revision": "a0de276f515acc044b72cae8de53a44bb5a8f1f5",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 11,
+        "gold_fields_used": false,
+        "nonempty_count": 2373,
+        "present_count": 2384,
+        "query_independent": true,
+        "source": "published_markdown"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 2384,
+        "media_files": 2384,
+        "positive_qrels": 1468,
+        "qrels": 1468,
+        "queries": 320
+      },
+      "dataset": "vidore-v3-finance_fr-fr",
+      "fingerprints": {
+        "asset_manifest_sha256": "897d0ab51e4403cfc299f63a4c2bf28afac9b0c05cf00c428f0f55eedb749d5e",
+        "corpus_sha256": "2f2342b295d2c91ba3ec9eda5c6e94ae55ae8c012337214e86c38f3e9c63daa4",
+        "manifest_sha256": "251c2711e8feea18803a253bb2b42341d5865a9d2feb7ea9f273690a871782b4",
+        "qrels_sha256": "382cbfbc96dfe4eed96eb4f042c165175d1ad1b78e8a0a0fc752fb1f8aa3071e",
+        "queries_sha256": "ef3d22f1cb88f2eb19f8625b7510045936039a76af7dd507957a4f67d53faa8d"
+      },
+      "full_gallery": true,
+      "revision": "1d808daa08032ffecdf62da151a7f7a8fe2bd0c9",
+      "split": "test",
+      "status": "ready",
+      "track": "document"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 743,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_asr"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 743,
+        "media_files": 743,
+        "positive_qrels": 743,
+        "qrels": 743,
+        "queries": 329
+      },
+      "dataset": "fleurs-tr_tr-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "4c02b3d7cc915ced4915af4c383a42aa6c47e865e266dbfadfd36692a4918634",
+        "corpus_sha256": "f6d562d3c2e13cc1abe676186b46fd03f0bb5f14cfb4802899c389df757c387b",
+        "manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
+        "qrels_sha256": "4917b870c713487ed110f7dbee63f750b68a018e0efe452458e2996002f607ec",
+        "queries_sha256": "4e3055b311155344636114a66602db468ef1f5bc03baa5f92c2ecc21bd4dbb9f"
+      },
+      "full_gallery": true,
+      "revision": "70bb2e84b976b7e960aa89f1c648e09c59f894dd",
+      "split": "test",
+      "status": "ready",
+      "track": "speech"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 1045,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_generation"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1045,
+        "media_files": 1045,
+        "positive_qrels": 5225,
+        "qrels": 5225,
+        "queries": 5225
+      },
+      "dataset": "clotho-v2.1-evaluation",
+      "fingerprints": {
+        "asset_manifest_sha256": "5d745c984bef33e9a411b5c3f54d28b482d54477dc753b6e1180bcf812d83fa9",
+        "corpus_sha256": "8be426d560e07b3c0d2f13f3755cc28e3792fc3bf09018de114493afe7c3ada2",
+        "manifest_sha256": "b30c055d659645e3d891fda5400a54fc730c281fdba32081a2293aa758002d54",
+        "qrels_sha256": "f2a2a48cc50398b7d09e95f7d4b6cb2e84f8e17cf8a6db3cc7651a5882dccb85",
+        "queries_sha256": "7b6c7441943b07af0611ea52d45e6c89045b58c763507e19e0f709e4d38a3ee3"
+      },
+      "full_gallery": true,
+      "revision": "zenodo:4783391:v2.1",
+      "split": "evaluation",
+      "status": "ready",
+      "track": "environment_audio"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 1045,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_generation"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1045,
+        "media_files": 1045,
+        "positive_qrels": 3116,
+        "qrels": 3116,
+        "queries": 1037
+      },
+      "dataset": "clotho-dcase2025-additional-relevance",
+      "fingerprints": {
+        "asset_manifest_sha256": "5d745c984bef33e9a411b5c3f54d28b482d54477dc753b6e1180bcf812d83fa9",
+        "corpus_sha256": "8be426d560e07b3c0d2f13f3755cc28e3792fc3bf09018de114493afe7c3ada2",
+        "manifest_sha256": "e31edbd871bf985846d012433fc6a2aa6bc9d6f2f8a9145381db31bc48a4b3fa",
+        "qrels_sha256": "036a41f1ba8d87992611125427d45adb05e55e98a4c2ea4ff615a6b5ec1106de",
+        "queries_sha256": "9eb513860fb62ecef47340c291b91113aab07a5c0a543867b12adb09d65cc0ca"
+      },
+      "full_gallery": true,
+      "revision": "c78422fcbed579877919620a30075baccf82bf2b",
+      "split": "DCASE2025 development-testing additional relevance",
+      "status": "ready",
+      "track": "environment_audio"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 43827,
+        "present_count": 43827,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 43827,
+        "media_files": 0,
+        "positive_qrels": 14918,
+        "qrels": 14918,
+        "queries": 14918
+      },
+      "dataset": "codesearchnet-python-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "721a380743172f05a1109936800b58f4beeb948d0185904d607243c4755d23c4",
+        "manifest_sha256": "4ee147d5f1c6037ebf12f8e7ed861c8c843564a30c0c8d8afd54db181df305a6",
+        "qrels_sha256": "70b8ad9c84edc4fe42a0fec77aaee81a4c2408f19b82af150091d55f69f72574",
+        "queries_sha256": "5a7dd6803c8b9aff863eabd1018ac8221373fa42d38275ef5b1426f1db3dfd39"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 4360,
+        "present_count": 4360,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 4360,
+        "media_files": 0,
+        "positive_qrels": 1261,
+        "qrels": 1261,
+        "queries": 1261
+      },
+      "dataset": "codesearchnet-ruby-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "84b23831df68d664538b3dfb69e2da09ac5b3e4287d390f7add2ed7a4d94901c",
+        "manifest_sha256": "540b4fb044bdb8a915fbd2c4d744b97a5fa89ea982e35f82a7443e466c1a17ec",
+        "qrels_sha256": "a3025dce213d5fe8566aa9e438e9f9ecceb0bef654b04d580190d108a120fea7",
+        "queries_sha256": "ba593e9bae18de28da8b94769af6f1477ab4a97a00a7f270755260e36eeb4a5f"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 28120,
+        "present_count": 28120,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 28120,
+        "media_files": 0,
+        "positive_qrels": 8122,
+        "qrels": 8122,
+        "queries": 8122
+      },
+      "dataset": "codesearchnet-go-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "4199b7bc80eba0dd6858e1d873be7b8742b2f7144b93a7c3cbf742e0d584c380",
+        "manifest_sha256": "c3ee79500faa596a2b89b6ff09e5ae774f74fb6a7fb4cfd83986d3687d13d588",
+        "qrels_sha256": "0d1b1624b84192780a5e60bc32ceb3dccd5f9cfc043a2dd92d99091bcb7372b4",
+        "queries_sha256": "a9bb069bc6d78fef9581958a4a6842a293febf0158a355e9a6654db8f25ac95e"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 40347,
+        "present_count": 40347,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 40347,
+        "media_files": 0,
+        "positive_qrels": 10955,
+        "qrels": 10955,
+        "queries": 10955
+      },
+      "dataset": "codesearchnet-java-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "41362c0dfbbe992e2a5d5db7f2e8fe38b26af8212e4836dc085e67766411c13d",
+        "manifest_sha256": "cfa6756226c6a8b4bf11680adb620a3a455558f9caaa6103f5fbaa3be6a5dde5",
+        "qrels_sha256": "88f1bb05b6754b99a1a09112684edf2a4b8cac19698cff08baab4a584763a9f8",
+        "queries_sha256": "09ccd532bb20142c9540c87ef70fe566458340a0455e5bd348c050e1cd4f4932"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 52660,
+        "present_count": 52660,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 52660,
+        "media_files": 0,
+        "positive_qrels": 14014,
+        "qrels": 14014,
+        "queries": 14014
+      },
+      "dataset": "codesearchnet-php-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "ea7b261f90106506cc0836a1ddef783e2fb35e7febaf515a59b52936a245edf4",
+        "manifest_sha256": "bb5e58ed6a1121da9490fd1b238cc087fb9ef1c39bbd3a3d46006965985a2880",
+        "qrels_sha256": "7c9d0a2bef3249e56c213d8a2912edc8a1c781262865eb758c2dc82907065922",
+        "queries_sha256": "60a31652161396692a80bc60259691dca4d63a4a0a0476acb93c16a3766c3aff"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 0,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 13981,
+        "present_count": 13981,
+        "query_independent": true,
+        "source": "source_code_docstrings_removed"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 13981,
+        "media_files": 0,
+        "positive_qrels": 3291,
+        "qrels": 3291,
+        "queries": 3291
+      },
+      "dataset": "codesearchnet-javascript-test",
+      "fingerprints": {
+        "asset_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "corpus_sha256": "fb544b030739630d4043ecac91dc7bdb59ac11c4fb2aa29ea3d4ce4451ec04fa",
+        "manifest_sha256": "566a17640e5fda4b33cd1e7238bc404d4f73ee67c41346151d8c282a7fff08ba",
+        "qrels_sha256": "741bd29bfb477f0706e9a50b9df59d2687d34844e87f5e4ba6439f88409dbea7",
+        "queries_sha256": "e94ae64730ee20c78df2924e6f14159182754cbc02cbf1ba4dcf25e40de250c3"
+      },
+      "full_gallery": true,
+      "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+      "split": "test",
+      "status": "ready",
+      "track": "code"
+    },
+    {
+      "candidate_text": {
+        "absent_count": 1000,
+        "explicit_empty_count": 0,
+        "gold_fields_used": false,
+        "nonempty_count": 0,
+        "present_count": 0,
+        "query_independent": true,
+        "source": "absent_requires_frame_captioning"
+      },
+      "checks": {
+        "actual_counts_match_manifest": true,
+        "all_queries_have_positive_qrels": true,
+        "expected_full_counts_match": true,
+        "record_and_asset_manifest_checksums_match": true,
+        "record_ids_unique": true,
+        "referenced_media_present": true
+      },
+      "counts": {
+        "corpus": 1000,
+        "media_files": 1000,
+        "positive_qrels": 1000,
+        "qrels": 1000,
+        "queries": 1000
+      },
+      "dataset": "msrvtt-1k-a",
+      "fingerprints": {
+        "asset_manifest_sha256": "b4f3d4f00b44f0ecd85d0bf0ac566c3eaf8fee9f5c1ab7a84e03989d0bbb9ba1",
+        "corpus_sha256": "93a86d873001799832848d404cee013792100ce1a53f7b8cff08999b593050b5",
+        "manifest_sha256": "8fb10031d053934b87fa7509c4c0b2d91c83311085952aeb514d8556e4dcbd8b",
+        "qrels_sha256": "9f4519e1eda96259a80387b2ef9de362b63ce1635bad5dfe1f5de5d570c08f47",
+        "queries_sha256": "c72878e6ab9e15362b76ebbe36591347de5a5a94794c410afc39008c55712b44"
+      },
+      "full_gallery": true,
+      "revision": "CLIP4Clip:v0.0:MSRVTT_JSFUSION_test",
+      "split": "1K-A",
+      "status": "ready",
+      "track": "video"
+    }
+  ],
+  "method": {
+    "audio_validation": "Recounted prior full-gallery ffprobe stream audit; stream availability does not itself certify successful audio decoding",
+    "checksum_validation": "Rehashed every manifest-listed record file and asset manifest; media bytes not rehashed in this aggregate audit",
+    "compute": "CPU only; no model weights loaded",
+    "count_interpretation": "Sums of separate protocol galleries, not unique assets across datasets; XM3600 TR/EN share images and Clotho protocols share audio",
+    "record_validation": "Recounted JSONL rows; checked unique IDs, qrel references, positive coverage and referenced media existence",
+    "token_length_validation": "Pinned tokenizer-only audit using the actual document wrappers; verified audited corpus checksum still matches frozen corpus"
+  },
+  "msrvtt_audio_availability": {
+    "checked_clips": 1000,
+    "dataset": "msrvtt-1k-a",
+    "ffprobe_failures": 0,
+    "potential_matched_audio_video_subset_size": 884,
+    "protocol_note": "Audio/video comparisons require a separately declared matched subset; missing audio must not be replaced by gold captions",
+    "visual_main_gallery_size": 1000,
+    "with_audio_stream": 884,
+    "with_video_stream": 1000,
+    "without_audio_stream": 116
+  },
+  "publication_policy": "Aggregate counts and fingerprints only; no sample IDs, source text, query text, local paths or media",
+  "schema_version": 1,
+  "scope": "Frozen original benchmark datasets; generated descriptions, ASR and chunked views excluded",
+  "source_count_discrepancies": [
+    {
+      "dataset": "vidore-v3-energy-fr",
+      "impact": "All pinned snapshot pages retained; eight-gallery total is 19252 rather than the paper total 19256",
+      "paper_corpus_count": 2229,
+      "pinned_snapshot_corpus_count": 2225
+    },
+    {
+      "dataset": "clotho-dcase2025-additional-relevance",
+      "impact": "All 1037 published CSV queries retained",
+      "official_linked_pinned_csv_queries": 1037,
+      "upstream_webpage_queries": 1069
+    }
+  ],
+  "totals": {
+    "corpus": 213580,
+    "media_files": 30285,
+    "positive_qrels": 89414,
+    "qrels": 89414,
+    "queries": 77004,
+    "ready_datasets": 20,
+    "unavailable_datasets": 1
+  },
+  "tracks": {
+    "code": {
+      "corpus": 183295,
+      "datasets": 6,
+      "media_files": 0,
+      "positive_qrels": 52561,
+      "qrels": 52561,
+      "queries": 52561
+    },
+    "document": {
+      "corpus": 19252,
+      "datasets": 8,
+      "media_files": 19252,
+      "positive_qrels": 12336,
+      "qrels": 12336,
+      "queries": 2419
+    },
+    "environment_audio": {
+      "corpus": 2090,
+      "datasets": 2,
+      "media_files": 2090,
+      "positive_qrels": 8341,
+      "qrels": 8341,
+      "queries": 6262
+    },
+    "photo": {
+      "corpus": 7200,
+      "datasets": 2,
+      "media_files": 7200,
+      "positive_qrels": 14433,
+      "qrels": 14433,
+      "queries": 14433
+    },
+    "speech": {
+      "corpus": 743,
+      "datasets": 1,
+      "media_files": 743,
+      "positive_qrels": 743,
+      "qrels": 743,
+      "queries": 329
+    },
+    "video": {
+      "corpus": 1000,
+      "datasets": 1,
+      "media_files": 1000,
+      "positive_qrels": 1000,
+      "qrels": 1000,
+      "queries": 1000
+    }
+  },
+  "unavailable": [
+    {
+      "actual_counts": {
+        "corpus": 0,
+        "media_files": 0,
+        "qrels": 0,
+        "queries": 0
+      },
+      "dataset": "cirr-validation",
+      "expected_counts": {
+        "corpus": 2297,
+        "queries": 4181
+      },
+      "reason": "Official NLVR2 raw-image access requires its terms form; no reduced or substituted official gallery published",
+      "revision": "2276fba2d2c53862c8ae79ea18e1f1ae03719f56",
+      "status": "unavailable",
+      "track": "composed_image"
+    }
+  ]
+}

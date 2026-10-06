@@ -1,0 +1,13 @@
+{
+  "dataset": "xm3600-tr",
+  "reconstructed_identity": "2ccde82f4a5ba3d752c7c8ccb2aa0ca632f6da17db0a05e28bcd31a7f84d0b5a",
+  "original_run_identity": "2ccde82f4a5ba3d752c7c8ccb2aa0ca632f6da17db0a05e28bcd31a7f84d0b5a",
+  "identity_matches_original_run": true,
+  "all_record_and_asset_manifest_hashes_match": true,
+  "media_hashes_verified": 3600,
+  "changed_top_level_fields": [
+    "split",
+    "text_empty_count",
+    "text_nonempty_count"
+  ]
+}

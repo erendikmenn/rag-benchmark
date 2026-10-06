@@ -1,0 +1,69 @@
+{
+  "chunk_count": 14084,
+  "maximum_document_tokens_by_model": {
+    "bge": 4130,
+    "embeddinggemma": 4327
+  },
+  "original_function_count": 13981,
+  "preserved_source_characters": 9612941,
+  "preserved_source_utf8_bytes": 9613249,
+  "protocol": {
+    "boundary_policy": "last_complete_source_line_within_cap_else_character_boundary;halve_until_both_fit",
+    "condition": "shared_segmentation_function_max_cosine",
+    "function_score": "maximum_cosine_over_all_its_chunks",
+    "max_tokens_after_native_document_formatting": 8192,
+    "maximum_characters_per_chunk_for_overflowing_functions": 4096,
+    "native_document_formats": {
+      "bge": "<TITLE>\n<SOURCE>",
+      "embeddinggemma": "title: <TITLE> | text: <SOURCE>"
+    },
+    "native_single_chunk_policy": "keep_whole_function_if_it_fits_both_tokenizers",
+    "source_coverage": "exact_concatenation_no_overlap_no_normalization_no_dropped_characters",
+    "tokenizers": {
+      "bge": {
+        "model_id": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+      },
+      "embeddinggemma": {
+        "model_id": "google/embeddinggemma-2",
+        "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b"
+      }
+    },
+    "version": "shared-code-segments-max-cosine-v1"
+  },
+  "purpose": "actual_pinned_tokenizer_context_validation_only_no_retrieval_accuracy",
+  "segmentation_identity": "fdeb5bdc768ba7b60708c51ce90762dc778b57839d457717b31d26bad76c8aa4",
+  "segmented_function_count": 2,
+  "segmented_functions": [
+    {
+      "chunk_count": 83,
+      "function_id": "https://github.com/twinssbc/Ionic2-Calendar/blob/29c5389189364d3ccb23989c57e111c7d4009f0d/demo/typescript.js#L29466-L35977",
+      "segmented": true,
+      "source_characters": 334374,
+      "source_sha256": "272b3fa5790185a30302e04889b9ced9943d1f68fa50cc85cb6b2dbdba0ad035",
+      "source_utf8_bytes": 334374,
+      "whole_function_token_counts": {
+        "bge": 50390,
+        "embeddinggemma": 54503
+      },
+      "validated_chunk_record_count": 83
+    },
+    {
+      "chunk_count": 22,
+      "function_id": "https://github.com/less/less.js/blob/162327ae20c503cfaab7799c231adcd8914817c1/lib/less/parser/parser.js#L41-L2261",
+      "segmented": true,
+      "source_characters": 86208,
+      "source_sha256": "27759b718b292d30a0e727b63946a1a412afb8182dc11c594ef8c716b07e5962",
+      "source_utf8_bytes": 86208,
+      "whole_function_token_counts": {
+        "bge": 15306,
+        "embeddinggemma": 15486
+      },
+      "validated_chunk_record_count": 22
+    }
+  ],
+  "source_coverage_verified": true,
+  "status": "ok",
+  "tokenizer_validation_seconds": 10.812778874998912,
+  "unchanged_function_count": 13979
+}
