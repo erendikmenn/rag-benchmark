@@ -6,11 +6,13 @@
 
 **Status:** the **ten-variant pilot is complete: 20 questions × ten variants, 200/200 outputs**, searching all 37,511 passages. Both dense indexes are built. The separate 2,000-question BM25 retrieval baseline is complete; the ten-variant 2,000-question development run and 12,530-question final test have not run. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured results and limitations](docs/results.md).
 
-## Multimodal benchmark — implementation in progress
+## Multimodal benchmark — full-split runs started
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.
 
-Data acquisition, native modality preflight and the resumable evaluation engine are being developed in parallel. No multimodal accuracy score has been measured yet. The text RAG results below remain unchanged and separate.
+The first full-split baseline is measured: **BM25 on ViDoRe V3 computer science, 215 queries / 1,360 pages: Hit@5 92.09%, Recall@5 53.53%, nDCG@10 0.6334**. Multiple relevant pages per query explain the Hit/Recall difference. These are retrieval scores, not answer-correctness percentages. [Measured report](reports/multimodal/vidore-cs-bm25/report.md).
+
+Native EmbeddingGemma 2 photo retrieval is running on **3,600 photos / 7,233 Turkish queries**, with 7,200 English queries next. All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**), together with Clotho and Turkish FLEURS. Real local model preflights passed for image, audio, video and joint inputs; these health checks do not measure accuracy. Code and video acquisition continues. The earlier text RAG pilot below remains a separate experiment.
 
 [Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
 
