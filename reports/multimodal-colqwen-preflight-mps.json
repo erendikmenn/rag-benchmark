@@ -7,23 +7,23 @@
     "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
     "document_encoding": {
       "total_items": 2,
-      "new_items": 2,
-      "cache_hits": 0,
-      "inference_seconds": 2.088902958203107,
+      "new_items": 0,
+      "cache_hits": 2,
+      "inference_seconds": null,
       "token_count_min": 75,
       "token_count_max": 75,
       "token_count_total": 150
     },
     "query_encoding": {
       "total_items": 1,
-      "new_items": 1,
-      "cache_hits": 0,
-      "inference_seconds": 0.3912372919730842,
+      "new_items": 0,
+      "cache_hits": 1,
+      "inference_seconds": null,
       "token_count_min": 16,
       "token_count_max": 16,
       "token_count_total": 16
     },
-    "scoring_seconds": 0.11940437485463917,
+    "scoring_seconds": 2.3688788327854127,
     "scoring": "sum_query_token_max_document_token_dot",
     "score_device": "mps",
     "score_dtype": "float32",
@@ -32,14 +32,6 @@
     "token_mask": "checkpoint_default_all_nonpadding",
     "model_revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
     "base_revision": "92908120384b7a2110c5beda3ab29cbdb2c08e49",
-    "projection_verification": {
-      "projection_verified": true,
-      "max_absolute_merge_error": 3.725290298461914e-09,
-      "relocated_projection": "custom_text_proj -> 1_Dense",
-      "projection_shape": [
-        128,
-        2048
-      ]
-    }
+    "projection_verification": {}
   }
 }

@@ -12,7 +12,16 @@ The new suite tests **photo, visual document, environmental audio, Turkish speec
 
 The first full-split baseline is measured: **BM25 on ViDoRe V3 computer science, 215 queries / 1,360 pages: Hit@5 92.09%, Recall@5 53.53%, nDCG@10 0.6334**. Multiple relevant pages per query explain the Hit/Recall difference. These are retrieval scores, not answer-correctness percentages. [Measured report](reports/multimodal/vidore-cs-bm25/report.md).
 
-Full native **EmbeddingGemma 2 photo retrieval** is measured on **3,600 photos / 7,233 Turkish queries: Hit@1 62.48%, Hit@5 84.64%**. [Measured photo report](reports/multimodal/xm3600-tr-native/report.md). On the matched **7,200-query English split**, Hit@5 is **83.75% for EG2, 76.89% for SigLIP2 and 82.92% for their RRF fusion**. The EG2 advantage over SigLIP2 is 6.86 percentage points (95% paired source-group interval: 5.94–7.82 points). [Paired comparison](reports/multimodal/xm3600-en-native-specialist/paired-comparisons.md). These are dataset-specific retrieval findings. All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**), together with Clotho and Turkish FLEURS. Real local model preflights passed for image, audio, video and joint inputs; these health checks do not measure accuracy. All six code languages are ready (**183,295 functions / 52,561 queries**), together with 1,000 MSR-VTT videos. CIRR official media remains unavailable pending its publisher’s access process. The earlier text RAG pilot below remains a separate experiment.
+Full photo retrieval is measured on the same 3,600-image gallery:
+
+| Query language | Queries | EG2 Hit@5 | SigLIP2 Hit@5 | EG2 + SigLIP2 RRF Hit@5 |
+|---|---:|---:|---:|---:|
+| Turkish | 7,233 | **84.64%** | 59.88% | 76.28% |
+| English | 7,200 | **83.75%** | 76.89% | 82.92% |
+
+These are dataset-specific retrieval results, not generated-answer correctness. SigLIP2 uses its 64-token input limit: **56 Turkish queries were explicitly truncated**, and no English query required truncation. This model-input difference is recorded; the table does not isolate truncation's causal effect. EG2's advantage over SigLIP2 is 24.76 percentage points in Turkish (95% paired source-group interval: 23.52–26.02) and 6.86 points in English (5.94–7.82). Equal-weight fusion did not improve EG2 on either split. [Turkish comparison](reports/multimodal/xm3600-tr-native-specialist/paired-comparisons.md) · [English comparison](reports/multimodal/xm3600-en-native-specialist/paired-comparisons.md).
+
+All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**), together with Clotho and Turkish FLEURS. Real local model preflights passed for image, audio, video and joint inputs; these health checks do not measure accuracy. All six code languages are ready (**183,295 functions / 52,561 queries**), together with 1,000 MSR-VTT videos. CIRR official media remains unavailable pending its publisher’s access process. The earlier text RAG pilot below remains a separate experiment.
 
 [All measured runs](reports/multimodal/README.md) · [Run locally](docs/multimodal-running.md) · [Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
 
