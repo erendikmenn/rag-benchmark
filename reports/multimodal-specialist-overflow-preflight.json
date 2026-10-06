@@ -1,0 +1,110 @@
+{
+  "purpose": "synthetic_text_overflow_backend_smoke_not_benchmark_accuracy",
+  "conditions": [
+    {
+      "name": "siglip2",
+      "status": "ok",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "usage": {
+        "inference_seconds": 0.3471718749497086,
+        "items": [
+          {
+            "id": "synthetic-long",
+            "modalities": [
+              "text"
+            ],
+            "original_tokens": 702,
+            "retained_tokens": 64,
+            "processed_tokens_including_padding": 64,
+            "native_token_limit": 64,
+            "truncated": true
+          }
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "dtype": "float32",
+        "text_overflow_policy": "truncate_to_model_limit",
+        "truncated_text_items": 1,
+        "native_text_limit": 64,
+        "implementation_source_sha256": "30b8dedfa73744ed7646806ae3ebc5291bae53595515e1ec88811a69ce70e5fa"
+      },
+      "model_id": "google/siglip2-base-patch16-224",
+      "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2"
+    },
+    {
+      "name": "clip_video",
+      "status": "ok",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "usage": {
+        "inference_seconds": 0.02918750001117587,
+        "items": [
+          {
+            "id": "synthetic-long",
+            "modalities": [
+              "text"
+            ],
+            "original_tokens": 702,
+            "retained_tokens": 77,
+            "processed_tokens_including_padding": 77,
+            "native_token_limit": 77,
+            "truncated": true
+          }
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "dtype": "float32",
+        "text_overflow_policy": "truncate_to_model_limit",
+        "truncated_text_items": 1,
+        "native_text_limit": 77,
+        "implementation_source_sha256": "30b8dedfa73744ed7646806ae3ebc5291bae53595515e1ec88811a69ce70e5fa"
+      },
+      "model_id": "openai/clip-vit-base-patch32",
+      "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+    },
+    {
+      "name": "clap",
+      "status": "ok",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "usage": {
+        "inference_seconds": 0.1274813748896122,
+        "items": [
+          {
+            "id": "synthetic-long",
+            "modalities": [
+              "text"
+            ],
+            "original_tokens": 703,
+            "retained_tokens": 512,
+            "processed_tokens_including_padding": 512,
+            "native_token_limit": 512,
+            "truncated": true
+          }
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "dtype": "float32",
+        "text_overflow_policy": "truncate_to_model_limit",
+        "truncated_text_items": 1,
+        "native_text_limit": 512,
+        "implementation_source_sha256": "30b8dedfa73744ed7646806ae3ebc5291bae53595515e1ec88811a69ce70e5fa"
+      },
+      "model_id": "laion/clap-htsat-fused",
+      "revision": "365dea6ef167def6676140ed93bbc43f84dabb28"
+    }
+  ]
+}

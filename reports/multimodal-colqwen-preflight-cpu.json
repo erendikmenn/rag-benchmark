@@ -1,0 +1,45 @@
+{
+  "purpose": "synthetic_backend_smoke_only_not_benchmark_results",
+  "status": "ok",
+  "finite": true,
+  "rankings_count": 1,
+  "usage": {
+    "adapter_identity": "bddca6cda889ae20b578881acf7fa8690bbc993cb43a7568b2b9685115204d96",
+    "document_encoding": {
+      "total_items": 2,
+      "new_items": 2,
+      "cache_hits": 0,
+      "inference_seconds": 1.7840106671210378,
+      "token_count_min": 75,
+      "token_count_max": 75,
+      "token_count_total": 150
+    },
+    "query_encoding": {
+      "total_items": 1,
+      "new_items": 1,
+      "cache_hits": 0,
+      "inference_seconds": 0.3310406659729779,
+      "token_count_min": 16,
+      "token_count_max": 16,
+      "token_count_total": 16
+    },
+    "scoring_seconds": 0.0006659999489784241,
+    "scoring": "sum_query_token_max_document_token_dot",
+    "score_device": "cpu",
+    "score_dtype": "float32",
+    "exact": true,
+    "query_format": "checkpoint_sentence_transformers_Query_prefix_plus_10_endoftext",
+    "token_mask": "checkpoint_default_all_nonpadding",
+    "model_revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+    "base_revision": "92908120384b7a2110c5beda3ab29cbdb2c08e49",
+    "projection_verification": {
+      "projection_verified": true,
+      "max_absolute_merge_error": 3.725290298461914e-09,
+      "relocated_projection": "custom_text_proj -> 1_Dense",
+      "projection_shape": [
+        128,
+        2048
+      ]
+    }
+  }
+}

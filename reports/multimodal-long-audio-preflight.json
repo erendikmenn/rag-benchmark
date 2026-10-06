@@ -1,0 +1,41 @@
+{
+  "purpose": "synthetic_long_audio_context_smoke_only_not_benchmark_results",
+  "status": "ok",
+  "shape": [
+    1,
+    768
+  ],
+  "finite": true,
+  "usage": {
+    "inference_seconds": 1.0140829167794436,
+    "items": [
+      {
+        "modalities": [
+          "audio"
+        ],
+        "audio": {
+          "source_sampling_rate": 16000,
+          "sampling_rate": 16000,
+          "source_channels": 1,
+          "mono_rule": "arithmetic_mean",
+          "resampling": "scipy_resample_poly",
+          "duration_seconds": 31.0,
+          "sample_count": 496000
+        },
+        "expanded_tokens": 779
+      }
+    ],
+    "empty_derived_text_items": 0,
+    "devices": [
+      "cpu"
+    ],
+    "dtype": "float32",
+    "context_limit": 8192,
+    "towers": {
+      "vision": "Gemma4VisionModel",
+      "audio": "Gemma4AudioModel"
+    }
+  },
+  "model_id": "google/embeddinggemma-2",
+  "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b"
+}
