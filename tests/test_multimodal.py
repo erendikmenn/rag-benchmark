@@ -363,3 +363,126 @@ def test_declared_empty_source_extraction_is_preserved_without_filler(tmp_path):
     assert dataset.model_item(dataset.corpus[0])["text"] == ""
     rankings, _ = base_rankings(dataset, "B", {}, tmp_path / "cache")
     assert all({row["id"] for row in ranking} == {"a", "b", "c"} for ranking in rankings)
+
+
+class DiagnosticEncoder(CountingEncoder):
+    def encode(self, items, role):
+        values = super().encode(items, role)
+        records = []
+        for item in items:
+            original = 70 if item["id"] == "q1" else 40
+            records.append({"id": item["id"], "original_tokens": original, "retained_tokens": min(64, original),
+                            "native_token_limit": 64, "truncated": original > 64,
+                            "text": "PRIVATE ADAPTER INPUT", "media_path": "/PRIVATE/path"})
+        self.last_usage = {"items": records, "native_text_limit": 64,
+                           "truncated_text_items": sum(row["truncated"] for row in records),
+                           "text_overflow_policy": "truncate_to_model_limit", "inference_seconds": 999.0,
+                           "prompt": "PRIVATE PROMPT"}
+        return values
+
+
+def test_processing_diagnostics_aggregate_across_blocks_and_survive_vector_cache(tmp_path):
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    adapter = DiagnosticEncoder()
+    _, first = cached_encode(dataset, adapter, "query", tmp_path / "cache", block_size=1)
+    _, again = cached_encode(dataset, adapter, "query", tmp_path / "cache", block_size=1)
+    assert len(adapter.calls) == 2
+    assert first["adapter_diagnostics"] == again["adapter_diagnostics"]
+    diagnostics = again["adapter_diagnostics"]
+    assert diagnostics["status"] == "complete"
+    assert diagnostics["truncated_text_items"] == 1
+    assert diagnostics["original_tokens_total"] == 110
+    assert diagnostics["retained_tokens_total"] == 104
+    assert diagnostics["text_overflow_policies"] == ["truncate_to_model_limit"]
+    assert [item["id"] for item in diagnostics["items"]] == ["q1", "q2"]
+    assert "PRIVATE" not in json.dumps(diagnostics)
+    assert again["inference_seconds"] is None
+
+
+def test_full_report_preserves_diagnostics_on_ranking_cache_hit_without_old_timing(tmp_path):
+    root = fixture_dataset(tmp_path, track="photo")
+    kwargs = dict(adapters={"S": DiagnosticEncoder()}, requested_channels=["S"],
+                  candidate_grid=(50,), budget_modes=("per_channel",))
+    first = run_matrix(root, tmp_path / "run", **kwargs)
+    again = run_matrix(root, tmp_path / "run", **kwargs)
+    first_diag = first["channels"]["S"]["query_encoding"]["adapter_diagnostics"]
+    again_diag = again["channels"]["S"]["query_encoding"]["adapter_diagnostics"]
+    assert first_diag == again_diag and again_diag["truncated_text_items"] == 1
+    assert again["channels"]["S"]["ranking_cache_hit"] is True
+    assert again["channels"]["S"]["query_encoding"]["inference_seconds"] is None
+    assert again["channels"]["S"]["exact_search_seconds"] is None
+    assert "PRIVATE" not in (tmp_path / "run/report.json").read_text()
+
+
+def test_legacy_cache_reports_unknown_truncation_without_reencoding(tmp_path):
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    adapter = DiagnosticEncoder()
+    base_rankings(dataset, "G", {"G": adapter}, tmp_path / "cache")
+    for path in (tmp_path / "cache/vectors").rglob("*.json"):
+        path.unlink()
+    ranking_path = next((tmp_path / "cache/rankings").rglob("rankings.json"))
+    payload = json.loads(ranking_path.read_text())
+    del payload["usage"]
+    ranking_path.write_text(json.dumps(payload))
+    calls = len(adapter.calls)
+    _, usage = base_rankings(dataset, "G", {"G": adapter}, tmp_path / "cache")
+    assert len(adapter.calls) == calls
+    diagnostics = usage["query_encoding"]["adapter_diagnostics"]
+    assert diagnostics["status"] == "unavailable"
+    assert diagnostics["missing_rows"] == 2
+    assert diagnostics["truncated_text_items"] is None
+
+
+def test_text_only_item_removes_media_after_resolving_complete_surrogate(tmp_path):
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    item = {"id": "q1", "text": "instruction", "media": {"image": "reference.png"},
+            "metadata": {"text_surrogate": "source description plus instruction"}}
+    result = dataset.model_item(item, text_only=True)
+    assert result == {"id": "q1", "text": "source description plus instruction", "media": {}}
+    assert dataset.model_item(item)["text"] == "instruction"
+
+
+def test_bge_empty_candidate_uses_real_model_input_no_score_floor(monkeypatch):
+    import torch
+    from types import SimpleNamespace
+    from rag_benchmark.multimodal import BGETextReranker
+    from rag_benchmark import multimodal_models
+    seen = []
+    class Base:
+        def __init__(self, config):
+            self.identity = "fixed-native-model"
+            self.config = {"batch_size": 8, "max_length": 20, "device": "cpu"}
+
+        def _processor(self, pairs, **kwargs):
+            seen.extend(pairs)
+            assert kwargs["truncation"] is False
+            return {"attention_mask": torch.ones((len(pairs), 3), dtype=torch.int64)}
+
+        def _load(self):
+            return lambda **kwargs: SimpleNamespace(logits=torch.tensor([[0.7], [-0.3]]))
+    monkeypatch.setattr(multimodal_models, "BGEReranker", Base)
+    reranker = BGETextReranker()
+    scores = reranker.score({"text": "question"}, [{"id": "a", "text": "evidence"}, {"id": "b", "text": ""}])
+    assert scores == pytest.approx([0.7, -0.3])
+    assert seen == [("question", "evidence"), ("question", "")]
+    assert reranker.last_usage["empty_candidate_text_items"] == 1
+    with pytest.raises(UnsupportedConfiguration, match="explicit"):
+        reranker.score({"text": "question"}, [{"id": "b"}])
+
+
+def test_direct_adapter_usage_is_sanitized_and_cache_latency_not_replayed(tmp_path):
+    dataset = load_dataset(fixture_dataset(tmp_path))
+    class Direct:
+        identity = "token-model-v1"
+
+        def rank(self, documents, queries, **kwargs):
+            ranking = [{"id": row["id"], "score": 1.0} for row in documents]
+            return [ranking.copy() for _ in queries], {"scoring_seconds": 99.0,
+                "query_text": "PRIVATE QUERY", "search": "exact_maxsim",
+                "query_encoding": {"total_items": 2, "new_items": 2, "inference_seconds": 50.0, "prompt": "PRIVATE PROMPT"}}
+    _, fresh = base_rankings(dataset, "S", {"S": Direct()}, tmp_path / "cache")
+    _, cached = base_rankings(dataset, "S", {"S": Direct()}, tmp_path / "cache")
+    assert fresh["scoring_seconds"] == 99.0 and cached["scoring_seconds"] is None
+    assert cached["query_encoding"]["inference_seconds"] is None
+    assert cached["query_encoding"]["cache_hits"] == 2
+    assert "PRIVATE" not in json.dumps(fresh) and "PRIVATE" not in json.dumps(cached)

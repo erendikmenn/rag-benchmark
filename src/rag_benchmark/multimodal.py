@@ -141,8 +141,8 @@ class Dataset:
                 result["text"] = surrogate["text"]
             elif isinstance(surrogate, str):
                 result["text"] = surrogate
-        result["media"] = {kind: str((self.root / relative).resolve())
-                           for kind, relative in item.get("media", {}).items()}
+        result["media"] = {} if text_only else {kind: str((self.root / relative).resolve())
+                                               for kind, relative in item.get("media", {}).items()}
         return result
 
     def excluded_ids(self, query: dict) -> set[str]:
@@ -425,6 +425,51 @@ class TextEmbeddingAdapter:
         raise ValueError("Unknown encoder role")
 
 
+class BGETextReranker:
+    """Pinned BGE scoring that retains legitimate explicitly empty extractions.
+
+    Every candidate, including ``text=''``, receives an actual model score. No
+    candidate is dropped, fabricated, filled, or assigned a synthetic score floor.
+    """
+    pointwise = True
+
+    def __init__(self, config: dict | None = None):
+        from .multimodal_models import BGEReranker
+        self.base = BGEReranker(config)
+        self.identity = stable_hash({"base": self.base.identity, "wrapper": "explicit-empty-text-v1"})
+        self.last_usage = {}
+
+    def unload(self) -> None:
+        self.base.unload()
+
+    def score(self, query: dict, candidates: list[dict]) -> list[float]:
+        if not candidates:
+            return []
+        question = query.get("text")
+        if not isinstance(question, str) or not question.strip() or any(not isinstance(item.get("text"), str) for item in candidates):
+            raise UnsupportedConfiguration("BGE requires a complete query and an explicit candidate text field")
+        import torch
+        from .models import synchronize
+        model = self.base._load()
+        config, scores = self.base.config, []
+        started = time.perf_counter()
+        for offset in range(0, len(candidates), config["batch_size"]):
+            pairs = [(question, item["text"]) for item in candidates[offset:offset + config["batch_size"]]]
+            inputs = self.base._processor(pairs, padding=True, truncation=False, return_tensors="pt")
+            if int(inputs["attention_mask"].sum(dim=1).max()) > config["max_length"]:
+                raise ValueError("BGE reranker pair exceeds configured context; explicit segmentation is required")
+            with torch.inference_mode():
+                logits = model(**{key: value.to(config["device"]) for key, value in inputs.items()}).logits
+                scores.extend(logits.float().cpu().reshape(-1).tolist())
+        synchronize(config["device"])
+        if len(scores) != len(candidates) or not np.isfinite(scores).all():
+            raise RuntimeError("BGE reranker produced invalid scores")
+        self.last_usage = {"inference_seconds": time.perf_counter() - started, "pairs": len(scores),
+                           "empty_candidate_text_items": sum(not item["text"].strip() for item in candidates),
+                           "empty_candidate_policy": "native_model_score", "score_type": "raw_relevance_logit"}
+        return scores
+
+
 class PrecomputedAdapter:
     """Explicit vectors with exact dataset fingerprint/ID coverage; no speed claim."""
     def __init__(self, documents: np.ndarray, queries: np.ndarray, *, document_ids: list[str],
@@ -468,6 +513,86 @@ def encoding_cache_identity(dataset: Dataset, adapter: Any, role: str) -> str:
                         "prompts": getattr(adapter, "prompt_identity", None)})
 
 
+def _capture_diagnostics(usage: Any, item_ids: list[str]) -> dict:
+    """Copy only numerical processing facts and known settings, never input text."""
+    usage = usage if isinstance(usage, dict) else {}
+    result = {"rows": len(item_ids), "reported": bool(usage), "items": []}
+    policy = usage.get("text_overflow_policy")
+    if policy in {"error", "truncate_to_model_limit"}:
+        result["text_overflow_policy"] = policy
+    for key in ("native_text_limit", "context_limit", "truncated_text_items", "empty_derived_text_items", "empty_candidate_text_items"):
+        value = usage.get(key)
+        if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value >= 0:
+            result[key] = int(value)
+    if usage.get("dtype") in {"float32", "bfloat16", "float16"}:
+        result["dtype"] = usage["dtype"]
+    if usage.get("empty_candidate_policy") == "native_model_score":
+        result["empty_candidate_policy"] = "native_model_score"
+    records = usage.get("items", [])
+    if isinstance(records, list) and records:
+        if len(records) != len(item_ids):
+            raise ValueError("Adapter diagnostics do not match the encoded row count")
+        for identifier, record in zip(item_ids, records):
+            if not isinstance(record, dict):
+                raise ValueError("Adapter processing diagnostics must contain records")
+            if record.get("id") is not None and str(record["id"]) != identifier:
+                raise ValueError("Adapter diagnostic IDs do not match the encoded row order")
+            safe = {"id": identifier}
+            for key in ("original_tokens", "retained_tokens", "processed_tokens_including_padding",
+                        "native_token_limit", "expanded_tokens"):
+                value = record.get(key)
+                if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value >= 0:
+                    safe[key] = int(value)
+            for key in ("truncated", "derived_text_empty"):
+                if isinstance(record.get(key), bool):
+                    safe[key] = record[key]
+            if isinstance(record.get("modalities"), list):
+                safe["modalities"] = [value for value in record["modalities"] if value in {"text", "image", "audio", "video"}]
+            result["items"].append(safe)
+        flags = [record["truncated"] for record in result["items"] if "truncated" in record]
+        if len(flags) == len(item_ids):
+            if "truncated_text_items" in result and result["truncated_text_items"] != sum(flags):
+                raise ValueError("Adapter truncation count disagrees with its per-item diagnostics")
+            result["truncated_text_items"] = sum(flags)
+    return result
+
+
+def _merge_diagnostics(blocks: list[dict], total_rows: int) -> dict:
+    reported = sum(block["rows"] for block in blocks if block.get("reported"))
+    records = [record for block in blocks for record in block.get("items", [])]
+    complete_truncation = sum(block["rows"] for block in blocks if "truncated_text_items" in block) == total_rows
+    return {"status": "complete" if reported == total_rows else "partial" if reported else "unavailable",
+            "total_rows": total_rows, "reported_rows": reported, "missing_rows": total_rows - reported,
+            "text_overflow_policies": sorted({block["text_overflow_policy"] for block in blocks if "text_overflow_policy" in block}),
+            "native_text_limits": sorted({block["native_text_limit"] for block in blocks if "native_text_limit" in block}),
+            "truncated_text_items": sum(block.get("truncated_text_items", 0) for block in blocks) if complete_truncation else None,
+            "observed_truncated_text_items": sum(block.get("truncated_text_items", 0) for block in blocks),
+            "empty_derived_text_items": sum(block.get("empty_derived_text_items", 0) for block in blocks)
+                if blocks and reported == total_rows and all("empty_derived_text_items" in block for block in blocks) else None,
+            "empty_candidate_text_items_observed": sum(block.get("empty_candidate_text_items", 0) for block in blocks),
+            "expanded_tokens_max": max((record["expanded_tokens"] for record in records if "expanded_tokens" in record), default=None),
+            "original_tokens_total": sum(record.get("original_tokens", 0) for record in records)
+                if any("original_tokens" in record for record in records) else None,
+            "retained_tokens_total": sum(record.get("retained_tokens", 0) for record in records)
+                if any("retained_tokens" in record for record in records) else None,
+            "items": records, "cache_reads_are_inference": False}
+
+
+def _encoding_diagnostics_path(dataset: Dataset, adapter: Any, role: str, cache_dir: Path, text_only: bool) -> Path:
+    identity = stable_hash({"encoding": encoding_cache_identity(dataset, adapter, role), "text_only": text_only})
+    return Path(cache_dir) / "vectors" / identity / "diagnostics.json"
+
+
+def _saved_encoding_diagnostics(dataset: Dataset, adapter: Any, role: str, cache_dir: Path, text_only: bool) -> dict:
+    path = _encoding_diagnostics_path(dataset, adapter, role, cache_dir, text_only)
+    count = len(dataset.corpus if role == "document" else dataset.queries)
+    if path.is_file():
+        return json.loads(path.read_text())
+    result = _merge_diagnostics([], count)
+    result["reason"] = "Legacy cache contains no processing diagnostics; counts are unknown, not zero"
+    return result
+
+
 def cached_encode(dataset: Dataset, adapter: Any, role: str, cache_dir: Path, *,
                   block_size: int = 128, text_only: bool = False) -> tuple[np.ndarray, dict]:
     if block_size < 1:
@@ -475,29 +600,41 @@ def cached_encode(dataset: Dataset, adapter: Any, role: str, cache_dir: Path, *,
     items = dataset.corpus if role == "document" else dataset.queries
     identity = stable_hash({"encoding": encoding_cache_identity(dataset, adapter, role), "text_only": text_only})
     path = Path(cache_dir) / "vectors" / identity
-    blocks, computed, cached, seconds = [], 0, 0, 0.0
+    blocks, diagnostic_blocks, computed, cached, seconds = [], [], 0, 0, 0.0
     for start in range(0, len(items), block_size):
         stop = min(start + block_size, len(items))
         block_path = path / f"{start:09d}-{stop:09d}.npy"
+        diagnostics_path = block_path.with_suffix(".usage.json")
+        item_ids = [item["id"] for item in items[start:stop]]
         if block_path.is_file():
             values = np.load(block_path, allow_pickle=False)
             cached += stop - start
+            diagnostics = json.loads(diagnostics_path.read_text()) if diagnostics_path.is_file() else {
+                "rows": stop - start, "reported": False, "items": []}
+            if diagnostics.get("rows") != stop - start:
+                raise ValueError("Cached processing diagnostics have the wrong row count")
         else:
             tick = time.perf_counter()
             values = np.asarray(adapter.encode([dataset.model_item(item, text_only=text_only) for item in items[start:stop]], role=role),
                                 dtype=np.float32)
             elapsed = time.perf_counter() - tick
             _validate_vectors(values, stop - start, adapter.dimension)
+            diagnostics = _capture_diagnostics(getattr(adapter, "last_usage", getattr(adapter, "usage", {})), item_ids)
+            _atomic_json(diagnostics_path, diagnostics)
             _atomic_array(block_path, values)
             computed += stop - start
             if not getattr(adapter, "precomputed", False):
                 seconds += elapsed
         _validate_vectors(values, stop - start, adapter.dimension)
         blocks.append(values)
+        diagnostic_blocks.append(diagnostics)
     values = np.concatenate(blocks, axis=0)
+    diagnostics = _merge_diagnostics(diagnostic_blocks, len(items))
+    _atomic_json(path / "diagnostics.json", diagnostics)
     return values, {"identity": identity, "role": role, "cache_rows": cached,
                     "new_rows": computed, "inference_seconds": seconds if computed and not getattr(adapter, "precomputed", False) else None,
                     "precomputed": bool(getattr(adapter, "precomputed", False)),
+                    "adapter_diagnostics": diagnostics,
                     "cache_reads_are_inference": False}
 
 
@@ -543,6 +680,47 @@ def _channel_identity(dataset: Dataset, channel: str, adapters: dict) -> str:
     return stable_hash({"engine": ENGINE_VERSION, "dataset": dataset.identity, "channel": channel, "model": model})
 
 
+def _direct_usage_public(usage: Any) -> dict:
+    """Accept known direct-ranking measurements, not arbitrary adapter payloads."""
+    if not isinstance(usage, dict):
+        return {}
+    result = {}
+    for key in ("inference_seconds", "scoring_seconds", "exact_search_seconds", "exact", "total_items", "new_items",
+                "cache_hits", "token_count_min", "token_count_max", "token_count_total", "truncated_text_items"):
+        value = usage.get(key)
+        if value is None or isinstance(value, (int, float, bool)) and math.isfinite(value):
+            if key in usage:
+                result[key] = value
+    for key in ("adapter_identity", "model_revision", "base_revision", "search", "scoring", "score_device", "score_dtype", "token_mask"):
+        value = usage.get(key)
+        if isinstance(value, str) and re.fullmatch(r"[a-z0-9_.:-]{1,128}", value):
+            result[key] = value
+    for key in ("document_encoding", "query_encoding"):
+        if key in usage:
+            result[key] = _direct_usage_public(usage[key])
+    verification = usage.get("projection_verification", {})
+    if isinstance(verification, dict) and isinstance(verification.get("projection_verified"), bool):
+        result["projection_verification"] = {"projection_verified": verification["projection_verified"]}
+        error = verification.get("max_absolute_merge_error")
+        if isinstance(error, (int, float)) and math.isfinite(error):
+            result["projection_verification"]["max_absolute_merge_error"] = error
+    return result
+
+
+def _cache_reused_usage(usage: dict) -> dict:
+    result = {}
+    for key, value in usage.items():
+        if key.endswith("seconds"):
+            result[key] = None
+        elif key in {"new_rows", "new_items"}:
+            result[key] = 0
+        elif isinstance(value, dict):
+            result[key] = _cache_reused_usage(value)
+        else:
+            result[key] = value
+    return result
+
+
 def base_rankings(dataset: Dataset, channel: str, adapters: dict, cache_dir: Path, *, top_k: int = 100) -> tuple[list, dict]:
     identity = _channel_identity(dataset, channel, adapters)
     path = Path(cache_dir) / "rankings" / stable_hash({"identity": identity, "top_k": top_k}) / "rankings.json"
@@ -551,8 +729,21 @@ def base_rankings(dataset: Dataset, channel: str, adapters: dict, cache_dir: Pat
         rankings = payload["rankings"]
         if len(rankings) != len(dataset.queries):
             raise ValueError("Invalid ranking cache query count")
+        usage = _cache_reused_usage(payload.get("usage", {}))
+        if channel != "B" and not hasattr(adapters[channel], "rank"):
+            for role in ("document", "query"):
+                role_usage = usage.setdefault(role + "_encoding", {})
+                role_usage.update(inference_seconds=None, new_rows=0,
+                    cache_rows=len(dataset.corpus if role == "document" else dataset.queries))
+                if "adapter_diagnostics" not in role_usage:
+                    role_usage["adapter_diagnostics"] = _saved_encoding_diagnostics(
+                        dataset, adapters[channel], role, cache_dir, channel in {"G", "E"})
+        for role in ("document", "query"):
+            role_usage = usage.get(role + "_encoding", {})
+            if "total_items" in role_usage:
+                role_usage["cache_hits"] = role_usage["total_items"]
         return rankings, {"identity": identity, "ranking_cache_hit": True, "inference_seconds": None,
-                          "cache_reads_are_inference": False}
+                          "cache_reads_are_inference": False, **usage}
     tick = time.perf_counter()
     if channel == "B":
         rankings = _bm25_rankings(dataset, top_k)
@@ -563,6 +754,7 @@ def base_rankings(dataset: Dataset, channel: str, adapters: dict, cache_dir: Pat
             [dataset.model_item(item) for item in dataset.queries], top_k=top_k,
             cache_dir=Path(cache_dir) / "direct" / identity,
             exclusions=[dataset.excluded_ids(query) for query in dataset.queries])
+        usage = _direct_usage_public(usage)
         doc_ids = {item["id"] for item in dataset.corpus}
         if len(rankings) != len(dataset.queries):
             raise ValueError("Direct ranking adapter changed query count")
@@ -589,7 +781,7 @@ def base_rankings(dataset: Dataset, channel: str, adapters: dict, cache_dir: Pat
                                       exclusions=[dataset.excluded_ids(query) for query in dataset.queries])
         usage = {"document_encoding": doc_usage, "query_encoding": query_usage,
                  "exact_search_seconds": time.perf_counter() - search_start}
-    _atomic_json(path, {"identity": identity, "query_ids": [q["id"] for q in dataset.queries], "rankings": rankings})
+    _atomic_json(path, {"identity": identity, "query_ids": [q["id"] for q in dataset.queries], "rankings": rankings, "usage": usage})
     return rankings, {"identity": identity, "ranking_cache_hit": False, "cache_reads_are_inference": False, **usage}
 
 
@@ -628,6 +820,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
             "query": stable_hash(query_item), "prompts": getattr(adapter, "prompt_identity", None)}
     pointwise = getattr(adapter, "pointwise", False)
     cached_count, seconds = 0, 0.0
+    diagnostics = {"rows": len(candidates), "reported": False, "items": []}
     if pointwise:
         keys = [stable_hash({**base, "candidate": stable_hash(item)}) for item in candidates]
         values = [store.score(key) for key in keys]
@@ -639,6 +832,8 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
             seconds = time.perf_counter() - tick
             if len(fresh) != len(missing) or not all(math.isfinite(float(v)) for v in fresh):
                 raise ValueError("Reranker returned invalid scores or changed candidate count")
+            diagnostics = _capture_diagnostics(getattr(adapter, "last_usage", getattr(adapter, "usage", {})),
+                                               [candidate_ids[i] for i in missing])
             for i, value in zip(missing, fresh):
                 values[i] = float(value)
                 store.put_score(keys[i], values[i])
@@ -651,6 +846,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
             seconds = time.perf_counter() - tick
             if len(values) != len(candidates) or not all(math.isfinite(float(v)) for v in values):
                 raise ValueError("Reranker returned invalid scores or changed candidate count")
+            diagnostics = _capture_diagnostics(getattr(adapter, "last_usage", getattr(adapter, "usage", {})), candidate_ids)
             values = [float(v) for v in values]
             store.put_score(key, values)
         else:
@@ -660,6 +856,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
             for rank, (identifier, score) in enumerate(scored, 1)], {
                 "cache_pairs": cached_count, "new_pairs": len(candidates) - cached_count,
                 "inference_seconds": seconds if len(candidates) > cached_count else None,
+                "adapter_diagnostics": diagnostics,
                 "cache_reads_are_inference": False}
 
 
@@ -780,7 +977,7 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                                                  "reranker": getattr(reranker, "identity", None),
                                                  "reranker_prompts": getattr(reranker, "prompt_identity", None)})
                     cell["identity"] = cell_identity
-                    metric_rows, pools, fresh_seconds = [], [], []
+                    metric_rows, pools, fresh_seconds, rerank_diagnostics = [], [], [], []
                     result_cache_hits, pair_cache_hits, new_pairs = 0, 0, 0
                     try:
                         for query_index, query in enumerate(queries):
@@ -805,6 +1002,8 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                                     fresh_seconds.append(usage["inference_seconds"])
                             metric_rows.append(result["metrics"])
                             pools.append(result["pool"])
+                            if result.get("usage", {}).get("adapter_diagnostics"):
+                                rerank_diagnostics.append(result["usage"]["adapter_diagnostics"])
                         cell.update(status="completed", completed_queries=len(metric_rows), metrics=aggregate_metrics(metric_rows),
                                     mean_raw_candidates=float(np.mean([p["raw_candidates"] for p in pools])),
                                     mean_unique_candidates=float(np.mean([p["unique_candidates"] for p in pools])),
@@ -814,6 +1013,9 @@ def run_matrix(dataset_dir: Path | str, output_dir: Path | str, *, adapters: dic
                                     rerank_fresh_p50_seconds=float(np.percentile(fresh_seconds, 50)) if fresh_seconds else None,
                                     rerank_fresh_p95_seconds=float(np.percentile(fresh_seconds, 95)) if fresh_seconds else None,
                                     latency_scope="fresh_missing_pairs_only; reused scores excluded")
+                        if reranker is not None:
+                            cell["adapter_diagnostics"] = _merge_diagnostics(rerank_diagnostics,
+                                sum(pool["rerank_candidates"] for pool in pools))
                         family["completed_cells"] += 1
                     except Exception as exc:
                         status = "unsupported" if isinstance(exc, UnsupportedConfiguration) else "failed"
