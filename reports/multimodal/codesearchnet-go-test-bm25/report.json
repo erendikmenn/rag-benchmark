@@ -8164,10 +8164,10 @@
   "channels": {
     "B": {
       "status": "completed",
-      "identity": "07259ce2bdb1e517670babd88c8992341d8790dd904dbccc518a313e7bae74ed",
+      "identity": "dfeeefcacd171a46bb27af5e4219a969d0f2d0acc73b1dcbac0f85b7b7e4abfa",
       "ranking_cache_hit": false,
       "cache_reads_are_inference": false,
-      "bm25_build_and_search_seconds": 329.2678265001159
+      "bm25_build_and_search_seconds": 42.67512649996206
     }
   },
   "families": [
@@ -8760,7 +8760,7 @@
       "query_count": 8122,
       "completed_queries": 8122,
       "primary": true,
-      "identity": "6dbac58b2bd9340fc86681203f52484b343a5051e9279c8fa231db58756c137a",
+      "identity": "f363fb7d9c8846ea80cdbe10b34f912f5ecf55e58f8009997fd36b604fedda72",
       "metrics": {
         "hit@1": 0.4152918000492489,
         "hit@10": 0.6944102437823196,
@@ -8780,8 +8780,8 @@
         "recall@20": 0.7573257818271362,
         "recall@5": 0.619428712139867
       },
-      "mean_raw_candidates": 100.0,
-      "mean_unique_candidates": 100.0,
+      "mean_raw_candidates": 99.94927357793647,
+      "mean_unique_candidates": 99.94927357793647,
       "mean_rerank_candidates": 0.0,
       "result_cache_hits": 0,
       "score_cache_pairs": 0,
@@ -8799,7 +8799,7 @@
       "query_count": 8122,
       "completed_queries": 8122,
       "primary": false,
-      "identity": "45765d3728b4e624bdc89a8401c049df85c35107ec5cc00de97a78f1dfed5b53",
+      "identity": "0a02549e3822263214421f1d5abe5c2604311be4b0f0acfc5e65a1df8643e5fb",
       "metrics": {
         "hit@1": 0.4152918000492489,
         "hit@10": 0.6944102437823196,
@@ -8819,8 +8819,8 @@
         "recall@20": 0.7573257818271362,
         "recall@5": 0.619428712139867
       },
-      "mean_raw_candidates": 100.0,
-      "mean_unique_candidates": 100.0,
+      "mean_raw_candidates": 99.94927357793647,
+      "mean_unique_candidates": 99.94927357793647,
       "mean_rerank_candidates": 0.0,
       "result_cache_hits": 0,
       "score_cache_pairs": 0,
@@ -9011,6 +9011,21 @@
       "reason": "No gemma4_relevance adapter configured"
     }
   ],
+  "adapter_specs": {
+    "channels": {
+      "B": {
+        "class": "bm25s.BM25",
+        "config": {
+          "k1": 1.5,
+          "b": 0.75,
+          "method": "lucene",
+          "candidate_selection": "positive_scores_only_v1",
+          "tokenizer": "code-identifiers-v1"
+        }
+      }
+    },
+    "rerankers": {}
+  },
   "family_status_counts": {
     "completed": 1,
     "planned": 24,

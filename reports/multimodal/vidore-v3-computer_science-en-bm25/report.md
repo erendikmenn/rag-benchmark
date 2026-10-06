@@ -1,7 +1,5 @@
 # Multimodal retrieval results
 
-**Historical baseline:** this run used the earlier zero-score-eligible candidate policy. The [positive-only rerun](../vidore-v3-computer_science-en-bm25/report.md) supersedes it and reproduces the displayed metrics.
-
 Dataset: **vidore-v3-computer_science-en**, revision `d5cc75883d92e294f0c0fc2662551c9708a06ebc`.
 Scope: **frozen_collection**; 215 evaluated queries out of 215, searching 1,360 candidates.
 

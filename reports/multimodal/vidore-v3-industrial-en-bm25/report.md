@@ -1,15 +1,13 @@
 # Multimodal retrieval results
 
-**Historical baseline:** this run used the earlier zero-score-eligible candidate policy. The [positive-only rerun](../vidore-v3-computer_science-en-bm25/report.md) supersedes it and reproduces the displayed metrics.
-
-Dataset: **vidore-v3-computer_science-en**, revision `d5cc75883d92e294f0c0fc2662551c9708a06ebc`.
-Scope: **frozen_collection**; 215 evaluated queries out of 215, searching 1,360 candidates.
+Dataset: **vidore-v3-industrial-en**, revision `e26c864724f5dd71a3d7d739272d95637764cee9`.
+Scope: **frozen_collection**; 283 evaluated queries out of 283, searching 5,244 candidates.
 
 Only completed cells below have measured scores. Planned, unsupported and failed families remain visible in matrix.csv. A completed collection is not the complete seven-track benchmark.
 
 | Method | Budget | Rerank K | Hit@1 | Hit@5 | Recall@5 | MRR@10 | nDCG@10 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| document__b__none | per_channel | — | 0.6977 | 0.9209 | 0.5353 | 0.7918 | 0.6334 |
+| document__b__none | per_channel | — | 0.4558 | 0.6855 | 0.4158 | 0.5538 | 0.4615 |
 
 Hit@K measures whether at least one labelled relevant item was retrieved. Recall@K measures the fraction of all labelled relevant items retrieved. These can differ substantially for multi-positive datasets.
 

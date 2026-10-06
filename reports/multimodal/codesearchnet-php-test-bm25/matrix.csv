@@ -1,0 +1,29 @@
+variant_id,track,status,reason,completed_cells,planned_cells
+code__b__none,code,completed,,2,2
+code__b__laya_text,code,unsupported,No laya_text adapter configured,0,6
+code__b__bge_reranker_text,code,unsupported,No bge_reranker_text adapter configured,0,6
+code__b__gemma4_relevance,code,unsupported,No gemma4_relevance adapter configured,0,6
+code__g__none,code,planned,Channels not requested in this invocation,0,2
+code__g__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__g__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__g__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6
+code__e__none,code,planned,Channels not requested in this invocation,0,2
+code__e__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__e__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__e__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6
+code__b_g__none,code,planned,Channels not requested in this invocation,0,2
+code__b_g__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__b_g__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__b_g__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6
+code__b_e__none,code,planned,Channels not requested in this invocation,0,2
+code__b_e__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__b_e__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__b_e__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6
+code__g_e__none,code,planned,Channels not requested in this invocation,0,2
+code__g_e__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__g_e__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__g_e__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6
+code__b_g_e__none,code,planned,Channels not requested in this invocation,0,2
+code__b_g_e__laya_text,code,planned,Channels not requested in this invocation,0,6
+code__b_g_e__bge_reranker_text,code,planned,Channels not requested in this invocation,0,6
+code__b_g_e__gemma4_relevance,code,planned,Channels not requested in this invocation,0,6

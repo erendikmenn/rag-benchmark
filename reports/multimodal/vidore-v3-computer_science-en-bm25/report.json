@@ -1,0 +1,6110 @@
+{
+  "schema_version": 1,
+  "engine": "multimodal-v1",
+  "dataset": {
+    "id": "vidore-v3-computer_science-en",
+    "revision": "d5cc75883d92e294f0c0fc2662551c9708a06ebc",
+    "track": "document",
+    "identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+    "corpus_count": 1360,
+    "query_count": 215,
+    "qrel_count": 1049,
+    "positive_qrel_count": 1049,
+    "empty_candidate_text_count": 2,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "scope": "frozen_collection",
+  "evaluated_query_count": 215,
+  "configuration": {
+    "engine": "multimodal-v1",
+    "dataset": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+    "candidate_grid": [
+      20,
+      50,
+      100
+    ],
+    "budget_modes": [
+      "per_channel",
+      "total"
+    ],
+    "channel_budget": 100,
+    "rrf_k": 60,
+    "requested_channels": [
+      "B"
+    ],
+    "query_ids": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99",
+      "100",
+      "101",
+      "102",
+      "103",
+      "104",
+      "105",
+      "106",
+      "107",
+      "108",
+      "109",
+      "110",
+      "111",
+      "112",
+      "113",
+      "114",
+      "115",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "128",
+      "129",
+      "130",
+      "131",
+      "132",
+      "133",
+      "134",
+      "135",
+      "136",
+      "137",
+      "138",
+      "139",
+      "140",
+      "141",
+      "142",
+      "143",
+      "144",
+      "145",
+      "146",
+      "147",
+      "148",
+      "149",
+      "150",
+      "151",
+      "152",
+      "153",
+      "154",
+      "155",
+      "156",
+      "157",
+      "158",
+      "159",
+      "160",
+      "161",
+      "162",
+      "163",
+      "164",
+      "165",
+      "166",
+      "167",
+      "168",
+      "169",
+      "170",
+      "171",
+      "172",
+      "173",
+      "174",
+      "175",
+      "176",
+      "177",
+      "178",
+      "179",
+      "180",
+      "181",
+      "182",
+      "183",
+      "184",
+      "185",
+      "186",
+      "187",
+      "188",
+      "189",
+      "190",
+      "191",
+      "192",
+      "193",
+      "194",
+      "195",
+      "196",
+      "1182",
+      "1183",
+      "1184",
+      "1185",
+      "1186",
+      "1187",
+      "1188",
+      "1189",
+      "1190",
+      "1191",
+      "1192",
+      "1193",
+      "1194",
+      "1195",
+      "1196",
+      "1197",
+      "1198",
+      "1199"
+    ]
+  },
+  "planned_global_family_count": 1284,
+  "planned_global_retrieval_subset_count": 321,
+  "cache_reads_are_inference": false,
+  "channels": {
+    "B": {
+      "status": "completed",
+      "identity": "d0b39184b1b0f95934663ba830d19a8bb567678aed25a31044f5046d8732662a",
+      "ranking_cache_hit": false,
+      "cache_reads_are_inference": false,
+      "bm25_build_and_search_seconds": 0.3065768340602517
+    }
+  },
+  "families": [
+    {
+      "variant_id": "document__b__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "completed",
+      "planned_cells": 2,
+      "completed_cells": 2
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "unsupported",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "unsupported",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "unsupported",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__g__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "identity",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__e_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "specialist": "none",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_e_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__g_e_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s_j__none",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "none",
+      "primary_rerank_k": null,
+      "rerank_candidate_grid": [],
+      "status": "planned",
+      "planned_cells": 2,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s_j__laya_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "laya_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s_j__bge_reranker_text",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "bge_reranker_text",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    },
+    {
+      "variant_id": "document__b_g_e_n_s_j__gemma4_relevance",
+      "track": "document",
+      "dataset": "ViDoRe V3 public",
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
+      ],
+      "specialist": "ColQwen2.5",
+      "fusion": "equal_weight_rrf_k60",
+      "reranker": "gemma4_relevance",
+      "primary_rerank_k": 50,
+      "rerank_candidate_grid": [
+        20,
+        50,
+        100
+      ],
+      "status": "planned",
+      "planned_cells": 6,
+      "completed_cells": 0,
+      "reason": "Channels not requested in this invocation"
+    }
+  ],
+  "cells": [
+    {
+      "variant_id": "document__b__none",
+      "budget_mode": "per_channel",
+      "candidate_k": null,
+      "status": "completed",
+      "query_count": 215,
+      "completed_queries": 215,
+      "primary": true,
+      "identity": "3b6b78a46954f16f4aaeb1ab2c15d812d1f6117e4eeb9f57fe6e45c6b4c0f0af",
+      "metrics": {
+        "hit@1": 0.6976744186046512,
+        "hit@10": 0.9441860465116279,
+        "hit@20": 0.9627906976744186,
+        "hit@5": 0.9209302325581395,
+        "map@16": 0.5255685498649889,
+        "mrr@1": 0.6976744186046512,
+        "mrr@10": 0.7918014027316354,
+        "mrr@20": 0.7931368930267338,
+        "mrr@5": 0.7889922480620155,
+        "ndcg@1": 0.6232558139534884,
+        "ndcg@10": 0.6334424628212948,
+        "ndcg@20": 0.6659153623109615,
+        "ndcg@5": 0.6086414538728036,
+        "recall@1": 0.26744347383882267,
+        "recall@10": 0.6491205306321585,
+        "recall@20": 0.7459274833693439,
+        "recall@5": 0.5352847540056842
+      },
+      "mean_raw_candidates": 100.0,
+      "mean_unique_candidates": 100.0,
+      "mean_rerank_candidates": 0.0,
+      "result_cache_hits": 0,
+      "score_cache_pairs": 0,
+      "new_score_pairs": 0,
+      "rerank_fresh_inference_seconds": null,
+      "rerank_fresh_p50_seconds": null,
+      "rerank_fresh_p95_seconds": null,
+      "latency_scope": "fresh_missing_pairs_only; reused scores excluded"
+    },
+    {
+      "variant_id": "document__b__none",
+      "budget_mode": "total",
+      "candidate_k": null,
+      "status": "completed",
+      "query_count": 215,
+      "completed_queries": 215,
+      "primary": false,
+      "identity": "ca180e7f67d236c42e9709a520515f2614375e198a74569ed320ac45e709661c",
+      "metrics": {
+        "hit@1": 0.6976744186046512,
+        "hit@10": 0.9441860465116279,
+        "hit@20": 0.9627906976744186,
+        "hit@5": 0.9209302325581395,
+        "map@16": 0.5255685498649889,
+        "mrr@1": 0.6976744186046512,
+        "mrr@10": 0.7918014027316354,
+        "mrr@20": 0.7931368930267338,
+        "mrr@5": 0.7889922480620155,
+        "ndcg@1": 0.6232558139534884,
+        "ndcg@10": 0.6334424628212948,
+        "ndcg@20": 0.6659153623109615,
+        "ndcg@5": 0.6086414538728036,
+        "recall@1": 0.26744347383882267,
+        "recall@10": 0.6491205306321585,
+        "recall@20": 0.7459274833693439,
+        "recall@5": 0.5352847540056842
+      },
+      "mean_raw_candidates": 100.0,
+      "mean_unique_candidates": 100.0,
+      "mean_rerank_candidates": 0.0,
+      "result_cache_hits": 0,
+      "score_cache_pairs": 0,
+      "new_score_pairs": 0,
+      "rerank_fresh_inference_seconds": null,
+      "rerank_fresh_p50_seconds": null,
+      "rerank_fresh_p95_seconds": null,
+      "latency_scope": "fresh_missing_pairs_only; reused scores excluded"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": true,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "total",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "total",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__laya_text",
+      "budget_mode": "total",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No laya_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": true,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "per_channel",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "total",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "total",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__bge_reranker_text",
+      "budget_mode": "total",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No bge_reranker_text adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "per_channel",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "per_channel",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": true,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "per_channel",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "total",
+      "candidate_k": 20,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "total",
+      "candidate_k": 50,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No gemma4_relevance adapter configured"
+    },
+    {
+      "variant_id": "document__b__gemma4_relevance",
+      "budget_mode": "total",
+      "candidate_k": 100,
+      "status": "unsupported",
+      "query_count": 215,
+      "completed_queries": 0,
+      "primary": false,
+      "reason": "No gemma4_relevance adapter configured"
+    }
+  ],
+  "adapter_specs": {
+    "channels": {
+      "B": {
+        "class": "bm25s.BM25",
+        "config": {
+          "k1": 1.5,
+          "b": 0.75,
+          "method": "lucene",
+          "candidate_selection": "positive_scores_only_v1",
+          "tokenizer": "turkish-unicode-v1"
+        }
+      }
+    },
+    "rerankers": {}
+  },
+  "family_status_counts": {
+    "completed": 1,
+    "planned": 248,
+    "failed": 0,
+    "unsupported": 3
+  },
+  "cell_status_counts": {
+    "completed": 2,
+    "planned": 0,
+    "failed": 0,
+    "unsupported": 18
+  }
+}

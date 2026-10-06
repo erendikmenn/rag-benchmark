@@ -10,7 +10,7 @@
 
 Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.
 
-İlk tam bölüm ölçümü hazır: **ViDoRe V3 bilgisayar bilimi, 215 soru / 1.360 sayfa üzerinde BM25: Hit@5 %92,09, Recall@5 %53,53, nDCG@10 0,6334**. Hit, en az bir doğru sayfa bulmayı; recall, soruya ait bütün doğru sayfaların ne kadarını bulduğumuzu ölçer. Bunlar cevap doğruluğu yüzdeleri değildir. [Ölçüm raporu](reports/multimodal/vidore-cs-bm25/report.md).
+İlk tam bölüm ölçümü hazır: **ViDoRe V3 bilgisayar bilimi, 215 soru / 1.360 sayfa üzerinde BM25: Hit@5 %92,09, Recall@5 %53,53, nDCG@10 0,6334**. Hit, en az bir doğru sayfa bulmayı; recall, soruya ait bütün doğru sayfaların ne kadarını bulduğumuzu ölçer. Bunlar cevap doğruluğu yüzdeleri değildir. [Ölçüm raporu](reports/multimodal/vidore-v3-computer_science-en-bm25/report.md).
 
 Aynı 3.600 fotoğraftan oluşan arşivde tam fotoğraf arama ölçümleri:
 
@@ -22,6 +22,8 @@ Aynı 3.600 fotoğraftan oluşan arşivde tam fotoğraf arama ölçümleri:
 Bunlar bu veri setinde doğru kaynağı bulma oranlarıdır; üretilen cevabın doğruluğu değildir. SigLIP2'nin 64 token girdi sınırı nedeniyle **56 Türkçe sorgu açıkça kısaltıldı**; İngilizce sorgularda kısaltma gerekmedi. Bu fark raporda kayıtlıdır; tablo kısaltmanın tek başına etkisini ölçmez. EG2'nin SigLIP2'ye farkı Türkçede 24,76 yüzde puanı (%95 eşleştirilmiş kaynak grubu güven aralığı: 23,52–26,02), İngilizcede 6,86 puan (5,94–7,82). Eşit ağırlıklı birleşim iki dilde de EG2'yi iyileştirmedi. [Türkçe karşılaştırma](reports/multimodal/xm3600-tr-native-specialist/paired-comparisons.md) · [İngilizce karşılaştırma](reports/multimodal/xm3600-en-native-specialist/paired-comparisons.md).
 
 Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe FLEURS hazır. Görüntü, ses, video ve birleşik girdilerde gerçek yerel model kontrolleri geçti; bunlar başarı oranı ölçümü değildir. Altı kod dilinin tamamı (**183.295 fonksiyon / 52.561 sorgu**) ve 1.000 MSR-VTT videosu hazır. CIRR'nin resmî medyası, yayıncısının erişim süreci tamamlanmadan kullanılamıyor. Aşağıdaki metin RAG pilotu ayrı deney olarak korunuyor.
+
+**BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; embedding, birleşim ve reranker deneyleri devam ediyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
 
 [Ölçülen bütün koşular](reports/multimodal/README.md) · [Yerelde çalıştırma](docs/multimodal-running.md) · [Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
 
