@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic_backend_smoke_only_not_benchmark_results",
+  "packages": {
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "sentence-transformers": "6.1.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0",
+    "soundfile": "0.14.0",
+    "scipy": "1.18.1",
+    "av": "19.0.1"
+  },
+  "conditions": [
+    {
+      "adapter": "embeddinggemma_native",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text",
+      "status": "ok",
+      "identity": "b0b5bb739c684846524d0217c519f3d9e615b2730e593c21a9fca7c80e94b776",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.4292021670844406,
+        "items": [
+          {
+            "modalities": [
+              "text"
+            ],
+            "expanded_tokens": 13
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_native",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "image",
+      "status": "ok",
+      "identity": "b0b5bb739c684846524d0217c519f3d9e615b2730e593c21a9fca7c80e94b776",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        0.9999998807907104
+      ],
+      "usage": {
+        "inference_seconds": 0.5254148331005126,
+        "items": [
+          {
+            "modalities": [
+              "image"
+            ],
+            "expanded_tokens": 260
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_native",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "audio",
+      "status": "ok",
+      "identity": "b0b5bb739c684846524d0217c519f3d9e615b2730e593c21a9fca7c80e94b776",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.8514325418509543,
+        "items": [
+          {
+            "modalities": [
+              "audio"
+            ],
+            "audio": {
+              "source_sampling_rate": 16000,
+              "sampling_rate": 16000,
+              "source_channels": 1,
+              "mono_rule": "arithmetic_mean",
+              "resampling": "scipy_resample_poly",
+              "duration_seconds": 2.0,
+              "sample_count": 32000
+            },
+            "expanded_tokens": 54
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_native",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "video",
+      "status": "ok",
+      "identity": "b0b5bb739c684846524d0217c519f3d9e615b2730e593c21a9fca7c80e94b776",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.317942125024274,
+        "items": [
+          {
+            "modalities": [
+              "video"
+            ],
+            "video": {
+              "sampling_fps": 1.0,
+              "max_frames": 16,
+              "sampling_rule": "nearest_timestamp_then_uniform_cap",
+              "frame_indices": [
+                0,
+                2
+              ],
+              "timestamps_seconds": [
+                0.0,
+                1.0
+              ],
+              "decoded_frames": 4,
+              "used_frames": 2,
+              "audio_included": false
+            },
+            "expanded_tokens": 248
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_joint",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text",
+      "status": "ok",
+      "identity": "a08fe88133ba40e434626e0d8eed81a254ff9be999baa719041753072b9538fd",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.025566208874806762,
+        "items": [
+          {
+            "modalities": [
+              "text"
+            ],
+            "expanded_tokens": 13
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_joint",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "image",
+      "status": "ok",
+      "identity": "a08fe88133ba40e434626e0d8eed81a254ff9be999baa719041753072b9538fd",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.1960145418997854,
+        "items": [
+          {
+            "modalities": [
+              "image",
+              "text"
+            ],
+            "expanded_tokens": 273
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_joint",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "audio",
+      "status": "ok",
+      "identity": "a08fe88133ba40e434626e0d8eed81a254ff9be999baa719041753072b9538fd",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        0.9999999403953552
+      ],
+      "usage": {
+        "inference_seconds": 0.07672200002707541,
+        "items": [
+          {
+            "modalities": [
+              "audio",
+              "text"
+            ],
+            "audio": {
+              "source_sampling_rate": 16000,
+              "sampling_rate": 16000,
+              "source_channels": 1,
+              "mono_rule": "arithmetic_mean",
+              "resampling": "scipy_resample_poly",
+              "duration_seconds": 2.0,
+              "sample_count": 32000
+            },
+            "expanded_tokens": 67
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "embeddinggemma_joint",
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "video",
+      "status": "ok",
+      "identity": "a08fe88133ba40e434626e0d8eed81a254ff9be999baa719041753072b9538fd",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.15116654196754098,
+        "items": [
+          {
+            "modalities": [
+              "video",
+              "text"
+            ],
+            "video": {
+              "sampling_fps": 1.0,
+              "max_frames": 16,
+              "sampling_rule": "nearest_timestamp_then_uniform_cap",
+              "frame_indices": [
+                0,
+                2
+              ],
+              "timestamps_seconds": [
+                0.0,
+                1.0
+              ],
+              "decoded_frames": 4,
+              "used_frames": 2,
+              "audio_included": false
+            },
+            "expanded_tokens": 261
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16",
+        "context_limit": 8192
+      }
+    },
+    {
+      "adapter": "siglip2",
+      "model_id": "google/siglip2-base-patch16-224",
+      "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text",
+      "status": "ok",
+      "identity": "70e55d4eb4890befd9fdf0fb6c5f0402f479365980c035d8859f8736059c670a",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.322357916040346,
+        "items": [
+          {
+            "modalities": [
+              "text"
+            ]
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "siglip2",
+      "model_id": "google/siglip2-base-patch16-224",
+      "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "image",
+      "status": "ok",
+      "identity": "70e55d4eb4890befd9fdf0fb6c5f0402f479365980c035d8859f8736059c670a",
+      "shape": [
+        1,
+        768
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.7823536249343306,
+        "items": [
+          {
+            "modalities": [
+              "image"
+            ]
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    }
+  ]
+}

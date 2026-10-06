@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic_backend_smoke_only_not_benchmark_results",
+  "packages": {
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "sentence-transformers": "6.1.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0",
+    "soundfile": "0.14.0",
+    "scipy": "1.18.1",
+    "av": "19.0.1"
+  },
+  "conditions": [
+    {
+      "adapter": "clap",
+      "model_id": "laion/clap-htsat-fused",
+      "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text",
+      "status": "ok",
+      "identity": "a3dde32abfdf3037f502ed6263a1e7494008e076429ab2c707e6fddc1f74b06c",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.5723795839585364,
+        "items": [
+          {
+            "modalities": [
+              "text"
+            ]
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "clap",
+      "model_id": "laion/clap-htsat-fused",
+      "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "audio",
+      "status": "ok",
+      "identity": "a3dde32abfdf3037f502ed6263a1e7494008e076429ab2c707e6fddc1f74b06c",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 1.3158052500803024,
+        "items": [
+          {
+            "modalities": [
+              "audio"
+            ],
+            "audio": {
+              "source_sampling_rate": 16000,
+              "sampling_rate": 48000,
+              "source_channels": 1,
+              "mono_rule": "arithmetic_mean",
+              "resampling": "scipy_resample_poly",
+              "duration_seconds": 2.0,
+              "sample_count": 96000
+            },
+            "long_audio_policy": "checkpoint_native_fusion",
+            "seed": 0
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "clip_video",
+      "model_id": "openai/clip-vit-base-patch32",
+      "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text",
+      "status": "ok",
+      "identity": "510a294ed19a659a7c20bf1019aeb7ffeb197980b9fe44d6488b93565c4a2ee0",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.013418167131021619,
+        "items": [
+          {
+            "modalities": [
+              "text"
+            ]
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "clip_video",
+      "model_id": "openai/clip-vit-base-patch32",
+      "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "video",
+      "status": "ok",
+      "identity": "510a294ed19a659a7c20bf1019aeb7ffeb197980b9fe44d6488b93565c4a2ee0",
+      "shape": [
+        1,
+        512
+      ],
+      "finite": true,
+      "norms": [
+        1.0
+      ],
+      "usage": {
+        "inference_seconds": 0.025711374823004007,
+        "items": [
+          {
+            "modalities": [
+              "video"
+            ],
+            "video": {
+              "sampling_fps": 1.0,
+              "max_frames": 16,
+              "sampling_rule": "nearest_timestamp_then_uniform_cap",
+              "frame_indices": [
+                0,
+                2
+              ],
+              "timestamps_seconds": [
+                0.0,
+                1.0
+              ],
+              "decoded_frames": 4,
+              "used_frames": 2,
+              "audio_included": false
+            },
+            "pooling": "normalize_each_frame_then_mean_then_normalize"
+          }
+        ],
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "bge_reranker",
+      "model_id": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "condition": "text_pair",
+      "status": "ok",
+      "finite": true,
+      "count": 2,
+      "usage": {
+        "inference_seconds": 0.0258027499075979,
+        "pairs": 2,
+        "score_type": "raw_relevance_logit",
+        "devices": [
+          "mps:0"
+        ],
+        "dtype": "bfloat16"
+      }
+    },
+    {
+      "adapter": "colqwen",
+      "model_id": "vidore/colqwen2.5-v0.2",
+      "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+      "device": "mps",
+      "dtype": "bfloat16",
+      "status": "unsupported",
+      "error_type": "UnsupportedConfiguration",
+      "reason": "ColQwen2.5 requires variable-length token embeddings and MaxSim late interaction; the dense encode contract cannot represent this faithfully. No pooled-vector substitute is used."
+    }
+  ]
+}
