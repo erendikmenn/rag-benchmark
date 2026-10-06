@@ -4,7 +4,7 @@
 
 [English](README.md) · [Deney protokolü](docs/protocol.md) · [Sonuçlar ve doğrulama durumu](docs/results.md)
 
-**Mevcut durum:** veri denetimi, gerçek model kontrolleri ve **2.000 soruluk BM25 geliştirme deneyi** tamamlandı. **512 token sınırındaki 20 soruluk BM25/Laya/Gemma pilotu**, 40 çıktının tamamını kesilmeden üretti. On varyantın tamamı ve son test henüz tamamlanmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Geliştirme ölçümleri](docs/results.md).
+**Mevcut durum:** **20 soru × on varyant pilotu tamamlandı: 200/200 çıktı**, 37.511 parçanın tamamında arama yapıldı. İki dense indeks de hazır. Ayrı 2.000 soruluk BM25 arama deneyi tamamlandı; on varyantın 2.000 soruluk geliştirme deneyi ve 12.530 soruluk son test henüz çalıştırılmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Ölçümler ve sınırları](docs/results.md).
 
 ## Sistem ne yapıyor?
 
@@ -105,7 +105,9 @@ Laya'nın verdiği 0–1 puanı bu görev için doğrulanmış bir güven yüzde
 
 ## İlk ölçümler
 
-[BM25, 2.000 geliştirme sorusunda](reports/bm25-dev-2000/report.md) **Recall@50: 0,9350**, **Recall@5: 0,8591** verdi. [512 token sınırındaki 20 soruluk pilotta](reports/gemma-dev-pilot-512/report.md) BM25'in cevap F1'i **0,5100**, BM25+Laya'nınki **0,4085** oldu; 40 cevabın hiçbiri token sınırında kesilmedi. Laya bu küçük örneklemde kaynak recall değerini de düşürdü; bu sonuç genel bir model sıralaması değildir. Önceki [256 tokenlı pilot](reports/gemma-dev-pilot-256/report.md) korunuyor. Ayrıntılar ve aynı anda süren indeksleme nedeniyle hız karşılaştırmasının sınırları [sonuçlar](docs/results.md) sayfasında; son test verisine geçilmedi.
+[On varyantlı pilotta](reports/matrix-dev-pilot-512/report.md), **Laya kapalı BM25 + EmbeddingGemma 2** en yüksek gözlenen Recall@5 (**0,9500**) ve cevap F1'ini (**0,5326**) verdi. BM25 + BGE-M3 bu iki ölçümde yakındı; nDCG@10 değeri en yüksekti. Laya, bu 20 soruda beş arama kolunun tamamında Recall@5 ve F1'i düşürdü. Küçük bir geliştirme örnekleminden nihai kazanan çıkarılamaz.
+
+200 çıktının 3'ü ortak 512 token sınırına ulaştı ve sonuçlardan çıkarılmadı. 11 çıktı aynı üretim isteğinin önbelleğinden geldi. Promptun uygunluğu ve çıktı bütçesi, son ayarlar sabitlenmeden önce daha geniş geliştirme verisinde değerlendirilmeli. [2.000 soruluk BM25 sonucu](reports/bm25-dev-2000/report.md) ve önceki iki kollu pilotlar [sonuçlar](docs/results.md) sayfasında korunuyor; son test verisine geçilmedi.
 
 ## Lisans
 

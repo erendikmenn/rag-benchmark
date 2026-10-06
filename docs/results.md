@@ -1,6 +1,6 @@
 # Results and validation status
 
-**Development measurements are available; the full ten-variant comparison and final test are pending.** BM25 has completed all 2,000 development questions. The two-variant Gemma 4 pilot has completed at both 256 and 512 tokens; the 512-token follow-up produced 40 answers without truncation. These runs do not establish a general model winner.
+**The ten-variant pilot is complete: 20 development questions × ten variants, 200/200 outputs.** All retrieval methods searched the full 37,511-passage corpus. A separate BM25 retrieval baseline covers all 2,000 development questions; the ten-variant full-development comparison and 12,530-question final test have not run. These pilot results do not establish a general model winner.
 
 ## Evidence ledger
 
@@ -9,15 +9,45 @@
 | Dataset inventory and normalization | Prepared and manifest inspected, 2026-10-06 | 37,511 passages; 14,530 usable QA records; 2,000 development / 12,530 test |
 | Infrastructure checks | 68 passing local tests; [CI workflow](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) | Code behavior and failure handling, not pretrained model quality |
 | BM25 development baseline | Completed 2,000/2,000 real questions against all 37,511 passages | Full development retrieval metrics; no answer generation in this run |
-| BGE-M3 and EmbeddingGemma 2 integration | Real FP32/MPS checks passed on a small Turkish fixture | Actual local encoding works; full-corpus retrieval comparison still pending |
-| Local Laya integration | Real FP32/MPS fixture check and 20-question BM25 reranking pilot completed | Scoring/reranking works; observed quality is reported below |
-| Local Gemma 4 integration | 40/40 outputs completed at each cap; zero length limits at 512 | Real local generation with the pinned GGUF and verified server identity |
-| Ten-variant development comparison | Dense index construction in progress | No complete ten-variant table yet |
+| BGE-M3 and EmbeddingGemma 2 integration | Both full 37,511-passage indexes built and validated; pilot completed in FP32/MPS | Real local dense retrieval over the complete corpus |
+| Local Laya integration | All five 20-question reranking pairs completed in FP32/MPS | Same candidate pools within each pair; observed quality is reported below |
+| Local Gemma 4 integration | 200/200 full-matrix pilot outputs; 11 cache hits; three length limits at 512 | Real local generation with the pinned GGUF and verified server identity |
+| Ten-variant development pilot | Completed all 20 questions per variant | Complete pilot table, not a full-development or final-test result |
+| Ten-variant full-development comparison | Not run | Only BM25 retrieval currently covers all 2,000 development questions |
 | Frozen final test comparison | Not run/reported | No final leaderboard |
 
 Update this ledger only from actual commands, manifests and inspected artifacts. Include the checked code/config revision and exact scope when changing a row.
 
-CI was verified successful for commit `42d376d` with the 55-test suite. Local real-model checks are separate from CI. The run reports, completion markers and summaries below were inspected; the full test split remains untouched.
+The [68-test CI run](https://github.com/erendikmenn/rag-benchmark/actions/runs/37527343627) succeeded for commit `e094aa4719a381ce9786e21d9503a2f61596ee76`; local tests and Ruff also passed. Real-model checks are separate from CI. The run reports, completion markers and summaries below were inspected; the final test split remains untouched.
+
+## Complete ten-variant development pilot
+
+Run `matrix-dev-pilot-512` completed on 2026-10-06. Each variant evaluated the same 20 development questions against the full 37,511-passage corpus, with 50 candidates, five context passages and the same Gemma 4 26B-A4B generator at 512 output tokens. Each Laya on/off pair has identical candidate lists. The slice has ten factual and ten interpretation questions, and ten web and ten Wikipedia questions; it is not weighted like the complete development split.
+
+Public artifacts: [report](../reports/matrix-dev-pilot-512/report.md), [summary](../reports/matrix-dev-pilot-512/summary.json), [provenance](../reports/matrix-dev-pilot-512/provenance.json), [per-query metrics](../reports/matrix-dev-pilot-512/per-query-metrics.jsonl). All scores below are means in [0, 1]; each row contains **20 completed outputs**.
+
+| Retrieval | Laya | Recall@50 | Recall@5 | nDCG@10 | Answer token F1 | Length limits | Answer-cache hits |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BM25 | Off | 0.9833 | 0.8667 | 0.8603 | 0.5100 | 0 | 0 |
+| BM25 | On | 0.9833 | 0.6583 | 0.6283 | 0.4085 | 0 | 0 |
+| BGE-M3 | Off | 1.0000 | 0.8833 | 0.8633 | 0.4661 | 1 | 0 |
+| BGE-M3 | On | 1.0000 | 0.6917 | 0.6270 | 0.4409 | 0 | 0 |
+| EmbeddingGemma 2 | Off | 0.9500 | 0.8167 | 0.8133 | 0.4592 | 1 | 1 |
+| EmbeddingGemma 2 | On | 0.9500 | 0.6417 | 0.5736 | 0.4112 | 0 | 2 |
+| BM25 + BGE-M3 | Off | 1.0000 | 0.9333 | 0.9217 | 0.5209 | 1 | 0 |
+| BM25 + BGE-M3 | On | 1.0000 | 0.6250 | 0.6241 | 0.4126 | 0 | 2 |
+| BM25 + EmbeddingGemma 2 | Off | 1.0000 | 0.9500 | 0.8854 | 0.5326 | 0 | 3 |
+| BM25 + EmbeddingGemma 2 | On | 1.0000 | 0.5917 | 0.6083 | 0.3986 | 0 | 3 |
+
+The two hybrids without Laya had the highest observed Recall@5 and F1. BM25+EmbeddingGemma 2 led those measures; BM25+BGE-M3 led nDCG@10. Laya reduced Recall@5, nDCG@10 and F1 in all five paired comparisons on this slice. These are descriptive findings from 20 questions with synthetic labels. The exported summary includes paired article-bootstrap intervals; many F1 intervals include zero, and this pilot does not establish a universal ranking or a final winner.
+
+Three outputs reached the 512-token cap, all interpretation answers, and remain in all metrics. The earlier two-variant 512-token pilot's zero-truncation result applied only to that pair. The broader matrix shows that 512 does not guarantee complete answers for every context. Eleven identical generation requests were reused from cache, leaving 189 fresh calls for 200 scored outputs. Cache hits preserve answer/finish metadata and do not count as fresh generation timings.
+
+Prompt suitability and output budgets need evaluation on broader development data before the final configuration is frozen. The current Laya prompt's declines are a reason to inspect its task fit; they are not evidence that all rerankers or all uses of Laya fail. Retrieval results and lexical answer overlap are separate outcomes; neither alone verifies factual accuracy.
+
+The run's recorded session duration was **768.514 seconds (12 minutes 49 seconds)**, after both dense indexes had been built. This is a run-completion measurement, not an end-to-end request percentile or the cost of preparing the full corpus. The summary retains diagnostic stage timings with 19 retrieval observations per variant and 16–19 fresh-generation observations, excluding cache hits and the disclosed warm-up rows. These small samples are not production latency guarantees.
+
+Provenance is fixed to source commit `e094aa4719a381ce9786e21d9503a2f61596ee76` and source hash `983fd297fcfc49976612e6c734e565da692d69538cc0f7661ab43321b2c47158`. Run fingerprint: `045252d34c401a7286e7c03cea4c7059b283219a02ad1a618d1aa8cb0830ba10`. The local server reported llama.cpp `b11451-2207c8e57`, with server fingerprint `862c23d56e3fbdcc8b2f01edf3885120b86baf93e165e133ca9bfe61979cf352`. Its verified Gemma Q4_0 GGUF SHA-256 is `3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d`; context size is 8,192, temperature 0, seed 42, thinking disabled, and the output cap is 512 for every variant. Model revisions, package versions and dataset hashes are in the linked provenance artifact.
 
 ## Development retrieval baseline
 
@@ -44,7 +74,7 @@ The recorded candidate lists are identical across the two variants for each ques
 
 The 256-token output cap was reached by eight of the 40 answers, all interpretation answers: **8/20 interpretation outputs, or 40%**. They remain in the metrics. EM/F1 measure lexical overlap with synthetic references, not human-verified answer accuracy.
 
-This development finding motivated a shared **512-token cap for every variant in the next full-matrix pilot**. The 256-token results above remain unchanged and labeled with their original setting. New results use a new run identity; the final test has not been consulted. Further prompt or budget changes must also be evaluated and disclosed on development data before final settings are frozen.
+This development finding motivated a shared **512-token cap for every variant in the later full-matrix pilot**. The 256-token results above remain unchanged and labeled with their original setting. New results use a new run identity; the final test has not been consulted. Further prompt or budget changes must also be evaluated and disclosed on development data before final settings are frozen.
 
 | Pilot stage | BM25 p50 / p95 | BM25+Laya p50 / p95 |
 |---|---|---|

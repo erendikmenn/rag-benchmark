@@ -4,7 +4,7 @@
 
 [Türkçe anlatım](README.tr.md) · [Evaluation protocol](docs/protocol.md) · [Results and validation status](docs/results.md)
 
-**Status:** the dataset is audited; real-model checks and a **2,000-question BM25 development run** are complete. The **20-question BM25/Laya/Gemma pilot at 512 tokens** completed all 40 outputs without truncation. The full ten-variant comparison and final test remain pending. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured development results](docs/results.md).
+**Status:** the **ten-variant pilot is complete: 20 questions × ten variants, 200/200 outputs**, searching all 37,511 passages. Both dense indexes are built. The separate 2,000-question BM25 retrieval baseline is complete; the ten-variant 2,000-question development run and 12,530-question final test have not run. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured results and limitations](docs/results.md).
 
 ## What the benchmark does
 
@@ -164,7 +164,9 @@ See [the protocol](docs/protocol.md) for split rules, ties, budgets, cache inter
 
 ## Results and reproducibility
 
-[BM25 completed retrieval on all 2,000 development questions](reports/bm25-dev-2000/report.md): Recall@50 **0.9350**, Recall@5 **0.8591**. In the [20-question pilot at 512 tokens](reports/gemma-dev-pilot-512/report.md), BM25 and BM25+Laya produced answer token F1 scores of **0.5100** and **0.4085**, with zero length-limited answers. Laya also reduced Recall@5 on this slice; these are development findings, not a general model ranking. The earlier [256-token pilot](reports/gemma-dev-pilot-256/report.md) remains available. See [results and limitations](docs/results.md), including the concurrent-workload timing caveat.
+In the [complete ten-variant pilot](reports/matrix-dev-pilot-512/report.md), **BM25 + EmbeddingGemma 2 without Laya** had the highest observed Recall@5 (**0.9500**) and answer token F1 (**0.5326**). BM25 + BGE-M3 was close on those measures and had the highest nDCG@10. Laya reduced Recall@5 and F1 in all five paired comparisons on these 20 questions. This small development slice does not establish a final winner.
+
+Three of the 200 outputs reached the shared 512-token cap; all remain in the metrics. Eleven outputs reused identical cached generation requests. Prompt suitability and output budgets need broader development evaluation before final settings are frozen. The [2,000-question BM25 baseline](reports/bm25-dev-2000/report.md) and historical two-variant pilots remain available in [results and limitations](docs/results.md).
 
 Each published comparison identifies its dataset revision and audit, configuration, code/model revisions, backend/dtype, query count, exclusions, hardware and cache policy. Per-query candidate/context IDs and stage measurements are retained locally; compact aggregate exports can be checked without redistributing source text.
 
