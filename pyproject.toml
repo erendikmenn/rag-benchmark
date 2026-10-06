@@ -17,8 +17,10 @@ models = ["sentence-transformers[image]>=6.1,<7", "torch>=2.8,<3", "accelerate>=
 multimodal = [
     "av>=14,<20",
     "librosa>=0.11,<1",
+    "peft>=0.19,<1",
     "pyarrow>=19,<24",
     "soundfile>=0.13,<1",
+    "tree-sitter-language-pack>=1.21,<2",
 ]
 
 [dependency-groups]
