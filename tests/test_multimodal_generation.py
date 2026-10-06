@@ -141,6 +141,45 @@ def test_completion_honors_hashed_settings_and_context_reservation(monkeypatch):
         generator.complete("system", [{"type": "text", "text": "source"}])
 
 
+@pytest.mark.parametrize("language,name", [("en", "English"), ("tr", "Turkish"), ("fr", "French")])
+def test_caption_language_controls_source_only_request(monkeypatch, language, name):
+    from rag_benchmark.multimodal_generation import CAPTION_SYSTEM
+    result = {"choices": [{"message": {"content": "Description."}, "finish_reason": "stop"}],
+              "usage": {"prompt_tokens": 10}}
+    generator, requests = _mock_completion(monkeypatch, result, {"caption_language": language})
+    generator.describe({"text": "Visible source", "metadata": {"query": "SECRET"}, "gold_answer": "SECRET"})
+    assert f"in {name}." in requests[0]["messages"][0]["content"]
+    assert requests[0]["messages"][1]["content"] == [{"type": "text", "text": "Visible source"}]
+    if language == "en":
+        assert requests[0]["messages"][0]["content"] == CAPTION_SYSTEM
+    generator.caption_system = "Unhashed changed prompt"
+    with pytest.raises(ValueError, match="configuration changed"):
+        generator.describe({"text": "source"})
+
+
+def test_caption_language_separates_identity_before_and_after_preflight(monkeypatch, tmp_path):
+    import hashlib
+    projector = tmp_path / "mmproj.gguf"
+    projector.write_bytes(b"fixture")
+    config = {"projector_path": str(projector), "projector_sha256": hashlib.sha256(b"fixture").hexdigest()}
+    generators = [LocalMultimodalGenerator({**config, "caption_language": language}) for language in ("en", "tr", "fr")]
+    assert LocalMultimodalGenerator(config).identity == generators[0].identity
+    assert len({generator.identity for generator in generators}) == 3
+    for generator in generators:
+        monkeypatch.setattr(generator.verifier, "preflight", lambda: {"props": {"context_size": 8192}})
+        generator.preflight()
+    assert len({generator.identity for generator in generators}) == 3
+    verified_identity = generators[1].identity
+    generators[1].preflight()
+    assert generators[1].identity == verified_identity
+
+
+@pytest.mark.parametrize("language", ["de", "TR", None, []])
+def test_unsupported_caption_language_rejected(language):
+    with pytest.raises(ValueError, match="caption_language"):
+        LocalMultimodalGenerator({"caption_language": language})
+
+
 @pytest.mark.parametrize("change,match", [
     ({"truncated": True}, "truncated input"),
     ({"usage": {"prompt_tokens": 60}}, "reserved output"),
@@ -186,6 +225,7 @@ def _description_source(tmp_path):
 class _DescriptionGenerator:
     identity = "fixed-fixture-generator"
     last_usage = {"seconds": .01}
+    config = {"caption_language": "tr"}
 
     def __init__(self):
         self.seen = []
@@ -216,6 +256,7 @@ def test_caption_resumption_uses_only_sources_and_preserves_split(tmp_path, lega
     second = prepare_described_view(source, destination, generator)
     assert second["status"] == "ready"
     assert second["split"] == "validation"
+    assert second["metadata"]["caption_language"] == "tr"
     assert len(generator.seen) == 2  # First source was reused, not regenerated.
     assert "SECRET" not in json.dumps(generator.seen)
     assert all(set(item) == {"id", "media"} for item in generator.seen)

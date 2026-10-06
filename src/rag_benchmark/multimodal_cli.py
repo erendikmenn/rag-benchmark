@@ -81,6 +81,30 @@ def export_report(run_dir: Path, output_dir: Path) -> dict:
     return report
 
 
+def write_report_index(root: Path) -> None:
+    """List frozen runs without pooling languages, protocols, or partial tests."""
+    lines = ["# Measured multimodal runs", "",
+        "Each row is a separate run. Query and candidate counts across language/protocol views "
+        "overlap and must not be added as independent data. Partial runs and synthetic model preflights "
+        "are not full-split accuracy results. The 1,284-family registry remains planned scope.", "",
+        "| Run | Scope | Queries | Candidates | Completed primary cells | Failed cells |",
+        "|---|---|---:|---:|---:|---:|"]
+    for path in sorted(root.glob("*/report.json")):
+        report = json.loads(path.read_text())
+        cells = report.get("cells", [])
+        completed = sum(x.get("primary", False) and x.get("status") == "completed" for x in cells)
+        failed = sum(x.get("status") == "failed" for x in cells)
+        name = path.parent.name
+        lines.append(f"| [{name}]({name}/report.md) | {report['scope']} | "
+                     f"{report['evaluated_query_count']:,} / {report['dataset']['query_count']:,} | "
+                     f"{report['dataset']['corpus_count']:,} | {completed} | {failed} |")
+    lines += ["", "A failed comparison does not erase completed methods in the same run. "
+              "Each report retains all coverage states and records the actual model configuration. "
+              "Hit/Recall measure source retrieval, not generated-answer correctness.", ""]
+    root.mkdir(parents=True, exist_ok=True)
+    (root / "README.md").write_text("\n".join(lines))
+
+
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv and argv[0] in {"prepare", "preflight", "asr", "analyze"}:
@@ -120,6 +144,8 @@ def main(argv=None) -> int:
     p.add_argument("--dataset", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--max-new", type=int)
+    p.add_argument("--caption-language", choices=("auto", "en", "tr", "fr"), default="auto",
+                   help="Auto uses the frozen dataset language when declared, otherwise English.")
     p = sub.add_parser("prepare-generation")
     p.add_argument("--include-runtime", action="store_true")
     p = sub.add_parser("serve")
@@ -130,6 +156,8 @@ def main(argv=None) -> int:
     p = sub.add_parser("export")
     p.add_argument("--run-dir", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
+    p = sub.add_parser("index")
+    p.add_argument("--root", type=Path, default=Path("reports/multimodal"))
     args = parser.parse_args(argv)
     try:
         if args.command == "registry":
@@ -146,11 +174,21 @@ def main(argv=None) -> int:
         elif args.command == "export":
             export_report(args.run_dir, args.output)
             print(args.output / "report.md")
+        elif args.command == "index":
+            write_report_index(args.root)
+            print(args.root / "README.md")
         elif args.command == "describe":
             from .multimodal_generation import LocalMultimodalGenerator, prepare_described_view
             if args.max_new is not None and args.max_new < 1:
                 raise ValueError("--max-new must be positive")
-            result = prepare_described_view(args.dataset, args.output, LocalMultimodalGenerator(), max_new=args.max_new)
+            language = args.caption_language
+            if language == "auto":
+                manifest = json.loads((args.dataset / "dataset.json").read_text())
+                language = manifest.get("metadata", {}).get("language", "en").split("_")[0]
+                if language not in {"en", "tr", "fr"}:
+                    raise ValueError("Dataset language needs an explicit supported --caption-language")
+            result = prepare_described_view(args.dataset, args.output,
+                LocalMultimodalGenerator({"caption_language": language}), max_new=args.max_new)
             print(json.dumps({key: result[key] for key in ("status", "counts", "ready_candidates", "new_descriptions") if key in result}))
         elif args.command == "prepare-generation":
             from .multimodal_generation import E4B_CONFIG
@@ -218,6 +256,10 @@ def main(argv=None) -> int:
                 generator = LocalMultimodalGenerator()
                 generator.preflight()
                 rerankers["gemma4_relevance"] = generator
+            if segmenter is not None:
+                from .multimodal_code_rerank import SharedCodeReranker
+                rerankers = {name: SharedCodeReranker(adapter, segmenter)
+                             for name, adapter in rerankers.items()}
             result = run_matrix(args.dataset, args.run_dir, adapters=adapters, rerankers=rerankers,
                 requested_channels=channels, candidate_grid=tuple(map(int, args.candidate_k.split(","))),
                 budget_modes=tuple(args.budget_modes.split(",")), query_limit=args.limit,
