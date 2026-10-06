@@ -352,11 +352,11 @@ def prepare_described_view(source: Path, destination: Path, generator: LocalMult
                                                            "gold_fields_used": False}}})
     qrels = [{"query_id": q, "corpus_id": c, "relevance": r}
              for q, values in dataset.qrels.items() for c, r in values.items()]
+    source_split = dataset.manifest.get("split", dataset.manifest.get("metadata", {}).get("split", "unspecified"))
     return write_dataset(destination, dataset_id=dataset.manifest["id"] + "-described", track=dataset.track,
                          revision=stable_hash({"source": dataset.identity, "generator": generator.identity}),
                          corpus=corpus, queries=queries, qrels=qrels,
                          sources=dataset.manifest.get("sources", []), license=dataset.manifest.get("license", "upstream"),
                          text_source="generated_from_source_only", expected_counts={"corpus": len(corpus), "queries": len(queries)},
                          metadata={"source_dataset_identity": dataset.identity, "generator_identity": generator.identity,
-                                   "source_split": dataset.manifest.get("split", "unspecified"),
-                                   "split": dataset.manifest.get("split", "evaluation")})
+                                   "source_split": source_split, "split": source_split})

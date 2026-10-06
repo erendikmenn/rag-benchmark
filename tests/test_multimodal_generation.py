@@ -199,9 +199,14 @@ class _DescriptionGenerator:
         return "Description " + Path(item["media"]["image"]).read_text()
 
 
-def test_caption_resumption_uses_only_sources_and_preserves_split(tmp_path):
+@pytest.mark.parametrize("legacy_split", [False, True])
+def test_caption_resumption_uses_only_sources_and_preserves_split(tmp_path, legacy_split):
     from rag_benchmark.multimodal_generation import prepare_described_view
     source = _description_source(tmp_path)
+    if legacy_split:
+        manifest = json.loads((source / "dataset.json").read_text())
+        manifest.pop("split")
+        (source / "dataset.json").write_text(json.dumps(manifest))
     destination = tmp_path / "described"
     generator = _DescriptionGenerator()
     first = prepare_described_view(source, destination, generator, max_new=1)
