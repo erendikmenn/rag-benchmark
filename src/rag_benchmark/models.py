@@ -77,7 +77,7 @@ def _snapshot(config: dict, *, download: bool) -> Path:
         return path
     from huggingface_hub import snapshot_download
 
-    patterns = ["*.json", "*.model", "*.txt", "model*.safetensors", "pytorch_model.bin", "tokenizer/*", "encoder/*", "1_Pooling/*", "2_Normalize/*"]
+    patterns = ["*.json", "*.model", "*.txt", "*.jinja", "model*.safetensors", "pytorch_model.bin", "tokenizer/*", "encoder/*", "1_Pooling/*", "2_Normalize/*"]
     try:
         return Path(snapshot_download(
             repo_id=config["model_id"], revision=revision,

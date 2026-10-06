@@ -23,6 +23,8 @@ BM25 uses Unicode word tokens, Turkish dotted/dotless-I lowercase, no English st
 
 Both embedders accept only `float32` or `bfloat16`. EmbeddingGemma 2 must not run in float16. Native dimensions remain unequal by design; BGE is not arbitrarily truncated. Stored/search vectors are normalized FP32. Cache identities include corpus content/order, model ID/revision, formatter version, precision, device and relevant package versions. A query cache can be bypassed with `cache_query=False` for resident latency measurement.
 
+EmbeddingGemma 2's SentenceTransformers processor requires the official `chat_template.jinja` and image processor dependencies even for this text-only workload. Preparation includes the template; the models dependency group includes the required image extra. No image inputs or vision tower are used here. Dense corpus builds checkpoint every 256 documents and resume completed blocks after interruption.
+
 ## Laya
 
 `LayaReranker(config).rerank(question, candidates)` returns sorted copies of candidates, preserving `retrieval_score` and adding `laya_score`. The SDK loads the explicit multilingual checkpoint, not the automatic language router. Every candidate is a separate `{query, passage}` state with a fixed yes/no evidence question. This is a disclosed benchmark prompt, not a claim that Laya is an official Jev model or a pretrained specialist reranker.
@@ -34,6 +36,8 @@ An optional `backend='http'` speaks Laya's `/v1/systemone` protocol only over lo
 ## Gemma generation
 
 `LocalGenerator(config).generate(question, contexts)` uses llama.cpp's local `/v1/chat/completions` endpoint. The serving alias (`model`) is distinct from the artifact identity. Configure `model_id`, immutable `revision`, absolute `model_path`, and the GGUF `model_sha256`. The adapter checks the server's `/props` absolute path and `/v1/models` alias, then verifies the GGUF checksum once before its first answer. Startup verification is excluded from the reported answer latency.
+
+`preflight()` performs this verification before a run manifest is created and returns the actual stable server properties, including reported build information, default generation settings/context size, chat template, and model metadata. Their fingerprint joins the generator cache identity. Volatile model creation timestamps and server state are excluded; an absent server build string is explicitly recorded as unreported.
 
 The fixed Turkish system instruction requires passage-grounded answers with source IDs and abstention if evidence is insufficient. Context is serialized as JSON data. Temperature, seed, output budget and thinking configuration are fixed across variants. `last_usage` preserves token counts, elapsed time, finish reason and available server timings. A length-limited completion remains explicitly marked `finish_reason='length'`; downstream evaluation must report it.
 

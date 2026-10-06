@@ -4,7 +4,7 @@
 
 [English](README.md) · [Deney protokolü](docs/protocol.md) · [Sonuçlar ve doğrulama durumu](docs/results.md)
 
-**Mevcut durum:** indirilebilir veri denetlendi: **37.511 metin parçası ve 14.530 kullanılabilir soru–cevap**; 2.000 geliştirme, 12.530 test sorusu. Model bağlantıları doğrulanıyor. On varyantın tamamını kapsayan gerçek model sonucu henüz yayımlanmadı. Küçük bir teknik kontrol, tam benchmark sonucu sayılmıyor.
+**Mevcut durum:** veri denetimi, gerçek model bağlantı kontrolleri, **2.000 soruluk BM25 geliştirme deneyi** ve **20 soruluk BM25/Laya/Gemma pilotu** tamamlandı. [CI başarılı](https://github.com/erendikmenn/rag-benchmark/actions/runs/37523395067). On varyantın tamamı ve son test henüz tamamlanmadı. [Ölçümler ve sınırları](docs/results.md).
 
 ## Sistem ne yapıyor?
 
@@ -64,9 +64,12 @@ uv run --locked --extra models rag-benchmark serve --config configs/ragturk.toml
 ```bash
 uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --limit 20 --variants bm25,bm25_laya --run-dir runs/pilot
 uv run --locked --extra models rag-benchmark report --run-dir runs/pilot
+uv run --locked --extra models rag-benchmark export-report --run-dir runs/pilot --output-dir reports/pilot
 ```
 
-`serve`, GGUF dosyasının SHA-256 özetini doğrular; llama.cpp'yi Metal ile `http://127.0.0.1:8080/v1` adresinde, `gemma4` adıyla çalıştırır. Bu yerel protokol, OpenAI hizmeti veya API anahtarı kullanmaz. GGUF dosyası ve doğrulama özeti [`configs/ragturk.toml`](configs/ragturk.toml) içindedir. Cevap üretim ayarları tüm kollarda sıcaklık 0, seed 42, en fazla 256 çıktı tokenı ve düşünme modu kapalıdır. Teknik ayrıntılar [model sözleşmeleri](docs/models.md) sayfasında.
+`export-report`, yeni bir dizine `report.md`, `summary.json`, `provenance.json` ve `per-query-metrics.jsonl` yazar. Yayımlanacak bu dosyalarda seçilmiş ayarlar, kimlikler ve ölçümler bulunur; sorular, cevaplar, kaynak metinler, promptlar ve yerel dosya yolları çıkarılır. Var olan çıktı dizininin üzerine yazılmaz.
+
+`serve`, GGUF dosyasının SHA-256 özetini doğrular; llama.cpp'yi Metal ile `http://127.0.0.1:8080/v1` adresinde, `gemma4` adıyla çalıştırır. Bu yerel protokol, OpenAI hizmeti veya API anahtarı kullanmaz. GGUF dosyası ve doğrulama özeti [`configs/ragturk.toml`](configs/ragturk.toml) içindedir. Güncel cevap üretim ayarları tüm kollarda sıcaklık 0, seed 42, en fazla 512 çıktı tokenı ve düşünme modu kapalıdır. Önceki pilotun 256 token sınırı yorum cevaplarını kestiği için ortak sınır geliştirme aşamasında artırıldı. Teknik ayrıntılar [model sözleşmeleri](docs/models.md) sayfasında.
 
 Yalnız aramayı sınamak için `run` komutuna `--retrieval-only` eklenebilir; bu mod cevap üretmediğinden uçtan uca RAG sonucu değildir. Hazırlanan veriler `data/ragturk/` altında tutulur. Yöntem kimlikleri `bm25`, `bge`, `embeddinggemma`, `bm25_bge`, `bm25_embeddinggemma`; Laya'lı kola `_laya` eklenir.
 
@@ -84,7 +87,11 @@ Yalnız aramayı sınamak için `run` komutuna `--retrieval-only` eklenebilir; b
 
 Laya'nın verdiği 0–1 puanı bu görev için doğrulanmış bir güven yüzdesi değildir. İlk deneyde düşük puanlı her metni otomatik silen eşik kullanılmaz; puana göre ilk 5 seçilir. Eşik, prompt veya model ayarı gerekiyorsa geliştirme verisinde seçilir; son test sonuçlarına bakılarak ayar değiştirilmez.
 
-Önbellekteki aynı cevabı yeniden kullanmak zaman kazandırabilir. Ancak önbellekten okuma süresi, modelin yeni cevap üretme hızına dahil edilmez. Deneyde soru embedding'leri yeniden hesaplanır; hazırlık sonrası ilk sorunun süresi de yüklenmiş model gecikme özetinden çıkarılır. İlk yükleme, gerçek hesaplama ve önbellek isabeti ayrı koşullardır.
+Önbellekteki aynı cevabı yeniden kullanmak zaman kazandırabilir. Token sınırında durma bilgisi önbellekte korunur; önbellekten okuma süresi yeni cevap üretme hızına dahil edilmez. Deneyde soru embedding'leri yeniden hesaplanır. Hazırlık sonrası ilk soru ve ilk gerçek cevap üretimi ilgili gecikme özetlerinden çıkarılır. Sunucunun bildirdiği derleme ve çalışma ayarları deney/önbellek kimliğine katılır.
+
+## İlk ölçümler
+
+[BM25, 2.000 geliştirme sorusunda](reports/bm25-dev-2000/report.md) **Recall@50: 0,9350**, **Recall@5: 0,8591** verdi. Ayrı [20 soruluk pilotta](reports/gemma-dev-pilot-256/report.md) aynı Gemma 4 ile BM25 ve BM25+Laya kolları çalıştı. Bu küçük örneklemde Laya, ilk 5 kaynağın recall değerini ve cevap F1'ini düşürdü; henüz genel bir model sıralaması çıkarmıyoruz. Toplam 40 cevabın 8'i pilotun 256 token sınırına ulaştı; bunlar 20 yorum cevabının %40'ıydı. Bu ilk sonuçlar 256 token ayarıyla korunuyor. Sonraki on kollu pilotun tamamında 512 token kullanılacak. Ayrıntılar [sonuçlar](docs/results.md) sayfasında; son test verisine geçilmedi.
 
 ## Lisans
 

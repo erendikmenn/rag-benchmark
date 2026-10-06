@@ -45,7 +45,8 @@ revision = "d1c082be9cf3c8a514acf63b8761f4b41935842e"
 filename = "gemma-4-26B_q4_0-it.gguf"
 model_sha256 = "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d"
 model_path = "models/gemma-4-26B_q4_0-it.gguf"
-max_tokens = 256
+# Initial 256-token pilot truncated 8/40 answers; development validation now uses 512.
+max_tokens = 512
 temperature = 0.0
 seed = 42
 timeout = 120

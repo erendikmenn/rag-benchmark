@@ -40,6 +40,10 @@ def test_resume_and_cache_preserve_measurement_boundaries(tmp_path, monkeypatch)
     assert result["variants"]["bm25"]["metrics"]["answer_em"] == 1
     runner.run(config, directory)
     assert len(calls) == 2
+    runtime = runner.runtime_identity()
+    monkeypatch.setattr(runner, "runtime_identity", lambda: {**runtime, "git_revision": "documentation-only-change"})
+    runner.run(config, directory)
+    assert len(calls) == 2
     result = runner.run(config, tmp_path / "second-run")
     assert len(calls) == 2
     assert result["variants"]["bm25"]["generation_cache_hits"] == 2

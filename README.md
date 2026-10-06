@@ -4,7 +4,7 @@
 
 [Türkçe anlatım](README.tr.md) · [Evaluation protocol](docs/protocol.md) · [Results and validation status](docs/results.md)
 
-**Status:** the downloadable dataset has been audited: **37,511 passages and 14,530 usable QA records**, split into 2,000 development and 12,530 test questions. The model integration is being validated. No complete ten-variant, real-model benchmark or winning configuration is published yet. See the [evidence ledger](docs/results.md).
+**Status:** the dataset is audited; real-model integration checks, a **2,000-question BM25 development run**, and a **20-question BM25/Laya/Gemma pilot** are complete. [CI passes](https://github.com/erendikmenn/rag-benchmark/actions/runs/37523395067). The full ten-variant comparison and final test remain pending. See [measured development results and limitations](docs/results.md).
 
 ## What the benchmark does
 
@@ -87,9 +87,7 @@ Use Python 3.11–3.13 and [uv](https://docs.astral.sh/uv/). From the repository
 uv sync --extra models --locked
 ```
 
-Download the pinned data, model artifacts and macOS Metal runtime explicitly:
-
-Run the commands with `uv run` so they use the project's environment:
+Download the pinned data, model artifacts and macOS Metal runtime explicitly, using the project's environment:
 
 ```bash
 uv run --locked --extra models rag-benchmark doctor --config configs/ragturk.toml
@@ -108,13 +106,17 @@ The launcher verifies the configured GGUF's SHA-256 before starting llama.cpp wi
 Back in the first terminal:
 
 ```bash
-
 # Start with a small development slice.
 uv run --locked --extra models rag-benchmark run --config configs/ragturk.toml --split dev --limit 20 --variants bm25,bm25_laya --run-dir runs/pilot
 
 # Generate the report from that run's saved records.
 uv run --locked --extra models rag-benchmark report --run-dir runs/pilot
+
+# Create a public export in a new directory.
+uv run --locked --extra models rag-benchmark export-report --run-dir runs/pilot --output-dir reports/pilot
 ```
+
+The export contains `report.md`, `summary.json`, `provenance.json` and `per-query-metrics.jsonl`. It includes selected settings, identifiers and measurements, while excluding questions, answers, source text, prompts and local paths. The output directory must be new.
 
 For a first-stage retrieval check without loading the answer model:
 
@@ -126,7 +128,7 @@ That mode has no generated answers and must not be reported as end-to-end RAG qu
 
 CLI retrieval IDs are `bm25`, `bge`, `embeddinggemma`, `bm25_bge` and `bm25_embeddinggemma`. Append `_laya` for the paired reranking variant. Omit `--variants` to use the matrix in the configuration.
 
-Run the small development slice before attempting the full matrix. The default generator policy is temperature 0, seed 42, at most 256 output tokens and thinking disabled. The exact model revisions, local backend, context budget and effective settings belong in the configuration and run manifest. Do not substitute a smaller generator for selected variants and present the output as the same experiment.
+Run the small development slice before attempting the full matrix. The current generator policy is temperature 0, seed 42, at most 512 output tokens and thinking disabled. The earlier pilot used 256 tokens; the shared cap was raised after it exposed truncated interpretation answers. The exact model revisions, local backend, context budget and effective settings belong in the configuration and run manifest. Do not substitute a smaller generator for selected variants and present the output as the same experiment.
 
 Initial dataset/model downloads require network access and any upstream access terms to be satisfied. Once all required artifacts are available locally, the evaluation is intended to run without hosted inference calls. “Local” does not mean model files are bundled in this repository, and “no API charge” does not mean zero hardware or electricity cost.
 
@@ -148,9 +150,11 @@ See [the protocol](docs/protocol.md) for split rules, ties, budgets, cache inter
 
 ## Results and reproducibility
 
-No scores are filled in before a run produces auditable artifacts. Each published comparison should identify its dataset revision and audit, configuration, code revision, model revisions, backend/dtype, query count, exclusions, hardware and cache policy. Retain per-query candidate/context IDs and stage measurements so a result can be checked without trusting a screenshot.
+[BM25 completed retrieval on all 2,000 development questions](reports/bm25-dev-2000/report.md): Recall@50 **0.9350**, Recall@5 **0.8591**. The separate [20-question end-to-end pilot](reports/gemma-dev-pilot-256/report.md) completed both BM25 and BM25+Laya with the same Gemma 4 generator. Laya reduced Recall@5 and answer token F1 on that small slice; this is a development finding, not a general model ranking. Eight of the pilot's 40 answers reached its 256-token cap. Those historical scores remain reported under that setting; the next full-matrix pilot uses 512 tokens for every variant. See the [results page](docs/results.md) for denominators, paired measurements and limits.
 
-Cached answers can avoid repeating identical generation work. Their lookup latency is excluded from fresh-generation measurements. Benchmark runs bypass query-embedding caches and record stage usage; the first query after preparation is excluded from the resident-latency summary. Model/index preparation time remains separate. A warm model and a cached answer are different conditions.
+Each published comparison identifies its dataset revision and audit, configuration, code/model revisions, backend/dtype, query count, exclusions, hardware and cache policy. Per-query candidate/context IDs and stage measurements are retained locally; compact aggregate exports can be checked without redistributing source text.
+
+Cached answers retain completion metadata, including length-limit status; their lookup latency is excluded from fresh-generation measurements. Benchmark runs bypass query-embedding caches and record stage usage. The first query after preparation and the first fresh generation are excluded from their applicable latency summaries. The generator's reported build and server settings participate in run/cache identity. Model/index preparation time remains separate.
 
 The final test split is reserved for reporting after development choices are frozen. An incomplete run or infrastructure smoke test stays labeled as such. There are currently no grounds to claim that EmbeddingGemma 2 beats BGE-M3, Laya improves every retriever, or this pipeline reproduces the RAGTurk paper's published scores.
 

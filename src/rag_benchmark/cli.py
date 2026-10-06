@@ -114,11 +114,19 @@ def main(argv=None):
             p.add_argument("--port", type=int, default=8080)
     p = sub.add_parser("report")
     p.add_argument("--run-dir", type=Path, required=True)
+    p = sub.add_parser("export-report")
+    p.add_argument("--run-dir", type=Path, required=True)
+    p.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
         if args.command == "report":
             report(args.run_dir)
             print(args.run_dir / "report.md")
+            return 0
+        if args.command == "export-report":
+            from .export import export_report
+            export_report(args.run_dir, args.output_dir)
+            print(args.output_dir / "report.md")
             return 0
         config = read_config(args.config)
         root = args.config.resolve().parent.parent

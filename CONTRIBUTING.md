@@ -22,6 +22,8 @@ Local model integration checks should identify the model revision, device/backen
 
 Do not add invented, copied or fixture-derived model scores to [the results page](docs/results.md). A result contribution should include its manifest, effective configuration, dataset/split identity, completed/failed counts and compact per-query metrics where redistribution is permitted.
 
+For public artifacts, use `uv run --locked --extra models rag-benchmark export-report --run-dir runs/name --output-dir reports/new-name`. The destination must be new. Commit the resulting allowlisted metrics/provenance export rather than raw `predictions.jsonl`; keep the original run locally for audit.
+
 Keep raw datasets, downloaded model weights, secrets and local caches out of Git. RAGTurk data and model weights retain their own licenses; MIT licensing of the harness does not override them. Predictions can reproduce source text, so review their redistribution separately from aggregate numeric reports.
 
 ## Documentation

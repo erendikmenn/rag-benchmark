@@ -55,13 +55,13 @@ Laya is independent from TypeSafe Jev. Historical Jev scores from another reposi
 
 ## Generation control
 
-Use the same local Gemma 4 26B-A4B checkpoint and backend across all ten paths. The initial config uses temperature 0, seed 42, a 256-token output cap and thinking disabled. Freeze model revision/quantization, context-token limit, prompt template, temperature/sampling settings, seed where supported, output limit and citation format.
+Use the same local Gemma 4 26B-A4B checkpoint and backend across all ten paths. The current config uses temperature 0, seed 42, a 512-token output cap and thinking disabled. The first two-variant pilot used 256 tokens; retain its results under that historical configuration. Freeze model revision/quantization, context-token limit, prompt template, temperature/sampling settings, seed where supported, output limit and citation format.
 
 The prompt contains the question and selected source passages. Reference answers and gold IDs are evaluation data only. A common context budget applies after source formatting. Record which context IDs were actually included and whether any text was truncated; five selected IDs do not prove that all five passages reached the generator intact.
 
 Use an explicit insufficient-evidence response policy. Separate abstention, empty/error output and a generated answer that disagrees with the reference. Keep runtime failures in completion accounting; dropping failed rows can inflate a score.
 
-Identical question/context/prompt/model combinations may reuse a generation result. The cache key must include all effective generation settings. An answer cache is an execution optimization, not independent evidence from another model call.
+Identical question/context/prompt/model combinations may reuse a generation result. The cache key includes the effective generator configuration and the preflight identity of the server, including its reported build and settings. Cached records retain completion metadata such as `finish_reason`; reused answers do not acquire a new inference latency. An answer cache is an execution optimization, not independent evidence from another model call.
 
 ## Metrics and denominators
 
@@ -94,11 +94,15 @@ Keep these conditions distinct:
 
 Do not compare a cached candidate path against a newly computed one as though both measured serving latency. If a second variant reuses first-stage work, report its actual execution time and mark reused stages. A counterfactual latency reconstructed from earlier measurements must be labeled as such.
 
+The runner bypasses query-embedding caches, excludes the first question after preparation/resumption from stage-latency summaries, and separately excludes the first fresh generation. This last rule still applies when earlier questions used cached answers. Raw timings remain available for audit. Excluding one initial observation is a disclosed warm-up rule, not proof that every hardware or compilation effect has disappeared.
+
 Record concurrency, batch size, backend/dtype, cache status and hardware. Do not launch all models concurrently on a shared GPU merely to fill CPU threads; resource contention changes the experiment. Local API expenditure may be zero while elapsed time, memory and energy are nonzero. Do not invent electricity-cost figures without power measurements and an explicit tariff.
 
 ## Development and final test
 
 Start with plumbing checks and a small development slice. Tune only on development data. Freeze the protocol/config and inspect the dataset audit before starting the final test.
+
+The first 20-question, two-variant development pilot reached its 256-token cap on eight of 40 answers, including eight of 20 interpretation outputs. This observed truncation motivated raising the shared output cap to 512 for the next ten-variant pilot. Apply the change to every variant and use a new run identity. Preserve the earlier scores and their cap; evaluate whether truncation remains under the new setting. The final test was not used to make this choice.
 
 A final test used to select prompts, thresholds, fusion weights, quantization or context budgets becomes development evidence for those choices. Reserve a new untouched test or clearly label the result exploratory. Do not relabel the same queries as an untouched test after tuning. The CLI's `--retrieval-only` mode is a separate evaluation mode; it does not produce answer quality measurements.
 
@@ -109,5 +113,7 @@ A partial run stays partial. Infrastructure fixtures and synthetic mock model ou
 A published result needs a run manifest, dataset audit/split identity, per-query scores and candidate/context IDs, aggregate report, completion status and enough environment information to reproduce the comparison. Pin code and model revisions; record effective values, not only friendly model aliases.
 
 Keep raw dataset text and model weights out of the source repository. Review text-bearing predictions before redistribution under upstream data terms. Publish compact derived metrics, configuration and provenance where permitted. MIT applies to this harness's code, not to the RAGTurk data or third-party model weights.
+
+Use `export-report --run-dir runs/name --output-dir reports/new-name` to create the public four-file export. Its explicit field allowlist retains provenance, numeric summaries and per-query identifiers/metrics while excluding text-bearing inputs/outputs and local paths. Keep the complete raw run locally for auditing. Exporting a pilot does not change its evaluation status.
 
 Sources: [RAGTurk paper](https://aclanthology.org/2026.sigturk-1.15/), [RAGTurk release](https://huggingface.co/datasets/metunlp/ragturk), [Laya source and limits](https://github.com/NandhaKishorM/laya), [Laya multilingual model card](https://huggingface.co/convaiinnovations/laya-multilingual).

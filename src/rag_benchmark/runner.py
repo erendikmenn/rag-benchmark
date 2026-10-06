@@ -116,7 +116,9 @@ def run(config, run_dir: Path, split="dev", limit=None, variants=None, retrieval
             "variants": variants, "retrieval_only": retrieval_only,
             "generator_server": server_identity,
         }
-        fingerprint = digest(identity)
+        # Documentation-only commits do not change the executable experiment.
+        # Keep the Git revision as provenance, while code-content hashes govern resume.
+        fingerprint = digest({**identity, "runtime": {k: v for k, v in identity["runtime"].items() if k != "git_revision"}})
         manifest_path = run_dir / "manifest.json"
         if manifest_path.exists():
             manifest = json.loads(manifest_path.read_text())

@@ -1,11 +1,14 @@
 import json
 import hashlib
+import fnmatch
+import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import Thread
+from types import SimpleNamespace
 
 import pytest
 
-from rag_benchmark.models import DenseEmbedder, LayaReranker, LocalGenerator, local_base_url
+from rag_benchmark.models import DenseEmbedder, LayaReranker, LocalGenerator, MODEL_DEFAULTS, fetch_model, local_base_url
 
 
 @pytest.mark.parametrize("url", ["https://api.openai.com/v1", "http://192.168.1.2/v1", "http://127.0.0.1.evil.test", "file:///tmp/model", "http://user@127.0.0.1", "http://127.0.0.1/v1?api_key=secret"])
@@ -40,6 +43,19 @@ def test_unsafe_precision_and_mutable_revisions_rejected():
         DenseEmbedder("bge", {"dimension": 768})
     with pytest.raises(ValueError, match="offline"):
         DenseEmbedder("bge", {"local_files_only": False})
+
+
+def test_embeddinggemma_download_includes_required_processor_template(monkeypatch, tmp_path):
+    # EG2 uses its processor even for text. Omitting this file causes real inference
+    # to fail after weights have loaded, despite tokenizer/config files being present.
+    def snapshot_download(**kwargs):
+        required = ("chat_template.jinja", "model.safetensors", "processor_config.json", "1_Pooling/config.json")
+        assert all(any(fnmatch.fnmatch(name, pattern) for pattern in kwargs["allow_patterns"]) for name in required)
+        assert kwargs["local_files_only"] is False
+        assert kwargs["revision"] == MODEL_DEFAULTS["embeddinggemma"]["revision"]
+        return str(tmp_path)
+    monkeypatch.setitem(sys.modules, "huggingface_hub", SimpleNamespace(snapshot_download=snapshot_download))
+    assert fetch_model(MODEL_DEFAULTS["embeddinggemma"]) == tmp_path
 
 
 def test_generator_sends_question_evidence_and_disabled_thinking(tmp_path):

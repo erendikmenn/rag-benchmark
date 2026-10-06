@@ -1,0 +1,162 @@
+{
+  "corpus_sha256": "83d6ce53f63467787f7cc52f693bdb847cb3caa12939914634fce3f2a1eeae7b",
+  "dataset": {
+    "category_counts": {
+      "FACTUAL": 8454,
+      "INTERPRETATION": 6076
+    },
+    "counts": {
+      "articles_format_json": 2790,
+      "articles_format_markdown_char_ranges": 5314,
+      "articles_web": 5314,
+      "articles_wikipedia": 2790,
+      "articles_with_valid_questions": 8092,
+      "articles_without_question_file": 8,
+      "corpus_chunks": 37511,
+      "declared_question_count_mismatches": 1665,
+      "dev_questions": 2000,
+      "input_articles": 8105,
+      "parsed_articles": 8104,
+      "raw_chunks": 37511,
+      "raw_questions": 14534,
+      "rejected_articles": 1,
+      "rejected_questions": 4,
+      "test_questions": 12530,
+      "valid_questions": 14530
+    },
+    "dataset": "metunlp/ragturk",
+    "dataset_license": "CC-BY-NC-SA-4.0",
+    "file_sha256": {
+      "corpus.jsonl": "83d6ce53f63467787f7cc52f693bdb847cb3caa12939914634fce3f2a1eeae7b",
+      "questions.dev.jsonl": "cde642d95acbdb25af01fa138bef671e9ff9d543e28d94fd4ca76447e0f3fbb4",
+      "questions.test.jsonl": "11984075dfc86a6b4106eea282e868866c566a77dcd0fe132bd1c7170419c0a1",
+      "rejections.jsonl": "2581db8ae7359d7d6860249128a20aae372aa0e3469eb9e5a0d998f5f2fbf98b"
+    },
+    "fingerprint": "71289eaa5e6b4d6f5c8285ab0336fdc3568c1828972645d9b4456337b8326d1c",
+    "raw_files": {
+      "bytes": 74509793,
+      "count": 18735,
+      "inventory_sha256": "980a4510fb6f73b476391b7cfe1b17d1e9817d751b730cc0be35c13e5861e871"
+    },
+    "revision": "86d35335d01b30869ab8eb392e380921fa1e2185",
+    "source_question_counts": {
+      "web": 8951,
+      "wikipedia": 5579
+    },
+    "split": {
+      "dev_questions": 2000,
+      "groups": 8058,
+      "largest_group_questions": 8,
+      "near_duplicate_guarantee": false,
+      "requested_dev_questions": 2000,
+      "seed": 42,
+      "test_questions": 12530
+    }
+  },
+  "exported_rows": 40,
+  "generator_server": {
+    "build_info": "b11451-2207c8e57",
+    "chat_template_sha256": "6a1015c47ccfcfa67c3b772385bccee357a4d37c3cda37bd202e9047f391ab82",
+    "defaults": {
+      "n_ctx": 8192,
+      "params": {
+        "ignore_eos": false,
+        "max_tokens": -1,
+        "min_p": 0.05000000074505806,
+        "n_predict": -1,
+        "repeat_penalty": 1.0,
+        "seed": 4294967295,
+        "temperature": 1.0,
+        "top_k": 64,
+        "top_p": 0.949999988079071
+      }
+    },
+    "model_path": "<local>",
+    "model_sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+    "runtime_fingerprint": "862c23d56e3fbdcc8b2f01edf3885120b86baf93e165e133ca9bfe61979cf352",
+    "total_slots": 1
+  },
+  "local_input_sha256": {
+    "manifest.json": "caa15e263a1b56894b04677209191ae2251342779abfdebd0cce1c27f6a423ca",
+    "predictions.jsonl": "84905fe7ff3c3326440f7d7b0bfe673eec758ac8b017ee4f134c3cccbe4a451b",
+    "summary.json": "0712912272f4743f7788dd97dcc021c59a8c7329a1786a283629d51fa6c32469"
+  },
+  "question_count": 20,
+  "questions_sha256": "cde642d95acbdb25af01fa138bef671e9ff9d543e28d94fd4ca76447e0f3fbb4",
+  "retrieval_only": false,
+  "run_fingerprint": "de38b96ddcd74e2f25f6553cac022abb70207383433d1d0254cb5fde14139bb6",
+  "runtime": {
+    "git_revision": null,
+    "packages": {
+      "bm25s": "0.3.12",
+      "laya": "0.3.28",
+      "numpy": "2.5.3",
+      "rag-benchmark": "0.1.0",
+      "sentence-transformers": "6.1.0",
+      "torch": "2.14.1",
+      "transformers": "5.19.0"
+    },
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "python": "3.12.12",
+    "source_hash": "c628fecab92c25f87e864215f179fd29ad89bac5530744ce158d389a687da2f5"
+  },
+  "schema_version": 1,
+  "settings": {
+    "dataset": {
+      "dev_size": 2000,
+      "path": "<local>",
+      "seed": 42
+    },
+    "embeddings": {
+      "bge": {
+        "batch_size": 32,
+        "cache_dir": "<local>",
+        "device": "mps",
+        "dtype": "float32",
+        "model_id": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+      },
+      "embeddinggemma": {
+        "batch_size": 32,
+        "cache_dir": "<local>",
+        "device": "mps",
+        "dtype": "float32",
+        "model_id": "google/embeddinggemma-2",
+        "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b"
+      }
+    },
+    "experiment": {
+      "candidates": 50,
+      "context_k": 5
+    },
+    "generator": {
+      "base_url": "<local>",
+      "enable_thinking": false,
+      "filename": "gemma-4-26B_q4_0-it.gguf",
+      "max_tokens": 256,
+      "model": "gemma4",
+      "model_id": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "model_path": "<local>",
+      "model_sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+      "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+      "seed": 42,
+      "temperature": 0.0,
+      "timeout": 120
+    },
+    "laya": {
+      "backend": "sdk",
+      "batch_size": 8,
+      "cache_dir": "<local>",
+      "device": "mps",
+      "dtype": "float32",
+      "max_len": 8192,
+      "model_id": "convaiinnovations/laya-multilingual",
+      "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34"
+    }
+  },
+  "split": "dev",
+  "variants": [
+    "bm25",
+    "bm25_laya"
+  ]
+}
