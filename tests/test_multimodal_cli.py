@@ -51,3 +51,40 @@ def test_server_verifies_both_files_and_disables_context_shift(tmp_path, monkeyp
     config["projector_sha256"] = "wrong"
     with pytest.raises(ValueError, match="projector checksum"):
         generation_server_command(paths["binary"], config)
+
+
+@pytest.mark.parametrize('track,names', [('photo', 'gemma4_relevance'), ('speech', 'none')])
+def test_audio_window_flag_rejects_conditions_that_cannot_use_it(tmp_path, monkeypatch, track, names):
+    from types import SimpleNamespace
+    from rag_benchmark.multimodal_cli import main
+    monkeypatch.setattr('rag_benchmark.multimodal.load_dataset', lambda _: SimpleNamespace(track=track))
+    with pytest.raises(SystemExit) as exc:
+        main(['run', '--dataset', str(tmp_path), '--run-dir', str(tmp_path / 'run'),
+              '--channels', 'B', '--rerankers', names, '--audio-overlength', 'source_windows_max'])
+    assert exc.value.code == 2
+
+
+def test_audio_wrapper_is_fixed_after_real_generator_preflight_contract(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from rag_benchmark.multimodal_audio_rerank import SourceAudioWindowReranker
+    from rag_benchmark.multimodal_cli import main
+    class Generator:
+        pointwise = True
+        config = {'audio_max_duration_seconds': 30.0}
+        identity = 'unverified'
+        def preflight(self):
+            self.identity = 'verified-model-and-prompt'
+        def score(self, query, candidates):
+            raise AssertionError('This CLI wiring test must not start inference')
+    def run_matrix(*args, **kwargs):
+        wrapper = kwargs['rerankers']['gemma4_relevance']
+        assert isinstance(wrapper, SourceAudioWindowReranker)
+        assert wrapper.protocol['base_identity'] == 'verified-model-and-prompt'
+        assert wrapper.config['max_window_samples'] == 480000
+        return {'scope': 'partial', 'evaluated_query_count': 0}
+    monkeypatch.setattr('rag_benchmark.multimodal.load_dataset', lambda _: SimpleNamespace(track='speech'))
+    monkeypatch.setattr('rag_benchmark.multimodal.run_matrix', run_matrix)
+    monkeypatch.setattr('rag_benchmark.multimodal_generation.LocalMultimodalGenerator', Generator)
+    assert main(['run', '--dataset', str(tmp_path), '--run-dir', str(tmp_path / 'run'),
+                 '--channels', 'B', '--rerankers', 'gemma4_relevance',
+                 '--audio-overlength', 'source_windows_max']) == 0

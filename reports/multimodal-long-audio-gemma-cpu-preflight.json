@@ -1,0 +1,131 @@
+{
+  "status": "passed",
+  "scope": "single-source real local CPU HTTP backend health; not retrieval accuracy",
+  "dataset": "fleurs-tr_tr-test",
+  "source_id": "7600498945331487646",
+  "original_duration_seconds": 36.84,
+  "elapsed_seconds_including_server_startup": 53.522565375082195,
+  "model_calls": 2,
+  "valid_relevance_response_count": 2,
+  "quality_metrics": null,
+  "adapter": {
+    "class": "rag_benchmark.multimodal_audio_rerank.SourceAudioWindowReranker",
+    "identity": "fa3a850459d2ceffdd24168d0fdda7dbd427bac1719dcecff9ad675c59b3737d",
+    "config": {
+      "max_seconds": 30.0,
+      "sampling_rate": 16000,
+      "max_window_samples": 480000,
+      "window_format": "WAV_FLOAT32"
+    },
+    "protocol": {
+      "version": "source-audio-windows-max-relevance-v1",
+      "condition": "source_audio_windows_max_relevance",
+      "query_policy": "complete_provided_query_content_without_truncation;metadata_excluded",
+      "base_identity": "521fd79cccbd7d05466753ccfd09c74f21d7df3847c29d44513424803a0d6f8d",
+      "window_policy": "contiguous_nonoverlapping_in_source_order_last_window_keeps_all_remaining_samples",
+      "audio_preprocessing": "whole_source_mono_arithmetic_mean_then_scipy_polyphase_resample_16000Hz",
+      "coverage": "every_preprocessed_source_sample_once;no_overlap_no_truncation_no_dropped_windows",
+      "native_short_policy": "complete_original_audio_file_and_provided_source_text",
+      "source_text_policy": "complete_provided_source_text_repeated_unchanged_in_every_window",
+      "aggregation": "maximum_actual_base_score_per_original_candidate",
+      "interpretation": "maximum_window_audio_evidence_with_complete_provided_source_text;no_cross_window_audio_evidence_synthesis",
+      "base_context_policy": "strict_pair_context_validation;no_clipping_or_retry_with_less_source",
+      "tokenizers": {}
+    },
+    "base": {
+      "class": "rag_benchmark.multimodal_generation.LocalMultimodalGenerator",
+      "identity": "521fd79cccbd7d05466753ccfd09c74f21d7df3847c29d44513424803a0d6f8d",
+      "config": {
+        "video_fps": 1,
+        "video_max_frames": 16,
+        "max_tokens": 192,
+        "temperature": 0,
+        "seed": 42,
+        "image_max_side": 1120,
+        "video_max_duration_seconds": 60,
+        "audio_max_duration_seconds": 30,
+        "model_id": "google/gemma-4-E4B-it-qat-q4_0-gguf",
+        "revision": "4b4a2c1d584be7264f87aac328a1bc739ce81b6c",
+        "model_sha256": "676c35070db6dbe52f93e9c864ee0fba4eddea94b9c875d9cb10daff453fbaee",
+        "projector_sha256": "7498a37cb619e55f2fcf87eb931f56e99389ed6d432e4c5c66110694c0d65578",
+        "model": "gemma4-multimodal",
+        "enable_thinking": false
+      },
+      "verifier": {
+        "class": "rag_benchmark.models.LocalGenerator",
+        "identity": "b9523aa25fda3f599ca6ea6088dfc675da056984db05cb369a5208d47d5f3ad5",
+        "config": {
+          "video_fps": 1,
+          "video_max_frames": 16,
+          "max_tokens": 192,
+          "temperature": 0,
+          "seed": 42,
+          "image_max_side": 1120,
+          "video_max_duration_seconds": 60,
+          "audio_max_duration_seconds": 30,
+          "model_id": "google/gemma-4-E4B-it-qat-q4_0-gguf",
+          "revision": "4b4a2c1d584be7264f87aac328a1bc739ce81b6c",
+          "model_sha256": "676c35070db6dbe52f93e9c864ee0fba4eddea94b9c875d9cb10daff453fbaee",
+          "projector_sha256": "7498a37cb619e55f2fcf87eb931f56e99389ed6d432e4c5c66110694c0d65578",
+          "model": "gemma4-multimodal",
+          "enable_thinking": false
+        }
+      }
+    }
+  },
+  "diagnostics": {
+    "rows": 1,
+    "reported": true,
+    "items": [
+      {
+        "id": "7600498945331487646",
+        "audio_window_count": 2,
+        "segmented_candidate_count": 1,
+        "native_short_candidate_count": 0,
+        "source_audio_samples": 589440,
+        "retained_audio_samples": 589440,
+        "source_audio_duration_ms": 36840,
+        "retained_audio_duration_ms": 36840,
+        "repeated_source_text_window_count": 0,
+        "windows": [
+          {
+            "sample_start": 0,
+            "sample_end": 480000
+          },
+          {
+            "sample_start": 480000,
+            "sample_end": 589440
+          }
+        ]
+      }
+    ],
+    "original_candidate_count": 1,
+    "audio_window_count": 2,
+    "segmented_candidate_count": 1,
+    "native_short_candidate_count": 0,
+    "source_audio_samples": 589440,
+    "retained_audio_samples": 589440,
+    "source_audio_duration_ms": 36840,
+    "retained_audio_duration_ms": 36840,
+    "repeated_source_text_window_count": 0,
+    "sampling_rate": 16000,
+    "max_window_samples": 480000,
+    "condition": "source_audio_windows_max_relevance",
+    "aggregation": "maximum_actual_base_score_per_original_candidate",
+    "protocol": {
+      "version": "source-audio-windows-max-relevance-v1",
+      "condition": "source_audio_windows_max_relevance",
+      "query_policy": "complete_provided_query_content_without_truncation;metadata_excluded",
+      "base_identity": "521fd79cccbd7d05466753ccfd09c74f21d7df3847c29d44513424803a0d6f8d",
+      "window_policy": "contiguous_nonoverlapping_in_source_order_last_window_keeps_all_remaining_samples",
+      "audio_preprocessing": "whole_source_mono_arithmetic_mean_then_scipy_polyphase_resample_16000Hz",
+      "coverage": "every_preprocessed_source_sample_once;no_overlap_no_truncation_no_dropped_windows",
+      "native_short_policy": "complete_original_audio_file_and_provided_source_text",
+      "source_text_policy": "complete_provided_source_text_repeated_unchanged_in_every_window",
+      "aggregation": "maximum_actual_base_score_per_original_candidate",
+      "interpretation": "maximum_window_audio_evidence_with_complete_provided_source_text;no_cross_window_audio_evidence_synthesis",
+      "base_context_policy": "strict_pair_context_validation;no_clipping_or_retry_with_less_source",
+      "tokenizers": {}
+    }
+  }
+}

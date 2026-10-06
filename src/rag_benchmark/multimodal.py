@@ -39,9 +39,13 @@ TRACKS = {
 RERANKERS = ("none", "laya_text", "bge_reranker_text", "gemma4_relevance")
 ENGINE_VERSION = "multimodal-v1"
 BM25_CANDIDATE_SELECTION = "positive_scores_only_v1"
+_AUDIO_PROCESSING_COUNTS = ("original_candidate_count", "audio_window_count", "segmented_candidate_count",
+    "native_short_candidate_count", "source_audio_samples", "retained_audio_samples", "source_audio_duration_ms",
+    "retained_audio_duration_ms", "repeated_source_text_window_count")
+_PROCESSING_SETTINGS = ("sampling_rate", "max_window_samples")
 _PROCESSING_COUNTS = ("original_function_count", "chunk_count", "segmented_function_count",
     "native_short_function_count", "unchanged_function_count", "source_characters", "covered_source_characters",
-    "source_utf8_bytes", "covered_source_utf8_bytes", "original_query_count")
+    "source_utf8_bytes", "covered_source_utf8_bytes", "original_query_count") + _AUDIO_PROCESSING_COUNTS
 
 
 class UnsupportedConfiguration(RuntimeError):
@@ -57,6 +61,7 @@ def _safe_model_config(config: Any) -> dict:
                 "vision_budget", "video_vision_budget", "video_fps", "video_max_frames", "max_image_patches",
                 "score_query_batch", "score_chunk_elements", "max_tokens", "max_new_tokens", "temperature", "seed",
                 "image_max_side", "video_max_duration_seconds", "audio_max_duration_seconds", "threshold",
+                "max_seconds", "sampling_rate", "max_window_samples",
                 "max_tokens_after_native_document_formatting", "maximum_characters_per_chunk_for_overflowing_functions"):
         value = config.get(key)
         if value is None and key in config:
@@ -73,7 +78,7 @@ def _safe_model_config(config: Any) -> dict:
             result[key] = value
     enums = {"dtype": {"float32", "bfloat16", "float16"}, "score_dtype": {"float32", "bfloat16"},
              "text_overflow_policy": {"error", "truncate_to_model_limit"}, "backend": {"sdk", "http"},
-             "mode": {"native", "joint", "text"}}
+             "mode": {"native", "joint", "text"}, "window_format": {"WAV_FLOAT32"}}
     for key, allowed in enums.items():
         if isinstance(config.get(key), str) and config[key] in allowed:
             result[key] = config[key]
@@ -94,7 +99,9 @@ def _safe_protocol(protocol: Any) -> dict:
         return {}
     result = _safe_model_config(protocol)
     for key in ("version", "condition", "boundary_policy", "native_single_chunk_policy", "source_coverage",
-                "function_score", "query_policy", "context_policy", "candidate_policy", "base_identity", "segmentation_identity"):
+                "function_score", "query_policy", "context_policy", "candidate_policy", "base_identity", "segmentation_identity",
+                "window_policy", "audio_preprocessing", "coverage", "native_short_policy", "source_text_policy",
+                "aggregation", "interpretation", "base_context_policy"):
         value = protocol.get(key)
         if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_.;:-]{1,256}", value):
             result[key] = value
@@ -627,15 +634,29 @@ def _capture_diagnostics(usage: Any, item_ids: list[str]) -> dict:
                 raise ValueError("Adapter diagnostic IDs do not match the encoded row order")
             safe = {"id": identifier}
             for key in ("original_tokens", "retained_tokens", "processed_tokens_including_padding",
-                        "native_token_limit", "expanded_tokens"):
+                        "native_token_limit", "expanded_tokens") + _AUDIO_PROCESSING_COUNTS:
                 value = record.get(key)
                 if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value >= 0:
+                    safe[key] = int(value)
+            for key in _PROCESSING_SETTINGS:
+                value = record.get(key)
+                if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value > 0:
                     safe[key] = int(value)
             for key in ("truncated", "derived_text_empty"):
                 if isinstance(record.get(key), bool):
                     safe[key] = record[key]
             if isinstance(record.get("modalities"), list):
                 safe["modalities"] = [value for value in record["modalities"] if value in {"text", "image", "audio", "video"}]
+            if isinstance(record.get("windows"), list):
+                safe["windows"] = []
+                for window in record["windows"]:
+                    if not isinstance(window, dict) or any(not isinstance(window.get(key), (int, np.integer))
+                            or isinstance(window[key], bool) for key in ("sample_start", "sample_end")):
+                        raise ValueError("Audio window diagnostics require integer sample boundaries")
+                    begin, end = int(window["sample_start"]), int(window["sample_end"])
+                    if begin < 0 or end <= begin:
+                        raise ValueError("Audio window diagnostics require a nonempty nonnegative sample interval")
+                    safe["windows"].append({"sample_start": begin, "sample_end": end})
             result["items"].append(safe)
         flags = [record["truncated"] for record in result["items"] if "truncated" in record]
         if len(flags) == len(item_ids):
@@ -651,6 +672,10 @@ def _processing_diagnostics(usage: dict) -> dict:
     for key in _PROCESSING_COUNTS:
         value = usage.get(key)
         if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value >= 0:
+            result[key] = int(value)
+    for key in _PROCESSING_SETTINGS:
+        value = usage.get(key)
+        if isinstance(value, (int, np.integer)) and not isinstance(value, bool) and value > 0:
             result[key] = int(value)
     for key in ("condition", "aggregation"):
         value = usage.get(key)
@@ -684,7 +709,9 @@ def _merge_diagnostics(blocks: list[dict], total_rows: int) -> dict:
                 if any("retained_tokens" in record for record in records) else None,
             "processing_counts_observed": {key: sum(block.get(key, 0) for block in blocks)
                 for key in _PROCESSING_COUNTS if any(key in block for block in blocks)},
-            "processing_counts_scope": "sum_over_reported_calls; repeated_function_candidates_count_again",
+            "processing_counts_scope": "sum_over_reported_calls; repeated_candidates_count_again",
+            "processing_settings": {key: sorted({entry[key] for entry in [*blocks, *records] if key in entry})
+                for key in _PROCESSING_SETTINGS if any(key in entry for entry in [*blocks, *records])},
             "processing_policies": [json.loads(value) for value in sorted({json.dumps(
                 {key: block[key] for key in ("condition", "aggregation", "segmentation_identity", "protocol") if key in block},
                 sort_keys=True) for block in blocks if any(key in block for key in ("condition", "aggregation", "protocol"))})],

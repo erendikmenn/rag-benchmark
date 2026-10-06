@@ -702,3 +702,79 @@ def test_direct_code_processing_survives_cache_without_replaying_work_time(tmp_p
     assert again["chunk_count"] == 7 and again["source_utf8_bytes"] == again["covered_source_utf8_bytes"] == 123
     assert again["protocol"]["function_score"] == "maximum_cosine_over_all_its_chunks"
     assert "PRIVATE" not in json.dumps(first) and "PRIVATE" not in json.dumps(again)
+
+
+def test_audio_diagnostics_sum_counts_but_keep_settings_and_original_item_intervals():
+    from rag_benchmark.multimodal import _capture_diagnostics, _merge_diagnostics
+    first = _capture_diagnostics({"original_candidate_count": 1, "audio_window_count": 2,
+        "source_audio_samples": 496000, "retained_audio_samples": 496000,
+        "sampling_rate": 16000, "max_window_samples": 480000,
+        "items": [{"id": "long", "audio_window_count": 2, "source_audio_samples": 496000,
+                   "windows": [{"sample_start": 0, "sample_end": 480000, "path": "/PRIVATE/first.wav"},
+                               {"sample_start": 480000, "sample_end": 496000}], "text": "PRIVATE_SOURCE"}]}, ["long"])
+    second = _capture_diagnostics({"original_candidate_count": 1, "audio_window_count": 1,
+        "source_audio_samples": 48000, "retained_audio_samples": 48000,
+        "sampling_rate": 48000, "max_window_samples": 1440000,
+        "items": [{"id": "short", "audio_window_count": 1, "source_audio_samples": 48000}]}, ["short"])
+    merged = _merge_diagnostics([first, second], 2)
+    assert merged["processing_counts_observed"]["audio_window_count"] == 3
+    assert merged["processing_counts_observed"]["source_audio_samples"] == 544000  # Items are not counted twice.
+    assert merged["processing_settings"] == {"sampling_rate": [16000, 48000], "max_window_samples": [480000, 1440000]}
+    assert "sampling_rate" not in merged["processing_counts_observed"]
+    assert merged["items"][0]["windows"] == [{"sample_start": 0, "sample_end": 480000},
+                                             {"sample_start": 480000, "sample_end": 496000}]
+    assert "PRIVATE" not in json.dumps(merged)
+    with pytest.raises(ValueError, match="row order"):
+        _capture_diagnostics({"items": [{"id": "wrong", "audio_window_count": 2}]}, ["long"])
+    with pytest.raises(ValueError, match="nonempty nonnegative"):
+        _capture_diagnostics({"items": [{"windows": [{"sample_start": 3, "sample_end": 2}]}]}, ["long"])
+
+
+def test_audio_processing_provenance_survives_result_cache_without_new_counts(tmp_path):
+    from types import SimpleNamespace
+    root = fixture_dataset(tmp_path, track="environment_audio")
+    class AudioReranker(RecordingReranker):
+        config = {"max_seconds": 30.0, "sampling_rate": 16000, "max_window_samples": 480000,
+                  "window_format": "WAV_FLOAT32", "cache_dir": "/PRIVATE/cache"}
+        protocol = {"condition": "source_audio_windows_max_relevance",
+            "aggregation": "maximum_actual_base_score_per_original_candidate",
+            "source_text_policy": "complete_provided_source_text_repeated_unchanged_in_every_window",
+            "interpretation": "maximum_window_audio_evidence_with_complete_provided_source_text;no_cross_window_audio_evidence_synthesis",
+            "window_policy": "contiguous_nonoverlapping_in_source_order_last_window_keeps_all_remaining_samples",
+            "coverage": "every_preprocessed_source_sample_once;no_overlap_no_truncation_no_dropped_windows",
+            "prompt": "PRIVATE_PROMPT"}
+        base = SimpleNamespace(config={"model_sha256": "a" * 64, "model_path": "/PRIVATE/model.gguf"})
+
+        def score(self, query, candidates):
+            values = super().score(query, candidates)
+            self.last_usage = {"original_candidate_count": len(candidates), "audio_window_count": len(candidates) * 2,
+                "segmented_candidate_count": len(candidates), "native_short_candidate_count": 0,
+                "source_audio_samples": len(candidates) * 496000, "retained_audio_samples": len(candidates) * 496000,
+                "source_audio_duration_ms": len(candidates) * 31000, "retained_audio_duration_ms": len(candidates) * 31000,
+                "repeated_source_text_window_count": len(candidates) * 2, "sampling_rate": 16000,
+                "max_window_samples": 480000, "protocol": self.protocol, "aggregation": self.protocol["aggregation"],
+                "items": [{"id": item["id"], "audio_window_count": 2, "source_audio_samples": 496000,
+                           "retained_audio_samples": 496000, "text": "PRIVATE_SOURCE"} for item in candidates]}
+            return values
+    reranker = AudioReranker("audio-window-rerank-v1")
+    kwargs = dict(adapters={"N": CountingEncoder()}, rerankers={"gemma4_relevance": reranker},
+        requested_channels=["N"], candidate_grid=(20, 50), budget_modes=("per_channel",))
+    first = run_matrix(root, tmp_path / "run", **kwargs)
+    cell = next(row for row in first["cells"] if row.get("new_score_pairs"))
+    diagnostics = cell["adapter_diagnostics"]
+    assert diagnostics["processing_counts_observed"]["audio_window_count"] == 12
+    assert diagnostics["processing_counts_observed"]["retained_audio_duration_ms"] == 186000
+    assert diagnostics["processing_counts_observed"]["repeated_source_text_window_count"] == 12
+    assert diagnostics["processing_settings"] == {"sampling_rate": [16000], "max_window_samples": [480000]}
+    assert len(diagnostics["items"]) == 6
+    spec = first["adapter_specs"]["rerankers"]["gemma4_relevance"]
+    assert spec["config"]["max_seconds"] == 30.0 and spec["config"]["window_format"] == "WAV_FLOAT32"
+    assert spec["protocol"]["interpretation"] == reranker.protocol["interpretation"]
+    assert spec["base"]["config"]["model_sha256"] == "a" * 64
+    again = run_matrix(root, tmp_path / "run", **kwargs)
+    repeated = next(row for row in again["cells"] if row.get("identity") == cell["identity"])
+    assert repeated["adapter_diagnostics"] == diagnostics
+    assert repeated["fresh_adapter_diagnostics"]["processing_counts_observed"] == {}
+    assert repeated["fresh_adapter_diagnostics"]["processing_settings"] == {}
+    assert repeated["new_score_pairs"] == 0 and len(reranker.calls) == 2
+    assert "PRIVATE" not in (tmp_path / "run/report.json").read_text()

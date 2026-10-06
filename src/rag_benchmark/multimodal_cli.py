@@ -141,6 +141,8 @@ def main(argv=None) -> int:
                    help="Explicit native specialist query limit policy; clipping is recorded in diagnostics.")
     p.add_argument("--code-overlength", choices=("error", "shared_segments_max"), default="error",
                    help="Separate source-complete function-level aggregation protocol for long code.")
+    p.add_argument("--audio-overlength", choices=("error", "source_windows_max"), default="error",
+                   help="Explicit complete-audio window scoring for Gemma relevance; keeps source text in every window.")
     p.add_argument("--candidate-k", default="20,50,100")
     p.add_argument("--budget-modes", default="per_channel,total")
     p.add_argument("--cache-dir", type=Path, default=Path(".cache/multimodal"))
@@ -218,6 +220,9 @@ def main(argv=None) -> int:
             names = args.rerankers.split(",")
             if not set(names) <= set(RERANKERS):
                 raise ValueError("Unknown reranker name")
+            if args.audio_overlength == "source_windows_max":
+                if dataset.track not in {"speech", "environment_audio"} or "gemma4_relevance" not in names:
+                    raise ValueError("--audio-overlength source_windows_max requires an audio track and Gemma relevance")
             common = {"device": args.device, "dtype": args.dtype, "batch_size": args.batch_size}
             text_config = {**common, "batch_size": args.text_batch_size}
             eg = {**common, "dimension": args.dimension, "vision_budget": args.vision_budget}
@@ -260,6 +265,9 @@ def main(argv=None) -> int:
                 from .multimodal_generation import LocalMultimodalGenerator
                 generator = LocalMultimodalGenerator()
                 generator.preflight()
+                if args.audio_overlength == "source_windows_max":
+                    from .multimodal_audio_rerank import SourceAudioWindowReranker
+                    generator = SourceAudioWindowReranker(generator)
                 rerankers["gemma4_relevance"] = generator
             if segmenter is not None:
                 from .multimodal_code_rerank import SharedCodeReranker

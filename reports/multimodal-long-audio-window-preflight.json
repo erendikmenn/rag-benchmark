@@ -1,0 +1,40 @@
+{
+  "scope": "source_audio_window_coverage_only_no_model_inference",
+  "status": "passed",
+  "source_dataset": "fleurs-tr_tr-test",
+  "source_id": "7600498945331487646",
+  "sampling_rate": 16000,
+  "max_window_samples": 480000,
+  "summary": {
+    "id": "7600498945331487646",
+    "audio_window_count": 2,
+    "segmented_candidate_count": 1,
+    "native_short_candidate_count": 0,
+    "source_audio_samples": 589440,
+    "retained_audio_samples": 589440,
+    "source_audio_duration_ms": 36840,
+    "retained_audio_duration_ms": 36840,
+    "repeated_source_text_window_count": 0,
+    "windows": [
+      {
+        "sample_start": 0,
+        "sample_end": 480000
+      },
+      {
+        "sample_start": 480000,
+        "sample_end": 589440
+      }
+    ]
+  },
+  "exact_preprocessed_samples_preserved": true,
+  "window_samples": [
+    480000,
+    109440
+  ],
+  "window_durations_seconds": [
+    30.0,
+    6.84
+  ],
+  "model_inference_performed": false,
+  "benchmark_relevance_scores_generated": false
+}
