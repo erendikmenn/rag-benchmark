@@ -4,6 +4,7 @@ Each row is a separate run. Query and candidate counts across language/protocol 
 
 | Run | Scope | Queries | Candidates | Completed primary cells | Failed cells |
 |---|---|---:|---:|---:|---:|
+| [clotho-v2.1-evaluation-native-specialist](clotho-v2.1-evaluation-native-specialist/report.md) | frozen_collection | 5,225 / 5,225 | 1,045 | 3 | 0 |
 | [codesearchnet-go-test-bm25](codesearchnet-go-test-bm25/report.md) | frozen_collection | 8,122 / 8,122 | 28,120 | 1 | 0 |
 | [codesearchnet-java-test-bm25](codesearchnet-java-test-bm25/report.md) | frozen_collection | 10,955 / 10,955 | 40,347 | 1 | 0 |
 | [codesearchnet-javascript-test-bm25](codesearchnet-javascript-test-bm25/report.md) | frozen_collection | 3,291 / 3,291 | 13,981 | 1 | 0 |

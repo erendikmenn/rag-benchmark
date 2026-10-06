@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v1",
+  "analysis_source_sha256": "e2437b6a8d7a91bdc373dc204e16cb733e320e2ce0e9fca0472f5f86201b913e",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "clotho-v2.1-evaluation",
+    "revision": "zenodo:4783391:v2.1",
+    "track": "environment_audio",
+    "identity": "211b493ea3486d92625e8e0e7c1153409b8c745a45c0fd944971544c7d8a11d0",
+    "corpus_count": 1045,
+    "query_count": 5225,
+    "qrel_count": 5225,
+    "positive_qrel_count": 5225,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 1045,
+    "split": "evaluation"
+  },
+  "source_report_sha256": "f4510856deffd85827774329903d94c293dc8561f068b8e53c51a58f67b19e26",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_media_components",
+    "description": "Queries sharing any positively labelled media item are connected; all queries in each connected component are resampled together.",
+    "query_count": 5225,
+    "group_count": 1045,
+    "source_unit_count": 1045,
+    "source_association_count": 5225,
+    "smallest_group_queries": 5,
+    "largest_group_queries": 5,
+    "largest_group_fraction": 0.0009569377990430622,
+    "mapping_sha256": "8337f2d9a6d8f6bd7a79430f99d1524f0f928a45e3fffaad3c7c77e87253d934",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "environment_audio__n__none",
+      "requested_right": "environment_audio__s__none",
+      "left": {
+        "identity": "51e3ee9940848ab9a60000f048656f371a7db41712fa9c6421cb08063953c3d5",
+        "variant_id": "environment_audio__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "right": {
+        "identity": "0df70d1adf94e8d6d4a464a98b78e5699b2c6866e21c4ba96e9125759daa88e1",
+        "variant_id": "environment_audio__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.11751196172248804,
+          "right_mean": 0.3741626794258373,
+          "mean_difference": 0.2566507177033493,
+          "query_count": 5225,
+          "wins": 1621,
+          "losses": 280,
+          "ties": 3324,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.23253588516746412,
+          "ci95_high": 0.27961722488038276,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.09690107499510271,
+          "right_mean": 0.3027794297426472,
+          "mean_difference": 0.20587835474754448,
+          "query_count": 5225,
+          "wins": 2303,
+          "losses": 500,
+          "ties": 2422,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.18773733486083602,
+          "ci95_high": 0.22354347200229907,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "environment_audio__n__none",
+      "requested_right": "environment_audio__n_s__none",
+      "left": {
+        "identity": "51e3ee9940848ab9a60000f048656f371a7db41712fa9c6421cb08063953c3d5",
+        "variant_id": "environment_audio__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "right": {
+        "identity": "807367f9d7eedc8c6feba79336f085dfa87bdf4b76a250d338fdd15b83b2a602",
+        "variant_id": "environment_audio__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.11751196172248804,
+          "right_mean": 0.26468899521531103,
+          "mean_difference": 0.14717703349282296,
+          "query_count": 5225,
+          "wins": 858,
+          "losses": 89,
+          "ties": 4278,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.13147846889952156,
+          "ci95_high": 0.1628708133971292,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.09690107499510271,
+          "right_mean": 0.21499170569068304,
+          "mean_difference": 0.11809063069558035,
+          "query_count": 5225,
+          "wins": 1656,
+          "losses": 195,
+          "ties": 3374,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.10768388879589838,
+          "ci95_high": 0.12866011114553855,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "environment_audio__s__none",
+      "requested_right": "environment_audio__n_s__none",
+      "left": {
+        "identity": "0df70d1adf94e8d6d4a464a98b78e5699b2c6866e21c4ba96e9125759daa88e1",
+        "variant_id": "environment_audio__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "right": {
+        "identity": "807367f9d7eedc8c6feba79336f085dfa87bdf4b76a250d338fdd15b83b2a602",
+        "variant_id": "environment_audio__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 5225
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.3741626794258373,
+          "right_mean": 0.26468899521531103,
+          "mean_difference": -0.10947368421052632,
+          "query_count": 5225,
+          "wins": 453,
+          "losses": 1025,
+          "ties": 3747,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.13014354066985645,
+          "ci95_high": -0.08822966507177034,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.3027794297426472,
+          "right_mean": 0.21499170569068304,
+          "mean_difference": -0.08778772405196417,
+          "query_count": 5225,
+          "wins": 1033,
+          "losses": 1708,
+          "ties": 2484,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.10393684827787351,
+          "ci95_high": -0.07176780046494302,
+          "group_count": 1045,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "completed": 3
+  },
+  "status": "completed"
+}

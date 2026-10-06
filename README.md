@@ -23,6 +23,8 @@ These are dataset-specific retrieval results, not generated-answer correctness. 
 
 All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**), together with Clotho and Turkish FLEURS. Real local model preflights passed for image, audio, video and joint inputs; these health checks do not measure accuracy. All six code languages are ready (**183,295 functions / 52,561 queries**), together with 1,000 MSR-VTT videos. CIRR official media remains unavailable pending its publisher’s access process. The earlier text RAG pilot below remains a separate experiment.
 
+**Environmental audio gives a different result:** on Clotho's original evaluation protocol (1,045 clips / 5,225 queries), Hit@5 is **11.75% for EG2, 37.42% for CLAP and 26.47% for their fusion**. CLAP exceeds EG2 by 25.67 percentage points (95% source-group interval: 23.25–27.96). This shows why each modality needs its own measurement. [Audio results and paired comparison](reports/multimodal/clotho-v2.1-evaluation-native-specialist/paired-comparisons.md). The additional-relevance protocol is a separate run.
+
 **BM25 completed all six code and eight document collections: 54,980 queries.** The lexical baselines use positive matches only; dense/fusion/reranker runs are still in progress. [Baseline table and exact counts](reports/multimodal/bm25-summary.md).
 
 [All measured runs](reports/multimodal/README.md) · [Run locally](docs/multimodal-running.md) · [Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
@@ -77,7 +79,7 @@ The five retrieval paths are separate experiments. They do not all feed one comb
 
 All variants use the same corpus, questions, candidate budget, final context budget and generator policy. The Laya on/off pair receives the same candidates **within each retrieval path**. Candidate IDs may differ across retrieval paths; that difference is what the retrieval comparison measures. BM25 can return fewer than 50 candidates when fewer documents have a positive match score; the available count is retained rather than padded with unrelated passages.
 
-BGE-M3 is used as a **dense embedding model** in this comparison. Its other retrieval modes are outside the primary experiment. EmbeddingGemma 2 is evaluated on text; this dataset does not test its image or audio capabilities.
+BGE-M3 is used as a **dense embedding model** in this comparison. Its other retrieval modes are outside the primary experiment. In this RAGTurk pilot, EmbeddingGemma 2 is evaluated on text; its image/audio results belong to the separate multimodal suite above.
 
 ## Dataset
 

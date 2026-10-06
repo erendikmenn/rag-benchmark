@@ -23,6 +23,8 @@ Bunlar bu veri setinde doğru kaynağı bulma oranlarıdır; üretilen cevabın 
 
 Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe FLEURS hazır. Görüntü, ses, video ve birleşik girdilerde gerçek yerel model kontrolleri geçti; bunlar başarı oranı ölçümü değildir. Altı kod dilinin tamamı (**183.295 fonksiyon / 52.561 sorgu**) ve 1.000 MSR-VTT videosu hazır. CIRR'nin resmî medyası, yayıncısının erişim süreci tamamlanmadan kullanılamıyor. Aşağıdaki metin RAG pilotu ayrı deney olarak korunuyor.
 
+**Çevresel seste sonuç farklı:** Clotho'nun özgün testinde (1.045 kayıt / 5.225 sorgu) Hit@5, **EG2 ile %11,75, CLAP ile %37,42, birleşimleriyle %26,47**. CLAP farkı 25,67 yüzde puanı (%95 kaynak grubu güven aralığı: 23,25–27,96). Bu yüzden her ortamı ayrı ölçüyoruz. [Ses sonuçları ve eşleştirilmiş karşılaştırma](reports/multimodal/clotho-v2.1-evaluation-native-specialist/paired-comparisons.md). Ek alaka etiketleriyle yapılan protokol ayrı bir koşudur.
+
 **BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; embedding, birleşim ve reranker deneyleri devam ediyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
 
 [Ölçülen bütün koşular](reports/multimodal/README.md) · [Yerelde çalıştırma](docs/multimodal-running.md) · [Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
@@ -35,7 +37,7 @@ RAG, cevap verecek modele soruyla ilgili kaynak metinleri önceden sunmaktır. �
 2. **Yeniden sıralama:** Laya açıksa bu adayları soru açısından değerlendirir; en yüksek puanlı en fazla 5 metin seçilir. Kapalıysa aramanın ilk 5 sonucu kullanılır.
 3. **Cevap:** aynı yerel Gemma 4 modeli soruyu ve bu 5 metni alıp kaynak kimlikleriyle cevap yazar.
 
-BM25 kelime örtüşmesini, embedding modeli anlam yakınlığını ölçer. Hibrit kolda iki arama paralel yapılır, sonuç sıraları birleştirilir. **BGE-M3 bu deneyde embedding modelidir; ayrıca kullanılan bir BGE reranker yoktur.**
+BM25 kelime örtüşmesini, embedding modeli anlam yakınlığını ölçer. Hibrit kolda iki arama paralel yapılır, sonuç sıraları birleştirilir. **Bu RAGTurk pilotunda BGE-M3 embedding modelidir; pilotta ayrıca BGE reranker kullanılmaz.** Yukarıdaki çoklu ortam paketi, BGE reranker koşullarını ayrıca içerir.
 
 Laya, TypeSafe'ın Jev modelinin resmî açık kaynak sürümü değildir. **Convai Innovations'ın geliştirdiği bağımsız, açık kaynaklı bir alternatiftir.** Bu projede son cevabı yazmaz; kaynak metinleri puanlar. [Laya kaynak kodu](https://github.com/NandhaKishorM/laya), [Türkçe için kullanılan multilingual model](https://huggingface.co/convaiinnovations/laya-multilingual).
 
