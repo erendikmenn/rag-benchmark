@@ -6,9 +6,9 @@ import csv
 import json
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
+import uuid
 
 
 def prepare_generation(config: dict, *, cache_dir: Path = Path(".cache/generation-models")) -> None:
@@ -51,7 +51,12 @@ def export_report(run_dir: Path, output_dir: Path) -> dict:
     report = json.loads((run_dir / "report.json").read_text())
     output_dir.mkdir(parents=True, exist_ok=True)
     for filename in ("report.json", "matrix.csv"):
-        shutil.copyfile(run_dir / filename, output_dir / filename)
+        temporary = output_dir / (filename + "." + uuid.uuid4().hex + ".tmp")
+        try:
+            temporary.write_bytes((run_dir / filename).read_bytes())
+            temporary.replace(output_dir / filename)
+        finally:
+            temporary.unlink(missing_ok=True)
     dataset = report["dataset"]
     lines = ["# Multimodal retrieval results", "",
         f"Dataset: **{dataset['id']}**, revision `{dataset['revision']}`.",
