@@ -6,6 +6,14 @@
 
 **Status:** the **ten-variant pilot is complete: 20 questions × ten variants, 200/200 outputs**, searching all 37,511 passages. Both dense indexes are built. The separate 2,000-question BM25 retrieval baseline is complete; the ten-variant 2,000-question development run and 12,530-question final test have not run. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured results and limitations](docs/results.md).
 
+## Multimodal benchmark — implementation in progress
+
+The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.
+
+Data acquisition, native modality preflight and the resumable evaluation engine are being developed in parallel. No multimodal accuracy score has been measured yet. The text RAG results below remain unchanged and separate.
+
+[Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
+
 ## What the benchmark does
 
 RAG gives an answer model relevant source passages before asking it to answer. This repository measures three separate jobs:

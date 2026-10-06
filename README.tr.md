@@ -6,6 +6,14 @@
 
 **Mevcut durum:** **20 soru × on varyant pilotu tamamlandı: 200/200 çıktı**, 37.511 parçanın tamamında arama yapıldı. İki dense indeks de hazır. Ayrı 2.000 soruluk BM25 arama deneyi tamamlandı; on varyantın 2.000 soruluk geliştirme deneyi ve 12.530 soruluk son test henüz çalıştırılmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Ölçümler ve sınırları](docs/results.md).
 
+## Çoklu ortam benchmark'ı — geliştirme sürüyor
+
+Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.
+
+Veri indirme, gerçek medya desteği kontrolü ve kaldığı yerden devam edebilen değerlendirme altyapısı paralel geliştiriliyor. Henüz çoklu ortam başarı skoru ölçülmedi. Aşağıdaki metin RAG sonuçları ayrı deney olarak korunuyor.
+
+[Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
+
 ## Sistem ne yapıyor?
 
 RAG, cevap verecek modele soruyla ilgili kaynak metinleri önceden sunmaktır. Örneğin kullanıcı “Bu kurum ne zaman kuruldu?” diye sorar:
