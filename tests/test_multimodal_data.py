@@ -7,7 +7,9 @@ from rag_benchmark.multimodal_data import (
     _extract_tar,
     _relative,
     normalize_transcript,
+    select_codesearchnet_ids,
     strip_python_docstrings,
+    strip_source_comments,
     validate_dataset,
     write_dataset,
 )
@@ -128,3 +130,44 @@ def test_tar_symlink_rejected(tmp_path):
 
 def test_transcript_grouping_is_normalized():
     assert normalize_transcript("  SAME\t sentence  ") == normalize_transcript("same sentence")
+
+
+def test_official_codebase_intersection_preserves_published_gallery():
+    selected, audit = select_codesearchnet_ids(["a", "absent", "b"], ["a"], {"a", "b"}, 2)
+    assert selected == ["a", "b"]
+    assert audit["upstream_urls_absent_from_raw_validation_test"] == 1
+    with pytest.raises(ValueError, match="cleaned gallery mismatch"):
+        select_codesearchnet_ids(["a", "absent", "b"], ["a"], {"a"}, 2)
+    with pytest.raises(ValueError, match="test queries"):
+        select_codesearchnet_ids(["a", "b"], ["missing-query"], {"a", "b"}, 2)
+
+
+def test_nonleading_python_two_string_comment_removed_after_dedent():
+    source = "def old(x):\n    if x:\n        print x\n    \"\"\"gold description\"\"\"\n    return 'preserved literal'\n"
+    cleaned = strip_python_docstrings(source)
+    assert "gold description" not in cleaned
+    assert "preserved literal" in cleaned
+
+
+@pytest.mark.parametrize("language,source,literal", [
+    ("python", 'def f():\n    """gold comment"""\n    return "retained // # string"\n', "retained // # string"),
+    ("ruby", 'def f()\n # gold comment\n "retained # string"\nend', "retained # string"),
+    ("go", 'func f() string { /* gold comment */ return "retained // string" }', "retained // string"),
+    ("java", 'String f() { /* gold comment */ return "retained // string"; }', "retained // string"),
+    ("javascript", 'function f() { // gold comment\n return "retained // string"; }', "retained // string"),
+    ("php", 'function f() { /* gold comment */ return "retained // string"; }', "retained // string"),
+])
+def test_syntax_aware_comment_cleanup(language, source, literal):
+    pytest.importorskip("tree_sitter_language_pack")
+    cleaned = strip_source_comments(source, language)
+    assert "gold comment" not in cleaned
+    assert literal in cleaned
+    assert "f()" in cleaned
+
+
+def test_runtime_string_can_legitimately_repeat_docstring_without_label_leakage():
+    pytest.importorskip("tree_sitter_language_pack")
+    source = 'def f():\n    """Build a model"""\n    print("Build a model for these samples")\n'
+    result = strip_source_comments(source, "python")
+    assert '"""Build a model"""' not in result
+    assert 'print("Build a model for these samples")' in result

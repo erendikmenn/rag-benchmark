@@ -22,6 +22,8 @@ import unicodedata
 import urllib.parse
 import urllib.request
 import zipfile
+import warnings
+from functools import lru_cache
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path, PurePosixPath
@@ -168,7 +170,9 @@ def write_dataset(destination: Path, *, dataset_id: str, track: str, revision: s
               "text_nonempty_count": sum(bool(row.get("text", "").strip()) for row in corpus),
               "text_empty_count": sum(row.get("text") == "" for row in corpus),
               "files": {name: {"sha256": sha256(destination / name), "size_bytes": (destination / name).stat().st_size}
-                        for name in ("corpus.jsonl", "queries.jsonl", "qrels.jsonl", "assets.jsonl")},
+                        for name in ("corpus.jsonl", "queries.jsonl", "qrels.jsonl", "assets.jsonl",
+                                     "documents_metadata.json", "evaluation_transcripts.jsonl")
+                        if (destination / name).is_file()},
               "split": (metadata or {}).get("split", "evaluation"), "metadata": metadata or {}}
     _json(destination / "dataset.json", result)
     try:
@@ -315,6 +319,8 @@ def prepare_vidore(root: Path, collection: str, language: str | None = None) -> 
     raw = Path(root) / "raw" / f"vidore-v3-{collection}"
     info, sources = _hf_files(repository, raw, ("corpus/", "queries/", "qrels/", "documents_metadata/"), VIDORE_REVISIONS[collection])
     destination = Path(root) / f"vidore-v3-{collection}-{language}"
+    snapshot_counts = {config["config_name"]: sum(split["num_examples"] for split in config["splits"])
+                       for config in info["cardData"]["dataset_info"]}
     corpus = []
     for row in _parquet_rows(raw, "corpus"):
         identifier = str(row["corpus_id"])
@@ -343,9 +349,12 @@ def prepare_vidore(root: Path, collection: str, language: str | None = None) -> 
     return write_dataset(destination, dataset_id=destination.name, track="document", revision=info["sha"],
                          corpus=corpus, queries=queries, qrels=qrels, sources=sources,
                          license="CC-BY-4.0 annotations; document-specific licenses in documents_metadata.json",
-                         text_source="published_markdown", expected_counts=dict(zip(("corpus", "queries"), VIDORE_COUNTS[collection])),
+                         text_source="published_markdown", expected_counts={"corpus": snapshot_counts["corpus"], "queries": VIDORE_COUNTS[collection][1]},
                          metadata={"repository": repository, "split": "test", "language": language,
-                                   "query_bounding_boxes_excluded": True, "gold_answers_in_candidate_text": False})
+                                   "query_bounding_boxes_excluded": True, "gold_answers_in_candidate_text": False,
+                                   "paper_corpus_count": VIDORE_COUNTS[collection][0],
+                                   "pinned_snapshot_corpus_count": snapshot_counts["corpus"],
+                                   "paper_count_discrepancy": snapshot_counts["corpus"] != VIDORE_COUNTS[collection][0]})
 
 
 def normalize_transcript(text: str) -> str:
@@ -398,13 +407,13 @@ def strip_python_docstrings(code: str) -> str:
     """
     ranges = []
     try:
-        tree = ast.parse(code)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(code)
         lines = code.splitlines(keepends=True)
         for node in ast.walk(tree):
-            if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.body:
-                first = node.body[0]
-                if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) and isinstance(first.value.value, str):
-                    ranges.append((first.lineno, first.col_offset, first.end_lineno, first.end_col_offset))
+            if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+                ranges.append((node.lineno, node.col_offset, node.end_lineno, node.end_col_offset))
         for start, col, end, end_col in sorted(ranges, reverse=True):
             # AST column offsets are UTF-8 byte offsets, not Unicode codepoints.
             before = lines[start - 1].encode()[:col].decode()
@@ -418,7 +427,7 @@ def strip_python_docstrings(code: str) -> str:
     for token in tokenize.generate_tokens(io.StringIO(code).readline):
         if token.type == tokenize.COMMENT:
             continue
-        if token.type == tokenize.STRING and previous in (tokenize.INDENT, tokenize.NEWLINE):
+        if token.type == tokenize.STRING and previous in (tokenize.INDENT, tokenize.NEWLINE, tokenize.DEDENT):
             # A standalone string at block start is a docstring; other literals stay.
             tokens.append((tokenize.NAME, "pass"))
         else:
@@ -426,6 +435,71 @@ def strip_python_docstrings(code: str) -> str:
         if token.type not in (tokenize.NL, tokenize.COMMENT):
             previous = token.type
     return tokenize.untokenize(tokens).strip()
+
+
+@lru_cache(maxsize=8)
+def _code_parser(language: str):
+    try:
+        from tree_sitter_language_pack import get_parser
+    except ImportError as error:
+        raise RuntimeError("CodeSearchNet preparation requires tree-sitter-language-pack") from error
+    return get_parser(language)
+
+
+def strip_source_comments(code: str, language: str) -> str:
+    """Remove syntax-tree comment nodes and Python standalone string comments.
+
+    This operates without reading a query/docstring label. Runtime string
+    literals, identifiers, original whitespace and non-comment syntax remain.
+    Tree-sitter also handles Python 2 and mixed-indentation source snippets.
+    """
+    prefix = b"<?php\n" if language == "php" and not code.lstrip().startswith("<?") else b""
+    payload = prefix + code.encode("utf-8")
+    tree = _code_parser(language).parse(payload)
+    ranges = []
+    stack = [tree.root_node]
+    while stack:
+        node = stack.pop()
+        is_comment = "comment" in node.type
+        line_start = payload.rfind(b"\n", 0, node.start_byte) + 1
+        line_end = payload.find(b"\n", node.end_byte)
+        if line_end < 0:
+            line_end = len(payload)
+        lexical_statement = (not payload[line_start:node.start_byte].strip()
+                             and not payload[node.end_byte:line_end].strip())
+        standalone_python_string = language == "python" and node.type in {"string", "concatenated_string"} and (
+            node.parent is not None and (node.parent.type in {"block", "module"} or (
+                node.parent.type == "expression_statement" and len(node.parent.named_children) == 1)
+                or (node.parent.type == "ERROR" and lexical_statement)))
+        if is_comment or standalone_python_string:
+            ranges.append((node.start_byte, node.end_byte))
+        else:
+            stack.extend(node.children)
+    for start, end in sorted(ranges, reverse=True):
+        # Keep newlines so adjacent source tokens never accidentally concatenate.
+        removed = payload[start:end]
+        payload = payload[:start] + bytes(10 if byte == 10 else 32 for byte in removed) + payload[end:]
+    return payload[len(prefix):].decode("utf-8").strip()
+
+
+def select_codesearchnet_ids(code_ids: list[str], query_ids: list[str], available: set[str],
+                            expected_corpus_count: int) -> tuple[list[str], dict]:
+    """Reproduce the official preprocess.py intersection, auditing every exclusion.
+
+    The released codebase.txt files contain URLs absent from the associated raw
+    validation/test archives. Upstream explicitly emits only available URLs;
+    the resulting gallery must equal the published cleaned benchmark count.
+    """
+    missing_queries = set(query_ids) - available
+    if missing_queries:
+        raise ValueError(f"Missing {len(missing_queries)} official CodeSearchNet test queries")
+    selected = [url for url in code_ids if url in available]
+    if len(selected) != expected_corpus_count:
+        raise ValueError(f"Official cleaned gallery mismatch: {len(selected)} != {expected_corpus_count}")
+    return selected, {"upstream_codebase_url_lines": len(code_ids),
+                      "upstream_urls_absent_from_raw_validation_test": len(code_ids) - len(selected),
+                      "selection_rule": "Official preprocess.py: emit codebase.txt URL only if present in raw validation/test",
+                      "published_cleaned_corpus_count": expected_corpus_count}
 
 
 def prepare_codesearchnet(root: Path, language: str = "python") -> dict:
@@ -455,20 +529,20 @@ def prepare_codesearchnet(root: Path, language: str = "python") -> dict:
                     row = json.loads(line)
                     if row["url"] in wanted:
                         examples[row["url"]] = row
-    missing = wanted - examples.keys()
-    if missing:
-        raise ValueError(f"Missing {len(missing)} official cleaned CodeSearchNet records")
+    code_ids, selection_audit = select_codesearchnet_ids(code_ids, query_ids, set(examples), counts[language][0])
     corpus = []
     for url in code_ids:
         row = examples[url]
-        if language == "python":
-            text = strip_python_docstrings(row["code"])
+        text = strip_source_comments(row["code"], language)
+        # Comments can disrupt parsing of old Python 2 snippets. Reparse after
+        # removal until stable; labels never influence which text is removed.
+        for _ in range(3):
+            cleaned = strip_source_comments(text, language)
+            if cleaned == text:
+                break
+            text = cleaned
         else:
-            # Official code_tokens exclude docstrings and comments in CodeSearchNet.
-            text = " ".join(row["code_tokens"])
-        docstring = row.get("docstring", "").strip()
-        if docstring and len(docstring) >= 20 and docstring in text:
-            raise ValueError(f"Source docstring remains in candidate: {url}")
+            raise ValueError(f"Source cleanup did not stabilize: {url}")
         corpus.append({"id": url, "text": text, "metadata": {"language": language,
                        "repository": row.get("repo"), "path": row.get("path"),
                        "text_provenance": _provenance("source_code_docstrings_removed")}})
@@ -479,10 +553,11 @@ def prepare_codesearchnet(root: Path, language: str = "python") -> dict:
     destination = Path(root) / f"codesearchnet-{language}-test"
     return write_dataset(destination, dataset_id=destination.name, track="code", revision=revision,
                          corpus=corpus, queries=queries, qrels=qrels, sources=sources,
-                         license="CodeSearchNet dataset CC0-1.0; original source-code repository licenses apply",
+                         license="Zenodo mirror declares CC-BY-4.0; original source-code repository licenses apply; CodeSearchNet tooling MIT",
                          text_source="source_code_docstrings_removed", expected_counts=dict(zip(("corpus", "queries"), counts[language])),
                          metadata={"split": "test", "gallery": "official cleaned validation+test codebase.txt",
-                                   "language": language, "query_language": "en", "source_docstrings_removed": True})
+                                   "language": language, "query_language": "en", "source_docstrings_removed": True, "comment_removal": "tree-sitter-language-pack 1.21.0 syntax nodes",
+                                   "selection_audit": selection_audit})
 
 
 def prepare_clotho(root: Path) -> dict:
@@ -519,6 +594,46 @@ def prepare_clotho(root: Path) -> dict:
                          license="Captions: Tampere noncommercial attribution license; audio: individual Freesound licenses",
                          text_source="absent_requires_generation", expected_counts={"corpus": 1045, "queries": 5225},
                          metadata={"split": "evaluation", "multi_positive_extension": "not_in_this_release_import"})
+
+
+def prepare_clotho_additional(root: Path) -> dict:
+    """Retain all rows in the official DCASE2025 multi-positive release.
+
+    The task webpage says 1,069 queries, but its linked CSV at this immutable
+    revision has 1,037. This named protocol preserves the discrepancy explicitly.
+    """
+    root = Path(root)
+    base = root / "clotho-v2.1-evaluation"
+    manifest = validate_dataset(base)
+    revision = "c78422fcbed579877919620a30075baccf82bf2b"
+    raw = root / "raw" / "clotho-v2.1" / "metadata_eval.csv"
+    source = _download(f"https://raw.githubusercontent.com/CPJKU/dcase2025_task6_baseline/{revision}/resources/metadata_eval.csv", raw)
+    with raw.open(encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    corpus = read_jsonl(base / "corpus.jsonl")
+    destination = root / "clotho-dcase2025-additional-relevance"
+    for row in corpus:
+        for filename in row["media"].values():
+            _link_asset(base / filename, destination / filename)
+    original_groups = {normalize_transcript(row["text"]): row["metadata"]["group_id"]
+                       for row in read_jsonl(base / "queries.jsonl")}
+    queries, qrels = [], []
+    for index, row in enumerate(rows):
+        query_id = str(index)
+        references = ast.literal_eval(row["audio_filenames"])
+        if not isinstance(references, list) or not all(isinstance(x, str) for x in references):
+            raise ValueError("Invalid official additional audio references")
+        group = original_groups.get(normalize_transcript(row["query"]), "query:" + query_id)
+        queries.append({"id": query_id, "text": row["query"], "metadata": {"language": "en", "group_id": group}})
+        qrels.extend({"query_id": query_id, "corpus_id": Path(filename).stem, "relevance": 1.0}
+                     for filename in references)
+    return write_dataset(destination, dataset_id=destination.name, track="environment_audio", revision=revision,
+                         corpus=corpus, queries=queries, qrels=qrels, sources=manifest["sources"] + [source],
+                         license=manifest["license"], text_source="absent_requires_generation",
+                         expected_counts={"corpus": 1045, "queries": 1037},
+                         metadata={"split": "DCASE2025 development-testing additional relevance", "primary_metric": "mAP@16",
+                                   "upstream_webpage_claims_queries": 1069, "actual_pinned_csv_queries": 1037,
+                                   "count_discrepancy": "Official linked CSV has 1037 rows; all are retained without subsampling."})
 
 
 def _unavailable(destination: Path, *, dataset_id: str, track: str, revision: str, reason: str,
@@ -602,7 +717,7 @@ def prepare_msrvtt(root: Path, media_dir: Path | None = None, download_media: bo
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", choices=["xm3600", "vidore", "fleurs", "codesearchnet", "clotho", "cirr", "msrvtt", "validate"])
+    parser.add_argument("dataset", choices=["xm3600", "vidore", "fleurs", "codesearchnet", "clotho", "clotho-additional", "cirr", "msrvtt", "validate"])
     parser.add_argument("--root", type=Path, default=Path("data/multimodal"))
     parser.add_argument("--collection", choices=VIDORE_COLLECTIONS, default="computer_science")
     parser.add_argument("--language")
@@ -619,6 +734,8 @@ def main(argv: list[str] | None = None) -> None:
         result = prepare_codesearchnet(args.root, args.language or "python")
     elif args.dataset == "clotho":
         result = prepare_clotho(args.root)
+    elif args.dataset == "clotho-additional":
+        result = prepare_clotho_additional(args.root)
     elif args.dataset == "cirr":
         result = prepare_cirr(args.root, args.media_dir)
     elif args.dataset == "msrvtt":
