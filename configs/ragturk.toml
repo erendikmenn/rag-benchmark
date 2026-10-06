@@ -1,0 +1,52 @@
+# Paths are relative to this file's parent directory's parent (the repository).
+[dataset]
+path = "data/ragturk"
+revision = "86d35335d01b30869ab8eb392e380921fa1e2185"
+dev_size = 2000
+seed = 42
+
+[experiment]
+cache_dir = ".cache/benchmark"
+candidates = 50
+context_k = 5
+variants = ["bm25", "bm25_laya", "bge", "bge_laya", "embeddinggemma", "embeddinggemma_laya", "bm25_bge", "bm25_bge_laya", "bm25_embeddinggemma", "bm25_embeddinggemma_laya"]
+
+[embeddings.bge]
+model_id = "BAAI/bge-m3"
+revision = "5617a9f61b028005a4858fdac845db406aefb181"
+cache_dir = ".cache/models"
+device = "mps"
+dtype = "float32"
+batch_size = 32
+
+[embeddings.embeddinggemma]
+model_id = "google/embeddinggemma-2"
+revision = "914f7f89142e33e77833254d9c9b90c3cef7303b"
+cache_dir = ".cache/models"
+device = "mps"
+dtype = "float32"
+batch_size = 32
+
+[laya]
+model_id = "convaiinnovations/laya-multilingual"
+revision = "1720e3e3357cfe1e281542e223f8273b0890ca34"
+cache_dir = ".cache/models"
+device = "mps"
+dtype = "float32"
+backend = "sdk"
+max_len = 8192
+batch_size = 8
+
+[generator]
+base_url = "http://127.0.0.1:8080/v1"
+model = "gemma4"
+model_id = "google/gemma-4-26B-A4B-it-qat-q4_0-gguf"
+revision = "d1c082be9cf3c8a514acf63b8761f4b41935842e"
+filename = "gemma-4-26B_q4_0-it.gguf"
+model_sha256 = "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d"
+model_path = "models/gemma-4-26B_q4_0-it.gguf"
+max_tokens = 256
+temperature = 0.0
+seed = 42
+timeout = 120
+enable_thinking = false
