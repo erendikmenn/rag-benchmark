@@ -437,7 +437,7 @@
       "dataset": "msrvtt-1k-a",
       "queries": 1000,
       "candidates": 1000,
-      "source_report_sha256": "dd11e771f6b36166067d8fb1a3dc813eb1dbe2cc05a4b979616e16622f62c81c",
+      "source_report_sha256": "789b604ee160245ca5001bcbf739d0227bcd4a789761f86735df81193f55ebaa",
       "measured_cells": 16,
       "baseline_cells_reproduced": 6,
       "native_primary_dimensions": {
@@ -520,5 +520,6 @@
       }
     }
   ],
-  "no_pooled_accuracy": true
+  "no_pooled_accuracy": true,
+  "source_report_hash_scope": "SHA256 of each linked dimension-sweep.json, not the upstream baseline report"
 }
