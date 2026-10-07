@@ -1,8 +1,8 @@
 # Published primary-matrix progress
 
-**1,060 / 18,460 primary experiment cells complete (5.74%).** 17,400 remain. This is a published-result snapshot, not a percentage of elapsed time or all project work.
+**1,072 / 18,460 primary experiment cells complete (5.81%).** 17,388 remain. This is a published-result snapshot, not a percentage of elapsed time or all project work.
 
-Snapshot: 2026-10-07T06:18:37.091220+00:00.
+Snapshot: 2026-10-07T10:18:02.850688+00:00.
 
 The denominator fixes **21 main collections**: two XM3600 languages, eight ViDoRe collections, two Clotho relevance protocols, one FLEURS collection, one MSR-VTT collection, six CodeSearchNet languages and CIRR validation. They expand to **923 collection × retrieval-subset conditions**. Each has two budgets and `1 no-reranker + 3 rerankers × K=20/50/100`: **923 × 2 × 10 = 18,460 cells**.
 
@@ -13,12 +13,12 @@ The denominator fixes **21 main collections**: two XM3600 languages, eight ViDoR
 | environment_audio | 2 | 12 | 2,520 | 0.48% |
 | speech | 1 | 62 | 620 | 10.00% |
 | video | 1 | 6 | 1,260 | 0.48% |
-| code | 6 | 72 | 840 | 8.57% |
+| code | 6 | 84 | 840 | 10.00% |
 | composed_image | 1 | 0 | 620 | 0.00% |
 
 Only `completed` cells using every query in a frozen collection count. The key is logical collection + method family + budget + rerank K. Historical BM25/native exports, the Laya milestone and other overlapping snapshots are counted once; all duplicate metric values must agree. The FLEURS native result repeated under the ASR-view identity remains the same logical condition.
 
-The input contains 1,710 completed export cells; 650 duplicate occurrences are removed. There are zero duplicate metric mismatches. Failed, unsupported and planned cells contribute zero. The five-query Gemma technical smoke contributes zero.
+The input contains 1,724 completed export cells; 652 duplicate occurrences are removed. There are zero duplicate metric mismatches. Failed, unsupported and planned cells contribute zero. The five-query Gemma technical smoke contributes zero.
 
 **236 / 1,284 global method families (18.38%)** have at least one full-collection result. That higher percentage collapses languages and collections and must not replace the primary-matrix percentage. 20 collections have some completed cells; 0 have every primary cell completed.
 

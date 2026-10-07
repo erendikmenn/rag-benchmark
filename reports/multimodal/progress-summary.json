@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T06:18:37.091220+00:00",
+  "snapshot_utc": "2026-10-07T10:18:02.850688+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,10 +16,10 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1060,
-    "remaining_cells": 17400,
-    "completion_fraction": 0.05742145178764897,
-    "completion_percent": 5.742145178764897,
+    "completed_cells": 1072,
+    "remaining_cells": 17388,
+    "completion_fraction": 0.0580715059588299,
+    "completion_percent": 5.80715059588299,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
@@ -37,7 +37,7 @@
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 278,
+      "covered": 284,
       "planned": 3692
     }
   },
@@ -52,15 +52,28 @@
     "successful_status_only": "completed",
     "failed_unsupported_planned_cells_count_as_complete": false,
     "aliases": {
-      "fleurs-tr_tr-whisper": "fleurs-tr_tr-test"
+      "fleurs-tr_tr-whisper": "fleurs-tr_tr-test",
+      "xm3600-tr-described": "xm3600-tr",
+      "xm3600-en-described": "xm3600-en",
+      "clotho-v2.1-evaluation-described": "clotho-v2.1-evaluation",
+      "clotho-dcase2025-additional-relevance-described": "clotho-dcase2025-additional-relevance",
+      "msrvtt-1k-a-described": "msrvtt-1k-a"
     },
-    "alias_validation": "FLEURS original and ASR-view query, qrel and asset inventories are byte-identical.",
+    "alias_validation": "Semantic query/qrel records, corpus IDs/media references and asset SHA256/size inventories must match; representation text may differ.",
+    "alias_inventory_hashes": {
+      "fleurs-tr_tr-whisper": {
+        "queries.jsonl": "22ada79a0e64abc6aabd8036d88098307bbedb6573e7b06a27f14326d7ad0f53",
+        "qrels.jsonl": "245e0d2b03234addbfbf1318917cefc4edf283ea50e7f6ae6d68f01ee667e1af",
+        "assets.jsonl": "47f3b5068bcb0f05b202a581d2d57974848b6c7c56b4cc15e02cf460d34a0182",
+        "corpus.jsonl": "0aa817b8ddf1d6f6c3802b79280113cac99f2f72f87b7c6256db7d91465bf23e"
+      }
+    },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 32,
-    "raw_completed_export_cells": 1710,
-    "duplicate_completed_cell_occurrences": 650,
+    "full_collection_source_reports": 33,
+    "raw_completed_export_cells": 1724,
+    "duplicate_completed_cell_occurrences": 652,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "2eba619456615205dc191e0636c80a88232cd7d67299f08a9b6316b88fd7f562"
+    "canonical_key_manifest_sha256": "6246ac5d2666973d496d8ffcbdae3d367139d476690a3071bbc6b00a069ce1c0"
   },
   "track_progress": [
     {
@@ -113,9 +126,9 @@
       "main_collections": 6,
       "retrieval_subsets_per_collection": 7,
       "planned_cells": 840,
-      "completed_cells": 72,
-      "remaining_cells": 768,
-      "completion_fraction": 0.08571428571428572
+      "completed_cells": 84,
+      "remaining_cells": 756,
+      "completion_fraction": 0.1
     },
     {
       "track": "composed_image",
@@ -322,8 +335,8 @@
       "collection": "codesearchnet-javascript-test",
       "track": "code",
       "planned_cells": 140,
-      "completed_cells": 2,
-      "remaining_cells": 138,
+      "completed_cells": 14,
+      "remaining_cells": 126,
       "dataset_status": "ready",
       "manifest_sha256": "566a17640e5fda4b33cd1e7238bc404d4f73ee67c41346151d8c282a7fff08ba",
       "fully_completed_main_grid": false
@@ -491,6 +504,19 @@
         "cell_status_counts": {
           "completed": 2,
           "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-javascript-test-shared-segments-dense-fusions/report.json",
+        "sha256": "189e15376fe06fcf1252b806191ad253cb97acc6431a5c4a6fcf0778d131ff42",
+        "dataset_id": "codesearchnet-javascript-test",
+        "canonical_collection": "codesearchnet-javascript-test",
+        "dataset_identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
         }
       },
       {

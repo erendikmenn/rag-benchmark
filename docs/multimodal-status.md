@@ -1,8 +1,8 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 13:08 Europe/Istanbul.
+Updated: 2026-10-07 13:21 Europe/Istanbul.
 
-**The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval is active at this update; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
+**The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval has completed; Turkish speech Laya/BGE reranking is active at this update; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
 The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval subsets and 1,284 method families. The [registry](../configs/multimodal-variants.csv) describes planned scope, not completed experiments. Each actual run publishes completed, planned, unsupported and failed cells separately.
 
@@ -13,7 +13,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
 | Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete; source-only Whisper ASR complete on all 743 recordings (WER 7.29%); all 31 B/G/E/N/J subsets × two budgets complete (62 cells); speech rerankers pending |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
-| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python, Ruby, Go, Java and PHP full B/G/E comparisons complete (49,270 queries, 70 cells); JavaScript dense retrieval active; all code rerankers pending |
+| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; All six language B/G/E comparisons complete (52,561 queries, 84 cells); JavaScript uses the separately labelled shared-segment protocol; all code rerankers pending |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
 
 ## Dataset and model audit notes
@@ -58,7 +58,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - [Video comparison](../reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md): full 1K-A gallery and prescribed 1,000 queries complete. Both adapters use 1 fps / at most 16 visual frames; no soundtrack is consumed. EG2 beats the CLIP frame-pooling baseline by 21.20 percentage points at Hit@5 (95% paired interval: 18.20–24.20).
 
-- [Python/Ruby/Go/Java/PHP dense retrieval](../reports/multimodal/code-dense-summary.md): all 70 method/budget cells complete on 49,270 queries. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby; Go is 96.28% / 87.70% / 61.94%; Java is 83.80% / 63.73% / 39.42%; PHP is 75.75% / 57.74% / 33.27%. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
+- [Python/Ruby/Go/Java/PHP/JavaScript dense retrieval](../reports/multimodal/code-dense-summary.md): all 84 method/budget cells complete on 52,561 queries. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby; Go is 96.28% / 87.70% / 61.94%; Java is 83.80% / 63.73% / 39.42%; PHP is 75.75% / 57.74% / 33.27%; JavaScript is 79.91% / 58.22% / 36.62% under its separate shared-segment protocol. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
 
 - [CS document comparison](../reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md): 126 completed retrieval cells. Highest observed primary Hit@5 is BM25 + native EG2 + ColQwen (98.14%); standalone ColQwen has the highest Recall@5 (65.34%) and nDCG@10 (0.7585). All 215 queries connect into one source-document group, so paired confidence intervals are withheld. These are descriptive test-set comparisons.
 
@@ -75,7 +75,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - Go dense retrieval completed at 08:08 Europe/Istanbul: all 8,122 queries over 28,120 functions, with 14 completed method/budget cells. EG2 exceeds BGE-M3 by 8.58 percentage points at Hit@5 (95% paired source-function interval: 7.93–9.22). This interval groups functions, not whole repositories, and is an exploratory comparison. Java followed and completed at 08:37; PHP completed at 09:08. Other code, document, generation and reranking conditions remain deferred.
 
-- [Main-matrix progress](../reports/multimodal/progress-summary.md): 1,060 of 18,460 planned dataset/method/budget/K cells complete (5.74%), with overlapping exports deduplicated and five-query technical checks excluded. The 21-collection denominator includes blocked CIRR and excludes additional representation/parameter and answer-quality experiments; this is not a time or compute-progress estimate.
+- [Main-matrix progress](../reports/multimodal/progress-summary.md): 1,072 of 18,460 planned dataset/method/budget/K cells complete (5.81%), with overlapping exports deduplicated and five-query technical checks excluded. The 21-collection denominator includes blocked CIRR and excludes additional representation/parameter and answer-quality experiments; this is not a time or compute-progress estimate.
 
 ## Continuation development and external prerequisites
 
@@ -83,3 +83,5 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 - Description-view progress counting is being validated against unchanged source queries, qrels and media inventory. Duplicate measurements require all 17 metrics to match; a different representation is not silently counted as independent evidence.
 - The eight frozen ViDoRe collections contain evaluation-only reference answers; a separate QA preparation/evaluation path is being developed. Availability is not a completed answer-quality evaluation. Human-calibrated semantic correctness remains pending.
 - CIRR raw images remain behind the publisher’s authorized-access process. The form, terms acceptance and email were not submitted; official-media absence is still an external prerequisite for its 620 main cells. [Publisher access page](https://cirr.zheyuanliu.me/raw-image-download).
+
+- JavaScript completed at 13:12 Europe/Istanbul: 3,291 queries, 13,981 source functions and 14,084 lossless retrieval chunks (two functions require splitting). All 14 method/budget cells, 46,074 rankings and 783,258 per-query metric values were independently reproduced. The previously completed CS text-reranker job then validated cached results; it is not additional fresh inference. Its original complete 126-comparison audit was retained because the report source hash is unchanged.

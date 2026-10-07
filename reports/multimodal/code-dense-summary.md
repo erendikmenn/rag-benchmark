@@ -1,10 +1,10 @@
 # Code dense retrieval comparisons
 
-5 complete language collections, 49,270 queries and 70 method/budget cells. All seven nonempty combinations of BM25, BGE-M3 dense and EmbeddingGemma 2 text retrieval are measured. No reranker or answer generator is used.
+6 complete language collections, 52,561 queries and 84 method/budget cells. All seven nonempty combinations of BM25, BGE-M3 dense and EmbeddingGemma 2 text retrieval are measured. No reranker or answer generator is used.
 
 Candidates contain cleaned source code, without the reference docstring/comments. Official English queries and the frozen gallery are fixed within each language. Results from these test collections are observations, not development-set tuning or a claim of general code correctness.
 
-Both text encoders use MPS/BF16, batch size 8, complete-input context checks and normalized FP32 retrieval vectors. BGE-M3 uses 1,024 dimensions; EG2 uses 768 and its general `task: search result | query:` prefix, not the separately planned code-specific prompt. Per-item encoding diagnostics were unavailable for these text adapters; independent corpus preflight and runtime hard guards checked context limits. Missing diagnostics are not a measured zero-truncation result. Exact model revisions remain in each source report.
+Both text encoders use MPS/BF16, batch size 8, complete-input context checks and normalized FP32 retrieval vectors. BGE-M3 uses 1,024 dimensions; EG2 uses 768 and its general `task: search result | query:` prefix, not the separately planned code-specific prompt. Per-item encoding diagnostics were unavailable for these text adapters; independent corpus preflight and runtime hard guards checked context limits. Missing diagnostics are not a measured zero-truncation result. JavaScript is a separately identified lossless shared-segmentation condition: both encoders use common boundaries for overlength functions and take maximum chunk cosine at the original function ID; the other five languages keep whole functions. Exact model revisions remain in each source report.
 
 Fusion uses equal-weight RRF (k=60). The primary per-channel condition takes up to 100 results per channel. The control divides a total budget of 100 across channels before deduplication, without filling missing or duplicate candidates. BM25 keeps positive lexical matches only.
 
@@ -98,6 +98,27 @@ Gallery scope: **52,660 cleaned functions** from 61,617 upstream `codebase.txt` 
 
 [Full report](codesearchnet-php-test-dense-fusions/report.md) · [Paired comparisons](codesearchnet-php-test-dense-fusions/paired-comparisons.md)
 
-Across the completed Python, Ruby, Go, Java, Php collections, standalone EG2 has the highest observed Hit@5 among all seven methods in both budget modes. Equal-weight fusion with the other channels lowers its score here; this does not establish that every fusion strategy is worse. The paired intervals in the linked reports group shared source functions, not whole repositories. They are exploratory marginal intervals, without multiple-comparison correction.
+## Javascript: 3,291 queries / 13,981 functions
+
+| Method | Hit@5 per-channel | Hit@5 total-100 | MRR@10 per-channel | nDCG@10 per-channel |
+|---|---:|---:|---:|---:|
+| BM25 | 36.62% | 36.62% | 0.2753 | 0.3124 |
+| BGE-M3 | 58.22% | 58.22% | 0.4722 | 0.5150 |
+| EmbeddingGemma 2 | 79.91% | 79.91% | 0.6804 | 0.7213 |
+| BM25 + BGE-M3 | 56.40% | 56.31% | 0.4445 | 0.4925 |
+| BM25 + EG2 | 64.21% | 66.73% | 0.5079 | 0.5653 |
+| BGE-M3 + EG2 | 71.25% | 71.29% | 0.5963 | 0.6397 |
+| BM25 + BGE-M3 + EG2 | 68.55% | 70.10% | 0.5475 | 0.6001 |
+
+**Separate JavaScript input protocol:** 13,981 source functions produce 14,084 retrieval chunks. Two overlength functions are split along the same lossless boundaries for both encoders; each function receives its maximum chunk cosine. All source characters and original relevance IDs are preserved. BM25 keeps original whole functions. These are not silently truncated whole-function embeddings; this representation differs from the other five languages.
+
+
+Primary EG2 − BGE-M3: Hit@5 **+21.70 percentage points** (95% paired source-function interval [20.15, 23.25]); nDCG@10 **+0.2064** [0.1943, 0.2187]. The analysis uses 3,291 labelled source-function groups.
+
+Gallery scope: **13,981 cleaned functions** from 28,141 upstream `codebase.txt` URL lines; **14,160 URLs are absent from the raw validation/test archives**. The manifest's selection rule is: “Official preprocess.py: emit codebase.txt URL only if present in raw validation/test”. This reproduces the published cleaned-gallery count; it does not cover all original CodeSearchNet functions. All 3,291 official test queries remain included.
+
+[Full report](codesearchnet-javascript-test-shared-segments-dense-fusions/report.md) · [Paired comparisons](codesearchnet-javascript-test-shared-segments-dense-fusions/paired-comparisons.md)
+
+Across the completed Python, Ruby, Go, Java, Php, Javascript collections, standalone EG2 has the highest observed Hit@5 among all seven methods in both budget modes. Equal-weight fusion with the other channels lowers its score here; this does not establish that every fusion strategy is worse. The paired intervals in the linked reports group shared source functions, not whole repositories. They are exploratory marginal intervals, without multiple-comparison correction.
 
 These scores measure finding labelled source functions, not generating correct code or answering a question. Remaining language/model/reranker conditions are not included until completed. No pooled accuracy is computed. [Machine-readable summary](code-dense-summary.json).

@@ -11,6 +11,7 @@ Each row is a separate run. Query and candidate counts across language/protocol 
 | [codesearchnet-java-test-bm25](codesearchnet-java-test-bm25/report.md) | frozen_collection | 10,955 / 10,955 | 40,347 | 1 | 0 |
 | [codesearchnet-java-test-dense-fusions](codesearchnet-java-test-dense-fusions/report.md) | frozen_collection | 10,955 / 10,955 | 40,347 | 7 | 0 |
 | [codesearchnet-javascript-test-bm25](codesearchnet-javascript-test-bm25/report.md) | frozen_collection | 3,291 / 3,291 | 13,981 | 1 | 0 |
+| [codesearchnet-javascript-test-shared-segments-dense-fusions](codesearchnet-javascript-test-shared-segments-dense-fusions/report.md) | frozen_collection | 3,291 / 3,291 | 13,981 | 7 | 0 |
 | [codesearchnet-php-test-bm25](codesearchnet-php-test-bm25/report.md) | frozen_collection | 14,014 / 14,014 | 52,660 | 1 | 0 |
 | [codesearchnet-php-test-dense-fusions](codesearchnet-php-test-dense-fusions/report.md) | frozen_collection | 14,014 / 14,014 | 52,660 | 7 | 0 |
 | [codesearchnet-python-test-bm25](codesearchnet-python-test-bm25/report.md) | frozen_collection | 14,918 / 14,918 | 43,827 | 1 | 0 |

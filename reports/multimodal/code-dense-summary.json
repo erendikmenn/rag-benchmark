@@ -4,11 +4,15 @@
   "fusion": "equal_weight_rrf_k60",
   "channel_budget": 100,
   "source_report_hash_scope": "SHA256 of each exported report.json; local run bytes checked equal",
-  "evaluated_query_count_across_languages": 49270,
-  "measured_cells": 70,
+  "evaluated_query_count_across_languages": 52561,
+  "measured_cells": 84,
   "rows": [
     {
       "language": "python",
+      "retrieval_protocol": {
+        "condition": "whole_function_dense",
+        "segmentation_applied": false
+      },
       "dataset": {
         "id": "codesearchnet-python-test",
         "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
@@ -652,6 +656,10 @@
     },
     {
       "language": "ruby",
+      "retrieval_protocol": {
+        "condition": "whole_function_dense",
+        "segmentation_applied": false
+      },
       "dataset": {
         "id": "codesearchnet-ruby-test",
         "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
@@ -1295,6 +1303,10 @@
     },
     {
       "language": "go",
+      "retrieval_protocol": {
+        "condition": "whole_function_dense",
+        "segmentation_applied": false
+      },
       "dataset": {
         "id": "codesearchnet-go-test",
         "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
@@ -1938,6 +1950,10 @@
     },
     {
       "language": "java",
+      "retrieval_protocol": {
+        "condition": "whole_function_dense",
+        "segmentation_applied": false
+      },
       "dataset": {
         "id": "codesearchnet-java-test",
         "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
@@ -2581,6 +2597,10 @@
     },
     {
       "language": "php",
+      "retrieval_protocol": {
+        "condition": "whole_function_dense",
+        "segmentation_applied": false
+      },
       "dataset": {
         "id": "codesearchnet-php-test",
         "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
@@ -3221,9 +3241,683 @@
         "upstream_urls_absent_from_raw_validation_test": 8957
       },
       "dataset_manifest_sha256": "bb5e58ed6a1121da9490fd1b238cc087fb9ef1c39bbd3a3d46006965985a2880"
+    },
+    {
+      "language": "javascript",
+      "retrieval_protocol": {
+        "condition": "shared_segmentation_function_max_cosine",
+        "segmentation_applied": true,
+        "segmenter": {
+          "class": "rag_benchmark.multimodal_code.SharedCodeSegmenter",
+          "identity": "266efc96c4611795983a342d3f981db4fbcb9621e6d0d49480298e44022b7dde",
+          "config": {},
+          "protocol": {
+            "max_tokens_after_native_document_formatting": 8192,
+            "maximum_characters_per_chunk_for_overflowing_functions": 4096,
+            "version": "shared-code-segments-max-cosine-v1",
+            "condition": "shared_segmentation_function_max_cosine",
+            "boundary_policy": "last_complete_source_line_within_cap_else_character_boundary;halve_until_both_fit",
+            "native_single_chunk_policy": "keep_whole_function_if_it_fits_both_tokenizers",
+            "source_coverage": "exact_concatenation_no_overlap_no_normalization_no_dropped_characters",
+            "function_score": "maximum_cosine_over_all_its_chunks",
+            "tokenizers": {
+              "bge": {
+                "model_id": "BAAI/bge-m3",
+                "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+              },
+              "embeddinggemma": {
+                "model_id": "google/embeddinggemma-2",
+                "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b"
+              }
+            }
+          }
+        },
+        "encoded_corpus_chunks": 14084
+      },
+      "dataset": {
+        "id": "codesearchnet-javascript-test",
+        "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+        "track": "code",
+        "identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+        "corpus_count": 13981,
+        "query_count": 3291,
+        "qrel_count": 3291,
+        "positive_qrel_count": 3291,
+        "empty_candidate_text_count": 0,
+        "missing_candidate_text_count": 0,
+        "split": "test"
+      },
+      "source_report": "codesearchnet-javascript-test-shared-segments-dense-fusions/report.json",
+      "source_report_sha256": "189e15376fe06fcf1252b806191ad253cb97acc6431a5c4a6fcf0778d131ff42",
+      "scope": "frozen_collection",
+      "cells": [
+        {
+          "variant_id": "code__b__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.20905499848070494,
+            "hit@10": 0.4308720753570343,
+            "hit@20": 0.5007596475235491,
+            "hit@5": 0.3661501063506533,
+            "map@16": 0.27887156565369875,
+            "mrr@1": 0.20905499848070494,
+            "mrr@10": 0.27530759695755136,
+            "mrr@20": 0.28015562344565453,
+            "mrr@5": 0.26663121644890103,
+            "ndcg@1": 0.20905499848070494,
+            "ndcg@10": 0.3123528273322181,
+            "ndcg@20": 0.33001660805786476,
+            "ndcg@5": 0.2913883460745005,
+            "recall@1": 0.20905499848070494,
+            "recall@10": 0.4308720753570343,
+            "recall@20": 0.5007596475235491,
+            "recall@5": 0.3661501063506533
+          },
+          "mean_raw_candidates": 99.3792160437557,
+          "mean_unique_candidates": 99.3792160437557
+        },
+        {
+          "variant_id": "code__b__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.20905499848070494,
+            "hit@10": 0.4308720753570343,
+            "hit@20": 0.5007596475235491,
+            "hit@5": 0.3661501063506533,
+            "map@16": 0.27887156565369875,
+            "mrr@1": 0.20905499848070494,
+            "mrr@10": 0.27530759695755136,
+            "mrr@20": 0.28015562344565453,
+            "mrr@5": 0.26663121644890103,
+            "ndcg@1": 0.20905499848070494,
+            "ndcg@10": 0.3123528273322181,
+            "ndcg@20": 0.33001660805786476,
+            "ndcg@5": 0.2913883460745005,
+            "recall@1": 0.20905499848070494,
+            "recall@10": 0.4308720753570343,
+            "recall@20": 0.5007596475235491,
+            "recall@5": 0.3661501063506533
+          },
+          "mean_raw_candidates": 99.3792160437557,
+          "mean_unique_candidates": 99.3792160437557
+        },
+        {
+          "variant_id": "code__g__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.38954725007596475,
+            "hit@10": 0.6502582801580067,
+            "hit@20": 0.707383773928897,
+            "hit@5": 0.5821938620480097,
+            "map@16": 0.4755601555168556,
+            "mrr@1": 0.38954725007596475,
+            "mrr@10": 0.4722412736997969,
+            "mrr@20": 0.4763635422225483,
+            "mrr@5": 0.4630456801377494,
+            "ndcg@1": 0.38954725007596475,
+            "ndcg@10": 0.5149687371965856,
+            "ndcg@20": 0.5296078419365421,
+            "ndcg@5": 0.4928452014822079,
+            "recall@1": 0.38954725007596475,
+            "recall@10": 0.6502582801580067,
+            "recall@20": 0.707383773928897,
+            "recall@5": 0.5821938620480097
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__g__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.38954725007596475,
+            "hit@10": 0.6502582801580067,
+            "hit@20": 0.707383773928897,
+            "hit@5": 0.5821938620480097,
+            "map@16": 0.4755601555168556,
+            "mrr@1": 0.38954725007596475,
+            "mrr@10": 0.4722412736997969,
+            "mrr@20": 0.4763635422225483,
+            "mrr@5": 0.4630456801377494,
+            "ndcg@1": 0.38954725007596475,
+            "ndcg@10": 0.5149687371965856,
+            "ndcg@20": 0.5296078419365421,
+            "ndcg@5": 0.4928452014822079,
+            "recall@1": 0.38954725007596475,
+            "recall@10": 0.6502582801580067,
+            "recall@20": 0.707383773928897,
+            "recall@5": 0.5821938620480097
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.5897903372835005,
+            "hit@10": 0.848374354299605,
+            "hit@20": 0.8842297174111212,
+            "hit@5": 0.799149194773625,
+            "map@16": 0.6823333069914657,
+            "mrr@1": 0.5897903372835005,
+            "mrr@10": 0.6803729989919599,
+            "mrr@20": 0.6829229941609326,
+            "mrr@5": 0.6736250379823762,
+            "ndcg@1": 0.5897903372835005,
+            "ndcg@10": 0.7213471024513606,
+            "ndcg@20": 0.730486778717328,
+            "ndcg@5": 0.7052488390946696,
+            "recall@1": 0.5897903372835005,
+            "recall@10": 0.848374354299605,
+            "recall@20": 0.8842297174111212,
+            "recall@5": 0.799149194773625
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__e__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.5897903372835005,
+            "hit@10": 0.848374354299605,
+            "hit@20": 0.8842297174111212,
+            "hit@5": 0.799149194773625,
+            "map@16": 0.6823333069914657,
+            "mrr@1": 0.5897903372835005,
+            "mrr@10": 0.6803729989919599,
+            "mrr@20": 0.6829229941609326,
+            "mrr@5": 0.6736250379823762,
+            "ndcg@1": 0.5897903372835005,
+            "ndcg@10": 0.7213471024513606,
+            "ndcg@20": 0.730486778717328,
+            "ndcg@5": 0.7052488390946696,
+            "recall@1": 0.5897903372835005,
+            "recall@10": 0.848374354299605,
+            "recall@20": 0.8842297174111212,
+            "recall@5": 0.799149194773625
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__b_g__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.3527803099361896,
+            "hit@10": 0.6447888179884533,
+            "hit@20": 0.7079914919477363,
+            "hit@5": 0.563962321482832,
+            "map@16": 0.4479946043186699,
+            "mrr@1": 0.3527803099361896,
+            "mrr@10": 0.44452487061876306,
+            "mrr@20": 0.44894278658432085,
+            "mrr@5": 0.4337232857287552,
+            "ndcg@1": 0.3527803099361896,
+            "ndcg@10": 0.4924896173030371,
+            "ndcg@20": 0.5085133076960056,
+            "ndcg@5": 0.46633822084076293,
+            "recall@1": 0.3527803099361896,
+            "recall@10": 0.6447888179884533,
+            "recall@20": 0.7079914919477363,
+            "recall@5": 0.563962321482832
+          },
+          "mean_raw_candidates": 199.3792160437557,
+          "mean_unique_candidates": 184.60741415982983
+        },
+        {
+          "variant_id": "code__b_g__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.3473108477666363,
+            "hit@10": 0.6408386508659982,
+            "hit@20": 0.7070799149194774,
+            "hit@5": 0.563050744454573,
+            "map@16": 0.44348965165966076,
+            "mrr@1": 0.3473108477666363,
+            "mrr@10": 0.4397995012853718,
+            "mrr@20": 0.44447171101679883,
+            "mrr@5": 0.4293426516762889,
+            "ndcg@1": 0.3473108477666363,
+            "ndcg@10": 0.48801041909479176,
+            "ndcg@20": 0.5048562738172188,
+            "ndcg@5": 0.4627815264616289,
+            "recall@1": 0.3473108477666363,
+            "recall@10": 0.6408386508659982,
+            "recall@20": 0.7070799149194774,
+            "recall@5": 0.563050744454573
+          },
+          "mean_raw_candidates": 99.80613795199028,
+          "mean_unique_candidates": 92.57368580978427
+        },
+        {
+          "variant_id": "code__b_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.40200546946216953,
+            "hit@10": 0.7490124582193862,
+            "hit@20": 0.8435126101488909,
+            "hit@5": 0.6420540869036767,
+            "map@16": 0.5130274899987753,
+            "mrr@1": 0.40200546946216953,
+            "mrr@10": 0.5078693454491084,
+            "mrr@20": 0.5144883285095756,
+            "mrr@5": 0.4934872885647726,
+            "ndcg@1": 0.40200546946216953,
+            "ndcg@10": 0.5653396605508433,
+            "ndcg@20": 0.5893132946278611,
+            "ndcg@5": 0.5306425461798407,
+            "recall@1": 0.40200546946216953,
+            "recall@10": 0.7490124582193862,
+            "recall@20": 0.8435126101488909,
+            "recall@5": 0.6420540869036767
+          },
+          "mean_raw_candidates": 199.3792160437557,
+          "mean_unique_candidates": 185.6794287450623
+        },
+        {
+          "variant_id": "code__b_e__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.40322090549984807,
+            "hit@10": 0.7787906411425098,
+            "hit@20": 0.8587055606198724,
+            "hit@5": 0.6672743846855059,
+            "map@16": 0.5224424786867814,
+            "mrr@1": 0.40322090549984807,
+            "mrr@10": 0.5175103577336941,
+            "mrr@20": 0.5233745638463261,
+            "mrr@5": 0.5023954218575913,
+            "ndcg@1": 0.40322090549984807,
+            "ndcg@10": 0.5798157536789101,
+            "ndcg@20": 0.6004183513611893,
+            "ndcg@5": 0.5435231222386675,
+            "recall@1": 0.40322090549984807,
+            "recall@10": 0.7787906411425098,
+            "recall@20": 0.8587055606198724,
+            "recall@5": 0.6672743846855059
+          },
+          "mean_raw_candidates": 99.80613795199028,
+          "mean_unique_candidates": 93.03676694013977
+        },
+        {
+          "variant_id": "code__g_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.5083561227590399,
+            "hit@10": 0.7760559100577332,
+            "hit@20": 0.8380431479793375,
+            "hit@5": 0.7125493770890307,
+            "map@16": 0.599183604892356,
+            "mrr@1": 0.5083561227590399,
+            "mrr@10": 0.5962508380238553,
+            "mrr@20": 0.6004808591755191,
+            "mrr@5": 0.5875367162969715,
+            "ndcg@1": 0.5083561227590399,
+            "ndcg@10": 0.6396575279194632,
+            "ndcg@20": 0.655240313873455,
+            "ndcg@5": 0.6188811841827045,
+            "recall@1": 0.5083561227590399,
+            "recall@10": 0.7760559100577332,
+            "recall@20": 0.8380431479793375,
+            "recall@5": 0.7125493770890307
+          },
+          "mean_raw_candidates": 200.0,
+          "mean_unique_candidates": 172.2850197508356
+        },
+        {
+          "variant_id": "code__g_e__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.5086599817684594,
+            "hit@10": 0.7830446672743847,
+            "hit@20": 0.8611364326952294,
+            "hit@5": 0.7128532360984503,
+            "map@16": 0.6013058141932345,
+            "mrr@1": 0.5086599817684594,
+            "mrr@10": 0.5973859684661873,
+            "mrr@20": 0.6027127483039117,
+            "mrr@5": 0.5878355109895674,
+            "ndcg@1": 0.5086599817684594,
+            "ndcg@10": 0.6420586162761079,
+            "ndcg@20": 0.6616902379121694,
+            "ndcg@5": 0.6191771303419166,
+            "recall@1": 0.5086599817684594,
+            "recall@10": 0.7830446672743847,
+            "recall@20": 0.8611364326952294,
+            "recall@5": 0.7128532360984503
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 86.21634761470678
+        },
+        {
+          "variant_id": "code__b_g_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.4463688848374354,
+            "hit@10": 0.7666362807657247,
+            "hit@20": 0.8310543907626862,
+            "hit@5": 0.6855059252506837,
+            "map@16": 0.5508917008917009,
+            "mrr@1": 0.4463688848374354,
+            "mrr@10": 0.5474762821162092,
+            "mrr@20": 0.5520235051462915,
+            "mrr@5": 0.5366302035855363,
+            "ndcg@1": 0.4463688848374354,
+            "ndcg@10": 0.6000632436684666,
+            "ndcg@20": 0.6164436316124703,
+            "ndcg@5": 0.5738063428693861,
+            "recall@1": 0.4463688848374354,
+            "recall@10": 0.7666362807657247,
+            "recall@20": 0.8310543907626862,
+            "recall@5": 0.6855059252506837
+          },
+          "mean_raw_candidates": 299.3792160437557,
+          "mean_unique_candidates": 251.52689152233364
+        },
+        {
+          "variant_id": "code__b_g_e__none",
+          "budget_mode": "total",
+          "completed_queries": 3291,
+          "metrics": {
+            "hit@1": 0.4563962321482832,
+            "hit@10": 0.7815253722272866,
+            "hit@20": 0.8495897903372835,
+            "hit@5": 0.7010027347310848,
+            "map@16": 0.5633640250663952,
+            "mrr@1": 0.4563962321482832,
+            "mrr@10": 0.5595697501121384,
+            "mrr@20": 0.5643873776817621,
+            "mrr@5": 0.5487085992099665,
+            "ndcg@1": 0.4563962321482832,
+            "ndcg@10": 0.6129213014220827,
+            "ndcg@20": 0.6302502423685051,
+            "ndcg@5": 0.5867624324178172,
+            "recall@1": 0.4563962321482832,
+            "recall@10": 0.7815253722272866,
+            "recall@20": 0.8495897903372835,
+            "recall@5": 0.7010027347310848
+          },
+          "mean_raw_candidates": 99.89881494986327,
+          "mean_unique_candidates": 84.16651473716196
+        }
+      ],
+      "source_paired_analysis": "codesearchnet-javascript-test-shared-segments-dense-fusions/paired-comparisons.json",
+      "source_paired_analysis_sha256": "996e3eb0bec661b04f41b82948c070ed2c411bf09eca1db087339d72f11302ed",
+      "paired_grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 3291,
+        "group_count": 3291,
+        "source_unit_count": 3291,
+        "source_association_count": 3291,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 0.00030385900941962927,
+        "mapping_sha256": "7759b9393d126773a8ab73cbeb99024bf9214ff70b4179135a45dd8c5204ce46",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "paired_bootstrap": {
+        "method": "paired_source_group_percentile",
+        "confidence_level": 0.95,
+        "samples": 5000,
+        "seed": 42,
+        "direction": "right_minus_left",
+        "estimator": "query-weighted mean difference; groups resampled together",
+        "interval_reporting": "eligible",
+        "withholding_reason": null,
+        "dominant_group_guard": {
+          "maximum_group_fraction": 0.5,
+          "comparison": "strictly_greater_than",
+          "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+        },
+        "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+      },
+      "paired_primary_comparisons": [
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__g__none",
+          "left": {
+            "identity": "514fb578f636d65edff220f142b0be9cb4e48466bf03c14802e3decbd78644b1",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "right": {
+            "identity": "8961c2b077ee029ad0cf7bdb56411e2c160c4180271d9320571b9bd522463d27",
+            "variant_id": "code__g__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.3661501063506533,
+              "right_mean": 0.5821938620480097,
+              "mean_difference": 0.21604375569735643,
+              "query_count": 3291,
+              "wins": 868,
+              "losses": 157,
+              "ties": 2266,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.19872379216043756,
+              "ci95_high": 0.23397143725311456,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.3123528273322181,
+              "right_mean": 0.5149687371965856,
+              "mean_difference": 0.20261590986436753,
+              "query_count": 3291,
+              "wins": 1367,
+              "losses": 339,
+              "ties": 1585,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.188578818392477,
+              "ci95_high": 0.21714169732523012,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__e__none",
+          "left": {
+            "identity": "514fb578f636d65edff220f142b0be9cb4e48466bf03c14802e3decbd78644b1",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "right": {
+            "identity": "985af9354dc1ff752796138a882debc4acdbda15e691d5a19aacdc6bb0fa299b",
+            "variant_id": "code__e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.3661501063506533,
+              "right_mean": 0.799149194773625,
+              "mean_difference": 0.43299908842297175,
+              "query_count": 3291,
+              "wins": 1455,
+              "losses": 30,
+              "ties": 1806,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.41567912488605285,
+              "ci95_high": 0.45062291096931023,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.3123528273322181,
+              "right_mean": 0.7213471024513606,
+              "mean_difference": 0.40899427511914244,
+              "query_count": 3291,
+              "wins": 2039,
+              "losses": 128,
+              "ties": 1124,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.3950164970818197,
+              "ci95_high": 0.4235679182383611,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__g__none",
+          "requested_right": "code__e__none",
+          "left": {
+            "identity": "8961c2b077ee029ad0cf7bdb56411e2c160c4180271d9320571b9bd522463d27",
+            "variant_id": "code__g__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "right": {
+            "identity": "985af9354dc1ff752796138a882debc4acdbda15e691d5a19aacdc6bb0fa299b",
+            "variant_id": "code__e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.5821938620480097,
+              "right_mean": 0.799149194773625,
+              "mean_difference": 0.21695533272561532,
+              "query_count": 3291,
+              "wins": 766,
+              "losses": 52,
+              "ties": 2473,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.2014585232452142,
+              "ci95_high": 0.2324521422060164,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.5149687371965856,
+              "right_mean": 0.7213471024513606,
+              "mean_difference": 0.20637836525477496,
+              "query_count": 3291,
+              "wins": 1385,
+              "losses": 232,
+              "ties": 1674,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.19427511326914784,
+              "ci95_high": 0.2187154534662546,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__b_g_e__none",
+          "left": {
+            "identity": "514fb578f636d65edff220f142b0be9cb4e48466bf03c14802e3decbd78644b1",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "right": {
+            "identity": "229766005b00cdbb1f366e2b79ebd5eb3943434727859f716f8c6817ddb07775",
+            "variant_id": "code__b_g_e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 3291
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.3661501063506533,
+              "right_mean": 0.6855059252506837,
+              "mean_difference": 0.3193558189000304,
+              "query_count": 3291,
+              "wins": 1064,
+              "losses": 13,
+              "ties": 2214,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.30355515041020964,
+              "ci95_high": 0.33577180188392575,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.3123528273322181,
+              "right_mean": 0.6000632436684665,
+              "mean_difference": 0.2877104163362485,
+              "query_count": 3291,
+              "wins": 1768,
+              "losses": 70,
+              "ties": 1453,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.2762834306443051,
+              "ci95_high": 0.2998869313304995,
+              "group_count": 3291,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        }
+      ],
+      "per_input_encoding_diagnostics": {
+        "G": {
+          "document_encoding": "unavailable",
+          "query_encoding": "unavailable"
+        },
+        "E": {
+          "document_encoding": "unavailable",
+          "query_encoding": "unavailable"
+        }
+      },
+      "standalone_eg2_highest_hit_at_5_both_budgets": true,
+      "gallery_protocol": "official cleaned validation+test codebase.txt",
+      "selection_audit": {
+        "published_cleaned_corpus_count": 13981,
+        "selection_rule": "Official preprocess.py: emit codebase.txt URL only if present in raw validation/test",
+        "upstream_codebase_url_lines": 28141,
+        "upstream_urls_absent_from_raw_validation_test": 14160
+      },
+      "dataset_manifest_sha256": "566a17640e5fda4b33cd1e7238bc404d4f73ee67c41346151d8c282a7fff08ba"
     }
   ],
   "no_pooled_accuracy": true,
+  "segmentation_scope": "JavaScript uses shared lossless segments with max cosine per original function; other languages use whole functions. Do not pool as one uniform input condition.",
   "query_prompt": {
     "embeddinggemma2": "task: search result | query: {question}",
     "scope": "General search prefix, not the separately planned code-specific prompt."
