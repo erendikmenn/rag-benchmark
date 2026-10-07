@@ -17,4 +17,4 @@ Requests receive only the source audio through the generic English description p
 
 Repeated descriptions are a quality observation, not an identity failure. No human judgement of caption correctness has been collected. Historical generation caches record token/context usage but do not record sample counts for each input: sample-retention diagnostics remain unavailable. Source durations and the implementation's complete-audio/resample/overlength-rejection contract were checked separately; they do not create retrospective per-request measurements.
 
-Full BM25/BGE/EG2/native/CLAP/joint retrieval on this description gallery is currently running; no new retrieval score or primary-matrix completion is claimed by this preparation milestone. [Aggregate provenance and audit](clotho-description-audit.json).
+Full BM25/BGE/EG2/native/CLAP/joint retrieval on this description gallery subsequently completed: [separate retrieval results](clotho-description-retrieval-summary.md). Description generation alone is not a primary-matrix condition. [Aggregate provenance and audit](clotho-description-audit.json).

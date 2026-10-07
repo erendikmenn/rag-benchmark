@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T10:53:00.000076+00:00",
+  "snapshot_utc": "2026-10-07T11:32:19.626270+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,28 +16,28 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1444,
-    "remaining_cells": 17016,
-    "completion_fraction": 0.07822318526543878,
-    "completion_percent": 7.822318526543879,
+    "completed_cells": 1564,
+    "remaining_cells": 16896,
+    "completion_fraction": 0.0847237269772481,
+    "completion_percent": 8.472372697724811,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
   "alternative_coverage_measures": {
     "global_method_families": {
-      "completed_at_least_one_collection": 298,
+      "completed_at_least_one_collection": 358,
       "planned": 1284,
-      "coverage_percent": 23.20872274143302,
+      "coverage_percent": 27.881619937694705,
       "limitation": "Collapses languages, collections, budgets and K values; not the main-matrix completion percentage."
     },
     "global_method_budget_k_units": {
-      "covered_at_least_one_collection": 1348,
+      "covered_at_least_one_collection": 1468,
       "planned": 6420,
-      "coverage_percent": 20.996884735202492,
+      "coverage_percent": 22.866043613707166,
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 346,
+      "covered": 406,
       "planned": 3692
     }
   },
@@ -61,6 +61,12 @@
     },
     "alias_validation": "Semantic query/qrel records, corpus IDs/media references and asset SHA256/size inventories must match; representation text may differ.",
     "alias_inventory_hashes": {
+      "clotho-v2.1-evaluation-described": {
+        "queries.jsonl": "a42fd1db9fb44a358e14f54b99ddb9abc879f6082f8bc6368d12a7e0ff30726e",
+        "qrels.jsonl": "65d6ae5702023cea3a69ef09b6c2c8975d6dff8d37935cd38d927dbbf80befc0",
+        "assets.jsonl": "4f3b78cd5392acd28ea1fdca206ee79d8ffb482087e3c575c79cb200be02b395",
+        "corpus.jsonl": "c3133a348f6560d64bb8df18269b0c015acb91f45fe5f132cc585524de9b215b"
+      },
       "fleurs-tr_tr-whisper": {
         "queries.jsonl": "22ada79a0e64abc6aabd8036d88098307bbedb6573e7b06a27f14326d7ad0f53",
         "qrels.jsonl": "245e0d2b03234addbfbf1318917cefc4edf283ea50e7f6ae6d68f01ee667e1af",
@@ -69,11 +75,11 @@
       }
     },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 34,
-    "raw_completed_export_cells": 2158,
-    "duplicate_completed_cell_occurrences": 714,
+    "full_collection_source_reports": 35,
+    "raw_completed_export_cells": 2284,
+    "duplicate_completed_cell_occurrences": 720,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "d9d298c0aab831630ddbc66ee988e73ebafc02bdc4d4276d0890425e223182ca"
+    "canonical_key_manifest_sha256": "e27bdb2b425c0e8a009e3a30864c19f6edf994df0cd284a3c2ed93fd4652c2b4"
   },
   "track_progress": [
     {
@@ -99,9 +105,9 @@
       "main_collections": 2,
       "retrieval_subsets_per_collection": 63,
       "planned_cells": 2520,
-      "completed_cells": 12,
-      "remaining_cells": 2508,
-      "completion_fraction": 0.004761904761904762
+      "completed_cells": 132,
+      "remaining_cells": 2388,
+      "completion_fraction": 0.05238095238095238
     },
     {
       "track": "speech",
@@ -245,8 +251,8 @@
       "collection": "clotho-v2.1-evaluation",
       "track": "environment_audio",
       "planned_cells": 1260,
-      "completed_cells": 6,
-      "remaining_cells": 1254,
+      "completed_cells": 126,
+      "remaining_cells": 1134,
       "dataset_status": "ready",
       "manifest_sha256": "b30c055d659645e3d891fda5400a54fc730c281fdba32081a2293aa758002d54",
       "fully_completed_main_grid": false
@@ -429,13 +435,26 @@
         }
       },
       {
+        "report": "clotho-v2.1-evaluation-gemma-described-all-retrieval/report.json",
+        "sha256": "1ac6ba674c6c4cc9c40245d7721efc1bbd859d86b9ab674bdc4628a1c6a6c9bc",
+        "dataset_id": "clotho-v2.1-evaluation-described",
+        "canonical_collection": "clotho-v2.1-evaluation",
+        "dataset_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+        "completed_export_cells": 126,
+        "new_canonical_cells_in_lexical_file_order": 126,
+        "cell_status_counts": {
+          "completed": 126,
+          "unsupported": 1134
+        }
+      },
+      {
         "report": "clotho-v2.1-evaluation-native-specialist/report.json",
         "sha256": "01315657df7fae310ca482a59c280a923439c1be3cd6b482995990a49566a6c5",
         "dataset_id": "clotho-v2.1-evaluation",
         "canonical_collection": "clotho-v2.1-evaluation",
         "dataset_identity": "211b493ea3486d92625e8e0e7c1153409b8c745a45c0fd944971544c7d8a11d0",
         "completed_export_cells": 6,
-        "new_canonical_cells_in_lexical_file_order": 6,
+        "new_canonical_cells_in_lexical_file_order": 0,
         "cell_status_counts": {
           "completed": 6,
           "unsupported": 54

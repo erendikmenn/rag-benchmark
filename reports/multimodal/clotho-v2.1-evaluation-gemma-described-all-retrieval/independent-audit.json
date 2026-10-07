@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "new_model_calls": 0,
+  "raw_payload_published": false,
+  "audit_source_sha256": "94374daf369ba1d5a930398a34b529c132e5b4af0a2a5abc8e26a8ebedf5e8fd",
+  "source_report_sha256": "1ac6ba674c6c4cc9c40245d7721efc1bbd859d86b9ab674bdc4628a1c6a6c9bc",
+  "observed_cell_status_counts": {
+    "completed": 126,
+    "unsupported": 1134
+  },
+  "source_inventory_semantic_sha256": {
+    "queries.jsonl": "a42fd1db9fb44a358e14f54b99ddb9abc879f6082f8bc6368d12a7e0ff30726e",
+    "qrels.jsonl": "65d6ae5702023cea3a69ef09b6c2c8975d6dff8d37935cd38d927dbbf80befc0",
+    "assets.jsonl": "4f3b78cd5392acd28ea1fdca206ee79d8ffb482087e3c575c79cb200be02b395",
+    "corpus.jsonl": "c3133a348f6560d64bb8df18269b0c015acb91f45fe5f132cc585524de9b215b"
+  },
+  "source_manifest_sha256": "b30c055d659645e3d891fda5400a54fc730c281fdba32081a2293aa758002d54",
+  "described_manifest_sha256": "4134219de0d2571cc904242e157ebe17ec92b40c1de78e90e25bb9bcecf27140",
+  "frozen_query_count": 5225,
+  "frozen_clip_count": 1045,
+  "checked_none_cells": 126,
+  "checked_query_results": 658350,
+  "independent_metric_values": 11191950,
+  "source_rrf_rankings_checked": 658350,
+  "original_overlap_cells": 6,
+  "original_overlap_query_results": 31350,
+  "original_source_report_sha256": "01315657df7fae310ca482a59c280a923439c1be3cd6b482995990a49566a6c5",
+  "base_channel_rankings_sha256": {
+    "B": "d548b1adc670e6cafa61dcc054cbb4bafd37039fa71633542f4dbfb7236a3395",
+    "G": "4e964eb4bc53d9a6a510abda9f8633e4191d511b24a2bfeafa5f372c71f1e2b7",
+    "E": "081eacaca7bfb83d0cd510d5188ee07a2a14427e0f3732f912ccb3012527f630",
+    "N": "fa0a4ec658d1c6ebc2dc16e72631ee409e3e4bb7d73c1cf0ebee22e7b69b7e27",
+    "S": "0dbc95d3bf16612bc3836c23312b20ec54d4f9c821fe1a06b6c1e9ff78e2eb02",
+    "J": "41e32cc17ed3e7684f7dd45607a4ad9fa88a1173408cb7c933ba5a2f99c6c5f8"
+  }
+}
