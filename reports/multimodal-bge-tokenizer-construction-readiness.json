@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "condition": "bge-native-tokenizer-construction-v2",
+  "status": "cpu_verified_not_model_validated",
+  "implementation_sha256": "97764faaefc21909d9da36e86367e0d5cd6aa14387040894fece5bcf34b0efef",
+  "owner_tests_sha256": "bc3856d35cd1c05fa5b80c1cec96d71cafd85e99bd8bf0dfd7e42d5b25408725",
+  "independent_tests_sha256": "288a62b61cf21a64bf24889ca33950316681ffb94052a1d2a2a52d72fb46fb88",
+  "diagnosis_probes_sha256": "908dc2bbe8a6d54206808bd7ba49f2bb523fb641a4dd21b20116134a9272e301",
+  "native_tokenizer_semantic_sha256": "020fa8dd73929353ed802696da54b75aa38c54a15d83cd6512b7ded05fa3fe54",
+  "factory_evidence": {
+    "versions": {
+      "transformers": "5.19.0",
+      "tokenizers": "0.23.2",
+      "sentence-transformers": "6.1.0"
+    },
+    "sources": {
+      "transformers.models.xlm_roberta.tokenization_xlm_roberta": "8bac169f43043e1280181c2af017ae9a26c5bae1c1b1387163c9551d9cd9cfc6",
+      "transformers.tokenization_utils_tokenizers": "32e4ff002092023720bdbe9101e01005a4a149a0729c82e05d7dbf497cbaa388",
+      "transformers.models.auto.tokenization_auto": "d8ddbba55ef683bd4980313104b192a0468aecb5a8a35491f1c48ae8c8bff3fe",
+      "transformers.models.auto.processing_auto": "3f29c881f41abe7b271112eed82300c3577a01b72ba8a464467830ea66d64321",
+      "sentence_transformers.base.modules.transformer": "895603634b3b63325cb7e5eaa2e8e2cdbc708b3b0e31a5c8b277ecd711a24be4",
+      "sentence_transformers.sentence_transformer.model": "3d677757bf3e684c45d3634ae67918cd9a67cee6aac6760e5fa1c72dfe820650",
+      "rag_benchmark.models": "5fcf6f8bb9093dc8a2351bf8eb1522883f0522793d2caf3e953865be9c2284ef"
+    }
+  },
+  "immutable_artifacts": {
+    "pytorch_model.bin": "b5e0ce3470abf5ef3831aa1bd5553b486803e83251590ab7ff35a117cf6aad38",
+    "config.json": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+    "sentence_bert_config.json": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+    "config_sentence_transformers.json": "1eef72430e7194a1e59680e635aed81ffa083f05668dbc5bb1c56c04c0999c38",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "1_Pooling/config.json": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+    "tokenizer.json": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "tokenizer_config.json": "a62b2b6784f990259fddef5f16388693a8043be4f69179e6a5257eeb3f9abac4",
+    "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+    "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+  },
+  "historical_baseline_tokenizer_identity": "unrecorded_not_claimed",
+  "attention_policy": "explicit_candidate_sdpa; historical_attention_unknown",
+  "validation": {
+    "full_passed": 662,
+    "minimal_passed": 483,
+    "minimal_optional_skipped": 166,
+    "loader_targeted_passed": 52,
+    "independent_tokenizer_passed": 6,
+    "ruff": "passed",
+    "test_inputs": "offline pinned tokenizer and injected synthetic neural objects; no pretrained model/head tensors loaded or forwarded by these checks"
+  },
+  "preserved_contracts": [
+    "All ten model/tokenizer artifact hashes remain immutable.",
+    "Native factory construction is pinned by expected semantics, installed versions and seven source hashes.",
+    "Only ordinary BatchLongest/right/pad1 padding state is normalized after strict field validation; meaningful padding and truncation mutations reject.",
+    "Explicit unpadded/untruncated tokenizer calls preserve complete IDs; strict masks, original per-invocation batch boundaries and JS source/chunk identities remain.",
+    "Every-row native CLS atol=2e-6, rtol=0 remains required before trained-head extraction.",
+    "Ordinary G cache identities and measurements are unchanged."
+  ],
+  "limitations": [
+    "No real model or MPS validation has run with this repaired construction contract.",
+    "The previous failed health claim/state and execution pins remain historical and cannot be reset or blindly reused.",
+    "A new bounded health attempt requires reviewed versioned pins and one GPU owner.",
+    "Full-model parameter scans have unmeasured production cost; full-gallery extraction remains pending."
+  ],
+  "main_matrix_increment": 0
+}

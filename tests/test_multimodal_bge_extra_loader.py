@@ -452,3 +452,93 @@ def test_added_token_in_tokenizer_kwargs_mutation_rejected(setup, tmp_path):
     with pytest.raises(ValueError, match="state changed"):
         extraction.extract("query", tmp_path / "cache")
     assert setup[2].first.calls == 0
+
+
+@pytest.fixture(scope='module')
+def real_offline_tokenizer():
+    from pathlib import Path
+    transformers = pytest.importorskip('transformers')
+    snapshot = Path('.cache/models/models--BAAI--bge-m3/snapshots/5617a9f61b028005a4858fdac845db406aefb181')
+    if not (snapshot / 'tokenizer.json').is_file():
+        pytest.skip('Pinned tokenizer artifacts unavailable; no download')
+    token = transformers.AutoTokenizer.from_pretrained(str(snapshot), local_files_only=True, trust_remote_code=False, model_max_length=8192)
+    return snapshot, token
+
+
+def test_real_native_tokenizer_construction_contract(real_offline_tokenizer):
+    snapshot, token = real_offline_tokenizer
+    contract = loader.native_tokenizer_contract(snapshot, loader.ARTIFACT_HASHES)
+    assert contract['condition'] == 'bge-native-tokenizer-construction-v2'
+    assert contract['expected_state_sha256'] == loader.stable_hash(loader._tokenizer_state(token))
+    assert contract['historical_baseline_tokenizer_identity'] == 'unrecorded_not_claimed'
+
+
+def test_real_tokenizer_ordinary_padding_state_and_full_input_preserved(real_offline_tokenizer):
+    _, token = real_offline_tokenizer
+    token(['hello', 'hello world'], padding=False, truncation=False)
+    initial = loader._tokenizer_state(token)
+    plain = token([' hello  world ', 'a\nb'], padding=False, truncation=False)['input_ids']
+    token(['hello', 'hello world'], padding=True, truncation=False)
+    assert json.loads(token.backend_tokenizer.to_str())['padding'] is not None
+    assert loader._tokenizer_state(token) == initial
+    again = token([' hello  world ', 'a\nb'], padding=False, truncation=False)['input_ids']
+    assert plain == again
+    assert loader._tokenizer_state(token) == initial
+
+
+@pytest.mark.parametrize('mutation', ['fixed_padding', 'left_padding', 'wrong_pad_id', 'truncation', 'normalizer'])
+def test_real_tokenizer_meaningful_backend_mutation_rejected(real_offline_tokenizer, mutation):
+    snapshot, _ = real_offline_tokenizer
+    from transformers import AutoTokenizer
+    token = AutoTokenizer.from_pretrained(str(snapshot), local_files_only=True, trust_remote_code=False, model_max_length=8192)
+    initial = loader.stable_hash(loader._tokenizer_state(token))
+    if mutation == 'fixed_padding':
+        token.backend_tokenizer.enable_padding(length=10, pad_id=1, pad_token='<pad>')
+    elif mutation == 'left_padding':
+        token.backend_tokenizer.enable_padding(direction='left', pad_id=1, pad_token='<pad>')
+    elif mutation == 'wrong_pad_id':
+        token.backend_tokenizer.enable_padding(pad_id=2, pad_token='<pad>')
+    elif mutation == 'truncation':
+        token.backend_tokenizer.enable_truncation(max_length=10)
+    else:
+        from tokenizers.normalizers import Lowercase
+        token.backend_tokenizer.normalizer = Lowercase()
+    if mutation == 'normalizer':
+        assert loader.stable_hash(loader._tokenizer_state(token)) != initial
+    else:
+        with pytest.raises(ValueError, match='state unsupported'):
+            loader._tokenizer_state(token)
+
+
+def test_native_factory_source_version_or_artifact_change_fails_closed(real_offline_tokenizer, monkeypatch):
+    snapshot, _ = real_offline_tokenizer
+    with pytest.raises(ValueError, match='ten verified'):
+        loader.native_tokenizer_contract(snapshot, {'tokenizer.json': loader.ARTIFACT_HASHES['tokenizer.json']})
+    monkeypatch.setitem(loader._NATIVE_LIBRARIES, 'transformers', 'unsupported')
+    with pytest.raises(ValueError, match='Unsupported native'):
+        loader.native_tokenizer_contract(snapshot, loader.ARTIFACT_HASHES)
+
+
+def test_actual_tokenizer_runtime_gate_accepts_native_contract_and_padding(setup, real_offline_tokenizer):
+    snapshot, _ = real_offline_tokenizer
+    from transformers import AutoTokenizer
+    token = AutoTokenizer.from_pretrained(str(snapshot), local_files_only=True, trust_remote_code=False, model_max_length=8192)
+    token(['hello', 'hello world'], padding=False, truncation=False)
+    bridge, _, model, *_ = setup
+    model.first.tokenizer = token
+    stored = json.loads((snapshot / 'tokenizer.json').read_bytes())
+    with pytest.raises(ValueError, match='Actual loaded tokenizer bytes/semantics differ'):
+        loader._LoadedRuntime(model, bridge.config, loader.ARTIFACT_HASHES, stored, {'first': ['calls']})
+    contract = loader.native_tokenizer_contract(snapshot, loader.ARTIFACT_HASHES)
+    runtime = loader._LoadedRuntime(model, bridge.config, loader.ARTIFACT_HASHES,
+                                   json.loads((snapshot / 'tokenizer.json').read_bytes()),
+                                   {'first': ['calls']}, contract)
+    text = ' hello  world '
+    expected = token([text], padding=False, truncation=False)['input_ids'][0]
+    token(['hello', 'hello world'], padding=True, truncation=False)
+    assert runtime.tokenize(text) == expected
+    assert runtime.calls == model.first.calls == 0
+    from tokenizers.normalizers import Lowercase
+    token.backend_tokenizer.normalizer = Lowercase()
+    with pytest.raises(ValueError, match='semantics differ'):
+        runtime.tokenize(text)

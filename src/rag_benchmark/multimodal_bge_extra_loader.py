@@ -52,6 +52,80 @@ def verify_artifacts(snapshot):
     return actual
 
 
+_NATIVE_TOKENIZER_SHA256 = "020fa8dd73929353ed802696da54b75aa38c54a15d83cd6512b7ded05fa3fe54"
+_NATIVE_LIBRARIES = {"transformers": "5.19.0", "tokenizers": "0.23.2", "sentence-transformers": "6.1.0"}
+_NATIVE_SOURCES = {
+    "transformers.models.xlm_roberta.tokenization_xlm_roberta": "8bac169f43043e1280181c2af017ae9a26c5bae1c1b1387163c9551d9cd9cfc6",
+    "transformers.tokenization_utils_tokenizers": "32e4ff002092023720bdbe9101e01005a4a149a0729c82e05d7dbf497cbaa388",
+    "transformers.models.auto.tokenization_auto": "d8ddbba55ef683bd4980313104b192a0468aecb5a8a35491f1c48ae8c8bff3fe",
+    "transformers.models.auto.processing_auto": "3f29c881f41abe7b271112eed82300c3577a01b72ba8a464467830ea66d64321",
+    "sentence_transformers.base.modules.transformer": "895603634b3b63325cb7e5eaa2e8e2cdbc708b3b0e31a5c8b277ecd711a24be4",
+    "sentence_transformers.sentence_transformer.model": "3d677757bf3e684c45d3634ae67918cd9a67cee6aac6760e5fa1c72dfe820650",
+    "rag_benchmark.models": "5fcf6f8bb9093dc8a2351bf8eb1522883f0522793d2caf3e953865be9c2284ef",
+}
+
+
+def _native_factory_evidence():
+    from importlib import import_module
+    from importlib.metadata import version
+    versions = {name: version(name) for name in _NATIVE_LIBRARIES}
+    sources = {name: _digest(inspect.getfile(import_module(name))) for name in _NATIVE_SOURCES}
+    if versions != _NATIVE_LIBRARIES or sources != _NATIVE_SOURCES:
+        raise ValueError("Unsupported native tokenizer factory/source/library contract")
+    return {"versions": versions, "sources": sources}
+
+
+def _tokenizer_state(token):
+    """Seal semantics; permit only validated ordinary batch-longest call padding.
+
+    The runtime always requests padding=False/truncation=False. A prior ordinary
+    padding=True call legitimately leaves backend batch-longest padding enabled;
+    the next explicit call resets it. Fixed-length, left/wrong-ID padding and any
+    truncation state remain unsupported and are rejected before input processing.
+    """
+    value = json.loads(token.backend_tokenizer.to_str())
+    padding = value.get("padding")
+    if padding is not None and stable_hash(padding) != stable_hash({
+        "strategy": "BatchLongest", "direction": "Right", "pad_to_multiple_of": None,
+        "pad_id": 1, "pad_type_id": 0, "pad_token": "<pad>",
+    }):
+        raise ValueError("Loaded tokenizer padding state unsupported")
+    if value.get("truncation") is not None:
+        raise ValueError("Loaded tokenizer truncation state unsupported")
+    if "padding" in value:
+        value["padding"] = None
+    return value
+
+
+def native_tokenizer_contract(snapshot, artifacts):
+    """Versioned expected current native construction, never historical semantics.
+
+    Raw tokenizer.json is still immutable evidence. The installed native factory
+    reconstructs its normalizer/pre-tokenizer; its output, not raw JSON, is sealed.
+    Current baseline DenseEmbedder/ST source and snapshot module config are pinned.
+    """
+    from transformers import AutoProcessor
+    if artifacts != ARTIFACT_HASHES:
+        raise ValueError("Native tokenizer requires all ten verified artifact hashes")
+    evidence = _native_factory_evidence()
+    snapshot = Path(snapshot)
+    module_config = json.loads((snapshot / "sentence_bert_config.json").read_bytes())
+    if module_config != {"max_seq_length": 8192, "do_lower_case": False}:
+        raise ValueError("Unsupported baseline tokenizer module configuration")
+    token = AutoProcessor.from_pretrained(
+        str(snapshot), local_files_only=True, trust_remote_code=False, model_max_length=8192
+    )
+    if type(token).__module__ != "transformers.models.xlm_roberta.tokenization_xlm_roberta" or type(token).__name__ != "XLMRobertaTokenizer":
+        raise ValueError("Unsupported native tokenizer class")
+    state_hash = stable_hash(_tokenizer_state(token))
+    if state_hash != _NATIVE_TOKENIZER_SHA256:
+        raise ValueError("Reviewed native tokenizer construction semantics differ")
+    return {"condition": "bge-native-tokenizer-construction-v2", "artifacts": copy.deepcopy(artifacts),
+            "factory": evidence, "module_config": module_config, "tokenizer_class": type(token).__module__ + "." + type(token).__qualname__, "expected_state_sha256": state_hash,
+            "historical_baseline_tokenizer_identity": "unrecorded_not_claimed",
+            "baseline_equivalence_scope": "current_pinned_DenseEmbedder_ST_factory_source_and_module_config"}
+
+
 def _load_model(snapshot, config):
     import torch
     from sentence_transformers import SentenceTransformer
@@ -184,7 +258,7 @@ def _execution_value(value):
         return sorted(([_execution_value(k), _execution_value(v)] for k, v in value.items()), key=stable_hash)
     if hasattr(value, "backend_tokenizer"):
         return {
-            "tokenizer": stable_hash(json.loads(value.backend_tokenizer.to_str())),
+            "tokenizer": stable_hash(_tokenizer_state(value)),
             "callable": _callable_seal(type(value).__call__),
             "settings": {
                 name: _execution_value(getattr(value, name, None))
@@ -311,7 +385,7 @@ def _graph_seal(model, instrumentation):
 
 
 class _LoadedRuntime:
-    def __init__(self, model, config, artifacts, tokenizer_json, instrumentation=None):
+    def __init__(self, model, config, artifacts, tokenizer_json, instrumentation=None, tokenizer_contract=None):
         self.model = model
         self._instrumentation = copy.deepcopy(instrumentation or {})
         if any(
@@ -321,13 +395,15 @@ class _LoadedRuntime:
             raise ValueError("Only explicitly declared diagnostic calls counters are supported")
         self.config = copy.deepcopy(config)
         self.artifacts = copy.deepcopy(artifacts)
-        self._tokenizer_json = stable_hash(tokenizer_json)
+        self._tokenizer_contract = copy.deepcopy(tokenizer_contract)
+        self._tokenizer_contract_seal = stable_hash(self._tokenizer_contract)
+        self._tokenizer_json = tokenizer_contract["expected_state_sha256"] if tokenizer_contract else stable_hash(tokenizer_json)
         self._source = _IMPLEMENTATION
         self._initial = self._state()
         self._initial_seal = stable_hash(self._initial)
         self.identity = stable_hash(
             {
-                "condition": "pinned-bge-candidate-sdpa-runtime-v1",
+                "condition": "pinned-bge-candidate-sdpa-runtime-v2" if tokenizer_contract else "pinned-bge-candidate-sdpa-runtime-v1",
                 "state": self._initial,
                 "implementation": _IMPLEMENTATION,
                 "historical_attention": "unknown_not_claimed",
@@ -368,7 +444,13 @@ class _LoadedRuntime:
             or len(token) != 250002
         ):
             raise ValueError("Actual loaded attention/tokenizer/native contract unsupported")
-        if stable_hash(json.loads(token.backend_tokenizer.to_str())) != self._tokenizer_json:
+        if stable_hash(self._tokenizer_contract) != self._tokenizer_contract_seal:
+            raise ValueError("Loaded native tokenizer construction contract mutated")
+        if self._tokenizer_contract is not None and type(token).__module__ + "." + type(token).__qualname__ != self._tokenizer_contract["tokenizer_class"]:
+            raise ValueError("Loaded native tokenizer class differs")
+        if self._tokenizer_contract is not None and _native_factory_evidence() != self._tokenizer_contract["factory"]:
+            raise ValueError("Loaded native tokenizer factory changed")
+        if stable_hash(_tokenizer_state(token)) != self._tokenizer_json:
             raise ValueError("Actual loaded tokenizer bytes/semantics differ")
         graph = _graph_seal(self.model, self._instrumentation)
         token_callable = _callable_seal(type(token).__call__)
@@ -389,6 +471,7 @@ class _LoadedRuntime:
             "instrumentation": self._instrumentation,
             "token_callable": token_callable,
             "tokenizer": self._tokenizer_json,
+            **({"tokenizer_construction_contract": stable_hash(self._tokenizer_contract)} if self._tokenizer_contract else {}),
             "attention": "sdpa",
             "flattened": False,
             "class": type(self.model).__module__ + "." + type(self.model).__qualname__,
@@ -485,8 +568,9 @@ def create_extraction(
     snapshot = Path(snapshot)
     artifacts = verify_artifacts(snapshot)
     tokenizer_json = json.loads((snapshot / "tokenizer.json").read_bytes())
+    tokenizer_contract = native_tokenizer_contract(snapshot, artifacts) if model_loader is None else None
     model = (model_loader or _load_model)(snapshot, copy.deepcopy(config))
-    loaded = _LoadedRuntime(model, config, artifacts, tokenizer_json, instrumentation_fields)
+    loaded = _LoadedRuntime(model, config, artifacts, tokenizer_json, instrumentation_fields, tokenizer_contract)
     if verify_artifacts(snapshot) != artifacts:
         raise ValueError("Artifacts changed during loading")
     heads = (head_loader or backend_module.verified_trained_head_arrays)(heads_directory)
@@ -501,7 +585,8 @@ def create_extraction(
         backend,
         loaded,
         {
-            "condition": "pinned-bge-candidate-sdpa-factory-v1",
+            "condition": "pinned-bge-candidate-sdpa-factory-v2" if tokenizer_contract else "pinned-bge-candidate-sdpa-factory-v1",
+            "tokenizer_construction_contract": copy.deepcopy(tokenizer_contract),
             "baseline": baseline.identity,
             "batch_plan": plan.identity,
             "artifact_hashes": artifacts,
