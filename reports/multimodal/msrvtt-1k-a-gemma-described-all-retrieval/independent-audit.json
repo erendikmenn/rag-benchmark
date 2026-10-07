@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "new_model_calls": 0,
+  "raw_payload_published": false,
+  "audit_source_sha256": "44d3d4e41eb170bc89cde9fa53c311f26ab90cf970046b0abb225dcb26a143d1",
+  "source_report_sha256": "27f0df0f01306b4f132d9e83ab8e0ae3c8ab364718493d7dc70f944f5c14d72f",
+  "observed_cell_status_counts": {
+    "completed": 126,
+    "unsupported": 1134
+  },
+  "source_inventory_semantic_sha256": {
+    "queries.jsonl": "9f79964c3147013fc7ea007810124553164539473b36fe74e8d8a719785d8bca",
+    "qrels.jsonl": "bfc0f2e34744a8146797f54ea60b4f4e7bcdefd0385845d39130d3f5bf42339a",
+    "assets.jsonl": "b66fce5146596d08af5a26b9d1daccb8825b42a3dd8f8d3aac227365723f03aa",
+    "corpus.jsonl": "60a99c5ea861b36ddde9bb7ad0e552ca407202c313b70bfec335948c8e599f10"
+  },
+  "source_manifest_sha256": "8fb10031d053934b87fa7509c4c0b2d91c83311085952aeb514d8556e4dcbd8b",
+  "described_manifest_sha256": "75af6467dbd58812faa76cf1d4b66eff5072336180301d6498e950859c678978",
+  "frozen_query_count": 1000,
+  "frozen_video_count": 1000,
+  "audio_included": false,
+  "main_matrix_progress_increment": 0,
+  "positive_qrel_distribution": {
+    "1": 1000
+  },
+  "positive_relevance_grades": [
+    1.0
+  ],
+  "checked_none_cells": 126,
+  "checked_query_results": 126000,
+  "independent_metric_values": 2142000,
+  "source_rrf_rankings_checked": 126000,
+  "original_overlap_cells": 6,
+  "original_overlap_query_results": 6000,
+  "original_source_report_sha256": "dd11e771f6b36166067d8fb1a3dc813eb1dbe2cc05a4b979616e16622f62c81c",
+  "base_channel_rankings_sha256": {
+    "B": "baa6af1e393b5952155765b328faf2feeb532691aac13122a554893a9a359117",
+    "G": "983b5fc71a6d712bed346d35485d29d72f1cfd540249dfc59427b28de1f27214",
+    "E": "3e69a4c2ec0967dd236b4aefad4409f9eae65785ed78c1077bbd4548672a5824",
+    "N": "d720aab6cb71fd116b48b16183ec19e5a39c91866f6b3d95091c0ca38dcfa56b",
+    "S": "13aa40112c5e6bb66d679483474158a33aae3c4e448a1fc82d3cd7c24205c7a9",
+    "J": "d34d7dd2c9d09911272972fc0073c27c2b43841e4a385a932f7b6995d307d845"
+  }
+}

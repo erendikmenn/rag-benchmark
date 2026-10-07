@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T12:59:25.969259+00:00",
+  "snapshot_utc": "2026-10-07T15:28:57.889820+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,28 +16,28 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1808,
-    "remaining_cells": 16652,
-    "completion_fraction": 0.09794149512459371,
-    "completion_percent": 9.794149512459372,
+    "completed_cells": 1928,
+    "remaining_cells": 16532,
+    "completion_fraction": 0.10444203683640303,
+    "completion_percent": 10.444203683640303,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
   "alternative_coverage_measures": {
     "global_method_families": {
-      "completed_at_least_one_collection": 358,
+      "completed_at_least_one_collection": 418,
       "planned": 1284,
-      "coverage_percent": 27.881619937694705,
+      "coverage_percent": 32.55451713395639,
       "limitation": "Collapses languages, collections, budgets and K values; not the main-matrix completion percentage."
     },
     "global_method_budget_k_units": {
-      "covered_at_least_one_collection": 1468,
+      "covered_at_least_one_collection": 1588,
       "planned": 6420,
-      "coverage_percent": 22.866043613707166,
+      "coverage_percent": 24.735202492211837,
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 528,
+      "covered": 588,
       "planned": 3692
     }
   },
@@ -78,14 +78,20 @@
         "qrels.jsonl": "245e0d2b03234addbfbf1318917cefc4edf283ea50e7f6ae6d68f01ee667e1af",
         "assets.jsonl": "47f3b5068bcb0f05b202a581d2d57974848b6c7c56b4cc15e02cf460d34a0182",
         "corpus.jsonl": "0aa817b8ddf1d6f6c3802b79280113cac99f2f72f87b7c6256db7d91465bf23e"
+      },
+      "msrvtt-1k-a-described": {
+        "queries.jsonl": "9f79964c3147013fc7ea007810124553164539473b36fe74e8d8a719785d8bca",
+        "qrels.jsonl": "bfc0f2e34744a8146797f54ea60b4f4e7bcdefd0385845d39130d3f5bf42339a",
+        "assets.jsonl": "b66fce5146596d08af5a26b9d1daccb8825b42a3dd8f8d3aac227365723f03aa",
+        "corpus.jsonl": "60a99c5ea861b36ddde9bb7ad0e552ca407202c313b70bfec335948c8e599f10"
       }
     },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 37,
-    "raw_completed_export_cells": 2536,
-    "duplicate_completed_cell_occurrences": 728,
+    "full_collection_source_reports": 38,
+    "raw_completed_export_cells": 2662,
+    "duplicate_completed_cell_occurrences": 734,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "800a609f8085ca99bd2cb2e8d0fe85bca4b6785cb6df58f419ae2aa7cdf01537"
+    "canonical_key_manifest_sha256": "0f4745491bc6c10d296eea310e3c52fcb6c039fc4d0bdfae7a2daa47784930c9"
   },
   "track_progress": [
     {
@@ -129,9 +135,9 @@
       "main_collections": 1,
       "retrieval_subsets_per_collection": 63,
       "planned_cells": 1260,
-      "completed_cells": 6,
-      "remaining_cells": 1254,
-      "completion_fraction": 0.004761904761904762
+      "completed_cells": 126,
+      "remaining_cells": 1134,
+      "completion_fraction": 0.1
     },
     {
       "track": "code",
@@ -287,8 +293,8 @@
       "collection": "msrvtt-1k-a",
       "track": "video",
       "planned_cells": 1260,
-      "completed_cells": 6,
-      "remaining_cells": 1254,
+      "completed_cells": 126,
+      "remaining_cells": 1134,
       "dataset_status": "ready",
       "manifest_sha256": "8fb10031d053934b87fa7509c4c0b2d91c83311085952aeb514d8556e4dcbd8b",
       "fully_completed_main_grid": false
@@ -680,13 +686,26 @@
         }
       },
       {
+        "report": "msrvtt-1k-a-gemma-described-all-retrieval/report.json",
+        "sha256": "27f0df0f01306b4f132d9e83ab8e0ae3c8ab364718493d7dc70f944f5c14d72f",
+        "dataset_id": "msrvtt-1k-a-described",
+        "canonical_collection": "msrvtt-1k-a",
+        "dataset_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+        "completed_export_cells": 126,
+        "new_canonical_cells_in_lexical_file_order": 126,
+        "cell_status_counts": {
+          "completed": 126,
+          "unsupported": 1134
+        }
+      },
+      {
         "report": "msrvtt-1k-a-native-specialist/report.json",
         "sha256": "dd11e771f6b36166067d8fb1a3dc813eb1dbe2cc05a4b979616e16622f62c81c",
         "dataset_id": "msrvtt-1k-a",
         "canonical_collection": "msrvtt-1k-a",
         "dataset_identity": "4e333f7ac0d9301552980c65052a1981ac4c75192ce26309d05fc6bdc0ef04e7",
         "completed_export_cells": 6,
-        "new_canonical_cells_in_lexical_file_order": 6,
+        "new_canonical_cells_in_lexical_file_order": 0,
         "cell_status_counts": {
           "completed": 6,
           "unsupported": 54

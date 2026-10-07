@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "dataset": "msrvtt-1k-a-described",
+  "query_count": 1000,
+  "video_count": 1000,
+  "completed_none_cells": 126,
+  "reused_original_native_specialist_cells": 6,
+  "new_primary_cells_after_verified_overlap": 120,
+  "source_private_report_sha256": "27f0df0f01306b4f132d9e83ab8e0ae3c8ab364718493d7dc70f944f5c14d72f",
+  "source_public_report_sha256": "27f0df0f01306b4f132d9e83ab8e0ae3c8ab364718493d7dc70f944f5c14d72f",
+  "independent_audit_sha256": "08d6bb1a7e7496aa82959480e916fd0fe9c83a67cc919e8f3ae0b5b90cec70ef",
+  "independent_audit_source_sha256": "44d3d4e41eb170bc89cde9fa53c311f26ab90cf970046b0abb225dcb26a143d1",
+  "summary_source_sha256": "d93c7c8c72d91e58ce342e9842d25e24bc3dd7be762266b4abe5b698bd93b764",
+  "independent_verification": {
+    "checked_none_cells": 126,
+    "checked_query_results": 126000,
+    "independent_metric_values": 2142000,
+    "source_rrf_rankings_checked": 126000,
+    "original_overlap_cells": 6,
+    "original_overlap_query_results": 6000
+  },
+  "primary_channels": [
+    {
+      "channel": "B",
+      "label": "BM25 on source visual descriptions",
+      "variant_id": "video__b__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "B"
+      ],
+      "identity": "5d40d423287d39612ac9d2ec69d4f1f1ae7e7dbaa114a891ba5249553620edb6",
+      "metrics": {
+        "hit@5": 0.276,
+        "recall@5": 0.276,
+        "ndcg@10": 0.24091742045386708
+      }
+    },
+    {
+      "channel": "G",
+      "label": "BGE-M3 on source visual descriptions",
+      "variant_id": "video__g__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "G"
+      ],
+      "identity": "9a2a4dd7ae237fa91775474015dd3a28d528a2ae02d092e4cbcbcb1b7b8d44ba",
+      "metrics": {
+        "hit@5": 0.409,
+        "recall@5": 0.409,
+        "ndcg@10": 0.34186575761506277
+      }
+    },
+    {
+      "channel": "E",
+      "label": "EG2 on source visual descriptions",
+      "variant_id": "video__e__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "E"
+      ],
+      "identity": "63476d33f243c956fcd8ab139489df59a4afb585e950497a815ee9ba29ca7bed",
+      "metrics": {
+        "hit@5": 0.569,
+        "recall@5": 0.569,
+        "ndcg@10": 0.49615707484416277
+      }
+    },
+    {
+      "channel": "N",
+      "label": "EG2 source video",
+      "variant_id": "video__n__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "N"
+      ],
+      "identity": "e175e6c06230a09d51d4fbb5d38550febe7b823668b2451332496d26f9a78336",
+      "metrics": {
+        "hit@5": 0.75,
+        "recall@5": 0.75,
+        "ndcg@10": 0.6694203128123978
+      }
+    },
+    {
+      "channel": "S",
+      "label": "CLIP source video",
+      "variant_id": "video__s__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "S"
+      ],
+      "identity": "5786bab96865ef70ac87d4bcd0b2ec38713e005ae4ebae1a72c35d5a0ea7e851",
+      "metrics": {
+        "hit@5": 0.538,
+        "recall@5": 0.538,
+        "ndcg@10": 0.4593583397006191
+      }
+    },
+    {
+      "channel": "J",
+      "label": "EG2 source video + visual descriptions",
+      "variant_id": "video__j__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "J"
+      ],
+      "identity": "805b5bc3fbe21dbc70583d40220165f6111418929f486f2820678e3c1bc07c09",
+      "metrics": {
+        "hit@5": 0.753,
+        "recall@5": 0.753,
+        "ndcg@10": 0.6582927409843241
+      }
+    }
+  ],
+  "best_multichannel_fusion_by_hit5": {
+    "per_channel": {
+      "variant_id": "video__n_j__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "N",
+        "J"
+      ],
+      "identity": "3c6289cb47737f0236aeffdf9f8a857761cf92a4a106496964b083f541a625f2",
+      "metrics": {
+        "hit@5": 0.759,
+        "recall@5": 0.759,
+        "ndcg@10": 0.6683583467411193
+      }
+    },
+    "total": {
+      "variant_id": "video__n_j__none",
+      "budget_mode": "total",
+      "channels": [
+        "N",
+        "J"
+      ],
+      "identity": "b759cc673ccb0469d40c754a38855fb43c1984b66cce6360e0e16b7e4476bbef",
+      "metrics": {
+        "hit@5": 0.759,
+        "recall@5": 0.759,
+        "ndcg@10": 0.6683583467411193
+      }
+    }
+  },
+  "channel_encoding_usage": {
+    "B": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "availability": "unavailable"
+      },
+      "query": {
+        "availability": "unavailable"
+      }
+    },
+    "G": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "identity": "cf693c14de88827191bc19c9348c9d888d497d9f8fc1a28221c618e4da18d753",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "unavailable",
+          "total_rows": 1000,
+          "reported_rows": 0,
+          "missing_rows": 1000,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": null,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      },
+      "query": {
+        "identity": "c3ba8ec92df2782ad0cdebe8506a137a61bdf646bfb2a8426e3c0328d2ceaf51",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "unavailable",
+          "total_rows": 1000,
+          "reported_rows": 0,
+          "missing_rows": 1000,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": null,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      }
+    },
+    "E": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "identity": "ba04fa65c9421bf558e9e79f9e2ccd610518f7e2b1b36983b31b3b2ba9e6b135",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "unavailable",
+          "total_rows": 1000,
+          "reported_rows": 0,
+          "missing_rows": 1000,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": null,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      },
+      "query": {
+        "identity": "9dadfaa0347f81d993f2ac286522f98cdebeba359ead0817ac711b294759765b",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "unavailable",
+          "total_rows": 1000,
+          "reported_rows": 0,
+          "missing_rows": 1000,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": null,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      }
+    },
+    "N": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "identity": "8699acd126877a3b6731144f28a5fbe05f51fd437bdf3123fc799cb40103c8b9",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": 2114,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      },
+      "query": {
+        "identity": "fbc6dc05a4b3d73b8d1100fbf79b6e62f6fca2c975728cc1f9545617225394ab",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": 39,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      }
+    },
+    "S": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "identity": "c223baa56fb87159002c4d51f9c16bca866db962a8bd1b35ead2668f6708ccd1",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": 0,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": null,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      },
+      "query": {
+        "identity": "db5509661c53fa0ee1f86802b9f9c737093e378464f5c2a41f73d05e7f91ee21",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": 0,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [
+            77
+          ],
+          "expanded_tokens_max": null,
+          "original_tokens_total": 11634,
+          "retained_tokens_total": 11634
+        }
+      }
+    },
+    "J": {
+      "ranking_cache_hit": true,
+      "cache_reads_are_inference": false,
+      "document": {
+        "identity": "39a63db81a076cf05215517ebb31dad02a082329193742908a33af8d6cd7fda8",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": 2565,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      },
+      "query": {
+        "identity": "9906106df8d12af2193dc745d75720f82b7aea143f661e91b75bd5c970038a90",
+        "cache_rows": 1000,
+        "new_rows": 0,
+        "precomputed": false,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 1000,
+          "reported_rows": 1000,
+          "missing_rows": 0,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "native_text_limits": [],
+          "expanded_tokens_max": 39,
+          "original_tokens_total": null,
+          "retained_tokens_total": null
+        }
+      }
+    }
+  },
+  "encoding_usage_scope": "current_report_invocation_only_not_cumulative_model_calls",
+  "description_generator_identity": "18cdfe4a4989b0dc731e0ad3606fe359010b476f728f5c46c028690bbe2ea06e",
+  "visual_only": true,
+  "audio_included": false,
+  "scope": "63 retrieval subsets \u00d7 two budgets; no reranker or answer generation accuracy",
+  "limitations": [
+    "Descriptions are generated source representations, not human-validated captions or semantic accuracy measurements.",
+    "Videos retain the complete frozen 1000-item gallery; model inputs use fixed visual frame sampling, not all-frame coverage.",
+    "N/S/NS rankings, scores and metrics match six original cells exactly and are counted once.",
+    "Identical original rankings do not imply reused original-baseline encoder vectors: new_rows/cache_rows describe only the current report invocation under derived encoding identities, not cumulative model calls.",
+    "Unavailable diagnostics are not a measured zero; no audio evidence is included.",
+    "Best fusion is selected by observed Hit@5; no significance or causal improvement claim is made."
+  ]
+}
