@@ -8,6 +8,8 @@
 
 **Additional experiment runners:** reverse retrieval reuses verified forward media vectors, and the code-query-prefix comparison reuses verified document/chunk vectors. Actual baseline cache checks passed; new reverse-gallery and code-prefix query inference has not run yet. [Commands and limits](docs/multimodal-running.md).
 
+Document QA also has an opt-in cache for identical full generation requests across retrieval cells. Source bytes and runtime settings must match; each task keeps its own reference-based evaluation. This is CPU-tested infrastructure; new QA answer quality and actual call savings remain unmeasured.
+
 ## Multimodal benchmark — full-split runs started
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.

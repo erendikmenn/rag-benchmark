@@ -8,6 +8,8 @@
 
 **Ek deney çalıştırıcıları:** ters arama, doğrulanmış mevcut medya vektörlerini; kod sorgusu öneki karşılaştırması mevcut belge/parça vektörlerini kullanacak. Gerçek önbellek kontrolleri geçti. Yeni ters arama galerisi ve kod önekli sorgular henüz modele verilmedi; bunlar tamamlanmış başarı ölçümü değil. [Komutlar ve sınırlar](docs/multimodal-running.md).
 
+Belge QA için aynı tam üretim isteğini farklı arama koşullarında paylaşan isteğe bağlı önbellek de hazır. Kaynak byte’ları ve model ayarları aynı olmalı; her görevin cevabı kendi referansıyla ayrı değerlendirilir. Bu altyapı CPU testlerinden geçti; yeni QA cevap kalitesi ve gerçek çağrı tasarrufu henüz ölçülmedi.
+
 ## Çoklu ortam benchmark'ı — tam veri koşuları başladı
 
 Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.

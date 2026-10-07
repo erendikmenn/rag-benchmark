@@ -214,12 +214,13 @@ Build the execution manifest without starting a model:
 
 ```bash
 .venv/bin/python -m rag_benchmark.multimodal_qa_plan \
-  --output work/continuation/document-qa-execution-plan.json
+  --output work/continuation/document-qa-execution-plan.json \
+  --shared-generation-cache .cache/qa-generations
 ```
 
 The planner prepares one `closed_book oracle` × `text image` control job per frozen collection, then one `retrieved` × `text image` job per exact completed retrieval identity. Export duplicates collapse; missing actual ranking stores, failed/partial cells and smoke runs are excluded or retained as pending. Different measured configurations can have the same primary method/budget/K label and stay separate here. The commands pass expected dataset identity and retrieval report SHA256; changed inputs fail before server preflight.
 
-Use `--conditions` and `--representations` to select a subset explicitly. Selection is part of the runner's frozen configuration and requires a separate run directory if it changes. The manifest does not execute commands, launch a server or prove QA accuracy. A queue owner must verify that the model slot is free and run the local pinned generator before executing a job; never send these jobs to the server currently serving another experiment. The [current aggregate plan](../reports/multimodal-qa-execution-plan-summary.json) records 409,148 planned tasks and zero generated answers. Controls are scheduled once; identical retrieved evidence across different cells has no shared generation cache yet. Regenerate the plan after new retrieval results complete.
+Use `--conditions` and `--representations` to select a subset explicitly. Selection is part of the runner's frozen configuration and requires a separate run directory if it changes. The manifest does not execute commands, launch a server or prove QA accuracy. A queue owner must verify that the model slot is free and run the local pinned generator before executing a job; never send these jobs to the server currently serving another experiment. The [current aggregate plan](../reports/multimodal-qa-execution-plan-summary.json) records 409,148 planned tasks and zero generated answers. Controls are scheduled once. With `--shared-generation-cache`, identical full requests can reuse one response across cells after verifying source bytes, source IDs/order, runtime, model, prompt and decoding settings. Each task still independently validates citations and computes metrics against its own references. No real saved-call count or speedup has been measured. Regenerate the plan after new retrieval results complete.
 
 
 ### Separate reverse retrieval
@@ -259,3 +260,5 @@ The separate code-prefix runner validates an ordinary completed E baseline and r
 ```
 
 This command is a CPU cache check. Removing `--verify-baseline-only` authorizes new query encoding and must be done only by the GPU queue owner. [Six planned language jobs](../configs/multimodal-code-prefix-jobs.json) preserve source/report hashes and separate output directories. Real CPU verification passed on all six languages: 183,295 functions and 183,398 cached document vectors (JavaScript uses 14,084 vectors for 13,981 functions). No code-prefix query inference or accuracy result has been measured yet. These experiments belong outside the main forward-matrix denominator.
+
+The shared generation cache is opt-in and requires a private, git-ignored directory (0700; database/lock 0600). References never enter its generation key or raw response store. A checksum mismatch, interrupted running entry or changed request/media/runtime/configuration fails closed; even `--retry-failed` cannot regenerate an integrity failure. Explicit retry is allowed only for a recorded transport exception with unchanged inputs. Reports distinguish new transport-call attempts (including failures), shared responses and local completed-task cache hits; historical response usage is not fresh inference latency.

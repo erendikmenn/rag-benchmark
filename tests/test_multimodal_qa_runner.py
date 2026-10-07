@@ -34,7 +34,7 @@ class FakeLocalTransport:
         }
 
 
-def fixture(tmp_path, monkeypatch, *, empty_text=False):
+def fixture(tmp_path, monkeypatch, *, empty_text=False, reference="Correct fact"):
     pa = pytest.importorskip("pyarrow")
     pq = pytest.importorskip("pyarrow.parquet")
     from rag_benchmark.multimodal_data import write_dataset
@@ -50,7 +50,7 @@ def fixture(tmp_path, monkeypatch, *, empty_text=False):
                     "query_id": "q",
                     "query": "What fact?",
                     "language": "english",
-                    "answer": "Correct fact",
+                    "answer": reference,
                     "raw_answers": ["Not certified alias"],
                 }
             ]
@@ -69,7 +69,7 @@ def fixture(tmp_path, monkeypatch, *, empty_text=False):
                 "text": "What fact?",
                 "metadata": {
                     "language": "english",
-                    "answer": "Correct fact",
+                    "answer": reference,
                     "answer_use": "evaluation_only",
                 },
             }

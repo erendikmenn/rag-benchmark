@@ -260,3 +260,29 @@ def test_plan_commands_enforce_dataset_and_retrieval_hashes(tmp_path):
             )
         else:
             assert "--expected-retrieval-report-sha256" not in args
+
+
+def test_shared_cache_planning_keeps_task_scope_and_pins(tmp_path):
+    source = dataset(tmp_path)
+    report(tmp_path, source, name='one')
+    report(tmp_path, source, name='two')
+    default = plan(tmp_path, [source])
+    enabled = build_plan([source], workspace=tmp_path,
+        reports_root=tmp_path / 'reports/multimodal', runs_root=tmp_path / 'runs/multimodal',
+        output_root=tmp_path / 'runs/multimodal-qa', shared_generation_cache='.cache/qa-generations')
+    assert enabled['schedulable_planned_qa_tasks'] == default['schedulable_planned_qa_tasks'] == 8
+    assert enabled['shared_generation_cache'] == '.cache/qa-generations'
+    assert enabled['model_requests_started'] == 0 and not enabled['actual_generation_reuse_claimed']
+    for original, shared in zip(default['jobs'], enabled['jobs'], strict=True):
+        assert shared['job_id'] == original['job_id']
+        assert shared['command_argv'] == original['command_argv'] + ['--shared-generation-cache', '.cache/qa-generations']
+        assert shared['retrieval_report_sha256'] == original['retrieval_report_sha256']
+        assert shared['dataset_identity'] == original['dataset_identity']
+    assert not (tmp_path / '.cache').exists()
+
+
+def test_shared_cache_plan_rejects_workspace_escape(tmp_path):
+    with pytest.raises(ValueError):
+        build_plan([], workspace=tmp_path, reports_root=tmp_path / 'reports',
+            runs_root=tmp_path / 'runs', output_root=tmp_path / 'qa',
+            shared_generation_cache='../outside')

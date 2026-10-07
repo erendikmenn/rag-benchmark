@@ -46,7 +46,8 @@ def expected_dataset_identity(dataset):
     )
 
 
-def build_plan(dataset_dirs, *, workspace, reports_root, runs_root, output_root):
+def build_plan(dataset_dirs, *, workspace, reports_root, runs_root, output_root,
+               shared_generation_cache=None):
     workspace = Path(workspace).resolve()
     reports_root, runs_root, output_root = (
         Path(path).resolve() for path in [reports_root, runs_root, output_root]
@@ -54,6 +55,11 @@ def build_plan(dataset_dirs, *, workspace, reports_root, runs_root, output_root)
 
     def relative(path):
         return Path(path).resolve().relative_to(workspace).as_posix()
+
+    shared_cache = None
+    if shared_generation_cache is not None:
+        path = Path(shared_generation_cache)
+        shared_cache = relative(path if path.is_absolute() else workspace / path)
 
     datasets = {}
     jobs, exclusions = [], []
@@ -234,6 +240,8 @@ def build_plan(dataset_dirs, *, workspace, reports_root, runs_root, output_root)
                 "--expected-retrieval-report-sha256",
                 sha256(local / "report.json"),
             ]
+        if shared_cache is not None:
+            command += ["--shared-generation-cache", shared_cache]
         return {
             "job_id": stable_hash(
                 {
@@ -299,6 +307,8 @@ def build_plan(dataset_dirs, *, workspace, reports_root, runs_root, output_root)
         "model_requests_started": 0,
         "qa_generation_completed_by_plan": 0,
         "actual_generation_reuse_claimed": False,
+        "shared_generation_cache": shared_cache,
+        "generation_reuse_policy": "Exact request, source bytes and verified generation/runtime identity only; per-task metrics remain independent. Actual calls/reuse are measured by the runner, not predicted by this plan." if shared_cache else "Disabled; controls scheduled once per dataset.",
         "scope": "Observed source-verified document datasets and completed retrieval identities only; not all future variants or the primary18460matrix",
         "dataset_count": len(datasets),
         "controls_job_count": sum(row["kind"] == "controls_only" for row in jobs),
@@ -332,6 +342,8 @@ def main(argv=None):
     parser.add_argument("--runs-root", type=Path, default=Path("runs/multimodal"))
     parser.add_argument("--qa-runs-root", type=Path, default=Path("runs/multimodal-qa"))
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--shared-generation-cache", type=Path,
+                        help="Optional common private cache passed to every job; the runner requires a git-ignored path.")
     args = parser.parse_args(argv)
     result = build_plan(
         sorted(path.parent for path in args.dataset_root.glob("vidore-v3-*/dataset.json")),
@@ -339,6 +351,7 @@ def main(argv=None):
         reports_root=args.reports_root,
         runs_root=args.runs_root,
         output_root=args.qa_runs_root,
+        shared_generation_cache=args.shared_generation_cache,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")

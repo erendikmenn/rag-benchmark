@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from contextlib import closing
 import copy
 import fcntl
 import math
@@ -86,6 +87,90 @@ class LocalQATransport:
             content.extend(media_content(source, self.generator.config))
         text = self.generator.complete(request["system"], content, json_output=False)
         return {"text": text, "usage": copy.deepcopy(self.generator.last_usage)}
+
+
+
+class SharedGenerationCache:
+    """Private exact-request responses; corrupt records never trigger inference."""
+    def __init__(self, directory):
+        from subprocess import run
+        self.directory = Path(directory).resolve()
+        if run(["git", "check-ignore", "--quiet", str(self.directory)], cwd=Path.cwd()).returncode != 0:
+            raise ValueError("Shared QA generation cache must be git-ignored")
+        self.directory.mkdir(parents=True, exist_ok=True, mode=0o700)
+        os.chmod(self.directory, 0o700)
+
+    def generate(self, request, config, transport, callback, *, retry_failed=False):
+        from . import multimodal_generation
+        media = []
+        for source in request["sources"]:
+            for modality, path in sorted(source.get("media", {}).items()):
+                media.append({"source_id": source["id"], "modality": modality,
+                              "path": path, "sha256": sha256(Path(path))})
+        identity = {"version": "qa-identical-request-v1", "request": copy.deepcopy(request),
+                    "media": media, "generator": copy.deepcopy(config["generator"]),
+                    "runtime_identity": transport.identity,
+                    "transport_class": type(transport).__module__ + "." + type(transport).__qualname__,
+                    "runner_sha256": sha256(Path(__file__)),
+                    "generation_sha256": sha256(Path(multimodal_generation.__file__))}
+        key = stable_hash(identity)
+        def verify_inputs():
+            if request != identity["request"]:
+                raise ValueError("Shared request mutated during generation")
+            if config["generator"] != identity["generator"]:
+                raise ValueError("Shared generator config changed during generation")
+            if transport.identity != identity["runtime_identity"] or type(transport).__module__ + "." + type(transport).__qualname__ != identity["transport_class"]:
+                raise ValueError("Shared verified runtime/class changed during generation")
+            if sha256(Path(__file__)) != identity["runner_sha256"] or sha256(Path(multimodal_generation.__file__)) != identity["generation_sha256"]:
+                raise ValueError("Shared implementation changed during generation")
+            if any(sha256(Path(item["path"])) != item["sha256"] for item in media):
+                raise ValueError("Shared request media changed during generation")
+        lock_path = self.directory / "generation.lock"
+        with lock_path.open("a") as lock:
+            os.chmod(lock_path, 0o600)
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            database_path = self.directory / "generation.sqlite3"
+            verify_inputs()
+            with closing(sqlite3.connect(database_path)) as database:
+                os.chmod(database_path, 0o600)
+                database.execute("CREATE TABLE IF NOT EXISTS responses (key TEXT PRIMARY KEY,status TEXT,payload TEXT,checksum TEXT)")
+                row = database.execute("SELECT status,payload,checksum FROM responses WHERE key=?", (key,)).fetchone()
+                if row:
+                    status, encoded, checksum = row
+                    if stable_hash({"status": status, "payload": encoded}) != checksum:
+                        raise ValueError("Shared generation cache checksum mismatch; regeneration forbidden")
+                    payload = json.loads(encoded)
+                    if payload.get("identity") != identity:
+                        raise ValueError("Shared generation cache request/runtime differs; regeneration forbidden")
+                    if status == "completed":
+                        response = payload["response"]
+                        parse_prediction(response["text"], {source["id"] for source in request["sources"]})
+                        return copy.deepcopy(response), True, key
+                    if status != "failed" or payload.get("failure_kind") != "transport_exception" or not retry_failed:
+                        raise ValueError("Shared generation cache incomplete/failed; no implicit regeneration")
+                def save(status, payload):
+                    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, allow_nan=False)
+                    database.execute("INSERT OR REPLACE INTO responses VALUES (?,?,?,?)", (key, status, encoded, stable_hash({"status": status, "payload": encoded})))
+                    database.commit()
+                save("running", {"identity": identity})
+                retry_eligible = False
+                try:
+                    try:
+                        produced = callback()
+                    except Exception:
+                        verify_inputs()
+                        retry_eligible = True
+                        raise
+                    verify_inputs()
+                    response = {"text": produced["text"], "usage": produced.get("usage", {})}
+                    parse_prediction(response["text"], {source["id"] for source in request["sources"]})
+                    save("completed", {"identity": identity, "response": response})
+                except Exception as error:
+                    save("failed" if retry_eligible else "blocked_integrity", {"identity": identity,
+                        "error_type": type(error).__name__,
+                        "failure_kind": "transport_exception" if retry_eligible else "integrity_or_response_validation"})
+                    raise
+                return copy.deepcopy(response), False, key
 
 
 def frozen_config(overrides=None):
@@ -287,6 +372,7 @@ def run_qa(
     retry_failed=False,
     expected_dataset_identity=None,
     expected_retrieval_report_sha256=None,
+    shared_generation_cache=None,
 ):
     config = copy.deepcopy(config or frozen_config())
     validate_config(config)
@@ -324,6 +410,7 @@ def run_qa(
     ignored = run(["git", "check-ignore", "--quiet", str(run_dir)], cwd=Path.cwd()).returncode == 0
     if not ignored:
         raise ValueError("Raw QA run directory must be git-ignored (normally runs/)")
+    shared_cache = SharedGenerationCache(shared_generation_cache) if shared_generation_cache is not None else None
     run_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
     lock = (run_dir / "qa.lock").open("w")
     try:
@@ -352,6 +439,8 @@ def run_qa(
         runtime_proof = transport.preflight()
         if not isinstance(transport.identity, str) or not transport.identity:
             raise ValueError("Transport must expose a verified runtime identity after preflight")
+        verified_runtime_identity = transport.identity
+        verified_config_identity = stable_hash(config)
         runtime = connection.execute("SELECT value FROM meta WHERE key='runtime_identity'").fetchone()
         if runtime and runtime[0] != transport.identity:
             raise ValueError("Verified model/runtime changed; cached predictions cannot be reused")
@@ -429,6 +518,7 @@ def run_qa(
         connection.commit()
         new_count = 0
         new_inference = 0
+        shared_responses = 0
         for task, condition, representation, record in planned:
             status, encoded = connection.execute(
                 "SELECT status,payload FROM predictions WHERE task=?", (task,)
@@ -441,6 +531,8 @@ def run_qa(
                 break
             payload = {}
             try:
+                if transport.identity != verified_runtime_identity or stable_hash(config) != verified_config_identity:
+                    raise ValueError("Verified runtime/config changed within the QA invocation")
                 request = request_for(record, frozen, condition, representation, config["protocol"], rankings)
                 payload["request"] = request
                 connection.execute(
@@ -448,10 +540,29 @@ def run_qa(
                     ("running", json.dumps(payload), task),
                 )
                 connection.commit()
-                new_inference += 1
-                response = transport.generate(request)
+                def fresh_response():
+                    nonlocal new_inference
+                    new_inference += 1
+                    produced = transport.generate(request)
+                    # Preserve returned raw output even if shared-cache validation fails.
+                    if isinstance(produced, dict):
+                        if "text" in produced:
+                            payload["raw_prediction"] = produced["text"]
+                        payload["usage"] = produced.get("usage", {})
+                    return produced
+                if shared_cache is not None:
+                    response, reused, shared_key = shared_cache.generate(
+                        request, config, transport, fresh_response, retry_failed=retry_failed)
+                    shared_responses += int(reused)
+                    payload["generation_provenance"] = {"shared_cache_key": shared_key,
+                        "shared_response_reused": reused, "fresh_transport_call": not reused}
+                else:
+                    response = fresh_response()
+                    reused = False
+                    payload["generation_provenance"] = {"shared_response_reused": False, "fresh_transport_call": True}
                 payload["raw_prediction"] = response["text"]
-                payload["usage"] = response.get("usage", {})
+                payload["usage"] = {"shared_generation_cache_hit": True, "inference_seconds": None,
+                    "original_generation_usage": response.get("usage", {})} if reused else response.get("usage", {})
                 prediction = parse_prediction(response["text"], {row["id"] for row in request["sources"]})
                 payload["prediction"] = prediction
                 payload["metrics"] = evaluate_prediction(
@@ -510,13 +621,15 @@ def run_qa(
             "invocation": {
                 "new_task_attempts": new_count,
                 "new_inference_requests": new_inference,
+                "cross_run_shared_responses_reused": shared_responses,
+                "shared_generation_cache_enabled": shared_cache is not None,
                 "cached_completed_tasks_validated": cached_validated,
                 "max_new_attempted_tasks": max_new,
             },
             "evaluated_groups": groups,
             "source_identity_sha256": source_seal,
-            "config_sha256": stable_hash(config),
-            "runtime_identity_sha256": stable_hash(transport.identity),
+            "config_sha256": verified_config_identity,
+            "runtime_identity_sha256": stable_hash(verified_runtime_identity),
             "runner_sha256": source_identity["runner_sha256"],
             "qa_implementation_sha256": readiness["qa_implementation_sha256"],
             "metric_scope": "Lexical reference matching and positive-qrel citation source-ID set overlap; completed tasks only",
@@ -547,6 +660,7 @@ def main(argv=None):
     parser.add_argument("--representations", nargs="+", choices=["text", "image"], default=None)
     parser.add_argument("--max-new", type=int)
     parser.add_argument("--retry-failed", action="store_true")
+    parser.add_argument("--shared-generation-cache", type=Path)
     args = parser.parse_args(argv)
     config = frozen_config()
     if args.conditions is not None:
@@ -564,6 +678,7 @@ def main(argv=None):
         retry_failed=args.retry_failed,
         expected_dataset_identity=args.expected_dataset_identity,
         expected_retrieval_report_sha256=args.expected_retrieval_report_sha256,
+        shared_generation_cache=args.shared_generation_cache,
     )
     print(
         json.dumps(
