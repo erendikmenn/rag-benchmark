@@ -16,7 +16,7 @@
     "missing_candidate_text_count": 0,
     "split": "test"
   },
-  "source_report_sha256": "7a96146a15e97cdda9a046e3b26cf98254af63b18f078992d5f822bc9722817d",
+  "source_report_sha256": "7a897dd5f348d1273caf24347e84f2ad3d1e073027cc8c4535e8f4e4fe75235b",
   "scope": "paired_primary_cells_same_frozen_collection",
   "metrics": [
     "hit@5",
