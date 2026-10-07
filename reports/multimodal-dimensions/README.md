@@ -1,6 +1,6 @@
 # Cached EG2 dimension results
 
-**Five full dataset views, 72 dimension/method/budget cells.** Every unchanged 768 baseline was reproduced against original full-corpus rankings and stored per-query results before lower-dimensional evaluation. No new encoder inference was performed.
+**Six full dataset views, 88 dimension/method/budget cells.** Every unchanged 768 baseline was reproduced against original full-corpus rankings and stored per-query results before lower-dimensional evaluation. No new encoder inference was performed.
 
 This summary shows standalone native EG2 (N), with per-channel candidate budgets. Each linked report also contains Recall@5, nDCG@10, both candidate-budget modes and N+S fusion where its specialist evidence validated. No reranker or other representation parameter is varied here.
 
@@ -11,8 +11,11 @@ This summary shows standalone native EG2 (N), with per-channel candidate budgets
 | [clotho-v2.1-evaluation](clotho-v2.1-evaluation/dimension-sweep.md) | 5,225 | 1,045 | 7.71% | 11.37% | 12.06% | 11.75% |
 | [clotho-dcase2025-additional-relevance](clotho-dcase2025-additional-relevance/dimension-sweep.md) | 1,037 | 1,045 | 18.51% | 23.63% | 26.13% | 25.84% |
 | [fleurs-tr_tr-test](fleurs-tr_tr-test/dimension-sweep.md) | 329 | 743 | 100.00% | 100.00% | 100.00% | 100.00% |
+| [msrvtt-1k-a](msrvtt-1k-a/dimension-sweep.md) | 1,000 | 1,000 | 60.30% | 73.50% | 74.70% | 75.00% |
 
 For Turkish photos, 512 dimensions retain Hit@5 84.54% versus 84.64% at 768, an observed difference of −0.10 percentage points. English photos give 83.56% versus 83.75%. These point estimates do not establish statistical equivalence or a universal best dimension.
+
+Video Hit@5 is 74.70% at 512 dimensions, 73.50% at 256 and 60.30% at 128, versus 75.00% at 768. Video input remains the same sampled visual frames (1 fps, maximum 16), without soundtrack.
 
 The speech Hit@5 stays 100%, but Recall@5 falls from 99.54% at 768 to 98.53% at 128 and nDCG@10 also changes. A saturated hit rate alone does not mean all ranking quality is preserved.
 
