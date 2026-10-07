@@ -8,7 +8,7 @@
 
 **Additional experiment runners:** reverse retrieval reuses verified forward media vectors, and the code-query-prefix comparison reuses verified document/chunk vectors. Actual baseline cache checks passed; new reverse-gallery and code-prefix query inference has not run yet. [Commands and limits](docs/multimodal-running.md).
 
-Document QA also has an opt-in cache for identical full generation requests across retrieval cells. Source bytes and runtime settings must match; each task keeps its own reference-based evaluation. This is CPU-tested infrastructure; new QA answer quality and actual call savings remain unmeasured.
+Document QA also has an opt-in cache for identical full generation requests across retrieval cells. Source bytes and runtime settings must match; each task keeps its own reference-based evaluation. This is CPU-tested infrastructure; new QA answer quality and actual call savings remain unmeasured. Six one-question QA checks are now queued with the existing GPU owner to validate closed-book, oracle and retrieved evidence in text and image form; they have not run and will not count as full accuracy tests.
 
 ## Multimodal benchmark — full-split runs started
 
