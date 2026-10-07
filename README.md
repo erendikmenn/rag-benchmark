@@ -10,7 +10,7 @@
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.
 
-**The overnight queue ended at 09:08 Europe/Istanbul on 7 October**, after the already-running PHP job finished. The complete research suite remains unfinished; no model job from this queue is running. [Morning report and remaining work (Turkish)](docs/multimodal-morning-report.tr.md).
+**Execution resumed at 13:01 Europe/Istanbul on 7 October at the user's request.** The queue is processing the remaining experiments without the previous overnight cutoff. Two GPT-6.1 Sol agents handle CPU development, data checks and evaluation auditing in parallel; heavy local GPU jobs retain one owner. JavaScript dense retrieval is the active experiment at this update. Published coverage below counts completed results only. [Current execution status](docs/multimodal-status.md) · [Earlier morning snapshot](docs/multimodal-morning-report.tr.md).
 
 **Main-matrix coverage: 1,060 / 18,460 conditions (5.74%).** This expands the 21 planned collections by method, candidate budget and rerank K; repeated exports and technical smoke checks are excluded. Extra representation/parameter and answer-quality experiments are outside this denominator. This is coverage, not elapsed-work or time remaining. [Count and scope](reports/multimodal/progress-summary.md).
 

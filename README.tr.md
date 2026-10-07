@@ -10,7 +10,7 @@
 
 Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.
 
-**Gece kuyruğu, başlamış PHP işi tamamlandıktan sonra 7 Ekim 09:08’de kapandı.** Araştırma paketinin bütünü henüz tamamlanmadı; bu kuyrukta şu anda model işi çalışmıyor. [Sabah raporu ve kalan işler](docs/multimodal-morning-report.tr.md).
+**Kullanıcının devam talimatıyla deneyler 7 Ekim 13:01’de yeniden başladı.** Önceki gece saat sınırı kaldırıldı. İki GPT-6.1 Sol ajanı CPU geliştirme, veri kontrolü ve ölçüm denetimini paralel yürütüyor; ağır yerel GPU işlerini tek kuyruk yönetiyor. Bu güncellemede JavaScript embedding araması çalışıyor. Aşağıdaki ilerleme oranı yalnız tamamlanmış sonuçları sayar. [Güncel çalışma durumu](docs/multimodal-status.md) · [Önceki sabah özeti](docs/multimodal-morning-report.tr.md).
 
 **Ana deney matrisinin 1.060 / 18.460 koşulu tamamlandı (%5,74).** Bu sayı, planlanan 21 koleksiyonu yöntem, aday bütçesi ve rerank K ayarlarıyla genişletir; yinelenen raporları ve küçük teknik kontrolleri dışlar. Ek temsil/parametre ve cevap kalitesi deneyleri bu paydaya dahil değildir. Bu bir kapsam oranıdır; harcanan veya kalan sürenin yüzdesi değildir. [Sayım ve kapsam](reports/multimodal/progress-summary.md).
 
