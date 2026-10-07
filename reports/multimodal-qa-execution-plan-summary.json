@@ -9,12 +9,12 @@
   "scope": "Observed source-verified document datasets and completed retrieval identities only; not all future variants or the primary18460matrix",
   "dataset_count": 8,
   "controls_job_count": 8,
-  "retrieved_job_count": 1040,
-  "schedulable_planned_qa_tasks": 485532,
+  "retrieved_job_count": 1164,
+  "schedulable_planned_qa_tasks": 562164,
   "controls_planned_qa_tasks": 9676,
-  "retrieved_planned_qa_tasks": 475856,
-  "pending_observed_retrieval_cells": 9060,
-  "pending_future_qa_tasks_if_sources_complete": 5631420,
+  "retrieved_planned_qa_tasks": 552488,
+  "pending_observed_retrieval_cells": 8936,
+  "pending_future_qa_tasks_if_sources_complete": 5554788,
   "completion_denominator": "sum query_count \u00d7 selected conditions \u00d72representations over scheduled jobs; completed tasks currently zero; pending retrieval is separately conditional",
   "execution_prerequisites": [
     "Runner actual media-byte checksum verification",
@@ -33,6 +33,7 @@
     "reports/multimodal/vidore-v3-computer_science-en-text-rerankers/report.json": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
     "reports/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
     "reports/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
+    "reports/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
     "reports/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
     "reports/multimodal/vidore-v3-finance_fr-fr-bm25/report.json": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
     "reports/multimodal/vidore-v3-hr-en-bm25/report.json": "b1e28d6d06d2dd0a898d49d016cbfe9424addc47d45c8603b2469d6ae3df4b90",
@@ -48,10 +49,10 @@
     "runs/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
     "runs/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
     "runs/multimodal/vidore-v3-energy-fr-text-rerankers/report.json": "4a61719492afc17d5c000c2f64c1bbeeb2b3b8781b66b92056c0d7ac287cb7be",
-    "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "1b713b41d4ae3b7af6181ed09995dbdda9e7baf5c78c50fe302a39b8f1f5e265",
+    "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
     "runs/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
     "runs/multimodal/vidore-v3-finance_en-en-text-rerankers/report.json": "68cfebfcce197b93826bb0b830e1227dbc387873d73aa220f5ad117ae653683d",
-    "runs/multimodal/vidore-v3-finance_fr-fr-all-retrieval/report.json": "dc25a5d48791a687a70993ae33a13f3f8905b7a413290789784fd85e348dccbd",
+    "runs/multimodal/vidore-v3-finance_fr-fr-all-retrieval/report.json": "4b10f077a43000c94b533b4bbce1a10d48f51b324227c33e92fd9614865696b7",
     "runs/multimodal/vidore-v3-finance_fr-fr-bm25/report.json": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
     "runs/multimodal/vidore-v3-finance_fr-fr-text-rerankers/report.json": "03f95b1bf486940cd58953df75cc8d3502ea43f7b958bf6cc5c953a67b7f9dba",
     "runs/multimodal/vidore-v3-hr-en-all-retrieval/report.json": "ab256f7c30eb18b9d66c621d488bb0568533578f2aa9e4b80fb6a350021fe124",
@@ -67,7 +68,7 @@
     "runs/multimodal/vidore-v3-physics-fr-bm25/report.json": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
     "runs/multimodal/vidore-v3-physics-fr-text-rerankers/report.json": "2162440ba0ef7bfae467dc33b8e3faae883ef7f04007b8756587c3a46ba05350"
   },
-  "plan_sha256": "86a28c77e9620988e39a9f32064253aeb9954e30a78a1d61f92b95c059ecfa76",
+  "plan_sha256": "ba855a4750b9916eece9681095fcaf7dbbfb12665d72cead5a9eda69411e72f7",
   "datasets": {
     "vidore-v3-computer_science-en": {
       "query_count": 215,
@@ -84,8 +85,8 @@
     "vidore-v3-finance_en-en": {
       "query_count": 309,
       "controls_only_jobs": 1,
-      "planned_qa_tasks": 3708,
-      "retrieved_only_jobs": 4
+      "planned_qa_tasks": 80340,
+      "retrieved_only_jobs": 128
     },
     "vidore-v3-finance_fr-fr": {
       "query_count": 320,

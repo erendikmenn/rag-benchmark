@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "health_tag": "d35a9c4c70e2cb1c",
+  "health_status": "failed",
+  "case_count": 6,
+  "completed_sample_tasks": 5,
+  "failed_sample_tasks": 1,
+  "new_transport_attempts": 5,
+  "cross_run_shared_responses_reused": 1,
+  "failed_generation": {
+    "stage": "normal_stop_guard_before_prediction_parser",
+    "normal_stop": false,
+    "exact_finish_reason": "unavailable_not_saved",
+    "raw_response_available": false,
+    "raw_prediction_available": false,
+    "prompt_tokens_from_private_log": 2342,
+    "generated_tokens_from_private_log": 384,
+    "requested_output_tokens": 384,
+    "context_limit": 8192,
+    "prompt_plus_reserved_output": 2726,
+    "server_truncated_flag": 0,
+    "repetition": "unavailable_no_failed_raw_output",
+    "json_or_citation_validity": "unavailable_parser_not_reached",
+    "risk_code": "non_normal_stop_at_output_cap_with_missing_raw_failure_trace"
+  },
+  "limits": [
+    "Exact raw finish reason and semantic/repetition cause cannot be recovered from absent failed HTTP body.",
+    "Server truncated=0 is a recorded flag, not an independent visual coverage measurement.",
+    "One sample per case is runtime health, not full QA evaluation.",
+    "Stored shared transport failure remains failed; this audit does not authorize retry, cache reset, or larger output budget."
+  ],
+  "status": "runtime_health_failed",
+  "scope": "six fixed one-task technical cases; no full QA accuracy",
+  "main_matrix_contribution": 0,
+  "private_health_sha256": "cd58f00cd76349e920f697a78c58a10a08fd40db29402bd55db6cb4eae1cf5c0",
+  "private_diagnosis_sha256": "9ef23a3fe2e09e4ba02430f0b12529e7e48fb9ef5e0e8cdcc9a050bbf6a0d7b5",
+  "diagnosis_source_sha256": "fcda2fdde97bca78675690c6b8922c001ef576798e5a47925973aa91bf5c166e",
+  "schema": "qa-exact-source-id-citations-schema-v3",
+  "actual_diagnostic_replay_model_calls": 0,
+  "actual_diagnostic_replay_http_calls": 0,
+  "old_failed_cache_preserved": true,
+  "automatic_retry_performed": false,
+  "cases": [
+    {
+      "case": "closed_book-image",
+      "task_status": "completed",
+      "raw_prediction_available": true,
+      "source_count": 0,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 0,
+      "shared_responses_reused": 1
+    },
+    {
+      "case": "closed_book-text",
+      "task_status": "completed",
+      "raw_prediction_available": true,
+      "source_count": 0,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 1,
+      "shared_responses_reused": 0
+    },
+    {
+      "case": "oracle-image",
+      "task_status": "completed",
+      "raw_prediction_available": true,
+      "source_count": 2,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 1,
+      "shared_responses_reused": 0
+    },
+    {
+      "case": "oracle-text",
+      "task_status": "completed",
+      "raw_prediction_available": true,
+      "source_count": 2,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 1,
+      "shared_responses_reused": 0
+    },
+    {
+      "case": "retrieved-image",
+      "task_status": "failed",
+      "raw_prediction_available": false,
+      "source_count": 5,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 1,
+      "shared_responses_reused": 0
+    },
+    {
+      "case": "retrieved-text",
+      "task_status": "completed",
+      "raw_prediction_available": true,
+      "source_count": 5,
+      "context_limit": 8192,
+      "requested_output_tokens": 384,
+      "response_schema_present": true,
+      "new_transport_attempts": 1,
+      "shared_responses_reused": 0
+    }
+  ]
+}
