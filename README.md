@@ -23,6 +23,8 @@ The new suite tests **photo, visual document, environmental audio, Turkish speec
 
 Hit@5 means at least one relevant page was found; Recall@5 measures coverage of all relevant pages. ColQwen has the highest observed Recall@5 and nDCG@10 among the 63 primary methods. BM25 + EG2 page images + ColQwen has the highest observed Hit@5 (**98.14%**), with lower Recall@5 than standalone ColQwen. These are source-retrieval results, with no reranker or answer generator. [All methods](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md) · [Paired descriptive comparisons](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/paired-comparisons.md).
 
+**Laya document reranking completed all 378 conditions** on the same 215 queries: 63 retrieval subsets × K=20/50/100 × two budgets. At primary K=50, Hit@5, Recall@5 and nDCG@10 fell in all 63 matched comparisons. For example, ColQwen Hit@5 changed from **97.21% to 54.42%**, and Recall@5 from **65.34% to 20.43%**. Laya scores source page text, including when retrieval used images. These are descriptive results for this configuration; the single connected source group does not support a confidence interval. BGE reranking is still running. [Complete Laya comparison and K sweep](reports/multimodal/laya-document-summary.md).
+
 Full photo retrieval is measured on the same 3,600-image gallery:
 
 | Query language | Queries | EG2 Hit@5 | SigLIP2 Hit@5 | EG2 + SigLIP2 RRF Hit@5 |

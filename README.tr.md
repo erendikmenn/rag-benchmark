@@ -23,6 +23,8 @@ Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, 
 
 Hit@5, en az bir doğru sayfa bulmayı; Recall@5, soruya ait bütün doğru sayfaların ne kadarını bulduğumuzu ölçer. ColQwen, 63 ana yöntemde en yüksek gözlenen Recall@5 ve nDCG@10 değerini verdi. BM25 + EG2 sayfa görüntüsü + ColQwen birleşiminin Hit@5 değeri **%98,14** ile en yüksek; ancak Recall@5 değeri tek başına ColQwen’den düşük. Burada reranker veya cevap üretici yok; kaynak bulmayı ölçüyoruz. [Bütün yöntemler](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md) · [Eşleştirilmiş betimsel karşılaştırmalar](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/paired-comparisons.md).
 
+**Belge testinde Laya'nın 378 koşulu tamamlandı:** aynı 215 sorguda 63 arama birleşimi × K=20/50/100 × iki bütçe. Ana K=50 koşulunda, 63 eşleştirilmiş karşılaştırmanın tamamında Hit@5, Recall@5 ve nDCG@10 düştü. Örneğin ColQwen'in Hit@5 değeri **%97,21 → %54,42**, Recall@5 değeri **%65,34 → %20,43** oldu. Arama görüntüyle yapılmış olsa da Laya yalnızca kaynak sayfa metnini puanlıyor. Bunlar bu ayarlara ait betimsel sonuçlar; tek bağlı kaynak grubu nedeniyle güven aralığı vermiyoruz. BGE yeniden sıralama deneyi sürüyor. [Laya karşılaştırması ve aday sayısı deneyi](reports/multimodal/laya-document-summary.md).
+
 Aynı 3.600 fotoğraftan oluşan arşivde tam fotoğraf arama ölçümleri:
 
 | Sorgu dili | Sorgu sayısı | EG2 Hit@5 | SigLIP2 Hit@5 | EG2 + SigLIP2 RRF Hit@5 |

@@ -1,0 +1,139 @@
+# Multimodal retrieval results
+
+Dataset: **vidore-v3-computer_science-en**, revision `d5cc75883d92e294f0c0fc2662551c9708a06ebc`.
+Scope: **frozen_collection**; 215 evaluated queries out of 215, searching 1,360 candidates.
+
+Only completed cells below have measured scores. Planned, unsupported and failed families remain visible in matrix.csv. A completed collection is not the complete seven-track benchmark.
+
+| Method | Budget | Rerank K | Hit@1 | Hit@5 | Recall@5 | MRR@10 | nDCG@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| document__b__none | per_channel | — | 0.6977 | 0.9209 | 0.5353 | 0.7918 | 0.6334 |
+| document__g__none | per_channel | — | 0.7209 | 0.9535 | 0.5245 | 0.8127 | 0.6356 |
+| document__e__none | per_channel | — | 0.7442 | 0.9442 | 0.5440 | 0.8298 | 0.6623 |
+| document__n__none | per_channel | — | 0.6651 | 0.9163 | 0.5270 | 0.7787 | 0.6296 |
+| document__s__none | per_channel | — | 0.7860 | 0.9721 | 0.6534 | 0.8656 | 0.7585 |
+| document__j__none | per_channel | — | 0.7535 | 0.9442 | 0.5454 | 0.8385 | 0.6753 |
+| document__b_g__none | per_channel | — | 0.7581 | 0.9488 | 0.5733 | 0.8437 | 0.6771 |
+| document__b_e__none | per_channel | — | 0.7442 | 0.9535 | 0.5788 | 0.8405 | 0.6956 |
+| document__b_n__none | per_channel | — | 0.7349 | 0.9442 | 0.5781 | 0.8274 | 0.6843 |
+| document__b_s__none | per_channel | — | 0.7814 | 0.9628 | 0.6171 | 0.8619 | 0.7288 |
+| document__b_j__none | per_channel | — | 0.7628 | 0.9581 | 0.5832 | 0.8471 | 0.6961 |
+| document__g_e__none | per_channel | — | 0.7674 | 0.9535 | 0.5587 | 0.8513 | 0.6866 |
+| document__g_n__none | per_channel | — | 0.7442 | 0.9581 | 0.5611 | 0.8409 | 0.6764 |
+| document__g_s__none | per_channel | — | 0.8186 | 0.9581 | 0.6220 | 0.8815 | 0.7233 |
+| document__g_j__none | per_channel | — | 0.7814 | 0.9535 | 0.5639 | 0.8581 | 0.6899 |
+| document__e_n__none | per_channel | — | 0.7349 | 0.9628 | 0.5600 | 0.8242 | 0.6666 |
+| document__e_s__none | per_channel | — | 0.8233 | 0.9674 | 0.6112 | 0.8875 | 0.7399 |
+| document__e_j__none | per_channel | — | 0.7535 | 0.9628 | 0.5497 | 0.8371 | 0.6722 |
+| document__n_s__none | per_channel | — | 0.7907 | 0.9674 | 0.6163 | 0.8678 | 0.7264 |
+| document__n_j__none | per_channel | — | 0.7209 | 0.9302 | 0.5429 | 0.8150 | 0.6629 |
+| document__s_j__none | per_channel | — | 0.8000 | 0.9721 | 0.6215 | 0.8724 | 0.7409 |
+| document__b_g_e__none | per_channel | — | 0.7814 | 0.9674 | 0.5941 | 0.8620 | 0.7005 |
+| document__b_g_n__none | per_channel | — | 0.7860 | 0.9767 | 0.5970 | 0.8622 | 0.6988 |
+| document__b_g_s__none | per_channel | — | 0.8279 | 0.9767 | 0.6279 | 0.8893 | 0.7349 |
+| document__b_g_j__none | per_channel | — | 0.7814 | 0.9674 | 0.5981 | 0.8600 | 0.7057 |
+| document__b_e_n__none | per_channel | — | 0.7628 | 0.9628 | 0.5884 | 0.8520 | 0.6995 |
+| document__b_e_s__none | per_channel | — | 0.8000 | 0.9721 | 0.6152 | 0.8765 | 0.7312 |
+| document__b_e_j__none | per_channel | — | 0.7721 | 0.9628 | 0.5894 | 0.8564 | 0.7042 |
+| document__b_n_s__none | per_channel | — | 0.8047 | 0.9814 | 0.6258 | 0.8743 | 0.7301 |
+| document__b_n_j__none | per_channel | — | 0.7721 | 0.9581 | 0.5888 | 0.8531 | 0.6999 |
+| document__b_s_j__none | per_channel | — | 0.8186 | 0.9721 | 0.6244 | 0.8867 | 0.7440 |
+| document__g_e_n__none | per_channel | — | 0.8047 | 0.9628 | 0.5792 | 0.8739 | 0.6987 |
+| document__g_e_s__none | per_channel | — | 0.8326 | 0.9581 | 0.6049 | 0.8896 | 0.7276 |
+| document__g_e_j__none | per_channel | — | 0.8093 | 0.9628 | 0.5771 | 0.8721 | 0.6970 |
+| document__g_n_s__none | per_channel | — | 0.8326 | 0.9721 | 0.6167 | 0.8926 | 0.7327 |
+| document__g_n_j__none | per_channel | — | 0.7535 | 0.9535 | 0.5746 | 0.8436 | 0.6886 |
+| document__g_s_j__none | per_channel | — | 0.8279 | 0.9581 | 0.6123 | 0.8840 | 0.7303 |
+| document__e_n_s__none | per_channel | — | 0.8372 | 0.9628 | 0.6023 | 0.8935 | 0.7330 |
+| document__e_n_j__none | per_channel | — | 0.7488 | 0.9628 | 0.5652 | 0.8334 | 0.6764 |
+| document__e_s_j__none | per_channel | — | 0.8186 | 0.9674 | 0.5981 | 0.8825 | 0.7327 |
+| document__n_s_j__none | per_channel | — | 0.8279 | 0.9721 | 0.6113 | 0.8885 | 0.7258 |
+| document__b_g_e_n__none | per_channel | — | 0.8093 | 0.9721 | 0.6003 | 0.8788 | 0.7063 |
+| document__b_g_e_s__none | per_channel | — | 0.8372 | 0.9767 | 0.6260 | 0.8953 | 0.7357 |
+| document__b_g_e_j__none | per_channel | — | 0.7953 | 0.9674 | 0.5967 | 0.8726 | 0.7105 |
+| document__b_g_n_s__none | per_channel | — | 0.8047 | 0.9767 | 0.6212 | 0.8810 | 0.7304 |
+| document__b_g_n_j__none | per_channel | — | 0.8000 | 0.9721 | 0.6016 | 0.8729 | 0.7110 |
+| document__b_g_s_j__none | per_channel | — | 0.8326 | 0.9721 | 0.6241 | 0.8942 | 0.7371 |
+| document__b_e_n_s__none | per_channel | — | 0.8140 | 0.9767 | 0.6201 | 0.8854 | 0.7332 |
+| document__b_e_n_j__none | per_channel | — | 0.7907 | 0.9628 | 0.5933 | 0.8679 | 0.7095 |
+| document__b_e_s_j__none | per_channel | — | 0.8140 | 0.9767 | 0.6145 | 0.8851 | 0.7374 |
+| document__b_n_s_j__none | per_channel | — | 0.8047 | 0.9628 | 0.6113 | 0.8776 | 0.7298 |
+| document__g_e_n_s__none | per_channel | — | 0.8279 | 0.9721 | 0.6181 | 0.8935 | 0.7267 |
+| document__g_e_n_j__none | per_channel | — | 0.7860 | 0.9581 | 0.5803 | 0.8595 | 0.6928 |
+| document__g_e_s_j__none | per_channel | — | 0.8419 | 0.9581 | 0.6101 | 0.8930 | 0.7273 |
+| document__g_n_s_j__none | per_channel | — | 0.8186 | 0.9721 | 0.6194 | 0.8869 | 0.7268 |
+| document__e_n_s_j__none | per_channel | — | 0.8279 | 0.9767 | 0.5973 | 0.8864 | 0.7258 |
+| document__b_g_e_n_s__none | per_channel | — | 0.8326 | 0.9674 | 0.6199 | 0.8972 | 0.7301 |
+| document__b_g_e_n_j__none | per_channel | — | 0.8093 | 0.9674 | 0.5931 | 0.8802 | 0.7132 |
+| document__b_g_e_s_j__none | per_channel | — | 0.8419 | 0.9721 | 0.6212 | 0.8972 | 0.7314 |
+| document__b_g_n_s_j__none | per_channel | — | 0.8419 | 0.9721 | 0.6196 | 0.8988 | 0.7339 |
+| document__b_e_n_s_j__none | per_channel | — | 0.8279 | 0.9674 | 0.6149 | 0.8923 | 0.7349 |
+| document__g_e_n_s_j__none | per_channel | — | 0.8186 | 0.9721 | 0.6150 | 0.8841 | 0.7240 |
+| document__b_g_e_n_s_j__none | per_channel | — | 0.8372 | 0.9674 | 0.6124 | 0.8959 | 0.7351 |
+| document__b__laya_text | per_channel | 50 | 0.2279 | 0.5116 | 0.1947 | 0.3563 | 0.2638 |
+| document__g__laya_text | per_channel | 50 | 0.2279 | 0.5488 | 0.2024 | 0.3745 | 0.2829 |
+| document__e__laya_text | per_channel | 50 | 0.2558 | 0.5628 | 0.2063 | 0.3891 | 0.2873 |
+| document__n__laya_text | per_channel | 50 | 0.2047 | 0.5535 | 0.1987 | 0.3558 | 0.2620 |
+| document__s__laya_text | per_channel | 50 | 0.2047 | 0.5442 | 0.2043 | 0.3581 | 0.2688 |
+| document__j__laya_text | per_channel | 50 | 0.2093 | 0.5535 | 0.2055 | 0.3623 | 0.2776 |
+| document__b_g__laya_text | per_channel | 50 | 0.2233 | 0.5535 | 0.2079 | 0.3701 | 0.2744 |
+| document__b_e__laya_text | per_channel | 50 | 0.2233 | 0.5628 | 0.2101 | 0.3765 | 0.2824 |
+| document__b_n__laya_text | per_channel | 50 | 0.2465 | 0.5628 | 0.2114 | 0.3818 | 0.2773 |
+| document__b_s__laya_text | per_channel | 50 | 0.2279 | 0.5674 | 0.2071 | 0.3747 | 0.2788 |
+| document__b_j__laya_text | per_channel | 50 | 0.2372 | 0.5488 | 0.1975 | 0.3803 | 0.2805 |
+| document__g_e__laya_text | per_channel | 50 | 0.2279 | 0.5767 | 0.2108 | 0.3846 | 0.2883 |
+| document__g_n__laya_text | per_channel | 50 | 0.2186 | 0.5628 | 0.2113 | 0.3718 | 0.2748 |
+| document__g_s__laya_text | per_channel | 50 | 0.2140 | 0.5535 | 0.2027 | 0.3630 | 0.2689 |
+| document__g_j__laya_text | per_channel | 50 | 0.2186 | 0.5628 | 0.2035 | 0.3776 | 0.2832 |
+| document__e_n__laya_text | per_channel | 50 | 0.2279 | 0.5535 | 0.2073 | 0.3741 | 0.2800 |
+| document__e_s__laya_text | per_channel | 50 | 0.2233 | 0.5442 | 0.2031 | 0.3712 | 0.2780 |
+| document__e_j__laya_text | per_channel | 50 | 0.2279 | 0.5349 | 0.1987 | 0.3719 | 0.2832 |
+| document__n_s__laya_text | per_channel | 50 | 0.2186 | 0.5581 | 0.2070 | 0.3633 | 0.2718 |
+| document__n_j__laya_text | per_channel | 50 | 0.2279 | 0.5535 | 0.2063 | 0.3698 | 0.2774 |
+| document__s_j__laya_text | per_channel | 50 | 0.2140 | 0.5256 | 0.1927 | 0.3580 | 0.2657 |
+| document__b_g_e__laya_text | per_channel | 50 | 0.2186 | 0.5581 | 0.1996 | 0.3694 | 0.2722 |
+| document__b_g_n__laya_text | per_channel | 50 | 0.2140 | 0.5395 | 0.1926 | 0.3597 | 0.2640 |
+| document__b_g_s__laya_text | per_channel | 50 | 0.2233 | 0.5674 | 0.2070 | 0.3700 | 0.2764 |
+| document__b_g_j__laya_text | per_channel | 50 | 0.2233 | 0.5442 | 0.1952 | 0.3665 | 0.2681 |
+| document__b_e_n__laya_text | per_channel | 50 | 0.2279 | 0.5628 | 0.2023 | 0.3731 | 0.2770 |
+| document__b_e_s__laya_text | per_channel | 50 | 0.2279 | 0.5535 | 0.2033 | 0.3691 | 0.2763 |
+| document__b_e_j__laya_text | per_channel | 50 | 0.2326 | 0.5628 | 0.2035 | 0.3764 | 0.2792 |
+| document__b_n_s__laya_text | per_channel | 50 | 0.2140 | 0.5674 | 0.2054 | 0.3583 | 0.2692 |
+| document__b_n_j__laya_text | per_channel | 50 | 0.2279 | 0.5442 | 0.1982 | 0.3673 | 0.2706 |
+| document__b_s_j__laya_text | per_channel | 50 | 0.2279 | 0.5535 | 0.2004 | 0.3667 | 0.2748 |
+| document__g_e_n__laya_text | per_channel | 50 | 0.2372 | 0.5674 | 0.2074 | 0.3801 | 0.2833 |
+| document__g_e_s__laya_text | per_channel | 50 | 0.2233 | 0.5628 | 0.2073 | 0.3702 | 0.2807 |
+| document__g_e_j__laya_text | per_channel | 50 | 0.2326 | 0.5767 | 0.2096 | 0.3804 | 0.2820 |
+| document__g_n_s__laya_text | per_channel | 50 | 0.2140 | 0.5535 | 0.2037 | 0.3590 | 0.2693 |
+| document__g_n_j__laya_text | per_channel | 50 | 0.2233 | 0.5535 | 0.2087 | 0.3707 | 0.2758 |
+| document__g_s_j__laya_text | per_channel | 50 | 0.2140 | 0.5442 | 0.1997 | 0.3636 | 0.2705 |
+| document__e_n_s__laya_text | per_channel | 50 | 0.2186 | 0.5535 | 0.2040 | 0.3656 | 0.2722 |
+| document__e_n_j__laya_text | per_channel | 50 | 0.2279 | 0.5488 | 0.2048 | 0.3720 | 0.2810 |
+| document__e_s_j__laya_text | per_channel | 50 | 0.2186 | 0.5349 | 0.1999 | 0.3661 | 0.2775 |
+| document__n_s_j__laya_text | per_channel | 50 | 0.2093 | 0.5488 | 0.2024 | 0.3589 | 0.2704 |
+| document__b_g_e_n__laya_text | per_channel | 50 | 0.2093 | 0.5488 | 0.2005 | 0.3638 | 0.2731 |
+| document__b_g_e_s__laya_text | per_channel | 50 | 0.2372 | 0.5442 | 0.2016 | 0.3786 | 0.2770 |
+| document__b_g_e_j__laya_text | per_channel | 50 | 0.2140 | 0.5535 | 0.2030 | 0.3687 | 0.2761 |
+| document__b_g_n_s__laya_text | per_channel | 50 | 0.2279 | 0.5488 | 0.2043 | 0.3698 | 0.2698 |
+| document__b_g_n_j__laya_text | per_channel | 50 | 0.2140 | 0.5442 | 0.1980 | 0.3645 | 0.2742 |
+| document__b_g_s_j__laya_text | per_channel | 50 | 0.2326 | 0.5535 | 0.2041 | 0.3753 | 0.2736 |
+| document__b_e_n_s__laya_text | per_channel | 50 | 0.2279 | 0.5581 | 0.2061 | 0.3697 | 0.2772 |
+| document__b_e_n_j__laya_text | per_channel | 50 | 0.2233 | 0.5535 | 0.2016 | 0.3689 | 0.2758 |
+| document__b_e_s_j__laya_text | per_channel | 50 | 0.2372 | 0.5442 | 0.1994 | 0.3765 | 0.2820 |
+| document__b_n_s_j__laya_text | per_channel | 50 | 0.2186 | 0.5535 | 0.2026 | 0.3616 | 0.2729 |
+| document__g_e_n_s__laya_text | per_channel | 50 | 0.2279 | 0.5442 | 0.2031 | 0.3695 | 0.2745 |
+| document__g_e_n_j__laya_text | per_channel | 50 | 0.2233 | 0.5721 | 0.2042 | 0.3735 | 0.2815 |
+| document__g_e_s_j__laya_text | per_channel | 50 | 0.2186 | 0.5581 | 0.2072 | 0.3700 | 0.2763 |
+| document__g_n_s_j__laya_text | per_channel | 50 | 0.2140 | 0.5442 | 0.2036 | 0.3635 | 0.2761 |
+| document__e_n_s_j__laya_text | per_channel | 50 | 0.2233 | 0.5628 | 0.2067 | 0.3700 | 0.2751 |
+| document__b_g_e_n_s__laya_text | per_channel | 50 | 0.2140 | 0.5488 | 0.2026 | 0.3654 | 0.2712 |
+| document__b_g_e_n_j__laya_text | per_channel | 50 | 0.2186 | 0.5488 | 0.2030 | 0.3706 | 0.2775 |
+| document__b_g_e_s_j__laya_text | per_channel | 50 | 0.2233 | 0.5581 | 0.2078 | 0.3741 | 0.2784 |
+| document__b_g_n_s_j__laya_text | per_channel | 50 | 0.2140 | 0.5442 | 0.2031 | 0.3622 | 0.2714 |
+| document__b_e_n_s_j__laya_text | per_channel | 50 | 0.2233 | 0.5535 | 0.2060 | 0.3707 | 0.2761 |
+| document__g_e_n_s_j__laya_text | per_channel | 50 | 0.2186 | 0.5535 | 0.2063 | 0.3658 | 0.2731 |
+| document__b_g_e_n_s_j__laya_text | per_channel | 50 | 0.2140 | 0.5488 | 0.2033 | 0.3670 | 0.2774 |
+
+Hit@K measures whether at least one labelled relevant item was retrieved. Recall@K measures the fraction of all labelled relevant items retrieved. These can differ substantially for multi-positive datasets.
+
+This report measures retrieval against dataset labels, not generated-answer correctness. Cached results are never reported as new model inference latency. Full configuration, channel timing and coverage are in report.json.

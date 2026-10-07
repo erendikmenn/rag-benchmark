@@ -1,0 +1,126 @@
+{
+  "audit_kind": "read_only_integration_review",
+  "cache_and_mapping_checks": {
+    "descending_score_and_id_tie_order": 215,
+    "keys_or_source_content_persisted": false,
+    "pair_key_scope": "engine, dataset, model/prompt identity, source-only query and candidate representations",
+    "queries_checked": 215,
+    "reconstructed_pair_keys_and_exact_score_matches": 10750,
+    "same_candidate_set_as_native_top_50": 215,
+    "unique_50_candidate_ids": 215
+  },
+  "conclusion": {
+    "interpretation": "Observed performance applies to this configured text-only condition on this dataset; no score inversion, candidate mapping or scoped truncation fault was found",
+    "validity_blocker_found": false
+  },
+  "dataset": {
+    "corpus_count": 1360,
+    "empty_candidate_text_count": 2,
+    "id": "vidore-v3-computer_science-en",
+    "identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+    "query_count": 215,
+    "revision": "d5cc75883d92e294f0c0fc2662551c9708a06ebc"
+  },
+  "execution": {
+    "checkpoint_weights_loaded": false,
+    "checks_rerun_for_persistence": false,
+    "gpu_work_performed": false,
+    "model_inference_performed": false,
+    "raw_queries_sources_paths_or_cache_keys_included": false,
+    "source_or_existing_report_edited": false
+  },
+  "language_calibration": {
+    "checkpoint_temperatures": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "external_calibration_supplied": false,
+    "language_parameter_affects_tokenized_input": false,
+    "language_parameter_inert_for_this_configuration": true,
+    "language_temperature_mapping_supplied": false,
+    "requested_language_parameter": "tr",
+    "resolved_language_temperature_mapping_empty": true
+  },
+  "limitations": {
+    "all_cell_truncation_assurance": "Adapter rejects SDK-reported state/question truncation; independent tokenizer replay covers the declared S/K50 scope only",
+    "causal_diagnosis_of_quality_loss": false,
+    "condition": "Fixed generic relevance prompt over source text surrogates; raw page images are not read by Laya",
+    "cpu_fallback_policy": "Adapter rejects changes in SDK CPU fallback count",
+    "generalization_cause_diagnosed": false,
+    "persisted_cell_token_counts_available": false
+  },
+  "model": {
+    "backend": "sdk",
+    "base_adapter_identity": "8f65fdf135bb702e6a1b3113a1662c938ad72fbf4af6dc7db043264c0bb82b7e",
+    "batch_size": 8,
+    "current_base_identity_matches_published_report": true,
+    "current_dataset_identity_matches_published_report": true,
+    "current_wrapper_identity_matches_published_report": true,
+    "device": "mps",
+    "dtype": "float32",
+    "max_len": 8192,
+    "model_id": "convaiinnovations/laya-multilingual",
+    "packages": {
+      "laya": "0.3.28",
+      "torch": "2.14.1",
+      "transformers": "5.19.0"
+    },
+    "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34",
+    "threshold": null,
+    "wrapper_identity": "341305a0dde0fe46b1d2590179b792df3fe8b41988e48099401520a722c63c68"
+  },
+  "observed_score_distribution": {
+    "distinct_scores": 6193,
+    "largest_tie_group_at_rank_5": 2,
+    "maximum": 1.0,
+    "mean": 0.40805332093023255,
+    "minimum": 0.0,
+    "one_scores": 1,
+    "pairs": 10750,
+    "queries_with_ties_at_rank_5": 3,
+    "zero_scores": 1
+  },
+  "published_report_sha256": "9075f5e4f1b8d81d9f3260e3e1598005d638a3d257031b80f278eba881b5772a",
+  "schema_version": 1,
+  "scope": {
+    "all_laya_completed_cells_observed": 378,
+    "budget_mode": "per_channel",
+    "candidate_k": 50,
+    "detailed_pair_validation_scope": "S/K50 only; does not claim tokenizer replay of every Laya cell",
+    "pair_count": 10750,
+    "query_count": 215,
+    "reranker": "laya_text",
+    "retrieval_channel": "S",
+    "specialist": "ColQwen"
+  },
+  "score_semantics": {
+    "input_mapping": "query and passage are separately named state fields",
+    "noul_option_order": [
+      "false",
+      "true"
+    ],
+    "positive_score_not_action_or_confidence_field": true,
+    "ranking_direction": "descending",
+    "sdk_batch_reordering_restores_original_indices": true,
+    "sdk_score_decimal_places": 4,
+    "selected_probability_index": 1,
+    "tie_break": "ascending_candidate_id",
+    "wrapper_maps_scores_back_to_original_candidate_ids": true
+  },
+  "tokenizer_replay": {
+    "distinct_options": 2,
+    "full_instruction_preserved": true,
+    "head_limit": 256,
+    "head_tokens": 61,
+    "inference_performed": false,
+    "instruction_tokens": 40,
+    "max_sequence_tokens": 2061,
+    "max_state_tokens": 1999,
+    "option_markers": 2,
+    "pairs_checked": 10750,
+    "pinned_local_tokenizer_and_installed_sdk_sequence_builder": true,
+    "sequence_limit": 8192,
+    "truncated_pairs": 0
+  }
+}
