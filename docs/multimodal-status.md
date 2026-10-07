@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 13:21 Europe/Istanbul.
+Updated: 2026-10-07 13:35 Europe/Istanbul.
 
 **The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval has completed; Turkish speech Laya/BGE reranking is active at this update; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -52,7 +52,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
-- Latest implementation validation: 344 tests passed with the complete model dependencies; the minimal dependency environment passed 309 tests with 22 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+- Latest implementation validation: 375 tests passed with the complete model dependencies; the minimal dependency environment passed 333 tests with 29 optional-dependency skips. These are software checks, separate from benchmark accuracy.
 
 - [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech, video and CS document images. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
@@ -81,7 +81,8 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - Pointwise reranker scores are now saved once per query in a single SQLite transaction. Model identities, scores, ranking order and resume keys are unchanged. Real SQLite tests cover rollback and missing-pair resumption. This reduces cache-write overhead; no GPU speedup is claimed.
 - Description-view progress counting is being validated against unchanged source queries, qrels and media inventory. Duplicate measurements require all 17 metrics to match; a different representation is not silently counted as independent evidence.
-- The eight frozen ViDoRe collections contain evaluation-only reference answers; a separate QA preparation/evaluation path is being developed. Availability is not a completed answer-quality evaluation. Human-calibrated semantic correctness remains pending.
+- [Document QA preparation](../reports/multimodal-qa-readiness.json) is verified against the frozen raw source hashes: all 2,419 canonical question/answer mappings across eight collections match, with positive source labels. The CPU preparation/metric module separates evaluation-only references from generation inputs, lexical overlap from citation source-set overlap, and oracle diagnostics from actual retrieval. The audit was independently regenerated. No new QA generator has run; human-calibrated semantic correctness and citation entailment remain pending.
+- Explicit BGE reranker batching and video FPS/frame-cap/vision-budget controls are implemented and tested. Defaults preserve historical adapter identities; explicit changes are separate conditions. The nine-condition video execution manifest is planned, not measured. The active speech process retains its original batch settings; no measured GPU throughput improvement is claimed.
 - CIRR raw images remain behind the publisher’s authorized-access process. The form, terms acceptance and email were not submitted; official-media absence is still an external prerequisite for its 620 main cells. [Publisher access page](https://cirr.zheyuanliu.me/raw-image-download).
 
 - JavaScript completed at 13:12 Europe/Istanbul: 3,291 queries, 13,981 source functions and 14,084 lossless retrieval chunks (two functions require splitting). All 14 method/budget cells, 46,074 rankings and 783,258 per-query metric values were independently reproduced. The previously completed CS text-reranker job then validated cached results; it is not additional fresh inference. Its original complete 126-comparison audit was retained because the report source hash is unchanged.

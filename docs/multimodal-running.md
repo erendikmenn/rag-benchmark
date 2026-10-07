@@ -147,3 +147,20 @@ The 128/256/512 dimensions reduce raw FP32 N-vector storage by 83.3% / 66.7% / 3
 ```
 
 The [nine-condition execution manifest](../configs/multimodal-video-ablation-jobs.json) fixes FPS at 0.5/1/2 and the frame cap at 8/16/32. It contains planned commands, not measured results. Run these through the sole GPU owner and export to `reports/ablations/video`; they are outside the main-matrix completion denominator. Its baseline entry reuses the original validated run/cache. All conditions are visual-only; audio is excluded. Raw MSR-VTT candidates have no source-only text for J, so J requires a separately prepared description view.
+
+### Document answer-evaluation preparation
+
+The source-verified preparation module runs on CPU without a model call:
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_qa \
+  --dataset data/multimodal/vidore-v3-computer_science-en \
+  --raw-queries data/multimodal/raw/vidore-v3-computer_science/queries/test-00000-of-00001.parquet \
+  --output work/qa/computer-science-readiness.json
+```
+
+It binds raw query-parquet hashes to the frozen manifest, verifies prepared-file hashes and checks every selected-language question and canonical answer against the published source. Positive source labels must reference the frozen corpus. The [eight-collection audit](../reports/multimodal-qa-readiness.json) covers all 2,419 questions; it publishes counts, protocol and hashes only. Raw questions, references and predictions remain local.
+
+This is preparation and metric code, not a generation runner or a quality result. A future runner must freeze the local generator, prompt and decoding settings; validate source media before use; and save predictions before evaluation. `generation_query()` exposes only the question, language and ID. `select_evidence()` defines closed-book, oracle and actual retrieved top-five conditions for text or images. Oracle is a labelled diagnostic using up to five positive sources, not an ordinary retrieval result. Missing evidence fails explicitly instead of silently dropping a question or source. Text availability differs from image availability: the CS corpus contains two empty OCR fields.
+
+Answer EM and token F1 measure lexical overlap with the canonical reference. Normalization uses Unicode NFKC, language-aware Turkish case handling, punctuation-to-space and whitespace tokenization. Uncertified `raw_answers` are not treated as equivalent reference aliases. Citation source-set precision/recall/hit compare cited source IDs with positive qrels; they do not measure whether the answer's claims are supported. Semantic correctness and citation entailment remain unmeasured and require separate calibrated assessment. This evaluation is outside the 18,460-cell retrieval matrix and the earlier RAGTurk pilot.

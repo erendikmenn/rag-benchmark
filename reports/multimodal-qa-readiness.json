@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "scope": "Source-verified readiness only; no generator invocation and no measured QA accuracy",
+  "status": "ready_for_generation",
+  "collections": [
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-computer_science-en",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "20d464b6546be9d9c0e054c17773525c0a6abeeeb57ea2a9c75d25d502a58dca",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "e3890cc540a19318bab168eddf2efddbc003bb95e12652194ba9a152840a9b5f",
+        "qrels.jsonl": "99e7d19adc037c9cfaa12752f8439a24c1caf362f96831318ec20da6e600b3d8",
+        "corpus.jsonl": "145fef258708f5796c5cefa0d9fb363923d9f51381d089c13a506c3234bf358e",
+        "assets.jsonl": "e9f29dcb806fb805f2dd89668d373f60aff64e99572f4c428f92b4007757a5f7"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "86a800279c12f4a607378fc001e89e1d136d5568580c16cc0356eaa0092676f5"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 215,
+      "eligible_query_count": 215,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "english",
+      "exact_published_question_answer_matches": 215,
+      "raw_answer_list_lengths": {
+        "1": 168,
+        "2": 47
+      },
+      "text_source_count": 1358,
+      "image_source_count": 1360,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-energy-fr",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "712021e7dd694fbef131e21e1d239ecf92db40f1cc2d9d2b0a6d63bcef2c189a",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "ed6d8997ef501e0fd14d704c81de362ad08960f360498afb93c3b33120b0e781",
+        "qrels.jsonl": "ffde2abcfb7ab40716ac802c7e9e82e407aa27fce04b74637635563c6447f799",
+        "corpus.jsonl": "f02498bca35d4b19bcda93b317df54393783a6197c0fa502877ac7e5aef5e7a5",
+        "assets.jsonl": "ff7c5b30970bce1dfa4fa30758436f105e7bb22a89433b072c438f60812c3a83"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "5d1ebfdd740aaf83c44e641f9f3ec169af1e7af195595d236951cf5d6a16df1d"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 308,
+      "eligible_query_count": 308,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "french",
+      "exact_published_question_answer_matches": 308,
+      "raw_answer_list_lengths": {
+        "3": 71,
+        "1": 215,
+        "2": 22
+      },
+      "text_source_count": 2210,
+      "image_source_count": 2225,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-finance_en-en",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "c7e6ae38778ad32c8157106c61f4c986505556b64147bcce0530a7e13c407186",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "0ff23db1c1870ca6cfa2f6b075a7c7a8b4cfeef82524f5f56d51df095d4e82bd",
+        "qrels.jsonl": "78fa615082e190d30a08d0ef1e6d722f69b9a8c9a056042c06f9203d4d38455e",
+        "corpus.jsonl": "70b9bbee06cb0d715aab771b9d29de05477ac4d4a32c8d2dae4430db0f8d304c",
+        "assets.jsonl": "bed6aafc41a9aef536dbf866a0e2967f68c1c8fdc68146f718670bf2783f74e8"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "3ab1f931bf8522750be06b300d5e8efe3b7cb68cb749705b19416b4032b7ad8b"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 309,
+      "eligible_query_count": 309,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "english",
+      "exact_published_question_answer_matches": 309,
+      "raw_answer_list_lengths": {
+        "1": 209,
+        "2": 94,
+        "3": 6
+      },
+      "text_source_count": 2923,
+      "image_source_count": 2942,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-finance_fr-fr",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "251c2711e8feea18803a253bb2b42341d5865a9d2feb7ea9f273690a871782b4",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "ef3d22f1cb88f2eb19f8625b7510045936039a76af7dd507957a4f67d53faa8d",
+        "qrels.jsonl": "382cbfbc96dfe4eed96eb4f042c165175d1ad1b78e8a0a0fc752fb1f8aa3071e",
+        "corpus.jsonl": "2f2342b295d2c91ba3ec9eda5c6e94ae55ae8c012337214e86c38f3e9c63daa4",
+        "assets.jsonl": "897d0ab51e4403cfc299f63a4c2bf28afac9b0c05cf00c428f0f55eedb749d5e"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "699e99f2b84f722f7623cbbf7a733cd329ab31882e7efe801512f2bdcf6ad0f7"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 320,
+      "eligible_query_count": 320,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "french",
+      "exact_published_question_answer_matches": 320,
+      "raw_answer_list_lengths": {
+        "1": 228,
+        "2": 26,
+        "3": 66
+      },
+      "text_source_count": 2373,
+      "image_source_count": 2384,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-hr-en",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "798abf416c28f84f651d28d6024793eced406f3557eb4871a9a371ae7f8e12cc",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "96af03bf525b29edcbd229a94d97bfc445c9873471ae846a0ee7cdf65210845a",
+        "qrels.jsonl": "6e6ddebb59c6726fdd27a6bc7ee4a9f5506eadf966ec0ceeb4a18bc4f046ae8f",
+        "corpus.jsonl": "0d59bb9aa4e5d68a6fe508aa4bb46af7565e212c877e07354824e51adfdaf43d",
+        "assets.jsonl": "c78997ca31a4d11539596615f1e8688d4aac3d8620e6c52e65688da2b0d6bb43"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "bbf0bfa70498e036e93b4b4567e37ce23ad3a658f2b7dd3567bbd70285c03606"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 318,
+      "eligible_query_count": 318,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "english",
+      "exact_published_question_answer_matches": 318,
+      "raw_answer_list_lengths": {
+        "1": 255,
+        "2": 63
+      },
+      "text_source_count": 1098,
+      "image_source_count": 1110,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-industrial-en",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "6784077a070285b476d1ea2ad194d860c715894c2079aa3f6d9c9866c8ef8c6f",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "311fc5941d2168a61454be8dbddc775c05288cecfc4f4d473b8d6bf1e9e927e2",
+        "qrels.jsonl": "7f9719a9c910c9fb83ea87ab8e5d8df72bb76d8136e6bf2091ab301ca355ead7",
+        "corpus.jsonl": "607c2c46e6229ecfbc5305b505f7f3daf9d1cbb50fa036a6c4caa2fac6db02b2",
+        "assets.jsonl": "c2e5745be789483015ea4ceae3790ab60877b04c85e800c649d280ba8480ce35"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "145df0eef4d41bbd80cb9678c63dd2c771094342b01220a814a565e17cfe8f27"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 283,
+      "eligible_query_count": 283,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "english",
+      "exact_published_question_answer_matches": 283,
+      "raw_answer_list_lengths": {
+        "2": 114,
+        "3": 17,
+        "1": 152
+      },
+      "text_source_count": 5039,
+      "image_source_count": 5244,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-pharmaceuticals-en",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "273be849f7be26c5a1235608599cd21e56aa0190b0570e2e003dfd2cb4fd976e",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "23c06ee2e45e25215561e665e4cc72f1ff9d345af13948fae08eb231da01a7a1",
+        "qrels.jsonl": "4c2064885b09ef6de699c93b54f7d9877c4e963a70f444c535245e96a7526590",
+        "corpus.jsonl": "b8ffbd5fa3b0d923faaef378ac7e25d4a4799f476ea6f5a0dfd6aae01597354c",
+        "assets.jsonl": "cdc121af216c1f0e5dc0df8521b36f4d5c5fe7d5a6c702b3f0e5ea86039c1d12"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "6088a4d297ccddb980bb8af1aaeef51e4d8243959add4cbdaa8a65c2ef42f6a0"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 364,
+      "eligible_query_count": 364,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "english",
+      "exact_published_question_answer_matches": 364,
+      "raw_answer_list_lengths": {
+        "1": 253,
+        "2": 111
+      },
+      "text_source_count": 2313,
+      "image_source_count": 2313,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    },
+    {
+      "schema_version": 1,
+      "dataset": "vidore-v3-physics-fr",
+      "protocol": {
+        "representations": [
+          "text",
+          "image"
+        ],
+        "conditions": [
+          "closed_book",
+          "oracle",
+          "retrieved"
+        ],
+        "source_budget": 5,
+        "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+        "oracle_selection": "positive qrel IDs sorted lexically, first five",
+        "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+        "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+        "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+        "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+        "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+        "human_semantic_accuracy": "pending human-labeled calibration set",
+        "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+        "main_18460_matrix_inclusion": false,
+        "existing_text_qa_pilot_inclusion": false
+      },
+      "generation_executed": false,
+      "quality_measured": false,
+      "manifest_sha256": "3ec00f9615f6781960ac3b20b8425befaf7411fff75503e9a0bff776697b3d96",
+      "qa_implementation_sha256": "eec0554ba355f92af3595642ff13820488b8e63eb43b6d2f73a2ff6428229c9e",
+      "prepared_source_sha256": {
+        "queries.jsonl": "8c269e3b9a9f481832f37b1804d6467441a1aeefd98f09d6abfd3bfa3c4c013e",
+        "qrels.jsonl": "aeee4803ae4e06d24087e5b25727a205ac508a935a7929e9a86db129a77393bd",
+        "corpus.jsonl": "a083323ff888ccc7f374ad224a651f8ec499c8c7f85323180fcfc32d59cbde22",
+        "assets.jsonl": "7df074a546e2be6f91438af25a316fbd75fb920f6d1b74e21cbbfb66f1ed69ae"
+      },
+      "raw_source_binding": "supplied query parquet SHA256 set equals frozen manifest /queries/ source SHA256 set; exact query/answer matching below",
+      "raw_query_source_sha256": [
+        "96a3f7b031a160dccb504788acabafe17dca9d82b017d84f8ca1c556b7934562"
+      ],
+      "status": "ready_for_generation",
+      "query_count": 302,
+      "eligible_query_count": 302,
+      "excluded_query_count": 0,
+      "excluded_reasons": {},
+      "selected_language": "french",
+      "exact_published_question_answer_matches": 302,
+      "raw_answer_list_lengths": {
+        "1": 210,
+        "3": 63,
+        "2": 29
+      },
+      "text_source_count": 1674,
+      "image_source_count": 1674,
+      "source_asset_verification": "frozen prepared-file hashes and asset inventory; media bytes must be validated before generator use"
+    }
+  ],
+  "collection_count": 8,
+  "query_count": 2419,
+  "eligible_query_count": 2419,
+  "exact_published_question_answer_matches": 2419,
+  "protocol": {
+    "representations": [
+      "text",
+      "image"
+    ],
+    "conditions": [
+      "closed_book",
+      "oracle",
+      "retrieved"
+    ],
+    "source_budget": 5,
+    "evidence_availability": "every selected source must pass representation checks; missing text/image is an error, never silently removed",
+    "oracle_selection": "positive qrel IDs sorted lexically, first five",
+    "retrieved_selection": "actual frozen retrieval/rerank ranking first five; no gold filtering",
+    "reference_policy": "published canonical answer only; raw_answers are not certified alternate references",
+    "explicit_certified_multigold_policy": "maximum EM and maximum token F1 independently across references",
+    "lexical_normalization": "Unicode NFKC; language-aware Turkish dotted/dotless I; casefold; Unicode punctuation to spaces; whitespace tokens; no article stripping",
+    "citation_metric": "positive qrel source-ID set overlap; not entailment or claim-support correctness",
+    "human_semantic_accuracy": "pending human-labeled calibration set",
+    "frozen_generator_prompt_settings_and_evidence_budget": "required before generation; no runner executed",
+    "main_18460_matrix_inclusion": false,
+    "existing_text_qa_pilot_inclusion": false
+  },
+  "generation_executed": false,
+  "quality_measured": false,
+  "human_semantic_accuracy": "pending human-labeled calibration",
+  "outside_primary_retrieval_matrix": true
+}
