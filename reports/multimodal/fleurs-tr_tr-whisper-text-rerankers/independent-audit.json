@@ -1,0 +1,1199 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "independent formulas from stored ranking IDs and frozen qrels; CPU only",
+  "dataset": "fleurs-tr_tr-whisper-text-rerankers",
+  "source_report_sha256": "d713a0054c2170fbfc3639feda0684b674e01efc844b8fefbf1a178f65dd3129",
+  "coverage": {
+    "queries": 329,
+    "recordings": 743,
+    "cells": {
+      "none": 62,
+      "laya_text": 186,
+      "bge_reranker_text": 186
+    },
+    "completed_cells": 434,
+    "verified_rankings": 142786,
+    "verified_metric_values": 2427362,
+    "primary_condition_cells": 93
+  },
+  "baseline": {
+    "matching_none_cell_identities": 62,
+    "matching_none_aggregate_metrics": 62,
+    "same_frozen_configuration": true
+  },
+  "primary_metrics": [
+    {
+      "retrieval_channels": [
+        "B"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.9954407294832827,
+        "ndcg@10": 0.9970258392589244
+      }
+    },
+    {
+      "retrieval_channels": [
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.9989868287740628,
+        "ndcg@10": 0.9997948969360329
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.9989868287740628,
+        "ndcg@10": 0.9995092599619742
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 0.9994703532665132
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "none",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.9924012158054711,
+        "ndcg@10": 0.9879580558671888
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.986322188449848,
+        "ndcg@10": 0.983738123165726
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.986322188449848,
+        "ndcg@10": 0.9811021174483817
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.994934143870314,
+        "ndcg@10": 0.9873725603062529
+      }
+    },
+    {
+      "retrieval_channels": [
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9918946301925025,
+        "ndcg@10": 0.9843969201470911
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9832826747720365,
+        "ndcg@10": 0.9849896106662919
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.9934143870314084,
+        "ndcg@10": 0.985606032941281
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9893617021276596,
+        "ndcg@10": 0.9850447055156304
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9893617021276596,
+        "ndcg@10": 0.984914828345653
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9878419452887538,
+        "ndcg@10": 0.9849332056664397
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9878419452887538,
+        "ndcg@10": 0.9853982085642251
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9878419452887538,
+        "ndcg@10": 0.985505652811268
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.993920972644377,
+        "ndcg@10": 0.9851044356212683
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.9878419452887538,
+        "ndcg@10": 0.9816402630195257
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.994934143870314,
+        "ndcg@10": 0.9856912956429464
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9858156028368795,
+        "ndcg@10": 0.984950598780703
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9858156028368795,
+        "ndcg@10": 0.9862771766194762
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9848024316109423,
+        "ndcg@10": 0.9844467425748086
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9908814589665653,
+        "ndcg@10": 0.984418655124564
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9848024316109423,
+        "ndcg@10": 0.9831131519998154
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.993920972644377,
+        "ndcg@10": 0.9850354801906824
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.9898682877406282,
+        "ndcg@10": 0.9847931015138585
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9908814589665653,
+        "recall@5": 0.9858156028368795,
+        "ndcg@10": 0.9828884216861401
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9929078014184398,
+        "ndcg@10": 0.9853387930078
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 0.994934143870314,
+        "ndcg@10": 0.9851203268961879
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.988855116514691,
+        "ndcg@10": 0.9849184502338267
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.988855116514691,
+        "ndcg@10": 0.983948138702638
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9929078014184398,
+        "ndcg@10": 0.9850986986230573
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.9969604863221885,
+        "recall@5": 0.9918946301925027,
+        "ndcg@10": 0.9842302829975779
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.9898682877406282,
+        "ndcg@10": 0.9847573636781878
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "laya_text",
+      "metrics": {
+        "hit@5": 0.993920972644377,
+        "recall@5": 0.988855116514691,
+        "ndcg@10": 0.9841869932011194
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "reranker": "bge_reranker_text",
+      "metrics": {
+        "hit@5": 1.0,
+        "recall@5": 1.0,
+        "ndcg@10": 1.0
+      }
+    }
+  ],
+  "new_inference_calls": 0,
+  "caveat": "Queries are literal normalized reference transcripts. Text channels and text rerankers match source-only Whisper transcript text, not paraphrases or semantic answers. Saturated retrieval accuracy does not measure generated-answer correctness. Transcript groups do not model every speaker/topic dependency."
+}

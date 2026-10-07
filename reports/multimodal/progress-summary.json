@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T10:18:02.850688+00:00",
+  "snapshot_utc": "2026-10-07T10:53:00.000076+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,28 +16,28 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1072,
-    "remaining_cells": 17388,
-    "completion_fraction": 0.0580715059588299,
-    "completion_percent": 5.80715059588299,
+    "completed_cells": 1444,
+    "remaining_cells": 17016,
+    "completion_fraction": 0.07822318526543878,
+    "completion_percent": 7.822318526543879,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
   "alternative_coverage_measures": {
     "global_method_families": {
-      "completed_at_least_one_collection": 236,
+      "completed_at_least_one_collection": 298,
       "planned": 1284,
-      "coverage_percent": 18.38006230529595,
+      "coverage_percent": 23.20872274143302,
       "limitation": "Collapses languages, collections, budgets and K values; not the main-matrix completion percentage."
     },
     "global_method_budget_k_units": {
-      "covered_at_least_one_collection": 976,
+      "covered_at_least_one_collection": 1348,
       "planned": 6420,
-      "coverage_percent": 15.202492211838006,
+      "coverage_percent": 20.996884735202492,
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 284,
+      "covered": 346,
       "planned": 3692
     }
   },
@@ -69,11 +69,11 @@
       }
     },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 33,
-    "raw_completed_export_cells": 1724,
-    "duplicate_completed_cell_occurrences": 652,
+    "full_collection_source_reports": 34,
+    "raw_completed_export_cells": 2158,
+    "duplicate_completed_cell_occurrences": 714,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "6246ac5d2666973d496d8ffcbdae3d367139d476690a3071bbc6b00a069ce1c0"
+    "canonical_key_manifest_sha256": "d9d298c0aab831630ddbc66ee988e73ebafc02bdc4d4276d0890425e223182ca"
   },
   "track_progress": [
     {
@@ -108,9 +108,9 @@
       "main_collections": 1,
       "retrieval_subsets_per_collection": 31,
       "planned_cells": 620,
-      "completed_cells": 62,
-      "remaining_cells": 558,
-      "completion_fraction": 0.1
+      "completed_cells": 434,
+      "remaining_cells": 186,
+      "completion_fraction": 0.7
     },
     {
       "track": "video",
@@ -265,8 +265,8 @@
       "collection": "fleurs-tr_tr-test",
       "track": "speech",
       "planned_cells": 620,
-      "completed_cells": 62,
-      "remaining_cells": 558,
+      "completed_cells": 434,
+      "remaining_cells": 186,
       "dataset_status": "ready",
       "manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
       "fully_completed_main_grid": false
@@ -621,6 +621,19 @@
         "cell_status_counts": {
           "completed": 62,
           "unsupported": 558
+        }
+      },
+      {
+        "report": "fleurs-tr_tr-whisper-text-rerankers/report.json",
+        "sha256": "d713a0054c2170fbfc3639feda0684b674e01efc844b8fefbf1a178f65dd3129",
+        "dataset_id": "fleurs-tr_tr-whisper",
+        "canonical_collection": "fleurs-tr_tr-test",
+        "dataset_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+        "completed_export_cells": 434,
+        "new_canonical_cells_in_lexical_file_order": 372,
+        "cell_status_counts": {
+          "completed": 434,
+          "unsupported": 186
         }
       },
       {

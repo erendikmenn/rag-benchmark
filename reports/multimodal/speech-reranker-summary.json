@@ -1,0 +1,3012 @@
+{
+  "schema_version": 1,
+  "scope": "Full source-only Whisper-text Laya/BGE reranking on literal reference-transcript queries; not answer accuracy.",
+  "dataset": {
+    "id": "fleurs-tr_tr-whisper",
+    "revision": "0db3c05e0e8109f758a6d3c38b57f00a621d6927d0ba03f27448e61cd85beffc",
+    "track": "speech",
+    "identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+    "corpus_count": 743,
+    "query_count": 329,
+    "qrel_count": 743,
+    "positive_qrel_count": 743,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "sources": {
+    "report": "fleurs-tr_tr-whisper-text-rerankers/report.json",
+    "report_sha256": "d713a0054c2170fbfc3639feda0684b674e01efc844b8fefbf1a178f65dd3129",
+    "local_run_report_sha256": "d713a0054c2170fbfc3639feda0684b674e01efc844b8fefbf1a178f65dd3129",
+    "baseline_report": "fleurs-tr_tr-whisper-all-retrieval/report.json",
+    "baseline_report_sha256": "1307ce8e55acdc26c11aba51ac35944b7fffbc28e726b4ad4140e59284cc32fa"
+  },
+  "coverage": {
+    "completed_cells": {
+      "none": 62,
+      "laya_text": 186,
+      "bge_reranker_text": 186
+    },
+    "total": 434,
+    "queries_per_cell": 329,
+    "retrieval_subsets": 31,
+    "candidate_k": [
+      20,
+      50,
+      100
+    ],
+    "budget_modes": [
+      "per_channel",
+      "total"
+    ],
+    "primary_candidate_k": 50,
+    "gemma_full_status": "pending separate audio-window reranking job"
+  },
+  "validation": {
+    "new_model_calls": 0,
+    "query_rankings_recomputed": 142786,
+    "per_query_metrics_recomputed": 2427362,
+    "all_scores_match_identity_bound_cache": true,
+    "baseline_62_cells_unchanged": true,
+    "independent_audit": "fleurs-tr_tr-whisper-text-rerankers/independent-audit.json",
+    "independent_audit_sha256": "9c29dc8fe84d73fe3fb0db201f1333ed10fd0b8cf05452bec7843b14829fa8a0"
+  },
+  "recorded_score_accounting": {
+    "laya_text": {
+      "distinct_verified_query_candidate_scores": 83922,
+      "original_result_new_pairs": 83922,
+      "original_result_cache_pair_occurrences": 3138431,
+      "latest_invocation_result_cache_hits": 0,
+      "scope": "Historical persisted-result counts; this CPU audit performs no inference."
+    },
+    "bge_reranker_text": {
+      "distinct_verified_query_candidate_scores": 83922,
+      "original_result_new_pairs": 83922,
+      "original_result_cache_pair_occurrences": 3138431,
+      "latest_invocation_result_cache_hits": 0,
+      "scope": "Historical persisted-result counts; this CPU audit performs no inference."
+    }
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "verified_transcript_components",
+    "description": "Declared transcript groups are verified against every positive recording's group_id; shared recordings and transcript groups connect queries.",
+    "query_count": 329,
+    "group_count": 329,
+    "source_unit_count": 1072,
+    "source_association_count": 1072,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 1,
+    "largest_group_fraction": 0.00303951367781155,
+    "mapping_sha256": "7ee88fd71904aea936f5859e1cf8afa863582ff3c11fe28d8260933abe9e0f4b",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "statistical_reporting": {
+    "status": "completed",
+    "primary_contrasts": 93,
+    "metrics": [
+      "hit@5",
+      "recall@5",
+      "ndcg@10"
+    ],
+    "group_count": 329,
+    "bootstrap_samples": 5000,
+    "seed": 42,
+    "paired_report": "fleurs-tr_tr-whisper-text-rerankers/paired-comparisons.json",
+    "paired_report_sha256": "336f13ecb69c303a27075ab5442dcdc60bf8f602b25d344b9415064f5e42b640",
+    "scope": "Transcript-component paired bootstrap; marginal exploratory intervals, not speaker/repository/topic-adjusted inference."
+  },
+  "primary_direction_counts": {
+    "laya_minus_none": {
+      "hit@5": {
+        "equal": 6,
+        "lower": 25
+      },
+      "recall@5": {
+        "lower": 31
+      },
+      "ndcg@10": {
+        "lower": 31
+      }
+    },
+    "bge_minus_none": {
+      "hit@5": {
+        "equal": 31
+      },
+      "recall@5": {
+        "equal": 28,
+        "higher": 3
+      },
+      "ndcg@10": {
+        "equal": 27,
+        "higher": 4
+      }
+    },
+    "bge_minus_laya": {
+      "hit@5": {
+        "equal": 6,
+        "higher": 25
+      },
+      "recall@5": {
+        "higher": 31
+      },
+      "ndcg@10": {
+        "higher": 31
+      }
+    }
+  },
+  "primary_contrasts": [
+    {
+      "retrieval_channels": [
+        "B"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "14d186eeb3337fe97550ca6e7e01254cec0e7df04e2bf0cfca897279dff6f4bd",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9924012158054711,
+            "ndcg@10": 0.9879580558671887
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "5c0b31ae248f3b90a7d3f24088e664db550950605916faf379efaebe62062095",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.007598784194528876,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.012041944132811282,
+          "wins": 0,
+          "losses": 16,
+          "ties": 313
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.007598784194528876,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.012041944132811282,
+          "wins": 16,
+          "losses": 0,
+          "ties": 313
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "d3e69aa8ec987f3657414912307a2d76d70654e3bdeaa783daf7a6df04df4b2a",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.986322188449848,
+            "ndcg@10": 0.9837381231657258
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "4b8365f992034cf0617de9cbc24f8efb44c6434b1626689d6af472b72cb9dfff",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.013677811550151976,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.016261876834274096,
+          "wins": 0,
+          "losses": 17,
+          "ties": 312
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.013677811550151976,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.016261876834274096,
+          "wins": 17,
+          "losses": 0,
+          "ties": 312
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "445127173ada69007a9264e6080e3ec27061c618a260c9032bd13dd7d1e70970",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.986322188449848,
+            "ndcg@10": 0.9811021174483817
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "5ec4e357e2630af338e82330d2bee4b941d4794ce395779523a1741bfacba619",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.013677811550151976,
+          "wins": 0,
+          "losses": 7,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01889788255161818,
+          "wins": 0,
+          "losses": 23,
+          "ties": 306
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.013677811550151976,
+          "wins": 7,
+          "losses": 0,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01889788255161818,
+          "wins": 23,
+          "losses": 0,
+          "ties": 306
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "55a3f11f0e669587696b6090695cc699ab0654c3b3a88956e8495c41aebd5f1d",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9954407294832827,
+            "ndcg@10": 0.9970258392589246
+          }
+        },
+        "laya_text": {
+          "cell_identity": "20738031aefa1d0fcfe9f3b21513c0f837f1f7be47df41979ce830d386c81a6a",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9949341438703142,
+            "ndcg@10": 0.9873725603062528
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "dfe705eeeb230e079078a09598a47cb2368b2bf18527e02443aea70775f3e1be",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.0005065856129685919,
+          "wins": 4,
+          "losses": 3,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": -0.009653278952671741,
+          "wins": 8,
+          "losses": 17,
+          "ties": 304
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.004559270516717325,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0029741607410755555,
+          "wins": 8,
+          "losses": 0,
+          "ties": 321
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.005065856129685918,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.012627439693747296,
+          "wins": 17,
+          "losses": 0,
+          "ties": 312
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "11a03932af015d8e0696815894851b08b84b8e68c936bb06fed5aac501585b81",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "d619ecbc8cbf14e32b0bce95313caad16579f7e21a5b84e2c043474547d0072e",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9918946301925027,
+            "ndcg@10": 0.9843969201470912
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "45b49315f0d696f173f0b226d352387a72ab9fd56f16005814253306d40b6b32",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.008105369807497468,
+          "wins": 0,
+          "losses": 4,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015603079852908788,
+          "wins": 0,
+          "losses": 22,
+          "ties": 307
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.008105369807497468,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015603079852908788,
+          "wins": 22,
+          "losses": 0,
+          "ties": 307
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "2bccbe38e10d80c50e5e8bf3a90c5d5756d1fc5b946236acac96fd939e2c7115",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "e546c237ec1469f7ac7c96a3504d95e04f58656ff9478eafe4242d9752417344",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9832826747720365,
+            "ndcg@10": 0.9849896106662919
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "cc44b80d98f831f981ad3bc9bb39f821441d81b5f9c2847cd1c26bdd960d46dd",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.016717325227963525,
+          "wins": 0,
+          "losses": 8,
+          "ties": 321
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015010389333708045,
+          "wins": 0,
+          "losses": 18,
+          "ties": 311
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.016717325227963525,
+          "wins": 8,
+          "losses": 0,
+          "ties": 321
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015010389333708045,
+          "wins": 18,
+          "losses": 0,
+          "ties": 311
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "74d78538ba363910553f2ad01ff004e22cbacf437b034f7cecbf2f612dcf8f82",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "bcfd94f6a554e2b368d2978e2b4dd6dde5cf202af91005ce60a66673315e669c",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9934143870314083,
+            "ndcg@10": 0.9856060329412812
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "1231691ed1782cb13c376f0de5df949af8d5ee3d3ff9fd90f4b8de5e03c7dfc1",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.006585612968591693,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014393967058718819,
+          "wins": 0,
+          "losses": 16,
+          "ties": 313
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.006585612968591693,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014393967058718819,
+          "wins": 16,
+          "losses": 0,
+          "ties": 313
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "e95b76d527e42f437ea02762f72dc78de26f9ba097bd433efbb99daeeab7e287",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "75abb115409178966a80f48906dceed0ae1d33991f905aa3ac4972771094e832",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9893617021276596,
+            "ndcg@10": 0.9850447055156303
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "8afc4e3c04797aad9d3626391ba5c1bc5b0399efab232fe1df33d760012e441e",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.010638297872340425,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01495529448436968,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.010638297872340425,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01495529448436968,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "962e6d83d0dfb710481866537501c51c0a2cdb7a59b94301f76e81adbd1f2cfa",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "5223cfb289e0560d3ee3adcdb5f6ac828a0a26bd4616b8c19d6ab471f58cb100",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9893617021276596,
+            "ndcg@10": 0.9849148283456527
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "ca7209249d356b8064e10fb5890de39eaa3a45620908a27626ad0a0884bf95c0",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.010638297872340425,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015085171654347232,
+          "wins": 0,
+          "losses": 22,
+          "ties": 307
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.010638297872340425,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015085171654347232,
+          "wins": 22,
+          "losses": 0,
+          "ties": 307
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "11674855847f15f87107b5ca0c4f53083cae4396bebb88b83132c098834b8bd1",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "459b98c8bcbd8eca16bca15be7fc80472c96a1d7962181ed7a1f477dc24cccb8",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9878419452887538,
+            "ndcg@10": 0.9849332056664395
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "9f63c9056fb35d17f3a7334ee5332ab24821426e70e4456690f72a18b29285bb",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.0121580547112462,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015066794333560472,
+          "wins": 0,
+          "losses": 17,
+          "ties": 312
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.0121580547112462,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015066794333560472,
+          "wins": 17,
+          "losses": 0,
+          "ties": 312
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "2a4269e26c592c67787ad07d12fcb91f1b3d6bb82c5e7e41e93181ba242a9b39",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9989868287740628,
+            "ndcg@10": 0.9997948969360329
+          }
+        },
+        "laya_text": {
+          "cell_identity": "77fc63ce7915d15f9f350d1c52feadbc8f85ac18583d1e9527d940b06797afff",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9878419452887538,
+            "ndcg@10": 0.985398208564225
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "d2f4806399f521aa0bb93195c519e0e5dee79a33f22d54c7cb02bbde32f5b562",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.011144883485309018,
+          "wins": 1,
+          "losses": 5,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014396688371807895,
+          "wins": 1,
+          "losses": 17,
+          "ties": 311
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0010131712259371835,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "ndcg@10": {
+          "mean_difference": 0.00020510306396710057,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.0121580547112462,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014601791435774995,
+          "wins": 17,
+          "losses": 0,
+          "ties": 312
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "00f63b75f453216150313130c4d57ed0b10ee190258e22f8b453d5b5b88db3da",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "e5d91a99ce945662ae92e1d72f75933fbd0371e3ea2383a5521411932f33cc0f",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9878419452887538,
+            "ndcg@10": 0.985505652811268
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "185851d42147ab243c5beb0cf809383390f144dd7cb856a660def54c77c23619",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.0121580547112462,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01449434718873196,
+          "wins": 0,
+          "losses": 16,
+          "ties": 313
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.0121580547112462,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01449434718873196,
+          "wins": 16,
+          "losses": 0,
+          "ties": 313
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "1bb9cfb35469271c7e86bbe9ab09977aebdf89fa34f4da3937ed9abc2aeaf7e2",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9989868287740628,
+            "ndcg@10": 0.9995092599619742
+          }
+        },
+        "laya_text": {
+          "cell_identity": "e997939dc555f76c8f4d486bcd2bf9ff8a219c2bdbb30e5a92a0cbdd3ea7b702",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.993920972644377,
+            "ndcg@10": 0.985104435621268
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "24fecd4164b42a2f4a45de505961524ba23f280802f7f08722d66d3692267bf9",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.005065856129685917,
+          "wins": 1,
+          "losses": 3,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014404824340706045,
+          "wins": 2,
+          "losses": 18,
+          "ties": 309
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0010131712259371835,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "ndcg@10": {
+          "mean_difference": 0.000490740038025817,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01489556437873186,
+          "wins": 18,
+          "losses": 0,
+          "ties": 311
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "09b1f456ede7bcc00df8584555ce9ede6adb5ef6ba96e8d4b749f292d62397e9",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "c29d71b25b77fd43f70bff44af6a50fc94835537fb54d159d9acb81a44fb0e17",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9878419452887538,
+            "ndcg@10": 0.9816402630195256
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "8f20d844c35e83aa6ee6e31d0e52c7520f256c3cfc051737b12dd3f65a6529f2",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.0121580547112462,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.018359736980474384,
+          "wins": 0,
+          "losses": 23,
+          "ties": 306
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.0121580547112462,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.018359736980474384,
+          "wins": 23,
+          "losses": 0,
+          "ties": 306
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "84227fc312153c395183b307073ea3b771d4b33c722b3d8bfd3582890df919d6",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 0.9994703532665132
+          }
+        },
+        "laya_text": {
+          "cell_identity": "183929aecf9734eace744e8f53d8aaa4c79d95cc6067d09ccce25ec4b78b9fd5",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9949341438703142,
+            "ndcg@10": 0.9856912956429464
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "0b8cbba44e59710f417c72246e11b02217a581ae5b947aaf115ee9a1d8a07e57",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.005065856129685918,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": -0.013779057623566886,
+          "wins": 2,
+          "losses": 19,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0005296467334867178,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.005065856129685918,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014308704357053604,
+          "wins": 19,
+          "losses": 0,
+          "ties": 310
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "1ba046b4bd5d7f2e11274f1ad8df1104d697a54576ba2342e7bd6b49a77d52ed",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "bca31a6bfe300c70746737d10d9d20f0d06bd548f4e103f1edeba8cb70bbc7ee",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9858156028368794,
+            "ndcg@10": 0.9849505987807032
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "b71c92a98acf87b0701deea8bc1f63c95563da366c300fdebe904b41c73c5f43",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.014184397163120569,
+          "wins": 0,
+          "losses": 7,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015049401219296842,
+          "wins": 0,
+          "losses": 19,
+          "ties": 310
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.014184397163120569,
+          "wins": 7,
+          "losses": 0,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015049401219296842,
+          "wins": 19,
+          "losses": 0,
+          "ties": 310
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "0cb3ce199074223e6f6cbf1bbbd3550b91d26bc57a6eab5a7916716a90eeb5f2",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "62385d57a9242c3ee88e876b8898251941471aad450e689dc4702ee58142a762",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9858156028368795,
+            "ndcg@10": 0.986277176619476
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "df5a7c53123b897311e3277e6b949e6c8871e3bf8e3fbe2010c85f2d6eb1256b",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.014184397163120569,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.013722823380523844,
+          "wins": 0,
+          "losses": 18,
+          "ties": 311
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.014184397163120569,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.013722823380523844,
+          "wins": 18,
+          "losses": 0,
+          "ties": 311
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "394daab219620646a754bbcf16d07db9309c49bfc8e02c4fda5104a5e96e023c",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "0778ad8507fefbcd9b17f877d7c88a72f09b6c65419f8634bacadca6755e5cc8",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9848024316109423,
+            "ndcg@10": 0.9844467425748086
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "327ede63da2e30df72d6fd42523566dba3b3b1b6cb7f047d8e6866f7602ac1f6",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.015197568389057751,
+          "wins": 0,
+          "losses": 7,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01555325742519144,
+          "wins": 0,
+          "losses": 20,
+          "ties": 309
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.015197568389057751,
+          "wins": 7,
+          "losses": 0,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01555325742519144,
+          "wins": 20,
+          "losses": 0,
+          "ties": 309
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "ac3fc278311164f42b03bf9c20a3aa9e7d7916a26ae4563e623cadde4d37ba20",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "47b3975194c370474df850f98cdbfaf66946eab82c020f17451ca9bbcd2da081",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9908814589665653,
+            "ndcg@10": 0.9844186551245642
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "e5c9707ce976d9c00f7759d29ffff9d25315cb7793b0346a2828e55f1324bedf",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015581344875435988,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015581344875435988,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "31fc108c37b25d76186dc4482807152478a5d331c7073b4bff46e2f577eea1f4",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "2db335dff5c6914fee8563674260dcc448d5b8975d76c5110fc08fa94dab1179",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9848024316109423,
+            "ndcg@10": 0.9831131519998156
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "4165951f8bc1dc36aac3cc9b0d3556072aa789df09c07c13d3ad7e0d06801acf",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.015197568389057751,
+          "wins": 0,
+          "losses": 7,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01688684800018444,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.015197568389057751,
+          "wins": 7,
+          "losses": 0,
+          "ties": 322
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01688684800018444,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "308900ff89fa63cf5a422725bd2540e6c45ccf31859b56940edaf79e44cdb368",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "529269c47521d56266519d0508338508854f2606fbaf9986f374f4ae1a6c225e",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.993920972644377,
+            "ndcg@10": 0.9850354801906824
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "3505bd78afa13990b22606141335ea879be19602fb2489fe7696469d4ae59557",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 4,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014964519809317685,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014964519809317685,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "175bb0e1cbf1def8f274d2eb9ef98fb000f3449e21d1838d14f9ced3f20c8ac0",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "702366d3cfe910a1f9f19675f00ae66ac1a25bbc5ad894cd7ced001b0e04f77f",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9898682877406281,
+            "ndcg@10": 0.9847931015138585
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "3725fa76594a1998aa46536ed83543a37edbcbe07107e142e6e36962cf936e0c",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.010131712259371834,
+          "wins": 0,
+          "losses": 4,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01520689848614158,
+          "wins": 0,
+          "losses": 18,
+          "ties": 311
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.010131712259371834,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01520689848614158,
+          "wins": 18,
+          "losses": 0,
+          "ties": 311
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "dcdcfbeb0298e7afb7016c064b01cc36a4f0f7c4120cf870ed1c4512d9223e04",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "2da7ce08fb4a88f06f8d73e81f3343de761318cee1701145dd51d43b4daf6ca6",
+          "metrics": {
+            "hit@5": 0.9908814589665653,
+            "recall@5": 0.9858156028368794,
+            "ndcg@10": 0.9828884216861401
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "deffd7ba529322585d870450cae7630a5414d64ab6ff7276ae4434881e4f8662",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00911854103343465,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": -0.014184397163120569,
+          "wins": 0,
+          "losses": 6,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01711157831385992,
+          "wins": 0,
+          "losses": 22,
+          "ties": 307
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00911854103343465,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "recall@5": {
+          "mean_difference": 0.014184397163120569,
+          "wins": 6,
+          "losses": 0,
+          "ties": 323
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01711157831385992,
+          "wins": 22,
+          "losses": 0,
+          "ties": 307
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "3cb86cce7c0001c92d483b35a9f0392390f28f1447d1ac3e6c6657ca03b581ba",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "4c3eb11e2ebf3861352a9e864b412f6e8bc043058df5316a1323bd193e4ddf0d",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9929078014184396,
+            "ndcg@10": 0.9853387930078
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "fb94768b7b5fd787cb3eaaba3495e10a74c687222d695bd3bed866f3e4454b1f",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.007092198581560284,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014661206992199981,
+          "wins": 0,
+          "losses": 18,
+          "ties": 311
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.007092198581560284,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014661206992199981,
+          "wins": 18,
+          "losses": 0,
+          "ties": 311
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "9cf8d480dcacee3d0d80b0deb8449b5dc9379250f80e743b9553cf4ec5271580",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "77d1908cd435af5190636ad6f2930c393cda9f8e2fa95984b8785422da945f4e",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 0.9949341438703142,
+            "ndcg@10": 0.9851203268961877
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "a6ed4822520c583b3a534dee1f5e22fd58286cd23d500972bb85bfbd24e44c31",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": -0.005065856129685918,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014879673103812302,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.005065856129685918,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014879673103812302,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "927687d868ca13162a9b3d2c6a4b21a2d17eefc0c7d3e1be324b640ed4e3f67d",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "6a66c2036b9b24efff2c005a5b78a2e5c01572005e48302e7cf6c484151bcf5c",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9888551165146909,
+            "ndcg@10": 0.9849184502338267
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "e4187334bb4de4a6b7d897ac22d179bee1f6b8c0132e3378a6105eff5bb9902e",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.011144883485309018,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015081549766173232,
+          "wins": 0,
+          "losses": 20,
+          "ties": 309
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.011144883485309018,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015081549766173232,
+          "wins": 20,
+          "losses": 0,
+          "ties": 309
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "ab7ea0f18a0d7454ad5ca9b58544a748799b799eea3db3fad35c3123cfb905a0",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "536302c3f0fef34a6732428009989c7b789824113c550dddf6fc66d7ccc2b6da",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9888551165146909,
+            "ndcg@10": 0.983948138702638
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "c18060c675bf2eed707b85b551cd1f9ec1a4fad13232d4dc8a384f56eb310738",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.011144883485309018,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.01605186129736205,
+          "wins": 0,
+          "losses": 22,
+          "ties": 307
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.011144883485309018,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.01605186129736205,
+          "wins": 22,
+          "losses": 0,
+          "ties": 307
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "822b4664117e7c900a66afe888a3df47b5fc7821130ee07c930083ac72bdcd74",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "9576f18258cb4d46c98b8155b01d7393b2ec8f7286f4b1e817a362588f3652b2",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9929078014184396,
+            "ndcg@10": 0.9850986986230571
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "e69114ff43ccc80901f5ec63d3d05637e1f42f12bb7ecf08101e9bad3c09312c",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.007092198581560284,
+          "wins": 0,
+          "losses": 3,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": -0.014901301376942835,
+          "wins": 0,
+          "losses": 19,
+          "ties": 310
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.007092198581560284,
+          "wins": 3,
+          "losses": 0,
+          "ties": 326
+        },
+        "ndcg@10": {
+          "mean_difference": 0.014901301376942835,
+          "wins": 19,
+          "losses": 0,
+          "ties": 310
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "e5f25d828688b9cba8fee31b1faaf04deabf1114de0edc9c3909731f87073a03",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "b9306e7188a07efff10fa40175c9d65eede12fb4ef7a1c0f795d0d01979b5c76",
+          "metrics": {
+            "hit@5": 0.9969604863221885,
+            "recall@5": 0.9918946301925025,
+            "ndcg@10": 0.9842302829975774
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "a8b2c289fbdda7c6dcbfacfbfb66578082422cca8d0d05f27692624206423ff7",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.00303951367781155,
+          "wins": 0,
+          "losses": 1,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": -0.008105369807497468,
+          "wins": 0,
+          "losses": 4,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015769717002422405,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.00303951367781155,
+          "wins": 1,
+          "losses": 0,
+          "ties": 328
+        },
+        "recall@5": {
+          "mean_difference": 0.008105369807497468,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015769717002422405,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "dcdaba57fbbc628e16998dfd990e8d9c76e2f7bc5081ff0c17f2b321a415c2be",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "e458c0745a64fc11b629b5aa3bccf25746805e07d2ef872acf30edb98b1f3a71",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9898682877406281,
+            "ndcg@10": 0.9847573636781877
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "3045e95bb942bf4219ad90f6845b61ba4a8c099671ce367ae0e46ad61621414e",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.010131712259371834,
+          "wins": 0,
+          "losses": 4,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015242636321812381,
+          "wins": 0,
+          "losses": 19,
+          "ties": 310
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.010131712259371834,
+          "wins": 4,
+          "losses": 0,
+          "ties": 325
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015242636321812381,
+          "wins": 19,
+          "losses": 0,
+          "ties": 310
+        }
+      }
+    },
+    {
+      "retrieval_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "conditions": {
+        "none": {
+          "cell_identity": "db66bad63ec1333be898392bb551062a8c73d25b44ee6278dc959cfb338ffc77",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        },
+        "laya_text": {
+          "cell_identity": "b164183bdb5d7928d6afae598e9a40c9062adf409966155a1d68252d811ece16",
+          "metrics": {
+            "hit@5": 0.993920972644377,
+            "recall@5": 0.9888551165146909,
+            "ndcg@10": 0.9841869932011196
+          }
+        },
+        "bge_reranker_text": {
+          "cell_identity": "f8ab920370ca49ea523826cad9fdea183f022fdffcb5506a85fae967390c75bb",
+          "metrics": {
+            "hit@5": 1.0,
+            "recall@5": 1.0,
+            "ndcg@10": 1.0
+          }
+        }
+      },
+      "laya_minus_none": {
+        "hit@5": {
+          "mean_difference": -0.0060790273556231,
+          "wins": 0,
+          "losses": 2,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": -0.011144883485309018,
+          "wins": 0,
+          "losses": 5,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": -0.015813006798880452,
+          "wins": 0,
+          "losses": 21,
+          "ties": 308
+        }
+      },
+      "bge_minus_none": {
+        "hit@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "recall@5": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        },
+        "ndcg@10": {
+          "mean_difference": 0.0,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329
+        }
+      },
+      "bge_minus_laya": {
+        "hit@5": {
+          "mean_difference": 0.0060790273556231,
+          "wins": 2,
+          "losses": 0,
+          "ties": 327
+        },
+        "recall@5": {
+          "mean_difference": 0.011144883485309018,
+          "wins": 5,
+          "losses": 0,
+          "ties": 324
+        },
+        "ndcg@10": {
+          "mean_difference": 0.015813006798880452,
+          "wins": 21,
+          "losses": 0,
+          "ties": 308
+        }
+      }
+    }
+  ],
+  "interpretation": "Queries equal reference transcript text. Both rerankers only see source-only Whisper transcript text, including for native-audio retrieval. Transcript grouping may not cover speaker/topic dependence. Primary contrasts and parameter choices are exploratory. No semantic question-answer correctness is measured."
+}
