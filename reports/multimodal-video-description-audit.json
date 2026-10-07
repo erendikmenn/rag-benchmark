@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "passed_complete_video_description_integrity",
+  "generator_identity": "18cdfe4a4989b0dc731e0ad3606fe359010b476f728f5c46c028690bbe2ea06e",
+  "source_count": 1000,
+  "valid_normal_stop_records": 1000,
+  "source_manifest_sha256": "8fb10031d053934b87fa7509c4c0b2d91c83311085952aeb514d8556e4dcbd8b",
+  "derived_manifest_sha256": "75af6467dbd58812faa76cf1d4b66eff5072336180301d6498e950859c678978",
+  "source_order_sha256": "305d4c627da683d8a34009a1ba2cf44d420e8dbc783be2d3ab63033a8be7a814",
+  "cache_inventory_sha256": "dbfab17d5cf110e36ce9b997213368e03acbfd8f181015255108a4edfbda8931",
+  "unique_description_text_hashes": 1000,
+  "source_corpus_sha256": "93a86d873001799832848d404cee013792100ce1a53f7b8cff08999b593050b5",
+  "derived_corpus_sha256": "d83d33a4c40969ccfdd77aab1dcffee13f40a30bd89e1d7c394fc9645cc5c1a1",
+  "unchanged_queries_semantic_sha256": "aa63f3edbef6b3ff2fdfe24e4f0adacd9fa5db12f3eac83bb713cd06e41bea66",
+  "unchanged_qrels_semantic_sha256": "4d068bcf9c3550fd9517337ae40a136363299cc0a697609e33f277ff589c6cbe",
+  "source_queries_file_sha256": "c72878e6ab9e15362b76ebbe36591347de5a5a94794c410afc39008c55712b44",
+  "derived_queries_file_sha256": "c72878e6ab9e15362b76ebbe36591347de5a5a94794c410afc39008c55712b44",
+  "source_qrels_file_sha256": "9f4519e1eda96259a80387b2ef9de362b63ce1635bad5dfe1f5de5d570c08f47",
+  "derived_qrels_file_sha256": "f91117c2aa465c69413179d78d54aa6dd2a80b314a50bb73195302c91acece2c",
+  "unchanged_assets_sha256": "b4f3d4f00b44f0ecd85d0bf0ac566c3eaf8fee9f5c1ab7a84e03989d0bbb9ba1",
+  "historical_request_seconds_sum": 3982.7167565503623,
+  "historical_completion_tokens_sum": 120955,
+  "unchanged_query_count": 1000,
+  "unchanged_qrel_count": 1000,
+  "source_media_files_verified": 1000,
+  "caption_language": "en",
+  "audio_included": false,
+  "requested_output_tokens": 512,
+  "context_limit": 8192,
+  "prompt_tokens_range": [
+    1017,
+    1581
+  ],
+  "completion_tokens_range": [
+    29,
+    446
+  ],
+  "audit_model_calls": 0,
+  "main_matrix_progress_increment": 0,
+  "human_caption_correctness_measured": false,
+  "limits": [
+    "Chronologically sampled visual frames only; no audio inference.",
+    "Historical cache lacks per-call frame-retention diagnostics; full temporal content retention and semantic caption correctness are unmeasured."
+  ],
+  "generation_implementation_sha256": "fe0a7e8a106a58494cba96261fc52a2c4e5dd5a5a883fa048d9e15738559bebb",
+  "visual_sampling_policy": {
+    "video_fps": 1,
+    "video_max_frames": 16,
+    "video_max_duration_seconds": 60,
+    "image_max_side": 1120
+  },
+  "qrel_file_difference_explanation": "The dataset writer reserializes qrel rows; query-to-source relevance mappings are exactly equal.",
+  "historical_usage_scope": "Saved successful request usage only; not fresh inference or whole-job wall time.",
+  "audit_helper_sha256": "0acd0b61f6e7c5ce8e3f463734e5fc9445f0300a05f611e5e5f95ecd35c4fd91"
+}
