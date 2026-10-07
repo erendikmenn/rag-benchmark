@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T05:46:52.472584+00:00",
+  "snapshot_utc": "2026-10-07T06:18:37.091220+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,10 +16,10 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1048,
-    "remaining_cells": 17412,
-    "completion_fraction": 0.05677139761646804,
-    "completion_percent": 5.677139761646804,
+    "completed_cells": 1060,
+    "remaining_cells": 17400,
+    "completion_fraction": 0.05742145178764897,
+    "completion_percent": 5.742145178764897,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
@@ -37,7 +37,7 @@
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 272,
+      "covered": 278,
       "planned": 3692
     }
   },
@@ -56,11 +56,11 @@
     },
     "alias_validation": "FLEURS original and ASR-view query, qrel and asset inventories are byte-identical.",
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 31,
-    "raw_completed_export_cells": 1696,
-    "duplicate_completed_cell_occurrences": 648,
+    "full_collection_source_reports": 32,
+    "raw_completed_export_cells": 1710,
+    "duplicate_completed_cell_occurrences": 650,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "1059d8c12e2df8330f65b2b98570f052f50a9b3354f5cafd0c534ce4231bd9ac"
+    "canonical_key_manifest_sha256": "2eba619456615205dc191e0636c80a88232cd7d67299f08a9b6316b88fd7f562"
   },
   "track_progress": [
     {
@@ -113,9 +113,9 @@
       "main_collections": 6,
       "retrieval_subsets_per_collection": 7,
       "planned_cells": 840,
-      "completed_cells": 60,
-      "remaining_cells": 780,
-      "completion_fraction": 0.07142857142857142
+      "completed_cells": 72,
+      "remaining_cells": 768,
+      "completion_fraction": 0.08571428571428572
     },
     {
       "track": "composed_image",
@@ -312,8 +312,8 @@
       "collection": "codesearchnet-php-test",
       "track": "code",
       "planned_cells": 140,
-      "completed_cells": 2,
-      "remaining_cells": 138,
+      "completed_cells": 14,
+      "remaining_cells": 126,
       "dataset_status": "ready",
       "manifest_sha256": "bb5e58ed6a1121da9490fd1b238cc087fb9ef1c39bbd3a3d46006965985a2880",
       "fully_completed_main_grid": false
@@ -504,6 +504,19 @@
         "cell_status_counts": {
           "completed": 2,
           "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-php-test-dense-fusions/report.json",
+        "sha256": "d9f9b2fcdef4e29dcd7ea97af0a7ee827fd8b5e6576bf3b17255bc498011d417",
+        "dataset_id": "codesearchnet-php-test",
+        "canonical_collection": "codesearchnet-php-test",
+        "dataset_identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
         }
       },
       {

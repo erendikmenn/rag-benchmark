@@ -1,6 +1,6 @@
 # Code dense retrieval comparisons
 
-4 complete language collections, 35,256 queries and 56 method/budget cells. All seven nonempty combinations of BM25, BGE-M3 dense and EmbeddingGemma 2 text retrieval are measured. No reranker or answer generator is used.
+5 complete language collections, 49,270 queries and 70 method/budget cells. All seven nonempty combinations of BM25, BGE-M3 dense and EmbeddingGemma 2 text retrieval are measured. No reranker or answer generator is used.
 
 Candidates contain cleaned source code, without the reference docstring/comments. Official English queries and the frozen gallery are fixed within each language. Results from these test collections are observations, not development-set tuning or a claim of general code correctness.
 
@@ -80,6 +80,24 @@ Gallery scope: **40,347 cleaned functions** from 55,005 upstream `codebase.txt` 
 
 [Full report](codesearchnet-java-test-dense-fusions/report.md) · [Paired comparisons](codesearchnet-java-test-dense-fusions/paired-comparisons.md)
 
-Across the completed Python, Ruby, Go, Java collections, standalone EG2 has the highest observed Hit@5 among all seven methods in both budget modes. Equal-weight fusion with the other channels lowers its score here; this does not establish that every fusion strategy is worse. The paired intervals in the linked reports group shared source functions, not whole repositories. They are exploratory marginal intervals, without multiple-comparison correction.
+## Php: 14,014 queries / 52,660 functions
+
+| Method | Hit@5 per-channel | Hit@5 total-100 | MRR@10 per-channel | nDCG@10 per-channel |
+|---|---:|---:|---:|---:|
+| BM25 | 33.27% | 33.27% | 0.2421 | 0.2797 |
+| BGE-M3 | 57.74% | 57.74% | 0.4576 | 0.5051 |
+| EmbeddingGemma 2 | 75.75% | 75.75% | 0.6277 | 0.6747 |
+| BM25 + BGE-M3 | 54.10% | 54.64% | 0.4157 | 0.4658 |
+| BM25 + EG2 | 62.58% | 64.83% | 0.4797 | 0.5389 |
+| BGE-M3 + EG2 | 70.81% | 70.73% | 0.5766 | 0.6251 |
+| BM25 + BGE-M3 + EG2 | 67.48% | 69.34% | 0.5289 | 0.5851 |
+
+Primary EG2 − BGE-M3: Hit@5 **+18.02 percentage points** (95% paired source-function interval [17.26, 18.77]); nDCG@10 **+0.1696** [0.1637, 0.1756]. The analysis uses 14,014 labelled source-function groups.
+
+Gallery scope: **52,660 cleaned functions** from 61,617 upstream `codebase.txt` URL lines; **8,957 URLs are absent from the raw validation/test archives**. The manifest's selection rule is: “Official preprocess.py: emit codebase.txt URL only if present in raw validation/test”. This reproduces the published cleaned-gallery count; it does not cover all original CodeSearchNet functions. All 14,014 official test queries remain included.
+
+[Full report](codesearchnet-php-test-dense-fusions/report.md) · [Paired comparisons](codesearchnet-php-test-dense-fusions/paired-comparisons.md)
+
+Across the completed Python, Ruby, Go, Java, Php collections, standalone EG2 has the highest observed Hit@5 among all seven methods in both budget modes. Equal-weight fusion with the other channels lowers its score here; this does not establish that every fusion strategy is worse. The paired intervals in the linked reports group shared source functions, not whole repositories. They are exploratory marginal intervals, without multiple-comparison correction.
 
 These scores measure finding labelled source functions, not generating correct code or answering a question. Remaining language/model/reranker conditions are not included until completed. No pooled accuracy is computed. [Machine-readable summary](code-dense-summary.json).

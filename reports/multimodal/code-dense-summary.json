@@ -4,8 +4,8 @@
   "fusion": "equal_weight_rrf_k60",
   "channel_budget": 100,
   "source_report_hash_scope": "SHA256 of each exported report.json; local run bytes checked equal",
-  "evaluated_query_count_across_languages": 35256,
-  "measured_cells": 56,
+  "evaluated_query_count_across_languages": 49270,
+  "measured_cells": 70,
   "rows": [
     {
       "language": "python",
@@ -2578,6 +2578,649 @@
         "upstream_urls_absent_from_raw_validation_test": 14658
       },
       "dataset_manifest_sha256": "cfa6756226c6a8b4bf11680adb620a3a455558f9caaa6103f5fbaa3be6a5dde5"
+    },
+    {
+      "language": "php",
+      "dataset": {
+        "id": "codesearchnet-php-test",
+        "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+        "track": "code",
+        "identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+        "corpus_count": 52660,
+        "query_count": 14014,
+        "qrel_count": 14014,
+        "positive_qrel_count": 14014,
+        "empty_candidate_text_count": 0,
+        "missing_candidate_text_count": 0,
+        "split": "test"
+      },
+      "source_report": "codesearchnet-php-test-dense-fusions/report.json",
+      "source_report_sha256": "d9f9b2fcdef4e29dcd7ea97af0a7ee827fd8b5e6576bf3b17255bc498011d417",
+      "scope": "frozen_collection",
+      "cells": [
+        {
+          "variant_id": "code__b__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.17425431711145997,
+            "hit@10": 0.399885828457257,
+            "hit@20": 0.46617668046239474,
+            "hit@5": 0.33266733266733267,
+            "map@16": 0.24558411891614404,
+            "mrr@1": 0.17425431711145997,
+            "mrr@10": 0.24213940821083677,
+            "mrr@20": 0.246752301807016,
+            "mrr@5": 0.23316802245373675,
+            "ndcg@1": 0.17425431711145997,
+            "ndcg@10": 0.27970561924299414,
+            "ndcg@20": 0.2964818091629744,
+            "ndcg@5": 0.2579676579160072,
+            "recall@1": 0.17425431711145997,
+            "recall@10": 0.399885828457257,
+            "recall@20": 0.46617668046239474,
+            "recall@5": 0.33266733266733267
+          },
+          "mean_raw_candidates": 99.82745825602969,
+          "mean_unique_candidates": 99.82745825602969
+        },
+        {
+          "variant_id": "code__b__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.17425431711145997,
+            "hit@10": 0.399885828457257,
+            "hit@20": 0.46617668046239474,
+            "hit@5": 0.33266733266733267,
+            "map@16": 0.24558411891614404,
+            "mrr@1": 0.17425431711145997,
+            "mrr@10": 0.24213940821083677,
+            "mrr@20": 0.246752301807016,
+            "mrr@5": 0.23316802245373675,
+            "ndcg@1": 0.17425431711145997,
+            "ndcg@10": 0.27970561924299414,
+            "ndcg@20": 0.2964818091629744,
+            "ndcg@5": 0.2579676579160072,
+            "recall@1": 0.17425431711145997,
+            "recall@10": 0.399885828457257,
+            "recall@20": 0.46617668046239474,
+            "recall@5": 0.33266733266733267
+          },
+          "mean_raw_candidates": 99.82745825602969,
+          "mean_unique_candidates": 99.82745825602969
+        },
+        {
+          "variant_id": "code__g__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.36813186813186816,
+            "hit@10": 0.6560582274867989,
+            "hit@20": 0.7219922934208648,
+            "hit@5": 0.577351220208363,
+            "map@16": 0.46110328361916064,
+            "mrr@1": 0.36813186813186816,
+            "mrr@10": 0.45762403696077164,
+            "mrr@20": 0.46222864113549555,
+            "mrr@5": 0.44710170781599345,
+            "ndcg@1": 0.36813186813186816,
+            "ndcg@10": 0.5051028667726377,
+            "ndcg@20": 0.521809992983115,
+            "ndcg@5": 0.47963282527461326,
+            "recall@1": 0.36813186813186816,
+            "recall@10": 0.6560582274867989,
+            "recall@20": 0.7219922934208648,
+            "recall@5": 0.577351220208363
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__g__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.36813186813186816,
+            "hit@10": 0.6560582274867989,
+            "hit@20": 0.7219922934208648,
+            "hit@5": 0.577351220208363,
+            "map@16": 0.46110328361916064,
+            "mrr@1": 0.36813186813186816,
+            "mrr@10": 0.45762403696077164,
+            "mrr@20": 0.46222864113549555,
+            "mrr@5": 0.44710170781599345,
+            "ndcg@1": 0.36813186813186816,
+            "ndcg@10": 0.5051028667726377,
+            "ndcg@20": 0.521809992983115,
+            "ndcg@5": 0.47963282527461326,
+            "recall@1": 0.36813186813186816,
+            "recall@10": 0.6560582274867989,
+            "recall@20": 0.7219922934208648,
+            "recall@5": 0.577351220208363
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.5290423861852434,
+            "hit@10": 0.8218210361067504,
+            "hit@20": 0.8756243756243757,
+            "hit@5": 0.7575281860996147,
+            "map@16": 0.6305834224130213,
+            "mrr@1": 0.5290423861852434,
+            "mrr@10": 0.6276963399412379,
+            "mrr@20": 0.6314735294066225,
+            "mrr@5": 0.6189881547024404,
+            "ndcg@1": 0.5290423861852434,
+            "ndcg@10": 0.67471058694892,
+            "ndcg@20": 0.6883674830990117,
+            "ndcg@5": 0.6537903804276778,
+            "recall@1": 0.5290423861852434,
+            "recall@10": 0.8218210361067504,
+            "recall@20": 0.8756243756243757,
+            "recall@5": 0.7575281860996147
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__e__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.5290423861852434,
+            "hit@10": 0.8218210361067504,
+            "hit@20": 0.8756243756243757,
+            "hit@5": 0.7575281860996147,
+            "map@16": 0.6305834224130213,
+            "mrr@1": 0.5290423861852434,
+            "mrr@10": 0.6276963399412379,
+            "mrr@20": 0.6314735294066225,
+            "mrr@5": 0.6189881547024404,
+            "ndcg@1": 0.5290423861852434,
+            "ndcg@10": 0.67471058694892,
+            "ndcg@20": 0.6883674830990117,
+            "ndcg@5": 0.6537903804276778,
+            "recall@1": 0.5290423861852434,
+            "recall@10": 0.8218210361067504,
+            "recall@20": 0.8756243756243757,
+            "recall@5": 0.7575281860996147
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 100.0
+        },
+        {
+          "variant_id": "code__b_g__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.32103610675039246,
+            "hit@10": 0.6248751248751249,
+            "hit@20": 0.7052233480804909,
+            "hit@5": 0.5409590409590409,
+            "map@16": 0.420096258715675,
+            "mrr@1": 0.32103610675039246,
+            "mrr@10": 0.41571860679003536,
+            "mrr@20": 0.42135810193903966,
+            "mrr@5": 0.40439203653489364,
+            "ndcg@1": 0.32103610675039246,
+            "ndcg@10": 0.4657872365327904,
+            "ndcg@20": 0.4861816814935626,
+            "ndcg@5": 0.4385214694253284,
+            "recall@1": 0.32103610675039246,
+            "recall@10": 0.6248751248751249,
+            "recall@20": 0.7052233480804909,
+            "recall@5": 0.5409590409590409
+          },
+          "mean_raw_candidates": 199.82745825602967,
+          "mean_unique_candidates": 184.68360211217353
+        },
+        {
+          "variant_id": "code__b_g__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.31889539032396175,
+            "hit@10": 0.6301555587269873,
+            "hit@20": 0.706436420722135,
+            "hit@5": 0.5463821892393321,
+            "map@16": 0.41977830020858414,
+            "mrr@1": 0.31889539032396175,
+            "mrr@10": 0.4157645359175971,
+            "mrr@20": 0.421088450081317,
+            "mrr@5": 0.4044312830027116,
+            "ndcg@1": 0.31889539032396175,
+            "ndcg@10": 0.4671094363175064,
+            "ndcg@20": 0.4864320820698359,
+            "ndcg@5": 0.4398656851974324,
+            "recall@1": 0.31889539032396175,
+            "recall@10": 0.6301555587269873,
+            "recall@20": 0.706436420722135,
+            "recall@5": 0.5463821892393321
+          },
+          "mean_raw_candidates": 99.93906093906094,
+          "mean_unique_candidates": 92.64307121449978
+        },
+        {
+          "variant_id": "code__b_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.3711288711288711,
+            "hit@10": 0.7277722277722277,
+            "hit@20": 0.8218923933209648,
+            "hit@5": 0.6258027686599115,
+            "map@16": 0.48471788754274125,
+            "mrr@1": 0.3711288711288711,
+            "mrr@10": 0.4797049888886623,
+            "mrr@20": 0.48629278323528397,
+            "mrr@5": 0.4660375338946768,
+            "ndcg@1": 0.3711288711288711,
+            "ndcg@10": 0.5388988720202733,
+            "ndcg@20": 0.562767783061871,
+            "ndcg@5": 0.5058641225503118,
+            "recall@1": 0.3711288711288711,
+            "recall@10": 0.7277722277722277,
+            "recall@20": 0.8218923933209648,
+            "recall@5": 0.6258027686599115
+          },
+          "mean_raw_candidates": 199.82745825602967,
+          "mean_unique_candidates": 185.97231340088484
+        },
+        {
+          "variant_id": "code__b_e__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.3719851576994434,
+            "hit@10": 0.7541030398173255,
+            "hit@20": 0.8388040530897674,
+            "hit@5": 0.648280291137434,
+            "map@16": 0.4940869847213503,
+            "mrr@1": 0.3719851576994434,
+            "mrr@10": 0.48925898364673875,
+            "mrr@20": 0.49529237793249326,
+            "mrr@5": 0.4750392464678178,
+            "ndcg@1": 0.3719851576994434,
+            "ndcg@10": 0.5525569829616003,
+            "ndcg@20": 0.5741683215111631,
+            "ndcg@5": 0.5182385517547772,
+            "recall@1": 0.3719851576994434,
+            "recall@10": 0.7541030398173255,
+            "recall@20": 0.8388040530897674,
+            "recall@5": 0.648280291137434
+          },
+          "mean_raw_candidates": 99.93906093906094,
+          "mean_unique_candidates": 93.21685457399744
+        },
+        {
+          "variant_id": "code__g_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.4778792635935493,
+            "hit@10": 0.7775082060796347,
+            "hit@20": 0.842514628228914,
+            "hit@5": 0.7080776366490652,
+            "map@16": 0.5801467861024375,
+            "mrr@1": 0.4778792635935493,
+            "mrr@10": 0.5766383276587358,
+            "mrr@20": 0.5811908265869912,
+            "mrr@5": 0.5671733028875885,
+            "ndcg@1": 0.4778792635935493,
+            "ndcg@10": 0.6251395921572293,
+            "ndcg@20": 0.6416263672067849,
+            "ndcg@5": 0.602486651069789,
+            "recall@1": 0.4778792635935493,
+            "recall@10": 0.7775082060796347,
+            "recall@20": 0.842514628228914,
+            "recall@5": 0.7080776366490652
+          },
+          "mean_raw_candidates": 200.0,
+          "mean_unique_candidates": 170.1745397459683
+        },
+        {
+          "variant_id": "code__g_e__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.47802197802197804,
+            "hit@10": 0.782788639931497,
+            "hit@20": 0.8534322820037106,
+            "hit@5": 0.7072927072927073,
+            "map@16": 0.5812381217841829,
+            "mrr@1": 0.47802197802197804,
+            "mrr@10": 0.5773820850351463,
+            "mrr@20": 0.5823524050634374,
+            "mrr@5": 0.5671649778792636,
+            "ndcg@1": 0.47802197802197804,
+            "ndcg@10": 0.6268509844195465,
+            "ndcg@20": 0.644797221616315,
+            "ndcg@5": 0.6022953278228885,
+            "recall@1": 0.47802197802197804,
+            "recall@10": 0.782788639931497,
+            "recall@20": 0.8534322820037106,
+            "recall@5": 0.7072927072927073
+          },
+          "mean_raw_candidates": 100.0,
+          "mean_unique_candidates": 85.25638647067218
+        },
+        {
+          "variant_id": "code__b_g_e__none",
+          "budget_mode": "per_channel",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.42015127729413443,
+            "hit@10": 0.7628799771656914,
+            "hit@20": 0.8348794063079777,
+            "hit@5": 0.6747538176109604,
+            "map@16": 0.5329026485066873,
+            "mrr@1": 0.42015127729413443,
+            "mrr@10": 0.5289217018808856,
+            "mrr@20": 0.5339948041764635,
+            "mrr@5": 0.5169116597688026,
+            "ndcg@1": 0.42015127729413443,
+            "ndcg@10": 0.5851223467443899,
+            "ndcg@20": 0.603424921706979,
+            "ndcg@5": 0.5563736279709619,
+            "recall@1": 0.42015127729413443,
+            "recall@10": 0.7628799771656914,
+            "recall@20": 0.8348794063079777,
+            "recall@5": 0.6747538176109604
+          },
+          "mean_raw_candidates": 299.8274582560297,
+          "mean_unique_candidates": 249.6993006993007
+        },
+        {
+          "variant_id": "code__b_g_e__none",
+          "budget_mode": "total",
+          "completed_queries": 14014,
+          "metrics": {
+            "hit@1": 0.4327101469958613,
+            "hit@10": 0.7776509205080634,
+            "hit@20": 0.8437990580847724,
+            "hit@5": 0.6933780505209076,
+            "map@16": 0.5469300220932517,
+            "mrr@1": 0.4327101469958613,
+            "mrr@10": 0.5432968958479163,
+            "mrr@20": 0.5479838959799429,
+            "mrr@5": 0.5318241282526996,
+            "ndcg@1": 0.4327101469958613,
+            "ndcg@10": 0.5996817561491856,
+            "ndcg@20": 0.6165275133866086,
+            "ndcg@5": 0.5722028301261364,
+            "recall@1": 0.4327101469958613,
+            "recall@10": 0.7776509205080634,
+            "recall@20": 0.8437990580847724,
+            "recall@5": 0.6933780505209076
+          },
+          "mean_raw_candidates": 99.96560582274869,
+          "mean_unique_candidates": 83.77786499215071
+        }
+      ],
+      "source_paired_analysis": "codesearchnet-php-test-dense-fusions/paired-comparisons.json",
+      "source_paired_analysis_sha256": "99700abf7859a4cb864ea3aabd491d41b86fd0b0e64cf71430a04fbae433de16",
+      "paired_grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 14014,
+        "group_count": 14014,
+        "source_unit_count": 14014,
+        "source_association_count": 14014,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 7.135721421435707e-05,
+        "mapping_sha256": "cc3eddf7cf04139008da3cd8ff28c4e4559d5aef2c5e63fa116fc00498dfb593",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "paired_bootstrap": {
+        "method": "paired_source_group_percentile",
+        "confidence_level": 0.95,
+        "samples": 5000,
+        "seed": 42,
+        "direction": "right_minus_left",
+        "estimator": "query-weighted mean difference; groups resampled together",
+        "interval_reporting": "eligible",
+        "withholding_reason": null,
+        "dominant_group_guard": {
+          "maximum_group_fraction": 0.5,
+          "comparison": "strictly_greater_than",
+          "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+        },
+        "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+      },
+      "paired_primary_comparisons": [
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__g__none",
+          "left": {
+            "identity": "450ff89f6a8aff27ea8afd0e4601e0c76ac68ccd94e747689f3e9bd9a6913e99",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "right": {
+            "identity": "f5786f174680006de233b149c5671bf56d9b3df29cf3fecf7c2ae2f0d449de8a",
+            "variant_id": "code__g__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.33266733266733267,
+              "right_mean": 0.577351220208363,
+              "mean_difference": 0.2446838875410304,
+              "query_count": 14014,
+              "wins": 3968,
+              "losses": 539,
+              "ties": 9507,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.23626373626373626,
+              "ci95_high": 0.2529613243898958,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.27970561924299414,
+              "right_mean": 0.5051028667726377,
+              "mean_difference": 0.22539724752964363,
+              "query_count": 14014,
+              "wins": 6321,
+              "losses": 1360,
+              "ties": 6333,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.21882983421475705,
+              "ci95_high": 0.2320587870704995,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__e__none",
+          "left": {
+            "identity": "450ff89f6a8aff27ea8afd0e4601e0c76ac68ccd94e747689f3e9bd9a6913e99",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "right": {
+            "identity": "05f8ffcbffa4bc2bc658ea0e323ad19846882ee044390705ed230eb59e14edc5",
+            "variant_id": "code__e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.33266733266733267,
+              "right_mean": 0.7575281860996147,
+              "mean_difference": 0.424860853432282,
+              "query_count": 14014,
+              "wins": 6163,
+              "losses": 209,
+              "ties": 7642,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.4160839160839161,
+              "ci95_high": 0.43328100470957615,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.27970561924299414,
+              "right_mean": 0.6747105869489203,
+              "mean_difference": 0.395004967705926,
+              "query_count": 14014,
+              "wins": 8777,
+              "losses": 661,
+              "ties": 4576,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.38800805971048047,
+              "ci95_high": 0.4019574179457262,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__g__none",
+          "requested_right": "code__e__none",
+          "left": {
+            "identity": "f5786f174680006de233b149c5671bf56d9b3df29cf3fecf7c2ae2f0d449de8a",
+            "variant_id": "code__g__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "right": {
+            "identity": "05f8ffcbffa4bc2bc658ea0e323ad19846882ee044390705ed230eb59e14edc5",
+            "variant_id": "code__e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.577351220208363,
+              "right_mean": 0.7575281860996147,
+              "mean_difference": 0.1801769658912516,
+              "query_count": 14014,
+              "wins": 2983,
+              "losses": 458,
+              "ties": 10573,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.17261310118452974,
+              "ci95_high": 0.1876694733837591,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.5051028667726377,
+              "right_mean": 0.6747105869489203,
+              "mean_difference": 0.16960772017628245,
+              "query_count": 14014,
+              "wins": 5591,
+              "losses": 1504,
+              "ties": 6919,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.16374843093862274,
+              "ci95_high": 0.1756091252479878,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        },
+        {
+          "status": "completed",
+          "requested_left": "code__b__none",
+          "requested_right": "code__b_g_e__none",
+          "left": {
+            "identity": "450ff89f6a8aff27ea8afd0e4601e0c76ac68ccd94e747689f3e9bd9a6913e99",
+            "variant_id": "code__b__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "right": {
+            "identity": "cb91c6b2fb229b9801b8a6e618bd9f55d35644ef40c2664e3456768d018ea82d",
+            "variant_id": "code__b_g_e__none",
+            "budget_mode": "per_channel",
+            "candidate_k": null,
+            "query_count": 14014
+          },
+          "metrics": {
+            "hit@5": {
+              "left_mean": 0.33266733266733267,
+              "right_mean": 0.6747538176109604,
+              "mean_difference": 0.3420864849436278,
+              "query_count": 14014,
+              "wins": 4855,
+              "losses": 61,
+              "ties": 9098,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.3341658341658342,
+              "ci95_high": 0.3500784929356358,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            },
+            "ndcg@10": {
+              "left_mean": 0.27970561924299414,
+              "right_mean": 0.5851223467443899,
+              "mean_difference": 0.3054167275013957,
+              "query_count": 14014,
+              "wins": 7988,
+              "losses": 266,
+              "ties": 5760,
+              "metric_direction": "right_minus_left",
+              "ci95_low": 0.29982899334058205,
+              "ci95_high": 0.3109872818051448,
+              "group_count": 14014,
+              "bootstrap_samples": 5000,
+              "seed": 42
+            }
+          }
+        }
+      ],
+      "per_input_encoding_diagnostics": {
+        "G": {
+          "document_encoding": "unavailable",
+          "query_encoding": "unavailable"
+        },
+        "E": {
+          "document_encoding": "unavailable",
+          "query_encoding": "unavailable"
+        }
+      },
+      "standalone_eg2_highest_hit_at_5_both_budgets": true,
+      "gallery_protocol": "official cleaned validation+test codebase.txt",
+      "selection_audit": {
+        "published_cleaned_corpus_count": 52660,
+        "selection_rule": "Official preprocess.py: emit codebase.txt URL only if present in raw validation/test",
+        "upstream_codebase_url_lines": 61617,
+        "upstream_urls_absent_from_raw_validation_test": 8957
+      },
+      "dataset_manifest_sha256": "bb5e58ed6a1121da9490fd1b238cc087fb9ef1c39bbd3a3d46006965985a2880"
     }
   ],
   "no_pooled_accuracy": true,

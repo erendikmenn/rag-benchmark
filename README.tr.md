@@ -10,7 +10,9 @@
 
 Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.
 
-**Ana deney matrisinin 1.048 / 18.460 koşulu tamamlandı (%5,68).** Bu sayı, planlanan 21 koleksiyonu yöntem, aday bütçesi ve rerank K ayarlarıyla genişletir; yinelenen raporları ve küçük teknik kontrolleri dışlar. Ek temsil/parametre ve cevap kalitesi deneyleri bu paydaya dahil değildir. Bu bir kapsam oranıdır; harcanan veya kalan sürenin yüzdesi değildir. [Sayım ve kapsam](reports/multimodal/progress-summary.md).
+**Gece kuyruğu, başlamış PHP işi tamamlandıktan sonra 7 Ekim 09:08’de kapandı.** Araştırma paketinin bütünü henüz tamamlanmadı; bu kuyrukta şu anda model işi çalışmıyor. [Sabah raporu ve kalan işler](docs/multimodal-morning-report.tr.md).
+
+**Ana deney matrisinin 1.060 / 18.460 koşulu tamamlandı (%5,74).** Bu sayı, planlanan 21 koleksiyonu yöntem, aday bütçesi ve rerank K ayarlarıyla genişletir; yinelenen raporları ve küçük teknik kontrolleri dışlar. Ek temsil/parametre ve cevap kalitesi deneyleri bu paydaya dahil değildir. Bu bir kapsam oranıdır; harcanan veya kalan sürenin yüzdesi değildir. [Sayım ve kapsam](reports/multimodal/progress-summary.md).
 
 **ViDoRe V3 bilgisayar bilimi bölümünde görsel belge araması tamamlandı:** 1.360 sayfa üzerinde 215 sorgu, altı kanalın boş olmayan 63 birleşimi ve iki aday bütçesi (**126 koşul**). Tek kanallı sonuçlar:
 
@@ -44,21 +46,21 @@ Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe
 
 **Video araması tamamlandı:** MSR-VTT 1K-A üzerinde (1.000 sorgu / 1.000 video) Hit@5, **EG2 ile %75,00, CLIP kare ortalamasıyla %53,80, birleşimleriyle %67,10**. EG2 bu CLIP koşulunun 21,20 yüzde puanı önünde (%95 eşleştirilmiş güven aralığı: 18,20–24,20). İkisi de saniyede bir, en fazla 16 görüntü karesi kullanıyor; bu koşulda videonun ses kanalı işlenmiyor. [Video karşılaştırması](reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md).
 
-**BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; embedding, birleşim ve reranker deneyleri devam ediyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
+**BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; kalan embedding, birleşim ve reranker koşulları bekliyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
 
-**Python, Ruby, Go ve Java kod araması tamamlandı:** Sırasıyla 43.827 / 4.360 / 28.120 / 40.347 fonksiyonda 14.918 / 1.261 / 8.122 / 10.955 sorgu. Yedi yöntem × iki aday bütçesi × dört dil ile **35.256 sorguda 56 koşul** ölçüldü. Kanal başına aday bütçesi kullanılan ana koşulda Hit@5 sonuçları:
+**Python, Ruby, Go, Java ve PHP kod araması tamamlandı:** Sırasıyla 43.827 / 4.360 / 28.120 / 40.347 / 52.660 fonksiyonda 14.918 / 1.261 / 8.122 / 10.955 / 14.014 sorgu. Yedi yöntem × iki aday bütçesi × beş dil ile **49.270 sorguda 70 koşul** ölçüldü. Kanal başına aday bütçesi kullanılan ana koşulda Hit@5 sonuçları:
 
-| Yöntem | Python Hit@5 | Ruby Hit@5 | Go Hit@5 | Java Hit@5 |
-|---|---:|---:|---:|---:|
-| BM25 | %38,93 | %45,60 | %61,94 | %39,42 |
-| BGE-M3 | %62,18 | %68,20 | %87,70 | %63,73 |
-| EmbeddingGemma 2 | %84,46 | %86,28 | %96,28 | %83,80 |
-| BM25 + BGE-M3 | %59,41 | %64,71 | %85,71 | %61,36 |
-| BM25 + EG2 | %69,25 | %70,74 | %89,51 | %71,11 |
-| BGE-M3 + EG2 | %76,77 | %78,75 | %93,39 | %76,99 |
-| BM25 + BGE-M3 + EG2 | %73,56 | %74,94 | %92,07 | %74,66 |
+| Yöntem | Python Hit@5 | Ruby Hit@5 | Go Hit@5 | Java Hit@5 | PHP Hit@5 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | %38,93 | %45,60 | %61,94 | %39,42 | %33,27 |
+| BGE-M3 | %62,18 | %68,20 | %87,70 | %63,73 | %57,74 |
+| EmbeddingGemma 2 | %84,46 | %86,28 | %96,28 | %83,80 | %75,75 |
+| BM25 + BGE-M3 | %59,41 | %64,71 | %85,71 | %61,36 | %54,10 |
+| BM25 + EG2 | %69,25 | %70,74 | %89,51 | %71,11 | %62,58 |
+| BGE-M3 + EG2 | %76,77 | %78,75 | %93,39 | %76,99 | %70,81 |
+| BM25 + BGE-M3 + EG2 | %73,56 | %74,94 | %92,07 | %74,66 | %67,48 |
 
-Bu dört sabit kod arama testinde EG2 önde; eşit ağırlıklı RRF birleşimi onu iyileştirmedi. Kaynak yorumları ve referans docstring çıkarıldı; burada reranker veya cevap modeli kullanılmadı. [İki aday bütçesi, MRR/nDCG ve eşleştirilmiş karşılaştırmalar](reports/multimodal/code-dense-summary.md).
+Bu beş sabit kod arama testinde EG2 önde; eşit ağırlıklı RRF birleşimi onu iyileştirmedi. Kaynak yorumları ve referans docstring çıkarıldı; burada reranker veya cevap modeli kullanılmadı. [İki aday bütçesi, MRR/nDCG ve eşleştirilmiş karşılaştırmalar](reports/multimodal/code-dense-summary.md).
 
 **Yedi native veri görünümünde boyut taraması tamamlandı:** 104 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Videoda Hit@5, 512 boyutta %74,70; 768 boyutta %75,00. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
 
