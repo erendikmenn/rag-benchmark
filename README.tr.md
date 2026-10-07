@@ -6,7 +6,7 @@
 
 **Mevcut durum:** **20 soru × on varyant pilotu tamamlandı: 200/200 çıktı**, 37.511 parçanın tamamında arama yapıldı. İki dense indeks de hazır. Ayrı 2.000 soruluk BM25 arama deneyi tamamlandı; on varyantın 2.000 soruluk geliştirme deneyi ve 12.530 soruluk son test henüz çalıştırılmadı. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Ölçümler ve sınırları](docs/results.md).
 
-**Ek deney çalıştırıcıları:** ters arama, doğrulanmış mevcut medya vektörlerini; kod sorgusu öneki karşılaştırması mevcut belge/parça vektörlerini kullanacak. Gerçek önbellek kontrolleri geçti. Yeni ters arama galerisi ve kod önekli sorgular henüz modele verilmedi; bunlar tamamlanmış başarı ölçümü değil. [Komutlar ve sınırlar](docs/multimodal-running.md).
+**Ek deney çalıştırıcıları:** ters arama, doğrulanmış mevcut medya vektörlerini; kod sorgusu öneki karşılaştırması mevcut belge/parça vektörlerini kullanacak. Gerçek önbellek kontrolleri geçti. Yeni ters arama galerisi ve kod önekli sorgular henüz modele verilmedi; bunlar tamamlanmış başarı ölçümü değil. [Komutlar ve sınırlar](docs/multimodal-running.md). Ayrı BGE sparse/ColBERT hesaplama çekirdeği CPU testlerinden geçti; gerçek backend ve tam galeri ölçümleri henüz tamamlanmadı.
 
 Belge QA için aynı tam üretim isteğini farklı arama koşullarında paylaşan isteğe bağlı önbellek de hazır. Kaynak byte’ları ve model ayarları aynı olmalı; her görevin cevabı kendi referansıyla ayrı değerlendirilir. Bu altyapı CPU testlerinden geçti; yeni QA cevap kalitesi ve gerçek çağrı tasarrufu henüz ölçülmedi. Mevcut GPU kuyruğuna altı tek soruluk QA kontrolü eklendi: kaynaksız, doğru kaynaklı ve arama sonuçlu koşulların metin ve görüntü sürümleri. Henüz çalışmadılar ve tam doğruluk testi sayılmayacaklar.
 

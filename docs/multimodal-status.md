@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 15:29 Europe/Istanbul.
+Updated: 2026-10-07 15:47 Europe/Istanbul.
 
 **The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval has completed; Turkish speech Laya/BGE reranking is complete and all 1,045 Clotho source descriptions and 126 derived-gallery retrieval conditions are complete; the separate additional-relevance described-gallery comparison is complete; photo/video descriptions require output-budget recovery and energy document retrieval is active; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -117,3 +117,6 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 
 - Six one-task QA runtime checks are prepared and scheduled after the nine reverse/code-prefix jobs through the same dynamically loaded single-owner dispatcher. Each closed-book/oracle/retrieved × text/image case has a separate private run, source/report/implementation pins and a fixed sampled task; resumption cannot advance the sample. The wrapper independently verifies the sampled SQLite response and aggregate, streams private child logs to the Metal guard, and checks pins again after execution. All 32 local mock health/dispatcher tests and an independent CPU-only review passed; actual dispatch readiness is nine extension jobs plus QA health. No real QA response or new benchmark completion is claimed. No active GPU child or supervisor was restarted for this addition.
+
+
+- The separately staged BGE sparse/ColBERT core now has CPU fixtures for the official head formulas, full-token extraction, exact blocked scoring and ragged cache integrity. Independent adversarial review reproduced and fixed supplied-CLS, baseline mutation, tokenizer mutation and nonfinite-output gaps. Real trained-head execution, baseline-provenance integration, process locking and complete benchmark orchestration are not implemented by this core. No model forward or new accuracy measurement was performed; main G stays unchanged. The official formulas are pinned to an immutable commit and hashes, and projection/scoring/storage precision is explicitly FP32. Long tokenizer arrays are serialized in full, with a regression against truncated NumPy string hashes. Validation: 524 full-environment tests, 443 minimal-environment tests plus 68 optional-dependency skips; Ruff clean.
