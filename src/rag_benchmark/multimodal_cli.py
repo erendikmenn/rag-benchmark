@@ -4,11 +4,19 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
 import sys
 import uuid
+
+
+def _positive_finite_float(value: str) -> float:
+    result = float(value)
+    if not math.isfinite(result) or result <= 0:
+        raise argparse.ArgumentTypeError("must be a positive finite number")
+    return result
 
 
 def prepare_generation(config: dict, *, cache_dir: Path = Path(".cache/generation-models")) -> None:
@@ -139,6 +147,9 @@ def main(argv=None) -> int:
     p.add_argument("--text-batch-size", type=int, default=8)
     p.add_argument("--dimension", type=int, choices=(128, 256, 512, 768), default=768)
     p.add_argument("--vision-budget", type=int, choices=(70, 140, 280, 560, 1120), default=280)
+    p.add_argument("--video-fps", type=_positive_finite_float, default=1.0)
+    p.add_argument("--video-max-frames", type=int, choices=(8, 16, 32), default=16)
+    p.add_argument("--video-vision-budget", type=int, choices=(70, 140, 280, 560, 1120), default=140)
     p.add_argument("--specialist-text-overflow", choices=("error", "truncate_to_model_limit"), default="error",
                    help="Explicit native specialist query limit policy; clipping is recorded in diagnostics.")
     p.add_argument("--code-overlength", choices=("error", "shared_segments_max"), default="error",
@@ -233,6 +244,9 @@ def main(argv=None) -> int:
             common = {"device": args.device, "dtype": args.dtype, "batch_size": args.batch_size}
             text_config = {**common, "batch_size": args.text_batch_size}
             eg = {**common, "dimension": args.dimension, "vision_budget": args.vision_budget}
+            video_config = {"video_fps": args.video_fps, "video_max_frames": args.video_max_frames,
+                            "video_vision_budget": args.video_vision_budget} if dataset.track == "video" else {}
+            eg.update(video_config)
             adapters = {}
             segmenter = None
             if args.code_overlength == "shared_segments_max":
@@ -261,7 +275,7 @@ def main(argv=None) -> int:
                     elif expert:
                         from .multimodal_specialists import SpecialistAdapter
                         adapters[channel] = SpecialistAdapter(expert, {
-                            **common, "text_overflow_policy": args.specialist_text_overflow})
+                            **common, **video_config, "text_overflow_policy": args.specialist_text_overflow})
             rerankers = {}
             if "laya_text" in names:
                 from .multimodal_generation import MultimodalLayaReranker

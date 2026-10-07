@@ -132,3 +132,18 @@ The sweep first reproduces the original 768-dimensional rankings and every store
 The first 128/256/512 FP32 coordinates are copied and L2-normalized, then searched over the **entire corpus**. N+S is recalculated with S fixed and the original candidate budgets. Source inputs, weights and original inference precision remain fixed. Prefix normalization is mathematically equivalent to the adapter's dimension reduction, with possible small FP32 rounding differences; bitwise equivalence to a fresh direct-dimension model call is not claimed.
 
 The 128/256/512 dimensions reduce raw FP32 N-vector storage by 83.3% / 66.7% / 33.3%. These figures describe vector payloads, not total process memory, fused-index size or speed. No new encoder latency is inferred from cached results. Legacy caches may lack original per-vector checksums; the report records newly observed array and ordered-ID hashes and verifies the unchanged 768 baseline instead of inventing historical checksum metadata.
+
+### Video sampling parameter experiments
+
+`run` accepts `--video-fps`, `--video-max-frames` and `--video-vision-budget`. The defaults are the published baseline: 1 fps, at most 16 frames and 140 EG2 soft tokens per frame. Native N, joint J and CLIP S use the same sampling FPS and frame cap; the soft-token setting governs EG2. Default adapter identities remain unchanged. Sampling changes create separate identities and must not overwrite the main baseline.
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_cli run \
+  --dataset data/multimodal/msrvtt-1k-a \
+  --run-dir runs/ablations/msrvtt-1k-a-fps2-frames32-vision140 \
+  --channels N,S --rerankers none \
+  --video-fps 2 --video-max-frames 32 --video-vision-budget 140 \
+  --specialist-text-overflow truncate_to_model_limit
+```
+
+The [nine-condition execution manifest](../configs/multimodal-video-ablation-jobs.json) fixes FPS at 0.5/1/2 and the frame cap at 8/16/32. It contains planned commands, not measured results. Run these through the sole GPU owner and export to `reports/ablations/video`; they are outside the main-matrix completion denominator. Its baseline entry reuses the original validated run/cache. All conditions are visual-only; audio is excluded. Raw MSR-VTT candidates have no source-only text for J, so J requires a separately prepared description view.
