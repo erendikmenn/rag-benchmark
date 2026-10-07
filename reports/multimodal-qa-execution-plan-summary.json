@@ -9,12 +9,12 @@
   "scope": "Observed source-verified document datasets and completed retrieval identities only; not all future variants or the primary18460matrix",
   "dataset_count": 8,
   "controls_job_count": 8,
-  "retrieved_job_count": 916,
-  "schedulable_planned_qa_tasks": 409148,
+  "retrieved_job_count": 1040,
+  "schedulable_planned_qa_tasks": 485532,
   "controls_planned_qa_tasks": 9676,
-  "retrieved_planned_qa_tasks": 399472,
-  "pending_observed_retrieval_cells": 9184,
-  "pending_future_qa_tasks_if_sources_complete": 5707804,
+  "retrieved_planned_qa_tasks": 475856,
+  "pending_observed_retrieval_cells": 9060,
+  "pending_future_qa_tasks_if_sources_complete": 5631420,
   "completion_denominator": "sum query_count \u00d7 selected conditions \u00d72representations over scheduled jobs; completed tasks currently zero; pending retrieval is separately conditional",
   "execution_prerequisites": [
     "Runner actual media-byte checksum verification",
@@ -22,7 +22,7 @@
     "Root-owned verified local Gemma server; no concurrent active model run"
   ],
   "planner_sha256": "fc67d2c04767854944660758c02c4208be2fc519e0cbf7a9e02806d9e0d31e05",
-  "runner_sha256": "33c3375e81457c7b4242c94605efe58323e1421b4cd71b4398737917365641a6",
+  "runner_sha256": "1976ce8ad80bd7131581a5e8eaa942d125137e59483d25334d6feaa37c8cbc99",
   "source_report_sha256": {
     "reports/multimodal/vidore-cs-bm25/report.json": "ae63418dbce5955da883f0078712b63e90b398fb5a446540553cdda0b42c4b59",
     "reports/multimodal/vidore-cs-native/report.json": "c10ff2e67505b5507c69ffec2fca61d3b64d0f26c05209977fb8c892deaad318",
@@ -31,6 +31,7 @@
     "reports/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.json": "29ec227941f994ac7a9da00bac9d07eea2c58449f34a61c74ed79c2f76e8786c",
     "reports/multimodal/vidore-v3-computer_science-en-laya-complete/report.json": "9075f5e4f1b8d81d9f3260e3e1598005d638a3d257031b80f278eba881b5772a",
     "reports/multimodal/vidore-v3-computer_science-en-text-rerankers/report.json": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
+    "reports/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
     "reports/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
     "reports/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
     "reports/multimodal/vidore-v3-finance_fr-fr-bm25/report.json": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
@@ -44,7 +45,7 @@
     "runs/multimodal/vidore-v3-computer_science-en-bm25/report.json": "cdf2cff910792c9197c7375657c987efbe723b469d197460a5efbf12f92b1656",
     "runs/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.json": "29ec227941f994ac7a9da00bac9d07eea2c58449f34a61c74ed79c2f76e8786c",
     "runs/multimodal/vidore-v3-computer_science-en-text-rerankers/report.json": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
-    "runs/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "7edf6012fd79d72842cec5168398de3f713e63029f63894510129011f04ce9d0",
+    "runs/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
     "runs/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
     "runs/multimodal/vidore-v3-energy-fr-text-rerankers/report.json": "4a61719492afc17d5c000c2f64c1bbeeb2b3b8781b66b92056c0d7ac287cb7be",
     "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "7a21d3187c6b8ce6b3432ee347ad3e31660d9710fa2971d9582e8ac2112f9568",
@@ -66,7 +67,7 @@
     "runs/multimodal/vidore-v3-physics-fr-bm25/report.json": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
     "runs/multimodal/vidore-v3-physics-fr-text-rerankers/report.json": "2162440ba0ef7bfae467dc33b8e3faae883ef7f04007b8756587c3a46ba05350"
   },
-  "plan_sha256": "b3b730b65d55991b32db7de7b4ef73063488ddb58c0903efbc5075d99c7e6b7a",
+  "plan_sha256": "57e962865852f98098c9b57945f26b28cc98b8c92d4caf385b8e3ec716a5fdba",
   "datasets": {
     "vidore-v3-computer_science-en": {
       "query_count": 215,
@@ -77,8 +78,8 @@
     "vidore-v3-energy-fr": {
       "query_count": 308,
       "controls_only_jobs": 1,
-      "planned_qa_tasks": 3696,
-      "retrieved_only_jobs": 4
+      "planned_qa_tasks": 80080,
+      "retrieved_only_jobs": 128
     },
     "vidore-v3-finance_en-en": {
       "query_count": 309,

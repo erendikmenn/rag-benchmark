@@ -474,3 +474,50 @@ def test_matching_expected_plan_hashes_execute_same_frozen_cell(tmp_path, monkey
         max_new=1,
     )
     assert result["completed_tasks"] == 1 and len(transport.requests) == 1
+
+
+def test_exact_citation_instruction_preserves_source_order_and_no_gold():
+    from rag_benchmark.multimodal_qa_runner import citation_instruction, QA_PROMPT_CONTRACT_VERSION, parse_prediction
+    sources = [{'id': 'z"quoted', 'text': 'PRIVATE_SOURCE_FIXTURE'}, {'id': 'a', 'text': 'OTHER_SOURCE_FIXTURE'}]
+    before = copy.deepcopy(sources)
+    instruction = citation_instruction(sources)
+    assert json.dumps(['z"quoted', 'a'], ensure_ascii=False) in instruction
+    assert QA_PROMPT_CONTRACT_VERSION in instruction and 'exactly' in instruction
+    assert 'PRIVATE_SOURCE_FIXTURE' not in instruction and sources == before
+    with pytest.raises(ValueError, match='actually supplied evidence'):
+        parse_prediction(json.dumps({'answer': 'fact', 'citations': ['Document name']}), {'a'})
+    assert parse_prediction(json.dumps({'answer': 'fact', 'citations': ['a']}), {'a'})['citations'] == ['a']
+    assert '[]' in citation_instruction([])
+
+
+def test_changed_citation_prompt_never_reuses_old_blocked_cache(tmp_path, monkeypatch):
+    from rag_benchmark.multimodal_qa_runner import SharedGenerationCache, citation_instruction, QA_SYSTEM
+    monkeypatch.setattr('subprocess.run', lambda *args, **kwargs: SimpleNamespace(returncode=0))
+    cache = SharedGenerationCache(tmp_path / 'shared')
+    config = frozen_config()
+    transport = FakeLocalTransport()
+    old = {'system': QA_SYSTEM, 'question': 'Synthetic question', 'language': 'English',
+           'sources': [{'id': 'p', 'text': 'Synthetic evidence'}]}
+    calls = []
+    def invalid():
+        calls.append(1)
+        return {'text': json.dumps({'answer': 'fact', 'citations': ['Document name']})}
+    with pytest.raises(ValueError):
+        cache.generate(old, config, transport, invalid)
+    new = copy.deepcopy(old)
+    new['system'] += citation_instruction(new['sources'])
+    _, reused, _ = cache.generate(new, config, transport, lambda: transport.generate(new))
+    assert not reused and len(transport.requests) == 1
+    with pytest.raises(ValueError, match='no implicit regeneration'):
+        cache.generate(old, config, transport, invalid, retry_failed=True)
+    assert len(calls) == 1
+    with sqlite3.connect(cache.directory / 'generation.sqlite3') as db:
+        assert dict(db.execute('SELECT status,count(*) FROM responses GROUP BY status')) == {'blocked_integrity': 1, 'completed': 1}
+
+
+def test_prompt_contract_version_is_frozen():
+    from rag_benchmark.multimodal_qa_runner import validate_config
+    config = frozen_config()
+    config['protocol']['prompt_contract_version'] = 'unapproved'
+    with pytest.raises(ValueError, match='prompt protocol'):
+        validate_config(config)

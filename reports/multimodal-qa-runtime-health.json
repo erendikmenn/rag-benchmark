@@ -1,0 +1,83 @@
+{
+  "status": "failed",
+  "health_cases_passed": 4,
+  "health_cases_failed": 2,
+  "cases": [
+    {
+      "condition": "closed_book",
+      "representation": "text",
+      "health_status": "passed",
+      "task_status_counts": {
+        "completed": 1,
+        "pending": 214
+      }
+    },
+    {
+      "condition": "closed_book",
+      "representation": "image",
+      "health_status": "passed",
+      "task_status_counts": {
+        "completed": 1,
+        "pending": 214
+      }
+    },
+    {
+      "condition": "oracle",
+      "representation": "text",
+      "health_status": "failed",
+      "task_status_counts": {
+        "failed": 1,
+        "pending": 214
+      },
+      "failure_class": "invalid_source_id_citation",
+      "valid_answer_citations_json": true,
+      "source_count": 2,
+      "invalid_citation_count": 1,
+      "finish_reason": "stop",
+      "transport_attempts": 1,
+      "completed_tasks": 0
+    },
+    {
+      "condition": "oracle",
+      "representation": "image",
+      "health_status": "passed",
+      "task_status_counts": {
+        "completed": 1,
+        "pending": 214
+      }
+    },
+    {
+      "condition": "retrieved",
+      "representation": "text",
+      "health_status": "failed",
+      "task_status_counts": {
+        "failed": 1,
+        "pending": 214
+      },
+      "failure_class": "invalid_source_id_citation",
+      "valid_answer_citations_json": true,
+      "source_count": 5,
+      "invalid_citation_count": 1,
+      "finish_reason": "stop",
+      "transport_attempts": 1,
+      "completed_tasks": 0
+    },
+    {
+      "condition": "retrieved",
+      "representation": "image",
+      "health_status": "passed",
+      "task_status_counts": {
+        "completed": 1,
+        "pending": 214
+      }
+    }
+  ],
+  "parser_behavior": "strict rejection correct; no automatic citation normalization",
+  "shared_failed_response_state": "blocked_integrity; no retry fallback",
+  "model_http_gpu_calls_during_diagnosis": 0,
+  "synthetic_cpu_repro_tests_passed": 3,
+  "raw_prompts_answers_ids_published": false,
+  "full_qa_completed": false,
+  "main_matrix_contribution": 0,
+  "health_report_sha256": "1e977719505ea378e3a0ce57f31f3c7bc11767f00fb331650df90406eac58d8c"
+}
