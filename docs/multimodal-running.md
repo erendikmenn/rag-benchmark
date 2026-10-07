@@ -238,3 +238,7 @@ With the single model slot available, an explicit future run is:
 ```
 
 [Three planned commands and frozen source hashes](../configs/multimodal-reverse-jobs.json) cover Turkish/English images and Turkish speech. Raw rankings/vectors stay in ignored run directories; optional `--output` writes an aggregate report only. Before scheduling, verify the manifest hashes listed in that plan. No real reverse model inference has run yet: only fake-encoder CPU tests, actual constructor compatibility checks without model loading, and source/media validation. Specialist reverse retrieval, Whisper-query comparisons, confidence intervals and answer generation remain separate pending work. These jobs contribute zero to the primary forward-matrix denominator.
+
+### Explicit description output budgets
+
+The default source-only caption budget remains 192 output tokens. A normal-stop response is mandatory; reaching the cap never produces an accepted description. For a separately identified recovery, the single queue owner can select `describe --max-output-tokens 512`. This setting changes the generator/cache identity, retains prompt-plus-output context validation and keeps the old partial cache intact. It does not validate description meaning or guarantee that every response will fit. Do not relabel the completed 192-token Clotho measurements or mix their descriptions with a different-budget generator.

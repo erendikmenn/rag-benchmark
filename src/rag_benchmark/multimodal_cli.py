@@ -175,6 +175,8 @@ def main(argv=None) -> int:
     p.add_argument("--dataset", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--max-new", type=int)
+    p.add_argument("--max-output-tokens", type=int,
+                   help="Explicit description output budget; changes generation/cache identity. Default: 192. Truncated responses remain rejected.")
     p.add_argument("--caption-language", choices=("auto", "en", "tr", "fr"), default="auto",
                    help="Auto uses the frozen dataset language when declared, otherwise English.")
     p = sub.add_parser("prepare-generation")
@@ -212,14 +214,19 @@ def main(argv=None) -> int:
             from .multimodal_generation import LocalMultimodalGenerator, prepare_described_view
             if args.max_new is not None and args.max_new < 1:
                 raise ValueError("--max-new must be positive")
+            if args.max_output_tokens is not None and args.max_output_tokens < 1:
+                raise ValueError("--max-output-tokens must be positive")
             language = args.caption_language
             if language == "auto":
                 manifest = json.loads((args.dataset / "dataset.json").read_text())
                 language = manifest.get("metadata", {}).get("language", "en").split("_")[0]
                 if language not in {"en", "tr", "fr"}:
                     raise ValueError("Dataset language needs an explicit supported --caption-language")
+            config = {"caption_language": language}
+            if args.max_output_tokens is not None:
+                config["max_tokens"] = args.max_output_tokens
             result = prepare_described_view(args.dataset, args.output,
-                LocalMultimodalGenerator({"caption_language": language}), max_new=args.max_new)
+                LocalMultimodalGenerator(config), max_new=args.max_new)
             print(json.dumps({key: result[key] for key in ("status", "counts", "ready_candidates", "new_descriptions") if key in result}))
         elif args.command == "prepare-generation":
             from .multimodal_generation import E4B_CONFIG

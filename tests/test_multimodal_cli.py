@@ -120,3 +120,25 @@ def test_code_reranker_chunks_do_not_change_text_retrieval_adapters(tmp_path, mo
     assert main(['run', '--dataset', str(tmp_path), '--run-dir', str(tmp_path / 'run'),
                  '--channels', 'G,E', '--rerankers', 'gemma4_relevance',
                  '--code-rerank-overlength', 'source_chunks_max']) == 0
+
+
+def test_description_output_budget_is_explicit_and_preserves_default(tmp_path, monkeypatch):
+    from rag_benchmark.multimodal_cli import main
+    from rag_benchmark.multimodal_generation import LocalMultimodalGenerator
+    observed = []
+    def prepare(source, destination, generator, **kwargs):
+        observed.append(generator)
+        return {"status": "preparing"}
+    monkeypatch.setattr('rag_benchmark.multimodal_generation.prepare_described_view', prepare)
+    argv = ['describe', '--dataset', str(tmp_path), '--output', str(tmp_path / 'out'),
+            '--caption-language', 'tr']
+    assert main(argv) == 0
+    assert main([*argv, '--max-output-tokens', '512']) == 0
+    assert observed[0].identity == LocalMultimodalGenerator({'caption_language': 'tr'}).identity
+    assert observed[0].config['max_tokens'] == 192
+    assert observed[1].config['max_tokens'] == 512
+    assert observed[0].identity != observed[1].identity
+    with pytest.raises(SystemExit) as exc:
+        main([*argv, '--max-output-tokens', '0'])
+    assert exc.value.code == 2
+    assert len(observed) == 2
