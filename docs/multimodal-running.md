@@ -206,3 +206,17 @@ The output must be new and empty. Parent and derived record hashes and actual me
 Each image's annotated captions are positive; distinct caption IDs are preserved even when wording repeats. FLEURS uses the frozen normalized transcript groups. Reverse queries contain only source media, while human reference text is the explicitly intended search gallery. This is a separate task and must not be relabelled as source-only ASR or generated descriptions.
 
 These manifests have **`runtime_ready=false`**. The current forward engine rejects their separate track names; a reverse registry and a compatible media-query/text-gallery adapter are still required. No reverse model inference or retrieval quality has been measured. Direct audio queries and source-only Whisper queries must remain separate future conditions. These prepared views contribute zero cells to the main forward matrix.
+
+
+### Plan document QA across completed retrieval conditions
+
+Build the execution manifest without starting a model:
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_qa_plan \
+  --output work/continuation/document-qa-execution-plan.json
+```
+
+The planner prepares one `closed_book oracle` × `text image` control job per frozen collection, then one `retrieved` × `text image` job per exact completed retrieval identity. Export duplicates collapse; missing actual ranking stores, failed/partial cells and smoke runs are excluded or retained as pending. Different measured configurations can have the same primary method/budget/K label and stay separate here. The commands pass expected dataset identity and retrieval report SHA256; changed inputs fail before server preflight.
+
+Use `--conditions` and `--representations` to select a subset explicitly. Selection is part of the runner's frozen configuration and requires a separate run directory if it changes. The manifest does not execute commands, launch a server or prove QA accuracy. A queue owner must verify that the model slot is free and run the local pinned generator before executing a job; never send these jobs to the server currently serving another experiment. The [current aggregate plan](../reports/multimodal-qa-execution-plan-summary.json) records 409,148 planned tasks and zero generated answers. Controls are scheduled once; identical retrieved evidence across different cells has no shared generation cache yet. Regenerate the plan after new retrieval results complete.

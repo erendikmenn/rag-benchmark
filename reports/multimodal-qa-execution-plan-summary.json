@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "status": "execution_plan_only",
+  "model_requests_started": 0,
+  "qa_generation_completed_by_plan": 0,
+  "actual_generation_reuse_claimed": false,
+  "scope": "Observed source-verified document datasets and completed retrieval identities only; not all future variants or the primary18460matrix",
+  "dataset_count": 8,
+  "controls_job_count": 8,
+  "retrieved_job_count": 916,
+  "schedulable_planned_qa_tasks": 409148,
+  "controls_planned_qa_tasks": 9676,
+  "retrieved_planned_qa_tasks": 399472,
+  "pending_observed_retrieval_cells": 9184,
+  "pending_future_qa_tasks_if_sources_complete": 5707804,
+  "completion_denominator": "sum query_count \u00d7 selected conditions \u00d72representations over scheduled jobs; completed tasks currently zero; pending retrieval is separately conditional",
+  "execution_prerequisites": [
+    "Runner actual media-byte checksum verification",
+    "Runner exact frozen query/ranking coverage and score/metric validation",
+    "Root-owned verified local Gemma server; no concurrent active model run"
+  ],
+  "planner_sha256": "5b7dbd7d88e2ec520ee5ffe166a16a44dc28de9c4c4a5bae30a1b46ea997604b",
+  "runner_sha256": "8016ad40759f044c4a2cf3e4424ebe3d0d22bdaf1b46712f3fae160d0ba68b29",
+  "source_report_sha256": {
+    "reports/multimodal/vidore-cs-bm25/report.json": "ae63418dbce5955da883f0078712b63e90b398fb5a446540553cdda0b42c4b59",
+    "reports/multimodal/vidore-cs-native/report.json": "c10ff2e67505b5507c69ffec2fca61d3b64d0f26c05209977fb8c892deaad318",
+    "reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.json": "9c6d8197cea74ca1c40187e12c48c7aabc7050a24d8bd722ee4866d5bcb72836",
+    "reports/multimodal/vidore-v3-computer_science-en-bm25/report.json": "cdf2cff910792c9197c7375657c987efbe723b469d197460a5efbf12f92b1656",
+    "reports/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.json": "29ec227941f994ac7a9da00bac9d07eea2c58449f34a61c74ed79c2f76e8786c",
+    "reports/multimodal/vidore-v3-computer_science-en-laya-complete/report.json": "9075f5e4f1b8d81d9f3260e3e1598005d638a3d257031b80f278eba881b5772a",
+    "reports/multimodal/vidore-v3-computer_science-en-text-rerankers/report.json": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
+    "reports/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
+    "reports/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
+    "reports/multimodal/vidore-v3-finance_fr-fr-bm25/report.json": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
+    "reports/multimodal/vidore-v3-hr-en-bm25/report.json": "b1e28d6d06d2dd0a898d49d016cbfe9424addc47d45c8603b2469d6ae3df4b90",
+    "reports/multimodal/vidore-v3-industrial-en-bm25/report.json": "09c4b964a44a6a16cbb1808f0539e82c5d54e0a09865c26695c4682e86c799ac",
+    "reports/multimodal/vidore-v3-pharmaceuticals-en-bm25/report.json": "6c5edb0b1074082bc25e17d846686382cd3d2c89162a0272e34eed22ee6f5e65",
+    "reports/multimodal/vidore-v3-physics-fr-bm25/report.json": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
+    "runs/multimodal/vidore-cs-bm25/report.json": "ae63418dbce5955da883f0078712b63e90b398fb5a446540553cdda0b42c4b59",
+    "runs/multimodal/vidore-v3-computer_science-en/report.json": "c10ff2e67505b5507c69ffec2fca61d3b64d0f26c05209977fb8c892deaad318",
+    "runs/multimodal/vidore-v3-computer_science-en-all-retrieval/report.json": "9c6d8197cea74ca1c40187e12c48c7aabc7050a24d8bd722ee4866d5bcb72836",
+    "runs/multimodal/vidore-v3-computer_science-en-bm25/report.json": "cdf2cff910792c9197c7375657c987efbe723b469d197460a5efbf12f92b1656",
+    "runs/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.json": "29ec227941f994ac7a9da00bac9d07eea2c58449f34a61c74ed79c2f76e8786c",
+    "runs/multimodal/vidore-v3-computer_science-en-text-rerankers/report.json": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
+    "runs/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "0c6ebc59ccbf7df8dc54aaf77ecff006fe44bda0c2f6e96bcc529d5a421878e6",
+    "runs/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
+    "runs/multimodal/vidore-v3-energy-fr-text-rerankers/report.json": "4a61719492afc17d5c000c2f64c1bbeeb2b3b8781b66b92056c0d7ac287cb7be",
+    "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "7a21d3187c6b8ce6b3432ee347ad3e31660d9710fa2971d9582e8ac2112f9568",
+    "runs/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
+    "runs/multimodal/vidore-v3-finance_en-en-text-rerankers/report.json": "68cfebfcce197b93826bb0b830e1227dbc387873d73aa220f5ad117ae653683d",
+    "runs/multimodal/vidore-v3-finance_fr-fr-all-retrieval/report.json": "dc25a5d48791a687a70993ae33a13f3f8905b7a413290789784fd85e348dccbd",
+    "runs/multimodal/vidore-v3-finance_fr-fr-bm25/report.json": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
+    "runs/multimodal/vidore-v3-finance_fr-fr-text-rerankers/report.json": "03f95b1bf486940cd58953df75cc8d3502ea43f7b958bf6cc5c953a67b7f9dba",
+    "runs/multimodal/vidore-v3-hr-en-all-retrieval/report.json": "ab256f7c30eb18b9d66c621d488bb0568533578f2aa9e4b80fb6a350021fe124",
+    "runs/multimodal/vidore-v3-hr-en-bm25/report.json": "b1e28d6d06d2dd0a898d49d016cbfe9424addc47d45c8603b2469d6ae3df4b90",
+    "runs/multimodal/vidore-v3-hr-en-text-rerankers/report.json": "385bb097d480306f626248e380fc932d4c48ab1235b43673605bb65ab13332ee",
+    "runs/multimodal/vidore-v3-industrial-en-all-retrieval/report.json": "c3d6c79a734f3fb52b25d1e4e8e3bfae7b80cd9b7e4f88bb7da830e3fdb188df",
+    "runs/multimodal/vidore-v3-industrial-en-bm25/report.json": "09c4b964a44a6a16cbb1808f0539e82c5d54e0a09865c26695c4682e86c799ac",
+    "runs/multimodal/vidore-v3-industrial-en-text-rerankers/report.json": "bff56e222d78bb90b55b60aa5e8036c63df78378a8cea66e543a8f8075bfa349",
+    "runs/multimodal/vidore-v3-pharmaceuticals-en-all-retrieval/report.json": "660db41a2f0dbd1e3dbf56acb65f6337ec393dd7798b0cd415a36de623d8c29d",
+    "runs/multimodal/vidore-v3-pharmaceuticals-en-bm25/report.json": "6c5edb0b1074082bc25e17d846686382cd3d2c89162a0272e34eed22ee6f5e65",
+    "runs/multimodal/vidore-v3-pharmaceuticals-en-text-rerankers/report.json": "f9ef280b6f831d0c838aad0978ba2749e8802b9def2f9dc275d48d3c7f627e6f",
+    "runs/multimodal/vidore-v3-physics-fr-all-retrieval/report.json": "e4e67e52771098a3bba7628852c3c711e9bacbbbdb1f80cb63e201defc1feba7",
+    "runs/multimodal/vidore-v3-physics-fr-bm25/report.json": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
+    "runs/multimodal/vidore-v3-physics-fr-text-rerankers/report.json": "2162440ba0ef7bfae467dc33b8e3faae883ef7f04007b8756587c3a46ba05350"
+  },
+  "plan_sha256": "034588d9b773f5fda8c5f92a6d5d8ed200c5ea9a94f6f2c7c3cfa78f8246c18a",
+  "datasets": {
+    "vidore-v3-computer_science-en": {
+      "query_count": 215,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 382700,
+      "retrieved_only_jobs": 888
+    },
+    "vidore-v3-energy-fr": {
+      "query_count": 308,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3696,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-finance_en-en": {
+      "query_count": 309,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3708,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-finance_fr-fr": {
+      "query_count": 320,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3840,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-hr-en": {
+      "query_count": 318,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3816,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-industrial-en": {
+      "query_count": 283,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3396,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-pharmaceuticals-en": {
+      "query_count": 364,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 4368,
+      "retrieved_only_jobs": 4
+    },
+    "vidore-v3-physics-fr": {
+      "query_count": 302,
+      "controls_only_jobs": 1,
+      "planned_qa_tasks": 3624,
+      "retrieved_only_jobs": 4
+    }
+  },
+  "exact_identity_scope": "Distinct full recorded retrieval identities are retained; same method/budget/K can have different measured configurations. This is not primary-matrix coverage.",
+  "command_pin_policy": "Each job passes expected frozen dataset identity and, for retrieved jobs, report SHA256; a stale plan fails before transport preflight.",
+  "pending_scope": "Only observed incomplete semantic cells are conditional; does not enumerate all future representation or parameter variants.",
+  "generation_reuse": "Controls are scheduled once per collection. Identical retrieved evidence across cells is not yet deduplicated into shared actual generation requests.",
+  "rebuild_command": ".venv/bin/python -m rag_benchmark.multimodal_qa_plan --output work/continuation/document-qa-execution-plan.json"
+}

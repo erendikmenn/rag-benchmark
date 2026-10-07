@@ -412,3 +412,65 @@ def test_question_language_frozen_request_projection(tmp_path, monkeypatch):
     assert transport.requests[0]["language"] == "french"
     assert "explicitly requested answer language" in transport.requests[0]["system"]
     assert "Correct fact" not in json.dumps(transport.requests[0])
+
+
+@pytest.mark.parametrize("damage", ["dataset", "retrieval_report"])
+def test_stale_execution_plan_fails_before_transport_preflight(tmp_path, monkeypatch, damage):
+    root, raw, out = fixture(tmp_path, monkeypatch)
+    dataset = verified_dataset(root)
+    retrieval = make_retrieval(tmp_path, dataset)
+    expected_dataset = dataset.identity
+    expected_report = sha256(retrieval / "report.json")
+    if damage == "dataset":
+        path = root / "corpus.jsonl"
+        row = json.loads(path.read_text())
+        row["text"] = "Changed valid source"
+        path.write_text(json.dumps(row) + "\n")
+        manifest_path = root / "dataset.json"
+        manifest = json.loads(manifest_path.read_text())
+        manifest["files"]["corpus.jsonl"]["sha256"] = sha256(path)
+        manifest_path.write_text(json.dumps(manifest))
+    else:
+        path = retrieval / "report.json"
+        report = json.loads(path.read_text())
+        report["extra_snapshot_metadata"] = True
+        path.write_text(json.dumps(report))
+    transport = FakeLocalTransport()
+
+    def forbidden_preflight():
+        raise AssertionError("Stale plan must fail before model/transport preflight")
+
+    transport.preflight = forbidden_preflight
+    with pytest.raises(
+        ValueError, match="Planned dataset identity changed|Planned retrieval report hash changed"
+    ):
+        run_qa(
+            root,
+            [raw],
+            out,
+            transport=transport,
+            retrieval_run=retrieval,
+            retrieval_cell="actual-cell",
+            expected_dataset_identity=expected_dataset,
+            expected_retrieval_report_sha256=expected_report,
+        )
+    assert not transport.requests and not out.exists()
+
+
+def test_matching_expected_plan_hashes_execute_same_frozen_cell(tmp_path, monkeypatch):
+    root, raw, out = fixture(tmp_path, monkeypatch)
+    dataset = verified_dataset(root)
+    retrieval = make_retrieval(tmp_path, dataset)
+    transport = FakeLocalTransport()
+    result = run_qa(
+        root,
+        [raw],
+        out,
+        transport=transport,
+        retrieval_run=retrieval,
+        retrieval_cell="actual-cell",
+        expected_dataset_identity=dataset.identity,
+        expected_retrieval_report_sha256=sha256(retrieval / "report.json"),
+        max_new=1,
+    )
+    assert result["completed_tasks"] == 1 and len(transport.requests) == 1

@@ -285,6 +285,8 @@ def run_qa(
     retrieval_cell=None,
     max_new=None,
     retry_failed=False,
+    expected_dataset_identity=None,
+    expected_retrieval_report_sha256=None,
 ):
     config = copy.deepcopy(config or frozen_config())
     validate_config(config)
@@ -294,9 +296,17 @@ def run_qa(
     if readiness["status"] != "ready_for_generation":
         raise UnsupportedEvidence("Complete source-verified document QA gold coverage is required")
     frozen = verified_dataset(dataset)
+    if expected_dataset_identity is not None and frozen.identity != expected_dataset_identity:
+        raise ValueError("Planned dataset identity changed; regenerate the QA execution plan")
     rankings = retrieval_identity = None
     if bool(retrieval_run) != bool(retrieval_cell):
         raise ValueError("Retrieval run and cell must be supplied together")
+    if expected_retrieval_report_sha256 is not None:
+        if (
+            not retrieval_run
+            or sha256(Path(retrieval_run) / "report.json") != expected_retrieval_report_sha256
+        ):
+            raise ValueError("Planned retrieval report hash changed; regenerate the QA execution plan")
     if retrieval_run:
         rankings, retrieval_identity = verified_retrieval(retrieval_run, retrieval_cell, frozen)
     source_identity = {
@@ -529,17 +539,31 @@ def main(argv=None):
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--retrieval-run", type=Path)
     parser.add_argument("--retrieval-cell")
+    parser.add_argument("--expected-dataset-identity")
+    parser.add_argument("--expected-retrieval-report-sha256")
+    parser.add_argument(
+        "--conditions", nargs="+", choices=["closed_book", "oracle", "retrieved"], default=None
+    )
+    parser.add_argument("--representations", nargs="+", choices=["text", "image"], default=None)
     parser.add_argument("--max-new", type=int)
     parser.add_argument("--retry-failed", action="store_true")
     args = parser.parse_args(argv)
+    config = frozen_config()
+    if args.conditions is not None:
+        config["protocol"]["conditions"] = args.conditions
+    if args.representations is not None:
+        config["protocol"]["representations"] = args.representations
     result = run_qa(
         args.dataset,
         args.raw_queries,
         args.run_dir,
+        config=config,
         retrieval_run=args.retrieval_run,
         retrieval_cell=args.retrieval_cell,
         max_new=args.max_new,
         retry_failed=args.retry_failed,
+        expected_dataset_identity=args.expected_dataset_identity,
+        expected_retrieval_report_sha256=args.expected_retrieval_report_sha256,
     )
     print(
         json.dumps(
