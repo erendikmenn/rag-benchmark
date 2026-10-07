@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "stopped_by_user",
+  "queue_running": false,
+  "model_worker_running": false,
+  "agent_work_running": false,
+  "automation_removed": true,
+  "automatic_resume_enabled": false,
+  "verified_main_matrix": {
+    "completed_cells": 2052,
+    "planned_cells": 18460,
+    "remaining_cells": 16408,
+    "partial_conditions_counted": false
+  },
+  "unfinished_runs": {
+    "vidore-v3-finance_fr-fr-all-retrieval": {
+      "status": "partial_after_E_allocation_failure",
+      "completed_none_cells": 62,
+      "expected_none_cells": 126,
+      "complete_independent_audit": false,
+      "added_to_published_main_matrix": false,
+      "bounded_recovery_executed": false
+    },
+    "vidore-v3-hr-en-all-retrieval": {
+      "status": "interrupted_by_user",
+      "completed_channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "S"
+      ],
+      "unfinished_channel": "J",
+      "completed_none_cells": 0,
+      "added_to_published_main_matrix": false
+    }
+  },
+  "existing_results_and_private_caches_retained": true,
+  "raw_payload_published": false,
+  "recorded_utc": "2026-10-07T18:25:46.029401+00:00",
+  "recorded_local": "2026-10-07 21:25:46 Europe/Istanbul"
+}
