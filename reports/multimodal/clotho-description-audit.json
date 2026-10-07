@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "verified_saved_source_only_descriptions",
+  "dataset": "clotho-v2.1-evaluation-described",
+  "source_manifest_sha256": "b30c055d659645e3d891fda5400a54fc730c281fdba32081a2293aa758002d54",
+  "derived_manifest_sha256": "4134219de0d2571cc904242e157ebe17ec92b40c1de78e90e25bb9bcecf27140",
+  "generation_implementation_sha256": "fe0a7e8a106a58494cba96261fc52a2c4e5dd5a5a883fa048d9e15738559bebb",
+  "generator_identity": "521fd79cccbd7d05466753ccfd09c74f21d7df3847c29d44513424803a0d6f8d",
+  "source_count": 1045,
+  "description_count": 1045,
+  "nonempty_descriptions": 1045,
+  "unique_description_text_hashes": 737,
+  "media_assets_verified": 1045,
+  "unchanged_query_count": 5225,
+  "unchanged_qrel_count": 5225,
+  "cache_records_identity_text_provenance_verified": 1045,
+  "cache_inventory_sha256": "90aa6cb94ddcdf8e2c4a051bdbe15687c301820466645c9f512b2aaf747ee59d",
+  "historical_generation_usage": {
+    "finish_reasons": {
+      "stop": 1045
+    },
+    "prompt_tokens_min": 454,
+    "prompt_tokens_max": 829,
+    "output_tokens_min": 2,
+    "output_tokens_max": 108,
+    "output_tokens_sum": 27216,
+    "request_seconds_sum": 1124.9462881824002,
+    "scope": "saved successful request usage; historical, not fresh audit inference or total job wall time"
+  },
+  "source_audio_duration_seconds": {
+    "min": 15.003174603174603,
+    "max": 30.0,
+    "sum": 23416.309931972788
+  },
+  "source_audio_coverage": {
+    "files_checked": 1045,
+    "max_supported_seconds": 30,
+    "runtime_per_sample_diagnostics": "unavailable in historical generation cache",
+    "code_contract": "load_audio resamples complete source to 16kHz and rejects overlength; no clipping branch"
+  },
+  "audit_model_calls": 0,
+  "generated_description_semantic_accuracy": null,
+  "notes": [
+    "This verifies source/cache/provenance and recorded execution integrity; not human caption correctness.",
+    "Source-only requests whitelist source media/text, exclude queries/qrels/reference captions, and use one generic caption prompt.",
+    "Input sample retention was not measured per call in the saved cache; source duration and implementation checks are separate."
+  ],
+  "generation_implementation_hash_scope": "audit-time source implementation; not a per-request historical sample-retention record",
+  "independent_review": {
+    "source_and_cache_identity_verification": "passed",
+    "unchanged_query_asset_bytes": "passed",
+    "qrels": "5225 positive labelled relations unchanged; row order may differ",
+    "max_identical_description_multiplicity": 23,
+    "semantic_accuracy_evaluated": false
+  }
+}
