@@ -161,6 +161,26 @@ The source-verified preparation module runs on CPU without a model call:
 
 It binds raw query-parquet hashes to the frozen manifest, verifies prepared-file hashes and checks every selected-language question and canonical answer against the published source. Positive source labels must reference the frozen corpus. The [eight-collection audit](../reports/multimodal-qa-readiness.json) covers all 2,419 questions; it publishes counts, protocol and hashes only. Raw questions, references and predictions remain local.
 
-This is preparation and metric code, not a generation runner or a quality result. A future runner must freeze the local generator, prompt and decoding settings; validate source media before use; and save predictions before evaluation. `generation_query()` exposes only the question, language and ID. `select_evidence()` defines closed-book, oracle and actual retrieved top-five conditions for text or images. Oracle is a labelled diagnostic using up to five positive sources, not an ordinary retrieval result. Missing evidence fails explicitly instead of silently dropping a question or source. Text availability differs from image availability: the CS corpus contains two empty OCR fields.
+This audit is a preparation result, not measured answer quality. The separate resumable runner below freezes the local generator, prompt and decoding settings, validates source media before use, and saves predictions before evaluation. `generation_query()` exposes only the question, language and ID. `select_evidence()` defines closed-book, oracle and actual retrieved top-five conditions for text or images. Oracle is a labelled diagnostic using up to five positive sources, not an ordinary retrieval result. Missing evidence fails explicitly instead of silently dropping a question or source. Text availability differs from image availability: the CS corpus contains two empty OCR fields.
 
 Answer EM and token F1 measure lexical overlap with the canonical reference. Normalization uses Unicode NFKC, language-aware Turkish case handling, punctuation-to-space and whitespace tokenization. Uncertified `raw_answers` are not treated as equivalent reference aliases. Citation source-set precision/recall/hit compare cited source IDs with positive qrels; they do not measure whether the answer's claims are supported. Semantic correctness and citation entailment remain unmeasured and require separate calibrated assessment. This evaluation is outside the 18,460-cell retrieval matrix and the earlier RAGTurk pilot.
+
+### Resumable document QA execution
+
+`multimodal_qa_runner` evaluates one completed retrieval cell per run. Its implementation and adversarial cache checks have passed CPU tests with a fake transport. Actual Gemma QA generation has not run yet. Use the sole GPU owner and verified local Gemma server described above; do not run it alongside the active suite's model job.
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_qa_runner \
+  --dataset data/multimodal/vidore-v3-computer_science-en \
+  --raw-queries data/multimodal/raw/vidore-v3-computer_science/queries/test-00000-of-00001.parquet \
+  --run-dir runs/multimodal-qa/cs-bm25 \
+  --retrieval-run runs/multimodal/vidore-v3-computer_science-en-text-rerankers \
+  --retrieval-cell f317bfabf1550840c0cb0ddd17404adb1fe64dde95083e1c45b85bb9cc4548e3 \
+  --max-new 6
+```
+
+The example binds the actual BM25/per-channel retrieval cell. The runner registers closed-book, oracle and retrieved conditions in both text and image representations. `--max-new` limits attempted tasks; six attempts do not cover all six condition groups on a multi-question collection. Omit it to process all registered tasks after a successful backend check. Missing retrieval configuration, empty retrieved evidence and evidence exceeding the explicit text cap remain visible as unsupported tasks. Missing selected source text fails that task. Evidence is never silently clipped or replaced with reference answers.
+
+Generation uses pinned Gemma 4 E4B Q4 weights/projector, temperature 0, seed 42, thinking disabled and 384 reserved output tokens. The instruction requires the question's language and JSON answer/citations. Up to five complete source texts must fit a 24,000-character cap; images follow the fixed 1,120-pixel maximum side. The backend separately enforces its verified context and normal completion. The earlier text pilot's 26B-A4B generator is a different condition.
+
+Raw requests, answers and errors are stored only in a git-ignored run directory. A run lock prevents duplicate owners. Source, config, verified runtime and full ranking hashes bind resume behavior. Resuming revalidates cached requests, predictions, citation IDs and recomputed metrics; corrupted completed rows become failed and are excluded, without automatic model retries. Ordinary failed attempts require explicit `--retry-failed`. `aggregate.json` reports completed-only means together with planned/completed/failed/unsupported counts; it never labels these lexical metrics as semantic accuracy. Full retrieval-variant orchestration, actual model execution and calibrated semantic assessment remain pending.
