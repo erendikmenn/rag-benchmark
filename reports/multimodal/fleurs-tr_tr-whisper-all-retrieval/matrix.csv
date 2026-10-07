@@ -1,0 +1,125 @@
+variant_id,track,status,reason,completed_cells,planned_cells
+speech__b__none,speech,completed,,2,2
+speech__b__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g__none,speech,completed,,2,2
+speech__g__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__e__none,speech,completed,,2,2
+speech__e__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__e__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__e__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__n__none,speech,completed,,2,2
+speech__n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__j__none,speech,completed,,2,2
+speech__j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g__none,speech,completed,,2,2
+speech__b_g__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_e__none,speech,completed,,2,2
+speech__b_e__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_e__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_e__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_n__none,speech,completed,,2,2
+speech__b_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_j__none,speech,completed,,2,2
+speech__b_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_e__none,speech,completed,,2,2
+speech__g_e__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_e__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_e__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_n__none,speech,completed,,2,2
+speech__g_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_j__none,speech,completed,,2,2
+speech__g_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__e_n__none,speech,completed,,2,2
+speech__e_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__e_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__e_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__e_j__none,speech,completed,,2,2
+speech__e_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__e_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__e_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__n_j__none,speech,completed,,2,2
+speech__n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_e__none,speech,completed,,2,2
+speech__b_g_e__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_e__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_e__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_n__none,speech,completed,,2,2
+speech__b_g_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_j__none,speech,completed,,2,2
+speech__b_g_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_e_n__none,speech,completed,,2,2
+speech__b_e_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_e_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_e_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_e_j__none,speech,completed,,2,2
+speech__b_e_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_e_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_e_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_n_j__none,speech,completed,,2,2
+speech__b_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_e_n__none,speech,completed,,2,2
+speech__g_e_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_e_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_e_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_e_j__none,speech,completed,,2,2
+speech__g_e_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_e_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_e_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_n_j__none,speech,completed,,2,2
+speech__g_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__e_n_j__none,speech,completed,,2,2
+speech__e_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__e_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__e_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_e_n__none,speech,completed,,2,2
+speech__b_g_e_n__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_e_n__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_e_n__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_e_j__none,speech,completed,,2,2
+speech__b_g_e_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_e_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_e_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_n_j__none,speech,completed,,2,2
+speech__b_g_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_e_n_j__none,speech,completed,,2,2
+speech__b_e_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_e_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_e_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__g_e_n_j__none,speech,completed,,2,2
+speech__g_e_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__g_e_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__g_e_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6
+speech__b_g_e_n_j__none,speech,completed,,2,2
+speech__b_g_e_n_j__laya_text,speech,unsupported,No laya_text adapter configured,0,6
+speech__b_g_e_n_j__bge_reranker_text,speech,unsupported,No bge_reranker_text adapter configured,0,6
+speech__b_g_e_n_j__gemma4_relevance,speech,unsupported,No gemma4_relevance adapter configured,0,6

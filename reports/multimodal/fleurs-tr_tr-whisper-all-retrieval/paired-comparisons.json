@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "fleurs-tr_tr-whisper",
+    "revision": "0db3c05e0e8109f758a6d3c38b57f00a621d6927d0ba03f27448e61cd85beffc",
+    "track": "speech",
+    "identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+    "corpus_count": 743,
+    "query_count": 329,
+    "qrel_count": 743,
+    "positive_qrel_count": 743,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_report_sha256": "1307ce8e55acdc26c11aba51ac35944b7fffbc28e726b4ad4140e59284cc32fa",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "verified_transcript_components",
+    "description": "Declared transcript groups are verified against every positive recording's group_id; shared recordings and transcript groups connect queries.",
+    "query_count": 329,
+    "group_count": 329,
+    "source_unit_count": 1072,
+    "source_association_count": 1072,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 1,
+    "largest_group_fraction": 0.00303951367781155,
+    "mapping_sha256": "7ee88fd71904aea936f5859e1cf8afa863582ff3c11fe28d8260933abe9e0f4b",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "speech__n__none",
+      "requested_right": "speech__j__none",
+      "left": {
+        "identity": "55a3f11f0e669587696b6090695cc699ab0654c3b3a88956e8495c41aebd5f1d",
+        "variant_id": "speech__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "right": {
+        "identity": "11a03932af015d8e0696815894851b08b84b8e68c936bb06fed5aac501585b81",
+        "variant_id": "speech__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.9970258392589246,
+          "right_mean": 1.0,
+          "mean_difference": 0.0029741607410755555,
+          "query_count": 329,
+          "wins": 8,
+          "losses": 0,
+          "ties": 321,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0008861980616524161,
+          "ci95_high": 0.0055845459008446565,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "speech__b__none",
+      "requested_right": "speech__g__none",
+      "left": {
+        "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+        "variant_id": "speech__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "right": {
+        "identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+        "variant_id": "speech__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "speech__b__none",
+      "requested_right": "speech__e__none",
+      "left": {
+        "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+        "variant_id": "speech__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "right": {
+        "identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+        "variant_id": "speech__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "speech__g__none",
+      "requested_right": "speech__e__none",
+      "left": {
+        "identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+        "variant_id": "speech__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "right": {
+        "identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+        "variant_id": "speech__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "speech__b__none",
+      "requested_right": "speech__b_g_e__none",
+      "left": {
+        "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+        "variant_id": "speech__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "right": {
+        "identity": "1ba046b4bd5d7f2e11274f1ad8df1104d697a54576ba2342e7bd6b49a77d52ed",
+        "variant_id": "speech__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 329
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 1.0,
+          "right_mean": 1.0,
+          "mean_difference": 0.0,
+          "query_count": 329,
+          "wins": 0,
+          "losses": 0,
+          "ties": 329,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "group_count": 329,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "completed": 5
+  },
+  "status": "completed"
+}

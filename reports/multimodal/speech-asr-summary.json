@@ -1,0 +1,2248 @@
+{
+  "schema_version": 1,
+  "scope": "Full FLEURS Turkish source-only ASR and exact-transcript-group retrieval; not QA or paraphrase robustness.",
+  "dataset": {
+    "id": "fleurs-tr_tr-whisper",
+    "revision": "0db3c05e0e8109f758a6d3c38b57f00a621d6927d0ba03f27448e61cd85beffc",
+    "track": "speech",
+    "identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+    "corpus_count": 743,
+    "query_count": 329,
+    "qrel_count": 743,
+    "positive_qrel_count": 743,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_hashes": {
+    "asr_manifest_sha256": "5f0d07a7dc928c016ef1241a1eda71faf40b70e598394a5107c56bfd819c2622",
+    "asr_wer_sha256": "25b23438207f2714f7715a370b0f7ef948ac40cf36a40830962866a5fc0c9f23",
+    "asr_preparation_sha256": "a323b6f634829c69b84278b18aea359dec4c367eb5398210bd0dd143443eac6e",
+    "source_manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
+    "reference_file_sha256": "92ebbce2abbf7808b761e74601f7047eed186eb7ede2ec6e52951e1a010cd691",
+    "run_report_sha256": "1307ce8e55acdc26c11aba51ac35944b7fffbc28e726b4ad4140e59284cc32fa",
+    "public_report_sha256": "1307ce8e55acdc26c11aba51ac35944b7fffbc28e726b4ad4140e59284cc32fa",
+    "original_native_report_sha256": "f8f6deb9e3ffb01137887327ecebc0f032813af6270080e42c7daa6078ab6c17",
+    "paired_analysis_sha256": "a50e244d7fc75fc265fcece154cd656d666e7d0e112b4c3070fe55ae2900396e"
+  },
+  "public_reports": {
+    "retrieval": "fleurs-tr_tr-whisper-all-retrieval/report.json",
+    "paired_analysis": "fleurs-tr_tr-whisper-all-retrieval/paired-comparisons.json",
+    "original_native": "fleurs-tr_tr-test-native/report.json"
+  },
+  "asr": {
+    "model_id": "openai/whisper-large-v3-turbo",
+    "revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+    "adapter_identity": "9e23e76c8e020bd49127b6171550addefcd83acf936b8146f13caa51c0abaaf6",
+    "view_identity": "7de4632eae8c4764f58f3f6a9383d61dfaac50a674785a6d87067413642a7d6e",
+    "device": "mps",
+    "dtype": "float32",
+    "language": "turkish",
+    "task": "transcribe",
+    "source_only": true,
+    "query_or_reference_prompt": false,
+    "new_transcripts": 743,
+    "cache_hits": 0,
+    "empty_transcripts": 0,
+    "decoding_protocol": "greedy-static-kv-synchronous-stop-v1",
+    "cache_implementation": "static",
+    "disable_compile": true,
+    "use_cache": true,
+    "recorded_inference_seconds": 816.2134472962935,
+    "timing_scope": "Historical synchronized model-generation time for 743 fresh transcripts; excludes feature preparation and is not full pipeline wall time.",
+    "audio_coverage": {
+      "recordings": 743,
+      "verified_samples": 150083520,
+      "sampling_rate": 16000,
+      "audio_seconds": 9380.22,
+      "shortest_seconds": 3.84,
+      "longest_seconds": 36.84,
+      "long_form_recordings": 1,
+      "segments": 744,
+      "truncated_recordings": 0,
+      "coverage_evidence": "All source media hashes, cache identities/transcripts, WAV sample counts and retained feature-frame counts checked."
+    }
+  },
+  "wer": {
+    "asr_identity": "9e23e76c8e020bd49127b6171550addefcd83acf936b8146f13caa51c0abaaf6",
+    "deletions": 126,
+    "empty_transcripts": 0,
+    "errors": 965,
+    "insertions": 123,
+    "normalization": "NFKC; Turkish I/İ case mapping; casefold; Unicode punctuation to spaces; whitespace",
+    "record_count": 743,
+    "reference_words": 13233,
+    "scope": "post_hoc_reference_evaluation_only",
+    "substitutions": 716,
+    "wer": 0.07292375122799064,
+    "independent_recalculation": "Full-matrix weighted edit alignment and backtracking, without calling production WER scorer.",
+    "formula": "(substitutions + deletions + insertions) / reference_words",
+    "is_semantic_or_answer_accuracy": false,
+    "one_minus_wer_is_semantic_or_answer_accuracy": false,
+    "terminology": "1 - WER is sometimes called word accuracy; it is not semantic or answer accuracy.",
+    "aggregation": "Corpus word-weighted rate; references used post hoc for all 743 recordings."
+  },
+  "retrieval": {
+    "completed_cells": 62,
+    "primary_per_channel_subsets": 31,
+    "query_count": 329,
+    "gallery_count": 743,
+    "qrel_count": 743,
+    "channel_budget": 100,
+    "rrf_k": 60,
+    "budget_modes": [
+      "per_channel",
+      "total"
+    ],
+    "reranker": "none",
+    "channels": {
+      "B": "BM25 over Whisper transcripts",
+      "G": "BGE-M3 over Whisper transcripts",
+      "E": "EmbeddingGemma2 over Whisper transcripts",
+      "N": "EmbeddingGemma2 audio only",
+      "J": "EmbeddingGemma2 audio plus Whisper transcript"
+    },
+    "metric_definitions": {
+      "hit@5": "At least one recording from the exact transcript group appears in the top five.",
+      "recall@5": "Mean fraction of all relevant group recordings retrieved in the top five.",
+      "ndcg@10": "Graded normalized discounted gain at ten; all FLEURS positive grades equal one."
+    },
+    "primary_conditions": [
+      {
+        "variant_id": "speech__b__none",
+        "retrieval_channels": [
+          "B"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g__none",
+        "retrieval_channels": [
+          "G"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e__none",
+        "retrieval_channels": [
+          "E"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__n__none",
+        "retrieval_channels": [
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "55a3f11f0e669587696b6090695cc699ab0654c3b3a88956e8495c41aebd5f1d",
+        "metrics": {
+          "hit@1": 0.9969604863221885,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9942840256670042,
+          "mrr@1": 0.9969604863221885,
+          "mrr@10": 0.9984802431610942,
+          "mrr@20": 0.9984802431610942,
+          "mrr@5": 0.9984802431610942,
+          "ndcg@1": 0.9969604863221885,
+          "ndcg@10": 0.9970258392589246,
+          "ndcg@20": 0.9970258392589246,
+          "ndcg@5": 0.9948958413797953,
+          "recall@1": 0.513677811550152,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9954407294832827
+        }
+      },
+      {
+        "variant_id": "speech__j__none",
+        "retrieval_channels": [
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "11a03932af015d8e0696815894851b08b84b8e68c936bb06fed5aac501585b81",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g__none",
+        "retrieval_channels": [
+          "B",
+          "G"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "2bccbe38e10d80c50e5e8bf3a90c5d5756d1fc5b946236acac96fd939e2c7115",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e__none",
+        "retrieval_channels": [
+          "B",
+          "E"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "74d78538ba363910553f2ad01ff004e22cbacf437b034f7cecbf2f612dcf8f82",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_n__none",
+        "retrieval_channels": [
+          "B",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "e95b76d527e42f437ea02762f72dc78de26f9ba097bd433efbb99daeeab7e287",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_j__none",
+        "retrieval_channels": [
+          "B",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "962e6d83d0dfb710481866537501c51c0a2cdb7a59b94301f76e81adbd1f2cfa",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e__none",
+        "retrieval_channels": [
+          "G",
+          "E"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "11674855847f15f87107b5ca0c4f53083cae4396bebb88b83132c098834b8bd1",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_n__none",
+        "retrieval_channels": [
+          "G",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "2a4269e26c592c67787ad07d12fcb91f1b3d6bb82c5e7e41e93181ba242a9b39",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9994934143870315,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9997948969360329,
+          "ndcg@20": 0.9997948969360329,
+          "ndcg@5": 0.9992868104467738,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9989868287740628
+        }
+      },
+      {
+        "variant_id": "speech__g_j__none",
+        "retrieval_channels": [
+          "G",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "00f63b75f453216150313130c4d57ed0b10ee190258e22f8b453d5b5b88db3da",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e_n__none",
+        "retrieval_channels": [
+          "E",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "1bb9cfb35469271c7e86bbe9ab09977aebdf89fa34f4da3937ed9abc2aeaf7e2",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9989023978385682,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9995092599619742,
+          "ndcg@20": 0.9995092599619742,
+          "ndcg@5": 0.9990011734727152,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9989868287740628
+        }
+      },
+      {
+        "variant_id": "speech__e_j__none",
+        "retrieval_channels": [
+          "E",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "09b1f456ede7bcc00df8584555ce9ede6adb5ef6ba96e8d4b749f292d62397e9",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__n_j__none",
+        "retrieval_channels": [
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "84227fc312153c395183b307073ea3b771d4b33c722b3d8bfd3582890df919d6",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9989023978385682,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9994703532665132,
+          "ndcg@20": 0.9994703532665132,
+          "ndcg@5": 0.9994703532665132,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "1ba046b4bd5d7f2e11274f1ad8df1104d697a54576ba2342e7bd6b49a77d52ed",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_n__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "0cb3ce199074223e6f6cbf1bbbd3550b91d26bc57a6eab5a7916716a90eeb5f2",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "394daab219620646a754bbcf16d07db9309c49bfc8e02c4fda5104a5e96e023c",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_n__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "ac3fc278311164f42b03bf9c20a3aa9e7d7916a26ae4563e623cadde4d37ba20",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_j__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "31fc108c37b25d76186dc4482807152478a5d331c7073b4bff46e2f577eea1f4",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "308900ff89fa63cf5a422725bd2540e6c45ccf31859b56940edaf79e44cdb368",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_n__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "175bb0e1cbf1def8f274d2eb9ef98fb000f3449e21d1838d14f9ced3f20c8ac0",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_j__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "dcdcfbeb0298e7afb7016c064b01cc36a4f0f7c4120cf870ed1c4512d9223e04",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_n_j__none",
+        "retrieval_channels": [
+          "G",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "3cb86cce7c0001c92d483b35a9f0392390f28f1447d1ac3e6c6657ca03b581ba",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e_n_j__none",
+        "retrieval_channels": [
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "9cf8d480dcacee3d0d80b0deb8449b5dc9379250f80e743b9553cf4ec5271580",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_n__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "N"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "927687d868ca13162a9b3d2c6a4b21a2d17eefc0c7d3e1be324b640ed4e3f67d",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "ab7ea0f18a0d7454ad5ca9b58544a748799b799eea3db3fad35c3123cfb905a0",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "822b4664117e7c900a66afe888a3df47b5fc7821130ee07c930083ac72bdcd74",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "e5f25d828688b9cba8fee31b1faaf04deabf1114de0edc9c3909731f87073a03",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_n_j__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "dcdaba57fbbc628e16998dfd990e8d9c76e2f7bc5081ff0c17f2b321a415c2be",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "per_channel",
+        "cell_identity": "db66bad63ec1333be898392bb551062a8c73d25b44ee6278dc959cfb338ffc77",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      }
+    ],
+    "total_budget_conditions": [
+      {
+        "variant_id": "speech__b__none",
+        "retrieval_channels": [
+          "B"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "3fbfcd9e0e391fc5172bd39202d92a11c54a33f633697f79fd429a7b0ccefc72",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g__none",
+        "retrieval_channels": [
+          "G"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "61757cd3659a176848b8f4af7224a62ce08056bba7fcdecbf3866b55aeddd75d",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e__none",
+        "retrieval_channels": [
+          "E"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "38f9584618adf2a1f5e11f75de7777b619cf70b9c5432ca923758a49f1f3456b",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__n__none",
+        "retrieval_channels": [
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "49c7d9c53b884db5b83b1f6dae65e48fc2c78953a058fb64272cc86aa7ab3a7c",
+        "metrics": {
+          "hit@1": 0.9969604863221885,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9942840256670042,
+          "mrr@1": 0.9969604863221885,
+          "mrr@10": 0.9984802431610942,
+          "mrr@20": 0.9984802431610942,
+          "mrr@5": 0.9984802431610942,
+          "ndcg@1": 0.9969604863221885,
+          "ndcg@10": 0.9970258392589246,
+          "ndcg@20": 0.9970258392589246,
+          "ndcg@5": 0.9948958413797953,
+          "recall@1": 0.513677811550152,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9954407294832827
+        }
+      },
+      {
+        "variant_id": "speech__j__none",
+        "retrieval_channels": [
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "98f4aff1046d9f315384ef8e519f9164c4a0b5db7e0a1607a4ad7acf9025b2ee",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g__none",
+        "retrieval_channels": [
+          "B",
+          "G"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "c5629048582711360bd6a65d83acd531efa65b1ca7818dbd0a82b2357cb3cb01",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e__none",
+        "retrieval_channels": [
+          "B",
+          "E"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "ca66aa6d813567750b734b1e2187be6ff51e2c167317164e06bc83d1978bd4ea",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_n__none",
+        "retrieval_channels": [
+          "B",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "fc7341ed068afffe72c9ca59fbbe0624bf46d1b2d5ff6fdf28a56946d7cde937",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_j__none",
+        "retrieval_channels": [
+          "B",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "1ecb37085d8b54662ea746baeafbdcb7fe885859a59564258a203522a5866810",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e__none",
+        "retrieval_channels": [
+          "G",
+          "E"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "70c4ed7351cab7833b4177ff5e38aab8b0781deb72286a9e7630cdd348eedd8f",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_n__none",
+        "retrieval_channels": [
+          "G",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "c63e1452dd163c1700e8bee96d4dd8277d2bea17bda2e37b55bfd151c1cfbf8b",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9994934143870315,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9997948969360329,
+          "ndcg@20": 0.9997948969360329,
+          "ndcg@5": 0.9992868104467738,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9989868287740628
+        }
+      },
+      {
+        "variant_id": "speech__g_j__none",
+        "retrieval_channels": [
+          "G",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "12e9518838656b13eb7c1d8d1651676abe4269095256053b647aea7e441a4804",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e_n__none",
+        "retrieval_channels": [
+          "E",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "5cd74ac7b2ba4ea22112b670127bb35ac725a79b15731075f3ebf939bb79f143",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9989023978385682,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9995092599619742,
+          "ndcg@20": 0.9995092599619742,
+          "ndcg@5": 0.9990011734727152,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 0.9989868287740628
+        }
+      },
+      {
+        "variant_id": "speech__e_j__none",
+        "retrieval_channels": [
+          "E",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "32725673c145c164a8de81b31f9a1bc3563077afb26fd795b626b734a74c7671",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__n_j__none",
+        "retrieval_channels": [
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "4df792e6cf550f057c548460bb81b9b1ecd0b0f448430da12c4b6aad106c4168",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 0.9989023978385682,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 0.9994703532665132,
+          "ndcg@20": 0.9994703532665132,
+          "ndcg@5": 0.9994703532665132,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "1ea38c0b65a06245ea8bf2328a85e4c2795d563cf5d903757445a9f68e0939bd",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_n__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "f3fcfdbd2baa3358b642ca672fa8617cc51675728fa3a54485cc82ec485b8289",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "52b0fc58934af2b51d478c432f7969a7344f65ec8e7e85334ce71d5f3172016f",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_n__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "4a36cc22d02028888b9c7f48a20daf3b2f901ea5f72f7f927849a00781dbb41e",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_j__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "eb07bcd566e9259e55b142aab09fdb6a560df321bdfd0c3290480028c3d04766",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "74cffca847334781efde5651b7d7641d129265a7cd074140d2fe00eafb0eee14",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_n__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "fc2d2ab43550508bd1b2537228b652a5bdacb0a1165f8b1b34440200b55be3f9",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_j__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "6a9aedd814569006d6dca47cd7615138a39485245b1a6b510ddda968550a09e6",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_n_j__none",
+        "retrieval_channels": [
+          "G",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "d770ca64154f37053bc09a30f36b301207979ee91a3e8c591267f96a3b37fbc1",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__e_n_j__none",
+        "retrieval_channels": [
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "fc53e2d5225848513eb301ce3ab6f88795a3a0e614894898885bcfa3b2ec1b56",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_n__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "N"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "255fdc9e6692ae182aee8caedc166bd3bfc3987470a3893c93f5755b5efe1f54",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "3a7e6e59100f8e998dfd6b978e5508cdc163ed3e4956604dfe6f9f5a2772de42",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "1b1959f078881079dc2b3320bb572c6d3ba706aa0570771f162c432d28875013",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_e_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "df7d26ffdf6fd2f4b95b398b949e96852d344aa0dd87aecf6376074ce18d3ca4",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__g_e_n_j__none",
+        "retrieval_channels": [
+          "G",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "7d5eb537e4e99bab0471b353610e99a698203dc2020015632b960f19990f6bb0",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      },
+      {
+        "variant_id": "speech__b_g_e_n_j__none",
+        "retrieval_channels": [
+          "B",
+          "G",
+          "E",
+          "N",
+          "J"
+        ],
+        "budget_mode": "total",
+        "cell_identity": "ec3e58e4672b42aa055b05270cc121bfbfbf4d19e02cc282a4fb9a0539ed355d",
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@10": 1.0,
+          "hit@20": 1.0,
+          "hit@5": 1.0,
+          "map@16": 1.0,
+          "mrr@1": 1.0,
+          "mrr@10": 1.0,
+          "mrr@20": 1.0,
+          "mrr@5": 1.0,
+          "ndcg@1": 1.0,
+          "ndcg@10": 1.0,
+          "ndcg@20": 1.0,
+          "ndcg@5": 1.0,
+          "recall@1": 0.5146909827760892,
+          "recall@10": 1.0,
+          "recall@20": 1.0,
+          "recall@5": 1.0
+        }
+      }
+    ],
+    "channel_encoding": {
+      "B": {},
+      "G": {
+        "document_encoding": {
+          "new_rows": 743,
+          "cache_rows": 0,
+          "inference_seconds": 7.23967108479701
+        },
+        "query_encoding": {
+          "new_rows": 329,
+          "cache_rows": 0,
+          "inference_seconds": 1.2048106261063367
+        }
+      },
+      "E": {
+        "document_encoding": {
+          "new_rows": 743,
+          "cache_rows": 0,
+          "inference_seconds": 4.55483916727826
+        },
+        "query_encoding": {
+          "new_rows": 329,
+          "cache_rows": 0,
+          "inference_seconds": 1.4736544587649405
+        }
+      },
+      "N": {
+        "document_encoding": {
+          "new_rows": 743,
+          "cache_rows": 0,
+          "inference_seconds": 74.52085849875584
+        },
+        "query_encoding": {
+          "new_rows": 329,
+          "cache_rows": 0,
+          "inference_seconds": 9.254250041907653
+        }
+      },
+      "J": {
+        "document_encoding": {
+          "new_rows": 743,
+          "cache_rows": 0,
+          "inference_seconds": 94.35546279186383
+        },
+        "query_encoding": {
+          "new_rows": 329,
+          "cache_rows": 0,
+          "inference_seconds": 7.928324582986534
+        }
+      }
+    }
+  },
+  "original_native_comparison": {
+    "same_ordered_query_records": true,
+    "same_qrels": true,
+    "same_media_bytes": true,
+    "same_ordered_corpus_ids": true,
+    "all_native_metrics_exact_in_both_budgets": true,
+    "original_dataset_identity": "bfbb1f94944b7bc8f2d50023b88c27d6690e71cfc4bc78ac9eb622e1f327d1d6",
+    "asr_view_dataset_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+    "original_native_adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+    "asr_view_native_adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+    "new_audio_embedding_rows": 743,
+    "new_query_embedding_rows": 329,
+    "audio_encoding_seconds": 74.52085849875584,
+    "interpretation": "Same logical native benchmark repeated under the ASR-view dataset identity; freshly encoded audio, not a cache reuse or independent benchmark."
+  },
+  "paired_analysis": {
+    "grouping": {
+      "status": "available",
+      "strategy": "verified_transcript_components",
+      "description": "Declared transcript groups are verified against every positive recording's group_id; shared recordings and transcript groups connect queries.",
+      "query_count": 329,
+      "group_count": 329,
+      "source_unit_count": 1072,
+      "source_association_count": 1072,
+      "smallest_group_queries": 1,
+      "largest_group_queries": 1,
+      "largest_group_fraction": 0.00303951367781155,
+      "mapping_sha256": "7ee88fd71904aea936f5859e1cf8afa863582ff3c11fe28d8260933abe9e0f4b",
+      "fallback_to_independent_queries": false,
+      "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+    },
+    "comparisons": [
+      {
+        "status": "completed",
+        "requested_left": "speech__n__none",
+        "requested_right": "speech__j__none",
+        "left": {
+          "identity": "55a3f11f0e669587696b6090695cc699ab0654c3b3a88956e8495c41aebd5f1d",
+          "variant_id": "speech__n__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "right": {
+          "identity": "11a03932af015d8e0696815894851b08b84b8e68c936bb06fed5aac501585b81",
+          "variant_id": "speech__j__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "metrics": {
+          "hit@5": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          },
+          "ndcg@10": {
+            "left_mean": 0.9970258392589246,
+            "right_mean": 1.0,
+            "mean_difference": 0.0029741607410755555,
+            "query_count": 329,
+            "wins": 8,
+            "losses": 0,
+            "ties": 321,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0008861980616524161,
+            "ci95_high": 0.0055845459008446565,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          }
+        }
+      },
+      {
+        "status": "completed",
+        "requested_left": "speech__b__none",
+        "requested_right": "speech__g__none",
+        "left": {
+          "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+          "variant_id": "speech__b__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "right": {
+          "identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+          "variant_id": "speech__g__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "metrics": {
+          "hit@5": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          },
+          "ndcg@10": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          }
+        }
+      },
+      {
+        "status": "completed",
+        "requested_left": "speech__b__none",
+        "requested_right": "speech__e__none",
+        "left": {
+          "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+          "variant_id": "speech__b__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "right": {
+          "identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+          "variant_id": "speech__e__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "metrics": {
+          "hit@5": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          },
+          "ndcg@10": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          }
+        }
+      },
+      {
+        "status": "completed",
+        "requested_left": "speech__g__none",
+        "requested_right": "speech__e__none",
+        "left": {
+          "identity": "f93a783467a9e6a6c65287df96c78628d048f728dd3ca7886adfac8a1cf2b5f9",
+          "variant_id": "speech__g__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "right": {
+          "identity": "7e307b6529e2115431502feb7ca9723b5252938fe196066ea803504869ba9892",
+          "variant_id": "speech__e__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "metrics": {
+          "hit@5": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          },
+          "ndcg@10": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          }
+        }
+      },
+      {
+        "status": "completed",
+        "requested_left": "speech__b__none",
+        "requested_right": "speech__b_g_e__none",
+        "left": {
+          "identity": "e26e2af37e2d0b87f519954e4c3fd078f25ed48653ce26c6c00393e13de3fd97",
+          "variant_id": "speech__b__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "right": {
+          "identity": "1ba046b4bd5d7f2e11274f1ad8df1104d697a54576ba2342e7bd6b49a77d52ed",
+          "variant_id": "speech__b_g_e__none",
+          "budget_mode": "per_channel",
+          "candidate_k": null,
+          "query_count": 329
+        },
+        "metrics": {
+          "hit@5": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          },
+          "ndcg@10": {
+            "left_mean": 1.0,
+            "right_mean": 1.0,
+            "mean_difference": 0.0,
+            "query_count": 329,
+            "wins": 0,
+            "losses": 0,
+            "ties": 329,
+            "metric_direction": "right_minus_left",
+            "ci95_low": 0.0,
+            "ci95_high": 0.0,
+            "group_count": 329,
+            "bootstrap_samples": 5000,
+            "seed": 42
+          }
+        }
+      }
+    ],
+    "caveat": "Unadjusted exploratory source-group intervals. Transcript groups do not establish independence from shared speakers or topics; comparisons use the same ceiling-prone fixed-gallery task."
+  },
+  "validation": {
+    "status": "passed",
+    "new_model_calls_by_audit": 0,
+    "all_743_references_and_transcripts_matched": true,
+    "wer_counts_recomputed_exact": true,
+    "all_manifest_file_hashes_verified": true,
+    "all_media_hashes_and_asr_cache_keys_verified": true,
+    "all_62_cell_metrics_recomputed": true,
+    "query_metric_rows_checked": 20398,
+    "per_query_metric_values_checked": 346766,
+    "local_and_public_report_bytes_equal": true,
+    "raw_text_or_local_paths_published": false
+  },
+  "limitations": [
+    "Queries are official normalized transcript groups, not independently authored semantic paraphrases.",
+    "Perfect retrieval does not imply perfect ASR, general speech understanding or question-answering accuracy.",
+    "1 - WER is not semantic or answer accuracy; insertions are included and WER can exceed one.",
+    "All 31 combinations share the same gallery and queries, so their results are not independent benchmark replications.",
+    "ASR WER and retrieval have different denominators: 743 recordings and 13,233 reference words versus 329 grouped retrieval queries."
+  ]
+}
