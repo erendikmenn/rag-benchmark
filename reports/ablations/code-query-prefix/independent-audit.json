@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "new_model_calls": 0,
+  "main_matrix_contribution": 0,
+  "audit_source_sha256": "f2b864c7d197eef7b328ca9d2ae809fb42c4de6a4f5b5f396feba70eb2b3e8aa",
+  "jobs": [
+    {
+      "id": "codesearchnet-go-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 8122,
+      "independent_metric_values": 138074,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "3ae1724fa4aed17e46929900cfbc106c14f552ace941617dc0bc1678265b3fd1",
+      "source_representation": "strict_whole_function",
+      "source_count": 28120,
+      "document_vector_rows": 28120
+    },
+    {
+      "id": "codesearchnet-java-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 10955,
+      "independent_metric_values": 186235,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "f3cf7b7fc829352c367c65ad1ad09796e4677e6f7fe308e801c750fcff4aa0bd",
+      "source_representation": "strict_whole_function",
+      "source_count": 40347,
+      "document_vector_rows": 40347
+    },
+    {
+      "id": "codesearchnet-javascript-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 3291,
+      "independent_metric_values": 55947,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "edfe2a04cd60b1e35e4599cf91fbf7e49c62780e738258c207e854d10183c86e",
+      "source_representation": "shared_segments_max",
+      "source_count": 13981,
+      "document_vector_rows": 14084
+    },
+    {
+      "id": "codesearchnet-php-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 14014,
+      "independent_metric_values": 238238,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "53452d6b48dc81d3b26a58cae52ce5ef9b30132e5ce61ef997d2e95269bee384",
+      "source_representation": "strict_whole_function",
+      "source_count": 52660,
+      "document_vector_rows": 52660
+    },
+    {
+      "id": "codesearchnet-python-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 14918,
+      "independent_metric_values": 253606,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "6a6ae4b9465a37fcb5e154430cab8f1ba5715f6773933da42b5a04f80b636e3b",
+      "source_representation": "strict_whole_function",
+      "source_count": 43827,
+      "document_vector_rows": 43827
+    },
+    {
+      "id": "codesearchnet-ruby-eg2-code-query-prefix-v1",
+      "status": "passed",
+      "checked_query_rankings": 1261,
+      "independent_metric_values": 21437,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "2845101210076deec8762b6dc54cd8dc64d91d11747bfb413ca52928ea9db413",
+      "source_representation": "strict_whole_function",
+      "source_count": 4360,
+      "document_vector_rows": 4360
+    }
+  ],
+  "limits": [
+    "Cached-vector arithmetic and frozen provenance proof; does not prove encoder semantic quality or repeat model inference.",
+    "Baseline identity/cache checks reuse guarded runner bridge validation; extension ranking and all metric math are independent.",
+    "Float32 dot batches match recorded runner arithmetic (reverse64/code32); independent full sort. Score tolerance2e-6; exact IDs/ranks. No confidence intervals or answer-quality claims."
+  ],
+  "status": "passed"
+}

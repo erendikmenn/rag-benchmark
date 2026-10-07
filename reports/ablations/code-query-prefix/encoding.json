@@ -1,0 +1,101 @@
+{
+  "rows": [
+    {
+      "language": "go",
+      "source_report_sha256": "3ae1724fa4aed17e46929900cfbc106c14f552ace941617dc0bc1678265b3fd1",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 28120,
+        "new_items": 0,
+        "cache_hits": 28120
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 8122,
+        "new_items": 8122,
+        "cache_hits": 0
+      }
+    },
+    {
+      "language": "java",
+      "source_report_sha256": "f3cf7b7fc829352c367c65ad1ad09796e4677e6f7fe308e801c750fcff4aa0bd",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 40347,
+        "new_items": 0,
+        "cache_hits": 40347
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 10955,
+        "new_items": 10955,
+        "cache_hits": 0
+      }
+    },
+    {
+      "language": "javascript",
+      "source_report_sha256": "edfe2a04cd60b1e35e4599cf91fbf7e49c62780e738258c207e854d10183c86e",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 14084,
+        "new_items": 0,
+        "cache_hits": 14084
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 3291,
+        "new_items": 3291,
+        "cache_hits": 0
+      }
+    },
+    {
+      "language": "php",
+      "source_report_sha256": "53452d6b48dc81d3b26a58cae52ce5ef9b30132e5ce61ef997d2e95269bee384",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 52660,
+        "new_items": 0,
+        "cache_hits": 52660
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 14014,
+        "new_items": 14014,
+        "cache_hits": 0
+      }
+    },
+    {
+      "language": "python",
+      "source_report_sha256": "6a6ae4b9465a37fcb5e154430cab8f1ba5715f6773933da42b5a04f80b636e3b",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 43827,
+        "new_items": 0,
+        "cache_hits": 43827
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 14918,
+        "new_items": 14918,
+        "cache_hits": 0
+      }
+    },
+    {
+      "language": "ruby",
+      "source_report_sha256": "2845101210076deec8762b6dc54cd8dc64d91d11747bfb413ca52928ea9db413",
+      "document_encoding": {
+        "inference_seconds": null,
+        "total_items": 4360,
+        "new_items": 0,
+        "cache_hits": 4360
+      },
+      "query_encoding": {
+        "inference_seconds": null,
+        "total_items": 1261,
+        "new_items": 1261,
+        "cache_hits": 0
+      }
+    }
+  ],
+  "scope": "Recorded extraction counters; missing timings are unavailable, never zero."
+}
