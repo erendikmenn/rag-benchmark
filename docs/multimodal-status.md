@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 04:35 Europe/Istanbul.
+Updated: 2026-10-07 04:53 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -11,7 +11,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Photo | XM3600: 3,600 images, 7,233 TR and 7,200 EN queries | TR EG2 / SigLIP2 / fusion Hit@5: 84.64% / 59.88% / 76.28%; EN: 83.75% / 76.89% / 82.92%; both full comparisons complete |
 | Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS full B/G/E/N/S/J comparison complete: 63 subsets × two budgets = 126 cells; ColQwen Recall@5 65.34%, nDCG@10 0.7585 |
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
-| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; ASR-derived comparisons queued |
+| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; Whisper view failed in Transformers MPS cache cleanup; compatibility repair and retry pending |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
 | Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python and Ruby full B/G/E comparisons complete (16,179 queries, seven methods × two budgets); four other dense languages queued |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
@@ -45,7 +45,7 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 - The initial PDF worker predated the explicit-empty-OCR fix, so its B/G/E/J coverage flags are historical limitations of that process. The separate BM25 baseline retains all 1,360 pages, including two empty OCR fields; corrected CS full retrieval combinations are now complete.
 - Two JavaScript functions exceed both text encoder limits. The separately named shared-segmentation protocol preserves every source byte and aggregates scores at the original function ID. It does not remove those functions.
 - Caption language follows the declared dataset language (TR photos receive Turkish descriptions); source-only generation never sees the query. Explicit language changes create different cache identities.
-- A five-query Gemma relevance cell smoke is running before full LLM ranking. It is technical validation only, not a full-split accuracy result. Full LLM ranking, remaining model/parameter variants, answer generation and CIRR are not declared complete.
+- A five-query Gemma relevance check completed: 63 retrieval baselines + 63 Gemma K=20 cells, 278 unique fresh score pairs, no failed cells. It is technical validation only, not a full-split accuracy result. Full LLM ranking, remaining model/parameter variants, answer generation and CIRR are not declared complete.
 
 - The explicit long-audio Gemma reranking protocol preserves all 589,440 samples of the 36.84-second FLEURS source in 30 + 6.84-second windows. Its two actual CPU HTTP relevance calls passed. This is backend health, not a retrieval accuracy result; the full speech ranking job is separately labelled `gemma-audio-windows-full`.
 - Code text rerankers and Gemma ranking have separate queue jobs, so local Gemma server startup cannot block Laya/BGE execution.
@@ -61,3 +61,5 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 - [Python/Ruby dense retrieval](../reports/multimodal/code-dense-summary.md): all 28 method/budget cells complete. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
 
 - [CS document comparison](../reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md): 126 completed retrieval cells. Highest observed primary Hit@5 is BM25 + native EG2 + ColQwen (98.14%); standalone ColQwen has the highest Recall@5 (65.34%) and nDCG@10 (0.7585). All 215 queries connect into one source-document group, so paired confidence intervals are withheld. These are descriptive test-set comparisons.
+
+- The original Whisper ASR attempt stopped in Transformers' MPS deferred-stop cleanup (`EncoderDecoderCache.layers` missing). A CPU-only reproducer confirms the cache handling failure independently of source audio. A compatibility fix and short/long audio health checks are in progress; the running CS text-reranker job is preserved. No ASR quality score has been reported.

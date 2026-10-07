@@ -58,6 +58,8 @@ Bu iki sabit kod arama testinde EG2 önde; eşit ağırlıklı RRF birleşimi on
 
 **Yedi native veri görünümünde boyut taraması tamamlandı:** 104 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Videoda Hit@5, 512 boyutta %74,70; 768 boyutta %75,00. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
 
+**Gemma ilgililik kontrolü geçti:** sabit beş sorguda 63 arama başlangıç koşulu ve K=20 ile 63 Gemma yeniden sıralama koşulu tamamlandı; 278 farklı sorgu–sayfa çifti yeni puanlandı. Bu, yerel modelin ve skor önbelleğinin çalıştığını doğrular; tam veri üzerinde sıralama doğruluğu ölçümü değildir. Whisper transkripsiyonu için Transformers önbellek uyumluluğu onarılıyor. [Teknik kontrol](reports/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.md).
+
 [Ölçülen bütün koşular](reports/multimodal/README.md) · [Yerelde çalıştırma](docs/multimodal-running.md) · [Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
 
 ## Sistem ne yapıyor?
