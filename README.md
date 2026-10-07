@@ -27,6 +27,8 @@ All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**
 
 **Turkish speech retrieval is complete:** EG2 native audio achieves Hit@5 **100.00%** and Recall@5 **99.54%** on 329 unique transcript queries and 743 recordings. This task matches transcript text to its recordings; it measures that retrieval task specifically. [Speech report](reports/multimodal/fleurs-tr_tr-test-native/report.md).
 
+**Video retrieval is complete:** on MSR-VTT 1K-A (1,000 queries / 1,000 videos), Hit@5 is **75.00% for EG2, 53.80% for CLIP frame pooling and 67.10% for their fusion**. EG2 exceeds this CLIP baseline by 21.20 percentage points (95% paired interval: 18.20–24.20). Both use sampled visual frames at 1 fps, capped at 16; this condition does not consume the audio track. [Video comparison](reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md).
+
 **BM25 completed all six code and eight document collections: 54,980 queries.** The lexical baselines use positive matches only; dense/fusion/reranker runs are still in progress. [Baseline table and exact counts](reports/multimodal/bm25-summary.md).
 
 **Dimension sweep complete on five native dataset views:** 72 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).

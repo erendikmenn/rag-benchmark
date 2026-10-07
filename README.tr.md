@@ -27,6 +27,8 @@ Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe
 
 **Türkçe konuşma araması tamamlandı:** 329 farklı transkript sorgusu ve 743 kayıt üzerinde EG2 native ses ile Hit@5 **%100,00**, Recall@5 **%99,54**. Bu ölçüm, verilen transkriptle ilgili konuşma kayıtlarını bulma görevine aittir. [Konuşma raporu](reports/multimodal/fleurs-tr_tr-test-native/report.md).
 
+**Video araması tamamlandı:** MSR-VTT 1K-A üzerinde (1.000 sorgu / 1.000 video) Hit@5, **EG2 ile %75,00, CLIP kare ortalamasıyla %53,80, birleşimleriyle %67,10**. EG2 bu CLIP koşulunun 21,20 yüzde puanı önünde (%95 eşleştirilmiş güven aralığı: 18,20–24,20). İkisi de saniyede bir, en fazla 16 görüntü karesi kullanıyor; bu koşulda videonun ses kanalı işlenmiyor. [Video karşılaştırması](reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md).
+
 **BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; embedding, birleşim ve reranker deneyleri devam ediyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
 
 **Beş native veri görünümünde boyut taraması tamamlandı:** 72 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
