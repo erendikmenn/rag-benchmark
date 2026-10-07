@@ -6,6 +6,8 @@
 
 **Status:** the **ten-variant pilot is complete: 20 questions × ten variants, 200/200 outputs**, searching all 37,511 passages. Both dense indexes are built. The separate 2,000-question BM25 retrieval baseline is complete; the ten-variant 2,000-question development run and 12,530-question final test have not run. [CI](https://github.com/erendikmenn/rag-benchmark/actions/workflows/ci.yml) · [Measured results and limitations](docs/results.md).
 
+**Additional experiment runners:** reverse retrieval reuses verified forward media vectors, and the code-query-prefix comparison reuses verified document/chunk vectors. Actual baseline cache checks passed; new reverse-gallery and code-prefix query inference has not run yet. [Commands and limits](docs/multimodal-running.md).
+
 ## Multimodal benchmark — full-split runs started
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.

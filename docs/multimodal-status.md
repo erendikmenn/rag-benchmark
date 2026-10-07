@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 14:53 Europe/Istanbul.
+Updated: 2026-10-07 15:00 Europe/Istanbul.
 
 **The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval has completed; Turkish speech Laya/BGE reranking is complete and all 1,045 Clotho source descriptions and 126 derived-gallery retrieval conditions are complete; the separate additional-relevance described-gallery comparison is complete; photo/video descriptions require output-budget recovery and energy document retrieval is active; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -52,7 +52,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
-- Latest implementation validation: 435 tests passed with the complete model dependencies; the minimal dependency environment passed 361 tests with 61 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+- Latest implementation validation: 474 tests passed with the complete model dependencies; the minimal dependency environment passed 399 tests with 62 optional-dependency skips. These are software checks, separate from benchmark accuracy.
 
 - [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech, video and CS document images. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
@@ -106,3 +106,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 - Turkish photo and video description attempts stopped at 14:41 and 14:42 respectively when a response reached the fixed 192-output-token limit. Strict normal-stop validation rejected the truncated response; these datasets were not published as complete. Successfully cached source descriptions remain local. This is an output-budget failure, not a Metal infrastructure failure. Recovery must use an explicit, separately identified output-budget policy and preserve normal-stop/context checks. The healthy queue moved to energy document retrieval; no second model process was started.
 
 - The reverse runner now requires verified existing forward N media vectors and has no fresh-media fallback. Actual CPU checks reproduced full TR/EN source-image and FLEURS source-audio forward rankings, scores and metrics. Only the separate intended-reference text gallery will require new encoding. All three planned commands now include the baseline paths; this is verified cache reuse, not a measured reverse retrieval result.
+
+- The separate code-query-prefix runner passed real read-only baseline validation on all six languages, covering 183,295 functions and 183,398 document/chunk vectors. Stored E rankings and all metrics were recomputed; query order, source coverage, model/configuration, cache/cell identities and JavaScript segmentation were checked. Only new code-prefix queries may be encoded later, under the inherited baseline settings. Six pinned commands are prepared; no new prefix accuracy result or main-matrix completion is claimed.
+
+- At 14:57 Europe/Istanbul, the supervisor was replaced after verifying ownership while the active energy retrieval child was preserved. Its successor waits for that child, then reconciles the same energy result from cache before explicit 512-output-token TR-photo/video recovery. Earlier completed jobs are skipped at this continuation boundary; the original 192-token Clotho results and partial failed caches are retained. Recovery has not yet been measured. The successor also loads the helper that preserves special paired analyses.

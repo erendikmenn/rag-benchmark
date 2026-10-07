@@ -244,3 +244,18 @@ With the single model slot available, an explicit future run is:
 ### Explicit description output budgets
 
 The default source-only caption budget remains 192 output tokens. A normal-stop response is mandatory; reaching the cap never produces an accepted description. For a separately identified recovery, the single queue owner can select `describe --max-output-tokens 512`. This setting changes the generator/cache identity, retains prompt-plus-output context validation and keeps the old partial cache intact. It does not validate description meaning or guarantee that every response will fit. Do not relabel the completed 192-token Clotho measurements or mix their descriptions with a different-budget generator.
+
+### Code query-prefix comparison without repeating document inference
+
+The separate code-prefix runner validates an ordinary completed E baseline and reuses its document vectors (or the exact shared JavaScript chunks). It recomputes the old rankings, scores and metrics before allowing any new query inference. Missing or incompatible caches produce an unavailable result; documents are never silently re-encoded. The pinned model configuration verifies `task: code retrieval | query: ` and the unchanged `title: none | text: ` document prefix. Query settings inherit the baseline; an explicit batch override is separately recorded.
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_code_prefix_ablation \
+  --dataset data/multimodal/codesearchnet-python-test \
+  --baseline-run runs/multimodal/codesearchnet-python-test-dense-fusions \
+  --baseline-cache .cache/multimodal \
+  --run-dir runs/ablations/codesearchnet-python-code-query-prefix \
+  --verify-baseline-only
+```
+
+This command is a CPU cache check. Removing `--verify-baseline-only` authorizes new query encoding and must be done only by the GPU queue owner. [Six planned language jobs](../configs/multimodal-code-prefix-jobs.json) preserve source/report hashes and separate output directories. Real CPU verification passed on all six languages: 183,295 functions and 183,398 cached document vectors (JavaScript uses 14,084 vectors for 13,981 functions). No code-prefix query inference or accuracy result has been measured yet. These experiments belong outside the main forward-matrix denominator.
