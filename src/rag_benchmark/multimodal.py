@@ -957,8 +957,14 @@ class _RunStore:
         return json.loads(row[0]) if row else None
 
     def put_score(self, key: str, value: Any) -> None:
+        self.put_scores([(key, value)])
+
+    def put_scores(self, values: list[tuple[str, Any]]) -> None:
+        # Serialize before opening the transaction so a malformed value cannot
+        # leave a partially persisted query. Existing cache keys are unchanged.
+        rows = [(key, json.dumps(value)) for key, value in values]
         with self.db:
-            self.db.execute("INSERT OR REPLACE INTO scores VALUES (?,?)", (key, json.dumps(value)))
+            self.db.executemany("INSERT OR REPLACE INTO scores VALUES (?,?)", rows)
 
 
 def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: Any,
@@ -987,7 +993,7 @@ def _rerank(dataset: Dataset, query: dict, candidate_ids: list[str], adapter: An
                                                [candidate_ids[i] for i in missing])
             for i, value in zip(missing, fresh):
                 values[i] = float(value)
-                store.put_score(keys[i], values[i])
+            store.put_scores([(keys[i], values[i]) for i in missing])
     else:
         key = stable_hash({**base, "candidate_list": candidates})
         values = store.score(key)
