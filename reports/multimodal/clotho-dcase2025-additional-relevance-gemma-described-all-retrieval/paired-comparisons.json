@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "clotho-dcase2025-additional-relevance-described",
+    "revision": "a16a07a185713389e1ae7a1b0b907a7f476fb9ff49cc0cd30ca8e13b0a834e24",
+    "track": "environment_audio",
+    "identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+    "corpus_count": 1045,
+    "query_count": 1037,
+    "qrel_count": 3116,
+    "positive_qrel_count": 3116,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "DCASE2025 development-testing additional relevance"
+  },
+  "source_report_sha256": "90ce2132c529e9dca390ba3a4f582021e94dc2e56fa32fc83870cd39a7551434",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "withheld",
+    "withholding_reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_media_components",
+    "description": "Queries sharing any positively labelled media item are connected; all queries in each connected component are resampled together.",
+    "query_count": 1037,
+    "group_count": 122,
+    "source_unit_count": 1006,
+    "source_association_count": 3116,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 897,
+    "largest_group_fraction": 0.8649951783992286,
+    "mapping_sha256": "1da19db6ca894536b846bdc9d58e9473356d790aa8db4941ade3fdef03c282ec",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__n__none",
+      "requested_right": "environment_audio__s__none",
+      "left": {
+        "identity": "5e492c80a63986117a4c8c3c6238d9f606d180df03d481d6551408f9aecd3cd4",
+        "variant_id": "environment_audio__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "ca9b55abdf237178ab54c014ff33c45d8dc5ae5efd468210cb9473cfae599ce6",
+        "variant_id": "environment_audio__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.25843780135004824,
+          "right_mean": 0.6451301832208293,
+          "mean_difference": 0.3866923818707811,
+          "query_count": 1037,
+          "wins": 468,
+          "losses": 67,
+          "ties": 502
+        },
+        "ndcg@10": {
+          "left_mean": 0.12108018687165119,
+          "right_mean": 0.3770650686144147,
+          "mean_difference": 0.2559848817427635,
+          "query_count": 1037,
+          "wins": 706,
+          "losses": 135,
+          "ties": 196
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__n__none",
+      "requested_right": "environment_audio__n_s__none",
+      "left": {
+        "identity": "5e492c80a63986117a4c8c3c6238d9f606d180df03d481d6551408f9aecd3cd4",
+        "variant_id": "environment_audio__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "ec9a9408ce29c3b38bdbc4653ac83cc19207f1f7e755977d1c5b782fed60e43a",
+        "variant_id": "environment_audio__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.25843780135004824,
+          "right_mean": 0.5072324011571842,
+          "mean_difference": 0.24879459980713597,
+          "query_count": 1037,
+          "wins": 284,
+          "losses": 26,
+          "ties": 727
+        },
+        "ndcg@10": {
+          "left_mean": 0.12108018687165119,
+          "right_mean": 0.2764403743784822,
+          "mean_difference": 0.15536018750683095,
+          "query_count": 1037,
+          "wins": 600,
+          "losses": 67,
+          "ties": 370
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__s__none",
+      "requested_right": "environment_audio__n_s__none",
+      "left": {
+        "identity": "ca9b55abdf237178ab54c014ff33c45d8dc5ae5efd468210cb9473cfae599ce6",
+        "variant_id": "environment_audio__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "ec9a9408ce29c3b38bdbc4653ac83cc19207f1f7e755977d1c5b782fed60e43a",
+        "variant_id": "environment_audio__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.6451301832208293,
+          "right_mean": 0.5072324011571842,
+          "mean_difference": -0.13789778206364514,
+          "query_count": 1037,
+          "wins": 94,
+          "losses": 237,
+          "ties": 706
+        },
+        "ndcg@10": {
+          "left_mean": 0.3770650686144147,
+          "right_mean": 0.2764403743784822,
+          "mean_difference": -0.10062469423593252,
+          "query_count": 1037,
+          "wins": 316,
+          "losses": 521,
+          "ties": 200
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__n__none",
+      "requested_right": "environment_audio__j__none",
+      "left": {
+        "identity": "5e492c80a63986117a4c8c3c6238d9f606d180df03d481d6551408f9aecd3cd4",
+        "variant_id": "environment_audio__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "374befd7828ac8ad3da4e1c7897cd4bfbdc0080897ce74fca2825778c671783b",
+        "variant_id": "environment_audio__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.25843780135004824,
+          "right_mean": 0.1880424300867888,
+          "mean_difference": -0.0703953712632594,
+          "query_count": 1037,
+          "wins": 94,
+          "losses": 167,
+          "ties": 776
+        },
+        "ndcg@10": {
+          "left_mean": 0.12108018687165119,
+          "right_mean": 0.07751558211137671,
+          "mean_difference": -0.04356460476027448,
+          "query_count": 1037,
+          "wins": 161,
+          "losses": 298,
+          "ties": 578
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__b__none",
+      "requested_right": "environment_audio__g__none",
+      "left": {
+        "identity": "e244b5a76d886ba31fd4a4c2fd2c86ce4bb974019c667b5b1c58631e71f58f52",
+        "variant_id": "environment_audio__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "03d8f9c1d717a74e9530d16c485e372c8bce29edb0b83bbe807cc71d9ee11813",
+        "variant_id": "environment_audio__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.06557377049180328,
+          "right_mean": 0.08293153326904533,
+          "mean_difference": 0.017357762777242044,
+          "query_count": 1037,
+          "wins": 59,
+          "losses": 41,
+          "ties": 937
+        },
+        "ndcg@10": {
+          "left_mean": 0.029314053090152274,
+          "right_mean": 0.034529800877148,
+          "mean_difference": 0.005215747786995715,
+          "query_count": 1037,
+          "wins": 105,
+          "losses": 88,
+          "ties": 844
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__b__none",
+      "requested_right": "environment_audio__e__none",
+      "left": {
+        "identity": "e244b5a76d886ba31fd4a4c2fd2c86ce4bb974019c667b5b1c58631e71f58f52",
+        "variant_id": "environment_audio__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "f5c423223894dd5f168728297bac30333a15a2d12dd1719012d80274ac182202",
+        "variant_id": "environment_audio__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.06557377049180328,
+          "right_mean": 0.08389585342333655,
+          "mean_difference": 0.01832208293153327,
+          "query_count": 1037,
+          "wins": 53,
+          "losses": 34,
+          "ties": 950
+        },
+        "ndcg@10": {
+          "left_mean": 0.029314053090152274,
+          "right_mean": 0.03980124049266215,
+          "mean_difference": 0.010487187402509868,
+          "query_count": 1037,
+          "wins": 127,
+          "losses": 81,
+          "ties": 829
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__g__none",
+      "requested_right": "environment_audio__e__none",
+      "left": {
+        "identity": "03d8f9c1d717a74e9530d16c485e372c8bce29edb0b83bbe807cc71d9ee11813",
+        "variant_id": "environment_audio__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "f5c423223894dd5f168728297bac30333a15a2d12dd1719012d80274ac182202",
+        "variant_id": "environment_audio__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.08293153326904533,
+          "right_mean": 0.08389585342333655,
+          "mean_difference": 0.0009643201542912247,
+          "query_count": 1037,
+          "wins": 41,
+          "losses": 40,
+          "ties": 956
+        },
+        "ndcg@10": {
+          "left_mean": 0.034529800877148,
+          "right_mean": 0.03980124049266215,
+          "mean_difference": 0.005271439615514154,
+          "query_count": 1037,
+          "wins": 101,
+          "losses": 87,
+          "ties": 849
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "environment_audio__b__none",
+      "requested_right": "environment_audio__b_g_e__none",
+      "left": {
+        "identity": "e244b5a76d886ba31fd4a4c2fd2c86ce4bb974019c667b5b1c58631e71f58f52",
+        "variant_id": "environment_audio__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "right": {
+        "identity": "53c5256f89c46ca4c23de395ea7809dbe4a1ad96c78b4050da6c3332ffe33c3e",
+        "variant_id": "environment_audio__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1037
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.06557377049180328,
+          "right_mean": 0.08486017357762778,
+          "mean_difference": 0.019286403085824494,
+          "query_count": 1037,
+          "wins": 47,
+          "losses": 27,
+          "ties": 963
+        },
+        "ndcg@10": {
+          "left_mean": 0.029314053090152274,
+          "right_mean": 0.03727134635137749,
+          "mean_difference": 0.007957293261225216,
+          "query_count": 1037,
+          "wins": 107,
+          "losses": 63,
+          "ties": 867
+        }
+      },
+      "reason": "Largest connected source group contains 86.5% of queries (>50%); interval withheld under a conservative reporting safeguard, not a formal statistical threshold",
+      "largest_group_fraction": 0.8649951783992286
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "descriptive_only": 8
+  },
+  "status": "partial"
+}

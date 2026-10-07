@@ -1,8 +1,8 @@
 # Published primary-matrix progress
 
-**1,564 / 18,460 primary experiment cells complete (8.47%).** 16,896 remain. This is a published-result snapshot, not a percentage of elapsed time or all project work.
+**1,684 / 18,460 primary experiment cells complete (9.12%).** 16,776 remain. This is a published-result snapshot, not a percentage of elapsed time or all project work.
 
-Snapshot: 2026-10-07T11:32:19.626270+00:00.
+Snapshot: 2026-10-07T11:49:31.356963+00:00.
 
 The denominator fixes **21 main collections**: two XM3600 languages, eight ViDoRe collections, two Clotho relevance protocols, one FLEURS collection, one MSR-VTT collection, six CodeSearchNet languages and CIRR validation. They expand to **923 collection × retrieval-subset conditions**. Each has two budgets and `1 no-reranker + 3 rerankers × K=20/50/100`: **923 × 2 × 10 = 18,460 cells**.
 
@@ -10,7 +10,7 @@ The denominator fixes **21 main collections**: two XM3600 languages, eight ViDoR
 |---|---:|---:|---:|---:|
 | photo | 2 | 12 | 2,520 | 0.48% |
 | document | 8 | 896 | 10,080 | 8.89% |
-| environment_audio | 2 | 132 | 2,520 | 5.24% |
+| environment_audio | 2 | 252 | 2,520 | 10.00% |
 | speech | 1 | 434 | 620 | 70.00% |
 | video | 1 | 6 | 1,260 | 0.48% |
 | code | 6 | 84 | 840 | 10.00% |
@@ -18,7 +18,7 @@ The denominator fixes **21 main collections**: two XM3600 languages, eight ViDoR
 
 Only `completed` cells using every query in a frozen collection count. The key is logical collection + method family + budget + rerank K. Historical BM25/native exports, the Laya milestone and other overlapping snapshots are counted once; all duplicate metric values must agree. The FLEURS native result repeated under the ASR-view identity remains the same logical condition.
 
-The input contains 2,284 completed export cells; 720 duplicate occurrences are removed. There are zero duplicate metric mismatches. Failed, unsupported and planned cells contribute zero. The five-query Gemma technical smoke contributes zero.
+The input contains 2,410 completed export cells; 726 duplicate occurrences are removed. There are zero duplicate metric mismatches. Failed, unsupported and planned cells contribute zero. The five-query Gemma technical smoke contributes zero.
 
 **358 / 1,284 global method families (27.88%)** have at least one full-collection result. That higher percentage collapses languages and collections and must not replace the primary-matrix percentage. 20 collections have some completed cells; 0 have every primary cell completed.
 
