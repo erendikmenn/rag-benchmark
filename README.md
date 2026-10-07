@@ -10,7 +10,18 @@
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.
 
-The first full-split baseline is measured: **BM25 on ViDoRe V3 computer science, 215 queries / 1,360 pages: Hit@5 92.09%, Recall@5 53.53%, nDCG@10 0.6334**. Multiple relevant pages per query explain the Hit/Recall difference. These are retrieval scores, not answer-correctness percentages. [Measured report](reports/multimodal/vidore-v3-computer_science-en-bm25/report.md).
+**Visual-document retrieval is complete on ViDoRe V3 computer science:** 215 queries over 1,360 pages, all 63 nonempty combinations of six channels and two candidate budgets (**126 cells**). Standalone-channel results are:
+
+| Method | Hit@5 | Recall@5 | nDCG@10 |
+|---|---:|---:|---:|
+| BM25 text | 92.09% | 53.53% | 0.6334 |
+| BGE-M3 text | 95.35% | 52.45% | 0.6356 |
+| EG2 text | 94.42% | 54.40% | 0.6623 |
+| EG2 page image | 91.63% | 52.70% | 0.6296 |
+| ColQwen2.5 page image | 97.21% | 65.34% | 0.7585 |
+| EG2 image + text | 94.42% | 54.54% | 0.6753 |
+
+Hit@5 means at least one relevant page was found; Recall@5 measures coverage of all relevant pages. ColQwen has the highest observed Recall@5 and nDCG@10 among the 63 primary methods. BM25 + EG2 page images + ColQwen has the highest observed Hit@5 (**98.14%**), with lower Recall@5 than standalone ColQwen. These are source-retrieval results, with no reranker or answer generator. [All methods](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md) · [Paired descriptive comparisons](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/paired-comparisons.md).
 
 Full photo retrieval is measured on the same 3,600-image gallery:
 
@@ -45,7 +56,7 @@ All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**
 
 EG2 leads these two fixed code-search tests; equal-weight RRF fusion did not improve it. Source comments/reference docstrings were removed, and no reranker or answer model is involved. [Both candidate budgets, MRR/nDCG and paired comparisons](reports/multimodal/code-dense-summary.md).
 
-**Dimension sweep complete on six native dataset views:** 88 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. Video Hit@5 is 74.70% at 512 versus 75.00% at 768. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).
+**Dimension sweep complete on seven native dataset views:** 104 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. Video Hit@5 is 74.70% at 512 versus 75.00% at 768. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).
 
 [All measured runs](reports/multimodal/README.md) · [Run locally](docs/multimodal-running.md) · [Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
 

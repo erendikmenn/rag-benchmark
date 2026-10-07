@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 04:04 Europe/Istanbul.
+Updated: 2026-10-07 04:35 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -9,7 +9,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Track | Verified prepared data | Execution / published evaluation |
 |---|---|---|
 | Photo | XM3600: 3,600 images, 7,233 TR and 7,200 EN queries | TR EG2 / SigLIP2 / fusion Hit@5: 84.64% / 59.88% / 76.28%; EN: 83.75% / 76.89% / 82.92%; both full comparisons complete |
-| Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS native-image measured; CS B/G/E/N/S/J comparison running |
+| Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS full B/G/E/N/S/J comparison complete: 63 subsets × two budgets = 126 cells; ColQwen Recall@5 65.34%, nDCG@10 0.7585 |
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
 | Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; ASR-derived comparisons queued |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
@@ -32,7 +32,7 @@ Independent dataset downloads, tests and CPU baselines run concurrently. One hea
 
 The durable local queue is `work/overnight/continue_suite.py`, with journal `work/overnight/suite-state.json`, top-level log `work/overnight/suite.log` and per-job logs under `work/overnight/suite-logs/`. It owns an exclusive GPU lock and an idle-sleep assertion. The first worker finished; the continuation queue is now active. It stops launching new jobs at 09:00 and records deferred work. Do not start a second queue while its PID is active. The separate CPU worker is `work/overnight/run_bm25.py`, with log `bm25-positive.log`. It finished all six code and eight PDF baselines under the positive-only lexical policy (54,980 queries); no CPU rerun is needed without a changed protocol. The earlier `finish_bm25.py` chain was cancelled; do not restart it.
 
-The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. The first parameter sweep is complete on six native dataset views: 128/256/512/768 dimensions with validated cached vectors and full-corpus search (88 dimension/method/budget cells). Remaining representation/parameter sweeps and answer-generation evaluation are pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
+The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. The first parameter sweep is complete on seven native dataset views: 128/256/512/768 dimensions with validated cached vectors and full-corpus search (104 dimension/method/budget cells). Remaining representation/parameter sweeps and answer-generation evaluation are pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
 
 Raw datasets, prompts, media, keys and local caches stay out of Git. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. Overnight continuation checks are scheduled through 09:00 Europe/Istanbul on 2026-10-07.
 
@@ -42,10 +42,10 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 - [English photo comparison](../reports/multimodal/xm3600-en-native-specialist/paired-comparisons.md): 7,200 queries, 3,600 source groups, 5,000 paired bootstrap samples. Fusion did not improve EG2 in this setting.
 - The original Turkish photo run used an earlier manifest schema. Its exact manifest is preserved alongside the report, and every record/media hash was verified identical. The final-schema Turkish rerun and SigLIP2/fusion comparison are complete, including source-group confidence intervals.
 - Multimodal BM25 now keeps only positive lexical matches (`positive_scores_only_v1`), including empty results for unmatched queries; it never fills the budget with zero-score candidates. This change invalidates old B-channel/fusion caches. Legacy baseline reports remain historical until explicitly refreshed; their original measurements are not silently relabelled.
-- The initial PDF worker predated the explicit-empty-OCR fix, so its B/G/E/J coverage flags are historical limitations of that process. The separate BM25 baseline retains all 1,360 pages, including two empty OCR fields; corrected full combinations are queued.
+- The initial PDF worker predated the explicit-empty-OCR fix, so its B/G/E/J coverage flags are historical limitations of that process. The separate BM25 baseline retains all 1,360 pages, including two empty OCR fields; corrected CS full retrieval combinations are now complete.
 - Two JavaScript functions exceed both text encoder limits. The separately named shared-segmentation protocol preserves every source byte and aggregates scores at the original function ID. It does not remove those functions.
 - Caption language follows the declared dataset language (TR photos receive Turkish descriptions); source-only generation never sees the query. Explicit language changes create different cache identities.
-- A five-query Gemma relevance cell smoke is queued before full LLM ranking. It is technical validation only, not a full-split accuracy result. Full LLM ranking, remaining model/parameter variants, answer generation and CIRR are not declared complete.
+- A five-query Gemma relevance cell smoke is running before full LLM ranking. It is technical validation only, not a full-split accuracy result. Full LLM ranking, remaining model/parameter variants, answer generation and CIRR are not declared complete.
 
 - The explicit long-audio Gemma reranking protocol preserves all 589,440 samples of the 36.84-second FLEURS source in 30 + 6.84-second windows. Its two actual CPU HTTP relevance calls passed. This is backend health, not a retrieval accuracy result; the full speech ranking job is separately labelled `gemma-audio-windows-full`.
 - Code text rerankers and Gemma ranking have separate queue jobs, so local Gemma server startup cannot block Laya/BGE execution.
@@ -54,8 +54,10 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
 - Latest implementation validation: 337 tests passed with the complete model dependencies; the minimal dependency environment passed 306 tests with 18 optional-dependency skips. These are software checks, separate from benchmark accuracy.
 
-- [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech and video. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
+- [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech, video and CS document images. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
 - [Video comparison](../reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md): full 1K-A gallery and prescribed 1,000 queries complete. Both adapters use 1 fps / at most 16 visual frames; no soundtrack is consumed. EG2 beats the CLIP frame-pooling baseline by 21.20 percentage points at Hit@5 (95% paired interval: 18.20–24.20).
 
 - [Python/Ruby dense retrieval](../reports/multimodal/code-dense-summary.md): all 28 method/budget cells complete. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
+
+- [CS document comparison](../reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md): 126 completed retrieval cells. Highest observed primary Hit@5 is BM25 + native EG2 + ColQwen (98.14%); standalone ColQwen has the highest Recall@5 (65.34%) and nDCG@10 (0.7585). All 215 queries connect into one source-document group, so paired confidence intervals are withheld. These are descriptive test-set comparisons.

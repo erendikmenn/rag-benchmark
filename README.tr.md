@@ -10,7 +10,18 @@
 
 Yeni paket **fotoğraf, görsel belge, çevresel ses, Türkçe konuşma, video, kod ve görüntü+talimat sorgularını** ölçüyor. Kayıtlı kapsam **321 arama kombinasyonu × dört sıralama koşulu = 1.284 yöntem ailesi**; veri/dil bölümleri ve ek ayarlar bunun üzerine geliyor. Bunlar planlanan yöntemlerdir; **tamamlanmış deney sayısı değildir**.
 
-İlk tam bölüm ölçümü hazır: **ViDoRe V3 bilgisayar bilimi, 215 soru / 1.360 sayfa üzerinde BM25: Hit@5 %92,09, Recall@5 %53,53, nDCG@10 0,6334**. Hit, en az bir doğru sayfa bulmayı; recall, soruya ait bütün doğru sayfaların ne kadarını bulduğumuzu ölçer. Bunlar cevap doğruluğu yüzdeleri değildir. [Ölçüm raporu](reports/multimodal/vidore-v3-computer_science-en-bm25/report.md).
+**ViDoRe V3 bilgisayar bilimi bölümünde görsel belge araması tamamlandı:** 1.360 sayfa üzerinde 215 sorgu, altı kanalın boş olmayan 63 birleşimi ve iki aday bütçesi (**126 koşul**). Tek kanallı sonuçlar:
+
+| Yöntem | Hit@5 | Recall@5 | nDCG@10 |
+|---|---:|---:|---:|
+| BM25 metin | %92,09 | %53,53 | 0,6334 |
+| BGE-M3 metin | %95,35 | %52,45 | 0,6356 |
+| EG2 metin | %94,42 | %54,40 | 0,6623 |
+| EG2 sayfa görüntüsü | %91,63 | %52,70 | 0,6296 |
+| ColQwen2.5 sayfa görüntüsü | %97,21 | %65,34 | 0,7585 |
+| EG2 görüntü + metin | %94,42 | %54,54 | 0,6753 |
+
+Hit@5, en az bir doğru sayfa bulmayı; Recall@5, soruya ait bütün doğru sayfaların ne kadarını bulduğumuzu ölçer. ColQwen, 63 ana yöntemde en yüksek gözlenen Recall@5 ve nDCG@10 değerini verdi. BM25 + EG2 sayfa görüntüsü + ColQwen birleşiminin Hit@5 değeri **%98,14** ile en yüksek; ancak Recall@5 değeri tek başına ColQwen’den düşük. Burada reranker veya cevap üretici yok; kaynak bulmayı ölçüyoruz. [Bütün yöntemler](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md) · [Eşleştirilmiş betimsel karşılaştırmalar](reports/multimodal/vidore-v3-computer_science-en-all-retrieval/paired-comparisons.md).
 
 Aynı 3.600 fotoğraftan oluşan arşivde tam fotoğraf arama ölçümleri:
 
@@ -45,7 +56,7 @@ Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe
 
 Bu iki sabit kod arama testinde EG2 önde; eşit ağırlıklı RRF birleşimi onu iyileştirmedi. Kaynak yorumları ve referans docstring çıkarıldı; burada reranker veya cevap modeli kullanılmadı. [İki aday bütçesi, MRR/nDCG ve eşleştirilmiş karşılaştırmalar](reports/multimodal/code-dense-summary.md).
 
-**Altı native veri görünümünde boyut taraması tamamlandı:** 88 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Videoda Hit@5, 512 boyutta %74,70; 768 boyutta %75,00. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
+**Yedi native veri görünümünde boyut taraması tamamlandı:** 104 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Videoda Hit@5, 512 boyutta %74,70; 768 boyutta %75,00. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
 
 [Ölçülen bütün koşular](reports/multimodal/README.md) · [Yerelde çalıştırma](docs/multimodal-running.md) · [Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
 
