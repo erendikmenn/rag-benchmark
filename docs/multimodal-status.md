@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 02:59 Europe/Istanbul.
+Updated: 2026-10-07 03:07 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -10,9 +10,9 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 |---|---|---|
 | Photo | XM3600: 3,600 images, 7,233 TR and 7,200 EN queries | TR EG2 / SigLIP2 / fusion Hit@5: 84.64% / 59.88% / 76.28%; EN: 83.75% / 76.89% / 82.92%; both full comparisons complete |
 | Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS native-image measured; dense/joint/ColQwen queued |
-| Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance run active |
-| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native preflight and real CPU Whisper transcription passed; full native/ASR views queued |
-| Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Native video and CLIP frame preflight passed; full evaluation queued |
+| Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
+| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; ASR-derived comparisons queued |
+| Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Native video and CLIP frame full evaluation running |
 | Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; dense comparisons queued |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
 
@@ -49,3 +49,7 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - The explicit long-audio Gemma reranking protocol preserves all 589,440 samples of the 36.84-second FLEURS source in 30 + 6.84-second windows. Its two actual CPU HTTP relevance calls passed. This is backend health, not a retrieval accuracy result; the full speech ranking job is separately labelled `gemma-audio-windows-full`.
 - Code text rerankers and Gemma ranking have separate queue jobs, so local Gemma server startup cannot block Laya/BGE execution.
+
+- The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
+- Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
+- Latest implementation validation: 322 tests passed with the complete model dependencies; the minimal dependency environment passed 291 tests with 18 optional-dependency skips. These are software checks, separate from benchmark accuracy.

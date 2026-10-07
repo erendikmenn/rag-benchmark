@@ -16,7 +16,7 @@
     "missing_candidate_text_count": 1045,
     "split": "evaluation"
   },
-  "source_report_sha256": "f4510856deffd85827774329903d94c293dc8561f068b8e53c51a58f67b19e26",
+  "source_report_sha256": "01315657df7fae310ca482a59c280a923439c1be3cd6b482995990a49566a6c5",
   "scope": "paired_primary_cells_same_frozen_collection",
   "metrics": [
     "hit@5",

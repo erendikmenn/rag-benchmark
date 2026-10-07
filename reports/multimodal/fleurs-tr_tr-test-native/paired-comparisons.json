@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v1",
+  "analysis_source_sha256": "e2437b6a8d7a91bdc373dc204e16cb733e320e2ce0e9fca0472f5f86201b913e",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "fleurs-tr_tr-test",
+    "revision": "70bb2e84b976b7e960aa89f1c648e09c59f894dd",
+    "track": "speech",
+    "identity": "bfbb1f94944b7bc8f2d50023b88c27d6690e71cfc4bc78ac9eb622e1f327d1d6",
+    "corpus_count": 743,
+    "query_count": 329,
+    "qrel_count": 743,
+    "positive_qrel_count": 743,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 743,
+    "split": "test"
+  },
+  "source_report_sha256": "f8f6deb9e3ffb01137887327ecebc0f032813af6270080e42c7daa6078ab6c17",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "verified_transcript_components",
+    "description": "Declared transcript groups are verified against every positive recording's group_id; shared recordings and transcript groups connect queries.",
+    "query_count": 329,
+    "group_count": 329,
+    "source_unit_count": 1072,
+    "source_association_count": 1072,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 1,
+    "largest_group_fraction": 0.00303951367781155,
+    "mapping_sha256": "7ee88fd71904aea936f5859e1cf8afa863582ff3c11fe28d8260933abe9e0f4b",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {},
+  "status": "no_comparable_cells"
+}

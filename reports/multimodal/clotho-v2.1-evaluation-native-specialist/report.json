@@ -5269,14 +5269,15 @@
     "N": {
       "status": "completed",
       "identity": "ea80f6b91c0c3aeaeddb66f66b89dd6cae837ed30fa52c2d414e87e13c940d66",
-      "ranking_cache_hit": false,
+      "ranking_cache_hit": true,
+      "inference_seconds": null,
       "cache_reads_are_inference": false,
       "document_encoding": {
         "identity": "af9e541b5da2c7afc32457959de6b709584d75e14428436a1b024b8848b088da",
         "role": "document",
-        "cache_rows": 0,
-        "new_rows": 1045,
-        "inference_seconds": 179.71732162265107,
+        "cache_rows": 1045,
+        "new_rows": 0,
+        "inference_seconds": null,
         "precomputed": false,
         "adapter_diagnostics": {
           "status": "complete",
@@ -12619,9 +12620,9 @@
       "query_encoding": {
         "identity": "dee93d082663b7b6de9c8dc2014908f40b4a999c220784d9a24ccd404fd6b169",
         "role": "query",
-        "cache_rows": 0,
-        "new_rows": 5225,
-        "inference_seconds": 112.90249771252275,
+        "cache_rows": 5225,
+        "new_rows": 0,
+        "inference_seconds": null,
         "precomputed": false,
         "adapter_diagnostics": {
           "status": "complete",
@@ -54446,19 +54447,20 @@
         },
         "cache_reads_are_inference": false
       },
-      "exact_search_seconds": 0.4423024160787463
+      "exact_search_seconds": null
     },
     "S": {
       "status": "completed",
       "identity": "00a17757d5c2159471caf65060e8143bba35c04fe754f9bc1a0633d87b558eb3",
-      "ranking_cache_hit": false,
+      "ranking_cache_hit": true,
+      "inference_seconds": null,
       "cache_reads_are_inference": false,
       "document_encoding": {
         "identity": "5c332e118ac1589a75d08a12f14de109a33d7cfb0bcda4520a2295ebff8a96e0",
         "role": "document",
-        "cache_rows": 0,
-        "new_rows": 1045,
-        "inference_seconds": 48.008852750994265,
+        "cache_rows": 1045,
+        "new_rows": 0,
+        "inference_seconds": null,
         "precomputed": false,
         "adapter_diagnostics": {
           "status": "complete",
@@ -60758,9 +60760,9 @@
       "query_encoding": {
         "identity": "1469b815c8fbaf6de712fbd05fd4763c6704e8c13d9910d0379d9ea4c9d64c3a",
         "role": "query",
-        "cache_rows": 0,
-        "new_rows": 5225,
-        "inference_seconds": 46.475102006224915,
+        "cache_rows": 5225,
+        "new_rows": 0,
+        "inference_seconds": null,
         "precomputed": false,
         "adapter_diagnostics": {
           "status": "complete",
@@ -118264,7 +118266,7 @@
         },
         "cache_reads_are_inference": false
       },
-      "exact_search_seconds": 0.4477670839987695
+      "exact_search_seconds": null
     }
   },
   "families": [
@@ -123854,7 +123856,7 @@
       "mean_raw_candidates": 100.0,
       "mean_unique_candidates": 100.0,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,
@@ -123893,7 +123895,7 @@
       "mean_raw_candidates": 100.0,
       "mean_unique_candidates": 100.0,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,
@@ -123932,7 +123934,7 @@
       "mean_raw_candidates": 100.0,
       "mean_unique_candidates": 100.0,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,
@@ -123971,7 +123973,7 @@
       "mean_raw_candidates": 100.0,
       "mean_unique_candidates": 100.0,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,
@@ -124010,7 +124012,7 @@
       "mean_raw_candidates": 200.0,
       "mean_unique_candidates": 164.7377990430622,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,
@@ -124049,7 +124051,7 @@
       "mean_raw_candidates": 100.0,
       "mean_unique_candidates": 86.49244019138756,
       "mean_rerank_candidates": 0.0,
-      "result_cache_hits": 0,
+      "result_cache_hits": 5225,
       "score_cache_pairs": 0,
       "new_score_pairs": 0,
       "rerank_fresh_inference_seconds": null,

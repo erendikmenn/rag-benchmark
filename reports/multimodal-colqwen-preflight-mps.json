@@ -23,7 +23,7 @@
       "token_count_max": 16,
       "token_count_total": 16
     },
-    "scoring_seconds": 2.3688788327854127,
+    "scoring_seconds": 2.4356160829775035,
     "scoring": "sum_query_token_max_document_token_dot",
     "score_device": "mps",
     "score_dtype": "float32",

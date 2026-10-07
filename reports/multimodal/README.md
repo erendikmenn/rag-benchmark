@@ -4,6 +4,7 @@ Each row is a separate run. Query and candidate counts across language/protocol 
 
 | Run | Scope | Queries | Candidates | Completed primary cells | Failed cells |
 |---|---|---:|---:|---:|---:|
+| [clotho-dcase2025-additional-relevance-native-specialist](clotho-dcase2025-additional-relevance-native-specialist/report.md) | frozen_collection | 1,037 / 1,037 | 1,045 | 3 | 0 |
 | [clotho-v2.1-evaluation-native-specialist](clotho-v2.1-evaluation-native-specialist/report.md) | frozen_collection | 5,225 / 5,225 | 1,045 | 3 | 0 |
 | [codesearchnet-go-test-bm25](codesearchnet-go-test-bm25/report.md) | frozen_collection | 8,122 / 8,122 | 28,120 | 1 | 0 |
 | [codesearchnet-java-test-bm25](codesearchnet-java-test-bm25/report.md) | frozen_collection | 10,955 / 10,955 | 40,347 | 1 | 0 |
@@ -11,6 +12,7 @@ Each row is a separate run. Query and candidate counts across language/protocol 
 | [codesearchnet-php-test-bm25](codesearchnet-php-test-bm25/report.md) | frozen_collection | 14,014 / 14,014 | 52,660 | 1 | 0 |
 | [codesearchnet-python-test-bm25](codesearchnet-python-test-bm25/report.md) | frozen_collection | 14,918 / 14,918 | 43,827 | 1 | 0 |
 | [codesearchnet-ruby-test-bm25](codesearchnet-ruby-test-bm25/report.md) | frozen_collection | 1,261 / 1,261 | 4,360 | 1 | 0 |
+| [fleurs-tr_tr-test-native](fleurs-tr_tr-test-native/report.md) | frozen_collection | 329 / 329 | 743 | 1 | 0 |
 | [vidore-cs-bm25](vidore-cs-bm25/report.md) | frozen_collection | 215 / 215 | 1,360 | 1 | 0 |
 | [vidore-cs-native](vidore-cs-native/report.md) | frozen_collection | 215 / 215 | 1,360 | 1 | 0 |
 | [vidore-v3-computer_science-en-bm25](vidore-v3-computer_science-en-bm25/report.md) | frozen_collection | 215 / 215 | 1,360 | 1 | 0 |
