@@ -1,0 +1,5 @@
+{
+  "status": "passed",
+  "result_sha256": "a3e633e481a3e1c8a49690d6869f4eb33e4f601f37ba894527aa923faf0f0d5d",
+  "checks": "All six budget proof canonical hashes/cell IDs/counts, report/protocol/plan/independent-proof SHA bindings"
+}

@@ -11,7 +11,7 @@ All six full-gallery EG2 comparisons completed on the same frozen **52,561 queri
 | python | 14,918 | 84.46% | 85.07% | +0.62 | 0.7641 → 0.7717 |
 | ruby | 1,261 | 86.28% | 86.12% | -0.16 | 0.7910 → 0.7891 |
 
-The code-specific prefix has higher observed Hit@5 in four languages and lower Hit@5 in PHP and Ruby. These small differences are descriptive: no confidence interval or claim of a reliable improvement across repositories is made. All 17 metric means, paired changes and win/loss/tie counts are retained in the JSON summary.
+The code-specific prefix has higher observed Hit@5 in four languages and lower Hit@5 in PHP and Ruby. The subsequent [paired source-function analysis](paired-comparisons.md) adds exploratory 95% intervals: Go, Java and Python remain above zero, while JavaScript, PHP and Ruby span zero. These marginal intervals have no multiple-comparison adjustment and do not account for dependencies between functions in the same repository. All 17 metric means, paired changes and win/loss/tie counts are retained in the JSON summary.
 
 Both sides use the same full query/gallery, pinned EmbeddingGemma 2 revision, 768 dimensions, MPS bfloat16 and batch size 8. JavaScript preserves two long functions through shared lossless segments and uses the maximum chunk cosine at the original function ID; the other five languages use whole functions. Rerankers and generated-code evaluation are outside this condition.
 

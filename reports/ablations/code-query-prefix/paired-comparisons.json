@@ -1,0 +1,1404 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "condition": "eg2-code-query-prefix-ablation-v1",
+  "new_model_calls": 0,
+  "main_matrix_contribution": 0,
+  "producer_sha256": "a44ce85e2631c9ff5faac6849e71a3461330b77ddf49a90abd84c3b6a146a508",
+  "numpy_version": "2.5.3",
+  "metric_formula_source_sha256": "a002a6248ad129c20789c58fafac86d44a85e7128d2e660cd697d7dd43bd1246",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "plan_sha256": "86aec6d29e06b2027edc3b81135a3dc940dfa6fb9702b66054ecf025b67e2936",
+  "independent_proof_sha256": "798c41d5373bc45f04311a4278b8e53d5b5a77fd240f0573f8a9aa2a3da54d40",
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "samples": 5000,
+    "seed": 42,
+    "confidence_level": 0.95,
+    "direction": "code_prefix_minus_baseline",
+    "estimator": "query-weighted mean difference; connected source-function groups resampled together",
+    "multiple_comparison_adjustment": "none; marginal exploratory intervals"
+  },
+  "languages": [
+    {
+      "language": "go",
+      "status": "completed",
+      "dataset_identity": "c37f153707ebafa260d8beed34aaf8f251b08e1beedf708c9e4395e4399e08e5",
+      "source_report_sha256": "3ae1724fa4aed17e46929900cfbc106c14f552ace941617dc0bc1678265b3fd1",
+      "baseline_report_sha256": "9249e48e06b694b322d0a98f72a7642392fb6930ae8698f422589479b7373474",
+      "protocol_sha256": "2500530b15776ecec427e841007acaa631b6aeed08c879605d00aa1777ab81df",
+      "baseline_cell_identity": "87e854659c3447aee59e99665f984cfd4297656cfc2d24140e9f844cfc1c517e",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "87e854659c3447aee59e99665f984cfd4297656cfc2d24140e9f844cfc1c517e",
+        "total_cell_identity": "a189692f615adb15f707c6d6b32bc6412c6ced2193886561d119ea93bc64c73f",
+        "query_count": 8122,
+        "per_query_rankings_and_metrics_sha256": "c3aae0b88f9f6c7c5c83cbb5520e3ed602cd053b500671232a188e7d064984c2"
+      },
+      "code_prefix_cell_identity": "058631f4ec6dec3587a61a00d12cf8f5153a0a4794ff79d2af3d9db5644f1d3b",
+      "baseline_payloads_sha256": "809ffb7e63c97f6876b85b510bfd29dc77f2eabbd2926e6957f000ca3f347744",
+      "code_prefix_payloads_sha256": "d48f55abf13a97cd0adf05836e00ed7e6b25698a18ef9ecad6ed8a32da7665fd",
+      "query_count": 8122,
+      "source_count": 28120,
+      "source_representation": "strict_whole_function",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 8122,
+        "group_count": 8122,
+        "source_unit_count": 8122,
+        "source_association_count": 8122,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 0.00012312238364934746,
+        "mapping_sha256": "44ddb33d0cb0ef42879d37d13a445e9ce8cff0032969e6d2156ab4e1d030ec27",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.962817040137897,
+          "right_mean": 0.9689731593203644,
+          "mean_difference": 0.006156119182467373,
+          "wins": 76,
+          "losses": 26,
+          "ties": 8020,
+          "query_count": 8122,
+          "ci95_low": 0.003816793893129771,
+          "ci95_high": 0.008618566855454321
+        },
+        "recall@5": {
+          "left_mean": 0.962817040137897,
+          "right_mean": 0.9689731593203644,
+          "mean_difference": 0.006156119182467373,
+          "wins": 76,
+          "losses": 26,
+          "ties": 8020,
+          "query_count": 8122,
+          "ci95_low": 0.003816793893129771,
+          "ci95_high": 0.008618566855454321
+        },
+        "ndcg@10": {
+          "left_mean": 0.9232448812462287,
+          "right_mean": 0.9293733900754794,
+          "mean_difference": 0.006128508829250587,
+          "wins": 403,
+          "losses": 235,
+          "ties": 7484,
+          "query_count": 8122,
+          "ci95_low": 0.004214717889078675,
+          "ci95_high": 0.008140369133777785
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.8597636050233932,
+          "right_mean": 0.8680128047278995,
+          "mean_difference": 0.008249199704506278,
+          "wins": 186,
+          "losses": 119,
+          "ties": 7817,
+          "query_count": 8122
+        },
+        "recall@1": {
+          "left_mean": 0.8597636050233932,
+          "right_mean": 0.8680128047278995,
+          "mean_difference": 0.008249199704506278,
+          "wins": 186,
+          "losses": 119,
+          "ties": 7817,
+          "query_count": 8122
+        },
+        "mrr@1": {
+          "left_mean": 0.8597636050233932,
+          "right_mean": 0.8680128047278995,
+          "mean_difference": 0.008249199704506278,
+          "wins": 186,
+          "losses": 119,
+          "ties": 7817,
+          "query_count": 8122
+        },
+        "ndcg@1": {
+          "left_mean": 0.8597636050233932,
+          "right_mean": 0.8680128047278995,
+          "mean_difference": 0.008249199704506278,
+          "wins": 186,
+          "losses": 119,
+          "ties": 7817,
+          "query_count": 8122
+        },
+        "hit@5": {
+          "left_mean": 0.962817040137897,
+          "right_mean": 0.9689731593203644,
+          "mean_difference": 0.006156119182467373,
+          "wins": 76,
+          "losses": 26,
+          "ties": 8020,
+          "query_count": 8122
+        },
+        "recall@5": {
+          "left_mean": 0.962817040137897,
+          "right_mean": 0.9689731593203644,
+          "mean_difference": 0.006156119182467373,
+          "wins": 76,
+          "losses": 26,
+          "ties": 8020,
+          "query_count": 8122
+        },
+        "mrr@5": {
+          "left_mean": 0.9034248543051794,
+          "right_mean": 0.9108552901584175,
+          "mean_difference": 0.007430435853238119,
+          "wins": 363,
+          "losses": 211,
+          "ties": 7548,
+          "query_count": 8122
+        },
+        "ndcg@5": {
+          "left_mean": 0.9185161653807702,
+          "right_mean": 0.9256103167784712,
+          "mean_difference": 0.0070941513977011575,
+          "wins": 363,
+          "losses": 211,
+          "ties": 7548,
+          "query_count": 8122
+        },
+        "hit@10": {
+          "left_mean": 0.9772223590248708,
+          "right_mean": 0.9805466633834031,
+          "mean_difference": 0.003324304358532381,
+          "wins": 43,
+          "losses": 16,
+          "ties": 8063,
+          "query_count": 8122
+        },
+        "recall@10": {
+          "left_mean": 0.9772223590248708,
+          "right_mean": 0.9805466633834031,
+          "mean_difference": 0.003324304358532381,
+          "wins": 43,
+          "losses": 16,
+          "ties": 8063,
+          "query_count": 8122
+        },
+        "mrr@10": {
+          "left_mean": 0.9054175803129263,
+          "right_mean": 0.9124212896190241,
+          "mean_difference": 0.007003709306097881,
+          "wins": 403,
+          "losses": 235,
+          "ties": 7484,
+          "query_count": 8122
+        },
+        "ndcg@10": {
+          "left_mean": 0.9232448812462287,
+          "right_mean": 0.9293733900754794,
+          "mean_difference": 0.006128508829250587,
+          "wins": 403,
+          "losses": 235,
+          "ties": 7484,
+          "query_count": 8122
+        },
+        "hit@20": {
+          "left_mean": 0.9851021915784289,
+          "right_mean": 0.9871952721004679,
+          "mean_difference": 0.0020930805220389067,
+          "wins": 28,
+          "losses": 11,
+          "ties": 8083,
+          "query_count": 8122
+        },
+        "recall@20": {
+          "left_mean": 0.9851021915784289,
+          "right_mean": 0.9871952721004679,
+          "mean_difference": 0.0020930805220389067,
+          "wins": 28,
+          "losses": 11,
+          "ties": 8083,
+          "query_count": 8122
+        },
+        "mrr@20": {
+          "left_mean": 0.9059933438769389,
+          "right_mean": 0.9128932872996507,
+          "mean_difference": 0.0068999434227119145,
+          "wins": 431,
+          "losses": 250,
+          "ties": 7441,
+          "query_count": 8122
+        },
+        "ndcg@20": {
+          "left_mean": 0.9252726325270061,
+          "right_mean": 0.9310680011180994,
+          "mean_difference": 0.005795368591093167,
+          "wins": 431,
+          "losses": 250,
+          "ties": 7441,
+          "query_count": 8122
+        },
+        "map@16": {
+          "left_mean": 0.9058632521818929,
+          "right_mean": 0.9128136474048811,
+          "mean_difference": 0.006950395222988181,
+          "wins": 425,
+          "losses": 246,
+          "ties": 7451,
+          "query_count": 8122
+        }
+      },
+      "interval_reporting": "eligible"
+    },
+    {
+      "language": "java",
+      "status": "completed",
+      "dataset_identity": "b65fcd6dbd409046f8690937f6183bfc5d03f5f53debc197db6d7a2755b6e6e7",
+      "source_report_sha256": "f3cf7b7fc829352c367c65ad1ad09796e4677e6f7fe308e801c750fcff4aa0bd",
+      "baseline_report_sha256": "b28afa903383e6da115b7894757790a00c3b3ba1163e73d3489aabf37698ddd1",
+      "protocol_sha256": "6d961d036effeb146f8dc27b8883eee9f1a94370c428ab3653b2a8fe474684ae",
+      "baseline_cell_identity": "c2b283acb760e77a76285fa1c26c62db697a6a9e04f07c1ed6001ae1f9f31aa5",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "c2b283acb760e77a76285fa1c26c62db697a6a9e04f07c1ed6001ae1f9f31aa5",
+        "total_cell_identity": "15a73f869864d99c783c10ba96aed5a07db2469f03525bc8ce08b052ef4d6210",
+        "query_count": 10955,
+        "per_query_rankings_and_metrics_sha256": "61ca2d3e46d1356b89bf998375d1e3c383b877cdc7da51c9661c60f3acbd7c12"
+      },
+      "code_prefix_cell_identity": "ae97ec2d8d5fec98b0f41767b855d3ca13477a17052a23d04cf6719feaff5cdd",
+      "baseline_payloads_sha256": "eda8bcf0a10c6e04918a6c6713e78d95556c8a560ecdff5903a37bfb4ade9a94",
+      "code_prefix_payloads_sha256": "83bdfcb4817dddf872586b97bcb837c7d29d05289172700b771261246ee365db",
+      "query_count": 10955,
+      "source_count": 40347,
+      "source_representation": "strict_whole_function",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 10955,
+        "group_count": 10955,
+        "source_unit_count": 10955,
+        "source_association_count": 10955,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 9.128251939753537e-05,
+        "mapping_sha256": "a97aa43115dcd48f014bbe1f1e956746cc498da33425a30bc0b49098b7e9540b",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8379735280693748,
+          "right_mean": 0.8449109995435874,
+          "mean_difference": 0.006937471474212688,
+          "wins": 262,
+          "losses": 186,
+          "ties": 10507,
+          "query_count": 10955,
+          "ci95_low": 0.0030123231401186674,
+          "ci95_high": 0.010771337288909173
+        },
+        "recall@5": {
+          "left_mean": 0.8379735280693748,
+          "right_mean": 0.8449109995435874,
+          "mean_difference": 0.006937471474212688,
+          "wins": 262,
+          "losses": 186,
+          "ties": 10507,
+          "query_count": 10955,
+          "ci95_low": 0.0030123231401186674,
+          "ci95_high": 0.010771337288909173
+        },
+        "ndcg@10": {
+          "left_mean": 0.7616810331992515,
+          "right_mean": 0.7676013982090094,
+          "mean_difference": 0.005920365009757878,
+          "wins": 1182,
+          "losses": 1023,
+          "ties": 8750,
+          "query_count": 10955,
+          "ci95_low": 0.0032060925263820593,
+          "ci95_high": 0.00862849801869725
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.6357827476038339,
+          "right_mean": 0.6429940666362391,
+          "mean_difference": 0.0072113190324052945,
+          "wins": 457,
+          "losses": 378,
+          "ties": 10120,
+          "query_count": 10955
+        },
+        "recall@1": {
+          "left_mean": 0.6357827476038339,
+          "right_mean": 0.6429940666362391,
+          "mean_difference": 0.0072113190324052945,
+          "wins": 457,
+          "losses": 378,
+          "ties": 10120,
+          "query_count": 10955
+        },
+        "mrr@1": {
+          "left_mean": 0.6357827476038339,
+          "right_mean": 0.6429940666362391,
+          "mean_difference": 0.0072113190324052945,
+          "wins": 457,
+          "losses": 378,
+          "ties": 10120,
+          "query_count": 10955
+        },
+        "ndcg@1": {
+          "left_mean": 0.6357827476038339,
+          "right_mean": 0.6429940666362391,
+          "mean_difference": 0.0072113190324052945,
+          "wins": 457,
+          "losses": 378,
+          "ties": 10120,
+          "query_count": 10955
+        },
+        "hit@5": {
+          "left_mean": 0.8379735280693748,
+          "right_mean": 0.8449109995435874,
+          "mean_difference": 0.006937471474212688,
+          "wins": 262,
+          "losses": 186,
+          "ties": 10507,
+          "query_count": 10955
+        },
+        "recall@5": {
+          "left_mean": 0.8379735280693748,
+          "right_mean": 0.8449109995435874,
+          "mean_difference": 0.006937471474212688,
+          "wins": 262,
+          "losses": 186,
+          "ties": 10507,
+          "query_count": 10955
+        },
+        "mrr@5": {
+          "left_mean": 0.7167077438003955,
+          "right_mean": 0.7232663928191084,
+          "mean_difference": 0.006558649018712916,
+          "wins": 994,
+          "losses": 855,
+          "ties": 9106,
+          "query_count": 10955
+        },
+        "ndcg@5": {
+          "left_mean": 0.7472432225716963,
+          "right_mean": 0.7538780990304842,
+          "mean_difference": 0.006634876458787915,
+          "wins": 994,
+          "losses": 855,
+          "ties": 9106,
+          "query_count": 10955
+        },
+        "hit@10": {
+          "left_mean": 0.8823368324965769,
+          "right_mean": 0.8872660885440438,
+          "mean_difference": 0.00492925604746691,
+          "wins": 196,
+          "losses": 142,
+          "ties": 10617,
+          "query_count": 10955
+        },
+        "recall@10": {
+          "left_mean": 0.8823368324965769,
+          "right_mean": 0.8872660885440438,
+          "mean_difference": 0.00492925604746691,
+          "wins": 196,
+          "losses": 142,
+          "ties": 10617,
+          "query_count": 10955
+        },
+        "mrr@10": {
+          "left_mean": 0.7227182630240595,
+          "right_mean": 0.7289456869009585,
+          "mean_difference": 0.0062274238768990015,
+          "wins": 1182,
+          "losses": 1023,
+          "ties": 8750,
+          "query_count": 10955
+        },
+        "ndcg@10": {
+          "left_mean": 0.7616810331992515,
+          "right_mean": 0.7676013982090094,
+          "mean_difference": 0.005920365009757878,
+          "wins": 1182,
+          "losses": 1023,
+          "ties": 8750,
+          "query_count": 10955
+        },
+        "hit@20": {
+          "left_mean": 0.9129164764947513,
+          "right_mean": 0.9170241898676403,
+          "mean_difference": 0.004107713372889092,
+          "wins": 134,
+          "losses": 89,
+          "ties": 10732,
+          "query_count": 10955
+        },
+        "recall@20": {
+          "left_mean": 0.9129164764947513,
+          "right_mean": 0.9170241898676403,
+          "mean_difference": 0.004107713372889092,
+          "wins": 134,
+          "losses": 89,
+          "ties": 10732,
+          "query_count": 10955
+        },
+        "mrr@20": {
+          "left_mean": 0.7248745586481864,
+          "right_mean": 0.7310400396485464,
+          "mean_difference": 0.006165481000359966,
+          "wins": 1315,
+          "losses": 1143,
+          "ties": 8497,
+          "query_count": 10955
+        },
+        "ndcg@20": {
+          "left_mean": 0.7694529965523791,
+          "right_mean": 0.7751603429215217,
+          "mean_difference": 0.005707346369142652,
+          "wins": 1315,
+          "losses": 1143,
+          "ties": 8497,
+          "query_count": 10955
+        },
+        "map@16": {
+          "left_mean": 0.7243440053024717,
+          "right_mean": 0.7305273989664679,
+          "mean_difference": 0.0061833936639961295,
+          "wins": 1276,
+          "losses": 1100,
+          "ties": 8579,
+          "query_count": 10955
+        }
+      },
+      "interval_reporting": "eligible"
+    },
+    {
+      "language": "javascript",
+      "status": "completed",
+      "dataset_identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+      "source_report_sha256": "edfe2a04cd60b1e35e4599cf91fbf7e49c62780e738258c207e854d10183c86e",
+      "baseline_report_sha256": "189e15376fe06fcf1252b806191ad253cb97acc6431a5c4a6fcf0778d131ff42",
+      "protocol_sha256": "83412bcc63c67b7af43d4ef90783973c118fdcc54857d588e5f528621df3e6c2",
+      "baseline_cell_identity": "985af9354dc1ff752796138a882debc4acdbda15e691d5a19aacdc6bb0fa299b",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "985af9354dc1ff752796138a882debc4acdbda15e691d5a19aacdc6bb0fa299b",
+        "total_cell_identity": "47dad88685e7f4525f52a561eff46810b1f846ee169615475f84e6b8cc91c975",
+        "query_count": 3291,
+        "per_query_rankings_and_metrics_sha256": "5b0ec746de560dbf5f2f82ac578724d9667087a7f7e53f94927a1ebde9a1675d"
+      },
+      "code_prefix_cell_identity": "2d5a7e274c1c65d31e1c5d794939f960f7057c127bc81bd86325d405dd6214a6",
+      "baseline_payloads_sha256": "a9f921128b6c445c4e1a5fbb25f2a2e913374d179a4cf64a3378bef330bbbc37",
+      "code_prefix_payloads_sha256": "48e7181be84725c7b5875e5dcdb578452852b857237ce4e84bd28cfc288f29f5",
+      "query_count": 3291,
+      "source_count": 13981,
+      "source_representation": "shared_segments_max",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 3291,
+        "group_count": 3291,
+        "source_unit_count": 3291,
+        "source_association_count": 3291,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 0.00030385900941962927,
+        "mapping_sha256": "7759b9393d126773a8ab73cbeb99024bf9214ff70b4179135a45dd8c5204ce46",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.799149194773625,
+          "right_mean": 0.8046186569431784,
+          "mean_difference": 0.0054694621695533276,
+          "wins": 86,
+          "losses": 68,
+          "ties": 3137,
+          "query_count": 3291,
+          "ci95_low": -0.0018231540565177757,
+          "ci95_high": 0.01276207839562443
+        },
+        "recall@5": {
+          "left_mean": 0.799149194773625,
+          "right_mean": 0.8046186569431784,
+          "mean_difference": 0.0054694621695533276,
+          "wins": 86,
+          "losses": 68,
+          "ties": 3137,
+          "query_count": 3291,
+          "ci95_low": -0.0018231540565177757,
+          "ci95_high": 0.01276207839562443
+        },
+        "ndcg@10": {
+          "left_mean": 0.7213471024513606,
+          "right_mean": 0.7244845501340802,
+          "mean_difference": 0.003137447682719601,
+          "wins": 353,
+          "losses": 318,
+          "ties": 2620,
+          "query_count": 3291,
+          "ci95_low": -0.0017382744914678496,
+          "ci95_high": 0.00801008458559158
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.5897903372835005,
+          "right_mean": 0.5928289273776968,
+          "mean_difference": 0.003038590094196293,
+          "wins": 118,
+          "losses": 108,
+          "ties": 3065,
+          "query_count": 3291
+        },
+        "recall@1": {
+          "left_mean": 0.5897903372835005,
+          "right_mean": 0.5928289273776968,
+          "mean_difference": 0.003038590094196293,
+          "wins": 118,
+          "losses": 108,
+          "ties": 3065,
+          "query_count": 3291
+        },
+        "mrr@1": {
+          "left_mean": 0.5897903372835005,
+          "right_mean": 0.5928289273776968,
+          "mean_difference": 0.003038590094196293,
+          "wins": 118,
+          "losses": 108,
+          "ties": 3065,
+          "query_count": 3291
+        },
+        "ndcg@1": {
+          "left_mean": 0.5897903372835005,
+          "right_mean": 0.5928289273776968,
+          "mean_difference": 0.003038590094196293,
+          "wins": 118,
+          "losses": 108,
+          "ties": 3065,
+          "query_count": 3291
+        },
+        "hit@5": {
+          "left_mean": 0.799149194773625,
+          "right_mean": 0.8046186569431784,
+          "mean_difference": 0.0054694621695533276,
+          "wins": 86,
+          "losses": 68,
+          "ties": 3137,
+          "query_count": 3291
+        },
+        "recall@5": {
+          "left_mean": 0.799149194773625,
+          "right_mean": 0.8046186569431784,
+          "mean_difference": 0.0054694621695533276,
+          "wins": 86,
+          "losses": 68,
+          "ties": 3137,
+          "query_count": 3291
+        },
+        "mrr@5": {
+          "left_mean": 0.673625037982376,
+          "right_mean": 0.6768459434822243,
+          "mean_difference": 0.0032209054998480705,
+          "wins": 291,
+          "losses": 260,
+          "ties": 2740,
+          "query_count": 3291
+        },
+        "ndcg@5": {
+          "left_mean": 0.7052488390946696,
+          "right_mean": 0.7089706140652592,
+          "mean_difference": 0.0037217749705894657,
+          "wins": 291,
+          "losses": 260,
+          "ties": 2740,
+          "query_count": 3291
+        },
+        "hit@10": {
+          "left_mean": 0.848374354299605,
+          "right_mean": 0.8526283804314798,
+          "mean_difference": 0.00425402613187481,
+          "wins": 63,
+          "losses": 49,
+          "ties": 3179,
+          "query_count": 3291
+        },
+        "recall@10": {
+          "left_mean": 0.848374354299605,
+          "right_mean": 0.8526283804314798,
+          "mean_difference": 0.00425402613187481,
+          "wins": 63,
+          "losses": 49,
+          "ties": 3179,
+          "query_count": 3291
+        },
+        "mrr@10": {
+          "left_mean": 0.6803729989919599,
+          "right_mean": 0.6832414521566755,
+          "mean_difference": 0.0028684531647156994,
+          "wins": 353,
+          "losses": 318,
+          "ties": 2620,
+          "query_count": 3291
+        },
+        "ndcg@10": {
+          "left_mean": 0.7213471024513606,
+          "right_mean": 0.7244845501340802,
+          "mean_difference": 0.003137447682719601,
+          "wins": 353,
+          "losses": 318,
+          "ties": 2620,
+          "query_count": 3291
+        },
+        "hit@20": {
+          "left_mean": 0.8842297174111212,
+          "right_mean": 0.8875721665147371,
+          "mean_difference": 0.003342449103615922,
+          "wins": 43,
+          "losses": 32,
+          "ties": 3216,
+          "query_count": 3291
+        },
+        "recall@20": {
+          "left_mean": 0.8842297174111212,
+          "right_mean": 0.8875721665147371,
+          "mean_difference": 0.003342449103615922,
+          "wins": 43,
+          "losses": 32,
+          "ties": 3216,
+          "query_count": 3291
+        },
+        "mrr@20": {
+          "left_mean": 0.6829229941609328,
+          "right_mean": 0.6857891493745752,
+          "mean_difference": 0.0028661552136424505,
+          "wins": 407,
+          "losses": 359,
+          "ties": 2525,
+          "query_count": 3291
+        },
+        "ndcg@20": {
+          "left_mean": 0.730486778717328,
+          "right_mean": 0.7334723037440712,
+          "mean_difference": 0.0029855250267431183,
+          "wins": 407,
+          "losses": 359,
+          "ties": 2525,
+          "query_count": 3291
+        },
+        "map@16": {
+          "left_mean": 0.6823333069914657,
+          "right_mean": 0.6853408606485178,
+          "mean_difference": 0.00300755365705229,
+          "wins": 397,
+          "losses": 347,
+          "ties": 2547,
+          "query_count": 3291
+        }
+      },
+      "interval_reporting": "eligible"
+    },
+    {
+      "language": "php",
+      "status": "completed",
+      "dataset_identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+      "source_report_sha256": "53452d6b48dc81d3b26a58cae52ce5ef9b30132e5ce61ef997d2e95269bee384",
+      "baseline_report_sha256": "d9f9b2fcdef4e29dcd7ea97af0a7ee827fd8b5e6576bf3b17255bc498011d417",
+      "protocol_sha256": "c89fed290229dda51cb288afacf892319362bfe344fa85b9c00ce381d410a0ef",
+      "baseline_cell_identity": "05f8ffcbffa4bc2bc658ea0e323ad19846882ee044390705ed230eb59e14edc5",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "05f8ffcbffa4bc2bc658ea0e323ad19846882ee044390705ed230eb59e14edc5",
+        "total_cell_identity": "3537ee6a04004039efad4a2fbd43f6532c879736ec1f0126c2e0b51fc81b05f5",
+        "query_count": 14014,
+        "per_query_rankings_and_metrics_sha256": "3b3611bddacf98b5c10f5e23369ca141b6582b7e19413f7150cbfe82b7d67ebb"
+      },
+      "code_prefix_cell_identity": "adb4c57e8c5df941311e80bef5a5d1dd58db61bdfb6877206ecb25f798f88b82",
+      "baseline_payloads_sha256": "10a4453db06e46fd453b4a72a783403e1620cb1549ce4c0dd921d17fef866e41",
+      "code_prefix_payloads_sha256": "64e3a7c25c8f1cb4825e174895051f3f25ff9377afb9319b11efea41475a23bf",
+      "query_count": 14014,
+      "source_count": 52660,
+      "source_representation": "strict_whole_function",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 14014,
+        "group_count": 14014,
+        "source_unit_count": 14014,
+        "source_association_count": 14014,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 7.135721421435707e-05,
+        "mapping_sha256": "cc3eddf7cf04139008da3cd8ff28c4e4559d5aef2c5e63fa116fc00498dfb593",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7575281860996147,
+          "right_mean": 0.7564578278863994,
+          "mean_difference": -0.0010703582132153562,
+          "wins": 427,
+          "losses": 442,
+          "ties": 13145,
+          "query_count": 14014,
+          "ci95_low": -0.005209076637648066,
+          "ci95_high": 0.003068360211217354
+        },
+        "recall@5": {
+          "left_mean": 0.7575281860996147,
+          "right_mean": 0.7564578278863994,
+          "mean_difference": -0.0010703582132153562,
+          "wins": 427,
+          "losses": 442,
+          "ties": 13145,
+          "query_count": 14014,
+          "ci95_low": -0.005209076637648066,
+          "ci95_high": 0.003068360211217354
+        },
+        "ndcg@10": {
+          "left_mean": 0.6747105869489203,
+          "right_mean": 0.673330560418948,
+          "mean_difference": -0.001380026529972055,
+          "wins": 1771,
+          "losses": 1904,
+          "ties": 10339,
+          "query_count": 14014,
+          "ci95_low": -0.00410370849841314,
+          "ci95_high": 0.0013168240664888896
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.5290423861852434,
+          "right_mean": 0.5277579563293849,
+          "mean_difference": -0.0012844298558584272,
+          "wins": 590,
+          "losses": 608,
+          "ties": 12816,
+          "query_count": 14014
+        },
+        "recall@1": {
+          "left_mean": 0.5290423861852434,
+          "right_mean": 0.5277579563293849,
+          "mean_difference": -0.0012844298558584272,
+          "wins": 590,
+          "losses": 608,
+          "ties": 12816,
+          "query_count": 14014
+        },
+        "mrr@1": {
+          "left_mean": 0.5290423861852434,
+          "right_mean": 0.5277579563293849,
+          "mean_difference": -0.0012844298558584272,
+          "wins": 590,
+          "losses": 608,
+          "ties": 12816,
+          "query_count": 14014
+        },
+        "ndcg@1": {
+          "left_mean": 0.5290423861852434,
+          "right_mean": 0.5277579563293849,
+          "mean_difference": -0.0012844298558584272,
+          "wins": 590,
+          "losses": 608,
+          "ties": 12816,
+          "query_count": 14014
+        },
+        "hit@5": {
+          "left_mean": 0.7575281860996147,
+          "right_mean": 0.7564578278863994,
+          "mean_difference": -0.0010703582132153562,
+          "wins": 427,
+          "losses": 442,
+          "ties": 13145,
+          "query_count": 14014
+        },
+        "recall@5": {
+          "left_mean": 0.7575281860996147,
+          "right_mean": 0.7564578278863994,
+          "mean_difference": -0.0010703582132153562,
+          "wins": 427,
+          "losses": 442,
+          "ties": 13145,
+          "query_count": 14014
+        },
+        "mrr@5": {
+          "left_mean": 0.6189881547024404,
+          "right_mean": 0.6171768707482992,
+          "mean_difference": -0.0018112839541410972,
+          "wins": 1429,
+          "losses": 1504,
+          "ties": 11081,
+          "query_count": 14014
+        },
+        "ndcg@5": {
+          "left_mean": 0.6537903804276778,
+          "right_mean": 0.6521323183204457,
+          "mean_difference": -0.0016580621072319615,
+          "wins": 1429,
+          "losses": 1504,
+          "ties": 11081,
+          "query_count": 14014
+        },
+        "hit@10": {
+          "left_mean": 0.8218210361067504,
+          "right_mean": 0.8218210361067504,
+          "mean_difference": 0.0,
+          "wins": 346,
+          "losses": 346,
+          "ties": 13322,
+          "query_count": 14014
+        },
+        "recall@10": {
+          "left_mean": 0.8218210361067504,
+          "right_mean": 0.8218210361067504,
+          "mean_difference": 0.0,
+          "wins": 346,
+          "losses": 346,
+          "ties": 13322,
+          "query_count": 14014
+        },
+        "mrr@10": {
+          "left_mean": 0.6276963399412379,
+          "right_mean": 0.6259606323381834,
+          "mean_difference": -0.0017357076030545418,
+          "wins": 1771,
+          "losses": 1904,
+          "ties": 10339,
+          "query_count": 14014
+        },
+        "ndcg@10": {
+          "left_mean": 0.6747105869489203,
+          "right_mean": 0.673330560418948,
+          "mean_difference": -0.001380026529972055,
+          "wins": 1771,
+          "losses": 1904,
+          "ties": 10339,
+          "query_count": 14014
+        },
+        "hit@20": {
+          "left_mean": 0.8756243756243757,
+          "right_mean": 0.87569573283859,
+          "mean_difference": 7.135721421435707e-05,
+          "wins": 283,
+          "losses": 282,
+          "ties": 13449,
+          "query_count": 14014
+        },
+        "recall@20": {
+          "left_mean": 0.8756243756243757,
+          "right_mean": 0.87569573283859,
+          "mean_difference": 7.135721421435707e-05,
+          "wins": 283,
+          "losses": 282,
+          "ties": 13449,
+          "query_count": 14014
+        },
+        "mrr@20": {
+          "left_mean": 0.6314735294066225,
+          "right_mean": 0.6297582030760867,
+          "mean_difference": -0.0017153263305358668,
+          "wins": 2104,
+          "losses": 2229,
+          "ties": 9681,
+          "query_count": 14014
+        },
+        "ndcg@20": {
+          "left_mean": 0.6883674830990117,
+          "right_mean": 0.6870254328061134,
+          "mean_difference": -0.0013420502928984644,
+          "wins": 2104,
+          "losses": 2229,
+          "ties": 9681,
+          "query_count": 14014
+        },
+        "map@16": {
+          "left_mean": 0.6305834224130213,
+          "right_mean": 0.6289125354015821,
+          "mean_difference": -0.0016708870114393163,
+          "wins": 2018,
+          "losses": 2128,
+          "ties": 9868,
+          "query_count": 14014
+        }
+      },
+      "interval_reporting": "eligible"
+    },
+    {
+      "language": "python",
+      "status": "completed",
+      "dataset_identity": "73f7abdacf709516e24c2edab11e76960a8ff1651d157ab858437bef6d81818b",
+      "source_report_sha256": "6a6ae4b9465a37fcb5e154430cab8f1ba5715f6773933da42b5a04f80b636e3b",
+      "baseline_report_sha256": "7a897dd5f348d1273caf24347e84f2ad3d1e073027cc8c4535e8f4e4fe75235b",
+      "protocol_sha256": "d804709b6674d6451ab5225b7929f7c8e44c704823ad785adebf5d29acd0782e",
+      "baseline_cell_identity": "903be30489e43d56cb73df6ecefd14f584184edbd1b8a146696fc887bf4bcdb5",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "903be30489e43d56cb73df6ecefd14f584184edbd1b8a146696fc887bf4bcdb5",
+        "total_cell_identity": "2546b190d90afb0f706d7e1644a78f33112c8a2ddb7ee88adb6a7d04f1069ec2",
+        "query_count": 14918,
+        "per_query_rankings_and_metrics_sha256": "29b038b6af49de29f17bf0df1831a11d8e21fd3a06c66d736756bbb66ab9b3d4"
+      },
+      "code_prefix_cell_identity": "1d69a7de6168f9fce3d73b98ab7b013894d8cfe8fbe72242f233abec35234363",
+      "baseline_payloads_sha256": "e4be99ce7539c37ce187ca526411fc0dd8a4985078c481487eecaf2d517d6f44",
+      "code_prefix_payloads_sha256": "460c055ea3950a1985df1402cf6a0a13891f1f6920d6be9533b7228db2dd2440",
+      "query_count": 14918,
+      "source_count": 43827,
+      "source_representation": "strict_whole_function",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 14918,
+        "group_count": 14918,
+        "source_unit_count": 14918,
+        "source_association_count": 14918,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 6.70331143584931e-05,
+        "mapping_sha256": "5285838426fceddf2596800fd249c4f489d61e280862660fc59f83a9988c4d26",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8445502078026546,
+          "right_mean": 0.8507172543236359,
+          "mean_difference": 0.006167046520981365,
+          "wins": 395,
+          "losses": 303,
+          "ties": 14220,
+          "query_count": 14918,
+          "ci95_low": 0.00281539080305671,
+          "ci95_high": 0.009585735353264513
+        },
+        "recall@5": {
+          "left_mean": 0.8445502078026546,
+          "right_mean": 0.8507172543236359,
+          "mean_difference": 0.006167046520981365,
+          "wins": 395,
+          "losses": 303,
+          "ties": 14220,
+          "query_count": 14918,
+          "ci95_low": 0.00281539080305671,
+          "ci95_high": 0.009585735353264513
+        },
+        "ndcg@10": {
+          "left_mean": 0.764115750231039,
+          "right_mean": 0.7717017521549776,
+          "mean_difference": 0.007586001923938764,
+          "wins": 1790,
+          "losses": 1504,
+          "ties": 11624,
+          "query_count": 14918,
+          "ci95_low": 0.00515196200539877,
+          "ci95_high": 0.00999272430151959
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.630647539884703,
+          "right_mean": 0.641238771953345,
+          "mean_difference": 0.010591232068641909,
+          "wins": 694,
+          "losses": 536,
+          "ties": 13688,
+          "query_count": 14918
+        },
+        "recall@1": {
+          "left_mean": 0.630647539884703,
+          "right_mean": 0.641238771953345,
+          "mean_difference": 0.010591232068641909,
+          "wins": 694,
+          "losses": 536,
+          "ties": 13688,
+          "query_count": 14918
+        },
+        "mrr@1": {
+          "left_mean": 0.630647539884703,
+          "right_mean": 0.641238771953345,
+          "mean_difference": 0.010591232068641909,
+          "wins": 694,
+          "losses": 536,
+          "ties": 13688,
+          "query_count": 14918
+        },
+        "ndcg@1": {
+          "left_mean": 0.630647539884703,
+          "right_mean": 0.641238771953345,
+          "mean_difference": 0.010591232068641909,
+          "wins": 694,
+          "losses": 536,
+          "ties": 13688,
+          "query_count": 14918
+        },
+        "hit@5": {
+          "left_mean": 0.8445502078026546,
+          "right_mean": 0.8507172543236359,
+          "mean_difference": 0.006167046520981365,
+          "wins": 395,
+          "losses": 303,
+          "ties": 14220,
+          "query_count": 14918
+        },
+        "recall@5": {
+          "left_mean": 0.8445502078026546,
+          "right_mean": 0.8507172543236359,
+          "mean_difference": 0.006167046520981365,
+          "wins": 395,
+          "losses": 303,
+          "ties": 14220,
+          "query_count": 14918
+        },
+        "mrr@5": {
+          "left_mean": 0.7158533315457837,
+          "right_mean": 0.7251731688787594,
+          "mean_difference": 0.009319837332975823,
+          "wins": 1510,
+          "losses": 1249,
+          "ties": 12159,
+          "query_count": 14918
+        },
+        "ndcg@5": {
+          "left_mean": 0.7482424339498173,
+          "right_mean": 0.7567923552723419,
+          "mean_difference": 0.008549921322524703,
+          "wins": 1510,
+          "losses": 1249,
+          "ties": 12159,
+          "query_count": 14918
+        },
+        "hit@10": {
+          "left_mean": 0.893417348169996,
+          "right_mean": 0.8962997720874112,
+          "mean_difference": 0.002882423917415203,
+          "wins": 269,
+          "losses": 226,
+          "ties": 14423,
+          "query_count": 14918
+        },
+        "recall@10": {
+          "left_mean": 0.893417348169996,
+          "right_mean": 0.8962997720874112,
+          "mean_difference": 0.002882423917415203,
+          "wins": 269,
+          "losses": 226,
+          "ties": 14423,
+          "query_count": 14918
+        },
+        "mrr@10": {
+          "left_mean": 0.722445479733655,
+          "right_mean": 0.7314265604351406,
+          "mean_difference": 0.008981080701485582,
+          "wins": 1790,
+          "losses": 1504,
+          "ties": 11624,
+          "query_count": 14918
+        },
+        "ndcg@10": {
+          "left_mean": 0.764115750231039,
+          "right_mean": 0.7717017521549776,
+          "mean_difference": 0.007586001923938764,
+          "wins": 1790,
+          "losses": 1504,
+          "ties": 11624,
+          "query_count": 14918
+        },
+        "hit@20": {
+          "left_mean": 0.9253921437189971,
+          "right_mean": 0.9290789650087143,
+          "mean_difference": 0.0036868212897171204,
+          "wins": 213,
+          "losses": 158,
+          "ties": 14547,
+          "query_count": 14918
+        },
+        "recall@20": {
+          "left_mean": 0.9253921437189971,
+          "right_mean": 0.9290789650087143,
+          "mean_difference": 0.0036868212897171204,
+          "wins": 213,
+          "losses": 158,
+          "ties": 14547,
+          "query_count": 14918
+        },
+        "mrr@20": {
+          "left_mean": 0.7247083570363839,
+          "right_mean": 0.7337294675445426,
+          "mean_difference": 0.009021110508158695,
+          "wins": 2003,
+          "losses": 1682,
+          "ties": 11233,
+          "query_count": 14918
+        },
+        "ndcg@20": {
+          "left_mean": 0.7722557610678344,
+          "right_mean": 0.7800245230709228,
+          "mean_difference": 0.007768762003088481,
+          "wins": 2003,
+          "losses": 1682,
+          "ties": 11233,
+          "query_count": 14918
+        },
+        "map@16": {
+          "left_mean": 0.7242307051664875,
+          "right_mean": 0.7332246023516635,
+          "mean_difference": 0.008993897185176177,
+          "wins": 1941,
+          "losses": 1639,
+          "ties": 11338,
+          "query_count": 14918
+        }
+      },
+      "interval_reporting": "eligible"
+    },
+    {
+      "language": "ruby",
+      "status": "completed",
+      "dataset_identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+      "source_report_sha256": "2845101210076deec8762b6dc54cd8dc64d91d11747bfb413ca52928ea9db413",
+      "baseline_report_sha256": "6ecdd78245c61b20e31f1282c6bd05f4a24158718373cab0c7fb28565a4588a3",
+      "protocol_sha256": "18a37de04a5b43314cfe1b1170f634829ea2b8c5a309329d2d732313cf88735d",
+      "baseline_cell_identity": "f5cb131222da0ab45485f07b8a74ebb825d3d2e8221f12b478560e01e229a9a3",
+      "baseline_standalone_budget_equivalence": {
+        "verified": true,
+        "channel_budget": 100,
+        "per_channel_cell_identity": "f5cb131222da0ab45485f07b8a74ebb825d3d2e8221f12b478560e01e229a9a3",
+        "total_cell_identity": "96233c686885111baaa32d165289ca2a502f4db9e229b73f57b43c7a32e32227",
+        "query_count": 1261,
+        "per_query_rankings_and_metrics_sha256": "04e61dc51870b80ccec1595b8bd183778ba951d3f14f882540219f96f900ffc0"
+      },
+      "code_prefix_cell_identity": "fc735a6ac10d643b37dba58cf6b7ac99316defed3a4eff1ae8d7088614211389",
+      "baseline_payloads_sha256": "658f0fd40087c85328bb920e770d807ebffffbbee8ccaa09b16d573640e9047e",
+      "code_prefix_payloads_sha256": "a580b16da780371d23e085433414928ba17b258a3d15510b110ff667ec010ad0",
+      "query_count": 1261,
+      "source_count": 4360,
+      "source_representation": "strict_whole_function",
+      "grouping": {
+        "status": "available",
+        "strategy": "positive_code_components",
+        "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+        "query_count": 1261,
+        "group_count": 1261,
+        "source_unit_count": 1261,
+        "source_association_count": 1261,
+        "smallest_group_queries": 1,
+        "largest_group_queries": 1,
+        "largest_group_fraction": 0.0007930214115781126,
+        "mapping_sha256": "8e62c3356ff85d0e8ba5e787e4c97f1dad24f3fc872dad9abdd40e72b59d291c",
+        "fallback_to_independent_queries": false,
+        "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8628072957969866,
+          "right_mean": 0.8612212529738303,
+          "mean_difference": -0.0015860428231562252,
+          "wins": 18,
+          "losses": 20,
+          "ties": 1223,
+          "query_count": 1261,
+          "ci95_low": -0.011102299762093577,
+          "ci95_high": 0.007930214115781126
+        },
+        "recall@5": {
+          "left_mean": 0.8628072957969866,
+          "right_mean": 0.8612212529738303,
+          "mean_difference": -0.0015860428231562252,
+          "wins": 18,
+          "losses": 20,
+          "ties": 1223,
+          "query_count": 1261,
+          "ci95_low": -0.011102299762093577,
+          "ci95_high": 0.007930214115781126
+        },
+        "ndcg@10": {
+          "left_mean": 0.7909731888827745,
+          "right_mean": 0.7891170362454405,
+          "mean_difference": -0.0018561526373339964,
+          "wins": 98,
+          "losses": 120,
+          "ties": 1043,
+          "query_count": 1261,
+          "ci95_low": -0.008813512013464708,
+          "ci95_high": 0.00485202542869827
+        }
+      },
+      "all17_paired_means": {
+        "hit@1": {
+          "left_mean": 0.6740681998413958,
+          "right_mean": 0.669310071371927,
+          "mean_difference": -0.004758128469468675,
+          "wins": 33,
+          "losses": 39,
+          "ties": 1189,
+          "query_count": 1261
+        },
+        "recall@1": {
+          "left_mean": 0.6740681998413958,
+          "right_mean": 0.669310071371927,
+          "mean_difference": -0.004758128469468675,
+          "wins": 33,
+          "losses": 39,
+          "ties": 1189,
+          "query_count": 1261
+        },
+        "mrr@1": {
+          "left_mean": 0.6740681998413958,
+          "right_mean": 0.669310071371927,
+          "mean_difference": -0.004758128469468675,
+          "wins": 33,
+          "losses": 39,
+          "ties": 1189,
+          "query_count": 1261
+        },
+        "ndcg@1": {
+          "left_mean": 0.6740681998413958,
+          "right_mean": 0.669310071371927,
+          "mean_difference": -0.004758128469468675,
+          "wins": 33,
+          "losses": 39,
+          "ties": 1189,
+          "query_count": 1261
+        },
+        "hit@5": {
+          "left_mean": 0.8628072957969866,
+          "right_mean": 0.8612212529738303,
+          "mean_difference": -0.0015860428231562252,
+          "wins": 18,
+          "losses": 20,
+          "ties": 1223,
+          "query_count": 1261
+        },
+        "recall@5": {
+          "left_mean": 0.8628072957969866,
+          "right_mean": 0.8612212529738303,
+          "mean_difference": -0.0015860428231562252,
+          "wins": 18,
+          "losses": 20,
+          "ties": 1223,
+          "query_count": 1261
+        },
+        "mrr@5": {
+          "left_mean": 0.7497885276235792,
+          "right_mean": 0.7469336505418979,
+          "mean_difference": -0.0028548770816812052,
+          "wins": 81,
+          "losses": 95,
+          "ties": 1085,
+          "query_count": 1261
+        },
+        "ndcg@5": {
+          "left_mean": 0.7782757766967247,
+          "right_mean": 0.775763716483763,
+          "mean_difference": -0.002512060212961792,
+          "wins": 81,
+          "losses": 95,
+          "ties": 1085,
+          "query_count": 1261
+        },
+        "hit@10": {
+          "left_mean": 0.901665344964314,
+          "right_mean": 0.9024583663758922,
+          "mean_difference": 0.0007930214115781126,
+          "wins": 14,
+          "losses": 13,
+          "ties": 1234,
+          "query_count": 1261
+        },
+        "recall@10": {
+          "left_mean": 0.901665344964314,
+          "right_mean": 0.9024583663758922,
+          "mean_difference": 0.0007930214115781126,
+          "wins": 14,
+          "losses": 13,
+          "ties": 1234,
+          "query_count": 1261
+        },
+        "mrr@10": {
+          "left_mean": 0.7551011416990799,
+          "right_mean": 0.752454590083456,
+          "mean_difference": -0.0026465516156237807,
+          "wins": 98,
+          "losses": 120,
+          "ties": 1043,
+          "query_count": 1261
+        },
+        "ndcg@10": {
+          "left_mean": 0.7909731888827745,
+          "right_mean": 0.7891170362454405,
+          "mean_difference": -0.0018561526373339964,
+          "wins": 98,
+          "losses": 120,
+          "ties": 1043,
+          "query_count": 1261
+        },
+        "hit@20": {
+          "left_mean": 0.9278350515463918,
+          "right_mean": 0.9278350515463918,
+          "mean_difference": 0.0,
+          "wins": 11,
+          "losses": 11,
+          "ties": 1239,
+          "query_count": 1261
+        },
+        "recall@20": {
+          "left_mean": 0.9278350515463918,
+          "right_mean": 0.9278350515463918,
+          "mean_difference": 0.0,
+          "wins": 11,
+          "losses": 11,
+          "ties": 1239,
+          "query_count": 1261
+        },
+        "mrr@20": {
+          "left_mean": 0.7569175036343827,
+          "right_mean": 0.7543414814037974,
+          "mean_difference": -0.002576022230585296,
+          "wins": 114,
+          "losses": 132,
+          "ties": 1015,
+          "query_count": 1261
+        },
+        "ndcg@20": {
+          "left_mean": 0.7975910678882129,
+          "right_mean": 0.7956880076878015,
+          "mean_difference": -0.0019030602004113906,
+          "wins": 114,
+          "losses": 132,
+          "ties": 1015,
+          "query_count": 1261
+        },
+        "map@16": {
+          "left_mean": 0.7564359620465885,
+          "right_mean": 0.7539923828484495,
+          "mean_difference": -0.0024435791981390715,
+          "wins": 111,
+          "losses": 127,
+          "ties": 1023,
+          "query_count": 1261
+        }
+      },
+      "interval_reporting": "eligible"
+    }
+  ],
+  "limits": [
+    "Languages are separate; no pooled estimate.",
+    "Source-function connected components do not establish repository independence; unrecorded dependencies may remain.",
+    "JavaScript retains shared-segment source maximum; other languages retain whole functions.",
+    "These retrieval metric differences do not measure generated-code or semantic accuracy."
+  ]
+}

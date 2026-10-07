@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "current_producer_sha256": "a44ce85e2631c9ff5faac6849e71a3461330b77ddf49a90abd84c3b6a146a508",
+  "result_sha256": "a3e633e481a3e1c8a49690d6869f4eb33e4f601f37ba894527aa923faf0f0d5d",
+  "producer_sha256": "a44ce85e2631c9ff5faac6849e71a3461330b77ddf49a90abd84c3b6a146a508",
+  "samples": 5000,
+  "seed": 42,
+  "languages": [
+    {
+      "language": "go",
+      "query_count": 8122,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    },
+    {
+      "language": "java",
+      "query_count": 10955,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    },
+    {
+      "language": "javascript",
+      "query_count": 3291,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    },
+    {
+      "language": "php",
+      "query_count": 14014,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    },
+    {
+      "language": "python",
+      "query_count": 14918,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    },
+    {
+      "language": "ruby",
+      "query_count": 1261,
+      "metrics_checked": 17,
+      "primary_ci_count": 3,
+      "baseline_E_100_modes_rankings_metrics_exact_equal": true
+    }
+  ],
+  "budget_note": "Standalone E receives exactly 100 candidates under both per_channel and total; all baseline stored rankings and metrics are exactly equal. The mode label introduces no budget effect."
+}
