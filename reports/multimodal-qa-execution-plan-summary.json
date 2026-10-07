@@ -22,7 +22,7 @@
     "Root-owned verified local Gemma server; no concurrent active model run"
   ],
   "planner_sha256": "fc67d2c04767854944660758c02c4208be2fc519e0cbf7a9e02806d9e0d31e05",
-  "runner_sha256": "1976ce8ad80bd7131581a5e8eaa942d125137e59483d25334d6feaa37c8cbc99",
+  "runner_sha256": "c4df719f5aa9e2e18b3b9e33203149c594c0d862665874f0df78f7c90d1e8b08",
   "source_report_sha256": {
     "reports/multimodal/vidore-cs-bm25/report.json": "ae63418dbce5955da883f0078712b63e90b398fb5a446540553cdda0b42c4b59",
     "reports/multimodal/vidore-cs-native/report.json": "c10ff2e67505b5507c69ffec2fca61d3b64d0f26c05209977fb8c892deaad318",
@@ -48,7 +48,7 @@
     "runs/multimodal/vidore-v3-energy-fr-all-retrieval/report.json": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
     "runs/multimodal/vidore-v3-energy-fr-bm25/report.json": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
     "runs/multimodal/vidore-v3-energy-fr-text-rerankers/report.json": "4a61719492afc17d5c000c2f64c1bbeeb2b3b8781b66b92056c0d7ac287cb7be",
-    "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "7a21d3187c6b8ce6b3432ee347ad3e31660d9710fa2971d9582e8ac2112f9568",
+    "runs/multimodal/vidore-v3-finance_en-en-all-retrieval/report.json": "1b713b41d4ae3b7af6181ed09995dbdda9e7baf5c78c50fe302a39b8f1f5e265",
     "runs/multimodal/vidore-v3-finance_en-en-bm25/report.json": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
     "runs/multimodal/vidore-v3-finance_en-en-text-rerankers/report.json": "68cfebfcce197b93826bb0b830e1227dbc387873d73aa220f5ad117ae653683d",
     "runs/multimodal/vidore-v3-finance_fr-fr-all-retrieval/report.json": "dc25a5d48791a687a70993ae33a13f3f8905b7a413290789784fd85e348dccbd",
@@ -67,7 +67,7 @@
     "runs/multimodal/vidore-v3-physics-fr-bm25/report.json": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
     "runs/multimodal/vidore-v3-physics-fr-text-rerankers/report.json": "2162440ba0ef7bfae467dc33b8e3faae883ef7f04007b8756587c3a46ba05350"
   },
-  "plan_sha256": "57e962865852f98098c9b57945f26b28cc98b8c92d4caf385b8e3ec716a5fdba",
+  "plan_sha256": "86a28c77e9620988e39a9f32064253aeb9954e30a78a1d61f92b95c059ecfa76",
   "datasets": {
     "vidore-v3-computer_science-en": {
       "query_count": 215,

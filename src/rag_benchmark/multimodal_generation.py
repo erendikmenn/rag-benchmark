@@ -191,9 +191,12 @@ class LocalMultimodalGenerator:
                 "projector_verification": "local_file_checksum; serving path must be fixed by the launcher",
                 "context_limit": self._context_limit, "server": server}
 
-    def complete(self, system: str, content: list[dict], *, json_output: bool = False) -> str:
+    def complete(self, system: str, content: list[dict], *, json_output: bool = False,
+                 response_schema: dict | None = None) -> str:
         import httpx
         self._check_config()
+        if response_schema is not None and (json_output or not isinstance(response_schema, dict) or not response_schema):
+            raise ValueError("Explicit nonempty schema and JSON-object mode are mutually exclusive")
         if not self._ready:
             self.preflight()
         payload = {"model": self.config["model"], "messages": [
@@ -204,6 +207,14 @@ class LocalMultimodalGenerator:
             "cache_prompt": bool(self.config["cache_prompt"]), "n_keep": -1}
         if json_output:
             payload["response_format"] = {"type": "json_object"}
+        if response_schema is not None:
+            # Pinned llama.cpp b11451 / 2207c8e57 consumes this exact wrapper.
+            # A conversion error fails the request; no unconstrained fallback.
+            payload["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "structured_response", "strict": True,
+                                "schema": copy.deepcopy(response_schema)},
+            }
         start = time.perf_counter()
         with httpx.Client(timeout=self.config["timeout"], trust_env=False, follow_redirects=False) as client:
             response = client.post(self.verifier.base_url + "/chat/completions", json=payload)

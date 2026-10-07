@@ -30,7 +30,7 @@ from .multimodal_qa import (
     sha256,
 )
 
-QA_PROMPT_CONTRACT_VERSION = "qa-exact-source-id-citations-v2"
+QA_PROMPT_CONTRACT_VERSION = "qa-exact-source-id-citations-schema-v3"
 
 QA_SYSTEM = (
     "Answer the question using only supplied sources when sources are present. "
@@ -49,7 +49,7 @@ DEFAULT_PROTOCOL = {
     "retrieved_selection": "actual completed retrieval-cell ranked IDs, first five",
     "system_prompt": QA_SYSTEM,
     "prompt_contract_version": QA_PROMPT_CONTRACT_VERSION,
-    "json_schema": "answer:string,citations:list[str]; exact keys",
+    "json_schema": "answer:string,citations:exact supplied source-ID string enum; required keys; no additional properties",
     "raw_answers_reference_aliases": False,
     "semantic_accuracy": "pending human labels",
 }
@@ -88,9 +88,13 @@ class LocalQATransport:
         for source in request["sources"]:
             content.append({"type": "text", "text": "Source ID: " + source["id"]})
             content.extend(media_content(source, self.generator.config))
-        text = self.generator.complete(request["system"], content, json_output=False)
+        if request.get("response_format") != citation_response_format(request["sources"]):
+            raise ValueError("QA response schema differs from actually supplied evidence")
+        text = self.generator.complete(
+            request["system"], content,
+            response_schema=request["response_format"]["json_schema"]["schema"],
+        )
         return {"text": text, "usage": copy.deepcopy(self.generator.last_usage)}
-
 
 
 class SharedGenerationCache:
@@ -317,6 +321,26 @@ def verified_retrieval(run_dir, cell_identity, dataset):
     return rankings, identity
 
 
+def citation_response_format(sources):
+    """Only supplied evidence IDs enter the schema; no evaluation metadata."""
+    ids = [source["id"] for source in sources]
+    if any(not isinstance(value, str) or not value for value in ids) or len(set(ids)) != len(ids):
+        raise ValueError("Exact unique supplied source-ID strings required")
+    citations = {"type": "array", "items": {"type": "string", "enum": ids}} if ids else {
+        "type": "array", "const": []
+    }
+    return {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "structured_response", "strict": True,
+            "schema": {
+                "type": "object", "properties": {"answer": {"type": "string"}, "citations": citations},
+                "required": ["answer", "citations"], "additionalProperties": False,
+            },
+        },
+    }
+
+
 def citation_instruction(sources):
     """Trusted instruction from exact supplied IDs, with no evaluation fields."""
     allowed = json.dumps([source["id"] for source in sources], ensure_ascii=False)
@@ -350,6 +374,7 @@ def request_for(record, dataset, condition, representation, protocol, rankings):
         "question": generation_query(record)["question"],
         "language": record.language,
         "sources": copy.deepcopy(evidence),
+        "response_format": citation_response_format(evidence),
     }
     if representation == "image":
         for row in request["sources"]:

@@ -281,3 +281,32 @@ def test_caption_resume_rejects_stale_media_and_corrupt_text(tmp_path):
         prepare_described_view(source, destination, generator)
     with pytest.raises(ValueError, match="must not overwrite"):
         prepare_described_view(source, source, generator)
+
+
+def test_optional_schema_preserves_default_identity_payload_and_relevance_budget(monkeypatch):
+    result = {'choices': [{'message': {'content': '{}'}, 'finish_reason': 'stop'}],
+              'usage': {'prompt_tokens': 10, 'completion_tokens': 2}}
+    generator, requests = _mock_completion(monkeypatch, result)
+    identity = generator.identity
+    generator.complete('system', [{'type': 'text', 'text': 'source'}])
+    ordinary = requests[-1].copy()
+    assert 'response_format' not in ordinary and ordinary['max_tokens'] == 8
+    generator.complete('system', [{'type': 'text', 'text': 'source'}], json_output=True)
+    assert requests[-1]['response_format'] == {'type': 'json_object'}
+    assert requests[-1]['max_tokens'] == 32
+    schema = {'type': 'object', 'properties': {'answer': {'type': 'string'}},
+              'required': ['answer'], 'additionalProperties': False}
+    generator.complete('system', [{'type': 'text', 'text': 'source'}], response_schema=schema)
+    schema['properties']['answer']['type'] = 'integer'
+    assert requests[-1]['response_format']['json_schema']['schema']['properties']['answer']['type'] == 'string'
+    assert requests[-1]['max_tokens'] == 8
+    assert {k: v for k, v in requests[-1].items() if k != 'response_format'} == ordinary
+    assert generator.identity == identity
+
+
+@pytest.mark.parametrize('schema,json_output', [({}, False), ([], False), ({'type': 'object'}, True)])
+def test_invalid_or_conflicting_schema_fails_before_transport(monkeypatch, schema, json_output):
+    generator, requests = _mock_completion(monkeypatch, {})
+    with pytest.raises(ValueError, match='schema.*mutually exclusive'):
+        generator.complete('system', [], json_output=json_output, response_schema=schema)
+    assert requests == []
