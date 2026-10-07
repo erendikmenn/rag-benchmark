@@ -1,4 +1,5 @@
 import copy
+import json
 
 import pytest
 
@@ -91,6 +92,35 @@ def test_native_context_errors_propagate_without_clipping_or_retry():
     assert received[0][0] is query
     assert "".join(part["text"] for part in received[0][1]) == source
     assert wrapper.last_usage == {}
+
+
+def test_reranker_only_character_chunks_avoid_serialized_pair_overflow_and_preserve_max():
+    class SerializedPairBase(FakeBase):
+        def score(self, query, candidates):
+            if any(len(json.dumps({"query": query["text"], "passage": row["text"]})) > 120 for row in candidates):
+                raise ValueError("native serialized query-passage context overflow")
+            return super().score(query, candidates)
+
+    base = SerializedPairBase()
+    original = SharedCodeSegmenter(max_tokens=512, max_chunk_chars=32)
+    bounded = SharedCodeSegmenter(max_tokens=512, max_chunk_chars=32, enforce_character_limit=True)
+    for value in (original, bounded):
+        value.tokenizers = {"bge": ByteTokenizer(), "embeddinggemma": ByteTokenizer()}
+    candidate = {"id": "original-function", "text": "    \tB\r\n" * 20 + "A", "media": {}}
+    query = {"id": "q", "text": "complete query"}
+    assert len(original.partition(candidate)[0]) == 1
+    with pytest.raises(ValueError, match="serialized"):
+        SharedCodeReranker(base, original).score(query, [candidate])
+    reranker = SharedCodeReranker(base, bounded)
+    assert reranker.score(query, [candidate]) == [-1.0]
+    passed_query, passed_chunks = base.calls[0]
+    assert passed_query is query
+    assert "".join(row["text"] for row in passed_chunks) == candidate["text"]
+    assert all(len(row["text"]) <= 32 for row in passed_chunks)
+    assert reranker.last_usage["original_function_count"] == 1
+    assert reranker.last_usage["source_utf8_bytes"] == reranker.last_usage["covered_source_utf8_bytes"]
+    assert "character_bounded" in reranker.protocol["condition"]
+    assert reranker.identity != SharedCodeReranker(base, original).identity
 
 
 def test_identity_seals_base_and_shared_segmentation_and_rejects_listwise():

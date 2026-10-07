@@ -1,0 +1,188 @@
+{
+  "scope": "CPU tokenization only; every source window paired with per-backend longest-token query in each frozen language; no model inference or accuracy claim",
+  "max_chunk_chars": 4096,
+  "enforce_character_limit": true,
+  "segmentation_identity": "11eb7a42f70dcc2af3109c313bed0e67b165a8f46dd6de3e3127f970ec145c08",
+  "context_limit": 8192,
+  "laya_head_and_final_separator_tokens": 62,
+  "models": {
+    "laya": {
+      "model_id": "convaiinnovations/laya-multilingual",
+      "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34"
+    },
+    "bge_reranker": {
+      "model_id": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+    }
+  },
+  "datasets": {
+    "codesearchnet-go-test": {
+      "corpus_count": 28120,
+      "window_count": 28125,
+      "segmented_functions": 5,
+      "query_count": 8122,
+      "source_utf8_bytes": 9981376,
+      "covered_source_utf8_bytes": 9981376,
+      "max_window_characters": 4096,
+      "bge_reranker": {
+        "max_query_tokens": 265,
+        "max_query_id": "4745",
+        "max_combined_context_tokens": 1847,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/tendermint/go-amino/blob/dc14acf9ef15f85828bfbc561ed9dd9d2a284885/binary-decode.go#L30-L307"
+      },
+      "laya": {
+        "max_query_tokens": 204,
+        "max_query_id": "4745",
+        "max_combined_context_tokens": 3615,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/andy-kimball/arenaskl/blob/6bf06cf57626e536063e9398a57dfe1417ed0799/iterator.go#L120-L229"
+      },
+      "seconds": 21.954
+    },
+    "codesearchnet-java-test": {
+      "corpus_count": 40347,
+      "window_count": 40411,
+      "segmented_functions": 64,
+      "query_count": 10955,
+      "source_utf8_bytes": 22530097,
+      "covered_source_utf8_bytes": 22530097,
+      "max_window_characters": 4095,
+      "bge_reranker": {
+        "max_query_tokens": 144,
+        "max_query_id": "10288",
+        "max_combined_context_tokens": 1530,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/eclipse/packagedrone/blob/3869c1643cdc6f7cb8b26097a7b6994683b13d7e/bundles/org.apache.jasper.glassfish/src/org/apache/jasper/tagplugins/jstl/ForEach.java#L242-L383"
+      },
+      "laya": {
+        "max_query_tokens": 120,
+        "max_query_id": "10288",
+        "max_combined_context_tokens": 4216,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/deeplearning4j/nd4j/blob/8f005bcecb240d1fbb83b9d390ad801d1d3b6933/nd4j-common/src/main/java/org/nd4j/linalg/util/BigDecimalMath.java#L1905-L1984"
+      },
+      "seconds": 21.5
+    },
+    "codesearchnet-javascript-test": {
+      "corpus_count": 13981,
+      "window_count": 14135,
+      "segmented_functions": 47,
+      "query_count": 3291,
+      "source_utf8_bytes": 9613249,
+      "covered_source_utf8_bytes": 9613249,
+      "max_window_characters": 4096,
+      "bge_reranker": {
+        "max_query_tokens": 140,
+        "max_query_id": "1007",
+        "max_combined_context_tokens": 1631,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/YBRAIN/react-native-ble-quick-sdk/blob/1098bbcc8757bcd15f5ab839f10c52ac2b0521ca/bds_plugin/react-native-ble-quick-sdk-bds-plugin/Plugin.js#L29-L294"
+      },
+      "laya": {
+        "max_query_tokens": 119,
+        "max_query_id": "1007",
+        "max_combined_context_tokens": 4080,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/carbon-io/carbond/blob/c2d84caf8676e3101adb95580b5afec63761df93/lib/Endpoint.js#L42-L163"
+      },
+      "seconds": 8.725
+    },
+    "codesearchnet-php-test": {
+      "corpus_count": 52660,
+      "window_count": 52700,
+      "segmented_functions": 39,
+      "query_count": 14014,
+      "source_utf8_bytes": 31297569,
+      "covered_source_utf8_bytes": 31297569,
+      "max_window_characters": 4095,
+      "bge_reranker": {
+        "max_query_tokens": 134,
+        "max_query_id": "6991",
+        "max_combined_context_tokens": 1948,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/graste/environaut/blob/e40b498c31214fdbdd529f334f6ce5e6138bb5fb/src/Environaut/Checks/Validator.php#L130-L186"
+      },
+      "laya": {
+        "max_query_tokens": 112,
+        "max_query_id": "6991",
+        "max_combined_context_tokens": 3768,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/kitpages/KitpagesCmsBundle/blob/ae950dd4f4adb401644805f9f5a971ab34993c02/DependencyInjection/Configuration.php#L45-L141"
+      },
+      "seconds": 27.525
+    },
+    "codesearchnet-python-test": {
+      "corpus_count": 43827,
+      "window_count": 44493,
+      "segmented_functions": 606,
+      "query_count": 14918,
+      "source_utf8_bytes": 41815838,
+      "covered_source_utf8_bytes": 41815838,
+      "max_window_characters": 4096,
+      "bge_reranker": {
+        "max_query_tokens": 177,
+        "max_query_id": "1417",
+        "max_combined_context_tokens": 1661,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/ekmmetering/ekmmeters/blob/b3748bdf30263bfa46ea40157bdf8df2522e1904/ekmmeters.py#L3403-L3446"
+      },
+      "laya": {
+        "max_query_tokens": 143,
+        "max_query_id": "1417",
+        "max_combined_context_tokens": 4340,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/SmokinCaterpillar/pypet/blob/97ad3e80d46dbdea02deeb98ea41f05a19565826/pypet/storageservice.py#L965-L1337"
+      },
+      "seconds": 33.497
+    },
+    "codesearchnet-ruby-test": {
+      "corpus_count": 4360,
+      "window_count": 4367,
+      "segmented_functions": 7,
+      "query_count": 1261,
+      "source_utf8_bytes": 2028722,
+      "covered_source_utf8_bytes": 2028722,
+      "max_window_characters": 4081,
+      "bge_reranker": {
+        "max_query_tokens": 109,
+        "max_query_id": "347",
+        "max_combined_context_tokens": 1251,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/vmware/vcloud-rest/blob/45425d93acf988946cac375b803100ad01206459/lib/vcloud-rest/vcloud/vapp.rb#L244-L328"
+      },
+      "laya": {
+        "max_query_tokens": 90,
+        "max_query_id": "347",
+        "max_combined_context_tokens": 3241,
+        "over_context_windows": 0,
+        "max_original_source_id": "https://github.com/sportdb/sport.db/blob/68a6d7ce7f31fc7dc74c8d6b74a6b542ff7d0396/sportdb-models/lib/sportdb/reader.rb#L25-L128"
+      },
+      "seconds": 2.085
+    }
+  },
+  "status": "passed",
+  "current_segmenter_identity": "73a56253d20909913b9fc3a364062fcbd211e2e971b2707272b5d435060b7531",
+  "identity_note": "Only module documentation changed during the tokenization audit; window boundary and tokenization implementation did not change.",
+  "exact_regression_check": {
+    "dataset": "codesearchnet-javascript-test",
+    "source_id": "https://github.com/wjbryant/taboverride/blob/02238ec1ab098cb998dcb3c1c38d39316e2ac03d/build/output/taboverride.js#L188-L457",
+    "query_id": "51",
+    "bm25_rank": 15,
+    "before_state_tokens": 10354,
+    "before_dropped_tokens": 2224,
+    "after_window_count": 4,
+    "after_max_state_tokens": 3292,
+    "after_dropped_tokens": 0,
+    "source_utf8_bytes": 13349,
+    "covered_source_utf8_bytes": 13349
+  },
+  "totals": {
+    "corpus_count": 183295,
+    "window_count": 184231,
+    "segmented_functions": 768,
+    "query_count": 52561,
+    "source_utf8_bytes": 117266851,
+    "covered_source_utf8_bytes": 117266851
+  }
+}

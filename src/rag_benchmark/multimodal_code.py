@@ -3,7 +3,9 @@
 This is an explicitly separate representation condition, never a replacement for
 strict whole-function G/E results. Source functions and qrels remain unchanged.
 Both pinned tokenizers validate the same boundaries after their native document
-formatting. A function fitting both encoders is left byte-for-byte unsegmented.
+formatting. By default, a function fitting both encoders remains unsegmented.
+An explicit character-bound condition also splits native-fit functions for
+reranking; the consuming scorer must still validate its complete pair context.
 """
 from __future__ import annotations
 
@@ -42,28 +44,35 @@ def _atomic_json(path: Path, value: dict) -> None:
 class SharedCodeSegmenter:
     """One deterministic lossless boundary policy checked against both tokenizers."""
     def __init__(self, *, max_tokens: int = 8192, max_chunk_chars: int = 4096,
-                 bge_config: dict | None = None, embeddinggemma_config: dict | None = None):
+                 bge_config: dict | None = None, embeddinggemma_config: dict | None = None,
+                 enforce_character_limit: bool = False):
         if type(max_tokens) is not int or not 1 <= max_tokens <= 8192:
             raise ValueError("max_tokens must be an integer in 1..8192.")
         if type(max_chunk_chars) is not int or max_chunk_chars < 1:
             raise ValueError("max_chunk_chars must be a positive integer.")
+        if type(enforce_character_limit) is not bool:
+            raise ValueError("enforce_character_limit must be a boolean.")
         self.max_tokens, self.max_chunk_chars = max_tokens, max_chunk_chars
+        self.enforce_character_limit = enforce_character_limit
         self.formatters = {name: DenseEmbedder(name, {"max_length": max_tokens, **copy.deepcopy(config or {})})
             for name, config in [("bge", bge_config), ("embeddinggemma", embeddinggemma_config)]}
         if any(model.config["max_length"] != max_tokens for model in self.formatters.values()):
             raise ValueError("Both tokenizer validation budgets must match the shared max_tokens.")
         self._settings_seal = stable_hash({"max_tokens": max_tokens, "max_chunk_chars": max_chunk_chars,
+            "enforce_character_limit": enforce_character_limit,
             "formatters": {name: model.config for name, model in self.formatters.items()}})
         self.tokenizers = {}
         self._memo = {}
         self.protocol = {
-            "version": _CODE_VERSION, "condition": "shared_segmentation_function_max_cosine",
+            "version": _CODE_VERSION, "condition": "source_complete_character_bounded_segments"
+                if enforce_character_limit else "shared_segmentation_function_max_cosine",
             "max_tokens_after_native_document_formatting": max_tokens,
             "maximum_characters_per_chunk_for_overflowing_functions": max_chunk_chars,
             "boundary_policy": "last_complete_source_line_within_cap_else_character_boundary;halve_until_both_fit",
-            "native_single_chunk_policy": "keep_whole_function_if_it_fits_both_tokenizers",
+            "native_single_chunk_policy": "keep_whole_function_if_it_fits_both_tokenizers_and_character_cap"
+                if enforce_character_limit else "keep_whole_function_if_it_fits_both_tokenizers",
             "source_coverage": "exact_concatenation_no_overlap_no_normalization_no_dropped_characters",
-            "function_score": "maximum_cosine_over_all_its_chunks",
+            "function_score": "assigned_by_consuming_adapter" if enforce_character_limit else "maximum_cosine_over_all_its_chunks",
             "tokenizers": {name: {"model_id": model.config["model_id"], "revision": model.config["revision"]}
                 for name, model in self.formatters.items()},
             "native_document_formats": {name: model.format_document({"text": "<SOURCE>", "title": "<TITLE>"})
@@ -88,6 +97,7 @@ class SharedCodeSegmenter:
 
     def partition(self, item: dict) -> tuple[list[dict], dict]:
         settings = {"max_tokens": self.max_tokens, "max_chunk_chars": self.max_chunk_chars,
+            "enforce_character_limit": self.enforce_character_limit,
             "formatters": {name: model.config for name, model in self.formatters.items()}}
         if stable_hash(self.protocol) != self._protocol_seal or stable_hash(settings) != self._settings_seal:
             raise ValueError("Shared segmentation protocol changed after its identity was fixed.")
@@ -104,7 +114,8 @@ class SharedCodeSegmenter:
         else:
             original_counts = self.token_counts(text, title)
             boundaries = []
-            if max(original_counts.values()) <= self.max_tokens:
+            if max(original_counts.values()) <= self.max_tokens and (
+                    not self.enforce_character_limit or len(text) <= self.max_chunk_chars):
                 boundaries.append((0, len(text), original_counts))
             else:
                 # Existing line endings, including CRLF, are preserved exactly.

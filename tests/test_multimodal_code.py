@@ -30,6 +30,31 @@ def test_native_function_is_unchanged_when_it_fits_both_models():
     assert summary["source_utf8_bytes"] == len(source.encode())
 
 
+def test_explicit_character_cap_splits_native_fit_source_without_changing_default_policy():
+    source = "function şey() {\r\n" + "  // 🐍 ç İ coverage\n" * 4 + "}\n"
+    native = SharedCodeSegmenter(max_tokens=512, max_chunk_chars=20)
+    bounded = SharedCodeSegmenter(max_tokens=512, max_chunk_chars=20, enforce_character_limit=True)
+    for value in (native, bounded):
+        value.tokenizers = {"bge": ByteTokenizer(), "embeddinggemma": ByteTokenizer()}
+    item = {"id": "native-fit", "text": source, "metadata": {"query": "PRIVATE_QUERY"}}
+    original, _ = native.partition(item)
+    chunks, summary = bounded.partition(item)
+    assert [row["text"] for row in original] == [source]
+    assert max(summary["whole_function_token_counts"].values()) < 512
+    assert len(chunks) > 1 and all(len(row["text"]) <= 20 for row in chunks)
+    assert b"".join(row["text"].encode() for row in chunks) == source.encode()
+    assert all(max(row["token_counts"].values()) <= 512 for row in chunks)
+    assert bounded.identity != native.identity
+    assert "character_bounded" in bounded.protocol["condition"]
+    assert native.identity == SharedCodeSegmenter(max_tokens=512, max_chunk_chars=20, enforce_character_limit=False).identity
+    assert bounded.partition({"id": item["id"], "text": source}) == (chunks, summary)
+    bounded.enforce_character_limit = False
+    with pytest.raises(ValueError, match="protocol changed"):
+        bounded.partition(item)
+    with pytest.raises(ValueError, match="boolean"):
+        SharedCodeSegmenter(enforce_character_limit=1)
+
+
 def test_shared_chunks_preserve_unicode_crlf_and_all_source_bytes():
     model = segmenter()
     source = "function şey() {\r\n" + "  // 🐍 ç İ byte coverage\n" * 12 + "}\n"

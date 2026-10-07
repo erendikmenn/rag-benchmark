@@ -141,6 +141,8 @@ def main(argv=None) -> int:
                    help="Explicit native specialist query limit policy; clipping is recorded in diagnostics.")
     p.add_argument("--code-overlength", choices=("error", "shared_segments_max"), default="error",
                    help="Separate source-complete function-level aggregation protocol for long code.")
+    p.add_argument("--code-rerank-overlength", choices=("error", "source_chunks_max"), default="error",
+                   help="Reranker-only source chunks with a fixed character cap; retrieval vectors remain unchanged.")
     p.add_argument("--audio-overlength", choices=("error", "source_windows_max"), default="error",
                    help="Explicit complete-audio window scoring for Gemma relevance; keeps source text in every window.")
     p.add_argument("--candidate-k", default="20,50,100")
@@ -220,6 +222,9 @@ def main(argv=None) -> int:
             names = args.rerankers.split(",")
             if not set(names) <= set(RERANKERS):
                 raise ValueError("Unknown reranker name")
+            if args.code_rerank_overlength == "source_chunks_max":
+                if dataset.track != "code" or set(names) <= {"none"}:
+                    raise ValueError("--code-rerank-overlength source_chunks_max requires code and an actual reranker")
             if args.audio_overlength == "source_windows_max":
                 if dataset.track not in {"speech", "environment_audio"} or "gemma4_relevance" not in names:
                     raise ValueError("--audio-overlength source_windows_max requires an audio track and Gemma relevance")
@@ -269,9 +274,13 @@ def main(argv=None) -> int:
                     from .multimodal_audio_rerank import SourceAudioWindowReranker
                     generator = SourceAudioWindowReranker(generator)
                 rerankers["gemma4_relevance"] = generator
-            if segmenter is not None:
+            rerank_segmenter = segmenter
+            if args.code_rerank_overlength == "source_chunks_max":
+                from .multimodal_code import SharedCodeSegmenter
+                rerank_segmenter = SharedCodeSegmenter(enforce_character_limit=True, max_chunk_chars=4096)
+            if rerank_segmenter is not None:
                 from .multimodal_code_rerank import SharedCodeReranker
-                rerankers = {name: SharedCodeReranker(adapter, segmenter)
+                rerankers = {name: SharedCodeReranker(adapter, rerank_segmenter)
                              for name, adapter in rerankers.items()}
             result = run_matrix(args.dataset, args.run_dir, adapters=adapters, rerankers=rerankers,
                 requested_channels=channels, candidate_grid=tuple(map(int, args.candidate_k.split(","))),

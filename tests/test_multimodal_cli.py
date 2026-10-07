@@ -88,3 +88,35 @@ def test_audio_wrapper_is_fixed_after_real_generator_preflight_contract(tmp_path
     assert main(['run', '--dataset', str(tmp_path), '--run-dir', str(tmp_path / 'run'),
                  '--channels', 'B', '--rerankers', 'gemma4_relevance',
                  '--audio-overlength', 'source_windows_max']) == 0
+
+
+def test_code_reranker_chunks_do_not_change_text_retrieval_adapters(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from rag_benchmark.multimodal_cli import main
+    from rag_benchmark.multimodal_code_rerank import SharedCodeReranker
+    class Generator:
+        pointwise = True
+        identity = 'unverified'
+        def preflight(self):
+            self.identity = 'verified-code-generator'
+        def score(self, query, candidates):
+            raise AssertionError('CLI wiring does not need model inference')
+    adapters = {}
+    def embedding(family, config):
+        adapters[family] = object()
+        return adapters[family]
+    def run_matrix(*args, **kwargs):
+        assert kwargs['adapters'] == {'G': adapters['bge'], 'E': adapters['embeddinggemma']}
+        wrapper = kwargs['rerankers']['gemma4_relevance']
+        assert isinstance(wrapper, SharedCodeReranker)
+        assert wrapper.segmenter.enforce_character_limit is True
+        assert wrapper.segmenter.max_chunk_chars == 4096
+        assert wrapper.base.identity == 'verified-code-generator'
+        return {'scope': 'partial', 'evaluated_query_count': 0}
+    monkeypatch.setattr('rag_benchmark.multimodal.load_dataset', lambda _: SimpleNamespace(track='code'))
+    monkeypatch.setattr('rag_benchmark.multimodal.TextEmbeddingAdapter', embedding)
+    monkeypatch.setattr('rag_benchmark.multimodal.run_matrix', run_matrix)
+    monkeypatch.setattr('rag_benchmark.multimodal_generation.LocalMultimodalGenerator', Generator)
+    assert main(['run', '--dataset', str(tmp_path), '--run-dir', str(tmp_path / 'run'),
+                 '--channels', 'G,E', '--rerankers', 'gemma4_relevance',
+                 '--code-rerank-overlength', 'source_chunks_max']) == 0

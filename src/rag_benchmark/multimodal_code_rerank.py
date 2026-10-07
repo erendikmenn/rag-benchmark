@@ -40,11 +40,13 @@ class SharedCodeReranker:
         self._base_identity, self._segmentation_identity = base.identity, segmenter.identity
         self.protocol = {
             "version": _VERSION,
-            "condition": "shared_segmentation_function_max_relevance",
+            "condition": "source_complete_character_bounded_function_max_relevance"
+                if segmenter.enforce_character_limit else "shared_segmentation_function_max_relevance",
             "base_identity": base.identity,
             "segmentation_identity": segmenter.identity,
             "function_score": "maximum_actual_base_relevance_score_over_all_shared_source_chunks",
-            "native_single_chunk_policy": "keep_complete_original_candidate_when_both_tokenizers_fit",
+            "native_single_chunk_policy": "keep_complete_original_candidate_when_both_tokenizers_and_character_cap_fit"
+                if segmenter.enforce_character_limit else "keep_complete_original_candidate_when_both_tokenizers_fit",
             "query_policy": "complete_query_as_provided_without_segmentation_or_truncation",
             "context_policy": "base_pair_context_validation_remains_strict;no_truncation_or_retry_with_clipping",
             "source_coverage": "exact_concatenation_no_overlap_no_normalization_no_dropped_characters",
