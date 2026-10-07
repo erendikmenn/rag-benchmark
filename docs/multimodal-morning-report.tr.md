@@ -1,6 +1,6 @@
 # Çoklu ortam benchmark — 7 Ekim 2026 sabah raporu
 
-Gece kuyruğu, 09:00'dan önce başlamış PHP deneyi bitince **09:08 Europe/Istanbul'da kapandı**. Supervisor ve son model süreci sonlandı. **Araştırma paketinin bütünü tamamlanmadı.** Bu rapor, tamamlanan ölçümleri kısmi ve yapılmamış işlerden ayırır.
+Gece kuyruğu, 09:00'dan önce başlamış PHP deneyi bitince **09:08 Europe/Istanbul'da kapandı**. Supervisor ve son model süreci sonlandı. Sonuçlar yayımlandıktan sonra gece izleme otomasyonu silindi. **Araştırma paketinin bütünü tamamlanmadı.** Bu rapor, tamamlanan ölçümleri kısmi ve yapılmamış işlerden ayırır.
 
 Ana matrisin **1.060 / 18.460 koşulu (%5,74)** tamamlandı; **17.400 koşul kaldı**. Bu payda 21 koleksiyonun yöntem, iki aday bütçesi ve 20/50/100 rerank aday sayısı koşullarını içerir. Aynı sonuçların yinelenen dışa aktarımları ve beş soruluk teknik kontrol sayılmaz. Ek boyut/temsil deneyleri ve cevap kalitesi çalışmaları ana paydanın dışındadır. Bu bir kapsam oranıdır; zaman veya hesaplama maliyeti yüzdesi değildir. [Sayım ve kaynak hash'leri](../reports/multimodal/progress-summary.md).
 
@@ -60,6 +60,6 @@ Video koşulu ses kanalını tüketmez. Fotoğrafta SigLIP2'nin sınırı nedeni
 
 Plan, veri/dil/ayar genişletmeleriyle 18.460 ana koşul içeriyor; tam yeniden sıralama ve medya açıklaması üretimi ciddi ek hesaplama gerektiriyor. Bir ana modelin embedding'ini üretmek bütün varyantları tamamlamıyor. Gece ayrıca yeni GPU işlerindeki macOS Metal derleyici hizmeti erişim hatası ilerlemeyi durdurdu. Yeni süreçte sağlık kontrolleri geçti ve kuyruk 07:35'te kurtarıldı; tüm sorunun kaynağı kesin olarak teşhis edilmiş sayılmıyor.
 
-09:00 yeni iş başlatma sınırı korundu. PHP 08:37'de başlamıştı, normal biçimde 09:08'de bitti; ardından kalan işler ertelendi. Bitmiş önbellekler, dondurulmuş veriler ve yerel günlükler korundu. Sonraki devamda aynı sonuçlar yeniden çıkarım diye sayılmadan kullanılabilir. Ham veri, medya, transkript, sorgu, prompt, hata günlüğü ve anahtar GitHub'a yüklenmedi.
+09:00 yeni iş başlatma sınırı korundu. PHP 08:37'de başlamıştı, normal biçimde 09:08'de bitti; ardından kalan işler ertelendi. Bitmiş önbellekler, dondurulmuş veriler ve yerel günlükler korundu. Sonraki devamda aynı sonuçlar yeniden çıkarım diye sayılmadan kullanılabilir. Ham veri, medya, transkript, sorgu, bunlardan oluşturulmuş tam prompt içerikleri, yerel hata günlüğü ve anahtar GitHub'a yüklenmedi. Genel prompt şablonları deneyin yeniden üretilebilmesi için kaynak kodda bulunur.
 
 [İngilizce README](../README.md) · [Türkçe README](../README.tr.md) · [Tam ilerleme sayımı](../reports/multimodal/progress-summary.md) · [Bütün yayımlanmış koşular](../reports/multimodal/README.md) · [Kalan kapsamın planı](multimodal-plan.tr.md)

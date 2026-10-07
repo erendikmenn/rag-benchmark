@@ -34,7 +34,7 @@ The durable local queue is `work/overnight/continue_suite.py`, with journal `wor
 
 The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. The first parameter sweep is complete on seven native dataset views: 128/256/512/768 dimensions with validated cached vectors and full-corpus search (104 dimension/method/budget cells). Remaining representation/parameter sweeps and answer-generation evaluation are pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
 
-Raw datasets, prompts, media, keys and local caches stay out of Git. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. The 09:00 launch cutoff was observed. The already-running PHP job completed at 09:08, and the overnight monitoring automation is being closed after publication of these results.
+Raw datasets, full data-bearing prompt payloads, media, keys and local caches stay out of Git; generic prompt templates are published with the source for reproducibility. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. The 09:00 launch cutoff was observed. The already-running PHP job completed at 09:08, and the overnight monitoring automation was deleted after publication of these results.
 
 ## Completed audits and current limitations
 
