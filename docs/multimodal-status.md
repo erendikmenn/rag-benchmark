@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 03:33 Europe/Istanbul.
+Updated: 2026-10-07 04:04 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -9,11 +9,11 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Track | Verified prepared data | Execution / published evaluation |
 |---|---|---|
 | Photo | XM3600: 3,600 images, 7,233 TR and 7,200 EN queries | TR EG2 / SigLIP2 / fusion Hit@5: 84.64% / 59.88% / 76.28%; EN: 83.75% / 76.89% / 82.92%; both full comparisons complete |
-| Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS native-image measured; dense/joint/ColQwen queued |
+| Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS native-image measured; CS B/G/E/N/S/J comparison running |
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
 | Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; ASR-derived comparisons queued |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
-| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python B/G/E dense comparisons running |
+| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python and Ruby full B/G/E comparisons complete (16,179 queries, seven methods × two budgets); four other dense languages queued |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
 
 ## Dataset and model audit notes
@@ -57,3 +57,5 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 - [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech and video. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
 - [Video comparison](../reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md): full 1K-A gallery and prescribed 1,000 queries complete. Both adapters use 1 fps / at most 16 visual frames; no soundtrack is consumed. EG2 beats the CLIP frame-pooling baseline by 21.20 percentage points at Hit@5 (95% paired interval: 18.20–24.20).
+
+- [Python/Ruby dense retrieval](../reports/multimodal/code-dense-summary.md): all 28 method/budget cells complete. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.

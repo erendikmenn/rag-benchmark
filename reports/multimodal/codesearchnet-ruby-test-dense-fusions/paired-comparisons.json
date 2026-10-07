@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "codesearchnet-ruby-test",
+    "revision": "c0de43d3aaf38e89290f1efb771f8de845e7a489",
+    "track": "code",
+    "identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+    "corpus_count": 4360,
+    "query_count": 1261,
+    "qrel_count": 1261,
+    "positive_qrel_count": 1261,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_report_sha256": "142489821efd62d5433dcec303ab256eaa21fe7128008e4f81d35f7e6a4d2a15",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_code_components",
+    "description": "Queries sharing a positively labelled source function are connected; corpus IDs identify functions, not entire repositories.",
+    "query_count": 1261,
+    "group_count": 1261,
+    "source_unit_count": 1261,
+    "source_association_count": 1261,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 1,
+    "largest_group_fraction": 0.0007930214115781126,
+    "mapping_sha256": "8e62c3356ff85d0e8ba5e787e4c97f1dad24f3fc872dad9abdd40e72b59d291c",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "code__b__none",
+      "requested_right": "code__g__none",
+      "left": {
+        "identity": "0db32b2ac347f0d2d38d50367d3ad0e67c83c6bed6fe551f09a85ba21fee9d43",
+        "variant_id": "code__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "right": {
+        "identity": "2c09c81f91a75e105853bcecefee7c396c7319cfea4b4c8921f20c684cfaeccf",
+        "variant_id": "code__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.45598731165741474,
+          "right_mean": 0.6819984139571769,
+          "mean_difference": 0.2260111022997621,
+          "query_count": 1261,
+          "wins": 330,
+          "losses": 45,
+          "ties": 886,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.19904837430610625,
+          "ci95_high": 0.2529738302934179,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.38522126071799473,
+          "right_mean": 0.5994516283367493,
+          "mean_difference": 0.21423036761875458,
+          "query_count": 1261,
+          "wins": 546,
+          "losses": 122,
+          "ties": 593,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.1925595440769656,
+          "ci95_high": 0.23566514454960608,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "code__b__none",
+      "requested_right": "code__e__none",
+      "left": {
+        "identity": "0db32b2ac347f0d2d38d50367d3ad0e67c83c6bed6fe551f09a85ba21fee9d43",
+        "variant_id": "code__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "right": {
+        "identity": "f5cb131222da0ab45485f07b8a74ebb825d3d2e8221f12b478560e01e229a9a3",
+        "variant_id": "code__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.45598731165741474,
+          "right_mean": 0.8628072957969866,
+          "mean_difference": 0.40681998413957177,
+          "query_count": 1261,
+          "wins": 519,
+          "losses": 6,
+          "ties": 736,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.3790642347343378,
+          "ci95_high": 0.4345757335448057,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.38522126071799473,
+          "right_mean": 0.7909731888827745,
+          "mean_difference": 0.4057519281647798,
+          "query_count": 1261,
+          "wins": 773,
+          "losses": 42,
+          "ties": 446,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.3824850318428251,
+          "ci95_high": 0.42846083074479374,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "code__g__none",
+      "requested_right": "code__e__none",
+      "left": {
+        "identity": "2c09c81f91a75e105853bcecefee7c396c7319cfea4b4c8921f20c684cfaeccf",
+        "variant_id": "code__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "right": {
+        "identity": "f5cb131222da0ab45485f07b8a74ebb825d3d2e8221f12b478560e01e229a9a3",
+        "variant_id": "code__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.6819984139571769,
+          "right_mean": 0.8628072957969866,
+          "mean_difference": 0.18080888183980967,
+          "query_count": 1261,
+          "wins": 237,
+          "losses": 9,
+          "ties": 1015,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.15939730372720062,
+          "ci95_high": 0.20301348136399683,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5994516283367493,
+          "right_mean": 0.7909731888827745,
+          "mean_difference": 0.1915215605460252,
+          "query_count": 1261,
+          "wins": 498,
+          "losses": 76,
+          "ties": 687,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.1734002439812685,
+          "ci95_high": 0.20930925920239749,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "code__b__none",
+      "requested_right": "code__b_g_e__none",
+      "left": {
+        "identity": "0db32b2ac347f0d2d38d50367d3ad0e67c83c6bed6fe551f09a85ba21fee9d43",
+        "variant_id": "code__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "right": {
+        "identity": "c3ab3c84c84bdfb2c7d9e8b863aac4a5ada91f02d05c439498703f9028ee9b60",
+        "variant_id": "code__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 1261
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.45598731165741474,
+          "right_mean": 0.7494052339413164,
+          "mean_difference": 0.2934179222839017,
+          "query_count": 1261,
+          "wins": 375,
+          "losses": 5,
+          "ties": 881,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.26804123711340205,
+          "ci95_high": 0.31879460745440125,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.38522126071799473,
+          "right_mean": 0.6627994711271212,
+          "mean_difference": 0.2775782104091266,
+          "query_count": 1261,
+          "wins": 675,
+          "losses": 22,
+          "ties": 564,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.259831469944025,
+          "ci95_high": 0.29510165204732997,
+          "group_count": 1261,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "completed": 4
+  },
+  "status": "completed"
+}

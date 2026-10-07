@@ -31,6 +31,20 @@ Sekiz ViDoRe koleksiyonu (**19.252 sayfa / 2.419 ana soru**), Clotho ve Türkçe
 
 **BM25, altı kod ve sekiz belge koleksiyonunun tamamında 54.980 sorguyu bitirdi.** Yalnız pozitif kelime eşleşmeleri sonuçlara alındı; embedding, birleşim ve reranker deneyleri devam ediyor. [Başlangıç ölçümleri ve kesin sayılar](reports/multimodal/bm25-summary.md).
 
+**Python ve Ruby kod araması tamamlandı:** 43.827 Python fonksiyonunda 14.918 sorgu; 4.360 Ruby fonksiyonunda 1.261 sorgu. Yedi yöntem × iki aday bütçesiyle 28 koşul ölçüldü. Kanal başına aday bütçesi kullanılan ana koşulda Hit@5 sonuçları:
+
+| Yöntem | Python Hit@5 | Ruby Hit@5 |
+|---|---:|---:|
+| BM25 | %38,93 | %45,60 |
+| BGE-M3 | %62,18 | %68,20 |
+| EmbeddingGemma 2 | %84,46 | %86,28 |
+| BM25 + BGE-M3 | %59,41 | %64,71 |
+| BM25 + EG2 | %69,25 | %70,74 |
+| BGE-M3 + EG2 | %76,77 | %78,75 |
+| BM25 + BGE-M3 + EG2 | %73,56 | %74,94 |
+
+Bu iki sabit kod arama testinde EG2 önde; eşit ağırlıklı RRF birleşimi onu iyileştirmedi. Kaynak yorumları ve referans docstring çıkarıldı; burada reranker veya cevap modeli kullanılmadı. [İki aday bütçesi, MRR/nDCG ve eşleştirilmiş karşılaştırmalar](reports/multimodal/code-dense-summary.md).
+
 **Altı native veri görünümünde boyut taraması tamamlandı:** 88 boyut/yöntem/aday bütçesi koşulu, önce özgün 768 boyut sonuçları doğrulanarak hesaplandı. Türkçe fotoğraf Hit@5, **512 boyutta %84,54; 768 boyutta %84,64**. Ham N-vektör alanı üçte bir azalıyor. 128 boyutta oran %66,65'e düşüyor. Videoda Hit@5, 512 boyutta %74,70; 768 boyutta %75,00. Bunlar bu veri kümelerinde gözlenen değerlerdir; çıkarım hızı veya istatistiksel eşdeğerlik iddiası değildir. [Boyut sonuçları](reports/multimodal-dimensions/README.md).
 
 [Ölçülen bütün koşular](reports/multimodal/README.md) · [Yerelde çalıştırma](docs/multimodal-running.md) · [Güncel çalışma durumu](docs/multimodal-status.md) · [Ayrıntılı deney planı](docs/multimodal-plan.tr.md) · [Planlanan bütün varyantlar](configs/multimodal-variants.csv)
