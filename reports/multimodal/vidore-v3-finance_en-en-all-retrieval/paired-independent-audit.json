@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "source_report_sha256": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
+  "paired_report_sha256": "3a3269329098cfa7aa334c2b9bd4cd6edfe0fd39980817bbce6916278bdf3750",
+  "independent_full_metric_audit_sha256": "f4b28448a8d2d08aa740b757328c1b39341f03493342fad8904665b2a0b087d0",
+  "checked_contrasts": 8,
+  "checked_descriptive_metrics": 16,
+  "query_count_per_contrast": 309,
+  "connected_source_groups": 1,
+  "confidence_intervals": "withheld",
+  "bootstrap_draws_performed": 0,
+  "new_model_calls": 0,
+  "method": "Read-only full-coverage stored metric pairing, after independent qrel formulas validated all 661878 values; independent means/wins/losses/ties and no-interval guard."
+}

@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "vidore-v3-finance_en-en",
+    "revision": "7f432c176d82e27546501ad8064a713ac3071809",
+    "track": "document",
+    "identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+    "corpus_count": 2942,
+    "query_count": 309,
+    "qrel_count": 1461,
+    "positive_qrel_count": 1461,
+    "empty_candidate_text_count": 19,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_report_sha256": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "withheld",
+    "withholding_reason": "Only one connected source group; a resampling confidence interval is not reported",
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_document_components",
+    "description": "Positive pages map to corpus.metadata.doc_id. Queries touching the same source document are connected transitively across multi-document positives.",
+    "query_count": 309,
+    "group_count": 1,
+    "source_unit_count": 6,
+    "source_association_count": 346,
+    "smallest_group_queries": 309,
+    "largest_group_queries": 309,
+    "largest_group_fraction": 1.0,
+    "mapping_sha256": "d4a4ae34bf99acdd205af27a85b666d71907d7e59a5e3a140b6ac7c408a606ec",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__n__none",
+      "requested_right": "document__s__none",
+      "left": {
+        "identity": "aa8a493dd45d651edd3e4096062bd5d77ca6ad20a280ad0e27b59d49a51110d8",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "2ce5663921b7a57f325d8a128bc52766ddd3ca3a8daf58ad5e5e7a89fdb7feba",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7766990291262136,
+          "right_mean": 0.8770226537216829,
+          "mean_difference": 0.10032362459546926,
+          "query_count": 309,
+          "wins": 55,
+          "losses": 24,
+          "ties": 230
+        },
+        "ndcg@10": {
+          "left_mean": 0.47954525927904973,
+          "right_mean": 0.6169683612644457,
+          "mean_difference": 0.13742310198539584,
+          "query_count": 309,
+          "wins": 177,
+          "losses": 84,
+          "ties": 48
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__n__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "aa8a493dd45d651edd3e4096062bd5d77ca6ad20a280ad0e27b59d49a51110d8",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "eb8beda8fa055d7a7a9935a69f7ed7accd02f67e784c0561652cdb902d5eda25",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7766990291262136,
+          "right_mean": 0.86084142394822,
+          "mean_difference": 0.08414239482200647,
+          "query_count": 309,
+          "wins": 31,
+          "losses": 5,
+          "ties": 273
+        },
+        "ndcg@10": {
+          "left_mean": 0.47954525927904973,
+          "right_mean": 0.5833379739008534,
+          "mean_difference": 0.1037927146218037,
+          "query_count": 309,
+          "wins": 187,
+          "losses": 45,
+          "ties": 77
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__s__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "2ce5663921b7a57f325d8a128bc52766ddd3ca3a8daf58ad5e5e7a89fdb7feba",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "eb8beda8fa055d7a7a9935a69f7ed7accd02f67e784c0561652cdb902d5eda25",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8770226537216829,
+          "right_mean": 0.86084142394822,
+          "mean_difference": -0.016181229773462782,
+          "query_count": 309,
+          "wins": 21,
+          "losses": 26,
+          "ties": 262
+        },
+        "ndcg@10": {
+          "left_mean": 0.6169683612644457,
+          "right_mean": 0.5833379739008534,
+          "mean_difference": -0.03363038736359215,
+          "query_count": 309,
+          "wins": 118,
+          "losses": 128,
+          "ties": 63
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__n__none",
+      "requested_right": "document__j__none",
+      "left": {
+        "identity": "aa8a493dd45d651edd3e4096062bd5d77ca6ad20a280ad0e27b59d49a51110d8",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "a4d7a59edf1741a2de49c6964d7b729990b8bd23d0411594afaf8cb1851f746c",
+        "variant_id": "document__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7766990291262136,
+          "right_mean": 0.8511326860841424,
+          "mean_difference": 0.0744336569579288,
+          "query_count": 309,
+          "wins": 32,
+          "losses": 9,
+          "ties": 268
+        },
+        "ndcg@10": {
+          "left_mean": 0.47954525927904973,
+          "right_mean": 0.5716142862341117,
+          "mean_difference": 0.09206902695506188,
+          "query_count": 309,
+          "wins": 163,
+          "losses": 80,
+          "ties": 66
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__b__none",
+      "requested_right": "document__g__none",
+      "left": {
+        "identity": "c2d9ae2ab6b7b9315cb9521e4a9c354c508a93a7ca921d887912a54070e27bba",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "b7953c33ffc52a63e9a371ff8a864adc9c7c500d2321ce2b2de8a1078cdef44f",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7896440129449838,
+          "right_mean": 0.7022653721682848,
+          "mean_difference": -0.08737864077669903,
+          "query_count": 309,
+          "wins": 31,
+          "losses": 58,
+          "ties": 220
+        },
+        "ndcg@10": {
+          "left_mean": 0.5313117142709104,
+          "right_mean": 0.438745231360055,
+          "mean_difference": -0.0925664829108554,
+          "query_count": 309,
+          "wins": 102,
+          "losses": 157,
+          "ties": 50
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__b__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "c2d9ae2ab6b7b9315cb9521e4a9c354c508a93a7ca921d887912a54070e27bba",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "7b8b07d3d4added9672e28808430dc2e270b49d720e749a986712430464a9c78",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7896440129449838,
+          "right_mean": 0.86084142394822,
+          "mean_difference": 0.07119741100323625,
+          "query_count": 309,
+          "wins": 43,
+          "losses": 21,
+          "ties": 245
+        },
+        "ndcg@10": {
+          "left_mean": 0.5313117142709104,
+          "right_mean": 0.5582723018874898,
+          "mean_difference": 0.02696058761657938,
+          "query_count": 309,
+          "wins": 148,
+          "losses": 109,
+          "ties": 52
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__g__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "b7953c33ffc52a63e9a371ff8a864adc9c7c500d2321ce2b2de8a1078cdef44f",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "7b8b07d3d4added9672e28808430dc2e270b49d720e749a986712430464a9c78",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7022653721682848,
+          "right_mean": 0.86084142394822,
+          "mean_difference": 0.15857605177993528,
+          "query_count": 309,
+          "wins": 55,
+          "losses": 6,
+          "ties": 248
+        },
+        "ndcg@10": {
+          "left_mean": 0.438745231360055,
+          "right_mean": 0.5582723018874898,
+          "mean_difference": 0.11952707052743478,
+          "query_count": 309,
+          "wins": 176,
+          "losses": 76,
+          "ties": 57
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    },
+    {
+      "status": "descriptive_only",
+      "requested_left": "document__b__none",
+      "requested_right": "document__b_g_e__none",
+      "left": {
+        "identity": "c2d9ae2ab6b7b9315cb9521e4a9c354c508a93a7ca921d887912a54070e27bba",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "right": {
+        "identity": "e690289046a46278e640d71e9027c06c463a00a9c28ed34c70176cad09036011",
+        "variant_id": "document__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 309
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7896440129449838,
+          "right_mean": 0.8576051779935275,
+          "mean_difference": 0.06796116504854369,
+          "query_count": 309,
+          "wins": 38,
+          "losses": 17,
+          "ties": 254
+        },
+        "ndcg@10": {
+          "left_mean": 0.5313117142709104,
+          "right_mean": 0.5863587421123918,
+          "mean_difference": 0.05504702784148129,
+          "query_count": 309,
+          "wins": 157,
+          "losses": 89,
+          "ties": 63
+        }
+      },
+      "reason": "Only one connected source group; a resampling confidence interval is not reported",
+      "largest_group_fraction": 1.0
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "descriptive_only": 8
+  },
+  "status": "partial"
+}

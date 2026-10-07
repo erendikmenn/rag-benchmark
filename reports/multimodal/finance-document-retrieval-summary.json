@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "dataset": "vidore-v3-finance_en-en",
+  "query_count": 309,
+  "page_count": 2942,
+  "positive_qrel_count": 1461,
+  "positive_grade_counts": {
+    "grade2": 400,
+    "grade1": 1061
+  },
+  "completed_none_cells": 126,
+  "reused_prior_bm25_cells": 2,
+  "new_main_cells_after_verified_overlap": 124,
+  "source_private_report_sha256": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
+  "source_public_report_sha256": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
+  "independent_audit_sha256": "f4b28448a8d2d08aa740b757328c1b39341f03493342fad8904665b2a0b087d0",
+  "independent_audit_source_sha256": "a002a6248ad129c20789c58fafac86d44a85e7128d2e660cd697d7dd43bd1246",
+  "original_bm25_report_sha256": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
+  "summary_source_sha256": "3365c341c75ac5204b2ac6b0094ccf2eea7e6c17348099905bb172773eb41f06",
+  "independent_verification": {
+    "checked_none_cells": 126,
+    "checked_query_results": 38934,
+    "independent_metric_values": 661878,
+    "source_rrf_rankings_checked": 38934,
+    "original_overlap_cells": 2,
+    "original_overlap_query_results": 618
+  },
+  "primary_channels": [
+    {
+      "channel": "B",
+      "label": "BM25 page text",
+      "variant_id": "document__b__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "B"
+      ],
+      "identity": "c2d9ae2ab6b7b9315cb9521e4a9c354c508a93a7ca921d887912a54070e27bba",
+      "metrics": {
+        "hit@5": 0.7896440129449838,
+        "recall@5": 0.46952815097251355,
+        "ndcg@10": 0.5313117142709103
+      }
+    },
+    {
+      "channel": "G",
+      "label": "BGE-M3 page text",
+      "variant_id": "document__g__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "G"
+      ],
+      "identity": "b7953c33ffc52a63e9a371ff8a864adc9c7c500d2321ce2b2de8a1078cdef44f",
+      "metrics": {
+        "hit@5": 0.7022653721682848,
+        "recall@5": 0.3758051241526849,
+        "ndcg@10": 0.4387452313600549
+      }
+    },
+    {
+      "channel": "E",
+      "label": "EG2 page text",
+      "variant_id": "document__e__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "E"
+      ],
+      "identity": "7b8b07d3d4added9672e28808430dc2e270b49d720e749a986712430464a9c78",
+      "metrics": {
+        "hit@5": 0.86084142394822,
+        "recall@5": 0.5293926366298545,
+        "ndcg@10": 0.5582723018874897
+      }
+    },
+    {
+      "channel": "N",
+      "label": "EG2 page image",
+      "variant_id": "document__n__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "N"
+      ],
+      "identity": "aa8a493dd45d651edd3e4096062bd5d77ca6ad20a280ad0e27b59d49a51110d8",
+      "metrics": {
+        "hit@5": 0.7766990291262136,
+        "recall@5": 0.4332143577897884,
+        "ndcg@10": 0.47954525927904973
+      }
+    },
+    {
+      "channel": "S",
+      "label": "ColQwen page image",
+      "variant_id": "document__s__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "S"
+      ],
+      "identity": "2ce5663921b7a57f325d8a128bc52766ddd3ca3a8daf58ad5e5e7a89fdb7feba",
+      "metrics": {
+        "hit@5": 0.8770226537216829,
+        "recall@5": 0.5481522023068959,
+        "ndcg@10": 0.6169683612644457
+      }
+    },
+    {
+      "channel": "J",
+      "label": "EG2 page image + text",
+      "variant_id": "document__j__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "J"
+      ],
+      "identity": "a4d7a59edf1741a2de49c6964d7b729990b8bd23d0411594afaf8cb1851f746c",
+      "metrics": {
+        "hit@5": 0.8511326860841424,
+        "recall@5": 0.5135735939727644,
+        "ndcg@10": 0.5716142862341117
+      }
+    }
+  ],
+  "best_multichannel_fusion_by_hit5": {
+    "per_channel": {
+      "variant_id": "document__s_j__none",
+      "budget_mode": "per_channel",
+      "channels": [
+        "S",
+        "J"
+      ],
+      "identity": "a49451f2c0f07248eacb95c337a067fe4893bbda5c44967f8d2029fc33c60df1",
+      "metrics": {
+        "hit@5": 0.9158576051779935,
+        "recall@5": 0.5981759389083023,
+        "ndcg@10": 0.6577995826873329
+      }
+    },
+    "total": {
+      "variant_id": "document__b_e_s_j__none",
+      "budget_mode": "total",
+      "channels": [
+        "B",
+        "E",
+        "S",
+        "J"
+      ],
+      "identity": "200a55e846a931d95799a0939702606be553cc30a558aca221dfcd0aff6e8946",
+      "metrics": {
+        "hit@5": 0.9158576051779935,
+        "recall@5": 0.5876622943997978,
+        "ndcg@10": 0.6405745105357166
+      }
+    }
+  },
+  "source_grouping": {
+    "method": "independent_positive_doc_id_connected_components",
+    "group_count": 1,
+    "source_document_count": 6,
+    "largest_group_queries": 309,
+    "largest_group_fraction": 1.0,
+    "positive_relations": 1461,
+    "independent_query_fallback": false
+  },
+  "confidence_intervals": {
+    "status": "withheld",
+    "reason": "All309 queries form one positive source-document connected component; no source-group resampling interval or independent-query fallback."
+  },
+  "scope": "63 retrieval subsets \u00d7 two budgets; no reranking or generated-answer accuracy",
+  "limitations": [
+    "Hit@5 and Recall@5 differ on this multi-positive page retrieval task.",
+    "Six positive source documents connect all queries into one group; repository/document independence is not established.",
+    "Best fusion is selected by observed Hit@5, not held-out tuning or a significance claim.",
+    "Model-specific visual budgets differ; this is not an equal-compute comparison.",
+    "Unavailable per-input diagnostics are not measured zero truncation or zero cost.",
+    "Cache validation is not new model inference; the verified BM25 overlaps are counted once."
+  ]
+}

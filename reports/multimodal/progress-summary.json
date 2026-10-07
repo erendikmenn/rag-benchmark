@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T15:28:57.889820+00:00",
+  "snapshot_utc": "2026-10-07T16:51:26.796875+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,10 +16,10 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1928,
-    "remaining_cells": 16532,
-    "completion_fraction": 0.10444203683640303,
-    "completion_percent": 10.444203683640303,
+    "completed_cells": 2052,
+    "remaining_cells": 16408,
+    "completion_fraction": 0.11115926327193933,
+    "completion_percent": 11.115926327193932,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
@@ -37,7 +37,7 @@
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 588,
+      "covered": 650,
       "planned": 3692
     }
   },
@@ -87,11 +87,11 @@
       }
     },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 38,
-    "raw_completed_export_cells": 2662,
-    "duplicate_completed_cell_occurrences": 734,
+    "full_collection_source_reports": 39,
+    "raw_completed_export_cells": 2788,
+    "duplicate_completed_cell_occurrences": 736,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "0f4745491bc6c10d296eea310e3c52fcb6c039fc4d0bdfae7a2daa47784930c9"
+    "canonical_key_manifest_sha256": "405c8187219ecd72eda005b9cfaaeca707343433cd966898799219a8876aa455"
   },
   "track_progress": [
     {
@@ -108,9 +108,9 @@
       "main_collections": 8,
       "retrieval_subsets_per_collection": 63,
       "planned_cells": 10080,
-      "completed_cells": 1020,
-      "remaining_cells": 9060,
-      "completion_fraction": 0.10119047619047619
+      "completed_cells": 1144,
+      "remaining_cells": 8936,
+      "completion_fraction": 0.11349206349206349
     },
     {
       "track": "environment_audio",
@@ -203,8 +203,8 @@
       "collection": "vidore-v3-finance_en-en",
       "track": "document",
       "planned_cells": 1260,
-      "completed_cells": 2,
-      "remaining_cells": 1258,
+      "completed_cells": 126,
+      "remaining_cells": 1134,
       "dataset_status": "ready",
       "manifest_sha256": "c7e6ae38778ad32c8157106c61f4c986505556b64147bcce0530a7e13c407186",
       "fully_completed_main_grid": false
@@ -380,7 +380,7 @@
         "evaluated_query_count": 5
       }
     ],
-    "dimension_sweep_cells": 120,
+    "dimension_sweep_cells": 136,
     "dimension_sweep_reports": [
       {
         "report": "../multimodal-dimensions/clotho-dcase2025-additional-relevance/dimension-sweep.json",
@@ -410,6 +410,11 @@
       {
         "report": "../multimodal-dimensions/vidore-v3-energy-fr/dimension-sweep.json",
         "sha256": "3270b36d8d6569663fd9dc8c37a7e872f80ceb50e4daa94efc62d39c49bd02da",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/vidore-v3-finance_en-en/dimension-sweep.json",
+        "sha256": "71c2c185ec58841a121217e5aa20036acaaed0c9105023b324080decbd311e30",
         "cells": 16
       },
       {
@@ -815,13 +820,26 @@
         }
       },
       {
+        "report": "vidore-v3-finance_en-en-all-retrieval/report.json",
+        "sha256": "975b1053a93eebecfdc7476d8c6313bf5675cc06cf9c757d2da602892f3f1808",
+        "dataset_id": "vidore-v3-finance_en-en",
+        "canonical_collection": "vidore-v3-finance_en-en",
+        "dataset_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+        "completed_export_cells": 126,
+        "new_canonical_cells_in_lexical_file_order": 126,
+        "cell_status_counts": {
+          "completed": 126,
+          "unsupported": 1134
+        }
+      },
+      {
         "report": "vidore-v3-finance_en-en-bm25/report.json",
         "sha256": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
         "dataset_id": "vidore-v3-finance_en-en",
         "canonical_collection": "vidore-v3-finance_en-en",
         "dataset_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
         "completed_export_cells": 2,
-        "new_canonical_cells_in_lexical_file_order": 2,
+        "new_canonical_cells_in_lexical_file_order": 0,
         "cell_status_counts": {
           "completed": 2,
           "unsupported": 18
