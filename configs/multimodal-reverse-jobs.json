@@ -27,7 +27,11 @@
         "--parent",
         "data/multimodal/xm3600-tr",
         "--run-dir",
-        "runs/ablations/xm3600-tr-reverse-eg2"
+        "runs/ablations/xm3600-tr-reverse-eg2",
+        "--media-baseline-run",
+        "runs/multimodal/xm3600-tr-native-specialist",
+        "--media-baseline-cache",
+        ".cache/multimodal"
       ]
     },
     {
@@ -47,7 +51,13 @@
         "--parent",
         "data/multimodal/xm3600-en",
         "--run-dir",
-        "runs/ablations/xm3600-en-reverse-eg2"
+        "runs/ablations/xm3600-en-reverse-eg2",
+        "--media-baseline-run",
+        "runs/multimodal/xm3600-tr-native-specialist",
+        "--media-baseline-cache",
+        ".cache/multimodal",
+        "--media-baseline-parent",
+        "data/multimodal/xm3600-tr"
       ]
     },
     {
@@ -67,7 +77,11 @@
         "--parent",
         "data/multimodal/fleurs-tr_tr-test",
         "--run-dir",
-        "runs/ablations/fleurs-tr_tr-test-reverse-eg2"
+        "runs/ablations/fleurs-tr_tr-test-reverse-eg2",
+        "--media-baseline-run",
+        "runs/multimodal/fleurs-tr_tr-test-native",
+        "--media-baseline-cache",
+        ".cache/multimodal"
       ]
     }
   ]

@@ -15,9 +15,11 @@ import math
 from pathlib import Path
 import sqlite3
 import subprocess
+import numpy as np
 
 from .models import MODEL_DEFAULTS, stable_hash
-from .multimodal import aggregate_metrics, cached_encode, exact_dot_rankings, graded_metrics, encoding_cache_identity
+from .multimodal import (aggregate_metrics, cached_encode, exact_dot_rankings, graded_metrics,
+    encoding_cache_identity, load_dataset, _channel_identity, _merge_diagnostics, _validate_vectors)
 from .multimodal_data import read_jsonl, sha256, validate_dataset
 from .multimodal_reverse_data import reverse_records, validate_reverse
 
@@ -208,7 +210,136 @@ def _verify_ranked_result(result, query_id, corpus_ids, labels, expected):
         raise ValueError('Cached reverse metrics differ from original qrels')
 
 
-def run_reverse(dataset_dir, parent_dir, run_dir, *, bridge=None, top_k=100, block_size=128):
+def _baseline_native_adapter(config):
+    from .multimodal_models import EmbeddingGemma2Adapter
+    return EmbeddingGemma2Adapter(config)
+
+
+def verified_media_baseline(dataset, parent_dir, bridge, baseline_run, cache_dir, baseline_parent=None):
+    """Read-only proof of parent N vectors, never a fresh-media encoding fallback.
+
+    The pinned native implementation ignores document text and consumes no text
+    for a textless media query. Equal config/adapter identity binds preprocessing,
+    packages, model revision, device/dtype and role-independent media preparation.
+    Actual media hashes bind the decoded inputs. Saved forward dot scores verify
+    both cached matrices against completed original measurements.
+    """
+    if baseline_run is None or cache_dir is None:
+        raise ValueError('Verified media baseline run and cache are required')
+    parent = load_dataset(baseline_parent or parent_dir)
+    validate_dataset(parent.root, verify_assets=True)
+    report_path = Path(baseline_run) / 'report.json'
+    report_hash = sha256(report_path)
+    report = json.loads(report_path.read_text())
+    spec = report['adapter_specs']['channels']['N']
+    adapter = _baseline_native_adapter(spec['config'])
+    if (spec['class'] != 'rag_benchmark.multimodal_models.EmbeddingGemma2Adapter'
+            or adapter.identity != spec['identity'] or adapter.identity != bridge.query.identity
+            or any(adapter.config.get(key) != value for key, value in spec['config'].items())
+            or adapter.config != bridge.query.config or adapter.config['mode'] != 'native'):
+        raise ValueError('Media baseline native model/config/implementation differs')
+    if report['dataset']['identity'] != parent.identity or report['scope'] != 'frozen_collection':
+        raise ValueError('Media baseline source or scope differs')
+    query_ids = [item['id'] for item in parent.queries]
+    corpus_ids = [item['id'] for item in parent.corpus]
+    if report['configuration']['query_ids'] != query_ids or report['evaluated_query_count'] != len(query_ids):
+        raise ValueError('Media baseline query coverage differs')
+    channel = report['channels']['N']
+    if channel['status'] != 'completed' or channel['identity'] != _channel_identity(parent, 'N', {'N': adapter}):
+        raise ValueError('Media baseline channel identity differs')
+    fingerprints = {str(report_path.resolve()): report_hash}
+    matrices, diagnostics = {}, {}
+    for role, items in (('document', parent.corpus), ('query', parent.queries)):
+        key = stable_hash({'encoding': encoding_cache_identity(parent, adapter, role), 'text_only': False})
+        if channel.get(role + '_encoding', {}).get('identity', key) != key:
+            raise ValueError('Media baseline encoding identity differs')
+        directory = Path(cache_dir) / 'vectors' / key
+        blocks, records, cursor = [], [], 0
+        for path in sorted(directory.glob('*.npy')):
+            start, stop = map(int, path.stem.split('-'))
+            if start != cursor or stop <= start or stop > len(items):
+                raise ValueError('Media baseline block coverage differs')
+            usage_path = path.with_suffix('.usage.json')
+            usage = json.loads(usage_path.read_text())
+            if usage.get('rows') != stop-start or [item['id'] for item in usage.get('items', [])] != [item['id'] for item in items[start:stop]]:
+                raise ValueError('Media baseline diagnostic source order differs')
+            values = np.load(path, allow_pickle=False)
+            _validate_vectors(values, stop-start, 768)
+            if not np.allclose(np.linalg.norm(values, axis=1), 1, rtol=0, atol=1e-5):
+                raise ValueError('Media baseline vectors are not unit normalized')
+            blocks.append(values)
+            records.append(usage)
+            cursor = stop
+            fingerprints[str(path.resolve())] = sha256(path)
+            fingerprints[str(usage_path.resolve())] = sha256(usage_path)
+        if cursor != len(items):
+            raise ValueError('Media baseline vector cache is missing rows')
+        matrices[role] = np.concatenate(blocks)
+        diagnostics[role] = _merge_diagnostics(records, len(items))
+    cells = [cell for cell in report['cells'] if cell['status'] == 'completed'
+        and cell['variant_id'].split('__')[1:] == ['n', 'none'] and cell['budget_mode'] == 'per_channel']
+    if len(cells) != 1:
+        raise ValueError('Media baseline completed native cell is unavailable')
+    cell = cells[0]
+    expected_identity = stable_hash({**report['configuration'], 'variant': cell['variant_id'],
+        'mode': cell['budget_mode'], 'candidate_k': None, 'channel_identities': {'N': channel['identity']},
+        'reranker': None, 'reranker_prompts': None})
+    if cell['identity'] != expected_identity or cell['completed_queries'] != len(query_ids):
+        raise ValueError('Media baseline native cell identity/coverage differs')
+    rankings = exact_dot_rankings(matrices['document'], matrices['query'], corpus_ids,
+        top_k=report['configuration']['channel_budget'])
+    measured = []
+    database_path = Path(baseline_run) / 'progress.sqlite3'
+    with sqlite3.connect(database_path.resolve().as_uri() + '?mode=ro', uri=True) as database:
+        stored = {qid: json.loads(payload) for qid, payload in database.execute(
+            'SELECT query_id,payload FROM results WHERE cell=?', (cell['identity'],))}
+    if set(stored) != set(query_ids):
+        raise ValueError('Media baseline stored query coverage differs')
+    maximum_score_delta = 0.0
+    for qid, ranking in zip(query_ids, rankings, strict=True):
+        result = stored[qid]
+        metrics = graded_metrics([item['id'] for item in ranking], parent.qrels[qid])
+        saved = result['ranking']
+        if (result.get('query_id') != qid or len(saved) != len(ranking)
+                or result['metrics'] != metrics
+                or any(old.get('id') != new['id'] or type(old.get('rank')) is not int or old['rank'] != new['rank']
+                    or type(old.get('score')) not in (int, float) or not math.isfinite(old['score'])
+                    or not math.isclose(old['score'], new['score'], rel_tol=0, abs_tol=2e-6)
+                    for old, new in zip(saved, ranking, strict=True))):
+            raise ValueError('Media baseline vectors disagree with measured rankings/scores/metrics')
+        maximum_score_delta = max(maximum_score_delta, max(
+            (abs(old['score'] - new['score']) for old, new in zip(saved, ranking, strict=True)), default=0))
+        measured.append(metrics)
+    if aggregate_metrics(measured) != cell['metrics']:
+        raise ValueError('Media baseline aggregate metrics differ')
+    mapping = {item['id']: index for index, item in enumerate(parent.corpus)}
+    indices = []
+    for query in dataset.queries:
+        if query.get('text') or query['id'] not in mapping:
+            raise ValueError('Reverse media query source mapping differs')
+        original = parent.corpus[mapping[query['id']]]
+        if set(original['media']) != set(query['media']) or set(query['media']) not in ({'image'}, {'audio'}):
+            raise ValueError('Reverse reuse supports only identical image/audio media inputs')
+        for modality, relative in query['media'].items():
+            if sha256(dataset.root / relative) != sha256(parent.root / original['media'][modality]):
+                raise ValueError('Reverse media input bytes differ')
+        indices.append(mapping[query['id']])
+    if any(sha256(Path(path)) != value for path, value in fingerprints.items()):
+        raise ValueError('Media baseline files changed during verification')
+    proof = {'source_report_sha256': report_hash, 'source_dataset_identity': parent.identity,
+        'native_adapter_identity': adapter.identity, 'native_cell_identity': cell['identity'],
+        'source_cache_sha256': stable_hash(sorted(fingerprints.values())),
+        'input_equivalence': 'same pinned native preprocessing; identical media bytes; no consumed text/prefix',
+        'stored_forward_results_verified': len(query_ids), 'stored_forward_results_sha256': stable_hash(stored),
+        'score_absolute_tolerance': 2e-6, 'maximum_observed_score_delta': maximum_score_delta,
+        'score_tolerance_reason': 'float32 dot-product accumulation across batch layouts; exact IDs/ranks/metrics required'}
+    return matrices['document'][indices], {'identity': stable_hash(proof), 'role': 'query',
+        'cache_rows': len(indices), 'new_rows': 0, 'inference_seconds': None,
+        'adapter_diagnostics': diagnostics['document'], 'media_baseline': proof}
+
+
+def run_reverse(dataset_dir, parent_dir, run_dir, *, bridge=None, top_k=100, block_size=128,
+                media_baseline_run=None, media_baseline_cache=None, media_baseline_parent=None):
     if type(top_k) is not int or top_k < 20:
         raise ValueError('Reverse stored top_k must cover all reported cutoffs (at least20)')
     dataset = verified_reverse(dataset_dir, parent_dir)
@@ -217,8 +348,16 @@ def run_reverse(dataset_dir, parent_dir, run_dir, *, bridge=None, top_k=100, blo
         raise ValueError('Reverse raw rankings/vectors must stay in a git-ignored run directory')
     bridge = bridge or ReverseEG2Bridge()
     bridge.validate()
+    try:
+        queries, query_usage = verified_media_baseline(dataset, parent_dir, bridge,
+            media_baseline_run, media_baseline_cache, media_baseline_parent)
+    except (ValueError, KeyError, OSError) as error:
+        return {'dataset': dataset.manifest['id'], 'status': 'unavailable', 'completed_queries': 0,
+            'planned_queries': len(dataset.queries), 'reason': 'Verified matching forward media vectors unavailable',
+            'unavailability_type': type(error).__name__, 'new_model_calls': 0,
+            'main_matrix_denominator_contribution': 0}
     seal = stable_hash({'version': VERSION, 'dataset': dataset.identity, 'bridge': bridge.identity,
-        'top_k': top_k, 'implementation': implementation_hashes()})
+        'top_k': top_k, 'media_baseline': query_usage['media_baseline'], 'implementation': implementation_hashes()})
     run.mkdir(parents=True, exist_ok=True)
     with (run / 'reverse.lock').open('w') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -244,8 +383,6 @@ def run_reverse(dataset_dir, parent_dir, run_dir, *, bridge=None, top_k=100, blo
             try:
                 documents, gallery_usage = verified_cached_encode(dataset, bridge.gallery, 'document', run / 'cache', block_size)
                 bridge.gallery.unload()
-                queries, query_usage = verified_cached_encode(dataset, bridge.query, 'query', run / 'cache', block_size)
-                bridge.query.unload()
                 bridge.validate()
                 rankings = exact_dot_rankings(documents, queries, [row['id'] for row in dataset.corpus], top_k=min(top_k, len(dataset.corpus)))
                 current_ids = {row['id'] for row in dataset.queries}
@@ -270,6 +407,7 @@ def run_reverse(dataset_dir, parent_dir, run_dir, *, bridge=None, top_k=100, blo
                 report.update(status='completed', completed_queries=len(metrics), metrics=aggregate_metrics(metrics),
                     result_cache_hits=hits, gallery_encoding=_public_usage(gallery_usage), query_encoding=_public_usage(query_usage, audio_required=dataset.manifest['kind'].startswith('audio')),
                     latency_scope='fresh encoding rows only; cached encodings/results are not inference')
+                report['media_baseline'] = query_usage['media_baseline']
             except Exception as error:
                 report.update(status='failed', reason='Reverse runtime failed; see ignored failures.jsonl')
                 with (run / 'failures.jsonl').open('a') as handle:
@@ -286,11 +424,17 @@ def main(argv=None):
     parser.add_argument('--dataset', type=Path, required=True)
     parser.add_argument('--parent', type=Path, required=True)
     parser.add_argument('--run-dir', type=Path, required=True)
+    parser.add_argument('--media-baseline-run', type=Path, required=True)
+    parser.add_argument('--media-baseline-cache', type=Path, required=True)
+    parser.add_argument('--media-baseline-parent', type=Path,
+        help='Frozen source of baseline run; permits cross-language reuse only with matching media IDs and bytes')
     parser.add_argument('--device', choices=('cpu', 'mps'), default='mps')
     parser.add_argument('--dtype', choices=('float32', 'bfloat16'), default='bfloat16')
     parser.add_argument('--output', type=Path, help='Optional aggregate-only report; raw cache stays in ignored run-dir')
     args = parser.parse_args(argv)
-    report = run_reverse(args.dataset, args.parent, args.run_dir, bridge=ReverseEG2Bridge(device=args.device, dtype=args.dtype))
+    report = run_reverse(args.dataset, args.parent, args.run_dir, bridge=ReverseEG2Bridge(device=args.device, dtype=args.dtype),
+        media_baseline_run=args.media_baseline_run, media_baseline_cache=args.media_baseline_cache,
+        media_baseline_parent=args.media_baseline_parent)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2) + '\n')
