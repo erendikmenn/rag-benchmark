@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 13:57 Europe/Istanbul.
+Updated: 2026-10-07 14:01 Europe/Istanbul.
 
 **The suite resumed at 13:01 Europe/Istanbul following the user’s explicit continuation request.** The old overnight cutoff no longer applies to this invocation. JavaScript dense retrieval has completed; Turkish speech Laya/BGE reranking is complete and Clotho source-only descriptions are active at this update; the complete research suite remains unfinished. [Earlier morning snapshot](multimodal-morning-report.tr.md). The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -52,7 +52,7 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 
 - The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
-- Latest implementation validation: 375 tests passed with the complete model dependencies; the minimal dependency environment passed 333 tests with 29 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+- Latest implementation validation: 407 tests passed with the complete model dependencies; the minimal dependency environment passed 344 tests with 50 optional-dependency skips. These are software checks, separate from benchmark accuracy.
 
 - [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech, video and CS document images. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
@@ -90,3 +90,5 @@ Raw datasets, full data-bearing prompt payloads, media, keys and local caches st
 - Turkish speech text reranking completed at 13:51 Europe/Istanbul: [434 full-query cells](../reports/multimodal/speech-reranker-summary.md), with 142,786 rankings and 2,427,362 metric values reproduced by both the engine-metric audit and an independent implementation. All 62 earlier retrieval baselines are unchanged. BGE preserves primary Hit@5 in all 31 subsets, improves Recall@5 in three and ties 28; Laya loses Recall@5 and nDCG@10 in all 31. The 93 primary paired contrasts use 329 transcript groups and 5,000 bootstrap samples/seed 42; speaker/topic dependence may remain. This is literal transcript retrieval, not answer correctness. The queue moved to source-only Clotho descriptions.
 
 - The resumable document QA runner is implemented and CPU-tested with a fake transport. It binds full actual retrieval rankings, source assets, prompts, config and verified runtime; validates cached answers and metrics before counting them; and leaves unsupported/failed evidence visible. No QA model inference has run. Full variant orchestration and human-calibrated semantic assessment remain pending.
+
+- [Reverse task data](../reports/multimodal-reverse-readiness.json) is prepared and independently checked: TR/EN image-query galleries have 3,600 queries and 7,233/7,200 annotated text candidates; speech has 743 audio queries and 329 normalized reference-transcript candidates. Parents and media checksums are unchanged. Explicit intended-reference-gallery provenance and runtime_ready=false prevent accidental forward-engine use. The dedicated reverse adapter and actual model measurements remain pending; zero main-matrix completion is claimed.

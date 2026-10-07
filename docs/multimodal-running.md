@@ -184,3 +184,25 @@ The example binds the actual BM25/per-channel retrieval cell. The runner registe
 Generation uses pinned Gemma 4 E4B Q4 weights/projector, temperature 0, seed 42, thinking disabled and 384 reserved output tokens. The instruction requires the question's language and JSON answer/citations. Up to five complete source texts must fit a 24,000-character cap; images follow the fixed 1,120-pixel maximum side. The backend separately enforces its verified context and normal completion. The earlier text pilot's 26B-A4B generator is a different condition.
 
 Raw requests, answers and errors are stored only in a git-ignored run directory. A run lock prevents duplicate owners. Source, config, verified runtime and full ranking hashes bind resume behavior. Resuming revalidates cached requests, predictions, citation IDs and recomputed metrics; corrupted completed rows become failed and are excluded, without automatic model retries. Ordinary failed attempts require explicit `--retry-failed`. `aggregate.json` reports completed-only means together with planned/completed/failed/unsupported counts; it never labels these lexical metrics as semantic accuracy. Full retrieval-variant orchestration, actual model execution and calibrated semantic assessment remain pending.
+
+### Reverse retrieval data preparation
+
+The CPU-only builder prepares separate media-query/reference-text-gallery tasks:
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_reverse_data \
+  --parent data/multimodal/xm3600-tr \
+  --output data/ablations/xm3600-tr-reverse-reference-gallery-v1
+```
+
+The output must be new and empty. Parent and derived record hashes and actual media bytes are validated; frozen parent records are not modified. The [prepared-view audit](../reports/multimodal-reverse-readiness.json) records:
+
+| Task | Media queries | Text gallery entries | Positive query–text labels |
+|---|---:|---:|---:|
+| XM3600 Turkish image → caption | 3,600 | 7,233 | 7,233 |
+| XM3600 English image → caption | 3,600 | 7,200 | 7,200 |
+| FLEURS audio → normalized reference transcript | 743 | 329 | 743 |
+
+Each image's annotated captions are positive; distinct caption IDs are preserved even when wording repeats. FLEURS uses the frozen normalized transcript groups. Reverse queries contain only source media, while human reference text is the explicitly intended search gallery. This is a separate task and must not be relabelled as source-only ASR or generated descriptions.
+
+These manifests have **`runtime_ready=false`**. The current forward engine rejects their separate track names; a reverse registry and a compatible media-query/text-gallery adapter are still required. No reverse model inference or retrieval quality has been measured. Direct audio queries and source-only Whisper queries must remain separate future conditions. These prepared views contribute zero cells to the main forward matrix.

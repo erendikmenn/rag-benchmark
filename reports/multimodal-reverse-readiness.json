@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "views": [
+    {
+      "id": "fleurs-tr_tr-test-reverse-reference-gallery-v1",
+      "kind": "audio_to_reference_transcript",
+      "status": "prepared_requires_reverse_engine",
+      "runtime_ready": false,
+      "counts": {
+        "corpus": 329,
+        "queries": 743,
+        "qrels": 743,
+        "media_files": 743
+      },
+      "identity": "a25525bd272b7cbc9b59d222dea6f1d88364ef68424f7ccbd57cbb8fd71d2bb1",
+      "parent_id": "fleurs-tr_tr-test",
+      "parent_manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
+      "main_matrix_denominator_contribution": 0,
+      "manifest_sha256": "d5568da26d1b352568ddbb6b37bf9118eb4a77bdf8b9adbdea16e10e116b512a",
+      "prepared_file_sha256": {
+        "corpus.jsonl": "3bc8054ee773d8bc431b33c22427dad57198e20d240c49243e850ba45d8127ae",
+        "queries.jsonl": "887b2450844d2ba20f9d1e1f41c681ec21e3ec3614f3c9115dcd85fad86e92a2",
+        "qrels.jsonl": "683f80013e0c8728b1ac02e1cffa114fbf428e2164c9262436975680366babf9",
+        "assets.jsonl": "4c02b3d7cc915ced4915af4c383a42aa6c47e865e266dbfadfd36692a4918634"
+      }
+    },
+    {
+      "id": "xm3600-en-reverse-reference-gallery-v1",
+      "kind": "image_to_caption",
+      "status": "prepared_requires_reverse_engine",
+      "runtime_ready": false,
+      "counts": {
+        "corpus": 7200,
+        "queries": 3600,
+        "qrels": 7200,
+        "media_files": 3600
+      },
+      "identity": "c08a4a73bc0cb9c52dadca27e149574ccfdff6784685efd39fd3d283841258da",
+      "parent_id": "xm3600-en",
+      "parent_manifest_sha256": "e3857cf70a73ca09b4c68d7b110c73d8ac7415ec503df32eacdf7e7b4c4c3a8c",
+      "main_matrix_denominator_contribution": 0,
+      "manifest_sha256": "e5f936e7aecd3fa667596e3a599e4ea72e73f8a800c566ab3a771e34bf22606a",
+      "prepared_file_sha256": {
+        "corpus.jsonl": "be5a94650fe28ea4851dcda8c3cf82249f161bee839705cf98e0920a8974c4c3",
+        "queries.jsonl": "491ce7eb536af04952c26dad710bd8b42fc67538e320d8596584db8e3ddc7cfa",
+        "qrels.jsonl": "3c79eedb70586d394f0e885317773b41469e1086ba57285451afa699a3ce2868",
+        "assets.jsonl": "d3ab55644165a0c99d637ffc623cd22e9965183ba10c6224283f8756337b458b"
+      }
+    },
+    {
+      "id": "xm3600-tr-reverse-reference-gallery-v1",
+      "kind": "image_to_caption",
+      "status": "prepared_requires_reverse_engine",
+      "runtime_ready": false,
+      "counts": {
+        "corpus": 7233,
+        "queries": 3600,
+        "qrels": 7233,
+        "media_files": 3600
+      },
+      "identity": "3b29b9658dfdce1796776c3f1e50f314abc0af78af0422365437c026d556f197",
+      "parent_id": "xm3600-tr",
+      "parent_manifest_sha256": "a9d214e69153ba42a1d5f617a05004c9b1f56f29879e7815b9d8db5692c3805a",
+      "main_matrix_denominator_contribution": 0,
+      "manifest_sha256": "760c9ff0c44a071eaba7c65bda907bd40c5adb800d5e215f9942abc534ad2182",
+      "prepared_file_sha256": {
+        "corpus.jsonl": "e30f65d52de219da679c9efbe954dffc358b148892828a724109de635d460d4e",
+        "queries.jsonl": "491ce7eb536af04952c26dad710bd8b42fc67538e320d8596584db8e3ddc7cfa",
+        "qrels.jsonl": "993b543d3d9ad0a1debec1ddaa5fc122aedd8220760fcbdafb0682884100a3e2",
+        "assets.jsonl": "d3ab55644165a0c99d637ffc623cd22e9965183ba10c6224283f8756337b458b"
+      }
+    }
+  ],
+  "model_calls": 0,
+  "runtime_ready": false,
+  "scope": "separate reverse tasks, data preparation only",
+  "preparation_implementation_sha256": "48f2a99e61ceaaac85d3c69c98a7e35419e13e007f1987ad845782af4c137a53"
+}
