@@ -112,13 +112,15 @@ def write_report_index(root: Path) -> None:
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and argv[0] in {"prepare", "preflight", "asr", "analyze"}:
+    if argv and argv[0] in {"prepare", "preflight", "asr", "analyze", "dimensions"}:
         if argv[0] == "prepare":
             from .multimodal_data import main as delegated
         elif argv[0] == "asr":
             from .multimodal_asr import main as delegated
         elif argv[0] == "analyze":
             from .multimodal_analysis import main as delegated
+        elif argv[0] == "dimensions":
+            from .multimodal_dimensions import main as delegated
         else:
             from .multimodal_models import main as delegated
         return delegated(argv[1:]) or 0

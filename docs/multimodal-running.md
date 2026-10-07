@@ -113,3 +113,20 @@ Multimodal BM25 uses `positive_scores_only_v1`: only candidates with a positive 
 For Gemma relevance on an audio collection containing sources longer than its 30-second input limit, explicitly select `--audio-overlength source_windows_max`. The wrapper retains the entire resampled waveform in contiguous windows, repeats complete provided source text in every window, scores each window, and takes the maximum actual score at the original source ID. It preserves negative scores and does not combine evidence across audio windows. Native short recordings are unchanged. This is a separately identified ranking protocol; without the flag, overlong audio raises an error instead of being clipped. The FLEURS collection contains one 36.84-second source requiring two windows. Source coverage and real model-backend health are reported separately from retrieval accuracy.
 
 For code reranking, use the independent `--code-rerank-overlength source_chunks_max` flag. It limits every reranker source chunk to 4,096 characters, also checking both text-embedding tokenizers, and preserves the complete function through deterministic source-order chunks. The original function receives the maximum actual chunk relevance score. The default text retrieval vectors stay unchanged; JavaScript can separately require `--code-overlength shared_segments_max` for retrieval. A function fitting an embedding tokenizer can still exceed Laya's serialized state limit, so retrieval and reranker input budgets are validated separately. Each base reranker retains its strict prompt/query context checks; this option never enables silent truncation.
+
+### Cached embedding dimension sweep
+
+After a full native run finishes, compare EG2 vector dimensions without new encoder inference:
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_cli dimensions \
+  --dataset data/multimodal/xm3600-tr \
+  --base-run runs/multimodal/xm3600-tr-native-specialist \
+  --output reports/multimodal-dimensions/xm3600-tr
+```
+
+The sweep first reproduces the original 768-dimensional rankings and every stored query metric. It validates the frozen dataset, adapter identity, complete ordered vector blocks, ranking cache and SQLite results. Missing or inconsistent native evidence produces an unavailable report. Specialist fusion is included only when its independent evidence also validates.
+
+The first 128/256/512 FP32 coordinates are copied and L2-normalized, then searched over the **entire corpus**. N+S is recalculated with S fixed and the original candidate budgets. Source inputs, weights and original inference precision remain fixed. Prefix normalization is mathematically equivalent to the adapter's dimension reduction, with possible small FP32 rounding differences; bitwise equivalence to a fresh direct-dimension model call is not claimed.
+
+The 128/256/512 dimensions reduce raw FP32 N-vector storage by 83.3% / 66.7% / 33.3%. These figures describe vector payloads, not total process memory, fused-index size or speed. No new encoder latency is inferred from cached results. Legacy caches may lack original per-vector checksums; the report records newly observed array and ordered-ID hashes and verifies the unchanged 768 baseline instead of inventing historical checksum metadata.

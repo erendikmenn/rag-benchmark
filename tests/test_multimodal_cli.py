@@ -6,7 +6,7 @@ import pytest
 from rag_benchmark.multimodal_cli import export_report, generation_server_command
 
 
-@pytest.mark.parametrize("command", ["asr", "prepare", "preflight", "analyze"])
+@pytest.mark.parametrize("command", ["asr", "prepare", "preflight", "analyze", "dimensions"])
 def test_delegated_command_help_preserves_argument_contract(command, capsys):
     from rag_benchmark.multimodal_cli import main
     with pytest.raises(SystemExit) as result:
