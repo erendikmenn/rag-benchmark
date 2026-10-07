@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "protocol": "separate-reverse-eg2-cosine-v1",
+  "dataset": "fleurs-tr_tr-test-reverse-reference-gallery-v1",
+  "dataset_identity": "a25525bd272b7cbc9b59d222dea6f1d88364ef68424f7ccbd57cbb8fd71d2bb1",
+  "status": "completed",
+  "planned_queries": 743,
+  "full_gallery_candidates": 329,
+  "top_k": 100,
+  "bridge": {
+    "family": "google/embeddinggemma-2",
+    "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+    "dimension": 768,
+    "device": "mps",
+    "dtype": "bfloat16",
+    "gallery_document_prefix": "title: none | text: ",
+    "query_condition": "native_media_only; existing native adapter consumes no textual query prefix",
+    "configured_native_query_prefix": "task: search result | query: ",
+    "cosine": "normalized full-gallery dot product",
+    "query_adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+    "gallery_adapter_identity": "ededf6d0f29a7cc169691b2f7ddbb11bfc4004c5731a1fa49a79082895ea22ed",
+    "implementation": {
+      "multimodal_reverse_runner.py": "578f03d269625d2b1fc6fbcc7e8119a143ccd7cd1a52c6725200cae4f1a6a096",
+      "multimodal_reverse_data.py": "48f2a99e61ceaaac85d3c69c98a7e35419e13e007f1987ad845782af4c137a53",
+      "multimodal.py": "6f1450292cc983f4f7c975203564c9b9ffa4bd43dc349e1ef1152c0122ecb636",
+      "multimodal_models.py": "f8c82a004c4343727e2cb6797ed92b7c7f9a11a602e1e3f20ed2bcfc0539d3a3",
+      "models.py": "5fcf6f8bb9093dc8a2351bf8eb1522883f0522793d2caf3e953865be9c2284ef"
+    }
+  },
+  "run_identity": "91ee83b9d0388bec0409f431deaf48fd7b7da486a3a15d2faecef6386e5c544f",
+  "completed_queries": 743,
+  "source_only_queries": true,
+  "gallery": "intended reference caption/transcript targets",
+  "main_matrix_denominator_contribution": 0,
+  "new_model_calls": null,
+  "grouping": {
+    "source_groups": 329,
+    "unit": "verified normalized transcript group",
+    "intervals": "not computed; same-source dependence explicit, speaker/topic dependencies may remain"
+  },
+  "specialist_reverse_support": "pending; no SigLIP/CLAP score claimed",
+  "generated_answer_accuracy": null,
+  "metrics": {
+    "hit@1": 0.9946164199192463,
+    "hit@10": 1.0,
+    "hit@20": 1.0,
+    "hit@5": 1.0,
+    "map@16": 0.996971736204576,
+    "mrr@1": 0.9946164199192463,
+    "mrr@10": 0.996971736204576,
+    "mrr@20": 0.996971736204576,
+    "mrr@5": 0.996971736204576,
+    "ndcg@1": 0.9946164199192463,
+    "ndcg@10": 0.9977435609943308,
+    "ndcg@20": 0.9977435609943308,
+    "ndcg@5": 0.9977435609943308,
+    "recall@1": 0.9946164199192463,
+    "recall@10": 1.0,
+    "recall@20": 1.0,
+    "recall@5": 1.0
+  },
+  "result_cache_hits": 0,
+  "gallery_encoding": {
+    "identity": "ebe0b34d1509dacd63bb8cd2a916350f04eed7b8390aec244028652463d8ed33",
+    "role": "document",
+    "cache_rows": 0,
+    "new_rows": 329,
+    "inference_seconds": 5.255830625072122,
+    "diagnostics": {
+      "status": "complete",
+      "total_rows": 329,
+      "missing_rows": 0,
+      "reported_rows": 329,
+      "expanded_tokens_max": null,
+      "original_tokens_total": 13897,
+      "retained_tokens_total": 13897,
+      "truncated_text_items": 0,
+      "observed_truncated_text_items": 0,
+      "processing_counts_observed": {},
+      "processing_settings": {}
+    },
+    "audio_sample_coverage": {
+      "status": "not_applicable",
+      "required_query_rows": 0,
+      "source_audio_samples_total": null,
+      "retained_audio_samples_total": null,
+      "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+    },
+    "cache_reads_are_inference": false
+  },
+  "query_encoding": {
+    "identity": "74325402f2224a4ce11ad8dcbfe85dc99ab77bbb07fc18e4d14f5b0fa208e284",
+    "role": "query",
+    "cache_rows": 743,
+    "new_rows": 0,
+    "inference_seconds": null,
+    "diagnostics": {
+      "status": "complete",
+      "total_rows": 743,
+      "missing_rows": 0,
+      "reported_rows": 743,
+      "expanded_tokens_max": 925,
+      "original_tokens_total": null,
+      "retained_tokens_total": null,
+      "truncated_text_items": null,
+      "observed_truncated_text_items": 0,
+      "processing_counts_observed": {},
+      "processing_settings": {}
+    },
+    "audio_sample_coverage": {
+      "status": "unavailable",
+      "required_query_rows": 743,
+      "source_audio_samples_total": null,
+      "retained_audio_samples_total": null,
+      "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+    },
+    "cache_reads_are_inference": false
+  },
+  "latency_scope": "fresh encoding rows only; cached encodings/results are not inference",
+  "media_baseline": {
+    "source_report_sha256": "f8f6deb9e3ffb01137887327ecebc0f032813af6270080e42c7daa6078ab6c17",
+    "source_dataset_identity": "bfbb1f94944b7bc8f2d50023b88c27d6690e71cfc4bc78ac9eb622e1f327d1d6",
+    "native_adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+    "native_cell_identity": "f6fb0affc101bf3036d8f4df2eadfe01a1d5949be7830d743455ee75671cbdc5",
+    "source_cache_sha256": "22ba455e5d30cb92a6b6363e14679a3609bb9baa88bc9f2b273c52306a34af77",
+    "input_equivalence": "same pinned native preprocessing; identical media bytes; no consumed text/prefix",
+    "stored_forward_results_verified": 329,
+    "stored_forward_results_sha256": "db150217cdcd28f00ecfb8a2e00f337993346578944f700be30402ba6557428b",
+    "score_absolute_tolerance": 2e-06,
+    "maximum_observed_score_delta": 0.0,
+    "score_tolerance_reason": "float32 dot-product accumulation across batch layouts; exact IDs/ranks/metrics required"
+  }
+}

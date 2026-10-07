@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "completed_protocol_jobs": 3,
+  "main_matrix_contribution": 0,
+  "query_provenance": "source media only; verified forward N media embeddings reused",
+  "gallery_provenance": "intended_reference_text_gallery",
+  "gold_fields_used": true,
+  "source_only_asr": false,
+  "generated_answer_accuracy_measured": false,
+  "independent_audit_sha256": "a11504c10a06862d616597f4f0168e63e6a81a16d004bead71fcab171a978b1e",
+  "checked_query_rankings": 7943,
+  "independent_metric_values": 135031,
+  "rows": [
+    {
+      "id": "xm3600-tr-reverse-eg2",
+      "label": "TR image → reference caption",
+      "source_report_sha256": "84a3dc30c990f2acfa558f7366d4217a831fb71904fa74c8b4f8f233fc81e6a6",
+      "public_report": "xm3600-tr-reverse-eg2.json",
+      "dataset_identity": "3b29b9658dfdce1796776c3f1e50f314abc0af78af0422365437c026d556f197",
+      "query_count": 3600,
+      "gallery_count": 7233,
+      "metrics": {
+        "hit@1": 0.6352777777777778,
+        "hit@10": 0.9358333333333333,
+        "hit@20": 0.97,
+        "hit@5": 0.8741666666666666,
+        "map@16": 0.6082579455652373,
+        "mrr@1": 0.6352777777777778,
+        "mrr@10": 0.7375705467372133,
+        "mrr@20": 0.740028140368117,
+        "mrr@5": 0.7290462962962962,
+        "ndcg@1": 0.6352777777777778,
+        "ndcg@10": 0.6894454057895483,
+        "ndcg@20": 0.7130853373305912,
+        "ndcg@5": 0.6491620410495209,
+        "recall@1": 0.31678240740740743,
+        "recall@10": 0.8029166666666666,
+        "recall@20": 0.8787037037037037,
+        "recall@5": 0.7022685185185186
+      },
+      "query_encoding": {
+        "identity": "5e5e889947fd8398c5ea08602babee30e1049b34092ec2a81fab9d9202a6b64b",
+        "role": "query",
+        "cache_rows": 3600,
+        "new_rows": 0,
+        "inference_seconds": null,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 3600,
+          "missing_rows": 0,
+          "reported_rows": 3600,
+          "expanded_tokens_max": 280,
+          "original_tokens_total": null,
+          "retained_tokens_total": null,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "not_applicable",
+          "required_query_rows": 0,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "gallery_encoding": {
+        "identity": "3690e729575627c297bf04b8d79c8f1660d03fca0a7ad83d1d2175bdcc23891f",
+        "role": "document",
+        "cache_rows": 0,
+        "new_rows": 7233,
+        "inference_seconds": 29.956642122473568,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 7233,
+          "missing_rows": 0,
+          "reported_rows": 7233,
+          "expanded_tokens_max": null,
+          "original_tokens_total": 183241,
+          "retained_tokens_total": 183241,
+          "truncated_text_items": 0,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "not_applicable",
+          "required_query_rows": 0,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "grouping": {
+        "source_groups": 3600,
+        "unit": "original image",
+        "intervals": "not computed; same-source dependence explicit, speaker/topic dependencies may remain"
+      }
+    },
+    {
+      "id": "xm3600-en-reverse-eg2",
+      "label": "EN image → reference caption",
+      "source_report_sha256": "d26a01b0df9967541017b525bdfc4eaf09d15fd443dc45a7a432d42d9ca870d7",
+      "public_report": "xm3600-en-reverse-eg2.json",
+      "dataset_identity": "c08a4a73bc0cb9c52dadca27e149574ccfdff6784685efd39fd3d283841258da",
+      "query_count": 3600,
+      "gallery_count": 7200,
+      "metrics": {
+        "hit@1": 0.6675,
+        "hit@10": 0.9441666666666667,
+        "hit@20": 0.9744444444444444,
+        "hit@5": 0.8913888888888889,
+        "map@16": 0.6458038007517174,
+        "mrr@1": 0.6675,
+        "mrr@10": 0.7633944003527336,
+        "mrr@20": 0.7655861117463929,
+        "mrr@5": 0.756037037037037,
+        "ndcg@1": 0.6675,
+        "ndcg@10": 0.7231464337225065,
+        "ndcg@20": 0.742914498054201,
+        "ndcg@5": 0.6843865779907182,
+        "recall@1": 0.33375,
+        "recall@10": 0.8354166666666667,
+        "recall@20": 0.8986111111111111,
+        "recall@5": 0.7384722222222222
+      },
+      "query_encoding": {
+        "identity": "5e5e889947fd8398c5ea08602babee30e1049b34092ec2a81fab9d9202a6b64b",
+        "role": "query",
+        "cache_rows": 3600,
+        "new_rows": 0,
+        "inference_seconds": null,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 3600,
+          "missing_rows": 0,
+          "reported_rows": 3600,
+          "expanded_tokens_max": 280,
+          "original_tokens_total": null,
+          "retained_tokens_total": null,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "not_applicable",
+          "required_query_rows": 0,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "gallery_encoding": {
+        "identity": "4b20bb9062886c206ba81e983a17a04bc56834e2d37d393d6665f77187c0c822",
+        "role": "document",
+        "cache_rows": 0,
+        "new_rows": 7200,
+        "inference_seconds": 28.53336954326369,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 7200,
+          "missing_rows": 0,
+          "reported_rows": 7200,
+          "expanded_tokens_max": null,
+          "original_tokens_total": 133903,
+          "retained_tokens_total": 133903,
+          "truncated_text_items": 0,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "not_applicable",
+          "required_query_rows": 0,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "grouping": {
+        "source_groups": 3600,
+        "unit": "original image",
+        "intervals": "not computed; same-source dependence explicit, speaker/topic dependencies may remain"
+      }
+    },
+    {
+      "id": "fleurs-tr_tr-test-reverse-eg2",
+      "label": "TR audio → reference transcript",
+      "source_report_sha256": "410e7ec710f51180f8f36536ad0aae231c11092e39ace00afce97c5a15d2266c",
+      "public_report": "fleurs-tr_tr-test-reverse-eg2.json",
+      "dataset_identity": "a25525bd272b7cbc9b59d222dea6f1d88364ef68424f7ccbd57cbb8fd71d2bb1",
+      "query_count": 743,
+      "gallery_count": 329,
+      "metrics": {
+        "hit@1": 0.9946164199192463,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.996971736204576,
+        "mrr@1": 0.9946164199192463,
+        "mrr@10": 0.996971736204576,
+        "mrr@20": 0.996971736204576,
+        "mrr@5": 0.996971736204576,
+        "ndcg@1": 0.9946164199192463,
+        "ndcg@10": 0.9977435609943308,
+        "ndcg@20": 0.9977435609943308,
+        "ndcg@5": 0.9977435609943308,
+        "recall@1": 0.9946164199192463,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "query_encoding": {
+        "identity": "74325402f2224a4ce11ad8dcbfe85dc99ab77bbb07fc18e4d14f5b0fa208e284",
+        "role": "query",
+        "cache_rows": 743,
+        "new_rows": 0,
+        "inference_seconds": null,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 743,
+          "missing_rows": 0,
+          "reported_rows": 743,
+          "expanded_tokens_max": 925,
+          "original_tokens_total": null,
+          "retained_tokens_total": null,
+          "truncated_text_items": null,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "unavailable",
+          "required_query_rows": 743,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "gallery_encoding": {
+        "identity": "ebe0b34d1509dacd63bb8cd2a916350f04eed7b8390aec244028652463d8ed33",
+        "role": "document",
+        "cache_rows": 0,
+        "new_rows": 329,
+        "inference_seconds": 5.255830625072122,
+        "diagnostics": {
+          "status": "complete",
+          "total_rows": 329,
+          "missing_rows": 0,
+          "reported_rows": 329,
+          "expanded_tokens_max": null,
+          "original_tokens_total": 13897,
+          "retained_tokens_total": 13897,
+          "truncated_text_items": 0,
+          "observed_truncated_text_items": 0,
+          "processing_counts_observed": {},
+          "processing_settings": {}
+        },
+        "audio_sample_coverage": {
+          "status": "not_applicable",
+          "required_query_rows": 0,
+          "source_audio_samples_total": null,
+          "retained_audio_samples_total": null,
+          "scope": "actual per-item diagnostics only; missing sample counts are unknown, never zero"
+        },
+        "cache_reads_are_inference": false
+      },
+      "grouping": {
+        "source_groups": 329,
+        "unit": "verified normalized transcript group",
+        "intervals": "not computed; same-source dependence explicit, speaker/topic dependencies may remain"
+      }
+    }
+  ],
+  "limits": [
+    "TR and EN use the same 3600 images; they are not independent source populations.",
+    "Speech targets are the normalized reference transcripts, not generated Whisper descriptions.",
+    "The speech media cache has no measured per-call retained-audio sample counts; these remain unavailable.",
+    "No confidence interval, specialist reverse comparison or generated-answer accuracy is claimed.",
+    "Fresh gallery-text encoding was measured; media-vector cache reuse is not new model inference."
+  ]
+}

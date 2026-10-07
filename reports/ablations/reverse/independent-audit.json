@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "audit_source_sha256": "12a5307d25b5d2b4fd150b0eaa0a30c50b93132a99b812fb4b8508477fa1f03d",
+  "new_model_calls": 0,
+  "main_matrix_contribution": 0,
+  "checked_query_rankings": 7943,
+  "independent_metric_values": 135031,
+  "maximum_score_delta": 0.0,
+  "jobs": [
+    {
+      "id": "xm3600-tr-reverse-eg2",
+      "status": "passed",
+      "checked_query_rankings": 3600,
+      "independent_metric_values": 61200,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "84a3dc30c990f2acfa558f7366d4217a831fb71904fa74c8b4f8f233fc81e6a6",
+      "gallery_provenance": "intended_reference_text_gallery",
+      "gold_fields_used": true,
+      "query_provenance": "frozen_parent_media",
+      "source_only_asr": false,
+      "source_count": 7233
+    },
+    {
+      "id": "xm3600-en-reverse-eg2",
+      "status": "passed",
+      "checked_query_rankings": 3600,
+      "independent_metric_values": 61200,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "d26a01b0df9967541017b525bdfc4eaf09d15fd443dc45a7a432d42d9ca870d7",
+      "gallery_provenance": "intended_reference_text_gallery",
+      "gold_fields_used": true,
+      "query_provenance": "frozen_parent_media",
+      "source_only_asr": false,
+      "source_count": 7200
+    },
+    {
+      "id": "fleurs-tr_tr-test-reverse-eg2",
+      "status": "passed",
+      "checked_query_rankings": 743,
+      "independent_metric_values": 12631,
+      "maximum_score_delta": 0.0,
+      "source_report_sha256": "410e7ec710f51180f8f36536ad0aae231c11092e39ace00afce97c5a15d2266c",
+      "gallery_provenance": "intended_reference_text_gallery",
+      "gold_fields_used": true,
+      "query_provenance": "frozen_parent_media",
+      "source_only_asr": false,
+      "source_count": 329
+    }
+  ],
+  "limits": [
+    "Cached-vector arithmetic and frozen provenance proof; does not prove encoder semantic quality or repeat model inference.",
+    "Baseline identity/cache checks reuse guarded runner bridge validation; extension ranking and all metric math are independent.",
+    "Float32 dot batches match recorded runner arithmetic (reverse64/code32); independent full sort. Score tolerance2e-6; exact IDs/ranks. No confidence intervals or answer-quality claims."
+  ]
+}
