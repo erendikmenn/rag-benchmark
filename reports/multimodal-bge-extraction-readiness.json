@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "synthetic_cpu_extraction_and_process_resume_review_passed",
+  "source_sha256": {
+    "src/rag_benchmark/multimodal_bge_extra_backend.py": "c218e6d3341ee101f6457dee966ee6907d8871914a816699856251ab94a1addc",
+    "tests/test_multimodal_bge_extra_backend.py": "fec3035d23276fef720cc165e0c0116fe8b1778882685de2bdc824c0bcda58e3"
+  },
+  "targeted_source_tests": 24,
+  "independent_regressions": 2,
+  "project_validation": {
+    "full_passed": 588,
+    "minimal_passed": 466,
+    "minimal_optional_skips": 109,
+    "ruff": "passed"
+  },
+  "contract": {
+    "native_cls": "same hidden batch, two native Torch normalization stages then FP32 renormalization",
+    "baseline_absolute_tolerance": 2e-06,
+    "baseline_relative_tolerance": 0,
+    "heads": "same unchanged hidden batch; published sparse and ColBERT formulas",
+    "head_origin": "injected_arrays_not_claimed_trained",
+    "head_and_token_storage_dtype": "float32",
+    "roles": "separate query and document identities; JavaScript chunk identity retained",
+    "cache": "private OS-locked, atomic checksummed files; fail-closed interrupted/corrupt state; concurrent completed-cache reuse"
+  },
+  "new_real_model_calls": 0,
+  "pretrained_tensor_loads": 0,
+  "main_matrix_progress_increment": 0,
+  "actual_model_compatibility_measured": false,
+  "actual_gpu_throughput_measured": false,
+  "limits": [
+    "Only injected synthetic callbacks and head arrays were exercised; production model loading, CLI and scoring orchestration remain pending.",
+    "Process-interruption behavior tested; complete power-loss durability is not claimed because parent directory creation durability has not been established.",
+    "Full baseline validation repeats per batch; large-corpus production performance must be profiled before use.",
+    "Original SentenceTransformers length-sorting behavior is not implemented by this injected backend; any native CLS mismatch rejects extraction."
+  ]
+}
