@@ -51,7 +51,7 @@ Kaynak: [XM3600 proje](https://google.github.io/crossmodal-3600/), [makale ve di
 
 ### Görsel belge: ViDoRe V3'ün sekiz açık koleksiyonu
 
-- Toplam 19.256 sayfa, çeviriler hariç 2.419 temel sorgu. Sekiz arşiv ayrı aranır. Genel makro ortalama ayrıca sunulur.
+- Makalede 19.256 sayfa bildiriliyor; sabitlenen indirilebilir sürümde enerji koleksiyonunun dört eksik kaydı nedeniyle **19.252 sayfa** ve çeviriler hariç **2.419 temel sorgu** doğrulandı. Sekiz arşiv ayrı aranır. Genel makro ortalama ayrıca sunulur.
 - Girdi: sorulan bilgiyi içeren sayfayı bulma sorgusu. Çıktı: PDF/sayfa kimlikleri.
 - B/G/E: veri kümesinin yayımladığı çıkarılmış markdown. N: sayfa görüntüsü. S: ColQwen2.5. J: görüntü + aynı markdown.
 - Ek temsil koşulları: yayımlanmış markdown; kendi sabit yerel OCR çıktımız; kaynaktan çıkarılabilen doğal PDF metni. Bunlar birbirinin yerine sessizce geçirilmez.

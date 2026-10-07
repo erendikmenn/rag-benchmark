@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 03:07 Europe/Istanbul.
+Updated: 2026-10-07 03:25 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -32,7 +32,7 @@ Independent dataset downloads, tests and CPU baselines run concurrently. One hea
 
 The durable local queue is `work/overnight/continue_suite.py`, with journal `work/overnight/suite-state.json`, top-level log `work/overnight/suite.log` and per-job logs under `work/overnight/suite-logs/`. It owns an exclusive GPU lock and an idle-sleep assertion. The first worker finished; the continuation queue is now active. It stops launching new jobs at 09:00 and records deferred work. Do not start a second queue while its PID is active. The separate CPU worker is `work/overnight/run_bm25.py`, with log `bm25-positive.log`. It finished all six code and eight PDF baselines under the positive-only lexical policy (54,980 queries); no CPU rerun is needed without a changed protocol. The earlier `finish_bm25.py` chain was cancelled; do not restart it.
 
-The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. Parameter sweeps and answer-generation evaluation remain pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
+The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. The first parameter sweep is complete on five native dataset views: 128/256/512/768 dimensions with validated cached vectors and full-corpus search (72 dimension/method/budget cells). Remaining representation/parameter sweeps and answer-generation evaluation are pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
 
 Raw datasets, prompts, media, keys and local caches stay out of Git. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. Overnight continuation checks are scheduled through 09:00 Europe/Istanbul on 2026-10-07.
 
@@ -52,4 +52,6 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
-- Latest implementation validation: 322 tests passed with the complete model dependencies; the minimal dependency environment passed 291 tests with 18 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+- Latest implementation validation: 337 tests passed with the complete model dependencies; the minimal dependency environment passed 306 tests with 18 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+
+- [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols and Turkish speech. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
