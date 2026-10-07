@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "synthetic_cpu_review_passed",
+  "policy": "module_normalize_then_encode_normalize_then_fp32_renormalize",
+  "policy_version": 1,
+  "source_sha256": {
+    "src/rag_benchmark/multimodal_bge_extra_native.py": "508a6084c383481d1c31fc08c2924e48a1bf96c45c97454d5e07aa3e6e0aa3f1",
+    "tests/test_multimodal_bge_extra_native.py": "1d85f2d5b1ee88c8a87f1c4773277d08341b6572cc0d516b298d9a99d15eda53"
+  },
+  "actual_installed_and_cached_config_evidence": {
+    "sentence_transformers_version": "6.1.0",
+    "sentence_transformer_source_sha256": "3d677757bf3e684c45d3634ae67918cd9a67cee6aac6760e5fa1c72dfe820650",
+    "dense_models_source_sha256": "5fcf6f8bb9093dc8a2351bf8eb1522883f0522793d2caf3e953865be9c2284ef",
+    "normalization_module_sources": {
+      "normalize": "70df2751f2b7af5312ff5ea52c1650eb566e186bc08312a89457e587c059024f",
+      "module_loader": "082aa947667a3db02a0ed57be76af7bf79b72ff85d6b97d2c257a19d03be4fe0",
+      "file_loader": "cf32f552607a4bf40f77bef9de5ba7193cb772a0749e382836d1524126279b2a"
+    },
+    "modules_sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "cls_pooling_sha256": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+    "module_normalize_config": "absent_default_sentence_embedding",
+    "native_torch_normalization_count": 2
+  },
+  "full_environment": {
+    "passed": 32,
+    "failed": 0
+  },
+  "minimal_environment": {
+    "passed": 3,
+    "optional_skips": 29,
+    "failed": 0
+  },
+  "native_normalization_sequence": [
+    "CLS module Torch normalize in native dtype/device",
+    "encode Torch normalize in native dtype/device",
+    "CPU float32 conversion",
+    "NumPy float32 renormalization"
+  ],
+  "independent_bf16_omitted_module_max_delta": 0.00021845102310180664,
+  "baseline_absolute_tolerance": 2e-06,
+  "baseline_relative_tolerance": 0,
+  "checks": [
+    "Direct native division reference matches two native normalization stages",
+    "One-native BF16 result is explicitly rejected",
+    "8192 full native token boundary preserved",
+    "Invalid masks, padding, truncation, token ID types and devices rejected",
+    "Supplied dense override unsupported",
+    "Exact installed/source/model-config evidence required; missing evidence fails",
+    "Module import remains optional without installing runtime dependencies"
+  ],
+  "new_model_calls": 0,
+  "trained_head_or_model_tensor_loads": 0,
+  "main_matrix_contribution": 0,
+  "actual_model_compatibility_measured": false,
+  "actual_mps_compatibility_measured": false,
+  "limits": [
+    "Synthetic CPU arithmetic and source/config review only; no production backend, cache locking or runtime model integration verified.",
+    "Initial one-native-normalization test passes were withdrawn and replaced by corrected two-native-stage review."
+  ],
+  "project_validation": {
+    "full_passed": 564,
+    "minimal_passed": 463,
+    "minimal_optional_skips": 88,
+    "ruff": "passed"
+  }
+}
