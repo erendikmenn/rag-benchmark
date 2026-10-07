@@ -1,0 +1,824 @@
+{
+  "schema_version": 1,
+  "snapshot_utc": "2026-10-07T05:46:52.472584+00:00",
+  "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
+  "main_matrix": {
+    "planned_collections": 21,
+    "planned_collection_retrieval_subsets": 923,
+    "budget_modes": [
+      "per_channel",
+      "total"
+    ],
+    "rerank_candidate_grid": [
+      20,
+      50,
+      100
+    ],
+    "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
+    "planned_cells": 18460,
+    "completed_cells": 1048,
+    "remaining_cells": 17412,
+    "completion_fraction": 0.05677139761646804,
+    "completion_percent": 5.677139761646804,
+    "collections_with_any_completed_cell": 20,
+    "fully_completed_collection_grids": 0
+  },
+  "alternative_coverage_measures": {
+    "global_method_families": {
+      "completed_at_least_one_collection": 236,
+      "planned": 1284,
+      "coverage_percent": 18.38006230529595,
+      "limitation": "Collapses languages, collections, budgets and K values; not the main-matrix completion percentage."
+    },
+    "global_method_budget_k_units": {
+      "covered_at_least_one_collection": 976,
+      "planned": 6420,
+      "coverage_percent": 15.202492211838006,
+      "limitation": "Collapses languages and collections."
+    },
+    "collection_method_families": {
+      "covered": 272,
+      "planned": 3692
+    }
+  },
+  "counting_rules": {
+    "canonical_key": [
+      "logical_collection",
+      "variant_id",
+      "budget_mode",
+      "candidate_k"
+    ],
+    "eligible_scope": "frozen_collection with evaluated and completed query counts equal to the full dataset query count",
+    "successful_status_only": "completed",
+    "failed_unsupported_planned_cells_count_as_complete": false,
+    "aliases": {
+      "fleurs-tr_tr-whisper": "fleurs-tr_tr-test"
+    },
+    "alias_validation": "FLEURS original and ASR-view query, qrel and asset inventories are byte-identical.",
+    "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
+    "full_collection_source_reports": 31,
+    "raw_completed_export_cells": 1696,
+    "duplicate_completed_cell_occurrences": 648,
+    "duplicate_metric_mismatches": 0,
+    "canonical_key_manifest_sha256": "1059d8c12e2df8330f65b2b98570f052f50a9b3354f5cafd0c534ce4231bd9ac"
+  },
+  "track_progress": [
+    {
+      "track": "photo",
+      "main_collections": 2,
+      "retrieval_subsets_per_collection": 63,
+      "planned_cells": 2520,
+      "completed_cells": 12,
+      "remaining_cells": 2508,
+      "completion_fraction": 0.004761904761904762
+    },
+    {
+      "track": "document",
+      "main_collections": 8,
+      "retrieval_subsets_per_collection": 63,
+      "planned_cells": 10080,
+      "completed_cells": 896,
+      "remaining_cells": 9184,
+      "completion_fraction": 0.08888888888888889
+    },
+    {
+      "track": "environment_audio",
+      "main_collections": 2,
+      "retrieval_subsets_per_collection": 63,
+      "planned_cells": 2520,
+      "completed_cells": 12,
+      "remaining_cells": 2508,
+      "completion_fraction": 0.004761904761904762
+    },
+    {
+      "track": "speech",
+      "main_collections": 1,
+      "retrieval_subsets_per_collection": 31,
+      "planned_cells": 620,
+      "completed_cells": 62,
+      "remaining_cells": 558,
+      "completion_fraction": 0.1
+    },
+    {
+      "track": "video",
+      "main_collections": 1,
+      "retrieval_subsets_per_collection": 63,
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "completion_fraction": 0.004761904761904762
+    },
+    {
+      "track": "code",
+      "main_collections": 6,
+      "retrieval_subsets_per_collection": 7,
+      "planned_cells": 840,
+      "completed_cells": 60,
+      "remaining_cells": 780,
+      "completion_fraction": 0.07142857142857142
+    },
+    {
+      "track": "composed_image",
+      "main_collections": 1,
+      "retrieval_subsets_per_collection": 31,
+      "planned_cells": 620,
+      "completed_cells": 0,
+      "remaining_cells": 620,
+      "completion_fraction": 0.0
+    }
+  ],
+  "collection_progress": [
+    {
+      "collection": "xm3600-tr",
+      "track": "photo",
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "dataset_status": "ready",
+      "manifest_sha256": "a9d214e69153ba42a1d5f617a05004c9b1f56f29879e7815b9d8db5692c3805a",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "xm3600-en",
+      "track": "photo",
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "dataset_status": "ready",
+      "manifest_sha256": "e3857cf70a73ca09b4c68d7b110c73d8ac7415ec503df32eacdf7e7b4c4c3a8c",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-computer_science-en",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 882,
+      "remaining_cells": 378,
+      "dataset_status": "ready",
+      "manifest_sha256": "20d464b6546be9d9c0e054c17773525c0a6abeeeb57ea2a9c75d25d502a58dca",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-energy-fr",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "712021e7dd694fbef131e21e1d239ecf92db40f1cc2d9d2b0a6d63bcef2c189a",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-finance_en-en",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "c7e6ae38778ad32c8157106c61f4c986505556b64147bcce0530a7e13c407186",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "251c2711e8feea18803a253bb2b42341d5865a9d2feb7ea9f273690a871782b4",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-hr-en",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "798abf416c28f84f651d28d6024793eced406f3557eb4871a9a371ae7f8e12cc",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-industrial-en",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "6784077a070285b476d1ea2ad194d860c715894c2079aa3f6d9c9866c8ef8c6f",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "273be849f7be26c5a1235608599cd21e56aa0190b0570e2e003dfd2cb4fd976e",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "vidore-v3-physics-fr",
+      "track": "document",
+      "planned_cells": 1260,
+      "completed_cells": 2,
+      "remaining_cells": 1258,
+      "dataset_status": "ready",
+      "manifest_sha256": "3ec00f9615f6781960ac3b20b8425befaf7411fff75503e9a0bff776697b3d96",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "clotho-v2.1-evaluation",
+      "track": "environment_audio",
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "dataset_status": "ready",
+      "manifest_sha256": "b30c055d659645e3d891fda5400a54fc730c281fdba32081a2293aa758002d54",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "clotho-dcase2025-additional-relevance",
+      "track": "environment_audio",
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "dataset_status": "ready",
+      "manifest_sha256": "e31edbd871bf985846d012433fc6a2aa6bc9d6f2f8a9145381db31bc48a4b3fa",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "fleurs-tr_tr-test",
+      "track": "speech",
+      "planned_cells": 620,
+      "completed_cells": 62,
+      "remaining_cells": 558,
+      "dataset_status": "ready",
+      "manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "msrvtt-1k-a",
+      "track": "video",
+      "planned_cells": 1260,
+      "completed_cells": 6,
+      "remaining_cells": 1254,
+      "dataset_status": "ready",
+      "manifest_sha256": "8fb10031d053934b87fa7509c4c0b2d91c83311085952aeb514d8556e4dcbd8b",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-python-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 14,
+      "remaining_cells": 126,
+      "dataset_status": "ready",
+      "manifest_sha256": "4ee147d5f1c6037ebf12f8e7ed861c8c843564a30c0c8d8afd54db181df305a6",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-ruby-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 14,
+      "remaining_cells": 126,
+      "dataset_status": "ready",
+      "manifest_sha256": "540b4fb044bdb8a915fbd2c4d744b97a5fa89ea982e35f82a7443e466c1a17ec",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-go-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 14,
+      "remaining_cells": 126,
+      "dataset_status": "ready",
+      "manifest_sha256": "c3ee79500faa596a2b89b6ff09e5ae774f74fb6a7fb4cfd83986d3687d13d588",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-java-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 14,
+      "remaining_cells": 126,
+      "dataset_status": "ready",
+      "manifest_sha256": "cfa6756226c6a8b4bf11680adb620a3a455558f9caaa6103f5fbaa3be6a5dde5",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-php-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 2,
+      "remaining_cells": 138,
+      "dataset_status": "ready",
+      "manifest_sha256": "bb5e58ed6a1121da9490fd1b238cc087fb9ef1c39bbd3a3d46006965985a2880",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "codesearchnet-javascript-test",
+      "track": "code",
+      "planned_cells": 140,
+      "completed_cells": 2,
+      "remaining_cells": 138,
+      "dataset_status": "ready",
+      "manifest_sha256": "566a17640e5fda4b33cd1e7238bc404d4f73ee67c41346151d8c282a7fff08ba",
+      "fully_completed_main_grid": false
+    },
+    {
+      "collection": "cirr-validation",
+      "track": "composed_image",
+      "planned_cells": 620,
+      "completed_cells": 0,
+      "remaining_cells": 620,
+      "dataset_status": "unavailable",
+      "manifest_sha256": "a7269bf42b81d031987cd0a2936f7a8bdc73999df33b3fc602f81536864add12",
+      "fully_completed_main_grid": false
+    }
+  ],
+  "excluded_work": {
+    "technical_or_partial_query_reports": [
+      {
+        "report": "vidore-v3-computer_science-en-gemma-technical-5q/report.json",
+        "sha256": "29ec227941f994ac7a9da00bac9d07eea2c58449f34a61c74ed79c2f76e8786c",
+        "reason": "Not a full frozen-collection query evaluation",
+        "scope": "smoke",
+        "evaluated_query_count": 5
+      }
+    ],
+    "dimension_sweep_cells": 104,
+    "dimension_sweep_reports": [
+      {
+        "report": "../multimodal-dimensions/clotho-dcase2025-additional-relevance/dimension-sweep.json",
+        "sha256": "24eb6975f417756162af6a22252c18e1f26584f6c45c92df246c9cc224d06bcd",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/clotho-v2.1-evaluation/dimension-sweep.json",
+        "sha256": "19ec82b38b5bf2a669719fd160f13c13ad3f7a7433fc3c42715ea2b3c7ac0fe6",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/fleurs-tr_tr-test/dimension-sweep.json",
+        "sha256": "e09e0580af264472e2789ce840bd578bcb716f89bca9b90245b839d9ba0c7782",
+        "cells": 8
+      },
+      {
+        "report": "../multimodal-dimensions/msrvtt-1k-a/dimension-sweep.json",
+        "sha256": "789b604ee160245ca5001bcbf739d0227bcd4a789761f86735df81193f55ebaa",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/vidore-v3-computer_science-en/dimension-sweep.json",
+        "sha256": "1dfb550b27946204007f1b4129bc26b8aee7078b2f158ccbd6ae5c7d114b4fd2",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/xm3600-en/dimension-sweep.json",
+        "sha256": "0def8a63f2c5e17bc008423c614e78bd7be54ede97e415b884ef1aee60df7087",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/xm3600-tr/dimension-sweep.json",
+        "sha256": "319a698e0cff0ac1ef9d0b7ecf85c11455fc627a7c0373331ccb3278cb96a9fb",
+        "cells": 16
+      }
+    ],
+    "other_not_enumerated_in_main_denominator": [
+      "Additional input representations and controlled parameter ablations",
+      "Human-validated paraphrase and language extensions",
+      "Reverse-direction tasks",
+      "Generated-answer/QA evaluation"
+    ],
+    "in_flight_and_unpublished_work": "Excluded until a full-query completed cell is published",
+    "blocked_collection": "CIRR remains in the planned denominator with zero completed cells; its authorized source-media requirement is unresolved."
+  },
+  "provenance": {
+    "registry": "../../configs/multimodal-variants.csv",
+    "registry_sha256": "0c0c9e3e4f8e4689b19f06d03a46756f4f51c806a710e8d7384adbb0a24ad1d3",
+    "plan": "../../docs/multimodal-plan.tr.md",
+    "plan_sha256": "5a976937e060ea9fb3b6aa993b17906cefef155101e336432d09d372b7215b94",
+    "source_reports": [
+      {
+        "report": "clotho-dcase2025-additional-relevance-native-specialist/report.json",
+        "sha256": "5bce81c7ebf5f028d5f3a5317b12f362edc6e5ecdd378ed7e744de27f56c1fb1",
+        "dataset_id": "clotho-dcase2025-additional-relevance",
+        "canonical_collection": "clotho-dcase2025-additional-relevance",
+        "dataset_identity": "65b017a1802327bbcc7cae694a50e3bdcaddf569fbd3799e0b3f2b3e1525260e",
+        "completed_export_cells": 6,
+        "new_canonical_cells_in_lexical_file_order": 6,
+        "cell_status_counts": {
+          "completed": 6,
+          "unsupported": 54
+        }
+      },
+      {
+        "report": "clotho-v2.1-evaluation-native-specialist/report.json",
+        "sha256": "01315657df7fae310ca482a59c280a923439c1be3cd6b482995990a49566a6c5",
+        "dataset_id": "clotho-v2.1-evaluation",
+        "canonical_collection": "clotho-v2.1-evaluation",
+        "dataset_identity": "211b493ea3486d92625e8e0e7c1153409b8c745a45c0fd944971544c7d8a11d0",
+        "completed_export_cells": 6,
+        "new_canonical_cells_in_lexical_file_order": 6,
+        "cell_status_counts": {
+          "completed": 6,
+          "unsupported": 54
+        }
+      },
+      {
+        "report": "codesearchnet-go-test-bm25/report.json",
+        "sha256": "d3df9db3b9f39a5c8a1edb78a1285d3aa19eca96cd8ce6fd145ebf45b4ddf0f2",
+        "dataset_id": "codesearchnet-go-test",
+        "canonical_collection": "codesearchnet-go-test",
+        "dataset_identity": "c37f153707ebafa260d8beed34aaf8f251b08e1beedf708c9e4395e4399e08e5",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-go-test-dense-fusions/report.json",
+        "sha256": "9249e48e06b694b322d0a98f72a7642392fb6930ae8698f422589479b7373474",
+        "dataset_id": "codesearchnet-go-test",
+        "canonical_collection": "codesearchnet-go-test",
+        "dataset_identity": "c37f153707ebafa260d8beed34aaf8f251b08e1beedf708c9e4395e4399e08e5",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
+        }
+      },
+      {
+        "report": "codesearchnet-java-test-bm25/report.json",
+        "sha256": "4bdd0b8ad8f6547aeb3d6667644bbf2381b4fbd44797ae50e92225c6488845da",
+        "dataset_id": "codesearchnet-java-test",
+        "canonical_collection": "codesearchnet-java-test",
+        "dataset_identity": "b65fcd6dbd409046f8690937f6183bfc5d03f5f53debc197db6d7a2755b6e6e7",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-java-test-dense-fusions/report.json",
+        "sha256": "b28afa903383e6da115b7894757790a00c3b3ba1163e73d3489aabf37698ddd1",
+        "dataset_id": "codesearchnet-java-test",
+        "canonical_collection": "codesearchnet-java-test",
+        "dataset_identity": "b65fcd6dbd409046f8690937f6183bfc5d03f5f53debc197db6d7a2755b6e6e7",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
+        }
+      },
+      {
+        "report": "codesearchnet-javascript-test-bm25/report.json",
+        "sha256": "325df9123e86d4649a1a82da0823b860799a820f96033486fe0b42ca9c0baa8b",
+        "dataset_id": "codesearchnet-javascript-test",
+        "canonical_collection": "codesearchnet-javascript-test",
+        "dataset_identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-php-test-bm25/report.json",
+        "sha256": "7cded430d477558942a8bdab7929b579aedb60f22d50360207e8ad24524ea284",
+        "dataset_id": "codesearchnet-php-test",
+        "canonical_collection": "codesearchnet-php-test",
+        "dataset_identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-python-test-bm25/report.json",
+        "sha256": "fd7bd3737c292515918713a7574edcd8932848847a5379356310b28e26a9b495",
+        "dataset_id": "codesearchnet-python-test",
+        "canonical_collection": "codesearchnet-python-test",
+        "dataset_identity": "73f7abdacf709516e24c2edab11e76960a8ff1651d157ab858437bef6d81818b",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-python-test-dense-fusions/report.json",
+        "sha256": "7a897dd5f348d1273caf24347e84f2ad3d1e073027cc8c4535e8f4e4fe75235b",
+        "dataset_id": "codesearchnet-python-test",
+        "canonical_collection": "codesearchnet-python-test",
+        "dataset_identity": "73f7abdacf709516e24c2edab11e76960a8ff1651d157ab858437bef6d81818b",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
+        }
+      },
+      {
+        "report": "codesearchnet-ruby-test-bm25/report.json",
+        "sha256": "c667b1ceacb30f9d840f1eca8c3ddbbbecd60a645e09fb1e7f7694be4d5a6bd7",
+        "dataset_id": "codesearchnet-ruby-test",
+        "canonical_collection": "codesearchnet-ruby-test",
+        "dataset_identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "codesearchnet-ruby-test-dense-fusions/report.json",
+        "sha256": "6ecdd78245c61b20e31f1282c6bd05f4a24158718373cab0c7fb28565a4588a3",
+        "dataset_id": "codesearchnet-ruby-test",
+        "canonical_collection": "codesearchnet-ruby-test",
+        "dataset_identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+        "completed_export_cells": 14,
+        "new_canonical_cells_in_lexical_file_order": 12,
+        "cell_status_counts": {
+          "completed": 14,
+          "unsupported": 126
+        }
+      },
+      {
+        "report": "fleurs-tr_tr-test-native/report.json",
+        "sha256": "f8f6deb9e3ffb01137887327ecebc0f032813af6270080e42c7daa6078ab6c17",
+        "dataset_id": "fleurs-tr_tr-test",
+        "canonical_collection": "fleurs-tr_tr-test",
+        "dataset_identity": "bfbb1f94944b7bc8f2d50023b88c27d6690e71cfc4bc78ac9eb622e1f327d1d6",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "fleurs-tr_tr-whisper-all-retrieval/report.json",
+        "sha256": "1307ce8e55acdc26c11aba51ac35944b7fffbc28e726b4ad4140e59284cc32fa",
+        "dataset_id": "fleurs-tr_tr-whisper",
+        "canonical_collection": "fleurs-tr_tr-test",
+        "dataset_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+        "completed_export_cells": 62,
+        "new_canonical_cells_in_lexical_file_order": 60,
+        "cell_status_counts": {
+          "completed": 62,
+          "unsupported": 558
+        }
+      },
+      {
+        "report": "msrvtt-1k-a-native-specialist/report.json",
+        "sha256": "dd11e771f6b36166067d8fb1a3dc813eb1dbe2cc05a4b979616e16622f62c81c",
+        "dataset_id": "msrvtt-1k-a",
+        "canonical_collection": "msrvtt-1k-a",
+        "dataset_identity": "4e333f7ac0d9301552980c65052a1981ac4c75192ce26309d05fc6bdc0ef04e7",
+        "completed_export_cells": 6,
+        "new_canonical_cells_in_lexical_file_order": 6,
+        "cell_status_counts": {
+          "completed": 6,
+          "unsupported": 54
+        }
+      },
+      {
+        "report": "vidore-cs-bm25/report.json",
+        "sha256": "ae63418dbce5955da883f0078712b63e90b398fb5a446540553cdda0b42c4b59",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-cs-native/report.json",
+        "sha256": "c10ff2e67505b5507c69ffec2fca61d3b64d0f26c05209977fb8c892deaad318",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "unsupported": 618,
+          "completed": 2
+        }
+      },
+      {
+        "report": "vidore-v3-computer_science-en-all-retrieval/report.json",
+        "sha256": "9c6d8197cea74ca1c40187e12c48c7aabc7050a24d8bd722ee4866d5bcb72836",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 126,
+        "new_canonical_cells_in_lexical_file_order": 122,
+        "cell_status_counts": {
+          "completed": 126,
+          "unsupported": 1134
+        }
+      },
+      {
+        "report": "vidore-v3-computer_science-en-bm25/report.json",
+        "sha256": "cdf2cff910792c9197c7375657c987efbe723b469d197460a5efbf12f92b1656",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 0,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-computer_science-en-laya-complete/report.json",
+        "sha256": "9075f5e4f1b8d81d9f3260e3e1598005d638a3d257031b80f278eba881b5772a",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 504,
+        "new_canonical_cells_in_lexical_file_order": 378,
+        "cell_status_counts": {
+          "completed": 504
+        }
+      },
+      {
+        "report": "vidore-v3-computer_science-en-text-rerankers/report.json",
+        "sha256": "e9cfa04468e2cdcfbb0bda7e9e083ac3b28d293c9c481bebbfae3a255c8ccf1b",
+        "dataset_id": "vidore-v3-computer_science-en",
+        "canonical_collection": "vidore-v3-computer_science-en",
+        "dataset_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+        "completed_export_cells": 882,
+        "new_canonical_cells_in_lexical_file_order": 378,
+        "cell_status_counts": {
+          "completed": 882,
+          "unsupported": 378
+        }
+      },
+      {
+        "report": "vidore-v3-energy-fr-bm25/report.json",
+        "sha256": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
+        "dataset_id": "vidore-v3-energy-fr",
+        "canonical_collection": "vidore-v3-energy-fr",
+        "dataset_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-finance_en-en-bm25/report.json",
+        "sha256": "975f18cdbf5d5bb44934be3cd5793b61cecbda67b720c1d48c289cc9f4b325ce",
+        "dataset_id": "vidore-v3-finance_en-en",
+        "canonical_collection": "vidore-v3-finance_en-en",
+        "dataset_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-finance_fr-fr-bm25/report.json",
+        "sha256": "923406783c71dcd19672cd4958166baac7412e2f804f93e00af44441d764e35e",
+        "dataset_id": "vidore-v3-finance_fr-fr",
+        "canonical_collection": "vidore-v3-finance_fr-fr",
+        "dataset_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-hr-en-bm25/report.json",
+        "sha256": "b1e28d6d06d2dd0a898d49d016cbfe9424addc47d45c8603b2469d6ae3df4b90",
+        "dataset_id": "vidore-v3-hr-en",
+        "canonical_collection": "vidore-v3-hr-en",
+        "dataset_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-industrial-en-bm25/report.json",
+        "sha256": "09c4b964a44a6a16cbb1808f0539e82c5d54e0a09865c26695c4682e86c799ac",
+        "dataset_id": "vidore-v3-industrial-en",
+        "canonical_collection": "vidore-v3-industrial-en",
+        "dataset_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-pharmaceuticals-en-bm25/report.json",
+        "sha256": "6c5edb0b1074082bc25e17d846686382cd3d2c89162a0272e34eed22ee6f5e65",
+        "dataset_id": "vidore-v3-pharmaceuticals-en",
+        "canonical_collection": "vidore-v3-pharmaceuticals-en",
+        "dataset_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "vidore-v3-physics-fr-bm25/report.json",
+        "sha256": "3f8374e785a59b0140c3ad957fc84102cbf22d9da4adf7d908308088bca11161",
+        "dataset_id": "vidore-v3-physics-fr",
+        "canonical_collection": "vidore-v3-physics-fr",
+        "dataset_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "xm3600-en-native-specialist/report.json",
+        "sha256": "294663a5a338f41f2e00eced6a4e8f07b8ff3b5cb5e71b529f35989e8bbf0f7f",
+        "dataset_id": "xm3600-en",
+        "canonical_collection": "xm3600-en",
+        "dataset_identity": "0e0a2711ee373605b6d775caa6bb966bd695d4b582c116a7fd2a8686a1c96001",
+        "completed_export_cells": 6,
+        "new_canonical_cells_in_lexical_file_order": 6,
+        "cell_status_counts": {
+          "completed": 6,
+          "unsupported": 54
+        }
+      },
+      {
+        "report": "xm3600-tr-native/report.json",
+        "sha256": "def342394516b4fb708a7b13ca029e8bf5e5ea9405272209fb651e7ac94b3053",
+        "dataset_id": "xm3600-tr",
+        "canonical_collection": "xm3600-tr",
+        "dataset_identity": "2ccde82f4a5ba3d752c7c8ccb2aa0ca632f6da17db0a05e28bcd31a7f84d0b5a",
+        "completed_export_cells": 2,
+        "new_canonical_cells_in_lexical_file_order": 2,
+        "cell_status_counts": {
+          "completed": 2,
+          "failed": 40,
+          "unsupported": 18
+        }
+      },
+      {
+        "report": "xm3600-tr-native-specialist/report.json",
+        "sha256": "1c3adf4a31734b634b884dc6d5fe708c79fa044ca4c9f8e82f9a3f5f3b80d576",
+        "dataset_id": "xm3600-tr",
+        "canonical_collection": "xm3600-tr",
+        "dataset_identity": "d83dfd5b9232939c750c6e58911aa40160595ab96ceb5b3f5a991be3308a8fcb",
+        "completed_export_cells": 6,
+        "new_canonical_cells_in_lexical_file_order": 4,
+        "cell_status_counts": {
+          "completed": 6,
+          "unsupported": 54
+        }
+      }
+    ]
+  },
+  "validation": {
+    "status": "passed",
+    "unique_registry_families": 1284,
+    "full_query_counts_checked": true,
+    "duplicate_metrics_exact": true,
+    "new_model_calls_by_summary": 0,
+    "raw_text_or_local_paths_published": false
+  },
+  "limitations": [
+    "Completion is counted in experiment cells, not estimated hours, cost or difficulty.",
+    "The 21-collection denominator fixes main official-language collections plus the declared Clotho additional-relevance protocol; optional translations and other extensions are outside it.",
+    "All published dimensions, extra ablations and QA work are outside this denominator; this is not an exact percentage of the entire project.",
+    "Having one measured cell in a collection does not mean that collection's complete matrix is finished."
+  ]
+}

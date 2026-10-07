@@ -1,7 +1,7 @@
 # Çoklu ortam arama benchmark'ı: bütün geçerli varyantlar
 
 Tarih: 7 Ekim 2026. Donanım: M4 Max, 128 GB unified memory.
-Durum: **Deney planı. Bu yeni deneyler çalıştırılmadı; bu dosyada sonuç veya tahmini başarı yüzdesi yok.**
+Durum: **Dondurulmuş deney planı. Koşular sürüyor; gerçekleşen sonuçlar ve kalan işler [güncel durum belgesinde](multimodal-status.md), ana matris kapsamı [ilerleme raporunda](../reports/multimodal/progress-summary.md) tutulur.**
 
 Amaç: EmbeddingGemma 2'nin metin, görüntü, ses ve videodaki katkısını; metne dönüştürülmüş içerik üzerinden BM25/BGE araması, uzman modeller, hibrit arama ve yeniden sıralamayla karşılaştırmak. Kod metin görevidir. İlk aşamada etiketli kaynak bulmayı, uygun veri kümelerinde ayrıca cevap üretmeyi ölçeriz.
 
@@ -68,7 +68,7 @@ Kaynak: [ViDoRe V3 veri ve protokol](https://huggingface.co/blog/QuentinJG/intro
 - Girdi: “Yağmur ve gök gürültüsü duyulan kayıt.” Çıktı: ses dosyası kimlikleri.
 - B/G/E: ham kayıttan üretilmiş ses olayı betimlemesi. N: ham ses. S: CLAP. J: ham ses + üretilmiş betimleme.
 - Ek temsil koşulları: ham ses / üretilmiş ses betimlemesi / gerçek ASR çıktısı; yedi birleşim. ASR konuşmasız kayıtta boş kalabilir; bu koşul ses olayını yazıya dökme modeliyle aynı sayılmaz.
-- Özgün eşleşmelerde R@1/5/10. Aynı kayıtlar için sağlanan 1.069 çok-ilgili sorguda ayrıca resmî mAP@16.
+- Özgün eşleşmelerde R@1/5/10. Aynı kayıtlar için sabitlenen ek alaka dosyasındaki 1.037 çok-ilgili sorguda ayrıca resmî mAP@16.
 - Ses betimlemelerini üretme süresi toplam indeks hazırlama maliyetine eklenir.
 
 Kaynak: [DCASE 2025 Clotho protokolü](https://dcase.community/challenge2025/task-language-based-audio-retrieval), [sabit medya arşivi](https://zenodo.org/records/4783391).

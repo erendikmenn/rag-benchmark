@@ -10,6 +10,8 @@
 
 The new suite tests **photo, visual document, environmental audio, Turkish speech, video, code and composed image queries**. Its registered scope is **321 retrieval combinations × four ranking conditions = 1,284 method families**, with additional dataset/language and parameter views. These are planned methods, **not completed experiments**.
 
+**Main-matrix coverage: 1,048 / 18,460 conditions (5.68%).** This expands the 21 planned collections by method, candidate budget and rerank K; repeated exports and technical smoke checks are excluded. Extra representation/parameter and answer-quality experiments are outside this denominator. This is coverage, not elapsed-work or time remaining. [Count and scope](reports/multimodal/progress-summary.md).
+
 **Visual-document retrieval is complete on ViDoRe V3 computer science:** 215 queries over 1,360 pages, all 63 nonempty combinations of six channels and two candidate budgets (**126 cells**). Standalone-channel results are:
 
 | Method | Hit@5 | Recall@5 | nDCG@10 |
@@ -44,19 +46,19 @@ All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**
 
 **BM25 completed all six code and eight document collections: 54,980 queries.** The lexical baselines use positive matches only; dense/fusion/reranker runs are still in progress. [Baseline table and exact counts](reports/multimodal/bm25-summary.md).
 
-**Code retrieval is complete for Python, Ruby and Go:** 14,918 Python, 1,261 Ruby and 8,122 Go queries over 43,827 / 4,360 / 28,120 functions respectively. Seven methods × two candidate budgets × three languages give **42 completed cells on 24,301 queries**; the primary per-channel Hit@5 results are:
+**Code retrieval is complete for Python, Ruby, Go and Java:** 14,918 / 1,261 / 8,122 / 10,955 queries over 43,827 / 4,360 / 28,120 / 40,347 functions respectively. Seven methods × two candidate budgets × four languages give **56 completed cells on 35,256 queries**; the primary per-channel Hit@5 results are:
 
-| Method | Python Hit@5 | Ruby Hit@5 | Go Hit@5 |
-|---|---:|---:|---:|
-| BM25 | 38.93% | 45.60% | 61.94% |
-| BGE-M3 | 62.18% | 68.20% | 87.70% |
-| EmbeddingGemma 2 | 84.46% | 86.28% | 96.28% |
-| BM25 + BGE-M3 | 59.41% | 64.71% | 85.71% |
-| BM25 + EG2 | 69.25% | 70.74% | 89.51% |
-| BGE-M3 + EG2 | 76.77% | 78.75% | 93.39% |
-| BM25 + BGE-M3 + EG2 | 73.56% | 74.94% | 92.07% |
+| Method | Python Hit@5 | Ruby Hit@5 | Go Hit@5 | Java Hit@5 |
+|---|---:|---:|---:|---:|
+| BM25 | 38.93% | 45.60% | 61.94% | 39.42% |
+| BGE-M3 | 62.18% | 68.20% | 87.70% | 63.73% |
+| EmbeddingGemma 2 | 84.46% | 86.28% | 96.28% | 83.80% |
+| BM25 + BGE-M3 | 59.41% | 64.71% | 85.71% | 61.36% |
+| BM25 + EG2 | 69.25% | 70.74% | 89.51% | 71.11% |
+| BGE-M3 + EG2 | 76.77% | 78.75% | 93.39% | 76.99% |
+| BM25 + BGE-M3 + EG2 | 73.56% | 74.94% | 92.07% | 74.66% |
 
-EG2 leads these three fixed code-search tests; equal-weight RRF fusion did not improve it. Source comments/reference docstrings were removed, and no reranker or answer model is involved. [Both candidate budgets, MRR/nDCG and paired comparisons](reports/multimodal/code-dense-summary.md).
+EG2 leads these four fixed code-search tests; equal-weight RRF fusion did not improve it. Source comments/reference docstrings were removed, and no reranker or answer model is involved. [Both candidate budgets, MRR/nDCG and paired comparisons](reports/multimodal/code-dense-summary.md).
 
 **Dimension sweep complete on seven native dataset views:** 104 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. Video Hit@5 is 74.70% at 512 versus 75.00% at 768. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).
 

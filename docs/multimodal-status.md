@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 08:12 Europe/Istanbul.
+Updated: 2026-10-07 08:45 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -13,7 +13,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
 | Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete; source-only Whisper ASR complete on all 743 recordings (WER 7.29%); all 31 B/G/E/N/J subsets × two budgets complete (62 cells); speech rerankers pending |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
-| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python, Ruby and Go full B/G/E comparisons complete (24,301 queries, 42 cells); Java dense retrieval running; PHP/JavaScript queued |
+| Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python, Ruby, Go and Java full B/G/E comparisons complete (35,256 queries, 56 cells); PHP dense retrieval running; JavaScript queued |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
 
 ## Dataset and model audit notes
@@ -34,7 +34,7 @@ The durable local queue is `work/overnight/continue_suite.py`, with journal `wor
 
 The next steps are full native/specialist retrieval on ready datasets, source-only ASR/caption views, compatible B/G/E/N/S/J fusions, and the three optional rerankers. The first parameter sweep is complete on seven native dataset views: 128/256/512/768 dimensions with validated cached vectors and full-corpus search (104 dimension/method/budget cells). Remaining representation/parameter sweeps and answer-generation evaluation are pending. The complete family/budget grid contains substantially more work than a single retrieval run; no unmeasured completion time or accuracy is promised.
 
-Raw datasets, prompts, media, keys and local caches stay out of Git. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. Overnight continuation checks are scheduled through 09:00 Europe/Istanbul on 2026-10-07.
+Raw datasets, prompts, media, keys and local caches stay out of Git. Publish only aggregate reports and tested source changes in atomic commits. Refresh English/Turkish READMEs after meaningful completed milestones. New GPU jobs stop launching at 09:00 Europe/Istanbul on 2026-10-07. Monitoring continues through 10:00 only to observe an already-running job, publish its completed results and close the overnight report.
 
 ## Completed audits and current limitations
 
@@ -58,7 +58,7 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - [Video comparison](../reports/multimodal/msrvtt-1k-a-native-specialist/paired-comparisons.md): full 1K-A gallery and prescribed 1,000 queries complete. Both adapters use 1 fps / at most 16 visual frames; no soundtrack is consumed. EG2 beats the CLIP frame-pooling baseline by 21.20 percentage points at Hit@5 (95% paired interval: 18.20–24.20).
 
-- [Python/Ruby/Go dense retrieval](../reports/multimodal/code-dense-summary.md): all 42 method/budget cells complete on 24,301 queries. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby; Go is 96.28% / 87.70% / 61.94%. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
+- [Python/Ruby/Go/Java dense retrieval](../reports/multimodal/code-dense-summary.md): all 56 method/budget cells complete on 35,256 queries. EG2 / BGE-M3 / BM25 Hit@5 is 84.46% / 62.18% / 38.93% for Python and 86.28% / 68.20% / 45.60% for Ruby; Go is 96.28% / 87.70% / 61.94%; Java is 83.80% / 63.73% / 39.42%. Equal-weight RRF did not improve standalone EG2; code-generation correctness is not measured.
 
 - [CS document comparison](../reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md): 126 completed retrieval cells. Highest observed primary Hit@5 is BM25 + native EG2 + ColQwen (98.14%); standalone ColQwen has the highest Recall@5 (65.34%) and nDCG@10 (0.7585). All 215 queries connect into one source-document group, so paired confidence intervals are withheld. These are descriptive test-set comparisons.
 
@@ -73,4 +73,6 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - [Full Turkish speech ASR and retrieval](../reports/multimodal/speech-asr-summary.md): all 743 recordings transcribed, no empty transcripts; corpus WER 965 / 13,233 = 7.29% (716 substitutions, 126 deletions, 123 insertions). All 62 retrieval cells cover the same 329 transcript queries and 743 candidates. B/G/E searching Whisper text and J using audio + Whisper text each achieve Hit@1, Recall@5 and nDCG@10 of 1.0. This transcript-match task is saturated for those text methods; it is not a paraphrase or question-answering evaluation. The original native task is repeated in this derived view and is not independent additional evidence. ASR completed at 07:49 and retrieval at 07:53 Europe/Istanbul; Go dense retrieval followed. Full speech reranking remains pending.
 
-- Go dense retrieval completed at 08:08 Europe/Istanbul: all 8,122 queries over 28,120 functions, with 14 completed method/budget cells. EG2 exceeds BGE-M3 by 8.58 percentage points at Hit@5 (95% paired source-function interval: 7.93–9.22). This interval groups functions, not whole repositories, and is an exploratory comparison. Java is the next active GPU job; other code, document, generation and reranking conditions remain pending.
+- Go dense retrieval completed at 08:08 Europe/Istanbul: all 8,122 queries over 28,120 functions, with 14 completed method/budget cells. EG2 exceeds BGE-M3 by 8.58 percentage points at Hit@5 (95% paired source-function interval: 7.93–9.22). This interval groups functions, not whole repositories, and is an exploratory comparison. Java followed and completed at 08:37; PHP is now active. Other code, document, generation and reranking conditions remain pending.
+
+- [Main-matrix progress](../reports/multimodal/progress-summary.md): 1,048 of 18,460 planned dataset/method/budget/K cells complete (5.68%), with overlapping exports deduplicated and five-query technical checks excluded. The 21-collection denominator includes blocked CIRR and excludes additional representation/parameter and answer-quality experiments; this is not a time or compute-progress estimate.
