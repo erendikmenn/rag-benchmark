@@ -3,6 +3,8 @@
 Confidence intervals resample source-connected query groups with replacement;
 methods retain paired query observations. No source text or model inference is
 used. Missing group provenance yields descriptive differences without an interval.
+As a conservative reporting safeguard, intervals are also withheld when one source
+group contains more than half the queries. This is not a formal statistical threshold.
 """
 from __future__ import annotations
 
@@ -21,8 +23,9 @@ import numpy as np
 from .models import stable_hash
 from .multimodal import Dataset, load_dataset, paired_group_bootstrap
 
-ANALYSIS_VERSION = "paired-source-components-v1"
+ANALYSIS_VERSION = "paired-source-components-v2"
 DEFAULT_METRICS = ("hit@5", "ndcg@10")
+MAX_CI_GROUP_FRACTION = 0.5
 METHOD_REFERENCES = [
     {"title": "SciPy paired bootstrap documentation", "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"},
     {"title": "Stata cluster bootstrap documentation", "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"},
@@ -206,6 +209,17 @@ def analyze_run(dataset_dir: Path | str, run_dir: Path | str, output_dir: Path |
     except GroupingUnavailable as error:
         groups = None
         grouping = {"status": "unavailable", "reason": str(error), "fallback_to_independent_queries": False}
+    interval_reason = None
+    if groups is None:
+        interval_reason = "Source grouping is unavailable"
+    elif grouping["group_count"] < 2:
+        interval_reason = "Only one connected source group; a resampling confidence interval is not reported"
+    elif grouping["largest_group_fraction"] > MAX_CI_GROUP_FRACTION:
+        interval_reason = (
+            f"Largest connected source group contains {grouping['largest_group_fraction']:.1%} of queries "
+            f"(>{MAX_CI_GROUP_FRACTION:.0%}); interval withheld under a conservative reporting safeguard, "
+            "not a formal statistical threshold"
+        )
     result = {"schema_version": 1, "analysis_version": ANALYSIS_VERSION,
               "analysis_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               "numpy_version": np.__version__,
@@ -214,6 +228,12 @@ def analyze_run(dataset_dir: Path | str, run_dir: Path | str, output_dir: Path |
               "bootstrap": {"method": "paired_source_group_percentile", "confidence_level": 0.95,
                             "samples": samples, "seed": seed, "direction": "right_minus_left",
                             "estimator": "query-weighted mean difference; groups resampled together",
+                            "interval_reporting": "eligible" if interval_reason is None else "withheld",
+                            "withholding_reason": interval_reason,
+                            "dominant_group_guard": {
+                                "maximum_group_fraction": MAX_CI_GROUP_FRACTION,
+                                "comparison": "strictly_greater_than",
+                                "interpretation": "conservative reporting safeguard, not a formal statistical threshold"},
                             "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"},
               "grouping": grouping, "comparisons": [], "method_references": METHOD_REFERENCES,
               "model_inference_performed": False, "generated_answer_accuracy_measured": False}
@@ -240,7 +260,6 @@ def analyze_run(dataset_dir: Path | str, run_dir: Path | str, output_dir: Path |
                     if cell["identity"] not in cache:
                         cache[cell["identity"]] = _metric_rows(database, cell, query_ids, metrics)
                 comparison.update(left=_cell_summary(left), right=_cell_summary(right), metrics={})
-                enough_groups = groups is not None and grouping["group_count"] >= 2
                 for metric in metrics:
                     left_values = {qid: values[metric] for qid, values in cache[left["identity"]].items()}
                     right_values = {qid: values[metric] for qid, values in cache[right["identity"]].items()}
@@ -249,12 +268,14 @@ def analyze_run(dataset_dir: Path | str, run_dir: Path | str, output_dir: Path |
                                 "right_mean": float(np.mean(list(right_values.values()))),
                                 "mean_difference": float(delta.mean()), "query_count": len(delta),
                                 "wins": int((delta > 0).sum()), "losses": int((delta < 0).sum()), "ties": int((delta == 0).sum())}
-                    if enough_groups:
+                    if interval_reason is None:
                         measured.update(paired_group_bootstrap(left_values, right_values, groups, samples=samples, seed=seed))
                     comparison["metrics"][metric] = measured
-                comparison["status"] = "completed" if enough_groups else "descriptive_only"
-                if not enough_groups:
-                    comparison["reason"] = "Source grouping is unavailable" if groups is None else "Only one connected source group; a resampling confidence interval is not reported"
+                comparison["status"] = "completed" if interval_reason is None else "descriptive_only"
+                if interval_reason is not None:
+                    comparison["reason"] = interval_reason
+                    if groups is not None:
+                        comparison["largest_group_fraction"] = grouping["largest_group_fraction"]
             except ValueError as error:
                 comparison.update(status="unavailable", reason=str(error))
     finally:
@@ -279,27 +300,32 @@ def export_analysis(report: dict, output_dir: Path | str) -> None:
         return str(value).replace("|", "\\|").replace("\n", " ")
     lines = ["# Paired retrieval comparisons", "", f"Dataset: {escape(report['dataset']['id'])}.", "",
              "Differences are right minus left, in metric units. Positive values favor the right method. "
-             "Intervals are 95% paired source-group percentile intervals; methods use the same frozen queries and gallery. "
+             "Where reported, intervals are 95% paired source-group percentile intervals; methods use the same frozen queries and gallery. "
              "These are marginal exploratory comparisons without a multiple-comparison correction.", "",
              f"Grouping: {escape(report['grouping'].get('description', report['grouping'].get('reason')))}", ""]
     if report["grouping"]["status"] == "available":
         lines.append(f"Source groups: {report['grouping']['group_count']}; queries: {report['grouping']['query_count']}; "
-                     f"largest group: {report['grouping']['largest_group_queries']} queries.")
+                     f"largest group: {report['grouping']['largest_group_queries']} queries "
+                     f"({report['grouping']['largest_group_fraction']:.1%}).")
         lines.append("")
+    guard = report["bootstrap"].get("dominant_group_guard")
+    if guard:
+        lines += [f"Conservative reporting safeguard: withhold intervals when one source group contains more than "
+                  f"{guard['maximum_group_fraction']:.0%} of queries. This is not a formal statistical threshold.", ""]
     lines += ["| Left | Right | Metric | Left mean | Right mean | Delta | 95% interval | Wins / losses / ties |",
               "|---|---|---|---:|---:|---:|---|---|"]
     for comparison in report["comparisons"]:
         if "metrics" not in comparison:
             continue
         for metric, values in comparison["metrics"].items():
-            interval = f"[{values['ci95_low']:+.4f}, {values['ci95_high']:+.4f}]" if "ci95_low" in values else "Not estimable from available source groups"
+            interval = f"[{values['ci95_low']:+.4f}, {values['ci95_high']:+.4f}]" if "ci95_low" in values else "Not reported; see reason below"
             lines.append(f"| {escape(comparison['left']['variant_id'])} | {escape(comparison['right']['variant_id'])} | {metric} "
                          f"| {values['left_mean']:.4f} | {values['right_mean']:.4f} | {values['mean_difference']:+.4f} "
                          f"| {interval} | {values['wins']} / {values['losses']} / {values['ties']} |")
     for comparison in report["comparisons"]:
         if comparison.get("reason"):
             lines += ["", f"{escape(comparison['requested_left'])} → {escape(comparison['requested_right'])}: {escape(comparison['reason'])}."]
-    lines += ["", f"Bootstrap samples: {report['bootstrap']['samples']}; seed: {report['bootstrap']['seed']}. "
+    lines += ["", f"Bootstrap settings for eligible comparisons: {report['bootstrap']['samples']} samples; seed: {report['bootstrap']['seed']}. "
               "No model inference or generated-answer judging was performed.", "",
               "Pairing follows [SciPy's paired resampling definition](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html); "
               "source groups follow [cluster resampling](https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/).", ""]

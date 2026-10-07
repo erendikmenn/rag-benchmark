@@ -62,19 +62,25 @@ def test_cirr_reused_reference_connects_distinct_targets():
     assert groups["q1"] == groups["q2"] != groups["q3"]
 
 
-def frozen_run(tmp_path, *, track="code", one_group=False, missing_documents=False):
+def frozen_run(tmp_path, *, track="code", one_group=False, missing_documents=False, source_assignments=None):
     source, run = tmp_path / "data", tmp_path / "run"
     source.mkdir()
     run.mkdir()
     corpus = [{"id": did, "text": "PRIVATE SOURCE", "metadata": {"doc_id": "shared" if one_group else did}}
               for did in ("a", "b", "c")]
+    if track in {"photo", "environment_audio"}:
+        for row in corpus:
+            filename = row["id"] + ".bin"
+            (source / filename).write_bytes(b"PRIVATE MEDIA")
+            row["media"] = {"image" if track == "photo" else "audio": filename}
     if missing_documents:
         for row in corpus:
             row["metadata"] = {}
     queries = [{"id": qid, "text": "PRIVATE QUERY", "metadata": {"answer": "PRIVATE GOLD ANSWER"}}
                for qid in ("q1", "q2", "q3", "q4")]
     qrels = [{"query_id": qid, "corpus_id": did, "relevance": 1}
-             for qid, did in zip(("q1", "q2", "q3", "q4"), ("a", "a", "a" if one_group else "b", "a" if one_group else "c"))]
+             for qid, did in zip(("q1", "q2", "q3", "q4"), source_assignments or
+                                ("a", "a", "a" if one_group else "b", "a" if one_group else "c"))]
     (source / "dataset.json").write_text(json.dumps({"id": "fixture", "track": track, "revision": "frozen-r1"}))
     for name, rows in (("corpus", corpus), ("queries", queries), ("qrels", qrels)):
         (source / f"{name}.jsonl").write_text("\n".join(json.dumps(row) for row in rows))
@@ -169,7 +175,42 @@ def test_single_connected_source_group_does_not_create_false_zero_width_interval
     assert result["grouping"]["group_count"] == 1
     comparison = result["comparisons"][0]
     assert comparison["status"] == "descriptive_only"
+    assert comparison["reason"].startswith("Only one connected source group")
     assert "ci95_low" not in comparison["metrics"]["hit@5"]
+
+
+def test_dominant_group_withholds_resampling_but_preserves_descriptive_differences(tmp_path, monkeypatch):
+    source, run, _ = frozen_run(tmp_path, track="environment_audio", source_assignments=("a", "a", "a", "b"))
+    monkeypatch.setattr("rag_benchmark.multimodal_analysis.paired_group_bootstrap",
+                        lambda *args, **kwargs: pytest.fail("Dominant groups must not be bootstrapped"))
+    output = tmp_path / "public"
+    result = analyze_run(source, run, output, samples=50)
+    assert result["grouping"]["group_count"] == 2
+    assert result["bootstrap"]["interval_reporting"] == "withheld"
+    comparison = result["comparisons"][0]
+    assert comparison["status"] == "descriptive_only"
+    assert comparison["largest_group_fraction"] == 0.75
+    assert "not a formal statistical threshold" in comparison["reason"]
+    measured = comparison["metrics"]["hit@5"]
+    assert measured["left_mean"] == 0.25 and measured["right_mean"] == 0.75
+    assert measured["mean_difference"] == 0.5
+    assert (measured["wins"], measured["losses"], measured["ties"]) == (3, 1, 0)
+    assert all("ci95_low" not in values and "ci95_high" not in values for values in comparison["metrics"].values())
+    exported = (output / "paired-comparisons.md").read_text()
+    assert "75.0%" in exported and "Not reported; see reason below" in exported
+    assert "not a formal statistical threshold" in exported
+    assert "PRIVATE" not in exported
+
+
+@pytest.mark.parametrize("track", ["photo", "environment_audio"])
+def test_balanced_photo_and_audio_groups_keep_intervals_at_exact_half_boundary(tmp_path, track):
+    source, run, _ = frozen_run(tmp_path, track=track, source_assignments=("a", "a", "b", "b"))
+    result = analyze_run(source, run, samples=50)
+    assert result["grouping"]["largest_group_fraction"] == 0.5
+    assert result["bootstrap"]["interval_reporting"] == "eligible"
+    comparison = result["comparisons"][0]
+    assert comparison["status"] == "completed"
+    assert all("ci95_low" in values and "ci95_high" in values for values in comparison["metrics"].values())
 
 
 def test_cross_dataset_fingerprint_and_smoke_scope_are_rejected(tmp_path):
