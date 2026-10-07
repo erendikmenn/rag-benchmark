@@ -1,0 +1,58 @@
+{
+  "status": "batch_plan_cpu_prepared_production_unavailable",
+  "evidence": {
+    "normalization": {
+      "sentence_transformers_version": "6.1.0",
+      "sentence_transformer_source_sha256": "3d677757bf3e684c45d3634ae67918cd9a67cee6aac6760e5fa1c72dfe820650",
+      "dense_models_source_sha256": "5fcf6f8bb9093dc8a2351bf8eb1522883f0522793d2caf3e953865be9c2284ef",
+      "normalization_module_sources": {
+        "normalize": "70df2751f2b7af5312ff5ea52c1650eb566e186bc08312a89457e587c059024f",
+        "module_loader": "082aa947667a3db02a0ed57be76af7bf79b72ff85d6b97d2c257a19d03be4fe0",
+        "file_loader": "cf32f552607a4bf40f77bef9de5ba7193cb772a0749e382836d1524126279b2a"
+      },
+      "modules_sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "cls_pooling_sha256": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+      "module_normalize_config": "absent_default_sentence_embedding",
+      "native_torch_normalization_count": 2
+    },
+    "sources": {
+      "sentence_transformers/base/model.py": "60b8aaeac7e02bb67071b026461dedbf2ceef9820de21d0a5c60db621107fbef",
+      "sentence_transformers/base/modules/transformer.py": "895603634b3b63325cb7e5eaa2e8e2cdbc708b3b0e31a5c8b277ecd711a24be4"
+    },
+    "numpy_version": "2.5.3",
+    "sorting": "np.argsort([-len(formatted_string)]) default kind; no stable tie substitution",
+    "flattened_inputs": "not_observed_requires_loaded_runtime_false_guard"
+  },
+  "local_config_tokenizer_sha256": {
+    "sentence_bert_config.json": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+    "config.json": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+    "tokenizer.json": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "tokenizer_config.json": "a62b2b6784f990259fddef5f16388693a8043be4f69179e6a5257eeb3f9abac4",
+    "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835"
+  },
+  "ordinary_invocation_rows": 128,
+  "javascript_invocation_rows": 32,
+  "native_batch_size": 8,
+  "sort_length": "Python len(formatted str), not tokenizer token count",
+  "sort": "np.argsort(negative character lengths), default kind, no stable tie rewrite",
+  "inverse_output_order": "np.argsort(length_sorted_idx)",
+  "prompt": "empty explicit prompt",
+  "missing_runtime_evidence": [
+    "original loaded can_flatten_inputs and attention implementation not persisted in baseline report",
+    "production weight manifest and loaded tokenizer/model contract not yet implemented"
+  ],
+  "model_calls": 0,
+  "tensor_head_loads": 0,
+  "source_sha256": {
+    "multimodal_bge_extra_runtime.py": "ce1cb661c7ae3cdec699e97197b9e14c3f9f22525825e8661fa740db7ecfaf8f",
+    "multimodal_bge_extra_backend.py": "74976b149ae6f5e0a1872e39b63c44397e70a0feb97796fbcc148f6572097297"
+  },
+  "verification": {
+    "full_tests_passed": 597,
+    "minimal_tests_passed": 471,
+    "minimal_optional_skips": 113,
+    "independent_multiblock_tests_passed": 2,
+    "ruff": "passed"
+  },
+  "main_matrix_progress_increment": 0
+}

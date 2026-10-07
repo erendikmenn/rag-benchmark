@@ -342,3 +342,68 @@ def test_process_waiter_sees_durable_producer_state(tmp_path):
     assert child.exitcode == 0
     assert queue.get(timeout=2) == (False, "completed")
     queue.close()
+
+
+def test_explicit_original_batch_plan_identity_and_chunk_indices(setup, tmp_path, monkeypatch):
+    from rag_benchmark import multimodal_bge_extra_runtime as runtime
+
+    original, bridge, tokenizer, hidden = setup
+    bridge.config["batch_size"] = 8
+    bridge.rows["document"][1]["formatted_text"] = "longer chunk"
+    bridge.seal = bridge.state()
+    monkeypatch.setattr(runtime, "scheduling_evidence", lambda: {"audited_fake": True})
+    plan = runtime.PinnedBatchPlan(bridge)
+    hidden.can_flatten_inputs = False
+    backend = m.InjectedDualHeadBackend(
+        bridge, tokenizer=tokenizer, hidden_backend=hidden, head_arrays=original._heads, batch_plan=plan
+    )
+    result = backend.extract("document", tmp_path)
+    assert result["batch_plan_identity"] == plan.identity
+    assert hidden.calls == 1
+    _, manifest = read_manifest(tmp_path, "document")
+    assert manifest["request"]["original_row_indices"] == [1, 0]
+    assert [row["record"]["id"] for row in manifest["rows"]] == ["chunk1", "chunk0"]
+    assert [row["record"]["char_start"] for row in manifest["rows"]] == [1, 0]
+    assert backend.extract("document", tmp_path)["cached_rows"] == 2
+    assert hidden.calls == 1
+
+
+def test_callback_batch_plan_mutation_rejected(setup, tmp_path, monkeypatch):
+    from rag_benchmark import multimodal_bge_extra_runtime as runtime
+
+    original, bridge, tokenizer, hidden = setup
+    bridge.config["batch_size"] = 8
+    bridge.seal = bridge.state()
+    monkeypatch.setattr(runtime, "scheduling_evidence", lambda: {"audited_fake": True})
+    plan = runtime.PinnedBatchPlan(bridge)
+    hidden.can_flatten_inputs = False
+    backend = m.InjectedDualHeadBackend(
+        bridge, tokenizer=tokenizer, hidden_backend=hidden, head_arrays=original._heads, batch_plan=plan
+    )
+    forward = hidden.forward
+
+    def bad(tokens):
+        result = forward(tokens)
+        plan._roles["document"]["original_indices"].reverse()
+        return result
+
+    hidden.forward = bad
+    with pytest.raises(ValueError, match="schedule changed"):
+        backend.extract("document", tmp_path)
+    assert not list(tmp_path.rglob("completed.json"))
+
+
+@pytest.mark.parametrize("flattened", [None, True])
+def test_schedule_requires_nonflattened_runtime(setup, monkeypatch, flattened):
+    from rag_benchmark import multimodal_bge_extra_runtime as runtime
+
+    original, bridge, tokenizer, hidden = setup
+    bridge.config["batch_size"] = 8
+    bridge.seal = bridge.state()
+    monkeypatch.setattr(runtime, "scheduling_evidence", lambda: {"audited_fake": True})
+    plan = runtime.PinnedBatchPlan(bridge)
+    hidden.can_flatten_inputs = flattened
+    with pytest.raises(ValueError, match="non-flattened"):
+        m.InjectedDualHeadBackend(
+            bridge, tokenizer=tokenizer, hidden_backend=hidden, head_arrays=original._heads, batch_plan=plan
+        )

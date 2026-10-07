@@ -124,7 +124,7 @@ def verified_trained_head_arrays(directory):
 
 
 class InjectedDualHeadBackend:
-    def __init__(self, baseline, *, tokenizer, hidden_backend, head_arrays):
+    def __init__(self, baseline, *, tokenizer, hidden_backend, head_arrays, batch_plan=None):
         if not callable(getattr(baseline, "verified_inputs", None)) or not callable(
             getattr(baseline, "validate_for_reuse", None)
         ):
@@ -184,6 +184,20 @@ class InjectedDualHeadBackend:
                 "implementation": _IMPLEMENTATION,
             }
         )
+        self._batch_plan = batch_plan
+        self._batch_plan_identity = None
+        if batch_plan is not None:
+            from .multimodal_bge_extra_runtime import PinnedBatchPlan
+
+            if (
+                not isinstance(batch_plan, PinnedBatchPlan)
+                or batch_plan._baseline_identity != self._baseline_identity
+            ):
+                raise ValueError("Pinned original baseline batch plan required")
+            if getattr(hidden_backend, "can_flatten_inputs", None) is not False:
+                raise ValueError("Pinned non-flattened loaded runtime declaration required")
+            self._batch_plan_identity = batch_plan.identity
+            self._identity = stable_hash({"backend": self._identity, "batch_plan": self._batch_plan_identity})
         self._seal = self._state()
 
     @property
@@ -193,6 +207,7 @@ class InjectedDualHeadBackend:
     def _state(self):
         return stable_hash(
             {
+                "batch_plan": self._batch_plan.identity if self._batch_plan is not None else None,
                 "baseline": self._baseline.identity,
                 "config": self._baseline.config,
                 "backend_config": self._config,
@@ -215,6 +230,10 @@ class InjectedDualHeadBackend:
                 raise ValueError("Frozen extraction implementation changed")
         self._baseline.validate_for_reuse()
         self._policy._verify_contract()
+        if self._batch_plan is not None:
+            self._batch_plan.validate()
+            if getattr(self._backend, "can_flatten_inputs", None) is not False:
+                raise ValueError("Pinned non-flattened runtime changed")
 
     def _tokens(self, records):
         output = []
@@ -302,6 +321,11 @@ class InjectedDualHeadBackend:
         _private(cache_base / self.identity)
         root = cache_base / self.identity / role
         _private(root)
+        original_indices = list(range(len(records)))
+        if self._batch_plan is not None:
+            original_indices = self._batch_plan.order_for(role, records)
+            records = [records[index] for index in original_indices]
+            record_seal = stable_hash(records)
         row_kind = (
             "queries"
             if role == "query"
@@ -316,7 +340,9 @@ class InjectedDualHeadBackend:
             if max_batches is not None and batches >= max_batches:
                 break
             batch = records[start : start + batch_size]
-            baseline = np.array(vectors[start : start + batch_size], dtype=np.float32, copy=True)
+            baseline = np.array(
+                vectors[original_indices[start : start + batch_size]], dtype=np.float32, copy=True
+            )
             tokens = self._tokens(batch)
             self._verify()
             request = {
@@ -329,6 +355,9 @@ class InjectedDualHeadBackend:
                 "baseline_dense_sha256": _sha(baseline),
                 "native_policy": self._policy.identity,
             }
+            if self._batch_plan is not None:
+                request["batch_plan"] = self._batch_plan_identity
+                request["original_row_indices"] = original_indices[start : start + batch_size]
             directory = root / f"{start:09d}"
             with _reserved_batch(root, directory, request) as fresh_batch:
                 self._verify()
@@ -424,4 +453,5 @@ class InjectedDualHeadBackend:
             "head_and_storage_dtype": "float32",
             "actual_model_compatibility_measured": False,
             "production_backend_available": False,
+            "batch_plan_identity": self._batch_plan_identity,
         }
