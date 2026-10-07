@@ -44,19 +44,19 @@ All eight ViDoRe collections are prepared (**19,252 pages / 2,419 base queries**
 
 **BM25 completed all six code and eight document collections: 54,980 queries.** The lexical baselines use positive matches only; dense/fusion/reranker runs are still in progress. [Baseline table and exact counts](reports/multimodal/bm25-summary.md).
 
-**Code retrieval is complete for Python and Ruby:** 14,918 queries over 43,827 Python functions and 1,261 queries over 4,360 Ruby functions. Seven methods × two candidate budgets give 28 completed cells; the primary per-channel Hit@5 results are:
+**Code retrieval is complete for Python, Ruby and Go:** 14,918 Python, 1,261 Ruby and 8,122 Go queries over 43,827 / 4,360 / 28,120 functions respectively. Seven methods × two candidate budgets × three languages give **42 completed cells on 24,301 queries**; the primary per-channel Hit@5 results are:
 
-| Method | Python Hit@5 | Ruby Hit@5 |
-|---|---:|---:|
-| BM25 | 38.93% | 45.60% |
-| BGE-M3 | 62.18% | 68.20% |
-| EmbeddingGemma 2 | 84.46% | 86.28% |
-| BM25 + BGE-M3 | 59.41% | 64.71% |
-| BM25 + EG2 | 69.25% | 70.74% |
-| BGE-M3 + EG2 | 76.77% | 78.75% |
-| BM25 + BGE-M3 + EG2 | 73.56% | 74.94% |
+| Method | Python Hit@5 | Ruby Hit@5 | Go Hit@5 |
+|---|---:|---:|---:|
+| BM25 | 38.93% | 45.60% | 61.94% |
+| BGE-M3 | 62.18% | 68.20% | 87.70% |
+| EmbeddingGemma 2 | 84.46% | 86.28% | 96.28% |
+| BM25 + BGE-M3 | 59.41% | 64.71% | 85.71% |
+| BM25 + EG2 | 69.25% | 70.74% | 89.51% |
+| BGE-M3 + EG2 | 76.77% | 78.75% | 93.39% |
+| BM25 + BGE-M3 + EG2 | 73.56% | 74.94% | 92.07% |
 
-EG2 leads these two fixed code-search tests; equal-weight RRF fusion did not improve it. Source comments/reference docstrings were removed, and no reranker or answer model is involved. [Both candidate budgets, MRR/nDCG and paired comparisons](reports/multimodal/code-dense-summary.md).
+EG2 leads these three fixed code-search tests; equal-weight RRF fusion did not improve it. Source comments/reference docstrings were removed, and no reranker or answer model is involved. [Both candidate budgets, MRR/nDCG and paired comparisons](reports/multimodal/code-dense-summary.md).
 
 **Dimension sweep complete on seven native dataset views:** 104 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. Video Hit@5 is 74.70% at 512 versus 75.00% at 768. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).
 
