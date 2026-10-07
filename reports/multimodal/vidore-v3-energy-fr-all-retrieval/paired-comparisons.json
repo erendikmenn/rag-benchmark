@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.5.3",
+  "dataset": {
+    "id": "vidore-v3-energy-fr",
+    "revision": "caec06d3c73434d635f710f93bcd898331c59f20",
+    "track": "document",
+    "identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+    "corpus_count": 2225,
+    "query_count": 308,
+    "qrel_count": 1103,
+    "positive_qrel_count": 1103,
+    "empty_candidate_text_count": 15,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_report_sha256": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_document_components",
+    "description": "Positive pages map to corpus.metadata.doc_id. Queries touching the same source document are connected transitively across multi-document positives.",
+    "query_count": 308,
+    "group_count": 26,
+    "source_unit_count": 34,
+    "source_association_count": 326,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 80,
+    "largest_group_fraction": 0.2597402597402597,
+    "mapping_sha256": "dde14cca0925a3186a752320b7893e380a03ef823dcb0dd9f4d034161afe8c3e",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__s__none",
+      "left": {
+        "identity": "bf5942bca725243a74b202d020bb50f835f37698f8e46a868d50ff6c2b19e41f",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "1bcd81ea831992e42e3297c71f5be2b0910b53ade31ea86ab968e5026d0ef6b8",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.6883116883116883,
+          "right_mean": 0.8668831168831169,
+          "mean_difference": 0.17857142857142858,
+          "query_count": 308,
+          "wins": 70,
+          "losses": 15,
+          "ties": 223,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.08865626710454297,
+          "ci95_high": 0.2383180440423431,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4461022899030505,
+          "right_mean": 0.6465111652047739,
+          "mean_difference": 0.20040887530172338,
+          "query_count": 308,
+          "wins": 189,
+          "losses": 65,
+          "ties": 54,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.14297309736095543,
+          "ci95_high": 0.24966985570986877,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "bf5942bca725243a74b202d020bb50f835f37698f8e46a868d50ff6c2b19e41f",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "035d616f54985cc3f174ef76a616591db9a3c524825d352223ffcf98ec7f98f2",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.6883116883116883,
+          "right_mean": 0.8181818181818182,
+          "mean_difference": 0.12987012987012986,
+          "query_count": 308,
+          "wins": 43,
+          "losses": 3,
+          "ties": 262,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.059759469584349176,
+          "ci95_high": 0.18472795278238197,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4461022899030505,
+          "right_mean": 0.5696131752364622,
+          "mean_difference": 0.12351088533341162,
+          "query_count": 308,
+          "wins": 183,
+          "losses": 36,
+          "ties": 89,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.10182320738552439,
+          "ci95_high": 0.14474067792477785,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__s__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "1bcd81ea831992e42e3297c71f5be2b0910b53ade31ea86ab968e5026d0ef6b8",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "035d616f54985cc3f174ef76a616591db9a3c524825d352223ffcf98ec7f98f2",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8668831168831169,
+          "right_mean": 0.8181818181818182,
+          "mean_difference": -0.048701298701298704,
+          "query_count": 308,
+          "wins": 13,
+          "losses": 28,
+          "ties": 267,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.10084033613445378,
+          "ci95_high": -0.009851009369264965,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.6465111652047739,
+          "right_mean": 0.5696131752364622,
+          "mean_difference": -0.07689798996831178,
+          "query_count": 308,
+          "wins": 82,
+          "losses": 132,
+          "ties": 94,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.11723603441792023,
+          "ci95_high": -0.03235144227472548,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__j__none",
+      "left": {
+        "identity": "bf5942bca725243a74b202d020bb50f835f37698f8e46a868d50ff6c2b19e41f",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "915fda32ca7010f6f28ee473511ff11b700db7535b392121610dcf84d9ab7ec2",
+        "variant_id": "document__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.6883116883116883,
+          "right_mean": 0.8376623376623377,
+          "mean_difference": 0.14935064935064934,
+          "query_count": 308,
+          "wins": 55,
+          "losses": 9,
+          "ties": 244,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.057841740286881355,
+          "ci95_high": 0.2136958339879307,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4461022899030505,
+          "right_mean": 0.5829318379436758,
+          "mean_difference": 0.1368295480406253,
+          "query_count": 308,
+          "wins": 167,
+          "losses": 61,
+          "ties": 80,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.07720485116620013,
+          "ci95_high": 0.17841350548295817,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__g__none",
+      "left": {
+        "identity": "bb75b2636228f4cdc1c16d70b5a5ee3d5783c2dc8a7556843f3360ba44d2a2b1",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "74452f91be58e0df26232946df04dbc11a986bb13a3f84e736d2922dbc0c4e3b",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7727272727272727,
+          "right_mean": 0.7532467532467533,
+          "mean_difference": -0.01948051948051948,
+          "query_count": 308,
+          "wins": 32,
+          "losses": 38,
+          "ties": 238,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.0774204906860518,
+          "ci95_high": 0.02155640929535226,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5567752197823095,
+          "right_mean": 0.5342352534783886,
+          "mean_difference": -0.022539966303920946,
+          "query_count": 308,
+          "wins": 109,
+          "losses": 126,
+          "ties": 73,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.07239232629446041,
+          "ci95_high": 0.023870007533466464,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "bb75b2636228f4cdc1c16d70b5a5ee3d5783c2dc8a7556843f3360ba44d2a2b1",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "dc5797e8d5d729c173a2872eb22160fffe61fcb0f9ca7c906c1f09a42d92ad42",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7727272727272727,
+          "right_mean": 0.827922077922078,
+          "mean_difference": 0.05519480519480519,
+          "query_count": 308,
+          "wins": 42,
+          "losses": 25,
+          "ties": 241,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.012198885877747666,
+          "ci95_high": 0.10135379945162551,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5567752197823095,
+          "right_mean": 0.5732338883724635,
+          "mean_difference": 0.01645866859015395,
+          "query_count": 308,
+          "wins": 124,
+          "losses": 114,
+          "ties": 70,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.021032764165560974,
+          "ci95_high": 0.06327477362953784,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__g__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "74452f91be58e0df26232946df04dbc11a986bb13a3f84e736d2922dbc0c4e3b",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "dc5797e8d5d729c173a2872eb22160fffe61fcb0f9ca7c906c1f09a42d92ad42",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7532467532467533,
+          "right_mean": 0.827922077922078,
+          "mean_difference": 0.07467532467532467,
+          "query_count": 308,
+          "wins": 41,
+          "losses": 18,
+          "ties": 249,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.030456852791878174,
+          "ci95_high": 0.11538753799392093,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5342352534783886,
+          "right_mean": 0.5732338883724635,
+          "mean_difference": 0.03899863489407491,
+          "query_count": 308,
+          "wins": 120,
+          "losses": 92,
+          "ties": 96,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.01550288329903576,
+          "ci95_high": 0.0738021968693261,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__b_g_e__none",
+      "left": {
+        "identity": "bb75b2636228f4cdc1c16d70b5a5ee3d5783c2dc8a7556843f3360ba44d2a2b1",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "right": {
+        "identity": "378ac31f7a277ed681a29950a9d7a0d8aa9fc2107dbda9064035d0ddf3bc14f2",
+        "variant_id": "document__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 308
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7727272727272727,
+          "right_mean": 0.8636363636363636,
+          "mean_difference": 0.09090909090909091,
+          "query_count": 308,
+          "wins": 38,
+          "losses": 10,
+          "ties": 260,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.03792972831765935,
+          "ci95_high": 0.12745167472087984,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5567752197823095,
+          "right_mean": 0.6206395798685005,
+          "mean_difference": 0.06386436008619104,
+          "query_count": 308,
+          "wins": 146,
+          "losses": 74,
+          "ties": 88,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.028483771893769,
+          "ci95_high": 0.09657161685306008,
+          "group_count": 26,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "completed": 8
+  },
+  "status": "completed"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot_utc": "2026-10-07T11:49:31.356963+00:00",
+  "snapshot_utc": "2026-10-07T12:59:25.969259+00:00",
   "scope": "Published completed cells in the fixed 21-collection primary retrieval/reranking matrix; not all planned work or elapsed compute time.",
   "main_matrix": {
     "planned_collections": 21,
@@ -16,10 +16,10 @@
     ],
     "cell_formula": "923 collection/subsets × 2 budgets × (1 no-reranker + 3 rerankers × 3 K values)",
     "planned_cells": 18460,
-    "completed_cells": 1684,
-    "remaining_cells": 16776,
-    "completion_fraction": 0.09122426868905742,
-    "completion_percent": 9.122426868905743,
+    "completed_cells": 1808,
+    "remaining_cells": 16652,
+    "completion_fraction": 0.09794149512459371,
+    "completion_percent": 9.794149512459372,
     "collections_with_any_completed_cell": 20,
     "fully_completed_collection_grids": 0
   },
@@ -37,7 +37,7 @@
       "limitation": "Collapses languages and collections."
     },
     "collection_method_families": {
-      "covered": 466,
+      "covered": 528,
       "planned": 3692
     }
   },
@@ -81,11 +81,11 @@
       }
     },
     "duplicate_rule": "One canonical cell; all 17 metrics and query/corpus/qrel counts must match exactly across duplicate exports.",
-    "full_collection_source_reports": 36,
-    "raw_completed_export_cells": 2410,
-    "duplicate_completed_cell_occurrences": 726,
+    "full_collection_source_reports": 37,
+    "raw_completed_export_cells": 2536,
+    "duplicate_completed_cell_occurrences": 728,
     "duplicate_metric_mismatches": 0,
-    "canonical_key_manifest_sha256": "3c067e2400417fd51bc5944978653ad42533bad81c8e3a16694243b695d89464"
+    "canonical_key_manifest_sha256": "800a609f8085ca99bd2cb2e8d0fe85bca4b6785cb6df58f419ae2aa7cdf01537"
   },
   "track_progress": [
     {
@@ -102,9 +102,9 @@
       "main_collections": 8,
       "retrieval_subsets_per_collection": 63,
       "planned_cells": 10080,
-      "completed_cells": 896,
-      "remaining_cells": 9184,
-      "completion_fraction": 0.08888888888888889
+      "completed_cells": 1020,
+      "remaining_cells": 9060,
+      "completion_fraction": 0.10119047619047619
     },
     {
       "track": "environment_audio",
@@ -187,8 +187,8 @@
       "collection": "vidore-v3-energy-fr",
       "track": "document",
       "planned_cells": 1260,
-      "completed_cells": 2,
-      "remaining_cells": 1258,
+      "completed_cells": 126,
+      "remaining_cells": 1134,
       "dataset_status": "ready",
       "manifest_sha256": "712021e7dd694fbef131e21e1d239ecf92db40f1cc2d9d2b0a6d63bcef2c189a",
       "fully_completed_main_grid": false
@@ -374,7 +374,7 @@
         "evaluated_query_count": 5
       }
     ],
-    "dimension_sweep_cells": 104,
+    "dimension_sweep_cells": 120,
     "dimension_sweep_reports": [
       {
         "report": "../multimodal-dimensions/clotho-dcase2025-additional-relevance/dimension-sweep.json",
@@ -399,6 +399,11 @@
       {
         "report": "../multimodal-dimensions/vidore-v3-computer_science-en/dimension-sweep.json",
         "sha256": "1dfb550b27946204007f1b4129bc26b8aee7078b2f158ccbd6ae5c7d114b4fd2",
+        "cells": 16
+      },
+      {
+        "report": "../multimodal-dimensions/vidore-v3-energy-fr/dimension-sweep.json",
+        "sha256": "3270b36d8d6569663fd9dc8c37a7e872f80ceb50e4daa94efc62d39c49bd02da",
         "cells": 16
       },
       {
@@ -765,13 +770,26 @@
         }
       },
       {
+        "report": "vidore-v3-energy-fr-all-retrieval/report.json",
+        "sha256": "3aba52074cc674e2469a3555f0351fc80e8b12bdb4268722b37381cfd806ff97",
+        "dataset_id": "vidore-v3-energy-fr",
+        "canonical_collection": "vidore-v3-energy-fr",
+        "dataset_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+        "completed_export_cells": 126,
+        "new_canonical_cells_in_lexical_file_order": 126,
+        "cell_status_counts": {
+          "completed": 126,
+          "unsupported": 1134
+        }
+      },
+      {
         "report": "vidore-v3-energy-fr-bm25/report.json",
         "sha256": "64d6f989f41b43fe36721f30d33bca85fb46a6e59be3f2e95c020982a67f9656",
         "dataset_id": "vidore-v3-energy-fr",
         "canonical_collection": "vidore-v3-energy-fr",
         "dataset_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
         "completed_export_cells": 2,
-        "new_canonical_cells_in_lexical_file_order": 2,
+        "new_canonical_cells_in_lexical_file_order": 0,
         "cell_status_counts": {
           "completed": 2,
           "unsupported": 18

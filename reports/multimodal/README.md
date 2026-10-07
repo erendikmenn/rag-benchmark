@@ -31,6 +31,7 @@ Each row is a separate run. Query and candidate counts across language/protocol 
 | [vidore-v3-computer_science-en-gemma-technical-5q](vidore-v3-computer_science-en-gemma-technical-5q/report.md) | smoke | 5 / 215 | 1,360 | 63 | 0 |
 | [vidore-v3-computer_science-en-laya-complete](vidore-v3-computer_science-en-laya-complete/report.md) | frozen_collection | 215 / 215 | 1,360 | 126 | 0 |
 | [vidore-v3-computer_science-en-text-rerankers](vidore-v3-computer_science-en-text-rerankers/report.md) | frozen_collection | 215 / 215 | 1,360 | 189 | 0 |
+| [vidore-v3-energy-fr-all-retrieval](vidore-v3-energy-fr-all-retrieval/report.md) | frozen_collection | 308 / 308 | 2,225 | 63 | 0 |
 | [vidore-v3-energy-fr-bm25](vidore-v3-energy-fr-bm25/report.md) | frozen_collection | 308 / 308 | 2,225 | 1 | 0 |
 | [vidore-v3-finance_en-en-bm25](vidore-v3-finance_en-en-bm25/report.md) | frozen_collection | 309 / 309 | 2,942 | 1 | 0 |
 | [vidore-v3-finance_fr-fr-bm25](vidore-v3-finance_fr-fr-bm25/report.md) | frozen_collection | 320 / 320 | 2,384 | 1 | 0 |
