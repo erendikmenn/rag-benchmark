@@ -1,6 +1,6 @@
 # Multimodal execution status
 
-Updated: 2026-10-07 04:53 Europe/Istanbul.
+Updated: 2026-10-07 05:00 Europe/Istanbul.
 
 **Full-split evaluation has started.** The first published result is the [ViDoRe computer-science BM25 baseline](../reports/multimodal/vidore-v3-computer_science-en-bm25/report.md): 215 queries, 1,360 candidate pages, Hit@5 0.9209, Recall@5 0.5353 and nDCG@10 0.6334. It measures retrieval, not generated-answer correctness.
 
@@ -11,7 +11,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 | Photo | XM3600: 3,600 images, 7,233 TR and 7,200 EN queries | TR EG2 / SigLIP2 / fusion Hit@5: 84.64% / 59.88% / 76.28%; EN: 83.75% / 76.89% / 82.92%; both full comparisons complete |
 | Visual document | All eight ViDoRe V3 collections: 19,252 pages, 2,419 base queries | Positive-only BM25 complete on all eight / 2,419 queries; CS full B/G/E/N/S/J comparison complete: 63 subsets × two budgets = 126 cells; ColQwen Recall@5 65.34%, nDCG@10 0.7585 |
 | Environmental audio | Clotho: 1,045 clips / 5,225 captions; separate additional-relevance protocol: 1,037 queries / 3,116 positives | Original full protocol complete: EG2 / CLAP / fusion Hit@5 11.75% / 37.42% / 26.47%; additional-relevance full run also complete (separate query/label protocol) |
-| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; Whisper view failed in Transformers MPS cache cleanup; compatibility repair and retry pending |
+| Turkish speech | FLEURS: 743 recordings / 329 unique normalized transcript queries / 743 positives | Native full retrieval complete: Hit@5 100.00%, Recall@5 99.54%; Whisper cache fix passed real short/long CPU checks; real MPS checks and full ASR retry queued |
 | Video | 1,000 videos / 1,000 prescribed 1K-A queries; 884 clips have audio | Full visual-frame comparison complete: EG2 / CLIP / fusion Hit@5 75.00% / 53.80% / 67.10%; audio excluded from this condition |
 | Code | All six languages: 183,295 functions / 52,561 queries | Positive-only full BM25 complete for all six languages / 52,561 queries; Python and Ruby full B/G/E comparisons complete (16,179 queries, seven methods × two budgets); four other dense languages queued |
 | Composed image query | CIRR official annotations inspected; official media needs the publisher's access process | Native joint-input preflight passed; full official gallery unavailable |
@@ -52,7 +52,7 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - The reranker-only code protocol keeps all 117,266,851 source bytes in 184,231 chunks across 183,295 functions. CPU tokenization of every chunk with each language's longest query found no Laya/BGE context overflow. Gemma retains its own strict runtime context validation.
 - Clotho additional relevance has one connected source group containing 86.5% of queries. Its paired differences remain descriptive; confidence intervals are withheld under the explicit conservative majority-group reporting rule.
-- Latest implementation validation: 337 tests passed with the complete model dependencies; the minimal dependency environment passed 306 tests with 18 optional-dependency skips. These are software checks, separate from benchmark accuracy.
+- Latest implementation validation: 342 tests passed with the complete model dependencies; the minimal dependency environment passed 307 tests with 22 optional-dependency skips. These are software checks, separate from benchmark accuracy.
 
 - [Cached dimension sweep](../reports/multimodal-dimensions/README.md): unchanged 768-dimensional source rankings and stored per-query metrics reproduced on TR/EN photos, both Clotho protocols, Turkish speech, video and CS document images. Prefix128/256/512 vectors were searched over every candidate; S was held fixed for validated N+S fusions. New encoder inference calls: zero. Raw vector storage ratios are not process-memory or speed claims.
 
@@ -62,4 +62,5 @@ Raw datasets, prompts, media, keys and local caches stay out of Git. Publish onl
 
 - [CS document comparison](../reports/multimodal/vidore-v3-computer_science-en-all-retrieval/report.md): 126 completed retrieval cells. Highest observed primary Hit@5 is BM25 + native EG2 + ColQwen (98.14%); standalone ColQwen has the highest Recall@5 (65.34%) and nDCG@10 (0.7585). All 215 queries connect into one source-document group, so paired confidence intervals are withheld. These are descriptive test-set comparisons.
 
-- The original Whisper ASR attempt stopped in Transformers' MPS deferred-stop cleanup (`EncoderDecoderCache.layers` missing). A CPU-only reproducer confirms the cache handling failure independently of source audio. A compatibility fix and short/long audio health checks are in progress; the running CS text-reranker job is preserved. No ASR quality score has been reported.
+- The original Whisper ASR attempt stopped in Transformers' MPS deferred-stop cleanup (`EncoderDecoderCache.layers` missing). A CPU-only reproducer confirms the cache handling failure independently of source audio. Per-call static KV caching now selects synchronous stopping, retaining greedy decoding, EOS checks and native long-form processing. Regression tests cover the actual cache-selection branch and short/long greedy output equivalence. The separately identified `whisper-source-only-v2` protocol does not reuse old dynamic-cache transcripts.
+- [Actual Whisper CPU health checks](../reports/multimodal-whisper-cpu-preflight.json) passed on 16.92- and 36.84-second sources: all 270,720 and 589,440 samples were retained, with one and two decoding segments respectively. This verifies execution and source coverage, not transcription accuracy. The supervisor was reloaded while preserving the active CS text-reranker child. It will run the corresponding real MPS preflight before retrying full ASR; that device check remains pending. No ASR quality score has been reported.

@@ -58,7 +58,9 @@ EG2 leads these two fixed code-search tests; equal-weight RRF fusion did not imp
 
 **Dimension sweep complete on seven native dataset views:** 104 dimension/method/budget cells, with the original 768-dimensional results reproduced first. Turkish photo Hit@5 is **84.54% at 512 dimensions versus 84.64% at 768**, using one-third less raw N-vector storage. At 128 dimensions it falls to 66.65%. Video Hit@5 is 74.70% at 512 versus 75.00% at 768. These are dataset-specific point estimates; no inference-speed or statistical-equivalence claim is made. [Dimension results](reports/multimodal-dimensions/README.md).
 
-**Gemma relevance backend check passed:** five fixed queries, 63 retrieval baselines and 63 Gemma reranking cells at K=20; 278 unique query–page pairs received fresh scores. This verifies the local backend and reuse of cached scores, not full-split ranking quality. Whisper transcription is awaiting a Transformers cache-compatibility repair. [Technical check](reports/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.md).
+**Gemma relevance backend check passed:** five fixed queries, 63 retrieval baselines and 63 Gemma reranking cells at K=20; 278 unique query–page pairs received fresh scores. This verifies the local backend and reuse of cached scores, not full-split ranking quality. [Technical check](reports/multimodal/vidore-v3-computer_science-en-gemma-technical-5q/report.md).
+
+Whisper's Transformers cache-compatibility fix passed regression tests and [real CPU checks](reports/multimodal-whisper-cpu-preflight.json) on 16.92- and 36.84-second recordings, preserving all samples. Real MPS checks and the full ASR retry are queued behind the active document reranker; ASR accuracy is not yet measured.
 
 [All measured runs](reports/multimodal/README.md) · [Run locally](docs/multimodal-running.md) · [Live execution status](docs/multimodal-status.md) · [Detailed experiment plan (Turkish)](docs/multimodal-plan.tr.md) · [Complete planned variant registry](configs/multimodal-variants.csv)
 

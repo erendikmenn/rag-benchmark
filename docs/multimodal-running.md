@@ -75,6 +75,8 @@ uv run --locked --extra models --extra multimodal rag-multimodal asr \
   --download --device mps --dtype float32 --score-wer
 ```
 
+Whisper uses an explicit static KV cache with compilation disabled (`greedy-static-kv-synchronous-stop-v1`). This avoids the installed Transformers MPS deferred-stop cleanup bug while retaining greedy decoding and native timestamp-based processing of recordings longer than 30 seconds. The cache policy is recorded in adapter identity, usage and dataset provenance; transcripts from the previous dynamic-cache identity are not reused. Short/long real CPU checks have passed; real MPS validation is queued before the full ASR retry. Backend checks do not measure transcription accuracy.
+
 Gemma 4 E4B descriptions and relevance scoring use a separately verified local multimodal server. This is distinct from the earlier text-only pilot's Gemma 4 26B-A4B answer generator.
 
 ```bash

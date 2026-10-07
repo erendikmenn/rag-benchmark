@@ -33,8 +33,15 @@ ASR_DEFAULTS = {
     "language": "turkish", "task": "transcribe", "seed": 0,
     "max_new_tokens": 440, "no_speech_threshold": 0.6, "logprob_threshold": -1.0,
     "condition_on_prev_tokens": False, "audio_stream": 0,
+    "use_cache": True, "cache_implementation": "static", "disable_compile": True,
 }
 _ASR_PACKAGES = ("transformers", "torch", "numpy", "soundfile", "scipy", "av")
+_DECODING_PROTOCOL = "greedy-static-kv-synchronous-stop-v1"
+
+
+def _decoding_provenance(config: dict) -> dict:
+    return {"decoding_protocol": _DECODING_PROTOCOL,
+            **{key: config[key] for key in ("use_cache", "cache_implementation", "disable_compile")}}
 
 
 def _atomic_json(path: Path, value: dict) -> None:
@@ -73,6 +80,9 @@ def _config(config: dict | None) -> dict:
         raise ValueError("Invalid no-speech probability threshold")
     if not math.isfinite(float(config["logprob_threshold"])):
         raise ValueError("Invalid log-probability threshold")
+    if (config["use_cache"] is not True or config["cache_implementation"] != "static"
+            or config["disable_compile"] is not True):
+        raise ValueError("Whisper requires static KV caching and disabled compilation for synchronous stopping")
     return config
 
 
@@ -118,10 +128,10 @@ class WhisperTranscriber:
         # by model revision, source bytes, preprocessing, generation and packages.
         identity_config = {key: value for key, value in self.config.items()
                            if key not in {"cache_dir", "transcript_cache_dir", "path", "local_path"}}
-        self.identity = stable_hash({"adapter": "whisper-source-only-v1", "config": identity_config,
+        self.identity = stable_hash({"adapter": "whisper-source-only-v2", "config": identity_config,
             "prompt": "none; language and transcribe task only", "packages": package_versions(_ASR_PACKAGES),
             "audio_preprocessing": "native-full-waveform; 16000Hz; no truncation",
-            "long_form": "native_timestamp_sequential"})
+            "long_form": "native_timestamp_sequential", **_decoding_provenance(self.config)})
         self.prompt_identity = stable_hash({"language": self.config["language"], "task": "transcribe", "prompt": None})
         self._config_seal = stable_hash(self.config)
         self._model = self._processor = None
@@ -183,7 +193,14 @@ class WhisperTranscriber:
             "condition_on_prev_tokens": self.config["condition_on_prev_tokens"],
             "no_speech_threshold": self.config["no_speech_threshold"],
             "logprob_threshold": self.config["logprob_threshold"], "compression_ratio_threshold": None,
-            "return_timestamps": long_form, "return_segments": long_form, "return_dict_in_generate": True}
+            "return_timestamps": long_form, "return_segments": long_form, "return_dict_in_generate": True,
+            # Transformers 5.19's MPS deferred-stop cleanup assumes cache.layers,
+            # which EncoderDecoderCache does not expose. A noncroppable static
+            # KV cache selects ordinary StopCheck while retaining greedy decoding,
+            # cached attention, scores and native long-form generation. Keep this
+            # per-call policy explicit; never patch Transformers package globals.
+            "use_cache": self.config["use_cache"], "cache_implementation": self.config["cache_implementation"],
+            "disable_compile": self.config["disable_compile"]}
         synchronize(device)
         tick = time.perf_counter()
         with torch.inference_mode():
@@ -206,7 +223,7 @@ class WhisperTranscriber:
         if len(transcripts) != 1 or not isinstance(transcripts[0], str):
             raise RuntimeError("Whisper returned an invalid number of transcripts")
         transcript = transcripts[0].strip()
-        self.last_usage = {**audio_usage, "inference_seconds": seconds, "device": device,
+        self.last_usage = {**audio_usage, **_decoding_provenance(self.config), "inference_seconds": seconds, "device": device,
             "dtype": self.config["dtype"], "language": self.config["language"], "task": "transcribe",
             "long_form": long_form, "truncated": False, "input_feature_frames": int(features["input_features"].shape[-1]),
             "empty_transcript": transcript == "", "token_count": int(sequences.shape[-1]),
@@ -284,10 +301,12 @@ def prepare_asr_view(source: Path | str, destination: Path | str, config: dict |
     completed, cache_hits, new_count, empty_count, inference_seconds = [], 0, 0, 0, 0.0
     provenance = {"source": "whisper_asr", "query_independent": True, "gold_fields_used": False,
                   "empty_text_is_valid": True, "model_id": config["model_id"], "revision": config["revision"],
-                  "adapter_identity": transcriber.identity, "language": config["language"], "task": "transcribe"}
+                  "adapter_identity": transcriber.identity, "language": config["language"], "task": "transcribe",
+                  **_decoding_provenance(config)}
     progress = {"status": "preparing", "view_identity": view_identity, "source_id": source_manifest["id"],
                 "model_id": config["model_id"], "model_revision": config["revision"], "corpus_count": len(corpus),
-                "completed": 0, "cached": 0, "new": 0, "empty_transcripts": 0, "cache_reads_are_inference": False}
+                "completed": 0, "cached": 0, "new": 0, "empty_transcripts": 0, "cache_reads_are_inference": False,
+                **_decoding_provenance(config)}
     _atomic_json(destination / "asr-preparation.json", progress)
     try:
         for item, (media_kind, path) in zip(corpus, inputs):
@@ -345,7 +364,7 @@ def prepare_asr_view(source: Path | str, destination: Path | str, config: dict |
                "cache_hits": cache_hits, "new_transcripts": new_count,
                "fresh_inference_seconds": inference_seconds if new_count else None,
                "cache_reads_are_inference": False, "packages": package_versions(_ASR_PACKAGES),
-               "device": config["device"], "dtype": config["dtype"]}
+               "device": config["device"], "dtype": config["dtype"], **_decoding_provenance(config)}
     manifest = write_dataset(destination, dataset_id=destination.name, track=source_manifest["track"],
         revision=stable_hash({"source": source_manifest["revision"], "asr": view_identity}),
         corpus=completed, queries=queries, qrels=qrels, sources=source_manifest.get("sources", []),
