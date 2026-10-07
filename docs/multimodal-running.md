@@ -63,7 +63,7 @@ uv run --locked --extra models --extra multimodal rag-multimodal run \
   --channels B,G,E,N,S,J --rerankers none
 ```
 
-Native media batch size defaults to 1; dense text batch size defaults to 8. The full source content is validated against model limits. Overlength code functions require a separately identified chunk-aggregation experiment; silent truncation is never the main protocol.
+Native media batch size defaults to 1; dense text batch size defaults to 8. `--bge-reranker-batch-size N` selects a separate batch size only for the BGE reranker; omitted, it retains the native/specialist batch setting. This leaves G/E retrieval and other ranking adapters unchanged. An explicit change is recorded in BGE adapter identity, so batch-1 scores cannot be silently relabelled as batch-8 inference. Validate memory and quality for a new batch condition before comparing its speed; the flag itself is not a measured speedup. The full source content is validated against model limits. Overlength code functions require a separately identified chunk-aggregation experiment; silent truncation is never the main protocol.
 
 ## Source-only text views
 

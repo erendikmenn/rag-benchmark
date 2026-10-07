@@ -19,6 +19,13 @@ def _positive_finite_float(value: str) -> float:
     return result
 
 
+def _positive_int(value: str) -> int:
+    result = int(value)
+    if result < 1:
+        raise argparse.ArgumentTypeError("must be a positive integer")
+    return result
+
+
 def prepare_generation(config: dict, *, cache_dir: Path = Path(".cache/generation-models")) -> None:
     """Explicit model acquisition; normal benchmark execution remains offline."""
     from huggingface_hub import hf_hub_download
@@ -145,6 +152,8 @@ def main(argv=None) -> int:
     p.add_argument("--dtype", choices=("bfloat16", "float32"), default="bfloat16")
     p.add_argument("--batch-size", type=int, default=1, help="Native media and specialist batch size")
     p.add_argument("--text-batch-size", type=int, default=8)
+    p.add_argument("--bge-reranker-batch-size", type=_positive_int,
+                   help="Explicit BGE reranker batching condition; other adapters retain their batch sizes.")
     p.add_argument("--dimension", type=int, choices=(128, 256, 512, 768), default=768)
     p.add_argument("--vision-budget", type=int, choices=(70, 140, 280, 560, 1120), default=280)
     p.add_argument("--video-fps", type=_positive_finite_float, default=1.0)
@@ -281,7 +290,10 @@ def main(argv=None) -> int:
                 from .multimodal_generation import MultimodalLayaReranker
                 rerankers["laya_text"] = MultimodalLayaReranker({"device": args.device})
             if "bge_reranker_text" in names:
-                rerankers["bge_reranker_text"] = BGETextReranker(common)
+                bge_config = dict(common)
+                if args.bge_reranker_batch_size is not None:
+                    bge_config["batch_size"] = args.bge_reranker_batch_size
+                rerankers["bge_reranker_text"] = BGETextReranker(bge_config)
             if "gemma4_relevance" in names:
                 from .multimodal_generation import LocalMultimodalGenerator
                 generator = LocalMultimodalGenerator()
