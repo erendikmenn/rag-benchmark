@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "planned_not_executed",
+  "model_jobs_executed": 0,
+  "primary_matrix_contribution": 0,
+  "scope": "Separate EG2 media-query/reference-text-gallery tasks; original reference captions/transcripts are intentional gallery targets.",
+  "execution_prerequisites": [
+    "A single free GPU owner; do not run concurrently with the primary queue.",
+    "Scheduler verifies the frozen manifest hashes listed here before launch; runner independently verifies parent transformation, file/media hashes and pinned encoder compatibility.",
+    "Real bridge health and full-query accuracy have not been measured."
+  ],
+  "jobs": [
+    {
+      "id": "xm3600-tr-reverse-eg2",
+      "status": "planned_not_executed",
+      "parent": "data/multimodal/xm3600-tr",
+      "dataset": "data/ablations/xm3600-tr-reverse-reference-gallery-v1",
+      "dataset_identity": "3b29b9658dfdce1796776c3f1e50f314abc0af78af0422365437c026d556f197",
+      "parent_manifest_sha256": "a9d214e69153ba42a1d5f617a05004c9b1f56f29879e7815b9d8db5692c3805a",
+      "derived_manifest_sha256": "760c9ff0c44a071eaba7c65bda907bd40c5adb800d5e215f9942abc534ad2182",
+      "command_argv": [
+        ".venv/bin/python",
+        "-m",
+        "rag_benchmark.multimodal_reverse_runner",
+        "--dataset",
+        "data/ablations/xm3600-tr-reverse-reference-gallery-v1",
+        "--parent",
+        "data/multimodal/xm3600-tr",
+        "--run-dir",
+        "runs/ablations/xm3600-tr-reverse-eg2"
+      ]
+    },
+    {
+      "id": "xm3600-en-reverse-eg2",
+      "status": "planned_not_executed",
+      "parent": "data/multimodal/xm3600-en",
+      "dataset": "data/ablations/xm3600-en-reverse-reference-gallery-v1",
+      "dataset_identity": "c08a4a73bc0cb9c52dadca27e149574ccfdff6784685efd39fd3d283841258da",
+      "parent_manifest_sha256": "e3857cf70a73ca09b4c68d7b110c73d8ac7415ec503df32eacdf7e7b4c4c3a8c",
+      "derived_manifest_sha256": "e5f936e7aecd3fa667596e3a599e4ea72e73f8a800c566ab3a771e34bf22606a",
+      "command_argv": [
+        ".venv/bin/python",
+        "-m",
+        "rag_benchmark.multimodal_reverse_runner",
+        "--dataset",
+        "data/ablations/xm3600-en-reverse-reference-gallery-v1",
+        "--parent",
+        "data/multimodal/xm3600-en",
+        "--run-dir",
+        "runs/ablations/xm3600-en-reverse-eg2"
+      ]
+    },
+    {
+      "id": "fleurs-tr_tr-test-reverse-eg2",
+      "status": "planned_not_executed",
+      "parent": "data/multimodal/fleurs-tr_tr-test",
+      "dataset": "data/ablations/fleurs-tr_tr-test-reverse-reference-gallery-v1",
+      "dataset_identity": "a25525bd272b7cbc9b59d222dea6f1d88364ef68424f7ccbd57cbb8fd71d2bb1",
+      "parent_manifest_sha256": "d19fd91133598848277ce4b20be1fdfdd21e32aaa3779a22cdbf5a196145925f",
+      "derived_manifest_sha256": "d5568da26d1b352568ddbb6b37bf9118eb4a77bdf8b9adbdea16e10e116b512a",
+      "command_argv": [
+        ".venv/bin/python",
+        "-m",
+        "rag_benchmark.multimodal_reverse_runner",
+        "--dataset",
+        "data/ablations/fleurs-tr_tr-test-reverse-reference-gallery-v1",
+        "--parent",
+        "data/multimodal/fleurs-tr_tr-test",
+        "--run-dir",
+        "runs/ablations/fleurs-tr_tr-test-reverse-eg2"
+      ]
+    }
+  ]
+}

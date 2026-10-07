@@ -220,3 +220,21 @@ Build the execution manifest without starting a model:
 The planner prepares one `closed_book oracle` × `text image` control job per frozen collection, then one `retrieved` × `text image` job per exact completed retrieval identity. Export duplicates collapse; missing actual ranking stores, failed/partial cells and smoke runs are excluded or retained as pending. Different measured configurations can have the same primary method/budget/K label and stay separate here. The commands pass expected dataset identity and retrieval report SHA256; changed inputs fail before server preflight.
 
 Use `--conditions` and `--representations` to select a subset explicitly. Selection is part of the runner's frozen configuration and requires a separate run directory if it changes. The manifest does not execute commands, launch a server or prove QA accuracy. A queue owner must verify that the model slot is free and run the local pinned generator before executing a job; never send these jobs to the server currently serving another experiment. The [current aggregate plan](../reports/multimodal-qa-execution-plan-summary.json) records 409,148 planned tasks and zero generated answers. Controls are scheduled once; identical retrieved evidence across different cells has no shared generation cache yet. Regenerate the plan after new retrieval results complete.
+
+
+### Separate reverse retrieval
+
+The intended-reference-gallery preparation is a distinct task: a source image searches annotated captions, or source audio searches normalized reference transcripts. The query never contains the target text. These reference galleries are explicitly labelled as such; they are not source-only ASR or generated descriptions.
+
+The dedicated runner connects pinned EG2 native media queries to the same pinned EG2 text-document encoder (768 dimensions, matching revision/device/dtype, `title: none | text: ` document prefix). Media-only queries consume no textual query prefix. It verifies the exact frozen parent transformation and every media checksum before encoding, searches the complete text gallery with normalized cosine, and records multi-positive metrics. Cache blocks, diagnostics, scores and metrics are revalidated on resume. Missing runtime audio counts remain unavailable. The frozen prepared manifest's `runtime_ready=false` still prevents accidental use in the forward engine; this separate runner does not alter that manifest or the forward gold-free policy.
+
+With the single model slot available, an explicit future run is:
+
+```bash
+.venv/bin/python -m rag_benchmark.multimodal_reverse_runner \
+  --dataset data/ablations/xm3600-tr-reverse-reference-gallery-v1 \
+  --parent data/multimodal/xm3600-tr \
+  --run-dir runs/ablations/xm3600-tr-reverse-eg2
+```
+
+[Three planned commands and frozen source hashes](../configs/multimodal-reverse-jobs.json) cover Turkish/English images and Turkish speech. Raw rankings/vectors stay in ignored run directories; optional `--output` writes an aggregate report only. Before scheduling, verify the manifest hashes listed in that plan. No real reverse model inference has run yet: only fake-encoder CPU tests, actual constructor compatibility checks without model loading, and source/media validation. Specialist reverse retrieval, Whisper-query comparisons, confidence intervals and answer generation remain separate pending work. These jobs contribute zero to the primary forward-matrix denominator.
