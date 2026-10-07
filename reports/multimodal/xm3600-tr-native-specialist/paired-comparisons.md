@@ -2,11 +2,13 @@
 
 Dataset: xm3600-tr.
 
-Differences are right minus left, in metric units. Positive values favor the right method. Intervals are 95% paired source-group percentile intervals; methods use the same frozen queries and gallery. These are marginal exploratory comparisons without a multiple-comparison correction.
+Differences are right minus left, in metric units. Positive values favor the right method. Where reported, intervals are 95% paired source-group percentile intervals; methods use the same frozen queries and gallery. These are marginal exploratory comparisons without a multiple-comparison correction.
 
 Grouping: Queries sharing any positively labelled media item are connected; all queries in each connected component are resampled together.
 
-Source groups: 3600; queries: 7233; largest group: 4 queries.
+Source groups: 3600; queries: 7233; largest group: 4 queries (0.1%).
+
+Conservative reporting safeguard: withhold intervals when one source group contains more than 50% of queries. This is not a formal statistical threshold.
 
 | Left | Right | Metric | Left mean | Right mean | Delta | 95% interval | Wins / losses / ties |
 |---|---|---|---:|---:|---:|---|---|
@@ -17,6 +19,6 @@ Source groups: 3600; queries: 7233; largest group: 4 queries.
 | photo__s__none | photo__n_s__none | hit@5 | 0.5988 | 0.7628 | +0.1640 | [+0.1545, +0.1735] | 1238 / 52 / 5943 |
 | photo__s__none | photo__n_s__none | ndcg@10 | 0.5171 | 0.6724 | +0.1553 | [+0.1494, +0.1612] | 3102 / 268 / 3863 |
 
-Bootstrap samples: 5000; seed: 42. No model inference or generated-answer judging was performed.
+Bootstrap settings for eligible comparisons: 5000 samples; seed: 42. No model inference or generated-answer judging was performed.
 
 Pairing follows [SciPy's paired resampling definition](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html); source groups follow [cluster resampling](https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/).

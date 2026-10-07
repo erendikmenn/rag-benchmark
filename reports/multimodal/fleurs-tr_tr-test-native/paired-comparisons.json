@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "analysis_version": "paired-source-components-v1",
-  "analysis_source_sha256": "e2437b6a8d7a91bdc373dc204e16cb733e320e2ce0e9fca0472f5f86201b913e",
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
   "numpy_version": "2.5.3",
   "dataset": {
     "id": "fleurs-tr_tr-test",
@@ -29,6 +29,13 @@
     "seed": 42,
     "direction": "right_minus_left",
     "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
     "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
   },
   "grouping": {
