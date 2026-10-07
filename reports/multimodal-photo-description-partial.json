@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "passed_partial_cache_integrity",
+  "generator_identity": "3b9691ddfbcd70c12bd8c1f3551c4cb301f34957e8c4666c2f5ed4dbd9edfbf2",
+  "source_manifest_sha256": "a9d214e69153ba42a1d5f617a05004c9b1f56f29879e7815b9d8db5692c3805a",
+  "source_corpus_sha256": "ddd1a0620bd6a65fd0b127b8fdc763be188842b4ccbb5d909cf3ddcd07fd04f3",
+  "source_count": 3600,
+  "valid_normal_stop_records": 1446,
+  "missing_records": 2154,
+  "first_missing_ordinal": 1447,
+  "contiguous_source_order_verified": true,
+  "source_order_sha256": "da0f6363692e680b85303ad510a7296fffb78b137744169fbef92e040f50adf5",
+  "source_media_inventory_sha256": "4383f49132a0e2b2b058cb6cf18d9ca5253f9c3d5bf038364014376e29361472",
+  "cache_inventory_sha256": "ab05b1a4fea4dca893236a9936cbbb8c62dce12b192d289e6614094d9326f006",
+  "all_source_media_assets_checked": 3600,
+  "matched_cache_record_identities": 1446,
+  "extra_json_records": 0,
+  "recorded_finish_reasons": {
+    "stop": 1446
+  },
+  "requested_output_tokens": 512,
+  "context_limit": 8192,
+  "prompt_tokens_range": [
+    149,
+    223
+  ],
+  "completion_tokens_range": [
+    14,
+    372
+  ],
+  "audit_model_calls": 0,
+  "completed_dataset": false,
+  "main_matrix_progress_increment": 0,
+  "limits": [
+    "Recorded cache integrity and normal-stop usage verified; no fresh inference or caption semantic-quality measurement.",
+    "Historical records do not include per-request image pixel-retention diagnostics."
+  ]
+}
