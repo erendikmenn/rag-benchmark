@@ -7,22 +7,6 @@
   "implementation_commit": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "gpu": "NVIDIA A100-SXM4-80GB",
   "main_matrix_increment": 0,
-  "retrieval_completed_pending_independent_audit": [
-    {
-      "dataset": "vidore-v3-physics-fr",
-      "gpu": "NVIDIA A100-SXM4-80GB",
-      "wall_seconds_including_checkpoints": 1207.036564578,
-      "target_cells": 126
-    },
-    {
-      "dataset": "vidore-v3-pharmaceuticals-en",
-      "gpu": "NVIDIA L4",
-      "wall_seconds_including_checkpoints": 1880.183225769,
-      "target_cells": 126,
-      "runtime_subsequently_lost": true,
-      "full_durable_checkpoint_confirmed": false
-    }
-  ],
   "qa_serial": {
     "sample_rows": 20,
     "sample_valid": 15,
@@ -451,14 +435,18 @@
     "BGE batching changes the recorded adapter identity and observed scores/ranks. It is not silently substituted for batch1.",
     "A100 and L4 throughput are not pooled or divided by the count of GPUs.",
     "CIRR authorized media access and human semantic calibration remain external dependencies.",
-    "A complete whole-research wall-clock finish cannot be derived from these prospective counts or partial samples."
+    "A complete whole-research wall-clock finish cannot be derived from these prospective counts or partial samples.",
+    "Parallel8 QA captured finish_reason=length for all four rejected steady responses. Sequential old rows lacked exact reason; do not retroactively fill it."
   ],
   "private_measurement_sha256": {
     "qa-measured-weighted-eta.json": "069ac88d81c419a6499e69e87f20043df369ea9276a1e8ca32f4a6df8a4063e6",
     "rerank-rows.json": "6a01146f789ee4879b5c7ee7c651052073ec29db9623a875701fe46cb4e7a8d2",
     "gemma-rows.json": "06067b013a4df6c7d7c46dc042e4bd946e106553245ead0cfc71e5ee7c79d861",
     "bge-batch-v2-summary.json": "6dc5ff65bd67f60d615a67ea9d587ae5078590d07f587d1212c856aaa3f4c4f3",
-    "overnight-workload-census.json": "617f9bbc677e460e613063ce59e2bad25bc3e7484ccef83e858efb8d6eb3fc78"
+    "overnight-workload-census.json": "617f9bbc677e460e613063ce59e2bad25bc3e7484ccef83e858efb8d6eb3fc78",
+    "recovered-qa-concurrent-summary.json": "9f1fbec6859c4f783d936306721cd79b18879e9d0cc69574697d2511ed75d2b6",
+    "recovered-code-concurrent-summary.json": "7afe58b6644d29d3e9483511a00a79522b1e4389e7f42b6895adfbf2dcf576bc",
+    "qa-concurrent-independent-arithmetic.json": "66e366783001063f3a56f6e97b3682a8dddb8c0b5230ced589e5eb8b858e8193"
   },
   "first_wave_document_proxy": {
     "basis": "six_channels_times_top100_times_queries; Physics A100 sample means applied to every dataset",
@@ -476,5 +464,77 @@
     "measured_L4_rate": false,
     "wall_clock_forecast": false,
     "overheads_included": false
-  }
+  },
+  "qa_parallel8": {
+    "concurrency": 8,
+    "steady_attempted": 18,
+    "steady_valid": 14,
+    "steady_failed": 4,
+    "batch_wall_seconds": 31.791186614000253,
+    "attempted_requests_per_second": 0.5661946569831128,
+    "valid_requests_per_second": 0.4403736220979766,
+    "actual_total_attempted": 20,
+    "actual_total_valid": 15,
+    "actual_total_failed": 5,
+    "response_cache_hits": 0,
+    "worker_initialization_seconds_excluded_from_steady": 26.218473445999734,
+    "same_18_warm_serial_seconds": 73.534341564,
+    "matched_warm_candidate_speedup": 2.3130417387948907,
+    "flat_current_key_attempt_hours": 59.90774378758597,
+    "successful_completion_eta": false,
+    "current_census_shape_weighted": false,
+    "failed_steady_finish_reasons": {
+      "length": 4
+    },
+    "per_slot_context": 8192,
+    "total_context": 65536,
+    "warmup_attempts_excluded": 2
+  },
+  "gemma_code_parallel8": {
+    "concurrency": 8,
+    "steady_attempted": 64,
+    "steady_valid": 64,
+    "steady_failed": 0,
+    "batch_wall_seconds": 21.800469293000788,
+    "attempted_source_pairs_per_second": 2.9357166187494736,
+    "valid_source_pairs_per_second": 2.9357166187494736,
+    "actual_total_attempted": 66,
+    "actual_total_failed": 0,
+    "response_cache_hits": 0,
+    "worker_init_seconds_excluded_from_steady": 26.187778930000604,
+    "scope": "32 Ruby and 32 Python actual top100 source candidates; one query per language",
+    "output_token_cap": 32,
+    "warmup_attempts_excluded": 2,
+    "quality_equivalence_claimed": false,
+    "whole_code_eta_claimed": false,
+    "comparable_same_pair_serial_measurement_available": false,
+    "total_prompt_tokens": 15074,
+    "total_completion_tokens": 1024,
+    "latency_inside_transport_sum_seconds": 174.24624831300025
+  },
+  "planning_scenarios_not_completion_forecasts": {
+    "qa_current_keys_flat_sample_hours": 59.90774378758597,
+    "code_full_candidate_union_flat_Ruby_Python_sample_hours": 1244.8149339582928,
+    "code_rate_limitations": "Two queries; no JavaScript source chunks or Go/Java/PHP sample at parallel8; prospective pairs not reconciled fresh eligible remaining. This is only arithmetic for this rate, not a finish forecast.",
+    "deadline": "2026-10-15T08:00:00+03:00",
+    "all_research_by_deadline_supported": false
+  },
+  "retrieval_completed_pending_acceptance": [
+    {
+      "dataset": "vidore-v3-physics-fr",
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "wall_seconds_including_checkpoints": 1207.036564578,
+      "target_cells": 126,
+      "independent_audit": "passed_126_cells_38052_rankings_646884_metrics",
+      "main_matrix_acceptance": "pending"
+    },
+    {
+      "dataset": "vidore-v3-pharmaceuticals-en",
+      "gpu": "NVIDIA L4",
+      "wall_seconds_including_checkpoints": 1880.183225769,
+      "target_cells": 126,
+      "runtime_subsequently_lost": true,
+      "full_durable_checkpoint_confirmed": false
+    }
+  ]
 }

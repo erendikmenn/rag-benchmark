@@ -86,7 +86,7 @@
   "execution": {
     "neural_benchmark_inference_started": true,
     "full_126_cell_runs_completed": 2,
-    "independent_full_run_audits_completed": 0,
+    "independent_full_run_audits_completed": 1,
     "published_main_coverage": "2052/18460",
     "main_coverage_updated": false
   },
@@ -95,18 +95,29 @@
     "local_verified_backup_status": "one_partial_run_Physics_archive_received_and_SHA256_verified",
     "archive_bytes": 53514240,
     "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7",
-    "full_physics_transfer": "87_of_124_chunks_verified_resume_in_progress",
-    "pharmaceuticals_full_durable_backup_confirmed": false
+    "full_physics_transfer": "received_full_size_and_SHA256_verified",
+    "pharmaceuticals_full_durable_backup_confirmed": false,
+    "full_physics_bytes": 1038274560,
+    "full_physics_sha256": "8d0c7cb6abb290519e0ad284fc341edb249a160be3decdf14ced5361415c8b71",
+    "full_physics_independent_audit": {
+      "status": "passed",
+      "cells": 126,
+      "rankings": 38052,
+      "metric_values": 646884
+    }
   },
   "eta": {
-    "status": "measured_serial_planning_scenarios_parallel_timing_pending",
+    "status": "actual_serial_and_parallel_samples_with_scoped_planning_scenarios",
     "prior_unmeasured_eleven_day_estimate": "withdrawn",
     "channel_times_include_checkpoint": true,
     "task_counts_are_unique_inference_calls": false,
     "scope": "first_wave_retrieval_separate_from_remaining_main_matrix_and_QA",
     "measurement_report": "colab-throughput-measurements.json",
     "night_target": "2026-10-15T08:00:00+03:00",
-    "whole_research_completion_forecast_available": false
+    "whole_research_completion_forecast_available": false,
+    "qa_parallel_attempts_per_second": 0.5661946569831173,
+    "qa_matched_warm_speedup": 2.313041738794909,
+    "gemma_code_parallel_pairs_per_second": 2.93571661874958
   },
   "historical_runtime_failures": {
     "scope": "earlier_L4_and_A100_both_lost_before_neural_benchmark_execution",
