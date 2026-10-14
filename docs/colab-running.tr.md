@@ -4,7 +4,11 @@
 
 Yalnız teknik bilgileri içeren operasyon kaydı: [Colab ortam hazırlığı](../reports/colab-runtime-readiness.json). Ölçülen ortam torch `2.14.1+cu130`, CUDA `13.0`, sürücü `580.82.07`, doğal BF16 destekli NVIDIA L4 ve 22,03 GiB VRAM içerir. Bu gözlem başka oturumların veya model çıkarımının uyumluluğunu garanti etmez.
 
-Sonraki yetkili kurtarma girişiminde H100 ve G4 talepleri arka uç tarafından reddedildi; bunun hesap hakkı veya kota nedeni olduğu ayırt edilemedi. Yüksek RAM’li A100 tahsis edildi: gerçek cihaz NVIDIA A100-SXM4-80GB, 79,25 GiB GPU belleği ve 167,05 GiB sistem belleği. Sabit ortam kurulumu ve özel veri aktarımı devam ediyor. Henüz gerçek model hızı ölçülmedi; ilk üç koleksiyonun ve bütün araştırmanın tamamlanma süreleri ayrı ölçülecek. Paralel oturum sayısı henüz doğrulanmadı.
+Sonraki yetkili kurtarma girişiminde H100 ve G4 talepleri arka uç tarafından reddedildi; bunun hesap hakkı veya kota nedeni olduğu ayırt edilemedi. Yüksek RAM’li A100 tahsis edildi: gerçek cihaz NVIDIA A100-SXM4-80GB, 79,25 GiB GPU belleği ve 167,05 GiB sistem belleği. Sabit ortam ve model dosyası hazırlığı geçti; ardından 146 parçanın 120’si aktarılmışken bu A100 oturumuna da erişim kayboldu. Son başarılı aktarım kaydı 1.006.632.960 / 1.218.877.440 bayttır; tam arşiv veya uzak veri kümesi kimliği doğrulanmadı. Aktarıcı bağlantı hatasıyla durdu; oturum kaybının nedeni bilinmiyor. Son sunucu kontrolünde aktif oturum sayısı 0 ve uzak dosyalara erişilemiyor. Tam özel girdi kalıcı olarak saklanıp hash’i doğrulanmadan yeni GPU tahsis edilmeyecek. Özel kalıcı aktarım yolu inceleniyor; başarılı yükleme henüz doğrulanmadı.
+
+Ölçüme dayanmayan önceki 11 günlük tamamlanma tahmini geri çekildi. Görev sayısı benzersiz model çıkarımı sayısı değildir; cache paylaşımı ve gerçek istek tekrarları ölçülmeden süreye çevrilemez. İlk üç arama koleksiyonu, kalan ana matris ve QA ayrı kapsamlar olarak ölçülecek. Gerçek CUDA/model hızı ölçülmediğinden yeni sayısal süre verilmiyor.
+
+[Çevrimdışı QA istek sayımı](../reports/colab-qa-request-count-readiness.json), 540.842 uygun görevi aynı doğrulanmış runtime koşulunda 122.110 birebir istek anahtarına gruplar. 20.020 metin sınırı, 30 kullanılamaz metin ve 1.272 eski rapor görevi ayrı tutulur; model çağrısı 0, gerçek cache kazancı ve süre ölçülmedi.
 
 ## İlk dalga
 

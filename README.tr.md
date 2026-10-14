@@ -1,6 +1,8 @@
 # rag-benchmark
 
-**14 Ekim: [üç Colab notebooku hazırlandı](docs/colab-running.tr.md).** Google girişi başarılı. İlk L4 ortam ve küçük BF16 CUDA kontrolünü geçti; ancak veri aktarılırken oturum kayboldu. Bu ilk oturum artık aktif değil, uzak dosyalarına erişilemiyor ve kapanma nedeni bilinmiyor. Sinirsel benchmark başlamadı. Yerel veri paketleri korunuyor. H100/G4 talepleri reddedildikten sonra yüksek RAM’li A100 tahsis edildi; kurulum ve özel veri aktarımı sürüyor, benchmark henüz başlamadı. Eski yerel kuyruk ve otomasyon kapalı.
+**14 Ekim: [üç Colab notebooku hazırlandı](docs/colab-running.tr.md).** Google girişi başarılı. İlk L4 ortam ve küçük BF16 CUDA kontrolünü geçti; ancak veri aktarılırken oturum kayboldu. Bu ilk oturum artık aktif değil, uzak dosyalarına erişilemiyor ve kapanma nedeni bilinmiyor. Sinirsel benchmark başlamadı. Yerel veri paketleri korunuyor. H100/G4 talepleri reddedildikten sonra tahsis edilen yüksek RAM’li A100 yalnız ortam ve model dosyası hazırlığını geçti; ancak tamamlanmamış özel veri aktarımı sırasında bu oturuma da erişim kayboldu; veri doğrulaması ve tam hazırlık akışı bitmedi. Son sunucu kontrolünde aktif oturum sayısı 0. Tam özel girdi kalıcı olarak saklanıp doğrulanmadan yeni GPU tahsis edilmeyecek. Sinirsel benchmark başlamadı; ana kapsam 2.052 / 18.460 olarak kaldı. Ölçülmüş tamamlanma süresi henüz yok. Eski yerel kuyruk ve otomasyon kapalı.
+
+[Çevrimdışı QA istek planı](reports/colab-qa-request-count-readiness.json), 540.842 uygun görevi koşullu 122.110 birebir istek anahtarına gruplar; CPU sayımı model çağrısı yapmadı; gerçek runtime cache tekrar kullanımı ölçülmedi.
 
 **Türkçe RAG sistemlerini aynı koşullarda, yerel modellerle karşılaştırmak için bir deney düzeneği.** BM25, BGE-M3 ve EmbeddingGemma 2 belge aramasını; Laya'nın yeniden sıralamaya katkısını; aynı Gemma 4 modelinin ürettiği cevapları ölçer.
 

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "offline_conditional_planning",
+  "scope": "observed document QA execution plan; separate from first-wave retrieval and primary matrix",
+  "counts": {
+    "plan_total_tasks": 562164,
+    "stale_report_tasks_excluded": 1272,
+    "stale_report_jobs_excluded": 2,
+    "planned_tasks": 560892,
+    "eligible_tasks": 540842,
+    "unsupported_tasks": 20050,
+    "rejection_reasons": {
+      "missing_usable_text": 30,
+      "text_cap_exceeded": 20020
+    },
+    "unique_request_keys_fixed_runtime": 122110,
+    "eligible_duplicate_tasks": 418732,
+    "plan_sha256": "ba855a4750b9916eece9681095fcaf7dbbfb12665d72cead5a9eda69411e72f7"
+  },
+  "provenance": {
+    "runner_sha256": "c4df719f5aa9e2e18b3b9e33203149c594c0d862665874f0df78f7c90d1e8b08",
+    "counter_sha256": "748a5b1c04a883517bb84feae58e98a7842e695f7f016f9911f46a269d87b1fa",
+    "test_sha256": "b2e8e5cf8716011d96e73bd1134e10934629937ae4684bed368304bc4fc26732",
+    "verified_media_paths": 19252,
+    "cpu_tests_passed": 10,
+    "classification_policy": "Known request construction rejections only; unclassified errors and invalid retrieval integrity abort counting."
+  },
+  "independent_input_audit": {
+    "valid_retrieved_jobs": 1162,
+    "stale_retrieved_jobs_excluded": 2,
+    "retrieval_metrics_independently_recomputed": false
+  },
+  "actual_model_calls": 0,
+  "actual_cache_hits": "not_measured",
+  "actual_cache_reuse_measured": false,
+  "numerical_eta": null,
+  "main_coverage_updated": false,
+  "conditions": [
+    "one identical verified runtime/generator/transport for all jobs",
+    "each unique source media file hashed once and matched frozen inventory",
+    "query/source coverage and report hashes checked; independent retrieval metric audit deferred"
+  ],
+  "limitations": [
+    "Prospective exact-request grouping requires one identical verified runtime, generator and transport partition.",
+    "Actual source/request paths were preserved during counting; remote reuse requires a fixed injective root remap and identical verified source bytes.",
+    "122110 unique eligible keys are conditional grouping opportunities, not measured fresh model calls or completed QA.",
+    "20020 text-cap rejections, 30 missing-text rejections and 1272 stale-report tasks remain separate exclusions; no evidence was truncated to make requests eligible.",
+    "Actual runtime cache reuse, model throughput and completion time have not been measured.",
+    "Private source data, prompts, response payloads and absolute paths are excluded from this public aggregate."
+  ]
+}
