@@ -1,107 +1,134 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "observed_date": "2026-10-14",
-  "status": "all_observed_runtimes_unavailable_durable_input_pending",
+  "status": "three_parallel_cuda_benchmark_pipelines_active",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
-  "job": "vidore-v3-physics-fr",
-  "cli": {
-    "version": "0.7.4",
-    "source_ref": "66d7963611bcce2d272488e982ad38e519c062f0",
-    "oauth_confirmed": true,
-    "session_access_confirmed": true,
-    "ssh_confirmed": true
+  "runtime": {
+    "gpu_allocation": "one_A100_80GB_and_two_L4_on_independent_runtimes",
+    "dtype": "bfloat16",
+    "native_bf16_required": true,
+    "active_owned_gpu_assignments": 3
   },
-  "environment": {
-    "status": "environment_probe_passed",
-    "torch": "2.14.1+cu130",
-    "cuda": "13.0",
-    "driver": "580.82.07",
-    "native_bf16": true,
-    "gpu": "NVIDIA L4",
-    "vram_gib": 22.03,
-    "packages": {
-      "sentence-transformers": "6.1.0",
-      "transformers": "5.19.0",
-      "peft": "0.21.2",
-      "colpali-engine": null
+  "jobs": [
+    {
+      "dataset": "vidore-v3-physics-fr",
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "native_bf16": true,
+      "preparation_status": "complete_verified",
+      "preparation_seconds": 215.157,
+      "completed_channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "active_channel": "S",
+      "observed_channel_wall_seconds_including_checkpoint": {
+        "G": 36.26,
+        "E": 38.298,
+        "N": 255.382
+      }
     },
-    "tiny_cuda_allocation_and_sync": true,
-    "scope": "historical_probe_on_now_unavailable_runtime"
-  },
-  "model_files": {
-    "status": "historically_prepared_now_unavailable",
-    "immutable_revisions_prepared": true,
-    "neural_model_loads": 0
+    {
+      "dataset": "vidore-v3-pharmaceuticals-en",
+      "gpu": "NVIDIA L4",
+      "native_bf16": true,
+      "preparation_status": "complete_verified",
+      "preparation_seconds": 160.396,
+      "completed_channels": [
+        "B",
+        "G"
+      ],
+      "active_channel": "E",
+      "observed_channel_wall_seconds_including_checkpoint": {
+        "G": 50.47
+      }
+    },
+    {
+      "dataset": "vidore-v3-industrial-en",
+      "gpu": "NVIDIA L4",
+      "native_bf16": true,
+      "preparation_status": "complete_verified",
+      "preparation_seconds": 206.378,
+      "completed_channels": [
+        "B"
+      ],
+      "active_channel": "G",
+      "observed_channel_wall_seconds_including_checkpoint": {}
+    }
+  ],
+  "dataset_preparation": {
+    "status": "all_three_frozen_identities_verified",
+    "transport": "three_tiny_exact_metadata_archives_plus_direct_immutable_official_corpus_media_restore",
+    "metadata_archive_total_bytes": 5213335,
+    "metadata_files_per_archive": 6,
+    "metadata_regenerated": false,
+    "official_corpus_shard_sha256_verified": true,
+    "all_restored_embedded_media_sha256_verified": true,
+    "dataset_identity_verified": true,
+    "worker_dry_runs_passed": 3
   },
   "execution": {
-    "neural_model_inference_runs": 0,
-    "neural_model_health_checks": 0,
-    "completed_benchmark_cells": 0,
+    "neural_benchmark_inference_started": true,
+    "full_126_cell_runs_completed": 0,
+    "independent_full_run_audits_completed": 0,
+    "published_main_coverage": "2052/18460",
     "main_coverage_updated": false
   },
-  "dataset_transfer": {
-    "status": "interrupted_runtime_unavailable",
-    "method": "official_contents_client_chunked",
-    "chunk_bytes": 8388608,
-    "prior_cli_exec_connection_lost": true,
-    "prior_large_ssh_scp_transfers_failed": true,
-    "full_archive_verified": false,
-    "remote_dataset_identity_verified": false,
-    "last_reported_chunks": 40,
-    "last_reported_bytes": 335544320,
-    "local_source_bundles_retained": true,
-    "scope": "historical_L4_transfer"
+  "checkpoint": {
+    "remote_closed_checkpoint_publication": "enabled_by_reviewed_owned_helpers",
+    "local_verified_backup_status": "one_partial_run_Physics_archive_received_and_SHA256_verified",
+    "archive_bytes": 53514240,
+    "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7"
   },
-  "required_before_benchmark": [
-    "verify complete private durable input archive size and SHA-256 before any new GPU allocation",
-    "verify authorized private persistence and bounded checkpoint retrieval",
-    "allocate and verify a fresh pinned native BF16 runtime only after input readiness",
-    "safely unpack and verify frozen dataset identity before explicit worker execution"
-  ],
-  "limitations": [
-    "A tiny CUDA allocation is not neural model inference validation.",
-    "Observed GPU and package compatibility does not guarantee future sessions or model success.",
-    "Incomplete transfers must not be accepted as ready datasets.",
-    "The runtime disappearance cause is unknown; historical environment preparation is not current remote availability."
-  ],
-  "runtime": {
-    "status": "no_active_assignments",
-    "active_assignments": 0,
+  "eta": {
+    "status": "no_total_completion_eta",
+    "prior_unmeasured_eleven_day_estimate": "withdrawn",
+    "channel_times_include_checkpoint": true,
+    "task_counts_are_unique_inference_calls": false,
+    "scope": "first_wave_retrieval_separate_from_remaining_main_matrix_and_QA"
+  },
+  "historical_runtime_failures": {
+    "scope": "earlier_L4_and_A100_both_lost_before_neural_benchmark_execution",
     "cause": "unknown",
-    "new_allocation_pending": "blocked_until_private_durable_input_verified",
-    "remote_files_available": false,
-    "scope": "latest_server_listing_after_A100_loss"
-  },
-  "recovery": {
-    "status": "historical_A100_runtime_unavailable",
-    "gpu_selection": {
-      "H100": "backend_rejected",
-      "G4": "backend_rejected",
-      "A100_high_ram": "historically_allocated_now_unavailable"
+    "old_L4_environment": {
+      "status": "environment_probe_passed",
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "driver": "580.82.07",
+      "native_bf16": true,
+      "gpu": "NVIDIA L4",
+      "vram_gib": 22.03,
+      "packages": {
+        "sentence-transformers": "6.1.0",
+        "transformers": "5.19.0",
+        "peft": "0.21.2",
+        "colpali-engine": null
+      },
+      "tiny_cuda_allocation_and_sync": true,
+      "scope": "historical_probe_on_now_unavailable_runtime"
     },
-    "hardware_probe": {
+    "old_L4_transfer": {
+      "status": "interrupted_runtime_unavailable",
+      "method": "official_contents_client_chunked",
+      "chunk_bytes": 8388608,
+      "prior_cli_exec_connection_lost": true,
+      "prior_large_ssh_scp_transfers_failed": true,
+      "full_archive_verified": false,
+      "remote_dataset_identity_verified": false,
+      "last_reported_chunks": 40,
+      "last_reported_bytes": 335544320,
+      "local_source_bundles_retained": true,
+      "scope": "historical_L4_transfer"
+    },
+    "old_A100_hardware": {
       "gpu": "NVIDIA A100-SXM4-80GB",
       "vram_gib": 79.25,
       "host_ram_gib": 167.05,
       "native_bf16": true,
       "scope": "historical_probe_on_now_unavailable_runtime"
     },
-    "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
-    "dataset_verified": false,
-    "neural_model_inference_runs": 0,
-    "completed_benchmark_cells": 0,
-    "parallel_jobs_running": 0,
-    "numerical_benchmark_eta": "unavailable_until_throughput_measurement",
-    "environment_preparation": {
-      "status": "historically_passed_now_unavailable",
-      "torch": "2.14.1+cu130",
-      "cuda": "13.0",
-      "python": "3.12.3",
-      "native_bf16": true,
-      "model_files_prepared": true,
-      "neural_model_loads": 0
-    },
-    "dataset_transfer": {
+    "old_A100_transfer": {
       "status": "interrupted_runtime_unavailable",
       "method": "official_contents_client_chunked",
       "chunk_bytes": 8388608,
@@ -116,14 +143,14 @@
       "cause": "unknown",
       "local_source_bundles_retained": true
     },
-    "active_assignments": 0,
-    "remote_files_available": false
+    "local_frozen_bundles_retained": true
   },
-  "eta": {
-    "status": "unavailable_until_fresh_throughput_measurement",
-    "prior_unmeasured_eleven_day_estimate": "withdrawn",
-    "task_counts_are_unique_inference_calls": false,
-    "main_coverage": "2052/18460_unchanged",
-    "first_wave_scope": "retrieval_only_QA_and_remaining_matrix_separate"
-  }
+  "limitations": [
+    "Active channel completion is not a completed 126-cell run or independent audit.",
+    "Observed channel wall times include checkpoint overhead and do not establish a GPU speedup factor or total project duration.",
+    "Three current allocations do not guarantee future capacity or runtime survival.",
+    "Local MPS queue and old deleted automation remain stopped.",
+    "The verified Physics checkpoint is partial-run state, not a full benchmark or backups of every active job."
+  ],
+  "observed_at_utc": "2026-10-14T15:17:34.457572+00:00"
 }
