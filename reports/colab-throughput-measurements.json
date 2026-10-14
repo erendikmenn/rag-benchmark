@@ -1,0 +1,480 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-10-14",
+  "status": "actual_bounded_cuda_timing_not_full_accuracy",
+  "source_ref": "e967e3b95965cb85fde0c1437409167a74a4ea0c9e2b24df537ee7d8932b628b",
+  "source_ref_kind": "generation_source_sha256",
+  "implementation_commit": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "main_matrix_increment": 0,
+  "retrieval_completed_pending_independent_audit": [
+    {
+      "dataset": "vidore-v3-physics-fr",
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "wall_seconds_including_checkpoints": 1207.036564578,
+      "target_cells": 126
+    },
+    {
+      "dataset": "vidore-v3-pharmaceuticals-en",
+      "gpu": "NVIDIA L4",
+      "wall_seconds_including_checkpoints": 1880.183225769,
+      "target_cells": 126,
+      "runtime_subsequently_lost": true,
+      "full_durable_checkpoint_confirmed": false
+    }
+  ],
+  "qa_serial": {
+    "sample_rows": 20,
+    "sample_valid": 15,
+    "sample_failed": 5,
+    "warm_rows_after_first_cold": 19,
+    "warm_failures": 5,
+    "sample_total_wall_seconds": 135.24136506499963,
+    "cold_initial_overhead": {
+      "server_load_seconds": 62.76759205500002,
+      "transport_preflight_seconds": 17.74788827400016,
+      "first_request_cold_kernel_seconds": 57.32588144600004,
+      "total_seconds": 137.84136177500022
+    },
+    "output_token_cap": 384,
+    "strata": {
+      "closed_book": {
+        "exact_current_key_count": 2419,
+        "warm_attempts": 6,
+        "valid": 4,
+        "failed": 2,
+        "all_attempt_mean_seconds": 1.9226810743333165
+      },
+      "oracle_text": {
+        "exact_current_key_count": 2302,
+        "warm_attempts": 3,
+        "valid": 3,
+        "failed": 0,
+        "all_attempt_mean_seconds": 1.7466413249999277
+      },
+      "oracle_image": {
+        "exact_current_key_count": 2419,
+        "warm_attempts": 3,
+        "valid": 3,
+        "failed": 0,
+        "all_attempt_mean_seconds": 8.232988798000102
+      },
+      "retrieved_text": {
+        "exact_current_key_count": 53265,
+        "warm_attempts": 3,
+        "valid": 2,
+        "failed": 1,
+        "all_attempt_mean_seconds": 3.7728597136667
+      },
+      "retrieved_image": {
+        "exact_current_key_count": 61705,
+        "warm_attempts": 4,
+        "valid": 2,
+        "failed": 2,
+        "all_attempt_mean_seconds": 6.280481915749874
+      }
+    }
+  },
+  "reranker_samples": [
+    {
+      "case": "bge_reranker_text-physics",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 480,
+      "warm_wall_seconds": 7.114227795000261,
+      "source_pairs_per_second": 67.4704288127145,
+      "cold_load_or_preflight_seconds": 7.568895416000032,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "laya_text-physics",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 480,
+      "warm_wall_seconds": 5.480256003999784,
+      "source_pairs_per_second": 87.5871491495416,
+      "cold_load_or_preflight_seconds": 9.498433961000046,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "bge_reranker_text-javascript",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 5.936761264999859,
+      "source_pairs_per_second": 40.42608238517499,
+      "cold_load_or_preflight_seconds": 7.60219462699979,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "laya_text-javascript",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 17.768229733000226,
+      "source_pairs_per_second": 13.50725444270104,
+      "cold_load_or_preflight_seconds": 9.464570075999745,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "bge_reranker_text-ruby",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 3.4696249049998187,
+      "source_pairs_per_second": 69.17174235582463,
+      "cold_load_or_preflight_seconds": 7.542172225000286,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "laya_text-ruby",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 5.426562549999744,
+      "source_pairs_per_second": 44.226892768426914,
+      "cold_load_or_preflight_seconds": 9.519298335999792,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "bge_reranker_text-python",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 3.554425763999461,
+      "source_pairs_per_second": 67.52145520404696,
+      "cold_load_or_preflight_seconds": 7.529560228999799,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "laya_text-python",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 240,
+      "warm_wall_seconds": 11.944547801000681,
+      "source_pairs_per_second": 20.092849390237568,
+      "cold_load_or_preflight_seconds": 9.578630047999923,
+      "cold_load_basis": "actual_local_model_load",
+      "accuracy_claimed": false
+    },
+    {
+      "case": "gemma_multimodal-physics",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 12,
+      "warm_wall_seconds": 10.233554646001721,
+      "source_pairs_per_second": 1.1726130767952105,
+      "cold_load_or_preflight_seconds": 18.007685927999773,
+      "cold_load_basis": "already_running_server_preflight_only_cold_server_load_not_measured",
+      "accuracy_claimed": false,
+      "production_output_token_cap": 32
+    },
+    {
+      "case": "gemma_multimodal-javascript",
+      "status": "failed",
+      "warm_actual_source_pair_attempts": 3,
+      "warm_wall_seconds": 10.328978988000017,
+      "source_pairs_per_second": null,
+      "cold_load_or_preflight_seconds": 17.979943246999937,
+      "cold_load_basis": "already_running_server_preflight_only_cold_server_load_not_measured",
+      "accuracy_claimed": false,
+      "production_output_token_cap": 32,
+      "partial_observed_valid_pairs_only": true,
+      "failure_cost_coverage": "not_complete; no whole-case throughput or extrapolation"
+    },
+    {
+      "case": "gemma_multimodal-ruby",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 4,
+      "warm_wall_seconds": 1.5118356000002677,
+      "source_pairs_per_second": 2.6457903227039314,
+      "cold_load_or_preflight_seconds": 17.9693586960002,
+      "cold_load_basis": "already_running_server_preflight_only_cold_server_load_not_measured",
+      "accuracy_claimed": false,
+      "production_output_token_cap": 32
+    },
+    {
+      "case": "gemma_multimodal-python",
+      "status": "measured",
+      "warm_actual_source_pair_attempts": 4,
+      "warm_wall_seconds": 1.413058164001086,
+      "source_pairs_per_second": 2.83073981093175,
+      "cold_load_or_preflight_seconds": 17.971809523000047,
+      "cold_load_basis": "already_running_server_preflight_only_cold_server_load_not_measured",
+      "accuracy_claimed": false,
+      "production_output_token_cap": 32
+    }
+  ],
+  "bge_batch_candidate": [
+    {
+      "batch_size": 1,
+      "actual_pairs": 600,
+      "warm_wall_seconds": 8.886663953000607,
+      "speedup_vs_batch1": 1.0,
+      "comparisons": [
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "cbe546c0f96003e7c0742381a18b2943e7d3b719bf1a5856a8afe5c134830444",
+          "comparison_scores_sha256": "cbe546c0f96003e7c0742381a18b2943e7d3b719bf1a5856a8afe5c134830444"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "30c2471d1c938b4e6c7e223bc42ed8e5364275b5288506e1f4a87af1503bbd45",
+          "comparison_scores_sha256": "30c2471d1c938b4e6c7e223bc42ed8e5364275b5288506e1f4a87af1503bbd45"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "6efb8d5c41452cc310a5a815590a29dd387626554d86fc1fff2a1473548fcd93",
+          "comparison_scores_sha256": "6efb8d5c41452cc310a5a815590a29dd387626554d86fc1fff2a1473548fcd93"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "51cff068007349b7f0b08a4fb3af4cbd4b3774d1de629439b1b9c4ca343ad4eb",
+          "comparison_scores_sha256": "51cff068007349b7f0b08a4fb3af4cbd4b3774d1de629439b1b9c4ca343ad4eb"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "123c00fa3e546dfd07421918447ae673033b5118e5732d088ecf6fc768697635",
+          "comparison_scores_sha256": "123c00fa3e546dfd07421918447ae673033b5118e5732d088ecf6fc768697635"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0,
+          "mean_absolute_score_difference": 0.0,
+          "exact_equal_score_count": 100,
+          "changed_rank_positions": 0,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": true,
+          "reference_scores_sha256": "9f88ebaef1ab7725ef5467fa08905af9cdcd69c998539d8b7ff3ac807b34df8d",
+          "comparison_scores_sha256": "9f88ebaef1ab7725ef5467fa08905af9cdcd69c998539d8b7ff3ac807b34df8d"
+        }
+      ],
+      "adapter_identity": "92474edb86dfa46627bc52d86670b7788aec7a6d1d10667b8be20401db149711"
+    },
+    {
+      "batch_size": 8,
+      "actual_pairs": 600,
+      "warm_wall_seconds": 2.1878617859983933,
+      "speedup_vs_batch1": 4.061803176906502,
+      "comparisons": [
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.046875,
+          "mean_absolute_score_difference": 0.01416015625,
+          "exact_equal_score_count": 37,
+          "changed_rank_positions": 23,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "cbe546c0f96003e7c0742381a18b2943e7d3b719bf1a5856a8afe5c134830444",
+          "comparison_scores_sha256": "c646f49cccb29e4a875ef80d765ed12e28da6ecf464108b157e1e8be68baf4dc"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.046875,
+          "mean_absolute_score_difference": 0.013482666015625,
+          "exact_equal_score_count": 26,
+          "changed_rank_positions": 27,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "30c2471d1c938b4e6c7e223bc42ed8e5364275b5288506e1f4a87af1503bbd45",
+          "comparison_scores_sha256": "e2a3807f1f8df98c120b33ff906c9c2a765b66524039f82160184d3c280e2050"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.01193359375,
+          "exact_equal_score_count": 56,
+          "changed_rank_positions": 12,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "6efb8d5c41452cc310a5a815590a29dd387626554d86fc1fff2a1473548fcd93",
+          "comparison_scores_sha256": "2e45bd10c65061d970bdc62d12c89b03568be78cdda5d855b8fa8409df7a3cb1"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.016015625,
+          "exact_equal_score_count": 55,
+          "changed_rank_positions": 29,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "51cff068007349b7f0b08a4fb3af4cbd4b3774d1de629439b1b9c4ca343ad4eb",
+          "comparison_scores_sha256": "ea9fc7971643639bf33dc451b22236267f2a62e639034f249a1508959f684468"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.078125,
+          "mean_absolute_score_difference": 0.01640625,
+          "exact_equal_score_count": 53,
+          "changed_rank_positions": 41,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "123c00fa3e546dfd07421918447ae673033b5118e5732d088ecf6fc768697635",
+          "comparison_scores_sha256": "950612e68341cc729a385c624a7f4062eee4b60bae23c7fc2cadc6a76019d33a"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.0153125,
+          "exact_equal_score_count": 63,
+          "changed_rank_positions": 37,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "9f88ebaef1ab7725ef5467fa08905af9cdcd69c998539d8b7ff3ac807b34df8d",
+          "comparison_scores_sha256": "dfbbb0143a2b96984c45180eabfaabcfc307611d2f48126b0dd161e1f017e43a"
+        }
+      ],
+      "adapter_identity": "9d66b45498cdaad1dfe0ec8ac83401304f0e0a3cb1e5846b1ecfeba091655b1b"
+    },
+    {
+      "batch_size": 32,
+      "actual_pairs": 600,
+      "warm_wall_seconds": 2.1589953450002213,
+      "speedup_vs_batch1": 4.1161107519663025,
+      "comparisons": [
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.046875,
+          "mean_absolute_score_difference": 0.0141796875,
+          "exact_equal_score_count": 38,
+          "changed_rank_positions": 23,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "cbe546c0f96003e7c0742381a18b2943e7d3b719bf1a5856a8afe5c134830444",
+          "comparison_scores_sha256": "fdceb8d8fd8c59b6f2321f0b352924d430b5e3e1d3513975cfb9b9bd2a6cbcea"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.046875,
+          "mean_absolute_score_difference": 0.01390869140625,
+          "exact_equal_score_count": 23,
+          "changed_rank_positions": 27,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "30c2471d1c938b4e6c7e223bc42ed8e5364275b5288506e1f4a87af1503bbd45",
+          "comparison_scores_sha256": "dd3f657d298effcd91d94a425c528b9e02ca9e4bc3ff4cc05c10c50b3cdbcccd"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.011640625,
+          "exact_equal_score_count": 56,
+          "changed_rank_positions": 12,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "6efb8d5c41452cc310a5a815590a29dd387626554d86fc1fff2a1473548fcd93",
+          "comparison_scores_sha256": "3d86ea36b5d253fcd002504ad7015d7ce0fd329ebc165cef6999ace0d4ffed4b"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.014453125,
+          "exact_equal_score_count": 59,
+          "changed_rank_positions": 26,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "51cff068007349b7f0b08a4fb3af4cbd4b3774d1de629439b1b9c4ca343ad4eb",
+          "comparison_scores_sha256": "1d5cff3cfafc893e216d28c5935c86a8425f6a698c80ff97ec24e9884d872731"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.078125,
+          "mean_absolute_score_difference": 0.01640625,
+          "exact_equal_score_count": 52,
+          "changed_rank_positions": 40,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "123c00fa3e546dfd07421918447ae673033b5118e5732d088ecf6fc768697635",
+          "comparison_scores_sha256": "0235068b1ef31fa0b269ed8296554be6f92c52134eef426e0050e3ad05bd0d7d"
+        },
+        {
+          "scores_compared": 100,
+          "max_absolute_score_difference": 0.0625,
+          "mean_absolute_score_difference": 0.0165625,
+          "exact_equal_score_count": 60,
+          "changed_rank_positions": 40,
+          "top20_set_overlap": 1.0,
+          "full_ranking_identical": false,
+          "reference_scores_sha256": "9f88ebaef1ab7725ef5467fa08905af9cdcd69c998539d8b7ff3ac807b34df8d",
+          "comparison_scores_sha256": "3f87348d6790e832d5c1873c8c78a88122068f68a4a2fc57a5addb40da26f50a"
+        }
+      ],
+      "adapter_identity": "ca685470d6522fc895c78e69c3875fdef5c8a9f681173eb69ab9c47fb1c04c9a"
+    }
+  ],
+  "workload": {
+    "current_eligible_qa_exact_keys": 122110,
+    "eligible_qa_tasks_before_exact_request_merge": 540842,
+    "conditional_future_qa_tasks_not_counted_in_exact_keys": 5554788,
+    "known_full_grid_source_pairs_per_reranker": 18239347,
+    "code_full_grid_source_pairs_per_reranker": 13155926,
+    "pair_count_is_confirmed_fresh_remaining": false
+  },
+  "serial_planning_scenarios": {
+    "current_qa_attempt_cost_A100_hours": 171.41273416975753,
+    "successful_completion_eta": false,
+    "qa_cost_weighted_by_request_shape": true,
+    "qa_failed_attempt_cost_included": true
+  },
+  "limits": [
+    "Timing samples are bounded, not full accuracy or significance results.",
+    "Warm sample pairs may include overlapping candidates; these are actual model attempts with no score-cache reuse.",
+    "QA failures remain failures; 384 predicted tokens alone does not establish exact finish_reason.",
+    "BGE batching changes the recorded adapter identity and observed scores/ranks. It is not silently substituted for batch1.",
+    "A100 and L4 throughput are not pooled or divided by the count of GPUs.",
+    "CIRR authorized media access and human semantic calibration remain external dependencies.",
+    "A complete whole-research wall-clock finish cannot be derived from these prospective counts or partial samples."
+  ],
+  "private_measurement_sha256": {
+    "qa-measured-weighted-eta.json": "069ac88d81c419a6499e69e87f20043df369ea9276a1e8ca32f4a6df8a4063e6",
+    "rerank-rows.json": "6a01146f789ee4879b5c7ee7c651052073ec29db9623a875701fe46cb4e7a8d2",
+    "gemma-rows.json": "06067b013a4df6c7d7c46dc042e4bd946e106553245ead0cfc71e5ee7c79d861",
+    "bge-batch-v2-summary.json": "6dc5ff65bd67f60d615a67ea9d587ae5078590d07f587d1212c856aaa3f4c4f3",
+    "overnight-workload-census.json": "617f9bbc677e460e613063ce59e2bad25bc3e7484ccef83e858efb8d6eb3fc78"
+  },
+  "first_wave_document_proxy": {
+    "basis": "six_channels_times_top100_times_queries; Physics A100 sample means applied to every dataset",
+    "pairs_per_reranker": [
+      181200,
+      218400,
+      169800
+    ],
+    "combined_BGE_Laya_A100_hours": [
+      1.320671565034028,
+      1.5918028134847224,
+      1.2375829566378471
+    ],
+    "total_A100_hours": 4.150057335156597,
+    "measured_L4_rate": false,
+    "wall_clock_forecast": false,
+    "overheads_included": false
+  }
+}

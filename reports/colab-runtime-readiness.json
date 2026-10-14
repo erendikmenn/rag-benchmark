@@ -1,10 +1,10 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "observed_date": "2026-10-14",
-  "status": "three_parallel_cuda_benchmark_pipelines_active",
+  "status": "measured_throughput_and_recovery_in_progress",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "one_A100_80GB_and_two_L4_on_independent_runtimes",
+    "gpu_allocation": "one_A100_80GB_one_active_Industrial_L4_and_one_replacement_L4_preparing",
     "dtype": "bfloat16",
     "native_bf16_required": true,
     "active_owned_gpu_assignments": 3
@@ -20,14 +20,18 @@
         "B",
         "G",
         "E",
-        "N"
+        "N",
+        "S",
+        "J"
       ],
-      "active_channel": "S",
+      "active_channel": null,
       "observed_channel_wall_seconds_including_checkpoint": {
         "G": 36.26,
         "E": 38.298,
         "N": 255.382
-      }
+      },
+      "full_run_status": "completed_pending_independent_audit",
+      "wall_seconds_including_checkpoint": 1207.036564578
     },
     {
       "dataset": "vidore-v3-pharmaceuticals-en",
@@ -37,12 +41,19 @@
       "preparation_seconds": 160.396,
       "completed_channels": [
         "B",
-        "G"
+        "G",
+        "E",
+        "N",
+        "S",
+        "J"
       ],
-      "active_channel": "E",
+      "active_channel": null,
       "observed_channel_wall_seconds_including_checkpoint": {
         "G": 50.47
-      }
+      },
+      "full_run_status": "completed_before_runtime_loss_no_full_durable_backup_confirmed",
+      "wall_seconds_including_checkpoint": 1880.183225769,
+      "replacement": "allocated_preparation_pending"
     },
     {
       "dataset": "vidore-v3-industrial-en",
@@ -51,10 +62,14 @@
       "preparation_status": "complete_verified",
       "preparation_seconds": 206.378,
       "completed_channels": [
-        "B"
+        "B",
+        "G",
+        "E",
+        "N"
       ],
-      "active_channel": "G",
-      "observed_channel_wall_seconds_including_checkpoint": {}
+      "active_channel": "S",
+      "observed_channel_wall_seconds_including_checkpoint": {},
+      "observed_elapsed_seconds": 3148.63801945
     }
   ],
   "dataset_preparation": {
@@ -70,7 +85,7 @@
   },
   "execution": {
     "neural_benchmark_inference_started": true,
-    "full_126_cell_runs_completed": 0,
+    "full_126_cell_runs_completed": 2,
     "independent_full_run_audits_completed": 0,
     "published_main_coverage": "2052/18460",
     "main_coverage_updated": false
@@ -79,14 +94,19 @@
     "remote_closed_checkpoint_publication": "enabled_by_reviewed_owned_helpers",
     "local_verified_backup_status": "one_partial_run_Physics_archive_received_and_SHA256_verified",
     "archive_bytes": 53514240,
-    "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7"
+    "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7",
+    "full_physics_transfer": "87_of_124_chunks_verified_resume_in_progress",
+    "pharmaceuticals_full_durable_backup_confirmed": false
   },
   "eta": {
-    "status": "no_total_completion_eta",
+    "status": "measured_serial_planning_scenarios_parallel_timing_pending",
     "prior_unmeasured_eleven_day_estimate": "withdrawn",
     "channel_times_include_checkpoint": true,
     "task_counts_are_unique_inference_calls": false,
-    "scope": "first_wave_retrieval_separate_from_remaining_main_matrix_and_QA"
+    "scope": "first_wave_retrieval_separate_from_remaining_main_matrix_and_QA",
+    "measurement_report": "colab-throughput-measurements.json",
+    "night_target": "2026-10-15T08:00:00+03:00",
+    "whole_research_completion_forecast_available": false
   },
   "historical_runtime_failures": {
     "scope": "earlier_L4_and_A100_both_lost_before_neural_benchmark_execution",

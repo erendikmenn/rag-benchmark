@@ -1,22 +1,16 @@
 # Google Colab ile paralel devam
 
-14 Ekim 2026: **üç gerçek GPU benchmark işi paralel çalışıyor.** Fizik FR, A100-SXM4-80GB; Pharmaceuticals EN ve Industrial EN ayrı NVIDIA L4 çalışma zamanlarında. Üçünde de kaynak `98a981ed292b49f519ec2e6555cc1ab0cd929976`, doğal CUDA BF16 ve aynı deney koşulları korunur. Yerel Mac kuyruğu yeniden başlatılmadı.
+14 Ekim akşamı: Physics FR tam arama koşusu A100’de **1.207,04 saniye**, Pharmaceuticals EN L4’te **1.880,18 saniye** sürdü. Süreler checkpoint aşamalarını içerir; farklı veri kümeleri olduklarından A100/L4 hız oranı çıkarılmaz. Industrial EN ayrı L4 üzerinde devam ediyor. Bu koşular bağımsız denetim ve kalıcı yedek kabulünden önce ana matrise eklenmez: yayımlanmış kapsam **2.052 / 18.460**.
 
-| Koleksiyon | Doğrulanmış hazırlık | Tamamlanan kanallar | Çalışan kanal | Gözlenen kanal duvar süresi |
-|---|---:|---|---|---|
-| Physics FR | 215,157 sn | B/G/E/N | S | G 36,260; E 38,298; N 255,382 sn |
-| Pharmaceuticals EN | 160,396 sn | B/G | E | G 50,470 sn |
-| Industrial EN | 206,378 sn | B | G | Henüz kayıt yok |
+Pharmaceuticals oturumu tamamlanan aramadan sonra, reranker başlamadan tahsis listesinden kayboldu. Nedeni bilinmiyor. Tam koşunun kalıcı yedeği doğrulanamadığından korunmuş toplam süre ve tamamlanma kaydı, geri yüklenebilir benchmark dosyası sayılmıyor. İkinci A100 talebi reddedildi; mevcut kota içinde yeni bir L4 tahsis edildi ve özgün veriyi doğrulayarak hazırlama başladı. Ek işlem birimi satın alınmadı. Physics’in büyük checkpoint aktarımı kesildi; SHA’ları doğrulanan ilk 87 parça korunarak aynı değişmez arşivin kalan parçaları alınıyor. Önceden doğrulanmış 53.514.240 baytlık kısmi yedek korunur.
 
-Kanal duvar süreleri **checkpoint oluşturma dahil** gözlemlerdir; yalnız model çıkarım süresi veya GPU hızlanma katsayısı değildir. Henüz tam 126 hücrelik koşu veya bağımsız sonuç denetimi bitmedi. Yayımlanmış ana kapsam **2.052 / 18.460** olarak kalır. [Teknik operasyon özeti](../reports/colab-runtime-readiness.json).
+[Gerçek QA ve reranker hız ölçümleri](../reports/colab-throughput-measurements.md) artık mevcut. A100’de BGE seri koşulunda 40–69, Laya’da 14–88 sorgu–aday çifti/saniye gözlendi. Aynı 600 çiftte BGE batch1/8/32 süreleri 8,887 / 2,188 / 2,159 saniye; batch32 hızlanması 4,12 kattır. Bazı skor ve sıralamalar değiştiği için bu ayrı koşul, batch1 önbelleğine karıştırılmıyor. Kısa Ruby/Python Gemma örnekleri yaklaşık 2,6–2,8 çift/saniyedir; JavaScript örneği kısmi başarısızdır ve bütün dil için hız çıkarılmaz.
 
-Büyük yerel medya arşivi taşıma darboğazı, toplam **5.213.335 baytlık üç küçük metadata arşivi** ve Colab'dan doğrudan sabit resmî corpus dosyalarını alma yöntemiyle giderildi. Arşivler özgün altı metadata dosyasının birebir baytlarını korur; her corpus shard'ının ve gömülü medya dosyasının SHA-256'sı doğrulandı. Üç özgün veri kimliği ve worker dry-run geçti; metadata yeniden üretilmedi. Bir değişmez Physics checkpoint arşivi (53.514.240 bayt) Mac’e indirildi ve SHA-256 doğrulandı. Bu kısmi koşu yedeğidir; tamamlanmış benchmark değildir.
+Seri QA örneğinde 20 denemenin 15’i strict doğrulamadan geçti, beşi reddedildi. İlk çağrı CUDA ısınma maliyeti içerir. Sıcak örnekleri kaynak türlerine göre mevcut 122.110 birebir istek anahtarına ağırlıklandırmak **171,4 A100 saatlik deneme maliyeti** verir. Bu başarılı tamamlanma tahmini değildir: örnek küçüktür, hatalar çözülmemiştir, paralel hız bu sayıya uygulanmamıştır ve gelecekteki 5.554.788 koşullu QA görevi bu anahtar sayımında yoktur. Sekizli QA/Gemma ölçümü ayrı runtime koşuludur; istem/schema/bağlam korunur. İlk bağlantı denemesi benchmark başlamadan CLI taşıma hatası verdi; bu GPU/model hatası olarak etiketlenmez.
 
-**Tarihsel iki runtime kaybı:** ilk L4, ortam/model dosyası hazırlığından sonra veri aktarılırken kayboldu. Daha sonraki A100 girişimi de 146 parçanın 120'si aktarılmışken erişilemez oldu. İkisinin nedeni bilinmiyor; bu eski başarısız girişimlerde sinirsel benchmark başlamamıştı. Bu tarihsel durumlar yukarıdaki üç mevcut çalışma zamanının durumu değildir; özgün yerel paketler korunuyor.
+Gece hedefi **15 Ekim 08:00 Europe/Istanbul**. İlk üç belge araması, ardından doğrulanmış arama cache’lerini kullanan tam BGE/Laya işleri bağımsız GPU’lara atanır. Tek veri kümesinin tüm altkümeleri, K20/50/100 ve iki bütçesi aynı skor önbelleğini paylaşır; koşul sayısı kadar yeniden çıkarım yapılmaz. QA ve Gemma için gerçek paralel hız/strict başarı ölçülmeden tüm kapsamın sabaha biteceği söylenmez. Kod koleksiyonlarının tam aday birleşimi tek reranker için 13.155.926 potansiyel kaynak çiftidir; bu sayı uygunluk/var olan cache uzlaştırılmadan kesin kalan çağrı değildir. CIRR erişimi ve insan kalibrasyonu ayrıca açık kalır. Eski ölçümsüz 11 gün hesabı geri çekilmiştir.
 
-Ölçüme dayanmayan önceki 11 günlük tamamlanma tahmini geri çekildi. Görev sayısı benzersiz model çıkarımı sayısı değildir. İlk üç arama koleksiyonu, kalan ana matris ve QA ayrı kapsamlar olarak ölçülecek; bir saatlik veya gece boyunca tamamlanma sözü verilmiyor. Kısmi kanal süreleri toplam araştırma için sayısal ETA sağlamaz.
-
-[Çevrimdışı QA istek sayımı](../reports/colab-qa-request-count-readiness.json), 540.842 uygun görevi aynı doğrulanmış runtime koşulunda 122.110 birebir istek anahtarına gruplar. 20.020 metin sınırı, 30 kullanılamaz metin ve 1.272 eski rapor görevi ayrı tutulur; model çağrısı 0, gerçek cache kazancı ve süre ölçülmedi.
+Metadata/media doğrudan sabit resmî kaynaklardan ve hash doğrulamasıyla hazırlanır. CUDA BF16, eski MPS kimliğiyle yeniden etiketlenmez; eski Mac kuyruğu kapalı kalır. [Teknik operasyon özeti](../reports/colab-runtime-readiness.json).
 
 ## İlk dalga
 
