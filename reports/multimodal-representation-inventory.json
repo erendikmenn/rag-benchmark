@@ -1,0 +1,2392 @@
+{
+  "status": "passed_readonly_document_query_metadata_pair_audit",
+  "manifest_sha256": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
+  "snapshots": 24,
+  "sets": 164,
+  "checks": {
+    "report_role_bindings": 156,
+    "historical_noncompleted_channel_role_bindings": 32,
+    "exact_document_query_pairs": 82,
+    "fresh_role_bindings": 6,
+    "fresh_native_colqwen_role_bindings": 2
+  },
+  "limits": [
+    "Role-native formatting may intentionally differ; the shared adapter contract contains both policies.",
+    "Metadata binding only: no new inference, semantic accuracy or DB byte roundtrip.",
+    "CUDA/MPS and dtype/batch/preprocessing identities remain distinct.",
+    "Historical failed ranking channels can retain complete encoding caches; this audit never promotes them to passed retrieval runs.",
+    "No source text, captions, questions, answers, prompts or media exported."
+  ],
+  "pairs": [
+    {
+      "snapshot": "codesearchnet-go-test",
+      "track": "code",
+      "frozen_identity": "c37f153707ebafa260d8beed34aaf8f251b08e1beedf708c9e4395e4399e08e5",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-go-test",
+      "track": "code",
+      "frozen_identity": "c37f153707ebafa260d8beed34aaf8f251b08e1beedf708c9e4395e4399e08e5",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-java-test",
+      "track": "code",
+      "frozen_identity": "b65fcd6dbd409046f8690937f6183bfc5d03f5f53debc197db6d7a2755b6e6e7",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-java-test",
+      "track": "code",
+      "frozen_identity": "b65fcd6dbd409046f8690937f6183bfc5d03f5f53debc197db6d7a2755b6e6e7",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-javascript-test",
+      "track": "code",
+      "frozen_identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+      "channel": "E",
+      "adapter_identity": "6628561bf9f5e1086ade0992062eda6b0c6cbcc5e60234512c370fa0c8e48b39",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "44180bab7ea9f0e8ddcfc430533a833cce3d58ffa91ecf57743f7824611fa02d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-javascript-test",
+      "track": "code",
+      "frozen_identity": "991669194b4b20f9a2f69e84f3dfdec62ea7e23cf921ea296287d8b155aae47f",
+      "channel": "G",
+      "adapter_identity": "a0626d5ebe473c463070204a41e48cc8439ec307b7ff299305ebe9f2682efdb4",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ffb6509cd386ae2831b0524bc5c1eeb3c4730276834a0d15630050fccfd2c069",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-php-test",
+      "track": "code",
+      "frozen_identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-php-test",
+      "track": "code",
+      "frozen_identity": "0ef4d9f3171b45e486af29d13a6958a823abf907bab08da1ae593f58937b1a1f",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-python-test",
+      "track": "code",
+      "frozen_identity": "73f7abdacf709516e24c2edab11e76960a8ff1651d157ab858437bef6d81818b",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-python-test",
+      "track": "code",
+      "frozen_identity": "73f7abdacf709516e24c2edab11e76960a8ff1651d157ab858437bef6d81818b",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-ruby-test",
+      "track": "code",
+      "frozen_identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "codesearchnet-ruby-test",
+      "track": "code",
+      "frozen_identity": "113f9c9fdf6806335396a2c146850724ce4660b8576460b14acb271ec1332288",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-computer_science-en",
+      "track": "document",
+      "frozen_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-computer_science-en",
+      "track": "document",
+      "frozen_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-computer_science-en",
+      "track": "document",
+      "frozen_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-computer_science-en",
+      "track": "document",
+      "frozen_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-computer_science-en",
+      "track": "document",
+      "frozen_identity": "03d8cae70803e4c58caf9de301dd007264d82eed94273339843e20aa07ab18e1",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5dfb9e7c529e28fc6d56f14253a41e2a49c9c9fd379734307e14dc4c3fabff47",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-energy-fr",
+      "track": "document",
+      "frozen_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-energy-fr",
+      "track": "document",
+      "frozen_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-energy-fr",
+      "track": "document",
+      "frozen_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-energy-fr",
+      "track": "document",
+      "frozen_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-energy-fr",
+      "track": "document",
+      "frozen_identity": "c1f3636c94232ceaeb06f1c4e1e7681ea396808e864a69ef01857ce0c844859d",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5dfb9e7c529e28fc6d56f14253a41e2a49c9c9fd379734307e14dc4c3fabff47",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_en-en",
+      "track": "document",
+      "frozen_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_en-en",
+      "track": "document",
+      "frozen_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_en-en",
+      "track": "document",
+      "frozen_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_en-en",
+      "track": "document",
+      "frozen_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_en-en",
+      "track": "document",
+      "frozen_identity": "44e9acc81a0acba686f7c03736d89eccea2d56cdf4d43572cf6a573975d5f63f",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "failed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5dfb9e7c529e28fc6d56f14253a41e2a49c9c9fd379734307e14dc4c3fabff47",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "frozen_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "7f300846345915eb924bf15f34a87f9011851cf5fdb4e265f5b8b9732c7d024e",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "frozen_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "frozen_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "frozen_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-finance_fr-fr",
+      "track": "document",
+      "frozen_identity": "7d3a79e81aac54a539b6d681855ac0a0106da55847847fa5fd9018cacea118e4",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5dfb9e7c529e28fc6d56f14253a41e2a49c9c9fd379734307e14dc4c3fabff47",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-hr-en",
+      "track": "document",
+      "frozen_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-hr-en",
+      "track": "document",
+      "frozen_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-hr-en",
+      "track": "document",
+      "frozen_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d85ff35b8cf7b2fe6793b0930b1e120938c61ac5dd34ba5b8b7e280a9b03edca",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-hr-en",
+      "track": "document",
+      "frozen_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-hr-en",
+      "track": "document",
+      "frozen_identity": "52ad7d2d2635695b0606f61435f18bdf8fa6e9a1f301fd334fb1dadeead23b45",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5dfb9e7c529e28fc6d56f14253a41e2a49c9c9fd379734307e14dc4c3fabff47",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-industrial-en",
+      "track": "document",
+      "frozen_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+      "channel": "E",
+      "adapter_identity": "113528f7a78559a0bca9c4baf642c116eac698a66d8768aa8e3f52c3d98c155d",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "4be751dd95b1fa3ac24bf4caaad1120b5a3cff12de3aed26e5e9caa12bb63beb",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-industrial-en",
+      "track": "document",
+      "frozen_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+      "channel": "G",
+      "adapter_identity": "884602ce295194b43b856146eaffd16f2da479cf06121c030a6d8356f312e09b",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5b4cb9e733c8866079bfbeaea0feaf69df1c0ad7fa532bdc92a8913ecbbb67fa",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-industrial-en",
+      "track": "document",
+      "frozen_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d85ff35b8cf7b2fe6793b0930b1e120938c61ac5dd34ba5b8b7e280a9b03edca",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-industrial-en",
+      "track": "document",
+      "frozen_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+      "channel": "N",
+      "adapter_identity": "3f9b6bab3333f39d1666a70be365d414e4c7ef9de77af4373296a485432c4302",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "560eb86557503cab6b6a7515d561a6580f40c0ae19d236d6e0d05b09f3bfd76a",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-industrial-en",
+      "track": "document",
+      "frozen_identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+      "channel": "S",
+      "adapter_identity": "78026466258d945ac2311a35feac934190fd78970e51708a54a316ca14454e1d",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "80deb9acd9cc50c188971924f4efcc3570473779a36cd0609ff303dc896f054d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "frozen_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+      "channel": "E",
+      "adapter_identity": "113528f7a78559a0bca9c4baf642c116eac698a66d8768aa8e3f52c3d98c155d",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "4be751dd95b1fa3ac24bf4caaad1120b5a3cff12de3aed26e5e9caa12bb63beb",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "frozen_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+      "channel": "G",
+      "adapter_identity": "884602ce295194b43b856146eaffd16f2da479cf06121c030a6d8356f312e09b",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5b4cb9e733c8866079bfbeaea0feaf69df1c0ad7fa532bdc92a8913ecbbb67fa",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "frozen_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+      "channel": "J",
+      "adapter_identity": "ecc1f0bd9f8ed96b3df848739f18f582b892b9c37365b259307d8deefaabf1c1",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "cfb55c910c5dfc86c9c7dd4bf88694753143b7655651c25cef99d71f02360221",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "frozen_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+      "channel": "N",
+      "adapter_identity": "3f9b6bab3333f39d1666a70be365d414e4c7ef9de77af4373296a485432c4302",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "560eb86557503cab6b6a7515d561a6580f40c0ae19d236d6e0d05b09f3bfd76a",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-pharmaceuticals-en",
+      "track": "document",
+      "frozen_identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+      "channel": "S",
+      "adapter_identity": "a8d9784fdffaf7667fca09d0549ec1ada5fe6874b154682ea83a04b71c531e47",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "cd8f01ae62f638a4485a573b756c5c8b508d330fd5712fca6d3999b3fd90bb13",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-physics-fr",
+      "track": "document",
+      "frozen_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+      "channel": "E",
+      "adapter_identity": "113528f7a78559a0bca9c4baf642c116eac698a66d8768aa8e3f52c3d98c155d",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "4be751dd95b1fa3ac24bf4caaad1120b5a3cff12de3aed26e5e9caa12bb63beb",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-physics-fr",
+      "track": "document",
+      "frozen_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+      "channel": "G",
+      "adapter_identity": "884602ce295194b43b856146eaffd16f2da479cf06121c030a6d8356f312e09b",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "5b4cb9e733c8866079bfbeaea0feaf69df1c0ad7fa532bdc92a8913ecbbb67fa",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-physics-fr",
+      "track": "document",
+      "frozen_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+      "channel": "J",
+      "adapter_identity": "ecc1f0bd9f8ed96b3df848739f18f582b892b9c37365b259307d8deefaabf1c1",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "cfb55c910c5dfc86c9c7dd4bf88694753143b7655651c25cef99d71f02360221",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-physics-fr",
+      "track": "document",
+      "frozen_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+      "channel": "N",
+      "adapter_identity": "3f9b6bab3333f39d1666a70be365d414e4c7ef9de77af4373296a485432c4302",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "560eb86557503cab6b6a7515d561a6580f40c0ae19d236d6e0d05b09f3bfd76a",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "vidore-v3-physics-fr",
+      "track": "document",
+      "frozen_identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+      "channel": "S",
+      "adapter_identity": "a8d9784fdffaf7667fca09d0549ec1ada5fe6874b154682ea83a04b71c531e47",
+      "dimension": 128,
+      "kind": "ragged",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "vidore/colqwen2.5-v0.2",
+          "revision": "dcbe8d9cede518bce830488364ba0e40c873645b",
+          "device": "cuda",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": null
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "cd8f01ae62f638a4485a573b756c5c8b508d330fd5712fca6d3999b3fd90bb13",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance",
+      "track": "environment_audio",
+      "frozen_identity": "65b017a1802327bbcc7cae694a50e3bdcaddf569fbd3799e0b3f2b3e1525260e",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance",
+      "track": "environment_audio",
+      "frozen_identity": "65b017a1802327bbcc7cae694a50e3bdcaddf569fbd3799e0b3f2b3e1525260e",
+      "channel": "S",
+      "adapter_identity": "c75553d3f1f187ccf9f67aab10616bfa3783c4026a39eca83dc71d8443d62fbe",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "laion/clap-htsat-fused",
+          "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d9aa4aa8290c3c14edb3f02e3ba7bb09c8acc1037c910d842ea7c6b2d84d57e6",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-dcase2025-additional-relevance-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "4c4028dd8021f046a03e9b7645bf827d1d295f4a9120d6234eee6a1630fc6eeb",
+      "channel": "S",
+      "adapter_identity": "c75553d3f1f187ccf9f67aab10616bfa3783c4026a39eca83dc71d8443d62fbe",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "laion/clap-htsat-fused",
+          "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d9aa4aa8290c3c14edb3f02e3ba7bb09c8acc1037c910d842ea7c6b2d84d57e6",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation",
+      "track": "environment_audio",
+      "frozen_identity": "211b493ea3486d92625e8e0e7c1153409b8c745a45c0fd944971544c7d8a11d0",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation",
+      "track": "environment_audio",
+      "frozen_identity": "211b493ea3486d92625e8e0e7c1153409b8c745a45c0fd944971544c7d8a11d0",
+      "channel": "S",
+      "adapter_identity": "c75553d3f1f187ccf9f67aab10616bfa3783c4026a39eca83dc71d8443d62fbe",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "laion/clap-htsat-fused",
+          "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d9aa4aa8290c3c14edb3f02e3ba7bb09c8acc1037c910d842ea7c6b2d84d57e6",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "clotho-v2.1-evaluation-gemma-described",
+      "track": "environment_audio",
+      "frozen_identity": "503082b7ed81f805776a4c568c8528f933928f616641d52d6ae1d29053b8bab3",
+      "channel": "S",
+      "adapter_identity": "c75553d3f1f187ccf9f67aab10616bfa3783c4026a39eca83dc71d8443d62fbe",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "laion/clap-htsat-fused",
+          "revision": "365dea6ef167def6676140ed93bbc43f84dabb28",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "d9aa4aa8290c3c14edb3f02e3ba7bb09c8acc1037c910d842ea7c6b2d84d57e6",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "fleurs-tr_tr-test",
+      "track": "speech",
+      "frozen_identity": "bfbb1f94944b7bc8f2d50023b88c27d6690e71cfc4bc78ac9eb622e1f327d1d6",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "fleurs-tr_tr-whisper",
+      "track": "speech",
+      "frozen_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "fleurs-tr_tr-whisper",
+      "track": "speech",
+      "frozen_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "fleurs-tr_tr-whisper",
+      "track": "speech",
+      "frozen_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "fleurs-tr_tr-whisper",
+      "track": "speech",
+      "frozen_identity": "69876b5a12d4e6f080e176b819174fa77cb79a37c734b1b5707d1599ce80b52c",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a",
+      "track": "video",
+      "frozen_identity": "4e333f7ac0d9301552980c65052a1981ac4c75192ce26309d05fc6bdc0ef04e7",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a",
+      "track": "video",
+      "frozen_identity": "4e333f7ac0d9301552980c65052a1981ac4c75192ce26309d05fc6bdc0ef04e7",
+      "channel": "S",
+      "adapter_identity": "e423f3e6229cd259eac215bc929ab8f7f5e0b28e2945e72aa3efad38fd991d6b",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "openai/clip-vit-base-patch32",
+          "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "769f9eee2677aaf8cbe8c7243d42e8f85b66d243ffb61768383a3db68cac365e",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a-gemma-described",
+      "track": "video",
+      "frozen_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+      "channel": "E",
+      "adapter_identity": "25520928cdc362e088a6df6513927c6e6fc0eb7cf2d8ba823524abf78076bf3f",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "ee53e16994449cb47d4f16844660a6b797f3a2aad51e3e01b400a6eb436b9650",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a-gemma-described",
+      "track": "video",
+      "frozen_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+      "channel": "G",
+      "adapter_identity": "47d6f9dad711af4f16184754c12fbaf0f0e77f0a73802c4918718605e4781cbd",
+      "dimension": 1024,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "BAAI/bge-m3",
+          "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 8,
+          "dimension": 1024
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "edadfef722d84f46435aee216287f49aa7ce19b11ab83b4640463e6e94e4c87d",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a-gemma-described",
+      "track": "video",
+      "frozen_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+      "channel": "J",
+      "adapter_identity": "f14a45d8c704008d3d6e59060e6b6ded2576746a085190ac6176e43ee6ee2a02",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "c5894c758dcfc375c325cf1a8a2e0c2af6e7ca2eb6da361870e002a6f2233ae3",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a-gemma-described",
+      "track": "video",
+      "frozen_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "msrvtt-1k-a-gemma-described",
+      "track": "video",
+      "frozen_identity": "c7c7df5c86408bae4ed4cfc81a3fcc709e315dd63023f980a814d1478e4f7b03",
+      "channel": "S",
+      "adapter_identity": "e423f3e6229cd259eac215bc929ab8f7f5e0b28e2945e72aa3efad38fd991d6b",
+      "dimension": 512,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "openai/clip-vit-base-patch32",
+          "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 512
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "769f9eee2677aaf8cbe8c7243d42e8f85b66d243ffb61768383a3db68cac365e",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "xm3600-en",
+      "track": "photo",
+      "frozen_identity": "0e0a2711ee373605b6d775caa6bb966bd695d4b582c116a7fd2a8686a1c96001",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "xm3600-en",
+      "track": "photo",
+      "frozen_identity": "0e0a2711ee373605b6d775caa6bb966bd695d4b582c116a7fd2a8686a1c96001",
+      "channel": "S",
+      "adapter_identity": "be7ca8b26ec68abcb22fa02eded398394fcb0c7b751a24558e32c34a85e1141e",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/siglip2-base-patch16-224",
+          "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "596ec6096e968213dfecd2ac191871ea2ef7a655fab08695e07d3b75bda51790",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "xm3600-tr",
+      "track": "photo",
+      "frozen_identity": "d83dfd5b9232939c750c6e58911aa40160595ab96ceb5b3f5a991be3308a8fcb",
+      "channel": "N",
+      "adapter_identity": "df2f2f4e531ae78c34c2340d8fc26c318d22c37f315b78bba69272460bf85781",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/embeddinggemma-2",
+          "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "3b9e00c5fe2134d02d13bf1e135b7f66c7bd003af07a0a1552050e5559fe8fed",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    },
+    {
+      "snapshot": "xm3600-tr",
+      "track": "photo",
+      "frozen_identity": "d83dfd5b9232939c750c6e58911aa40160595ab96ceb5b3f5a991be3308a8fcb",
+      "channel": "S",
+      "adapter_identity": "be7ca8b26ec68abcb22fa02eded398394fcb0c7b751a24558e32c34a85e1141e",
+      "dimension": 768,
+      "kind": "dense",
+      "roles": [
+        "document",
+        "query"
+      ],
+      "declared_models": [
+        {
+          "model_id": "google/siglip2-base-patch16-224",
+          "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+          "device": "mps",
+          "dtype": "bfloat16",
+          "batch_size": 1,
+          "dimension": 768
+        }
+      ],
+      "historical_channel_statuses": [
+        "completed"
+      ],
+      "model_and_preprocessing_across_roles_equal": true,
+      "preprocessing_contract_sha256": "596ec6096e968213dfecd2ac191871ea2ef7a655fab08695e07d3b75bda51790",
+      "runtime_claim": "declared immutable adapter condition, not current health or cross-device equivalence"
+    }
+  ]
+}
