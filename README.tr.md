@@ -1,6 +1,6 @@
 # rag-benchmark
 
-**14 Ekim: [üç Colab notebooku hazırlandı](docs/colab-running.tr.md).** İlk L4 ortam ve küçük BF16 CUDA kontrolünü geçti; model dosyaları hazır, veri aktarımı sürüyor. Henüz sinirsel benchmark çalışmadı; eski yerel kuyruk ve otomasyon kapalı.
+**14 Ekim: [üç Colab notebooku hazırlandı](docs/colab-running.tr.md).** Google girişi başarılı. İlk L4 ortam ve küçük BF16 CUDA kontrolünü geçti; ancak veri aktarılırken oturum kayboldu. Şu anda aktif oturum yok, uzak dosyalara erişilemiyor ve kapanma nedeni bilinmiyor. Sinirsel benchmark başlamadı. Yerel veri paketleri korunuyor; eski yerel kuyruk ve otomasyon kapalı.
 
 **Türkçe RAG sistemlerini aynı koşullarda, yerel modellerle karşılaştırmak için bir deney düzeneği.** BM25, BGE-M3 ve EmbeddingGemma 2 belge aramasını; Laya'nın yeniden sıralamaya katkısını; aynı Gemma 4 modelinin ürettiği cevapları ölçer.
 

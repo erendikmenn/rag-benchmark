@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_date": "2026-10-14",
-  "status": "environment_and_model_files_prepared_dataset_transfer_incomplete",
+  "status": "runtime_unavailable_dataset_transfer_interrupted",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "job": "vidore-v3-physics-fr",
   "cli": {
@@ -25,10 +25,11 @@
       "peft": "0.21.2",
       "colpali-engine": null
     },
-    "tiny_cuda_allocation_and_sync": true
+    "tiny_cuda_allocation_and_sync": true,
+    "scope": "historical_probe_on_now_unavailable_runtime"
   },
   "model_files": {
-    "status": "prepared",
+    "status": "historically_prepared_now_unavailable",
     "immutable_revisions_prepared": true,
     "neural_model_loads": 0
   },
@@ -39,15 +40,19 @@
     "main_coverage_updated": false
   },
   "dataset_transfer": {
-    "status": "in_progress_unverified",
+    "status": "interrupted_runtime_unavailable",
     "method": "official_contents_client_chunked",
     "chunk_bytes": 8388608,
     "prior_cli_exec_connection_lost": true,
     "prior_large_ssh_scp_transfers_failed": true,
     "full_archive_verified": false,
-    "remote_dataset_identity_verified": false
+    "remote_dataset_identity_verified": false,
+    "last_reported_chunks": 40,
+    "last_reported_bytes": 335544320,
+    "local_source_bundles_retained": true
   },
   "required_before_benchmark": [
+    "review runtime disappearance and connection stability before new GPU allocation",
     "complete dataset transfer",
     "verify full archive size and SHA-256",
     "safely unpack and verify frozen dataset identity"
@@ -55,6 +60,14 @@
   "limitations": [
     "A tiny CUDA allocation is not neural model inference validation.",
     "Observed GPU and package compatibility does not guarantee future sessions or model success.",
-    "Incomplete transfers must not be accepted as ready datasets."
-  ]
+    "Incomplete transfers must not be accepted as ready datasets.",
+    "The runtime disappearance cause is unknown; historical environment preparation is not current remote availability."
+  ],
+  "runtime": {
+    "status": "not_listed_by_server",
+    "active_assignments": 0,
+    "cause": "unknown",
+    "new_allocation_pending": "connection_and_runtime_lifecycle_review",
+    "remote_files_available": false
+  }
 }
