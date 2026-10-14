@@ -263,3 +263,13 @@ def test_stored_provenance_json_must_match():
     m.validate_set_state((binding, "complete", manifest), binding, manifest)
     with pytest.raises(ValueError, match="stored_manifest_mutation"):
         m.validate_set_state((binding, "complete", {"model": "tampered"}), binding, manifest)
+
+
+def test_dense_integer_text_preserves_negative_zero_fp32():
+    a = np.asarray([1.0, -0.0, 0.0], dtype=np.float32)
+    data = m.row_bytes(a)
+    row = ("d", 3, "[1,-0,0]", None, 1, __import__("hashlib").sha256(data).hexdigest())
+    assert m.check_row(row, data, 3, 1) == "d"
+    changed = ("d", 3, "[1,0,0]", None, 1, row[-1])
+    with pytest.raises(ValueError, match="vector_readback"):
+        m.check_row(changed, data, 3, 1)

@@ -214,7 +214,7 @@ def check_row(stored, expected, dimension, rows):
     require(dim == dimension and count == rows, "stored_shape")
     if dense is not None:
         require(ragged is None and rows == 1, "stored_kind")
-        data = row_bytes(json.loads(dense))
+        data = row_bytes(json.loads(dense, parse_int=float))
     else:
         require(ragged is not None, "stored_kind")
         data = bytes(ragged)
