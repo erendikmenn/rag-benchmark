@@ -1,0 +1,150 @@
+{
+  "schema_version": "design-proposal-1",
+  "status": "proposal_not_consumed_by_current_cli",
+  "execution_enabled": false,
+  "plan_id": "example-component-swap-study",
+  "dataset": {
+    "provider": "legacy-frozen-dataset-adapter",
+    "manifest_ref": "SELECT_FROZEN_MANIFEST",
+    "corpus_sha256": null,
+    "queries_sha256": null,
+    "labels_sha256": null,
+    "split": "development",
+    "inference_view": "source_text_only",
+    "gold_visible_to_inference": false
+  },
+  "registry": {
+    "bm25": {
+      "kind": "lexical_retriever",
+      "adapter": "legacy-bm25-wrapper",
+      "protocol_ref": "PIN_EXISTING_PROTOCOL",
+      "revision": null
+    },
+    "dense_a": {
+      "kind": "embedding",
+      "adapter": "sentence-transformers",
+      "model": "BAAI/bge-m3",
+      "revision": null,
+      "query_protocol": null,
+      "document_protocol": null,
+      "dimension": 1024,
+      "normalization_policy": "PIN_EXISTING_QUERY_AND_DOCUMENT_NORMALIZATION",
+      "similarity": "cosine"
+    },
+    "dense_b": {
+      "kind": "embedding",
+      "adapter": "SELECT_LOCAL_OR_PROVIDER_ADAPTER",
+      "model": "SELECT_ALTERNATIVE_EMBEDDING",
+      "revision": null,
+      "query_protocol": null,
+      "document_protocol": null,
+      "dimension": null,
+      "normalization_policy": null,
+      "similarity": null
+    },
+    "decision_local": {
+      "kind": "decision_scorer",
+      "adapter": "legacy-laya-wrapper",
+      "revision": null,
+      "input_view": "source_text_only",
+      "rubric_ref": "PIN_RELEVANCE_RUBRIC",
+      "score_mapping_ref": "PIN_RELEVANCE_PROBABILITY_MAPPING"
+    },
+    "decision_online": {
+      "kind": "decision_scorer",
+      "adapter": "SELECT_JEV_OR_CLEF_ADAPTER",
+      "model": null,
+      "revision": null,
+      "input_view": "source_text_only",
+      "rubric_ref": "PIN_RELEVANCE_RUBRIC",
+      "score_mapping_ref": "PIN_RELEVANCE_PROBABILITY_MAPPING",
+      "secret_ref": "env:BENCHMARK_PROVIDER_TOKEN",
+      "network_authorized": false,
+      "allow_parameter_or_media_drop": false,
+      "allow_model_fallback": false
+    },
+    "generator_local": {
+      "kind": "generator",
+      "adapter": "SELECT_LOCAL_SERVING_ADAPTER",
+      "model": "SELECT_LOCAL_LLM",
+      "revision": null,
+      "prompt_contract": null,
+      "runtime_condition": null
+    },
+    "generator_online": {
+      "kind": "generator",
+      "adapter": "SELECT_PROVIDER_ADAPTER",
+      "model": "SELECT_API_LLM",
+      "revision": null,
+      "prompt_contract": null,
+      "secret_ref": "env:BENCHMARK_PROVIDER_TOKEN",
+      "network_authorized": false,
+      "allow_parameter_or_media_drop": false,
+      "allow_model_fallback": false
+    }
+  },
+  "retrieval_methods": {
+    "B": {"channels": ["bm25"]},
+    "G": {"channels": ["dense_a_search"]},
+    "E": {"channels": ["dense_b_search"]},
+    "BG": {"channels": ["bm25", "dense_a_search"], "fusion": "rrf"},
+    "BE": {"channels": ["bm25", "dense_b_search"], "fusion": "rrf"}
+  },
+  "search_channels": {
+    "dense_a_search": {"embedding_ref": "dense_a", "backend": "exact-full-gallery", "backend_revision": null, "tie_and_exclusion_protocol": null},
+    "dense_b_search": {"embedding_ref": "dense_b", "backend": "exact-full-gallery", "backend_revision": null, "tie_and_exclusion_protocol": null}
+  },
+  "fusion": {
+    "rrf": {
+      "k": 60,
+      "candidate_budget_policy": "PIN_EXISTING_BUDGET_POLICY",
+      "duplicate_tie_and_refill_protocol": "PIN_EXISTING_PROTOCOL"
+    }
+  },
+  "studies": [
+    {
+      "id": "retrieval_component_comparison",
+      "methods": ["B", "G", "E", "BG", "BE"],
+      "reranker": "none",
+      "generator": "none",
+      "evaluator": "legacy-graded-retrieval-17-with-source-groups"
+    },
+    {
+      "id": "decision_reranker_comparison",
+      "candidate_pool": "PIN_ONE_RETRIEVAL_ARTIFACT",
+      "rerankers": ["none", "decision_local", "decision_online"],
+      "decision_to_rank_adapter": "pointwise-relevance-probability-v1-proposal",
+      "candidate_k": [20, 50, 100],
+      "generator": "none",
+      "evaluator": "legacy-graded-retrieval-17-with-source-groups"
+    },
+    {
+      "id": "generator_comparison",
+      "evidence_artifact": "PIN_ONE_ORDERED_EVIDENCE_ARTIFACT",
+      "generators": ["generator_local", "generator_online"],
+      "response_contract": "PIN_ANSWER_AND_CITATION_SCHEMA",
+      "evaluator": "versioned-answer-citation-human-calibration-policy"
+    }
+  ],
+  "execution_policy": {
+    "executor": "proposal-pull-workers",
+    "profile": "reference_skeleton_requires_resolved_numerical_condition",
+    "allocation_enabled": false,
+    "worker_pool": ["local-cpu", "local-mps", "optional-rented-cuda", "optional-provider-api"],
+    "numerical_conditions": [],
+    "cross_condition_shard_merge": "forbidden_without_approved_equivalence_protocol",
+    "gpu_resident_model_owners_default": 1,
+    "adaptive_batching": "only_predeclared_and_validated_conditions",
+    "cpu_max_concurrency": null,
+    "api_rpm": null,
+    "api_tpm": null,
+    "max_total_cost": null,
+    "cost_currency": null,
+    "bounded_transport_attempts": null,
+    "automatic_integrity_retry": false,
+    "sharding": "queries_with_full_gallery_then_exact_pointwise_pairs",
+    "checkpoint": "closed_immutable_artifact_checksum_before_commit",
+    "stop_policy": "stop_new_claims_cancel_owned_workers_record_unbacked_progress",
+    "unresolved_fields_block_execution": true
+  }
+}

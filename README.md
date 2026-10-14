@@ -2,6 +2,8 @@
 
 **Execution stopped at the user's request — 14 October, 21:13 Europe/Istanbul.** Both owned Colab assignments were released and automatic experiment monitoring is paused. No new experiments are scheduled. The completed Physics and Pharmaceuticals CUDA retrieval results (126 conditions each) and their verified local backups are retained; main coverage remains **2,052 / 18,460**. Industrial is incomplete: its verified checkpoint contains B/G/E/N, while subsequent unfinished S work is not backed up. No completed full CUDA reranker result is claimed. Pharmaceuticals' partial reranker progress has no verified closed backup. The next authorized work is repository architecture and modular/distributed execution design. [Stop record](reports/colab-execution-stop.json).
 
+**Architecture review:** [interchangeable components and distributed execution](docs/architecture/README.md), with a [Turkish design proposal](docs/architecture/modular-benchmark.tr.md), [scenario catalog](docs/architecture/scenario-catalog.tr.md), and [non-executable configuration example](configs/examples/README.md). This is a migration design, not an implemented plugin engine or authorization to resume experiments. It preserves existing protocol identities while separating datasets/models, scientific plans and hardware execution.
+
 [Offline QA request planning](reports/colab-qa-request-count-readiness.json) groups 540,842 eligible tasks into 122,110 conditional exact-request keys; the CPU count made zero model calls, and actual runtime cache reuse remains unmeasured.
 
 **A reproducible local benchmark for Turkish retrieval-augmented generation.** Compare BM25, BGE-M3 and EmbeddingGemma 2 retrieval, measure what Laya reranking adds, and keep the Gemma 4 answer model fixed.
