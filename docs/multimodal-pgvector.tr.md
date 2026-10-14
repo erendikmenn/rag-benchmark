@@ -32,4 +32,27 @@ Kaynak kimlikleri, sıralı kayıt eşlemeleri, tam satır sayıları, vektör b
 
 Bu kontroller saklama ve kaynak eşlemesinin doğruluğunu sınar; embedding modelinin anlamsal başarısı veya sonraki benchmark skoru değildir. Geçmiş önbelleğe bugün eklenen hash, geçmişte kaydedilmiş bir checksum kanıtı sayılmaz.
 
-Hazırlık ve aktarım sürmektedir. Resmî medyası bulunmayan CIRR ile tamamlanmamış kaynak açıklaması temsilleri tam olarak işaretlenmez. Yerel önbellek, PostgreSQL'e aktarılmış ve doğrulanmış kayıt yerine geçmez. Nihai kapsam ve doğrulama sayıları ancak gerçek aktarım ve bağımsız okuma tamamlanınca yayımlanacaktır.
+**Desteklenen hazırlık/saklama kapsamı eksikler açık tutularak doğrulandı:** 24 örtüşen frozen görünümde 164 multimodal temsil seti bulunuyor: 679.692 dense vektör ve 21.671 değişken uzunluklu öğe matrisi. Ayrı RAGTurk hazırlığındaki 104.082 dense vektörle iki şemanın toplamı 783.774 dense vektördür. On sekiz multimodal native BM25 indeksi ve ayrı RAGTurk indeksi PostgreSQL kalıcı Docker volume’ünde saklanıyor. Bütün kaynak/vektörlerin bağımsız geri okuması ve özel yedeğin gerçek geri yükleme karşılaştırması, iki şemadaki tablo ikili baytlarını ve kaydedilen tablo kataloğunu doğruladı; roller ve izinler bu geri yükleme iddiasının dışında. Görünümler bağımsız veri kümeleri değildir. Fotoğrafın native N/S temsilleri mevcut; yalnız kaynak metni kullanan B/G/E/J dalları ve CIRR resmî medyası eksik. Yeni arama, reranker, cevap üretimi veya semantik doğruluk sonucu iddia edilmiyor; benchmark duraklatılmış durumda ve ana kapsam 2.052 / 18.460 olarak kaldı.
+
+21.671 ColQwen öğe matrisi toplam 14.559.743 adet 128 boyutlu token vektörü içerir; matris ve token vektörü sayıları ayrı tutulur. Hazırlanmış temsil bulunması geçmiş başarısız veya yarım benchmark çalışmasını tamamlanmış yapmaz. Opsiyonel tarihsel çalışma ortamı varyantları ayrıca eksik kalabilir; CUDA ve MPS kimlikleri korunur. Yeni güven aralığı veya semantik doğruluk ölçümü üretilmedi.
+
+## Doğrulanan kapsam — 15 Ekim 2026
+
+| Kaynak türü | Görünüm | Temsil seti | Dense vektör | Ragged öğe matrisi |
+|---|---:|---:|---:|---:|
+| Kod | 6 | 24 | 471.918 | 0 |
+| Belge | 8 | 80 | 86.684 | 21.671 |
+| Çevresel ses | 4 | 28 | 58.464 | 0 |
+| Fotoğraf | 2 | 8 | 43.266 | 0 |
+| Konuşma | 2 | 10 | 5.360 | 0 |
+| Video | 2 | 14 | 14.000 | 0 |
+| Multimodal toplam | 24 | 164 | 679.692 | 21.671 |
+| RAGTurk (ayrı) | — | — | 104.082 | 0 |
+
+Özgün ve türetilmiş görünümler kaynak kayıtlarını veya medyayı paylaşabilir; 24 görünüm, 24 bağımsız veri kümesi anlamına gelmez. Dense satırlar ile değişken uzunluklu öğe matrisleri ayrı sayılır. ColQwen matrisleri öğe başına birden çok token satırı içerir; matris sayısı token sayısı değildir. [Güvenli hazırlık özeti](../reports/multimodal-pgvector-preparation.json) yalnız toplu kapsam ve doğrulama bilgilerini yayımlar.
+
+## Çalışan veritabanı ve yedek
+
+Hizmet `ragturk-prepared-db-1`, kalıcı volume `ragturk-prepared_ragturk_pgvector_data` ve yerel bağlantı `127.0.0.1:55433` kullanılır. Sabit PostgreSQL/pgvector imajı compose dosyasında kayıtlıdır. Model ve veri sürümleri [temsil envanterinde](../reports/multimodal-representation-inventory.json) ayrı tutulur.
+
+İki şemayı kapsayan özel yedek `work/multimodal-pgvector/prepared-all-b1a5170f3b8ad0e7.dump` dosyasıdır: 22.625.348.542 bayt. SHA-256 ve doğrulama bağları [hazırlık raporundadır](../reports/multimodal-pgvector-preparation.json). Yedek ayrı bir veritabanına gerçekten geri yüklendi; 12 tablonun bütün ikili verileri ve kaydedilen tablo kataloğu kaynakla eşleşti. Geçici doğrulama veritabanı kaldırıldı. Roller ve erişim izinleri bu bağımsız karşılaştırmanın kapsamına dahil değildir. Arşiv ve bağlantı bilgileri GitHub’a gönderilmez.

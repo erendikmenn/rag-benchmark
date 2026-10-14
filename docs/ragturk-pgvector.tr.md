@@ -48,10 +48,10 @@ kalıcı volume'ündedir. Konteyner yeniden oluşturulsa da volume korunur.
 `docker compose down -v` veriyi siler; normal durdurma için `stop` kullanılır.
 Başka makineye taşıma için özel `pg_dump` arşivi ve SHA-256 kullanılır.
 
-Bu hazırlığın doğrulanmış yedeği özel dizindeki
+İlk, yalnız RAGTurk hazırlığının tarihsel doğrulanmış yedeği özel dizindeki
 `ragturk-c4c3142416428e71.dump` dosyasıdır; checksum `backup.sha256` içinde.
 Arşiv kataloğu okunup beş tablonun veri bölümleri doğrulandı; ayrı bir geri
-yükleme provası yapılmadı. [Güvenli hazırlık özeti](../reports/ragturk-pgvector-preparation.json)
+yükleme provası o tarihsel yedek için yapılmadı. Daha sonra iki hazırlık şemasını kapsayan özel final yedek gerçek ayrı veritabanına geri yüklendi; kaynak ve geri yüklenen veritabanındaki bütün tablo ikili baytları ve kaydedilen tablo kataloğu eşleşti. Roller/izinler bu iddianın dışında. Tarihsel yedek kaydı bu yeni karşılaştırmayla geriye dönük değiştirilmez. [Güvenli hazırlık özeti](../reports/ragturk-pgvector-preparation.json)
 yalnız sayıları, sürümleri ve hash'leri içerir.
 
 ## Hazırlık komutları

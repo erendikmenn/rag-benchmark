@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "status": "supported_scope_verified_with_gaps",
+  "preparation_scope": "authorized dataset/index/embedding storage only; benchmarks remain paused",
+  "current_manifest_artifacts": {
+    "snapshots": 24,
+    "sets": 164,
+    "dense_items": 679692,
+    "ragged_items": 21671
+  },
+  "expected_final_manifest_artifacts": {
+    "snapshots": 24,
+    "sets": 164,
+    "dense_items": 679692,
+    "ragged_items": 21671
+  },
+  "modalities": {
+    "code": {
+      "snapshots": 6,
+      "sets": 24,
+      "dense_items": 471918,
+      "ragged_items": 0
+    },
+    "document": {
+      "snapshots": 8,
+      "sets": 80,
+      "dense_items": 86684,
+      "ragged_items": 21671
+    },
+    "environment_audio": {
+      "snapshots": 4,
+      "sets": 28,
+      "dense_items": 58464,
+      "ragged_items": 0
+    },
+    "photo": {
+      "snapshots": 2,
+      "sets": 8,
+      "dense_items": 43266,
+      "ragged_items": 0
+    },
+    "speech": {
+      "snapshots": 2,
+      "sets": 10,
+      "dense_items": 5360,
+      "ragged_items": 0
+    },
+    "video": {
+      "snapshots": 2,
+      "sets": 14,
+      "dense_items": 14000,
+      "ragged_items": 0
+    }
+  },
+  "full_postgres_independent_audit_verified": true,
+  "final_manifest_bound_backup_verified": true,
+  "restore_verification": {
+    "actual_restore_verified": true,
+    "scope": "all table binary bytes and recorded table catalog in both preparation schemas",
+    "schemas": [
+      "multimodal_prepared",
+      "ragturk_prepared"
+    ],
+    "table_count": 12,
+    "catalog_sha256": "69a8643c16c47a97116ad0d5e50ea88c7a7341c9ad5e49be1be23b13e25038b6",
+    "source_fingerprint_sha256": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
+    "restored_fingerprint_sha256": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
+    "database_roles_or_permissions_independently_verified": false
+  },
+  "ragturk_separate": {
+    "dense_vectors": 104082,
+    "chunks": 37511,
+    "questions": 14530,
+    "independent_storage_proof_in_this_summary": true
+  },
+  "bm25_preparation": {
+    "collections": 18,
+    "corpus_view_records": 206380,
+    "native_index_files": 108,
+    "artifacts_including_order_and_provenance": 144,
+    "artifact_bytes": 127448879,
+    "native_bm25s_not_sql_bm25_search": true,
+    "ragturk_index_separate": true
+  },
+  "manifest_sha256": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
+  "bm25_preparation_summary_sha256": "e09b1a8753d8f1a71cd4f3ba4f7cceb12674f3bf978366fa96a5922e4e9bd77b",
+  "benchmark_runs": 0,
+  "retrieval_evaluation_runs": 0,
+  "reranker_calls": 0,
+  "answer_generation_calls": 0,
+  "blocked_or_unprepared": [
+    "Photo native N/S are available; source-only gallery text for B/G/E/J remains unavailable.",
+    "CIRR official source media remains unavailable; no substitute gallery or completed preparation claimed.",
+    "Optional historical runtime variants were not necessarily re-encoded; CUDA and MPS are not relabeled equivalent."
+  ],
+  "limits": [
+    "24 snapshots include original/derived and overlapping galleries; these counts are not 24 independent datasets or unique source counts.",
+    "Dense count means fixed vectors; ragged count means source-item token matrices, not individual token vectors.",
+    "Current SHA and exact storage roundtrip do not invent unrecorded historical file-checksum attestations.",
+    "This preparation does not measure retrieval, reranking, generated-answer or semantic accuracy.",
+    "Restore matched table binary bytes and recorded table catalog in both schemas; database roles/permissions are outside this independent claim.",
+    "Historical failed retrieval channels are not promoted to passed experiments by available preparation caches."
+  ],
+  "verified_at_utc": "2026-10-14T23:48:43.329460+00:00",
+  "combined_counts": {
+    "dense_vectors": 783774,
+    "ragged_item_matrices": 21671,
+    "ragged_token_vectors": 14559743,
+    "ragged_token_dimension": 128,
+    "native_bm25_indexes": 19
+  },
+  "docker_postgres": {
+    "status": "verified_after_restored_backup_cleanup",
+    "observed_at_utc": "2026-10-14T23:48:43.329460+00:00",
+    "container": "ragturk-prepared-db-1",
+    "image": "pgvector/pgvector@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
+    "persistent_volume": "ragturk-prepared_ragturk_pgvector_data",
+    "container_health": "healthy",
+    "loopback_only": true,
+    "host_port": 55433,
+    "postgres_version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "pgvector_version": "0.8.7",
+    "source_database_bytes": 24897107647,
+    "complete_multimodal_sets": 164,
+    "verification_database_removed": true
+  },
+  "private_backup": {
+    "file_name": "prepared-all-b1a5170f3b8ad0e7.dump",
+    "format": "PostgreSQL custom archive",
+    "bytes": 22625348542,
+    "sha256": "45f1db88328c46428675847ec1f150120d0f24fc8f9283006885ebeb6002b1da",
+    "actual_restore_verified": true
+  },
+  "independent_multimodal_storage_audit": {
+    "unique_blobs_verified": 25627,
+    "blob_bytes_verified": 12483594314,
+    "sets_verified": 164,
+    "readonly": true
+  },
+  "model_inventory": {
+    "report": "multimodal-representation-inventory.json",
+    "sha256": "327e7f0777589af9d38e112ea116b2076f2360064cc41a318019789f17371092",
+    "exact_document_query_pairs": 82
+  },
+  "evidence_sha256": {
+    "multimodal_database_audit": "1e38cf8f9a7885fdc1f80169e86c78182b0779ef4190c25167d90a2819e15320",
+    "ragturk_database_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
+    "metadata_pair_audit": "812f1e866dc3bb89f54c15c1e5bbec34bd5e76456b9e2c9a593b46ddd6fa17f7",
+    "backup_restore_proof": "380fd10a7be44a7831ba5a3bbe57bc4005805c8c6a87c6767997452655d7d97a",
+    "safe_summary_builder": "fff632ac1d9611b13b6fa0f57e178ff6365bf723b15944289280479f72310362"
+  }
+}
