@@ -21,6 +21,7 @@ Her embedding kümesinin veri, model, sürüm, cihaz, hassasiyet, ön işleme ve
 
 - `scripts/prepare_multimodal_embeddings.py`: İncelenmiş özel iş tanımındaki G/E/N/J temsillerinin yalnızca eksik, 128 satırlık bloklarını üretir. Mevcut blokların hash'leri ve gerçek adapter kimliği uyuşmalıdır. Başarısız veya yarım kalan çalışma otomatik yeniden denenmez.
 - `scripts/prepare_multimodal_bm25.py`: Kaynak metin üzerinde mevcut benchmark'ın tokenizasyonu ve BM25 ayarlarıyla yalnız indeks oluşturur. Sorgu skoru veya sıralama üretmez.
+- `scripts/prepare_multimodal_colqwen.py`: PDF sayfaları ve sorguları için özgün 128 boyutlu token matrislerini üretir; MaxSim araması yapmaz. Önceden mühürlenen bir dosyanın silinmesi yeniden çıkarım izni sayılmaz. Yarım kalan bir işi sürdürmek açık resume ve aynı kimlik gerektirir.
 - `scripts/multimodal_pgvector_store.py`: Özel manifestten kayıpsız aktarım ve salt okunur doğrulama yapar. Mevcut tam kümeyi değiştirmez; yeni model kümeleri eklenebilir.
 
 Bağlantı bilgileri ve veri taşıyan manifestler ignored özel dizinde tutulur. GitHub'a kaynak metin, medya, sorular, cevaplar, vektör verisi veya kimlik bilgileri yüklenmez.
