@@ -1,14 +1,14 @@
 {
   "schema_version": 3,
   "observed_date": "2026-10-14",
-  "status": "measured_throughput_and_recovery_in_progress",
+  "status": "physics_cuda_published_rerank_running_pharma_transport_recovery_industrial_lost",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "replacement_A100_allocated_for_Physics_restore_and_two_existing_L4_jobs",
+    "gpu_allocation": "one_replacement_A100_running_Physics_rerank_and_one_Pharmaceuticals_L4",
     "dtype": "bfloat16",
     "native_bf16_required": true,
-    "active_owned_gpu_assignments": 3,
-    "replacement_A100_device_probe_pending": true
+    "active_owned_gpu_assignments": 2,
+    "replacement_A100_device_probe_pending": false
   },
   "jobs": [
     {
@@ -31,10 +31,12 @@
         "E": 38.298,
         "N": 255.382
       },
-      "full_run_status": "completed_independent_audit_passed_main_acceptance_pending",
+      "full_run_status": "completed_independently_audited_published_separate_CUDA_condition",
       "wall_seconds_including_checkpoint": 1207.036564578,
-      "current_runtime_status": "original_A100_lost_after_valid_timing_samples_replacement_A100_allocated_restore_pending",
-      "full_rerank_launched": false
+      "current_runtime_status": "replacement_A100_exact_runtime_equality_verified_rerank_running",
+      "full_rerank_launched": true,
+      "full_rerank_status": "running",
+      "public_summary": "colab/physics-retrieval-summary.json"
     },
     {
       "dataset": "vidore-v3-pharmaceuticals-en",
@@ -56,7 +58,9 @@
       },
       "full_run_status": "completed_before_runtime_loss_no_full_durable_backup_confirmed",
       "wall_seconds_including_checkpoint": 1880.183225769,
-      "replacement": "recovery_L4_preparation_verified_retrieval_started_latest_completion_check_pending"
+      "replacement": "recovery_retrieval_completed_1867.651_seconds_rerank_client_transport_recovery_pending_owner_start",
+      "recovery_full_retrieval_status": "completed",
+      "recovery_wall_seconds_including_checkpoint": 1867.651
     },
     {
       "dataset": "vidore-v3-industrial-en",
@@ -70,9 +74,13 @@
         "E",
         "N"
       ],
-      "active_channel": "S",
+      "active_channel": null,
       "observed_channel_wall_seconds_including_checkpoint": {},
-      "observed_elapsed_seconds": 3148.63801945
+      "observed_elapsed_seconds": 3148.63801945,
+      "current_runtime_status": "assignment_lost_before_full_result_verified",
+      "full_run_status": "unverified_partial",
+      "last_verified_active_channel": "S",
+      "cause": "unknown"
     }
   ],
   "dataset_preparation": {
@@ -107,7 +115,8 @@
       "cells": 126,
       "rankings": 38052,
       "metric_values": 646884
-    }
+    },
+    "pharmaceuticals_full_transfer": "in_progress_not_yet_full_SHA_verified"
   },
   "eta": {
     "status": "actual_serial_and_parallel_samples_with_scoped_planning_scenarios",
@@ -183,8 +192,9 @@
     "Active channel completion is not a completed 126-cell run or independent audit.",
     "Observed channel wall times include checkpoint overhead and do not establish a GPU speedup factor or total project duration.",
     "Local MPS queue and old deleted automation remain stopped.",
-    "Runtime assignments may disappear; the original Physics A100 disappeared after the valid Gemma sample. Cause unknown. A replacement A100 was allocated, but restoration and its device/runtime equality checks are pending.",
-    "The complete Physics checkpoint and its independent audit are verified locally. Other datasets require their own full durable backup and audit."
+    "The complete Physics checkpoint and its independent audit are verified locally. Other datasets require their own full durable backup and audit.",
+    "The replacement Physics runtime exactly matches the preserved identity and reuses sealed rankings; no retrieval recomputation was launched.",
+    "Industrial is no longer assigned; no full completion or durable full backup has been verified. Runtime loss cause is unknown."
   ],
-  "observed_at_utc": "2026-10-14T16:55:00Z"
+  "observed_at_utc": "2026-10-14T17:07:00Z"
 }

@@ -1,6 +1,8 @@
 # Google Colab ile paralel devam
 
-14 Ekim akşamı: Physics FR tam arama koşusu A100’de **1.207,04 saniye**, Pharmaceuticals EN L4’te **1.880,18 saniye** sürdü. Süreler checkpoint aşamalarını içerir; farklı veri kümeleri olduklarından A100/L4 hız oranı çıkarılmaz. Industrial EN ayrı L4 üzerinde devam ediyor. Bu koşular bağımsız denetim ve kalıcı yedek kabulünden önce ana matrise eklenmez: yayımlanmış kapsam **2.052 / 18.460**.
+**14 Ekim doğrulanmış CUDA sonucu:** [Physics FR aramasının](../reports/colab/physics-retrieval-summary.md) **126 koşulu / 302 sorgusu / 1.674 sayfası** tamamlandı. Bağımsız denetim 38.052 sıralama ve 646.884 metrik değerini doğruladı. ColQwen en yüksek gözlenen birincil Hit@5 (**%80,46**), Recall@5 (**%37,23**) ve nDCG@10 (**0,4854**) değerlerini verdi. CUDA BF16 sonuçları ayrı etiketlidir; bu yayında mevcut ana sayım **2.052 / 18.460** kalır. Physics BGE/Laya işi, doğrulanmış sıralamaları kullanan yeni A100’de çalışıyor. Pharmaceuticals kurtarma araması L4’te tamamlandı; reranker başlatma bağlantı hatası gideriliyor. Industrial oturumu tam sonuç doğrulanmadan kayboldu; nedeni bilinmiyor. [Gerçek QA/reranker hızları ve süre hesabının sınırları](../reports/colab-throughput-measurements.md), doğruluk sonuçlarından ayrıdır.
+
+14 Ekim akşamı: Physics FR tam arama koşusu A100’de **1.207,04 saniye**, Pharmaceuticals EN L4’te **1.880,18 saniye** sürdü. Süreler checkpoint aşamalarını içerir; farklı veri kümeleri olduklarından A100/L4 hız oranı çıkarılmaz. Industrial EN ayrı L4 üzerinde başlamıştı; sonraki kontrolde tahsis kayboldu, tam sonuç doğrulanmadı. Bu koşular bağımsız denetim ve kalıcı yedek kabulünden önce ana matrise eklenmez: yayımlanmış kapsam **2.052 / 18.460**.
 
 Pharmaceuticals oturumu tamamlanan aramadan sonra, reranker başlamadan tahsis listesinden kayboldu. Nedeni bilinmiyor. Tam koşunun kalıcı yedeği doğrulanamadığından korunmuş toplam süre ve tamamlanma kaydı, geri yüklenebilir benchmark dosyası sayılmıyor. İkinci A100 talebi reddedildi; mevcut kota içinde yeni bir L4 tahsis edildi, özgün veri doğrulandı ve kurtarma araması başladı. Ek işlem birimi satın alınmadı. Physics’in büyük checkpoint aktarımı kesildi; SHA’ları doğrulanan parçalar korunarak aynı değişmez 1.038.274.560 baytlık arşiv tamamlandı; tam SHA ve 126 koşul / 38.052 sıralama / 646.884 metrik bağımsız denetimi geçti. Önceden doğrulanmış 53.514.240 baytlık kısmi yedek korunur.
 
@@ -12,7 +14,9 @@ Gece hedefi **15 Ekim 08:00 Europe/Istanbul**. İlk üç belge araması, ardınd
 
 Metadata/media doğrudan sabit resmî kaynaklardan ve hash doğrulamasıyla hazırlanır. CUDA BF16, eski MPS kimliğiyle yeniden etiketlenmez; eski Mac kuyruğu kapalı kalır. [Teknik operasyon özeti](../reports/colab-runtime-readiness.json).
 
-Physics A100 oturumu geçerli QA/Gemma ölçümlerinden sonra tahsis listesinden kayboldu; nedeni bilinmiyor. Tam Physics checkpoint’i ve bağımsız denetim Mac’te korunuyor. Yeni A100 tahsisi alındı; kaynak ve gerçek runtime eşitliği doğrulanarak geri yükleme hazırlanıyor. Henüz tam Physics reranker çıkarımı başlamadı. Diğer iki L4 işi ayrı yönetiliyor.
+Physics A100 oturumu geçerli QA/Gemma ölçümlerinden sonra tahsis listesinden kayboldu; nedeni bilinmiyor. Tam Physics checkpoint’i ve bağımsız denetim Mac’te korunuyor. Yeni A100 tahsisi alındı; kaynak ve gerçek runtime eşitliği doğrulanarak geri yükleme hazırlanıyor. Henüz tam Physics reranker çıkarımı başlamadı. Pharmaceuticals L4 işi ayrı yönetiliyor; Industrial tahsisi kayboldu.
+
+Oturum kaybı incelemesi: kurulu resmî CLI 0.7.4 üzerinde beş CPU yaşam döngüsü testi, `new`, `exec` bitişi/kesintisi ve yerel `prune` işleminin uzak tahsisi kapatmadığını doğruladı. Kayıtlardaki `pruned`, kaybın fark edildiği zamanı gösterir; sunucunun kapatma nedeni değildir. Physics’in son tamamlanan CLI kaydı ile kaybın kaydı arasında yaklaşık 30 dakika var; kaybın hemen ölçüm sonunda gerçekleştiği söylenemez. Sunucu tarafındaki neden hâlâ bilinmiyor. Sonraki yetkili işlere geçiş, sahipli süreç temizliği ve doğrulama sonrasında rapor yazımı beklenmeden yapılır; sahte keepalive kullanılmaz.
 
 ## İlk dalga
 

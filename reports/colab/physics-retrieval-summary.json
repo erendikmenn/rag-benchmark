@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "scope": "full Physics FR CUDA BF16 retrieval; no reranking or QA",
+  "dataset": {
+    "id": "vidore-v3-physics-fr",
+    "revision": "a0de276f515acc044b72cae8de53a44bb5a8f1f5",
+    "track": "document",
+    "identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+    "corpus_count": 1674,
+    "query_count": 302,
+    "qrel_count": 2178,
+    "positive_qrel_count": 2178,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
+  "source_report": "vidore-v3-physics-fr-cuda-all-retrieval/report.json",
+  "source_report_sha256": "9eb15b9649d445a6fc5ccd3b3432401122f065da7fa8a83c9f6249d226cf0131",
+  "completed_cells": 126,
+  "main_matrix_increment": 0,
+  "primary_standalone_channels": [
+    {
+      "channel": "B",
+      "method": "BM25 page text",
+      "identity": "ad734f8404643ce1269f3578470f13ed49cbdc46710f1d71e8322cbbdf93bd16",
+      "metrics": {
+        "hit@1": 0.3675496688741722,
+        "hit@10": 0.8211920529801324,
+        "hit@20": 0.8675496688741722,
+        "hit@5": 0.7251655629139073,
+        "map@16": 0.27888785696067697,
+        "mrr@1": 0.3675496688741722,
+        "mrr@10": 0.5174484915378955,
+        "mrr@20": 0.5207227664449128,
+        "mrr@5": 0.5043598233995585,
+        "ndcg@1": 0.34547461368653426,
+        "ndcg@10": 0.39040406250905474,
+        "ndcg@20": 0.4206316160557283,
+        "ndcg@5": 0.3626087332284298,
+        "recall@1": 0.11441048760395418,
+        "recall@10": 0.42153982239964527,
+        "recall@20": 0.5216639585114671,
+        "recall@5": 0.30567262326409184
+      }
+    },
+    {
+      "channel": "G",
+      "method": "BGE-M3 page text",
+      "identity": "de29faf93cc70412b9d47d0110d451d9712a27480e1ce69b8c53ab158d4bb064",
+      "metrics": {
+        "hit@1": 0.3344370860927152,
+        "hit@10": 0.7913907284768212,
+        "hit@20": 0.8609271523178808,
+        "hit@5": 0.7052980132450332,
+        "map@16": 0.287775606643962,
+        "mrr@1": 0.3344370860927152,
+        "mrr@10": 0.4912159676232524,
+        "mrr@20": 0.49615072115354036,
+        "mrr@5": 0.47897350993377485,
+        "ndcg@1": 0.29690949227373065,
+        "ndcg@10": 0.38175390308018825,
+        "ndcg@20": 0.4250835596826225,
+        "ndcg@5": 0.3499494702316738,
+        "recall@1": 0.1272757195112289,
+        "recall@10": 0.40971348690568005,
+        "recall@20": 0.5378270070136951,
+        "recall@5": 0.29871284327020375
+      }
+    },
+    {
+      "channel": "E",
+      "method": "EG2 page text",
+      "identity": "0c64ddc4c0c86817f5d5ad56cf1ff7c2f925529f159f9a1e5d6f400f6f7f66a3",
+      "metrics": {
+        "hit@1": 0.40066225165562913,
+        "hit@10": 0.8211920529801324,
+        "hit@20": 0.9072847682119205,
+        "hit@5": 0.7615894039735099,
+        "map@16": 0.3210999437170362,
+        "mrr@1": 0.40066225165562913,
+        "mrr@10": 0.5419531167875539,
+        "mrr@20": 0.5480351316136485,
+        "mrr@5": 0.5342715231788079,
+        "ndcg@1": 0.358719646799117,
+        "ndcg@10": 0.41676331708972825,
+        "ndcg@20": 0.46529236174835387,
+        "ndcg@5": 0.38468022905857874,
+        "recall@1": 0.14755373692270018,
+        "recall@10": 0.4395329523303471,
+        "recall@20": 0.5835340207455626,
+        "recall@5": 0.331404433567822
+      }
+    },
+    {
+      "channel": "N",
+      "method": "EG2 page image",
+      "identity": "325470440e29abbd663ac507e825315b5a7ca8f33a28e5a995adbdca3a98bf61",
+      "metrics": {
+        "hit@1": 0.3741721854304636,
+        "hit@10": 0.8443708609271523,
+        "hit@20": 0.9072847682119205,
+        "hit@5": 0.7384105960264901,
+        "map@16": 0.3009784555791145,
+        "mrr@1": 0.3741721854304636,
+        "mrr@10": 0.5286660359508041,
+        "mrr@20": 0.5332790366628248,
+        "mrr@5": 0.514514348785872,
+        "ndcg@1": 0.3432671081677704,
+        "ndcg@10": 0.4059260825532062,
+        "ndcg@20": 0.4475095280463854,
+        "ndcg@5": 0.3702392731435323,
+        "recall@1": 0.12578200371049383,
+        "recall@10": 0.4451297636791371,
+        "recall@20": 0.5641745587882238,
+        "recall@5": 0.3301004004259648
+      }
+    },
+    {
+      "channel": "S",
+      "method": "ColQwen page image",
+      "identity": "5dee533f3ecee233a5c1701e8dbaf47836cc1d7301f3edbcdf603cbba566a9db",
+      "metrics": {
+        "hit@1": 0.4735099337748344,
+        "hit@10": 0.890728476821192,
+        "hit@20": 0.9304635761589404,
+        "hit@5": 0.804635761589404,
+        "map@16": 0.37088980984323194,
+        "mrr@1": 0.4735099337748344,
+        "mrr@10": 0.6188965100388941,
+        "mrr@20": 0.6217457621742524,
+        "mrr@5": 0.6076158940397351,
+        "ndcg@1": 0.4161147902869757,
+        "ndcg@10": 0.4854282439708373,
+        "ndcg@20": 0.5232184209847333,
+        "ndcg@5": 0.44125735099502156,
+        "recall@1": 0.155405217762566,
+        "recall@10": 0.5235833929773188,
+        "recall@20": 0.635600853416369,
+        "recall@5": 0.3722715366218676
+      }
+    },
+    {
+      "channel": "J",
+      "method": "EG2 page image + text",
+      "identity": "cc541339e792e0227f61e1dd7f971784d8da94d53d9eb56667095b21c8b288cb",
+      "metrics": {
+        "hit@1": 0.347682119205298,
+        "hit@10": 0.8377483443708609,
+        "hit@20": 0.8841059602649006,
+        "hit@5": 0.7450331125827815,
+        "map@16": 0.29393132625885593,
+        "mrr@1": 0.347682119205298,
+        "mrr@10": 0.5116682434563229,
+        "mrr@20": 0.5148003515596754,
+        "mrr@5": 0.49950331125827824,
+        "ndcg@1": 0.3079470198675497,
+        "ndcg@10": 0.397625599427239,
+        "ndcg@20": 0.43972759745382367,
+        "ndcg@5": 0.3610862224452056,
+        "recall@1": 0.10975830310513322,
+        "recall@10": 0.44504883114321,
+        "recall@20": 0.56604832975222,
+        "recall@5": 0.32013803411674563
+      }
+    }
+  ],
+  "primary_highest_observed": {
+    "hit@5": {
+      "value": 0.804635761589404,
+      "variants": [
+        "document__s__none"
+      ]
+    },
+    "recall@5": {
+      "value": 0.3722715366218676,
+      "variants": [
+        "document__s__none"
+      ]
+    },
+    "ndcg@10": {
+      "value": 0.4854282439708373,
+      "variants": [
+        "document__s__none"
+      ]
+    }
+  },
+  "paired_grouping": {
+    "status": "available",
+    "strategy": "positive_document_components",
+    "description": "Positive pages map to corpus.metadata.doc_id. Queries touching the same source document are connected transitively across multi-document positives.",
+    "query_count": 302,
+    "group_count": 19,
+    "source_unit_count": 40,
+    "source_association_count": 343,
+    "smallest_group_queries": 1,
+    "largest_group_queries": 148,
+    "largest_group_fraction": 0.4900662251655629,
+    "mapping_sha256": "afde0d730a37af03fa2816f115f8fb8300a23527b6b769edf5be15e3033da903",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "paired_bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "paired_comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__s__none",
+      "left": {
+        "identity": "325470440e29abbd663ac507e825315b5a7ca8f33a28e5a995adbdca3a98bf61",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "5dee533f3ecee233a5c1701e8dbaf47836cc1d7301f3edbcdf603cbba566a9db",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7384105960264901,
+          "right_mean": 0.804635761589404,
+          "mean_difference": 0.06622516556291391,
+          "query_count": 302,
+          "wins": 38,
+          "losses": 18,
+          "ties": 246,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.02586206896551724,
+          "ci95_high": 0.13157894736842105,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4059260825532062,
+          "right_mean": 0.4854282439708372,
+          "mean_difference": 0.07950216141763101,
+          "query_count": 302,
+          "wins": 154,
+          "losses": 90,
+          "ties": 58,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.05681562634295089,
+          "ci95_high": 0.10512575140134428,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "325470440e29abbd663ac507e825315b5a7ca8f33a28e5a995adbdca3a98bf61",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "8bea442b89efa2afe692f58e133c90df58ace43b545e00a5d99570f162bfee72",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7384105960264901,
+          "right_mean": 0.7781456953642384,
+          "mean_difference": 0.039735099337748346,
+          "query_count": 302,
+          "wins": 21,
+          "losses": 9,
+          "ties": 272,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.006538111933515127,
+          "ci95_high": 0.07383797387992001,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4059260825532062,
+          "right_mean": 0.4607662957606097,
+          "mean_difference": 0.054840213207403385,
+          "query_count": 302,
+          "wins": 153,
+          "losses": 64,
+          "ties": 85,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.03602598846025248,
+          "ci95_high": 0.06639165599061655,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__s__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "5dee533f3ecee233a5c1701e8dbaf47836cc1d7301f3edbcdf603cbba566a9db",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "8bea442b89efa2afe692f58e133c90df58ace43b545e00a5d99570f162bfee72",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.804635761589404,
+          "right_mean": 0.7781456953642384,
+          "mean_difference": -0.026490066225165563,
+          "query_count": 302,
+          "wins": 10,
+          "losses": 18,
+          "ties": 274,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.07246376811594203,
+          "ci95_high": -0.008241475602586718,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4854282439708372,
+          "right_mean": 0.4607662957606097,
+          "mean_difference": -0.024661948210227613,
+          "query_count": 302,
+          "wins": 96,
+          "losses": 124,
+          "ties": 82,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.04899358717890058,
+          "ci95_high": -0.01179644716892256,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__j__none",
+      "left": {
+        "identity": "325470440e29abbd663ac507e825315b5a7ca8f33a28e5a995adbdca3a98bf61",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "cc541339e792e0227f61e1dd7f971784d8da94d53d9eb56667095b21c8b288cb",
+        "variant_id": "document__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7384105960264901,
+          "right_mean": 0.7450331125827815,
+          "mean_difference": 0.006622516556291391,
+          "query_count": 302,
+          "wins": 23,
+          "losses": 21,
+          "ties": 258,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.06806580199904808,
+          "ci95_high": 0.04918321403832829,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.4059260825532062,
+          "right_mean": 0.397625599427239,
+          "mean_difference": -0.008300483125967175,
+          "query_count": 302,
+          "wins": 105,
+          "losses": 119,
+          "ties": 78,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.025921736387080105,
+          "ci95_high": 0.024622182595151636,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__g__none",
+      "left": {
+        "identity": "ad734f8404643ce1269f3578470f13ed49cbdc46710f1d71e8322cbbdf93bd16",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "de29faf93cc70412b9d47d0110d451d9712a27480e1ce69b8c53ab158d4bb064",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7251655629139073,
+          "right_mean": 0.7052980132450332,
+          "mean_difference": -0.019867549668874173,
+          "query_count": 302,
+          "wins": 31,
+          "losses": 37,
+          "ties": 234,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.04568600435097897,
+          "ci95_high": 0.03125615157480306,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.39040406250905474,
+          "right_mean": 0.38175390308018825,
+          "mean_difference": -0.008650159428866468,
+          "query_count": 302,
+          "wins": 119,
+          "losses": 118,
+          "ties": 65,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.04833910570315187,
+          "ci95_high": 0.039891892293829966,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "ad734f8404643ce1269f3578470f13ed49cbdc46710f1d71e8322cbbdf93bd16",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "0c64ddc4c0c86817f5d5ad56cf1ff7c2f925529f159f9a1e5d6f400f6f7f66a3",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7251655629139073,
+          "right_mean": 0.7615894039735099,
+          "mean_difference": 0.03642384105960265,
+          "query_count": 302,
+          "wins": 43,
+          "losses": 32,
+          "ties": 227,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.1111111111111111,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.39040406250905474,
+          "right_mean": 0.41676331708972825,
+          "mean_difference": 0.02635925458067352,
+          "query_count": 302,
+          "wins": 145,
+          "losses": 106,
+          "ties": 51,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.003101266164618868,
+          "ci95_high": 0.07964304762495007,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__g__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "de29faf93cc70412b9d47d0110d451d9712a27480e1ce69b8c53ab158d4bb064",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "0c64ddc4c0c86817f5d5ad56cf1ff7c2f925529f159f9a1e5d6f400f6f7f66a3",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7052980132450332,
+          "right_mean": 0.7615894039735099,
+          "mean_difference": 0.056291390728476824,
+          "query_count": 302,
+          "wins": 39,
+          "losses": 22,
+          "ties": 241,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.010926007975188305,
+          "ci95_high": 0.11017115974909913,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.38175390308018825,
+          "right_mean": 0.41676331708972825,
+          "mean_difference": 0.03500941400953999,
+          "query_count": 302,
+          "wins": 136,
+          "losses": 93,
+          "ties": 73,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.01800420883713113,
+          "ci95_high": 0.07287945330329293,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__b_g_e__none",
+      "left": {
+        "identity": "ad734f8404643ce1269f3578470f13ed49cbdc46710f1d71e8322cbbdf93bd16",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "right": {
+        "identity": "b2c8ea866447771ea4a79ad2071861c819c671095e81c00ef2583584c02ad989",
+        "variant_id": "document__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 302
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.7251655629139073,
+          "right_mean": 0.7814569536423841,
+          "mean_difference": 0.056291390728476824,
+          "query_count": 302,
+          "wins": 35,
+          "losses": 18,
+          "ties": 249,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.029761100386100386,
+          "ci95_high": 0.12800512820512813,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.39040406250905474,
+          "right_mean": 0.44273746493706767,
+          "mean_difference": 0.052333402428012946,
+          "query_count": 302,
+          "wins": 144,
+          "losses": 90,
+          "ties": 68,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.02699651204008268,
+          "ci95_high": 0.09661607808550716,
+          "group_count": 19,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "audit_files": {
+    "independent-audit.json": "04a498f2ca42ead291099edfabe32e56df411ff850c4aca6d702e3d352123b18",
+    "paired-independent-audit.json": "6d7a26a1463deb37fe493c387d528d29087d449cfaf82c8885fa1971aadd2cdc",
+    "paired-comparisons.json": "2a7d2dc0ad43749eb59ace657f5274cd1c39233c8f01fcbdd933c27c8bd63dc3"
+  },
+  "actual_runtime": {
+    "gpu": {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "capability": [
+        8,
+        0
+      ],
+      "memory": 85094825984
+    },
+    "cuda": "13.0",
+    "driver": "580.82.07",
+    "python": "3.12.3",
+    "packages": {
+      "rag-benchmark": "0.1.0",
+      "torch": "2.14.1",
+      "transformers": "5.19.0",
+      "sentence-transformers": "6.1.0",
+      "accelerate": "1.15.0",
+      "numpy": "2.5.3",
+      "bm25s": "0.3.12",
+      "huggingface-hub": "1.33.0",
+      "peft": "0.21.2",
+      "colpali-engine": null
+    }
+  },
+  "checkpoint_sha256": "8d0c7cb6abb290519e0ad284fc341edb249a160be3decdf14ced5361415c8b71",
+  "generated_answer_accuracy_measured": false,
+  "limitations": [
+    "CUDA BF16 condition is published separately; no MPS identity is rewritten and this publication changes no main-matrix counts.",
+    "All 302 queries search all 1674 pages, with 2178 positive labels (1144 grade2, 1034 grade1). Hit and Recall differ.",
+    "Paired intervals are marginal exploratory intervals without multiple-comparison adjustment. Nineteen connected source groups include one with 148/302 queries; hidden dependencies may remain.",
+    "The 80000 bootstrap metric evaluations reuse the declared seeded component selections; they are not 80000 independent experiments.",
+    "Ranking audits reconstruct stored source-channel ranks and metric formulas; they perform no new encoder forward.",
+    "Only the two BM25 conditions were compared with the existing MPS-host report and matched all604 query results; no neural cross-device equivalence is inferred.",
+    "Visual budgets are model-specific; these are recorded-setting comparisons, not equal-compute measurements.",
+    "Unavailable G/E per-input diagnostics do not mean measured zero truncation or inference time.",
+    "Retrieval accuracy is not generated-answer correctness. Full BGE/Laya and QA are separate jobs."
+  ]
+}
