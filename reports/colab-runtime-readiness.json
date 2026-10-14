@@ -1,13 +1,13 @@
 {
   "schema_version": 3,
   "observed_date": "2026-10-14",
-  "status": "two_cuda_retrieval_results_published_two_rerank_jobs_running_industrial_recovery_running",
+  "status": "two_cuda_retrieval_results_published_physics_rerank_runtime_lost_two_L4_jobs_running",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "Physics_A100_and_Pharmaceuticals_L4_rerank_with_Industrial_recovery_L4",
+    "gpu_allocation": "Pharmaceuticals_L4_rerank_and_Industrial_recovery_L4_Physics_replacement_A100_lost",
     "dtype": "bfloat16",
     "native_bf16_required": true,
-    "active_owned_gpu_assignments": 3,
+    "active_owned_gpu_assignments": 2,
     "replacement_A100_device_probe_pending": false
   },
   "jobs": [
@@ -33,10 +33,13 @@
       },
       "full_run_status": "completed_independently_audited_published_separate_CUDA_condition",
       "wall_seconds_including_checkpoint": 1207.036564578,
-      "current_runtime_status": "replacement_A100_exact_runtime_equality_verified_rerank_running",
+      "current_runtime_status": "replacement_A100_missing_from_official_assignments_known_contents_404",
       "full_rerank_launched": true,
-      "full_rerank_status": "running",
-      "public_summary": "colab/physics-retrieval-summary.json"
+      "full_rerank_status": "interrupted_by_runtime_loss_completion_unverified",
+      "public_summary": "colab/physics-retrieval-summary.json",
+      "closed_reranker_checkpoint_recovered": false,
+      "runtime_loss_cause": "unknown",
+      "retrieval_checkpoint_durable": true
     },
     {
       "dataset": "vidore-v3-pharmaceuticals-en",
@@ -75,16 +78,22 @@
       "gpu": "NVIDIA L4",
       "native_bf16": true,
       "preparation_status": "complete_verified",
-      "preparation_seconds": 206.378,
+      "preparation_seconds": 232.048229884,
       "completed_channels": [
-        "B"
+        "B",
+        "G",
+        "E"
       ],
-      "active_channel": "G",
-      "observed_channel_wall_seconds_including_checkpoint": {},
-      "observed_elapsed_seconds": 3148.63801945,
+      "active_channel": "N",
+      "observed_channel_wall_seconds_including_checkpoint": {
+        "B": 19.103589172000056,
+        "G": 117.73148083699994,
+        "E": 164.90698953100002
+      },
+      "observed_elapsed_seconds": 712.6834879969999,
       "current_runtime_status": "replacement_L4_full_retrieval_running",
       "full_run_status": "running_incomplete",
-      "last_verified_active_channel": "S",
+      "last_verified_active_channel": "N",
       "cause": "unknown",
       "original_lost_run": {
         "last_verified_completed_channels": [
@@ -99,7 +108,12 @@
       },
       "recovery_preparation_seconds": 232.048229884,
       "recovery_source_and_frozen_dataset_verified": true,
-      "recovery_native_bf16_verified": true
+      "recovery_native_bf16_verified": true,
+      "durable_recovery_channels": [
+        "B",
+        "G"
+      ],
+      "E_checkpoint_transfer": "bounded_timeout_previous_verified_backups_preserved"
     }
   ],
   "dataset_preparation": {
@@ -232,5 +246,5 @@
     "Industrial original assignment was lost without a verified full backup. The replacement L4 is a new recovery, not reuse of the lost cache. Runtime loss cause remains unknown.",
     "The client connection route reached the Pharmaceuticals reranker without a kernel reset; this does not establish the original WebSocket disconnect cause."
   ],
-  "observed_at_utc": "2026-10-14T17:28:00Z"
+  "observed_at_utc": "2026-10-14T17:37:13Z"
 }
