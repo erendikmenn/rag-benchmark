@@ -4,10 +4,11 @@
   "status": "measured_throughput_and_recovery_in_progress",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "one_A100_80GB_one_active_Industrial_L4_and_one_replacement_L4_preparing",
+    "gpu_allocation": "replacement_A100_allocated_for_Physics_restore_and_two_existing_L4_jobs",
     "dtype": "bfloat16",
     "native_bf16_required": true,
-    "active_owned_gpu_assignments": 3
+    "active_owned_gpu_assignments": 3,
+    "replacement_A100_device_probe_pending": true
   },
   "jobs": [
     {
@@ -30,8 +31,10 @@
         "E": 38.298,
         "N": 255.382
       },
-      "full_run_status": "completed_pending_independent_audit",
-      "wall_seconds_including_checkpoint": 1207.036564578
+      "full_run_status": "completed_independent_audit_passed_main_acceptance_pending",
+      "wall_seconds_including_checkpoint": 1207.036564578,
+      "current_runtime_status": "original_A100_lost_after_valid_timing_samples_replacement_A100_allocated_restore_pending",
+      "full_rerank_launched": false
     },
     {
       "dataset": "vidore-v3-pharmaceuticals-en",
@@ -53,7 +56,7 @@
       },
       "full_run_status": "completed_before_runtime_loss_no_full_durable_backup_confirmed",
       "wall_seconds_including_checkpoint": 1880.183225769,
-      "replacement": "allocated_preparation_pending"
+      "replacement": "recovery_L4_preparation_verified_retrieval_started_latest_completion_check_pending"
     },
     {
       "dataset": "vidore-v3-industrial-en",
@@ -92,7 +95,7 @@
   },
   "checkpoint": {
     "remote_closed_checkpoint_publication": "enabled_by_reviewed_owned_helpers",
-    "local_verified_backup_status": "one_partial_run_Physics_archive_received_and_SHA256_verified",
+    "local_verified_backup_status": "full_Physics_archive_received_and_SHA256_verified_prior_partial_retained",
     "archive_bytes": 53514240,
     "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7",
     "full_physics_transfer": "received_full_size_and_SHA256_verified",
@@ -179,9 +182,9 @@
   "limitations": [
     "Active channel completion is not a completed 126-cell run or independent audit.",
     "Observed channel wall times include checkpoint overhead and do not establish a GPU speedup factor or total project duration.",
-    "Three current allocations do not guarantee future capacity or runtime survival.",
     "Local MPS queue and old deleted automation remain stopped.",
-    "The verified Physics checkpoint is partial-run state, not a full benchmark or backups of every active job."
+    "Runtime assignments may disappear; the original Physics A100 disappeared after the valid Gemma sample. Cause unknown. A replacement A100 was allocated, but restoration and its device/runtime equality checks are pending.",
+    "The complete Physics checkpoint and its independent audit are verified locally. Other datasets require their own full durable backup and audit."
   ],
-  "observed_at_utc": "2026-10-14T15:17:34.457572+00:00"
+  "observed_at_utc": "2026-10-14T16:55:00Z"
 }
