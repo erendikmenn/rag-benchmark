@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-14T18:13:49Z",
+  "reason": "explicit_user_stop_and_architecture_redesign",
+  "status": "owned_experiments_stopped",
+  "owned_colab_assignments_remaining": 0,
+  "automation_status": "PAUSED",
+  "local_MPS_queue": "remains_stopped",
+  "new_model_work_authorized": false,
+  "unrelated_assignments_touched": false,
+  "completed_results": {
+    "main_conditions": 2052,
+    "main_planned_conditions": 18460,
+    "separately_labelled_CUDA_retrieval_conditions": 252,
+    "full_CUDA_reranker_results": 0
+  },
+  "retained_checkpoints": [
+    {
+      "scope": "Physics_full_retrieval",
+      "bytes": 1038274560,
+      "sha256": "8d0c7cb6abb290519e0ad284fc341edb249a160be3decdf14ced5361415c8b71"
+    },
+    {
+      "scope": "Pharmaceuticals_full_retrieval",
+      "bytes": 1417523200,
+      "sha256": "7bbef5bcfd3f7ecaa666b6f3a4e133c85c98fe7d7032c5e9e4cf828455853cbd"
+    },
+    {
+      "scope": "Industrial_partial_B_G_E_N",
+      "bytes": 90193920,
+      "sha256": "1fa79e268572bb36a1ff8f03cbd8142846deea3609bdd24f0868fc7ec9eba382"
+    }
+  ],
+  "unverified_partial_work": [
+    "Industrial_unfinished_S_after_N_checkpoint",
+    "Pharmaceuticals_unclosed_partial_reranker_work",
+    "Physics_reranker_before_prior_runtime_loss"
+  ],
+  "next_scope": "modular_architecture_research_and_reviewable_repository_design_only"
+}

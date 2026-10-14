@@ -1,13 +1,13 @@
 {
   "schema_version": 3,
   "observed_date": "2026-10-14",
-  "status": "two_cuda_retrieval_results_published_physics_rerank_runtime_lost_two_L4_jobs_running",
+  "status": "stopped_by_user_for_architecture_design",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "Pharmaceuticals_L4_rerank_and_Industrial_recovery_L4_Physics_replacement_A100_lost",
+    "gpu_allocation": "no_owned_active_assignments_after_user_stop",
     "dtype": "bfloat16",
     "native_bf16_required": true,
-    "active_owned_gpu_assignments": 2,
+    "active_owned_gpu_assignments": 0,
     "replacement_A100_device_probe_pending": false
   },
   "jobs": [
@@ -61,7 +61,7 @@
       },
       "full_run_status": "completed_independently_audited_published_separate_CUDA_condition",
       "wall_seconds_including_checkpoint": 1867.651,
-      "replacement": "full_recovery_retrieval_audited_and_published_full_rerank_running",
+      "replacement": "full_recovery_retrieval_audited_and_published_rerank_stopped_by_user",
       "recovery_full_retrieval_status": "completed_independently_audited_published",
       "recovery_wall_seconds_including_checkpoint": 1867.651,
       "historical_original_run": {
@@ -70,8 +70,16 @@
         "full_durable_backup_confirmed": false
       },
       "full_rerank_launched": true,
-      "full_rerank_status": "running",
-      "public_summary": "colab/pharmaceuticals-retrieval-summary.json"
+      "full_rerank_status": "incomplete_stopped_by_user",
+      "public_summary": "colab/pharmaceuticals-retrieval-summary.json",
+      "current_runtime_status": "released_by_user_request_assignment_absent",
+      "closed_reranker_checkpoint_recovered": false,
+      "pre_stop_rerank_observation": {
+        "completed_reranker_cells": 0,
+        "failed_laya_cells": 24,
+        "failure_class": "CUDA_memory_failure_CPU_fallback_rejected",
+        "scope": "partial_private_report_not_full_reranker_evaluation"
+      }
     },
     {
       "dataset": "vidore-v3-industrial-en",
@@ -82,18 +90,19 @@
       "completed_channels": [
         "B",
         "G",
-        "E"
+        "E",
+        "N"
       ],
-      "active_channel": "N",
+      "active_channel": null,
       "observed_channel_wall_seconds_including_checkpoint": {
         "B": 19.103589172000056,
         "G": 117.73148083699994,
         "E": 164.90698953100002
       },
-      "observed_elapsed_seconds": 712.6834879969999,
-      "current_runtime_status": "replacement_L4_full_retrieval_running",
-      "full_run_status": "running_incomplete",
-      "last_verified_active_channel": "N",
+      "observed_elapsed_seconds": 2835.170388061,
+      "current_runtime_status": "released_by_user_request_assignment_absent",
+      "full_run_status": "incomplete_stopped_by_user",
+      "last_verified_active_channel": "S",
       "cause": "unknown",
       "original_lost_run": {
         "last_verified_completed_channels": [
@@ -111,9 +120,11 @@
       "recovery_native_bf16_verified": true,
       "durable_recovery_channels": [
         "B",
-        "G"
+        "G",
+        "E",
+        "N"
       ],
-      "E_checkpoint_transfer": "bounded_timeout_previous_verified_backups_preserved"
+      "E_checkpoint_transfer": "standalone_E_transfer_failed_later_E_preserved_with_verified_N_archive"
     }
   ],
   "dataset_preparation": {
@@ -130,13 +141,15 @@
   "execution": {
     "neural_benchmark_inference_started": true,
     "full_126_cell_runs_completed": 2,
-    "independent_full_run_audits_completed": 1,
+    "independent_full_run_audits_completed": 2,
     "published_main_coverage": "2052/18460",
-    "main_coverage_updated": false
+    "main_coverage_updated": false,
+    "experiment_progression_authorized": false,
+    "automation_status": "PAUSED"
   },
   "checkpoint": {
-    "remote_closed_checkpoint_publication": "enabled_by_reviewed_owned_helpers",
-    "local_verified_backup_status": "full_Physics_archive_received_and_SHA256_verified_prior_partial_retained",
+    "remote_closed_checkpoint_publication": "stopped_with_owned_workers",
+    "local_verified_backup_status": "full_Physics_and_Pharmaceuticals_and_partial_Industrial_N_archives_verified",
     "archive_bytes": 53514240,
     "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7",
     "full_physics_transfer": "received_full_size_and_SHA256_verified",
@@ -160,25 +173,30 @@
     },
     "industrial_recovery_verified_partial": {
       "completed_channels": [
-        "B"
+        "B",
+        "G",
+        "E",
+        "N"
       ],
-      "archive_bytes": 6993920,
-      "sha256": "d771794e35f54acb65eff368ed205493575469c932a40941ee058ace407e0e92",
-      "full_result": false
+      "archive_bytes": 90193920,
+      "sha256": "1fa79e268572bb36a1ff8f03cbd8142846deea3609bdd24f0868fc7ec9eba382",
+      "full_result": false,
+      "unfinished_S_work_backed_up": false
     }
   },
   "eta": {
-    "status": "actual_serial_and_parallel_samples_with_scoped_planning_scenarios",
+    "status": "execution_stopped_no_active_deadline",
     "prior_unmeasured_eleven_day_estimate": "withdrawn",
     "channel_times_include_checkpoint": true,
     "task_counts_are_unique_inference_calls": false,
     "scope": "first_wave_retrieval_separate_from_remaining_main_matrix_and_QA",
     "measurement_report": "colab-throughput-measurements.json",
-    "night_target": "2026-10-15T08:00:00+03:00",
+    "night_target": null,
     "whole_research_completion_forecast_available": false,
     "qa_parallel_attempts_per_second": 0.5661946569831173,
     "qa_matched_warm_speedup": 2.313041738794909,
-    "gemma_code_parallel_pairs_per_second": 2.93571661874958
+    "gemma_code_parallel_pairs_per_second": 2.93571661874958,
+    "historical_cancelled_night_target": "2026-10-15T08:00:00+03:00"
   },
   "historical_runtime_failures": {
     "scope": "earlier_L4_and_A100_both_lost_before_neural_benchmark_execution",
@@ -244,7 +262,8 @@
     "The replacement Physics runtime exactly matches the preserved identity and reuses sealed rankings; no retrieval recomputation was launched.",
     "Physics and Pharmaceuticals full checkpoints and independent audits are verified locally; Industrial recovery remains incomplete.",
     "Industrial original assignment was lost without a verified full backup. The replacement L4 is a new recovery, not reuse of the lost cache. Runtime loss cause remains unknown.",
-    "The client connection route reached the Pharmaceuticals reranker without a kernel reset; this does not establish the original WebSocket disconnect cause."
+    "The client connection route reached the Pharmaceuticals reranker without a kernel reset; this does not establish the original WebSocket disconnect cause.",
+    "User stopped all owned cloud execution. Prior launch plans and the overnight target are superseded; partial reranking and unfinished Industrial S work are not verified durable results."
   ],
-  "observed_at_utc": "2026-10-14T17:37:13Z"
+  "observed_at_utc": "2026-10-14T18:13:49Z"
 }
