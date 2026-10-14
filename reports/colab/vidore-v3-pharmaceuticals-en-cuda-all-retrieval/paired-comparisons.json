@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "analysis_version": "paired-source-components-v2",
+  "analysis_source_sha256": "def2d2de43352fba062b8ac14bbdc55ba71accbc463ac4447ca85af146313773",
+  "numpy_version": "2.4.2",
+  "dataset": {
+    "id": "vidore-v3-pharmaceuticals-en",
+    "revision": "3abd4aa8a9445fb5538a78a19ba50bd57bd22b5c",
+    "track": "document",
+    "identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+    "corpus_count": 2313,
+    "query_count": 364,
+    "qrel_count": 1732,
+    "positive_qrel_count": 1732,
+    "empty_candidate_text_count": 0,
+    "missing_candidate_text_count": 0,
+    "split": "test"
+  },
+  "source_report_sha256": "112142e08129d5a9517fbb5f6307b90853db1c5dd70a466dd63d9d90c74ccdf5",
+  "scope": "paired_primary_cells_same_frozen_collection",
+  "metrics": [
+    "hit@5",
+    "ndcg@10"
+  ],
+  "bootstrap": {
+    "method": "paired_source_group_percentile",
+    "confidence_level": 0.95,
+    "samples": 5000,
+    "seed": 42,
+    "direction": "right_minus_left",
+    "estimator": "query-weighted mean difference; groups resampled together",
+    "interval_reporting": "eligible",
+    "withholding_reason": null,
+    "dominant_group_guard": {
+      "maximum_group_fraction": 0.5,
+      "comparison": "strictly_greater_than",
+      "interpretation": "conservative reporting safeguard, not a formal statistical threshold"
+    },
+    "multiple_comparison_adjustment": "none; intervals are marginal exploratory comparisons"
+  },
+  "grouping": {
+    "status": "available",
+    "strategy": "positive_document_components",
+    "description": "Positive pages map to corpus.metadata.doc_id. Queries touching the same source document are connected transitively across multi-document positives.",
+    "query_count": 364,
+    "group_count": 23,
+    "source_unit_count": 50,
+    "source_association_count": 414,
+    "smallest_group_queries": 2,
+    "largest_group_queries": 70,
+    "largest_group_fraction": 0.19230769230769232,
+    "mapping_sha256": "0e44c31133cdbddf4a20042982091566bffdec5655a5478c3e0d11af6085686a",
+    "fallback_to_independent_queries": false,
+    "resampling_assumption": "Identified source components are treated as exchangeable resampling units; unrecorded cross-component dependencies may remain."
+  },
+  "comparisons": [
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__s__none",
+      "left": {
+        "identity": "9ecf25a92d9eb0de3d59734a1e87c5b8ed6754709d172daf7b604af54cc7ffb7",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "3a99786120afaa2a6b8f0a6b8185143c3445d6cc374ed6455482efb1c8a64d6c",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8186813186813187,
+          "right_mean": 0.8956043956043956,
+          "mean_difference": 0.07692307692307693,
+          "query_count": 364,
+          "wins": 40,
+          "losses": 12,
+          "ties": 312,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.03549043706646912,
+          "ci95_high": 0.11981685184016158,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5520589283542698,
+          "right_mean": 0.6490281869652604,
+          "mean_difference": 0.09696925861099057,
+          "query_count": 364,
+          "wins": 185,
+          "losses": 86,
+          "ties": 93,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.06535471501619869,
+          "ci95_high": 0.14103527538706145,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "9ecf25a92d9eb0de3d59734a1e87c5b8ed6754709d172daf7b604af54cc7ffb7",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "c2773d3dbfce50a7201a356dbbc4f17c35fab239686bb1dbc5a6a1a1d93ee06b",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8186813186813187,
+          "right_mean": 0.8901098901098901,
+          "mean_difference": 0.07142857142857142,
+          "query_count": 364,
+          "wins": 32,
+          "losses": 6,
+          "ties": 326,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.03463161838161838,
+          "ci95_high": 0.10955266154018438,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5520589283542698,
+          "right_mean": 0.619964467352236,
+          "mean_difference": 0.06790553899796621,
+          "query_count": 364,
+          "wins": 176,
+          "losses": 58,
+          "ties": 130,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.04759468752030706,
+          "ci95_high": 0.09429464485479849,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__s__none",
+      "requested_right": "document__n_s__none",
+      "left": {
+        "identity": "3a99786120afaa2a6b8f0a6b8185143c3445d6cc374ed6455482efb1c8a64d6c",
+        "variant_id": "document__s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "c2773d3dbfce50a7201a356dbbc4f17c35fab239686bb1dbc5a6a1a1d93ee06b",
+        "variant_id": "document__n_s__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8956043956043956,
+          "right_mean": 0.8901098901098901,
+          "mean_difference": -0.005494505494505495,
+          "query_count": 364,
+          "wins": 12,
+          "losses": 14,
+          "ties": 338,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.02459354170419744,
+          "ci95_high": 0.012345679012345678,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.6490281869652604,
+          "right_mean": 0.619964467352236,
+          "mean_difference": -0.029063719613024362,
+          "query_count": 364,
+          "wins": 106,
+          "losses": 135,
+          "ties": 123,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.05178179607929222,
+          "ci95_high": -0.01216232014105256,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__n__none",
+      "requested_right": "document__j__none",
+      "left": {
+        "identity": "9ecf25a92d9eb0de3d59734a1e87c5b8ed6754709d172daf7b604af54cc7ffb7",
+        "variant_id": "document__n__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "434fe018d9a3cec1e2d800787b2416a9e0673e4e441598311804c0595ed46787",
+        "variant_id": "document__j__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8186813186813187,
+          "right_mean": 0.8598901098901099,
+          "mean_difference": 0.04120879120879121,
+          "query_count": 364,
+          "wins": 29,
+          "losses": 14,
+          "ties": 321,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0125,
+          "ci95_high": 0.07457627118644068,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5520589283542698,
+          "right_mean": 0.602457444837019,
+          "mean_difference": 0.050398516482749144,
+          "query_count": 364,
+          "wins": 165,
+          "losses": 76,
+          "ties": 123,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.027082016171929776,
+          "ci95_high": 0.08013652368501564,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__g__none",
+      "left": {
+        "identity": "90f0d0077d93dbdd4d83a68449c48cf6fa4c455a7a152637f9d52f246bb03d62",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "9615bf80b33b87b6600d20fb5de461afc1efeb0d99db129bf9fcfc06a1c989c8",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8159340659340659,
+          "right_mean": 0.8296703296703297,
+          "mean_difference": 0.013736263736263736,
+          "query_count": 364,
+          "wins": 35,
+          "losses": 30,
+          "ties": 299,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.023891919613680923,
+          "ci95_high": 0.04629898169631344,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.552902675426491,
+          "right_mean": 0.5501657595976117,
+          "mean_difference": -0.0027369158288793665,
+          "query_count": 364,
+          "wins": 135,
+          "losses": 140,
+          "ties": 89,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.031275394152214496,
+          "ci95_high": 0.021860269533348506,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "90f0d0077d93dbdd4d83a68449c48cf6fa4c455a7a152637f9d52f246bb03d62",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "d559de2f494187b3be8f260a0577a5a6cf6e0cad10f02ffa25dc33b053fdad79",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8159340659340659,
+          "right_mean": 0.8461538461538461,
+          "mean_difference": 0.03021978021978022,
+          "query_count": 364,
+          "wins": 33,
+          "losses": 22,
+          "ties": 309,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0,
+          "ci95_high": 0.05722116716667124,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.552902675426491,
+          "right_mean": 0.5782937976685233,
+          "mean_difference": 0.02539112224203228,
+          "query_count": 364,
+          "wins": 157,
+          "losses": 122,
+          "ties": 85,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0017761948994618473,
+          "ci95_high": 0.05093988229970435,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__g__none",
+      "requested_right": "document__e__none",
+      "left": {
+        "identity": "9615bf80b33b87b6600d20fb5de461afc1efeb0d99db129bf9fcfc06a1c989c8",
+        "variant_id": "document__g__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "d559de2f494187b3be8f260a0577a5a6cf6e0cad10f02ffa25dc33b053fdad79",
+        "variant_id": "document__e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8296703296703297,
+          "right_mean": 0.8461538461538461,
+          "mean_difference": 0.016483516483516484,
+          "query_count": 364,
+          "wins": 25,
+          "losses": 19,
+          "ties": 320,
+          "metric_direction": "right_minus_left",
+          "ci95_low": -0.018435313193377708,
+          "ci95_high": 0.047619047619047616,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.5501657595976117,
+          "right_mean": 0.5782937976685233,
+          "mean_difference": 0.02812803807091165,
+          "query_count": 364,
+          "wins": 152,
+          "losses": 106,
+          "ties": 106,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.0077603066093886565,
+          "ci95_high": 0.049300221820359494,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    },
+    {
+      "status": "completed",
+      "requested_left": "document__b__none",
+      "requested_right": "document__b_g_e__none",
+      "left": {
+        "identity": "90f0d0077d93dbdd4d83a68449c48cf6fa4c455a7a152637f9d52f246bb03d62",
+        "variant_id": "document__b__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "right": {
+        "identity": "9a9109cd57d265db3b348ed905279b3939701928aa0453e0f75e720f5a0995a4",
+        "variant_id": "document__b_g_e__none",
+        "budget_mode": "per_channel",
+        "candidate_k": null,
+        "query_count": 364
+      },
+      "metrics": {
+        "hit@5": {
+          "left_mean": 0.8159340659340659,
+          "right_mean": 0.8763736263736264,
+          "mean_difference": 0.06043956043956044,
+          "query_count": 364,
+          "wins": 31,
+          "losses": 9,
+          "ties": 324,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.02302442838654012,
+          "ci95_high": 0.09756258446489476,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        },
+        "ndcg@10": {
+          "left_mean": 0.552902675426491,
+          "right_mean": 0.6154493181787888,
+          "mean_difference": 0.0625466427522978,
+          "query_count": 364,
+          "wins": 167,
+          "losses": 76,
+          "ties": 121,
+          "metric_direction": "right_minus_left",
+          "ci95_low": 0.04134143909563648,
+          "ci95_high": 0.08137019810677801,
+          "group_count": 23,
+          "bootstrap_samples": 5000,
+          "seed": 42
+        }
+      }
+    }
+  ],
+  "method_references": [
+    {
+      "title": "SciPy paired bootstrap documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+    },
+    {
+      "title": "Stata cluster bootstrap documentation",
+      "url": "https://www.stata.com/support/faqs/statistics/bootstrap-with-panel-data/"
+    }
+  ],
+  "model_inference_performed": false,
+  "generated_answer_accuracy_measured": false,
+  "comparison_status_counts": {
+    "completed": 8
+  },
+  "status": "completed"
+}

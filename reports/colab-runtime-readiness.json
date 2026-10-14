@@ -1,13 +1,13 @@
 {
   "schema_version": 3,
   "observed_date": "2026-10-14",
-  "status": "physics_cuda_published_rerank_running_pharma_transport_recovery_industrial_lost",
+  "status": "two_cuda_retrieval_results_published_two_rerank_jobs_running_industrial_recovery_running",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "runtime": {
-    "gpu_allocation": "one_replacement_A100_running_Physics_rerank_and_one_Pharmaceuticals_L4",
+    "gpu_allocation": "Physics_A100_and_Pharmaceuticals_L4_rerank_with_Industrial_recovery_L4",
     "dtype": "bfloat16",
     "native_bf16_required": true,
-    "active_owned_gpu_assignments": 2,
+    "active_owned_gpu_assignments": 3,
     "replacement_A100_device_probe_pending": false
   },
   "jobs": [
@@ -56,11 +56,19 @@
       "observed_channel_wall_seconds_including_checkpoint": {
         "G": 50.47
       },
-      "full_run_status": "completed_before_runtime_loss_no_full_durable_backup_confirmed",
-      "wall_seconds_including_checkpoint": 1880.183225769,
-      "replacement": "recovery_retrieval_completed_1867.651_seconds_rerank_client_transport_recovery_pending_owner_start",
-      "recovery_full_retrieval_status": "completed",
-      "recovery_wall_seconds_including_checkpoint": 1867.651
+      "full_run_status": "completed_independently_audited_published_separate_CUDA_condition",
+      "wall_seconds_including_checkpoint": 1867.651,
+      "replacement": "full_recovery_retrieval_audited_and_published_full_rerank_running",
+      "recovery_full_retrieval_status": "completed_independently_audited_published",
+      "recovery_wall_seconds_including_checkpoint": 1867.651,
+      "historical_original_run": {
+        "wall_seconds_including_checkpoint": 1880.183225769,
+        "runtime_lost": true,
+        "full_durable_backup_confirmed": false
+      },
+      "full_rerank_launched": true,
+      "full_rerank_status": "running",
+      "public_summary": "colab/pharmaceuticals-retrieval-summary.json"
     },
     {
       "dataset": "vidore-v3-industrial-en",
@@ -69,18 +77,29 @@
       "preparation_status": "complete_verified",
       "preparation_seconds": 206.378,
       "completed_channels": [
-        "B",
-        "G",
-        "E",
-        "N"
+        "B"
       ],
-      "active_channel": null,
+      "active_channel": "G",
       "observed_channel_wall_seconds_including_checkpoint": {},
       "observed_elapsed_seconds": 3148.63801945,
-      "current_runtime_status": "assignment_lost_before_full_result_verified",
-      "full_run_status": "unverified_partial",
+      "current_runtime_status": "replacement_L4_full_retrieval_running",
+      "full_run_status": "running_incomplete",
       "last_verified_active_channel": "S",
-      "cause": "unknown"
+      "cause": "unknown",
+      "original_lost_run": {
+        "last_verified_completed_channels": [
+          "B",
+          "G",
+          "E",
+          "N"
+        ],
+        "last_verified_active_channel": "S",
+        "cause": "unknown",
+        "full_result_verified": false
+      },
+      "recovery_preparation_seconds": 232.048229884,
+      "recovery_source_and_frozen_dataset_verified": true,
+      "recovery_native_bf16_verified": true
     }
   ],
   "dataset_preparation": {
@@ -107,7 +126,7 @@
     "archive_bytes": 53514240,
     "archive_sha256": "8f06793eec2a10ef64b501a4acc3210b7da8e8c7af9fed642d0b325ff1e340f7",
     "full_physics_transfer": "received_full_size_and_SHA256_verified",
-    "pharmaceuticals_full_durable_backup_confirmed": false,
+    "pharmaceuticals_full_durable_backup_confirmed": true,
     "full_physics_bytes": 1038274560,
     "full_physics_sha256": "8d0c7cb6abb290519e0ad284fc341edb249a160be3decdf14ced5361415c8b71",
     "full_physics_independent_audit": {
@@ -116,7 +135,23 @@
       "rankings": 38052,
       "metric_values": 646884
     },
-    "pharmaceuticals_full_transfer": "in_progress_not_yet_full_SHA_verified"
+    "pharmaceuticals_full_transfer": "received_full_SHA_verified_independently_audited",
+    "full_pharmaceuticals_bytes": 1417523200,
+    "full_pharmaceuticals_sha256": "7bbef5bcfd3f7ecaa666b6f3a4e133c85c98fe7d7032c5e9e4cf828455853cbd",
+    "full_pharmaceuticals_independent_audit": {
+      "status": "passed",
+      "cells": 126,
+      "rankings": 45864,
+      "metric_values": 779688
+    },
+    "industrial_recovery_verified_partial": {
+      "completed_channels": [
+        "B"
+      ],
+      "archive_bytes": 6993920,
+      "sha256": "d771794e35f54acb65eff368ed205493575469c932a40941ee058ace407e0e92",
+      "full_result": false
+    }
   },
   "eta": {
     "status": "actual_serial_and_parallel_samples_with_scoped_planning_scenarios",
@@ -192,9 +227,10 @@
     "Active channel completion is not a completed 126-cell run or independent audit.",
     "Observed channel wall times include checkpoint overhead and do not establish a GPU speedup factor or total project duration.",
     "Local MPS queue and old deleted automation remain stopped.",
-    "The complete Physics checkpoint and its independent audit are verified locally. Other datasets require their own full durable backup and audit.",
     "The replacement Physics runtime exactly matches the preserved identity and reuses sealed rankings; no retrieval recomputation was launched.",
-    "Industrial is no longer assigned; no full completion or durable full backup has been verified. Runtime loss cause is unknown."
+    "Physics and Pharmaceuticals full checkpoints and independent audits are verified locally; Industrial recovery remains incomplete.",
+    "Industrial original assignment was lost without a verified full backup. The replacement L4 is a new recovery, not reuse of the lost cache. Runtime loss cause remains unknown.",
+    "The client connection route reached the Pharmaceuticals reranker without a kernel reset; this does not establish the original WebSocket disconnect cause."
   ],
-  "observed_at_utc": "2026-10-14T17:07:00Z"
+  "observed_at_utc": "2026-10-14T17:28:00Z"
 }
