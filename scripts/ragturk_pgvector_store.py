@@ -203,12 +203,23 @@ def validate_bundle(bundle: Path | str, *, counts: dict | None = None) -> Prepar
     data, indices, indptr = [np.load(files["bm25/" + name + ".csc.index.npy"], mmap_mode="r", allow_pickle=False)
                              for name in ("data", "indices", "indptr")]
     vocab = json_file(files["bm25/vocab.index.json"])
+    integer_types = {np.dtype("int32"), np.dtype("int64")}
     require(data.ndim == indices.ndim == indptr.ndim == 1 and data.dtype == np.dtype("float32") and
-            indices.dtype == np.dtype("int32") and indptr.dtype == np.dtype("int32") and
-            len(data) == len(indices) and len(indptr) == len(vocab) + 1 and indptr[0] == 0 and indptr[-1] == len(data)
+            indices.dtype in integer_types and indptr.dtype in integer_types and len(indptr) >= 2 and
+            len(data) == len(indices) and indptr[0] == 0 and indptr[-1] == len(data)
+            and bool(np.all((indptr >= 0) & (indptr <= len(data))))
             and bool(np.all(np.diff(indptr.astype(np.int64)) >= 0)) and bool(np.isfinite(data).all())
-            and bool(np.all((indices >= 0) & (indices < len(chunks)))) and
-            set(vocab.values()) == set(range(len(vocab))), "bm25_csc")
+            and bool(np.all((indices >= 0) & (indices < len(chunks)))) and isinstance(vocab, dict)
+            and all(isinstance(token, str) and type(index) is int for token, index in vocab.items()), "bm25_csc")
+    columns = len(indptr) - 1
+    # bm25s 0.3.12 builds physical CSC columns first, then appends the empty
+    # query token at max(vocab)+1. Its NumPy CSC backend emits int64 indptr.
+    # Permit exactly that sentinel, never a nonempty out-of-range token.
+    physical = {token: index for token, index in vocab.items() if index < columns}
+    ordinary = len(vocab) == columns and set(vocab.values()) == set(range(columns))
+    sentinel = (len(vocab) == columns + 1 and vocab.get("") == columns and
+                len(physical) == columns and set(physical.values()) == set(range(columns)))
+    require(ordinary or sentinel, "bm25_vocabulary_columns")
     prepared = Prepared(manifest, identity, chunks, queries, splits, vectors, files, refs)
     prepared.stable_inputs()
     return prepared

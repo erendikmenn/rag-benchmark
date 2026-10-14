@@ -255,3 +255,41 @@ def test_existing_corrupt_complete_rejected_no_overwrite(bundle, tamper):
     with pytest.raises(ValueError):
         m.import_database(db, prepared)
     assert db.tables == before and all(sql.startswith("SELECT") for sql in db.sql)
+
+
+def set_native_sentinel(bundle, *, token="", index_dtype="int64"):
+    value = json.loads(bundle.read_text())
+    refs = value["bm25"]["files"]
+    for ref in refs:
+        path = Path(ref["path"])
+        if path.name == "vocab.index.json":
+            vocab = json.loads(path.read_text())
+            vocab[token] = 2
+            path.write_text(json.dumps(vocab))
+        elif path.name == "indptr.csc.index.npy":
+            np.save(path, np.load(path).astype(index_dtype))
+        ref.update(sha256=m.file_sha(path), bytes=path.stat().st_size)
+    value["identity"] = m.canonical_sha({k: v for k, v in value.items() if k != "identity"})
+    bundle.write_text(json.dumps(value))
+
+
+def test_native_int64_pointer_empty_token_sentinel_accepted(bundle):
+    set_native_sentinel(bundle)
+    prepared = m.validate_bundle(bundle, counts=COUNTS)
+    assert np.load(prepared.files["bm25/indptr.csc.index.npy"]).dtype == np.dtype("int64")
+    db = FakeDB()
+    assert m.import_database(db, prepared)["status"] == "database_import_committed"
+    native = next(row for row in db.tables["files"] if row[0] == "bm25/indptr.csc.index.npy")
+    assert native[3] == prepared.files["bm25/indptr.csc.index.npy"].read_bytes()
+
+
+def test_nonempty_out_of_range_vocab_token_rejected(bundle):
+    set_native_sentinel(bundle, token="not-empty")
+    with pytest.raises(ValueError, match="bm25_vocabulary_columns"):
+        m.validate_bundle(bundle, counts=COUNTS)
+
+
+def test_float_pointer_rejected(bundle):
+    set_native_sentinel(bundle, index_dtype="float64")
+    with pytest.raises(ValueError, match="bm25_csc"):
+        m.validate_bundle(bundle, counts=COUNTS)
