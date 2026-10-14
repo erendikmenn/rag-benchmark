@@ -1,0 +1,72 @@
+{
+  "protocol": "colab-cuda-bf16-retrieval-v1",
+  "channels": [
+    "B",
+    "G",
+    "E",
+    "N",
+    "S",
+    "J"
+  ],
+  "budget_modes": [
+    "per_channel",
+    "total"
+  ],
+  "target_none_cells": 126,
+  "jobs": [
+    {
+      "id": "vidore-v3-physics-fr",
+      "dataset": {
+        "id": "vidore-v3-physics-fr",
+        "revision": "a0de276f515acc044b72cae8de53a44bb5a8f1f5",
+        "track": "document",
+        "identity": "4c152c5a8efdb4a8884432924513f293a1c83ea66628a620e1d9b938bc86cf93",
+        "corpus_count": 1674,
+        "query_count": 302,
+        "qrel_count": 2178,
+        "positive_qrel_count": 2178,
+        "empty_candidate_text_count": 0,
+        "missing_candidate_text_count": 0,
+        "split": "test"
+      },
+      "dataset_json_sha256": "3ec00f9615f6781960ac3b20b8425befaf7411fff75503e9a0bff776697b3d96",
+      "query_ids_sha256": "cc5075e81d2f3b9e527159d7bec1e9cff01d86bbed0f81f60416a3558309ed70"
+    },
+    {
+      "id": "vidore-v3-pharmaceuticals-en",
+      "dataset": {
+        "id": "vidore-v3-pharmaceuticals-en",
+        "revision": "3abd4aa8a9445fb5538a78a19ba50bd57bd22b5c",
+        "track": "document",
+        "identity": "446f2b695e06df283eece6e0e900dc90dd3eafb508fde71540b5ca4faa717006",
+        "corpus_count": 2313,
+        "query_count": 364,
+        "qrel_count": 1732,
+        "positive_qrel_count": 1732,
+        "empty_candidate_text_count": 0,
+        "missing_candidate_text_count": 0,
+        "split": "test"
+      },
+      "dataset_json_sha256": "273be849f7be26c5a1235608599cd21e56aa0190b0570e2e003dfd2cb4fd976e",
+      "query_ids_sha256": "dc4ade2168da1cfb7c5cd3a1179f7e7344eb3a31276e3e5f60bb9c9c9fdff933"
+    },
+    {
+      "id": "vidore-v3-industrial-en",
+      "dataset": {
+        "id": "vidore-v3-industrial-en",
+        "revision": "e26c864724f5dd71a3d7d739272d95637764cee9",
+        "track": "document",
+        "identity": "e1f5feea6658a945a0cf02eeafe7fdb0f4ed03c5505d1382dc543c2b67452742",
+        "corpus_count": 5244,
+        "query_count": 283,
+        "qrel_count": 1614,
+        "positive_qrel_count": 1614,
+        "empty_candidate_text_count": 205,
+        "missing_candidate_text_count": 0,
+        "split": "test"
+      },
+      "dataset_json_sha256": "6784077a070285b476d1ea2ad194d860c715894c2079aa3f6d9c9866c8ef8c6f",
+      "query_ids_sha256": "eca993831f46eea6224840903dff206178c375cd7d09b153b52a871cd7ee5a83"
+    }
+  ]
+}

@@ -12,6 +12,12 @@ import sys
 import uuid
 
 
+def colqwen_cli_config(common: dict) -> dict:
+    """Keep existing defaults while moving ColQwen scoring with CUDA inference."""
+    device = common['device']
+    return {**common, **({'score_device': device} if device.startswith('cuda') else {})}
+
+
 def _positive_finite_float(value: str) -> float:
     result = float(value)
     if not math.isfinite(result) or result <= 0:
@@ -287,7 +293,7 @@ def main(argv=None) -> int:
                     expert = {"photo": "siglip2", "environment_audio": "clap", "video": "clip_video"}.get(dataset.track)
                     if dataset.track == "document":
                         from .multimodal_colqwen import ColQwenAdapter
-                        adapters[channel] = ColQwenAdapter(common)
+                        adapters[channel] = ColQwenAdapter(colqwen_cli_config(common))
                     elif expert:
                         from .multimodal_specialists import SpecialistAdapter
                         adapters[channel] = SpecialistAdapter(expert, {

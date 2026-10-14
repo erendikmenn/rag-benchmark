@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "private frozen dataset transport; no model results",
+  "bundles": {
+    "vidore-v3-physics-fr": {
+      "filename": "vidore-v3-physics-fr.tar",
+      "sha256": "77fe79a71bb9c703990370958b930c456f77eb8e93df7edc3607dbdfbb2ea099",
+      "archive_bytes": 1218877440,
+      "file_count": 1680,
+      "payload_bytes": 1217370050
+    },
+    "vidore-v3-pharmaceuticals-en": {
+      "filename": "vidore-v3-pharmaceuticals-en.tar",
+      "sha256": "eb0e3be35a55a6d3a9d55ef9e428a82fecbe6348133bf2b88cba85cecad00f8c",
+      "archive_bytes": 763944960,
+      "file_count": 2319,
+      "payload_bytes": 761871484
+    },
+    "vidore-v3-industrial-en": {
+      "filename": "vidore-v3-industrial-en.tar",
+      "sha256": "03abfb563e44b062d4630bb3f6632e59fabfc8fc2733dd555bb32c312272e5eb",
+      "archive_bytes": 2090792960,
+      "file_count": 5250,
+      "payload_bytes": 2086122422
+    }
+  }
+}
