@@ -1,6 +1,6 @@
 # rag-benchmark
 
-**14 October: [three Colab notebooks are prepared](docs/colab-running.tr.md)** for parallel CUDA retrieval on Physics, Pharmaceuticals and Industrial documents. Google login succeeded. The first L4 passed an environment and tiny BF16 CUDA check, but the runtime disappeared during data transfer; no active runtime remains and its remote files are unavailable. The cause is unknown, and no neural benchmark ran. Local data bundles are retained; the old local queue and automation remain stopped.
+**14 October: [three Colab notebooks are prepared](docs/colab-running.tr.md)** for parallel CUDA retrieval on Physics, Pharmaceuticals and Industrial documents. Google login succeeded. The first L4 passed an environment and tiny BF16 CUDA check, but the runtime disappeared during data transfer; no active runtime remains and its remote files are unavailable. The cause is unknown, and no neural benchmark ran. Local data bundles are retained. A subsequent high-RAM A100 allocation succeeded after H100/G4 rejection; setup and private transfer are in progress, with no benchmark yet. The old local queue and automation remain stopped.
 
 **A reproducible local benchmark for Turkish retrieval-augmented generation.** Compare BM25, BGE-M3 and EmbeddingGemma 2 retrieval, measure what Laya reranking adds, and keep the Gemma 4 answer model fixed.
 

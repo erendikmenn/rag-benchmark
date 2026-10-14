@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "observed_date": "2026-10-14",
-  "status": "runtime_unavailable_dataset_transfer_interrupted",
+  "status": "a100_recovery_preparing_after_L4_loss",
   "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
   "job": "vidore-v3-physics-fr",
   "cli": {
@@ -52,7 +52,7 @@
     "local_source_bundles_retained": true
   },
   "required_before_benchmark": [
-    "review runtime disappearance and connection stability before new GPU allocation",
+    "finish pinned A100 environment and model-file preparation",
     "complete dataset transfer",
     "verify full archive size and SHA-256",
     "safely unpack and verify frozen dataset identity"
@@ -67,7 +67,28 @@
     "status": "not_listed_by_server",
     "active_assignments": 0,
     "cause": "unknown",
-    "new_allocation_pending": "connection_and_runtime_lifecycle_review",
-    "remote_files_available": false
+    "new_allocation_pending": "superseded_by_reviewed_user_authorized_A100_recovery",
+    "remote_files_available": false,
+    "scope": "previous_L4_runtime"
+  },
+  "recovery": {
+    "status": "a100_setup_and_private_transfer_in_progress",
+    "gpu_selection": {
+      "H100": "backend_rejected",
+      "G4": "backend_rejected",
+      "A100_high_ram": "allocated"
+    },
+    "hardware_probe": {
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "vram_gib": 79.25,
+      "host_ram_gib": 167.05,
+      "native_bf16": true
+    },
+    "source_ref": "98a981ed292b49f519ec2e6555cc1ab0cd929976",
+    "dataset_verified": false,
+    "neural_model_inference_runs": 0,
+    "completed_benchmark_cells": 0,
+    "parallel_jobs_running": 0,
+    "numerical_benchmark_eta": "unavailable_until_throughput_measurement"
   }
 }

@@ -4,6 +4,8 @@
 
 Yalnız teknik bilgileri içeren operasyon kaydı: [Colab ortam hazırlığı](../reports/colab-runtime-readiness.json). Ölçülen ortam torch `2.14.1+cu130`, CUDA `13.0`, sürücü `580.82.07`, doğal BF16 destekli NVIDIA L4 ve 22,03 GiB VRAM içerir. Bu gözlem başka oturumların veya model çıkarımının uyumluluğunu garanti etmez.
 
+Sonraki yetkili kurtarma girişiminde H100 ve G4 talepleri arka uç tarafından reddedildi; bunun hesap hakkı veya kota nedeni olduğu ayırt edilemedi. Yüksek RAM’li A100 tahsis edildi: gerçek cihaz NVIDIA A100-SXM4-80GB, 79,25 GiB GPU belleği ve 167,05 GiB sistem belleği. Sabit ortam kurulumu ve özel veri aktarımı devam ediyor. Henüz gerçek model hızı ölçülmedi; ilk üç koleksiyonun ve bütün araştırmanın tamamlanma süreleri ayrı ölçülecek. Paralel oturum sayısı henüz doğrulanmadı.
+
 ## İlk dalga
 
 Her notebook ayrı bir Colab çalışma zamanında bir tam veri kümesi işler. İlk dalga, yerelde tam dense araması yapılmamış üç koleksiyonu kullanır. Bu oturum sayısı hedefidir; hesapta gerçekten açılabilecek eşzamanlı GPU sayısı doğrulanmadan kaynak taahhüt edilmez.
