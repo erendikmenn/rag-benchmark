@@ -47,6 +47,20 @@ On senaryonun yönetimi bağımsız olabilir. **Ajan sayısı GPU sayısı veya 
 
 Güçlü GPU'da batch veya aynı modelin birden çok isteği birlikte işlemesi hız kazandırabilir. Kaç istek kaldırdığı ölçülür; hız çarpanı GPU adına veya ajan sayısına eşit kabul edilmez. Yarışan işlerin zaman ölçümlerine etkisi ayrıca belirtilir.
 
+## Ortak hazırlığı on makineye taşıma
+
+Kullanıcının hedefi, üç ortak hazırlığın ardından her senaryoyu ayrı makinede aynı tam soru kümesiyle çalıştırmaktır. BM25 indeksi, BGE belge vektörleri ve EmbeddingGemma belge vektörleri bir kez hazırlanır. Hibritler bu kaynakların arama sıralamalarını birleştirir; yeni belge embedding'i üretmez. Laya açık/kapalı çifti aynı aday listesini kullanır.
+
+**Dağıtım önerisi:** Docker imajı kodu ve çalışma ortamını taşır; özel, sürümlenmiş veri paketi ayrı tutulur. Paket yetkili nesne deposuna bir kez yüklenir, her makine kendi yerel diskine indirip SHA-256 ve dosya envanterini doğrular. Docker bu klasörü salt okunur bağlar. Sonuçlar makineye özgü yazılabilir klasöre gider; yalnız kapanmış checkpoint'ler kalıcı depoya taşınır. Yerel Docker volume başka makinelerde kendiliğinden oluşmaz. [Docker depolaması](https://docs.docker.com/engine/storage/), [S3 nesne depolaması](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) ve [bütünlük doğrulaması](https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html) bu ayrımı destekler.
+
+14 Ekim CPU envanteriyle yerelde özel bir aktarım paketi hazırlandı: **37.511 belge/parça, 2.000 geliştirme sorusu, iki belge matrisi ve tek doğrulanmış BM25 indeksinin 13 dosyası**. Sıkıştırılmamış tar ve iç manifest toplamı **330.926.080 bayt** (yaklaşık 331 MB); bütün üye dosyalar kaynak SHA/boyutlarıyla yeniden doğrulandı. BGE matrisi 37.511×1.024, EmbeddingGemma matrisi 37.511×768 FP32'dir. Nihai test soruları, model ağırlıkları, sorgu vektörleri, tam geliştirme aday sıralamaları ve cevap cache'i pakette yoktur. Ham veri içeren paket GitHub'a yayımlanmaz.
+
+Bu hazırlık yeni embedding üretmedi veya buluta veri yüklemedi. Belge vektörleri tarihsel **MPS üretimi** olarak korunur. Bugün ölçülen dosya hash'leri taşımayı doğrular; geçmişte kaydedilmemiş indeks dosyası checksum'larının yerine tarihsel kanıt sayılmaz. Mevcut cache anahtarı cihazı ve yerel yolu içerdiği için sıradan CLI'ye bu dosyaları kopyalamak taşınabilir kullanım sağlamaz. Yeni okuyucu, girdiyi açıkça seçmeli ve eksik/uyumsuz pakette sessizce yeniden embedding üretmek yerine durmalıdır; bu okuyucu henüz uygulanmadı.
+
+Sabit benchmark için sonraki ortak hazırlık, aynı 2.000 sorunun uyumlu sorgu vektörlerini ve üç kanalın **ilk 100** sonucunu üretip doğrulamaktır. Bunlardan beş yöntemin **ilk 50** adayı çıkarılır; hibritte RRF k=60 ve kanal havuzu=100 korunur. Böylece on worker adayları doğrudan tüketir: beşinde Laya→ilk beş bağlam→LLM, diğer beşinde ilk beş bağlam→LLM. Mevcut tek-kanal ilk 50 listesi hibritin ilk 100 havuzu yerine kullanılamaz. Bu ortak sorgu/aday paketi henüz hazırlanmadı; eksik sorgu embedding'leri gerçek model işi gerektirir.
+
+Bu düzende downstream makinelerin embedding modellerini yüklemesi gerekmez. Her makinede yerel üretim seçilirse on LLM kopyası, Laya kullanan beş makinede ayrıca beş Laya kopyası yüklenir. Model ağırlıklarının indirilmiş olması GPU belleğine yüklenmiş olması anlamına gelmez. Referans cevaplar yalnız değerlendirme sürecine verilir; üretim isteğine girmez. Ortak model servisi ayrı bir kapasite ve protokol tercihidir. Hazır adayla yürütmenin süresi, özgün embedding/arama maliyeti gibi sunulmaz; ortak hazırlık zamanı ayrıca kaydedilir. Yeni runtime pilotları ve kimlik kontrollü birleştirme tamamlanmadan on makineli tam koşu hazır sayılmaz.
+
 ## Bugünkü kod ve eksikler
 
 | Alan | Hazır olan | Gereken |
