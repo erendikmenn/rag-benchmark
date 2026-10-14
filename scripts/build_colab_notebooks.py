@@ -40,7 +40,10 @@ def notebook(job, source_ref):
         [Çalıştırma ve SSH yönetim rehberi](https://github.com/erendikmenn/rag-benchmark/blob/main/docs/colab-running.tr.md)
     """), code(f'''
         from pathlib import Path
-        import json, os, subprocess, sys
+        import json
+        import os
+        import subprocess
+        import sys
 
         JOB = {job_id!r}
         SOURCE_REF = {source_ref!r}
@@ -78,6 +81,8 @@ def notebook(job, source_ref):
         Erişim onayı isteyen Hugging Face modelleri için hesabınızda ilgili koşulları kabul etmiş olmalısınız.
         Gerekirse Colab'ın anahtar simgesinden `HF_TOKEN` adlı secret ekleyin; tokenı hücreye yazmayın.
     """), code(r'''
+        from google.colab import userdata
+
         probe = """import json, torch
         if not torch.cuda.is_available():
             raise SystemExit('GPU çalışma zamanı gerekli.')
@@ -88,7 +93,6 @@ def notebook(job, source_ref):
             raise SystemExit('Bu plan doğal BF16 gerektiriyor; farklı sayısal koşul otomatik seçilmedi.')
         """
         subprocess.run([PYTHON, '-c', '\n'.join(line[8:] if line.startswith('        ') else line for line in probe.splitlines())], check=True)
-        from google.colab import userdata
         try:
             os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')
             print('HF_TOKEN secret ortam değişkenine aktarıldı; değeri gösterilmedi.')
@@ -140,7 +144,10 @@ def notebook(job, source_ref):
         RESTORE_CHECKPOINT = False  # @param {type:"boolean"}
         CHECKPOINTS = DRIVE_ROOT / 'checkpoints' / JOB
         if RESTORE_CHECKPOINT:
-            import hashlib, shutil, tarfile, tempfile
+            import hashlib
+            import shutil
+            import tarfile
+            import tempfile
             from pathlib import PurePosixPath
             pointer = json.loads((CHECKPOINTS / (JOB + '-latest.json')).read_text())
             if pointer['job'] != JOB or pointer['protocol'] != 'colab-cuda-bf16-retrieval-v1':
