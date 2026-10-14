@@ -2,7 +2,9 @@
 
 Updated: 2026-10-14 Europe/Istanbul.
 
-**Execution stopped at the user's request — 14 October, 21:13 Europe/Istanbul.** Both owned Colab assignments were released and automatic experiment monitoring is paused. No new experiments are scheduled. The completed Physics and Pharmaceuticals CUDA retrieval results (126 conditions each) and their verified local backups are retained; main coverage remains **2,052 / 18,460**. Industrial is incomplete: its verified checkpoint contains B/G/E/N, while subsequent unfinished S work is not backed up. No completed full CUDA reranker result is claimed. Pharmaceuticals' partial reranker progress has no verified closed backup. The next authorized work is repository architecture and modular/distributed execution design. [Stop record](../reports/colab-execution-stop.json).
+RAGTurk storage preparation is complete: 37,511 chunks, all 14,530 questions, 104,082 BGE/EmbeddingGemma vectors and native BM25 files in PostgreSQL. Independent full readback passed. This adds no benchmark condition and does not resume any multimodal worker. [Preparation report](../reports/ragturk-pgvector-preparation.json).
+
+**Execution stopped at the user's request — 14 October, 21:13 Europe/Istanbul.** Both owned Colab assignments were released and automatic experiment monitoring is paused. No new experiments are scheduled. The completed Physics and Pharmaceuticals CUDA retrieval results (126 conditions each) and their verified local backups are retained; main coverage remains **2,052 / 18,460**. Industrial is incomplete: its verified checkpoint contains B/G/E/N, while subsequent unfinished S work is not backed up. No completed full CUDA reranker result is claimed. Pharmaceuticals' partial reranker progress has no verified closed backup. Subsequent authorization covers RAGTurk embedding and database preparation; benchmark execution remains paused. [Stop record](../reports/colab-execution-stop.json).
 
 **Historical local execution stop at the user’s request; status recorded at 21:25 Europe/Istanbul on 7 October 2026.** At that historical stop, all experiment workers and agent work were stopped; the recurring automation was deleted. Existing results and private caches are retained. The verified main matrix remains 2,052 / 18,460; partial French Finance and interrupted HR results add no published completion. The later authorized Colab continuation is recorded above; this local stop record is retained. [Stop record](../reports/multimodal-execution-stop.json).
 
@@ -34,7 +36,7 @@ The authorized [plan](multimodal-plan.tr.md) covers seven tracks, 321 retrieval 
 
 ## Historical local execution and continuation — superseded
 
-The following paragraphs describe the 7 October local continuation, not active workers or an active monitor. The local queue was later stopped; the 14 October Colab continuation was also stopped. Current work is architecture design only, as recorded at the top of this page.
+The following paragraphs describe the 7 October local continuation, not active workers or an active monitor. The local queue was later stopped; the 14 October Colab continuation was also stopped. The subsequent RAGTurk storage preparation is separate and does not resume this queue.
 
 Independent dataset downloads, tests and CPU baselines run concurrently. One heavy MPS job owns the GPU slot; a second model server or GPU worker must not start until it is released. Current retrieval process and logs are local under `work/overnight/`. Inspect them before resuming; completed inference is cached and must not be charged as fresh model latency.
 

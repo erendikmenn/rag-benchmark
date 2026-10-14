@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "status": "complete_storage_preparation_only",
+  "created_at_utc": "2026-10-14T20:37:23.248783+00:00",
+  "dataset": {
+    "id": "metunlp/ragturk",
+    "revision": "86d35335d01b30869ab8eb392e380921fa1e2185",
+    "license": "CC-BY-NC-SA-4.0",
+    "chunks": 37511,
+    "questions": 14530,
+    "dev_questions": 2000,
+    "test_questions": 12530,
+    "corpus_order_sha256": "9b29ff8ecae2dd8e6e18c8f7e9326f3aa4d192e9fb0427b202730471c40e972a",
+    "query_order_sha256": "6648bf4352edc5e0399bd08f359d11dee5dc55edf3517972407016cff1d962fa"
+  },
+  "bundle_identity": "c4c3142416428e71f53cb69304f650ae96cc61855f17e0fb446f9bcf7610b987",
+  "models": {
+    "bge": {
+      "model_id": "BAAI/bge-m3",
+      "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+      "dimension": 1024,
+      "device": "mps",
+      "dtype": "float32",
+      "document_vectors": 37511,
+      "query_vectors": 14530,
+      "documents_reused": true,
+      "new_document_encodings": 0,
+      "new_query_encodings": 14530,
+      "document_npy_sha256": "4cc508eaf67d41e1d2e6a9c4cd362164f463c9ae920a8310716608f3e13223e6",
+      "query_npy_sha256": "62e70670f193e2c6b7804aeeac212a817b31bf2d7ca3dddede4a81d919568b2e",
+      "query_preparation_identity": "0556615486d6f1bbb656d8ba467220e47c9bdd2020bfd818245d2796a640ea12",
+      "query_native_batch_size": 32,
+      "query_checkpoint_rows": 128,
+      "query_order": "dev file order followed by test file order",
+      "package_versions": {
+        "numpy": "2.5.3",
+        "sentence-transformers": "6.1.0",
+        "torch": "2.14.1",
+        "transformers": "5.19.0"
+      }
+    },
+    "embeddinggemma": {
+      "model_id": "google/embeddinggemma-2",
+      "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "dimension": 768,
+      "device": "mps",
+      "dtype": "float32",
+      "document_vectors": 37511,
+      "query_vectors": 14530,
+      "documents_reused": true,
+      "new_document_encodings": 0,
+      "new_query_encodings": 14530,
+      "document_npy_sha256": "ce9076cc9b6866692042e100f529ce0cf09d8d40c70dcf8933dac6ab8fb9298a",
+      "query_npy_sha256": "061b718371da36d3479468e4e8538d02ecae6754e99fa710a4ca3fffc9028824",
+      "query_preparation_identity": "f894aeb6aed76a7509e44e132f91ca8f244925c36c3ef920a312947951dea498",
+      "query_native_batch_size": 32,
+      "query_checkpoint_rows": 128,
+      "query_order": "dev file order followed by test file order",
+      "package_versions": {
+        "numpy": "2.5.3",
+        "sentence-transformers": "6.1.0",
+        "torch": "2.14.1",
+        "transformers": "5.19.0"
+      }
+    }
+  },
+  "total_dense_vectors": 104082,
+  "reused_document_vectors": 75022,
+  "new_query_vectors": 29060,
+  "reference_answers_and_gold_ids_encoded": false,
+  "postgresql": {
+    "version": "18.6 (Debian 18.6-1.pgdg12+2)",
+    "pgvector_version": "0.8.7",
+    "schema": "ragturk_prepared",
+    "tables": [
+      "bundle",
+      "chunks",
+      "questions",
+      "question_labels",
+      "files"
+    ],
+    "stored_source_files": 4,
+    "stored_native_bm25_files": 6,
+    "database_bytes_observed": 537532095,
+    "all_vectors_typed_pgvector": true,
+    "approximate_vector_index_created": false,
+    "single_atomic_import_committed": true,
+    "storage": "dedicated Docker named volume",
+    "network_binding": "loopback only"
+  },
+  "bm25": {
+    "library": "bm25s",
+    "version": "0.3.12",
+    "method": "lucene",
+    "k1": 1.5,
+    "b": 0.75,
+    "index_reused": true,
+    "native_files_stored_verbatim": 6,
+    "sql_bm25_search_implemented": false,
+    "corpus_order_sha256": "9b29ff8ecae2dd8e6e18c8f7e9326f3aa4d192e9fb0427b202730471c40e972a"
+  },
+  "independent_storage_audit": {
+    "status": "passed_independent_readonly_storage_audit",
+    "bundle_identity": "c4c3142416428e71f53cb69304f650ae96cc61855f17e0fb446f9bcf7610b987",
+    "corpus_rows": 37511,
+    "dev_queries": 2000,
+    "test_queries": 12530,
+    "query_rows": 14530,
+    "fp32_arrays_exact": 4,
+    "raw_fp32_sha256": {
+      "bge/documents": "eedb75f23bd9ea0b2f938f08b00bbf09d598c561a2684de6105093434f8a6b4b",
+      "embeddinggemma/documents": "5ff39796b15b5399372f5ac3f8b2a9eb1982969d94f43f27378b3ea9f19ce48c",
+      "bge/queries": "ed1e1398c89bd81cfa2f75a3f680809058a239b083cbc5a9e9633dcbcbaa2316",
+      "embeddinggemma/queries": "64cfacf5a03eb1db4f75f210bdddc2723b5e8e50ca1dc316871b431e3b20a8c4"
+    },
+    "source_and_bm25_bytea_files_verified": 10,
+    "labels_exact": true,
+    "transaction_read_only": true,
+    "database_mutations": 0,
+    "model_calls": 0,
+    "retrieval_search_calls": 0,
+    "benchmark_runs": 0
+  },
+  "backup": {
+    "status": "pg_dump_completed",
+    "format": "PostgreSQL custom archive",
+    "sha256": "617ceb065697a245ba0523e16ec30b234f1f76671db4ca7fc6d40d00294d7f0d",
+    "bytes": 506845468,
+    "bundle_identity": "c4c3142416428e71f53cb69304f650ae96cc61855f17e0fb446f9bcf7610b987",
+    "restore_test_performed": false
+  },
+  "backup_archive_catalog_verified": true,
+  "software_validation": {
+    "targeted_cpu_tests": 27,
+    "minimal_environment_tests": 27,
+    "ruff": "passed"
+  },
+  "benchmark_runs_started": 0,
+  "retrieval_searches_started": 0,
+  "reranker_calls": 0,
+  "answer_generation_calls": 0,
+  "existing_benchmark_completion_unchanged": true,
+  "limits": [
+    "Storage preparation and byte/value integrity are not retrieval or generated-answer quality measurements.",
+    "Reused document hashes verify current bytes; historical byte-level attestations were not recorded.",
+    "New batched query encoding does not claim bit identity with historical single-query calls.",
+    "Raw source records, reference labels, private bundle paths, credentials and database backup are not published.",
+    "Separate label tables are not a worker access-control policy; worker roles and experiment execution remain future work.",
+    "The custom-format backup catalog and SHA were verified; a restore rehearsal was not performed."
+  ]
+}
