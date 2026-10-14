@@ -4,6 +4,8 @@
 
 **Mimari incelemesi:** [değiştirilebilir bileşenler ve dağıtık çalışma önerisi](docs/architecture/modular-benchmark.tr.md), [senaryo kataloğu](docs/architecture/scenario-catalog.tr.md) ve [çalıştırılmayan örnek yapılandırma](configs/examples/README.md) hazır. Bu bir geçiş tasarımıdır; çalışan yeni plugin motoru veya deneyleri yeniden başlatma talimatı değildir. Mevcut protokol kimlikleri korunurken dataset/model seçimi, bilimsel deney planı ve donanım yürütmesi ayrılır. [Bütün inceleme belgeleri](docs/architecture/README.md).
 
+**RAGTurk senaryo düzeni:** [on bağımsız iş, pilot kontrolü ve tam geliştirmeye geçiş](docs/architecture/ragturk-ten-jobs.tr.md). Yeni salt okunur denetim 200 tarihsel pilot kaydını doğruladı: 197 normal bitiş, üç token sınırı. On işlik plan henüz çalışan dağıtık scheduler değildir; bugünkü GPU sağlığı/paralel kapasite ve tam geliştirme koşuları ölçülmedi.
+
 [Çevrimdışı QA istek planı](reports/colab-qa-request-count-readiness.json), 540.842 uygun görevi koşullu 122.110 birebir istek anahtarına gruplar; CPU sayımı model çağrısı yapmadı; gerçek runtime cache tekrar kullanımı ölçülmedi.
 
 **Türkçe RAG sistemlerini aynı koşullarda, yerel modellerle karşılaştırmak için bir deney düzeneği.** BM25, BGE-M3 ve EmbeddingGemma 2 belge aramasını; Laya'nın yeniden sıralamaya katkısını; aynı Gemma 4 modelinin ürettiği cevapları ölçer.

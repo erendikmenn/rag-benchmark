@@ -4,6 +4,8 @@
 
 **Architecture review:** [interchangeable components and distributed execution](docs/architecture/README.md), with a [Turkish design proposal](docs/architecture/modular-benchmark.tr.md), [scenario catalog](docs/architecture/scenario-catalog.tr.md), and [non-executable configuration example](configs/examples/README.md). This is a migration design, not an implemented plugin engine or authorization to resume experiments. It preserves existing protocol identities while separating datasets/models, scientific plans and hardware execution.
 
+**RAGTurk scenario workflow:** [ten independent jobs, pilot checks and full-development promotion](docs/architecture/ragturk-ten-jobs.tr.md). A fresh read-only audit reconciled all 200 historical pilot rows: 197 normal stops and three length caps. The ten-job plan is not yet an executable distributed scheduler; current GPU health/concurrency and full-development runs remain unmeasured.
+
 [Offline QA request planning](reports/colab-qa-request-count-readiness.json) groups 540,842 eligible tasks into 122,110 conditional exact-request keys; the CPU count made zero model calls, and actual runtime cache reuse remains unmeasured.
 
 **A reproducible local benchmark for Turkish retrieval-augmented generation.** Compare BM25, BGE-M3 and EmbeddingGemma 2 retrieval, measure what Laya reranking adds, and keep the Gemma 4 answer model fixed.

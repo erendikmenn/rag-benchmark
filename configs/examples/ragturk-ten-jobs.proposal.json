@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "kind": "non_executable_workflow_proposal",
+  "plan_id": "ragturk-ten-scenarios-pilot-to-dev-v1",
+  "execution_enabled": false,
+  "logical_scenario_jobs": 10,
+  "source_config": "configs/ragturk.toml",
+  "source_config_sha256": "8a4b4a61f963077b3da3cc373bd66610b0ddc8019357bc61bb0e60e0dd3b301c",
+  "pilot_evidence": "reports/ragturk-parallel-pilot-audit.json",
+  "pilot_evidence_sha256": "bbddc48e01287575d03bc0347302f380d6320823aedc7d80ec5f7134d6ed5fc2",
+  "corpus_chunks": 37511,
+  "historical_pilot_questions_per_job": 20,
+  "full_dev_questions_per_job": 2000,
+  "full_dev_question_variant_rows": 20000,
+  "final_test": {
+    "questions_per_job": 12530,
+    "question_variant_rows": 125300,
+    "auto_promote": false,
+    "requires": "Freeze development decisions before consulting the final split."
+  },
+  "shared_preparation": {
+    "dataset": "Frozen corpus, questions, gold evidence and split; private sources stay private.",
+    "document_indexes": [
+      "bm25",
+      "bge",
+      "embeddinggemma"
+    ],
+    "reuse": "Validate existing matching indexes; one producer for any missing index. No ten-fold document encoding.",
+    "planned_query_vectors": [
+      "bge",
+      "embeddinggemma"
+    ],
+    "planned_candidate_lists": [
+      "bm25",
+      "bge",
+      "embeddinggemma",
+      "bm25_bge",
+      "bm25_embeddinggemma"
+    ],
+    "planned_answer_reuse": "Exact request identity and atomic producer ownership; variant label alone is not a cache key."
+  },
+  "admission": {
+    "max_active_gpu_workers": null,
+    "allocated_workers": 0,
+    "new_model_calls": 0,
+    "basis": "Actual available devices, measured memory fit and verified server capacity; ten logical jobs do not imply ten GPU replicas.",
+    "runtime_profile": "Unassigned. Preserve declared numeric conditions; changed hardware/dtype/batch/serving is separately identified.",
+    "legacy_cli_safe_for_unrestricted_parallel_launch": false
+  },
+  "acceptance": {
+    "integrity": [
+      "same frozen input population",
+      "complete unique query coverage",
+      "same candidates in each none/Laya pair",
+      "valid source and runtime identity",
+      "no missing/error rows",
+      "closed checkpoint and hash verification",
+      "verified merge with original variant labels"
+    ],
+    "length_policy": "Three historical length cases require an explicit common output-budget/finish policy before full promotion. Retain existing rows and denominators; never selectively enlarge only a weak variant or drop failed outputs.",
+    "quality_policy": "No minimum answer-accuracy gate; a correct experiment may measure a poor model. Technical pilot success is not human-verified correctness.",
+    "new_runtime": "A matching, bounded runtime pilot is needed before launching full jobs; historical cache replay alone cannot prove current model execution."
+  },
+  "implementation_pending": [
+    "GPU/model-service admission and stop ownership",
+    "atomic exact-request producer ownership",
+    "shared query/retrieval stage artifacts",
+    "verified cross-job merge and paired evaluation"
+  ],
+  "jobs": [
+    {
+      "job_id": "ragturk-01-bm25",
+      "variant": "bm25",
+      "retrieval": "bm25",
+      "reranker": "none",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-02-bm25_laya",
+      "variant": "bm25_laya",
+      "retrieval": "bm25",
+      "reranker": "laya",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25_laya",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25_laya",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-03-bge",
+      "variant": "bge",
+      "retrieval": "bge",
+      "reranker": "none",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bge",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 19,
+        "length_capped": 1,
+        "integrity": "passed",
+        "finish_policy_review_required": true
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bge",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bge",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-04-bge_laya",
+      "variant": "bge_laya",
+      "retrieval": "bge",
+      "reranker": "laya",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bge",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bge_laya",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bge_laya",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-05-embeddinggemma",
+      "variant": "embeddinggemma",
+      "retrieval": "embeddinggemma",
+      "reranker": "none",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "embeddinggemma",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 19,
+        "length_capped": 1,
+        "integrity": "passed",
+        "finish_policy_review_required": true
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/embeddinggemma",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/embeddinggemma",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-06-embeddinggemma_laya",
+      "variant": "embeddinggemma_laya",
+      "retrieval": "embeddinggemma",
+      "reranker": "laya",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "embeddinggemma",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/embeddinggemma_laya",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/embeddinggemma_laya",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-07-bm25_bge",
+      "variant": "bm25_bge",
+      "retrieval": "bm25_bge",
+      "reranker": "none",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25_bge",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 19,
+        "length_capped": 1,
+        "integrity": "passed",
+        "finish_policy_review_required": true
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25_bge",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25_bge",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-08-bm25_bge_laya",
+      "variant": "bm25_bge_laya",
+      "retrieval": "bm25_bge",
+      "reranker": "laya",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25_bge",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25_bge_laya",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25_bge_laya",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-09-bm25_embeddinggemma",
+      "variant": "bm25_embeddinggemma",
+      "retrieval": "bm25_embeddinggemma",
+      "reranker": "none",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25_embeddinggemma",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25_embeddinggemma",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25_embeddinggemma",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    },
+    {
+      "job_id": "ragturk-10-bm25_embeddinggemma_laya",
+      "variant": "bm25_embeddinggemma_laya",
+      "retrieval": "bm25_embeddinggemma",
+      "reranker": "laya",
+      "generator_config_ref": "configs/ragturk.toml#generator",
+      "shared_candidates_ref": "bm25_embeddinggemma",
+      "historical_pilot": {
+        "coverage": 20,
+        "normal_stop": 20,
+        "length_capped": 0,
+        "integrity": "passed",
+        "finish_policy_review_required": false
+      },
+      "current_runtime_pilot": "not_run",
+      "full_dev": "not_started",
+      "pilot_output": "runs/ragturk-parallel-v1/pilot/bm25_embeddinggemma_laya",
+      "full_dev_output": "runs/ragturk-parallel-v1/dev/bm25_embeddinggemma_laya",
+      "result_identity_rule": "Separate pilot/full identities; never expand the historical run manifest in place."
+    }
+  ]
+}

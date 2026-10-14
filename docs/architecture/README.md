@@ -4,6 +4,7 @@ Experiment execution is **stopped at the user's request**. This directory contai
 
 | Document | Purpose |
 |---|---|
+| [RAGTurk ten-job workflow (Turkish)](ragturk-ten-jobs.tr.md) | Independent scenario jobs, audited historical pilots, shared preparation, pilot-to-full gates and remaining executor work |
 | [Architecture proposal (Turkish)](modular-benchmark.tr.md) | Interchangeable datasets, representations, retrievers, fusion, decision scorers, rerankers, generators and evaluators; identity, lifecycle and migration gates |
 | [Scenario catalog (Turkish)](scenario-catalog.tr.md) | Controlled component swaps, hybrids, multimodal inputs, offline/online operation and heterogeneous execution options |
 | [Current system audit](current-system-audit.md) | Existing abstractions and hardcoded couplings, with source locations |
