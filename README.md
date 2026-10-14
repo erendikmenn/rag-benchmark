@@ -1,6 +1,6 @@
 # rag-benchmark
 
-**14 October: [three Colab notebooks are prepared](docs/colab-running.tr.md)** for parallel CUDA retrieval on Physics, Pharmaceuticals and Industrial documents. No Colab GPU run has executed yet; the old local queue and automation remain stopped.
+**14 October: [three Colab notebooks are prepared](docs/colab-running.tr.md)** for parallel CUDA retrieval on Physics, Pharmaceuticals and Industrial documents. The first L4 passed an environment and tiny BF16 CUDA check; model files are prepared and data transfer is pending. No neural benchmark has run; the old local queue and automation remain stopped.
 
 **A reproducible local benchmark for Turkish retrieval-augmented generation.** Compare BM25, BGE-M3 and EmbeddingGemma 2 retrieval, measure what Laya reranking adds, and keep the Gemma 4 answer model fixed.
 

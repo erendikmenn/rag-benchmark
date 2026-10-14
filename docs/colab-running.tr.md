@@ -1,6 +1,8 @@
 # Google Colab ile paralel devam
 
-14 Ekim 2026: ilk üç notebook ve özel veri paketleri hazırlandı. **Gerçek Colab modeli veya GPU deneyi henüz çalıştırılmadı.** Mac'teki eski kuyruk ve silinen otomasyon yeniden başlatılmadı. Yayımlanmış ana kapsam 2.052 / 18.460 olarak kalır.
+14 Ekim 2026: ilk üç notebook ve özel veri paketleri hazırlandı; ilk Fizik FR oturumunda NVIDIA L4 tahsis edildi. Sabit kaynak sürümü ve paketlerle ortam kontrolü, küçük BF16 CUDA bellek ayırma ve senkronizasyon kontrolü geçti. Sabit model dosyaları hazırlandı. **Sinirsel model yükleme/çıkarımı ve tamamlanan benchmark hücresi sayısı hâlâ 0.** Fizik veri arşivinin aktarımı sürüyor; tamamlanmış veya doğrulanmış sayılmıyor. Mac'teki eski kuyruk ve silinen otomasyon yeniden başlatılmadı. Yayımlanmış ana kapsam 2.052 / 18.460 olarak kalır.
+
+Yalnız teknik bilgileri içeren operasyon kaydı: [Colab ortam hazırlığı](../reports/colab-runtime-readiness.json). Ölçülen ortam torch `2.14.1+cu130`, CUDA `13.0`, sürücü `580.82.07`, doğal BF16 destekli NVIDIA L4 ve 22,03 GiB VRAM içerir. Bu gözlem başka oturumların veya model çıkarımının uyumluluğunu garanti etmez.
 
 ## İlk dalga
 
@@ -32,26 +34,21 @@ Kurtarma hücresi arşiv hash'i ve güvenli dosya yollarını kontrol eder. Work
 
 ## Terminal / SSH ile benim yönetebilmem
 
-[Google'ın resmî Colab CLI'si](https://github.com/googlecolab/google-colab-cli) oturum listeleme, dosya yükleme/indirme, kod çalıştırma ve SSH bağlantısını destekler. Mac'e ayrı bir `uv tool` ortamında, resmî `v0.7.1` commit'i `c41c542629a1651292c834b7727615b9d5f9e5c2` üzerinden kuruldu; `colab version` ve `colab ssh --help` doğrulandı. Bu kurulum Colab oturumu açmadı.
+[Google'ın resmî Colab CLI'si](https://github.com/googlecolab/google-colab-cli) oturum listeleme, dosya yükleme/indirme, kod çalıştırma ve SSH bağlantısını destekler. İlk kurulum resmî `v0.7.1` commit'i `c41c542629a1651292c834b7727615b9d5f9e5c2` ile yapılmıştı; bu tarihsel hazırlık adımı oturum açmamıştı. Şimdi ayrı `uv tool` ortamındaki CLI resmî `v0.7.4` commit'i `66d7963611bcce2d272488e982ad38e519c062f0` sürümüne güncellendi. Google OAuth girişi, oturum erişimi ve SSH bağlantısı doğrulandı. Güncel sürümün token yenileme ve kullanım sorgulama desteği operasyon yönetiminde kullanılabilir; kimlik bilgileri ve hesap kullanım ayrıntıları yayımlanmaz.
 
-İlk Google girişini Terminal'de tamamlayın:
+İlk CLI kod çalıştırma bağlantısı koptu; büyük SSH/SCP aktarımları başarısız oldu. Bu denemeler dosyanın tamamlandığına kanıt değildir. Fizik arşivi şimdi resmî `ContentsClient` ile 8 MiB parçalar hâlinde aktarılıyor. Aktarım henüz tamamlanmadı. Tam dosya boyutu ve SHA-256, ardından güvenli çıkarma ve donuk veri kimliği doğrulanmadan benchmark başlatılmaz. Bağlantı kopması veya oturum kaybı kalan aktarımı durdurabilir; yarım dosya hazır veri olarak kullanılmaz.
 
-```sh
-/Users/mehmeterendikmen/.local/bin/colab sessions
-```
-
-Tarayıcıdaki Google girişinden sonra istenen kodu yalnız bu Terminal'e girin. Giriş tamamlanınca mevcut oturum adlarını okuyabilir, donanım/kota bilgisine göre iş atayabilir ve sonuçları bu sohbetten yönetebilirim. OAuth kodu, token veya SSH özel anahtarı sohbete/Git'e konmaz.
+OAuth kodu, token veya SSH özel anahtarı sohbete/Git'e konmaz. Model erişimi gerekiyorsa ilgili Hugging Face koşulları ayrıca kabul edilmiş olmalıdır; Colab OAuth bunu sağlamaz.
 
 Aşağıdaki `SESSION`, `colab sessions` çıktısından seçilen gerçek oturum adıdır:
 
 ```sh
 colab status -s SESSION
 colab ssh -s SESSION
-colab upload -s SESSION work/colab/bundles/vidore-v3-physics-fr.tar /content/vidore-v3-physics-fr.tar
 colab download -s SESSION /content/rag-work/vidore-v3-physics-fr/state.json work/colab/physics-state.json
 ```
 
-SSH komutu olmayan oturumu otomatik oluşturabilir; bağlanmadan önce gerçek oturum adı doğrulanır. Yukarıdaki doğrudan yükleme SSH/CLI akışı içindir; notebookun varsayılanı Drive `input/` yoludur. Bu iki yöntemin giriş yolları açıkça eşleştirilmelidir. Ücretli kaynak veya plan satın alınmadı. Google girişini tamamlamak, kullanılabilir oturumların okunması için gereken bağlantı adımıdır.
+SSH komutu olmayan oturumu otomatik oluşturabilir; bağlanmadan önce gerçek oturum adı doğrulanır. CLI'nin doğrudan `upload` ve `download` işlemleri bütün dosyayı belleğe alır; büyük arşivler için doğrulanan parça aktarımı veya notebookun Drive `input/` yolu kullanılmalıdır. Ek abonelik veya işlem birimi satın alınmadı; açık GPU oturumları mevcut işlem birimi bakiyesini tüketir. Google girişi tamamlandı; bu bağlantı tek başına model veya benchmark başarısı anlamına gelmez.
 
 Colab GPU türü, eşzamanlı kaynaklar ve çalışma süresi garanti edilmez. [Resmî kaynak sınırları](https://research.google.com/colaboratory/faq.html#resource-limits) geçerlidir; bu nedenle ölçüm yapmadan kaç kat hızlanacağını söylemiyoruz.
 
