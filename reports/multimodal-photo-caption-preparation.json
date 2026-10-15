@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "turkish_complete_english_in_progress",
-  "scope": "Source-only photo caption preparation; embeddings and PostgreSQL extension remain pending. No benchmark execution.",
+  "status": "both_language_captions_complete_embeddings_in_progress",
+  "scope": "Source-only photo caption preparation is complete in both languages; embeddings and PostgreSQL extension remain pending. No benchmark execution.",
   "source_photos": 3600,
   "language_views_share_the_same_photos": true,
   "turkish": {
@@ -22,9 +22,21 @@
     "independent_audit_sha256": "16a084dc8d02b5919400cfcdc3ae868e4392932bfe9e1cb5848e5744b16f4dca"
   },
   "english": {
-    "status": "running",
-    "expected_source_rows": 3600,
-    "complete": false
+    "status": "passed_storage_preparation_only",
+    "complete": true,
+    "language": "en",
+    "source_rows": 3600,
+    "legacy_rows": 0,
+    "new_policy_rows": 3600,
+    "diagnostic_reused_rows": 0,
+    "new_http_rows": 3600,
+    "semantic_accuracy_evaluated": false,
+    "benchmark_runs": 0,
+    "db_writes": 0,
+    "source_identity": "0e0a2711ee373605b6d775caa6bb966bd695d4b582c116a7fd2a8686a1c96001",
+    "derived_identity": "36909b72f4797cf3e6028a1dfed8e83be09eccc191c726071b35bbf5f7c4740e",
+    "completed_sha256": "2c9bd37c30605e4365ca530c962da37df592b6da72636f62f33c1c722c818b22",
+    "independent_audit_sha256": "c5bbff4fb28a1ffa3d15a201980a7156eb64720e6f89f493504f4c99f7bc185c"
   },
   "generation": {
     "model": "Gemma 4 E4B Q4",
@@ -49,7 +61,7 @@
     "Turkish view intentionally retains row-level conditional generation policy: 1446 legacy and 2154 repeat-penalty captions.",
     "One accepted diagnostic output is reused; 2153 new requests completed the remaining Turkish view.",
     "Strict technical acceptance and source coverage do not measure human caption accuracy.",
-    "English completion, six document/query embedding pairs, BM25 and database extension require separate completion proofs.",
+    "Six document/query embedding pairs, two native BM25 indexes and the database extension require separate completion proofs.",
     "CIRR remains blocked on official source-media access."
   ]
 }
