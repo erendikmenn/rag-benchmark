@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "observed_at": "2026-10-15T20:24:17.993338+00:00",
-  "status": "caption_continuation_running_storage_pending",
+  "observed_at": "2026-10-15T20:46:34.837916+00:00",
+  "status": "caption_generation_complete_independent_audit_pending_storage_pending",
   "scope": "source-only API captions, embeddings, BM25 and PostgreSQL preparation; no benchmark evaluation",
   "dataset": "lasco-validation",
   "gallery_images": 39826,
   "queries": 30037,
   "caption_model": "anthropic/claude-haiku-5.5",
-  "provider_route": "google-vertex/global",
-  "response_provider": "Google",
+  "provider_route": "mixed_explicit_google_vertex_and_anthropic",
+  "response_provider": "Google and Anthropic",
   "max_concurrent_requests": 100,
   "initial_max_requests_per_second": 25,
   "output_token_cap": 512,
@@ -16,7 +16,7 @@
   "fallbacks_allowed": false,
   "production_budget_usd": 15,
   "production_budget_includes_prior_interrupted_attempt": true,
-  "same_generation_payload_as_speed_pilot": true,
+  "same_generation_payload_as_speed_pilot": false,
   "fresh_full_caption_generation": true,
   "local_generative_model_calls": 0,
   "old_gemma_captions_reused": 0,
@@ -60,7 +60,7 @@
     "partial results are not complete preparation or benchmark coverage"
   ],
   "continuation": {
-    "status": "running",
+    "status": "closed_partial_preserved_then_completed_by_final_stage",
     "preserve_accepted_rows": 6071,
     "unattempted_rows": 33751,
     "eligible_failed_rows": 4,
@@ -72,7 +72,9 @@
     "runner_sha256": "df328bdd8a8753ae610fc626733ed16ffbc4e8d1d7777bb600679898809959ef",
     "plan_sha256": "adc6ac97615e5a5e8dcbd62b3315e0defd427ac5436c4465a7d3830bbcb74f03",
     "preserved_accepted_rows": 6071,
-    "failed_rows_are_not_complete": true
+    "failed_rows_are_not_complete": true,
+    "accepted_rows_including_prior": 39810,
+    "unresolved_at_closure": 16
   },
   "closed_api_v2": {
     "status": "failed_requires_review",
@@ -89,20 +91,26 @@
     "producer_closed": true
   },
   "current_snapshot": {
-    "status": "running",
-    "caption_rows": 28311,
-    "attempts": 22389,
-    "elapsed_seconds": 929.077677999856,
-    "charged_usd": 4.552444099999989,
-    "recovery_known_cost_usd": 3.459960899999986,
-    "recovery_charged_usd": 3.549202499999992,
-    "reserved_usd": 0.0623616,
-    "inflight": 99,
+    "status": "alternate_rows_complete",
+    "caption_rows": 39826,
+    "attempts": 16,
+    "prior_charged_usd": 6.346573799999956,
+    "new_charged_usd": 0.0023289999999995814,
+    "charged_usd": 6.348902799999956,
+    "known_cost_usd": 0.002329,
+    "reserved_usd": 0,
     "stop_reason": null,
-    "unresolved_count": 13
+    "producer_closed": true,
+    "requests_closed": true,
+    "unresolved_count": 0,
+    "final_repaired_rows": 16,
+    "prior_preserved_rows": 39810,
+    "final_result_sha256": "529553338d0be1935ca7e12cc7721dfce13b68327bb5edd1fa8f02172984bac8",
+    "final_plan_sha256": "44eaa92621ac0d0b55170360449a185c7feb646fa32644dae0b52a699ad5b201",
+    "workflow_phase": "independent_caption_audit"
   },
   "planned_after_closed_policy": {
-    "status": "owned_coordinator_waiting_for_both_prior_processes",
+    "status": "executed_closed_successfully",
     "same_model": "anthropic/claude-haiku-5.5",
     "alternative_route": "anthropic",
     "fallbacks_allowed": false,
@@ -113,13 +121,15 @@
     "output_token_cap": 512,
     "all_prior_accepted_preserved": true,
     "mixed_provider_and_conditional_prompt_provenance_required": true,
-    "final_alternative_requests_so_far": 0,
-    "final_completion_status": "pending",
+    "final_alternative_requests_so_far": 16,
+    "final_completion_status": "all_39826_accepted_independent_dataset_audit_pending",
     "remaining_row_helper_sha256": "f8fdf25480a604efab1dbe43fe6bd9e3e9679c25650a042f3d685b2b1ab2f55c",
     "independent_final_auditor_sha256": "4567124ece0442abfe9d41e3513d290df5bcdbd2b4286399715cc4fc96f69923",
     "coordinator_plan_sha256": "427376ad3894a1d5005d1b8d226182a552bac05a913a827257d012d82b32f5d2",
     "source_only": true,
-    "combined_budget_usd": 15
+    "combined_budget_usd": 15,
+    "repaired_transport_failure_rows": 11,
+    "repaired_confirmed_length_rows": 5
   },
   "software_validation": {
     "project_full_passed": 856,
@@ -128,5 +138,68 @@
     "ruff": "passed",
     "final_private_workflow_cpu_passed": 59,
     "not_caption_semantic_accuracy": true
+  },
+  "provider_policy": {
+    "Google": 39810,
+    "Anthropic": 16,
+    "automatic_fallback": false
+  },
+  "caption_policy": {
+    "original_system_prompt": 39821,
+    "conditional_concise80_system_suffix": 5,
+    "output_token_cap": 512,
+    "truncated_responses_accepted": 0,
+    "human_semantic_accuracy_measured": false
+  },
+  "closed_continuation": {
+    "status": "recovery_rows_partial",
+    "caption_rows": 39810,
+    "attempts": 33839,
+    "elapsed_seconds": 1409.1631491668522,
+    "charged_usd": 6.346573799999956,
+    "recovery_charged_usd": 5.343332199999964,
+    "recovery_known_cost_usd": 5.245488999999965,
+    "reserved_usd": 0.0,
+    "producer_closed": true,
+    "requests_closed": true
+  },
+  "production_cost_accounting": {
+    "known_reported_cost_usd": 6.2381572,
+    "conservative_debit_including_unknown_attempt_bounds_usd": 6.3489028,
+    "includes_closed_v1_v2_overlay_and_final": true,
+    "pilot_measurement_cost_included": false,
+    "unsettled_reservations_usd": 0,
+    "budget_usd": 15,
+    "not_an_invoice": true
+  },
+  "independent_caption_audit": {
+    "status": "pending",
+    "required_before_embeddings": true
+  },
+  "final_16_independent_review": {
+    "status": "passed_scoped_metadata_review",
+    "review_sha256": "d1f4440dc022430ef335e62a7ffcd3f3e83dce9b9cb1e5825c32812e72275c26",
+    "final_result_sha256": "529553338d0be1935ca7e12cc7721dfce13b68327bb5edd1fa8f02172984bac8",
+    "counts": {
+      "retained_base_accepted": 6071,
+      "retained_continuation_accepted": 33739,
+      "final_anthropic_original_prompt": 11,
+      "final_anthropic_concise80": 5,
+      "final_attempts": 16,
+      "total_captions": 39826,
+      "unresolved": 0
+    },
+    "checks": {
+      "16_raw_claim_request_accepted_hash_bindings": true,
+      "all_16_done_and_normal_stop": true,
+      "all_16_actual_anthropic": true,
+      "all_16_usage_reasoning_zero_and_output_le512": true,
+      "all_16_source_image_only_user_message": true,
+      "selected_equals_previous_unresolved": true,
+      "count_partition_39826": true,
+      "cost_reconciles": true,
+      "previous_result_sha_pinned": true
+    },
+    "does_not_replace_full_dataset_audit": true
   }
 }
