@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "observed_at": "2026-10-15T20:11:32.026815+00:00",
+  "observed_at": "2026-10-15T20:24:17.993338+00:00",
   "status": "caption_continuation_running_storage_pending",
   "scope": "source-only API captions, embeddings, BM25 and PostgreSQL preparation; no benchmark evaluation",
   "dataset": "lasco-validation",
@@ -90,15 +90,43 @@
   },
   "current_snapshot": {
     "status": "running",
-    "caption_rows": 9940,
-    "attempts": 3943,
-    "elapsed_seconds": 163.11684899986722,
-    "charged_usd": 1.6174521000000057,
-    "recovery_known_cost_usd": 0.6013081000000001,
-    "recovery_charged_usd": 0.6142105000000004,
-    "reserved_usd": 0.0634368,
+    "caption_rows": 28311,
+    "attempts": 22389,
+    "elapsed_seconds": 929.077677999856,
+    "charged_usd": 4.552444099999989,
+    "recovery_known_cost_usd": 3.459960899999986,
+    "recovery_charged_usd": 3.549202499999992,
+    "reserved_usd": 0.0623616,
     "inflight": 99,
     "stop_reason": null,
-    "unresolved_count": 7
+    "unresolved_count": 13
+  },
+  "planned_after_closed_policy": {
+    "status": "owned_coordinator_waiting_for_both_prior_processes",
+    "same_model": "anthropic/claude-haiku-5.5",
+    "alternative_route": "anthropic",
+    "fallbacks_allowed": false,
+    "eligible_transport_failures_max_attempts": 2,
+    "first_alternative_canary_max_attempts": 1,
+    "confirmed_length_only_max_attempts": 1,
+    "confirmed_length_generic_system_suffix": "Use at most 80 English words. Summarize the main visible facts; do not transcribe long passages.",
+    "output_token_cap": 512,
+    "all_prior_accepted_preserved": true,
+    "mixed_provider_and_conditional_prompt_provenance_required": true,
+    "final_alternative_requests_so_far": 0,
+    "final_completion_status": "pending",
+    "remaining_row_helper_sha256": "f8fdf25480a604efab1dbe43fe6bd9e3e9679c25650a042f3d685b2b1ab2f55c",
+    "independent_final_auditor_sha256": "4567124ece0442abfe9d41e3513d290df5bcdbd2b4286399715cc4fc96f69923",
+    "coordinator_plan_sha256": "427376ad3894a1d5005d1b8d226182a552bac05a913a827257d012d82b32f5d2",
+    "source_only": true,
+    "combined_budget_usd": 15
+  },
+  "software_validation": {
+    "project_full_passed": 856,
+    "minimal_passed": 649,
+    "minimal_optional_skipped": 168,
+    "ruff": "passed",
+    "final_private_workflow_cpu_passed": 59,
+    "not_caption_semantic_accuracy": true
   }
 }
