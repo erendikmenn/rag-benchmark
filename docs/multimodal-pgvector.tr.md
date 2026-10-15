@@ -53,6 +53,8 @@ Bu kontroller saklama ve kaynak eşlemesinin doğruluğunu sınar; embedding mod
 
 ## Çalışan veritabanı ve yedek
 
+15 Ekim’de eksik fotoğraf açıklamalarının kurtarılması için, ilk takılan Türkçe görüntüde tek kontrollü çağrı tamamlandı. Aynı kaynak, istem ve 512 token sınırı korunup yalnız `repeat_penalty=1.1` eklendi; çıktı 95 token ile normal bitti ve ardışık aynı kelime tekrarı görülmedi. Bağımsız denetim, 1.446 eski geçerli açıklamanın değişmediğini doğruladı. Bu [tek kaynak teknik kontrolü](../reports/multimodal-photo-caption-recovery-health.json), tam fotoğraf açıklaması veya yeni veritabanı kapsamı sayılmaz. Tamamlanacak Türkçe görünüm eski ve yeni üretim politikalarının satır kaynağını ayrı tutacak; İngilizce görünüm kendi dil politikasıyla hazırlanacak. CIRR’nin resmî görüntü erişimi hâlâ eksiktir.
+
 Hizmet `ragturk-prepared-db-1`, kalıcı volume `ragturk-prepared_ragturk_pgvector_data` ve yerel bağlantı `127.0.0.1:55433` kullanılır. Sabit PostgreSQL/pgvector imajı compose dosyasında kayıtlıdır. Model ve veri sürümleri [temsil envanterinde](../reports/multimodal-representation-inventory.json) ayrı tutulur.
 
 İki şemayı kapsayan özel yedek `work/multimodal-pgvector/prepared-all-b1a5170f3b8ad0e7.dump` dosyasıdır: 22.625.348.542 bayt. SHA-256 ve doğrulama bağları [hazırlık raporundadır](../reports/multimodal-pgvector-preparation.json). Yedek ayrı bir veritabanına gerçekten geri yüklendi; 12 tablonun bütün ikili verileri ve kaydedilen tablo kataloğu kaynakla eşleşti. Geçici doğrulama veritabanı kaldırıldı. Roller ve erişim izinleri bu bağımsız karşılaştırmanın kapsamına dahil değildir. Arşiv ve bağlantı bilgileri GitHub’a gönderilmez.

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "passed_single_source_technical_recovery",
+  "source": "XM3600 Turkish first missing source, frozen ordinal 1447",
+  "scope": "Caption preparation only; no retrieval, reranker, answer QA or database import.",
+  "policy_change": "Only repeat_penalty=1.1 added to the historical source-only request.",
+  "unchanged": {
+    "output_token_limit": 512,
+    "temperature": 0,
+    "seed": 42,
+    "thinking_enabled": false,
+    "context_limit": 8192,
+    "model": "Gemma 4 E4B Q4",
+    "image_max_side": 1120
+  },
+  "result": {
+    "transport_attempts": 1,
+    "responses_captured": 1,
+    "finish_reason": "stop",
+    "prompt_tokens": 209,
+    "completion_tokens": 95,
+    "request_seconds": 1.6711321249604225,
+    "longest_identical_word_run": 1,
+    "actual_runtime_matches_pinned": true,
+    "sampler_evidence": "reviewed_pinned_implementation_path"
+  },
+  "preservation": {
+    "legacy_accepted_cache_count": 1446,
+    "legacy_cache_bytes_and_membership_unchanged": true,
+    "ordinary_cache_written": false,
+    "database_mutations": 0,
+    "benchmark_runs": 0
+  },
+  "prior_control": {
+    "finish_reason": "length",
+    "completion_tokens": 512,
+    "longest_identical_word_run": 231,
+    "reference": "multimodal-photo512-diagnostic.json"
+  },
+  "independent_audit_sha256": "85904fea5e7bcc1f1857647459f1ae664a364fe8533b1dbfeeca4e51661df4c3",
+  "evidence_sha256": {
+    "request.json": "7d4bb83aff23d1e873ea7cd94af07b51b69d8f632835044d45ec97c0dd21d5b1",
+    "result.json": "ac1ea0b551c99586566a9fa2bbde5ad476983e8dc09f82e06d78dd3116f77f4d",
+    "transport-started.json": "11ef3c8d4e56d2681aa82bc3cc99d93c106332bcc39ff6f3aa45e6f3f2a5fe57",
+    "actual-runtime-proof.json": "47d20036b6bfec411cea398b988bc2b78c4f309d94c94f259f598aa1ba0f1701",
+    "claim.json": "db3c4923e10c7d9c957017aaff25df9c808fd9493fbdb25f1869232e15aa5d02",
+    "owned-server.json": "fe9621d64422d39f9cc5517f25b1238cd07e5f6d38ebbf1be315c9fc65ff6a0d",
+    "raw-response.json": "84c5aa5b10c0013f36d2d81261cb54085390edc389957cdbf9ff859fd5dd9755",
+    "accepted-caption.json": "b52e521b6b9edc54bf992fd36f82c797ff2b5983ab23d1bd4cc5b7c60e581dd4"
+  },
+  "sampler_source_proof_sha256": "50464f0925e52ad77f6137325eca8f102afe7c520899289aa7f9a15cde057f31",
+  "sampler_source": "https://github.com/ggml-org/llama.cpp/tree/2207c8e57cc74c35ae0e128483d0cabbc6d78e96",
+  "full_photo_caption_preparation_complete": false,
+  "semantic_caption_accuracy_measured": false,
+  "limits": [
+    "Single preselected failed source technical check, not a representative quality estimate.",
+    "Sampler effectiveness is supported by the pinned implementation and actual runtime defaults, not a per-request settings echo.",
+    "Legacy captions retain their original generation policy; a later composite view must preserve row provenance.",
+    "Native photo EG2 and SigLIP2 embeddings were already stored; this check does not regenerate them.",
+    "CIRR official media remains unavailable; no alternate gallery or access bypass was used."
+  ]
+}
