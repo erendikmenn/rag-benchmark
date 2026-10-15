@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "both_language_captions_complete_embeddings_in_progress",
-  "scope": "Source-only photo caption preparation is complete in both languages; embeddings and PostgreSQL extension remain pending. No benchmark execution.",
+  "status": "both_language_captions_embeddings_database_and_backup_verified",
+  "scope": "Both source-only photo-caption views, six embedding pairs, native BM25 and additive PostgreSQL storage are verified. The new backup passed actual restoration and complete 12-table binary/catalog comparison. No benchmark execution.",
   "source_photos": 3600,
   "language_views_share_the_same_photos": true,
   "turkish": {
@@ -54,14 +54,51 @@
     "legacy_bytes_and_namespace_unchanged": true,
     "native_photo_vectors_reencoded": false,
     "ordinary_caption_cache_written": false,
-    "database_extension_imported": false,
+    "database_extension_imported": true,
     "benchmark_runs": 0
   },
   "limits": [
     "Turkish view intentionally retains row-level conditional generation policy: 1446 legacy and 2154 repeat-penalty captions.",
     "One accepted diagnostic output is reused; 2153 new requests completed the remaining Turkish view.",
     "Strict technical acceptance and source coverage do not measure human caption accuracy.",
-    "Six document/query embedding pairs, two native BM25 indexes and the database extension require separate completion proofs.",
-    "CIRR remains blocked on official source-media access."
-  ]
+    "CIRR remains blocked on official source-media access.",
+    "Storage and restoration checks do not measure retrieval or answer accuracy; role and permission equivalence is outside the recorded table/catalog comparison."
+  ],
+  "storage_extension": {
+    "status": "imported_independently_verified_and_restore_verified",
+    "new_collections": 2,
+    "new_document_query_pairs": 6,
+    "new_sets": 12,
+    "new_dense_items": 64899,
+    "new_native_bm25_indexes": 2,
+    "manifest_sha256": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+    "full_multimodal_collections": 26,
+    "full_multimodal_sets": 176,
+    "independent_db_audit_sha256": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
+    "store_verify_receipt_sha256": "ccd1180a6b62439f1b375c3a97ccbb4964102c0d508d5b209951e6c3930bebfc",
+    "metadata_pair_audit_sha256": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
+    "source_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "native_bm25_preparations": [
+      {
+        "language": "tr",
+        "prepared_sha256": "f820a23edf4676149dee23a2952980dcf56488b91985d6597f12a667c76f042f",
+        "documents": 3600,
+        "native_files": 6
+      },
+      {
+        "language": "en",
+        "prepared_sha256": "a27acfe26d7165a701ae2a40322c89da6e91cd49692db00986903dfaa1a86c55",
+        "documents": 3600,
+        "native_files": 6
+      }
+    ],
+    "new_backup_restore_verified": true,
+    "benchmark_runs": 0,
+    "retrieval_evaluation_runs": 0,
+    "qa_evaluation_runs": 0,
+    "backup_verification_sha256": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
+    "restored_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "source_recheck_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "owned_cleanup_sha256": "8d8ab01332c9ee98995a07066cb97073d1c83173aae64e10d8d86cfa07ae2f80"
+  }
 }

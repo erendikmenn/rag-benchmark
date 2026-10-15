@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "status": "supported_scope_verified_with_gaps",
-  "preparation_scope": "authorized dataset/index/embedding storage only; benchmarks remain paused",
+  "preparation_scope": "Authorized preparation/storage only; benchmark execution remains paused.",
   "current_manifest_artifacts": {
-    "snapshots": 24,
-    "sets": 164,
-    "dense_items": 679692,
+    "snapshots": 26,
+    "sets": 176,
+    "dense_items": 744591,
     "ragged_items": 21671
   },
   "expected_final_manifest_artifacts": {
-    "snapshots": 24,
-    "sets": 164,
-    "dense_items": 679692,
+    "snapshots": 26,
+    "sets": 176,
+    "dense_items": 744591,
     "ragged_items": 21671
   },
   "modalities": {
@@ -33,12 +33,6 @@
       "dense_items": 58464,
       "ragged_items": 0
     },
-    "photo": {
-      "snapshots": 2,
-      "sets": 8,
-      "dense_items": 43266,
-      "ragged_items": 0
-    },
     "speech": {
       "snapshots": 2,
       "sets": 10,
@@ -50,6 +44,12 @@
       "sets": 14,
       "dense_items": 14000,
       "ragged_items": 0
+    },
+    "photo": {
+      "snapshots": 4,
+      "sets": 20,
+      "dense_items": 108165,
+      "ragged_items": 0
     }
   },
   "full_postgres_independent_audit_verified": true,
@@ -58,13 +58,13 @@
     "actual_restore_verified": true,
     "scope": "all table binary bytes and recorded table catalog in both preparation schemas",
     "schemas": [
-      "multimodal_prepared",
-      "ragturk_prepared"
+      "ragturk_prepared",
+      "multimodal_prepared"
     ],
     "table_count": 12,
     "catalog_sha256": "69a8643c16c47a97116ad0d5e50ea88c7a7341c9ad5e49be1be23b13e25038b6",
-    "source_fingerprint_sha256": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
-    "restored_fingerprint_sha256": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
+    "source_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "restored_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
     "database_roles_or_permissions_independently_verified": false
   },
   "ragturk_separate": {
@@ -74,44 +74,42 @@
     "independent_storage_proof_in_this_summary": true
   },
   "bm25_preparation": {
-    "collections": 18,
-    "corpus_view_records": 206380,
-    "native_index_files": 108,
-    "artifacts_including_order_and_provenance": 144,
-    "artifact_bytes": 127448879,
+    "collections": 20,
+    "corpus_view_records": 213580,
+    "native_index_files": 120,
+    "artifacts_including_order_and_provenance": 160,
+    "artifact_bytes": 130057686,
     "native_bm25s_not_sql_bm25_search": true,
     "ragturk_index_separate": true
   },
-  "manifest_sha256": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
-  "bm25_preparation_summary_sha256": "e09b1a8753d8f1a71cd4f3ba4f7cceb12674f3bf978366fa96a5922e4e9bd77b",
+  "manifest_sha256": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+  "bm25_preparation_summary_sha256": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
+  "bm25_preparation_summary_scope": "Pinned aggregate candidate binds historical18 summary and two actual prepared.json proofs.",
   "benchmark_runs": 0,
   "retrieval_evaluation_runs": 0,
   "reranker_calls": 0,
   "answer_generation_calls": 0,
   "blocked_or_unprepared": [
-    "Photo native N/S are available; source-only gallery text for B/G/E/J remains unavailable.",
-    "CIRR official source media remains unavailable; no substitute gallery or completed preparation claimed.",
-    "Optional historical runtime variants were not necessarily re-encoded; CUDA and MPS are not relabeled equivalent."
+    "CIRR official media access remains blocked; no substitute gallery claimed."
   ],
   "limits": [
-    "24 snapshots include original/derived and overlapping galleries; these counts are not 24 independent datasets or unique source counts.",
-    "Dense count means fixed vectors; ragged count means source-item token matrices, not individual token vectors.",
-    "Current SHA and exact storage roundtrip do not invent unrecorded historical file-checksum attestations.",
-    "This preparation does not measure retrieval, reranking, generated-answer or semantic accuracy.",
-    "Restore matched table binary bytes and recorded table catalog in both schemas; database roles/permissions are outside this independent claim.",
-    "Historical failed retrieval channels are not promoted to passed experiments by available preparation caches."
+    "26 overlapping original/derived snapshots are not independent datasets or unique source counts.",
+    "Ragged items remain native token matrices; no averaging into pgvector.",
+    "Conditional captions retain legacy/new generator provenance; semantic accuracy is unmeasured.",
+    "CIRR official media access remains blocked; no alternate gallery claimed.",
+    "Historical CUDA/MPS conditions remain distinct; storage does not promote failed benchmarks."
   ],
-  "verified_at_utc": "2026-10-14T23:48:43.329460+00:00",
+  "verified_at_utc": "2026-10-15T10:13:28.489387+00:00",
   "combined_counts": {
-    "dense_vectors": 783774,
+    "dense_vectors": 848673,
     "ragged_item_matrices": 21671,
     "ragged_token_vectors": 14559743,
     "ragged_token_dimension": 128,
-    "native_bm25_indexes": 19
+    "native_bm25_indexes": 21
   },
   "docker_postgres": {
     "status": "verified_after_restored_backup_cleanup",
-    "observed_at_utc": "2026-10-14T23:48:43.329460+00:00",
+    "observed_at_utc": "2026-10-15T10:13:28.489387+00:00",
     "container": "ragturk-prepared-db-1",
     "image": "pgvector/pgvector@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
     "persistent_volume": "ragturk-prepared_ragturk_pgvector_data",
@@ -120,33 +118,62 @@
     "host_port": 55433,
     "postgres_version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
     "pgvector_version": "0.8.7",
-    "source_database_bytes": 24897107647,
-    "complete_multimodal_sets": 164,
+    "source_database_bytes": 25270539967,
+    "complete_multimodal_sets": 176,
     "verification_database_removed": true
   },
   "private_backup": {
-    "file_name": "prepared-all-b1a5170f3b8ad0e7.dump",
-    "format": "PostgreSQL custom archive",
-    "bytes": 22625348542,
-    "sha256": "45f1db88328c46428675847ec1f150120d0f24fc8f9283006885ebeb6002b1da",
+    "file_name": "prepared-photo-75c54a33f79ff09b-ff25f1e5f8760cb2.dump",
+    "format": "PostgreSQL custom",
+    "bytes": 22854578574,
+    "sha256": "6d470a9a8175fd41f256945c2b373959e546c311c74f0906bc5cac1e7b877256",
     "actual_restore_verified": true
   },
   "independent_multimodal_storage_audit": {
-    "unique_blobs_verified": 25627,
-    "blob_bytes_verified": 12483594314,
-    "sets_verified": 164,
+    "unique_blobs_verified": 25646,
+    "blob_bytes_verified": 12497010752,
+    "sets_verified": 176,
     "readonly": true
   },
   "model_inventory": {
     "report": "multimodal-representation-inventory.json",
-    "sha256": "327e7f0777589af9d38e112ea116b2076f2360064cc41a318019789f17371092",
-    "exact_document_query_pairs": 82
+    "sha256": "6663339261a82bd96e73beb41f63aa4a4a41a9c0af26cbd38c6318a82b9c05c3",
+    "exact_document_query_pairs": 88
   },
   "evidence_sha256": {
-    "multimodal_database_audit": "1e38cf8f9a7885fdc1f80169e86c78182b0779ef4190c25167d90a2819e15320",
+    "manifest": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+    "old_manifest": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
+    "db_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
+    "pair_inventory": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
+    "photo_tr": "16a084dc8d02b5919400cfcdc3ae868e4392932bfe9e1cb5848e5744b16f4dca",
+    "photo_en": "c5bbff4fb28a1ffa3d15a201980a7156eb64720e6f89f493504f4c99f7bc185c",
+    "baseline": "b9e956fe410134f936f30a74cc76b90e17abf63b35438e982e67ff9e6c697409",
+    "old_bm25": "e09b1a8753d8f1a71cd4f3ba4f7cceb12674f3bf978366fa96a5922e4e9bd77b",
+    "new_bm25_tr": "f820a23edf4676149dee23a2952980dcf56488b91985d6597f12a667c76f042f",
+    "new_bm25_en": "a27acfe26d7165a701ae2a40322c89da6e91cd49692db00986903dfaa1a86c55",
+    "rag_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
+    "old_fingerprint": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
+    "backup": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
+    "source_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "restored_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+    "cleanup": "8d8ab01332c9ee98995a07066cb97073d1c83173aae64e10d8d86cfa07ae2f80",
+    "summary_candidate": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
+    "summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221",
+    "multimodal_database_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
     "ragturk_database_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
-    "metadata_pair_audit": "812f1e866dc3bb89f54c15c1e5bbec34bd5e76456b9e2c9a593b46ddd6fa17f7",
-    "backup_restore_proof": "380fd10a7be44a7831ba5a3bbe57bc4005805c8c6a87c6767997452655d7d97a",
-    "safe_summary_builder": "fff632ac1d9611b13b6fa0f57e178ff6365bf723b15944289280479f72310362"
+    "metadata_pair_audit": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
+    "backup_restore_proof": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
+    "safe_summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221"
+  },
+  "photo_caption_preparation": {
+    "tr": {
+      "legacy_rows": 1446,
+      "repeat_penalty_1_1_rows": 2154,
+      "diagnostic_reused_rows": 1
+    },
+    "en": {
+      "repeat_penalty_1_1_rows": 3600
+    },
+    "semantic_accuracy_evaluated": false
   }
 }
