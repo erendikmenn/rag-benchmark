@@ -1,0 +1,37 @@
+{
+  "status": "passed_full_native_source_readonly_audit",
+  "dataset_identity": "4b0c16734bb3aeb432ad2bbf56206896cfa7228d961351da13808eab4c44461c",
+  "gallery": 39826,
+  "queries": 30037,
+  "qrels": 30037,
+  "decoded_images": 39826,
+  "decoded_formats": {
+    "JPEG": 39825,
+    "PNG": 1
+  },
+  "source_image_bytes_preserved": true,
+  "empty_transitions": 6,
+  "negative_query_ids": 10133,
+  "unique_image_hashes": 39826,
+  "source_bytes": 6522445138,
+  "archive_sha256": "fe9be816052049c34717e077d9e34aa60814a55679f804cd043e3cbee3b9fde0",
+  "all_selected_zip_crc_verified_again": true,
+  "target_labels_excluded_from_encoder": true,
+  "source_files": {
+    "assets.jsonl": "4ae4b451ab826f0c8b50855c8c5f7aae6c35f2c0e3960aa625484eb5e7e42754",
+    "corpus.jsonl": "014370003cab7139f8b0e75cf069a253af47a211c4073794a5f67109f629c5f1",
+    "queries.jsonl": "cd710a9c2ba6f846da59d4e062f1e862d31716f6da427fbd5018ba7864fc9e30",
+    "qrels.jsonl": "3c7aef3e52a6b649560e4415431b64986312b5aac1f10fbda447bab85e706bea",
+    "dataset.json": "76421ec13cd2dec8d4fcac374d6dcdc02ce5417da0209b4a5d10ba20c274d210"
+  },
+  "audit_source_sha256": "bdc032f268d4dd95f9d4185baab4ba24aa15231e5592e86bf90107dd6d07fff5",
+  "benchmark_runs": 0,
+  "db_writes": 0,
+  "scope": "full_source_preparation_only",
+  "embeddings_complete": false,
+  "postgresql_imported": false,
+  "caption_generation_complete": false,
+  "archive_hash_authority": "locally_observed_not_publisher_checksum",
+  "annotation_revision": "311f4d7d4bc069fc2d8abd3bf523cdfae6b5800f",
+  "historical_cirr_unchanged": true
+}

@@ -27,3 +27,11 @@ G/E/B için hedef görselin etiketi veya hedefe özel açıklama sorguya eklenme
 `python -m rag_benchmark.lasco_data download --raw-dir ...` yalnız açıkça istenen indirmeyi yapar. Ağdan bağımsız `import` komutu, pinli iki anotasyon dosyası ve SHA-256 değeri belirtilen yerel COCO arşivi ister. Tam galeri/sorgu sayıları, her referans ve hedefin galeride bulunması, referansın hedef olmaması ve tekil kimlikler zorunludur. Dizin yayını atomiktir ve mevcut hedefi değiştiremez. Yarım hazırlık tam veri olarak açılmaz.
 
 Kaynaklar, model çıktıları ve özel bağlantı bilgileri GitHub'a yüklenmez. Mevcut 26 görünüm / 176 set ve doğrulanmış yedek korunur. Yeni hazırlık ancak tam embedding kapsamı, PostgreSQL'den bütün değerlerin geri okunması ve yeni yedek doğrulaması tamamlandıktan sonra tamamlanmış sayılır.
+
+## Doğrulanan kaynak ve açıklama hazırlığı
+
+Tam arşiv aktarımı ve bağımsız kaynak denetimi tamamlandı: 39.826 farklı görsel byte hash'i, 30.037 sorgu ve 30.037 hedef ilişkisi doğrulandı. Bütün görseller tam açılıp RGB olarak okundu. Resmî arşivde `.jpg` adıyla bulunan bir dosyanın içeriği PNG, kalan 39.825 dosya JPEG'dir; özgün byte'lar değiştirilmez. [Güvenli denetim özeti](../reports/lasco-source-preparation.json). Native embedding üretimi sürmektedir; yeni temsillerin PostgreSQL aktarımı henüz tamamlanmamıştır.
+
+`scripts/prepare_composed_captions.py` önce açık bir hazırlık dosyası oluşturur; ayrı `--execute` çağrısı dosyanın dış SHA-256 kimliğini ister. Yalnız kaynak görsellerinden İngilizce açıklama üretir: E4B Q4, 512 çıktı tokenı, temperature 0, seed 42, thinking off, image1120 ve repeat_penalty 1.1. Bu ayrı politikadır. Model, projector, sunucu, kaynak ve runtime kimlikleri doğrulanır; GPU kilidi kendi sunucusunun kapanmasına kadar tutulur. Ham yanıt kabul denetiminden önce özel alana kaydedilir. Normal bitiş, token/context sınırı ve tekrarlama kontrolü geçmeyen kayıt tamamlanmış sayılmaz; otomatik tekrar veya çıktı kırpma yoktur.
+
+Kısmi açıklamalar tam galeri olarak yayımlanmaz. Tamamlanan görünüm özgün sorguları, referans dışlamasını ve hedef ilişkilerini korur; hedef bilgisi üretim isteğine girmez. Hazırlık kodunun CPU testleri gerçek caption anlam doğruluğu veya benchmark başarısı değildir.
