@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "turkish_complete_english_in_progress",
+  "scope": "Source-only photo caption preparation; embeddings and PostgreSQL extension remain pending. No benchmark execution.",
+  "source_photos": 3600,
+  "language_views_share_the_same_photos": true,
+  "turkish": {
+    "status": "passed_storage_preparation_only",
+    "complete": true,
+    "language": "tr",
+    "source_rows": 3600,
+    "legacy_rows": 1446,
+    "new_policy_rows": 2154,
+    "diagnostic_reused_rows": 1,
+    "new_http_rows": 2153,
+    "semantic_accuracy_evaluated": false,
+    "benchmark_runs": 0,
+    "db_writes": 0,
+    "source_identity": "d83dfd5b9232939c750c6e58911aa40160595ab96ceb5b3f5a991be3308a8fcb",
+    "derived_identity": "4669c111074d881772401f2f57ea875e5b44610956f52b2233f38853805506ad",
+    "completed_sha256": "36746e1cd9763bbc73eda254d9383b695bab9434925487b94e330dd695ccc1b7",
+    "independent_audit_sha256": "16a084dc8d02b5919400cfcdc3ae868e4392932bfe9e1cb5848e5744b16f4dca"
+  },
+  "english": {
+    "status": "running",
+    "expected_source_rows": 3600,
+    "complete": false
+  },
+  "generation": {
+    "model": "Gemma 4 E4B Q4",
+    "output_token_limit": 512,
+    "temperature": 0,
+    "seed": 42,
+    "thinking_enabled": false,
+    "context_limit": 8192,
+    "new_policy_repeat_penalty": 1.1,
+    "image_max_side": 1120,
+    "inputs": "Source image only; evaluation query and gold reference excluded"
+  },
+  "preservation": {
+    "legacy_1446_original_policy_retained": true,
+    "legacy_bytes_and_namespace_unchanged": true,
+    "native_photo_vectors_reencoded": false,
+    "ordinary_caption_cache_written": false,
+    "database_extension_imported": false,
+    "benchmark_runs": 0
+  },
+  "limits": [
+    "Turkish view intentionally retains row-level conditional generation policy: 1446 legacy and 2154 repeat-penalty captions.",
+    "One accepted diagnostic output is reused; 2153 new requests completed the remaining Turkish view.",
+    "Strict technical acceptance and source coverage do not measure human caption accuracy.",
+    "English completion, six document/query embedding pairs, BM25 and database extension require separate completion proofs.",
+    "CIRR remains blocked on official source-media access."
+  ]
+}
