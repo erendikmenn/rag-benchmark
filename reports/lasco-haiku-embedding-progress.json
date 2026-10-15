@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "observed_at": "2026-10-15T22:02:00.509164+00:00",
+  "status": "G_completed_verified_E_running",
+  "scope": "LaSCo source preparation only; no retrieval, reranker, answer generation or benchmark evaluation",
+  "dataset_identity": "44bf0b956376eadb94b541ff7311c33ae1b94c2da1c9d012cbf147892e4c544c",
+  "caption_audit_report": "lasco-haiku-caption-independent-audit.json",
+  "native_N_vectors_retained": 69863,
+  "native_N_new_encoding": 0,
+  "new_G_E_J_vectors_planned": 209589,
+  "new_G_E_J_vectors_completed_verified": 69863,
+  "G": {
+    "status": "completed_independently_verified",
+    "model": "BGE-M3",
+    "dimension": 1024,
+    "dtype": "float32",
+    "result_sha256": "aafef667355253ae82c628f8a1295a531e685effc256aa25011466ae1caadc5e",
+    "canonical_preparation_identity": "666a3cfd12883a087fef8ac428f2d0abed499eacaaac1fadea47103449df1fc4",
+    "independent_private_review_sha256": "2845523484d50fbc28af621e86c3f7c9825e636b341d909ea209950d4206a7cc",
+    "roles": [
+      {
+        "role": "document",
+        "rows": 39826,
+        "dimension": 1024,
+        "dtype": "float32",
+        "blocks": 312,
+        "artifact_bytes_verified": 163167232,
+        "logical_fp32_sha256": "a38ca29297d81f2c6e8157ec365c6ca5fd8011f0525419f61e390db1ccd041b0",
+        "ordered_ids_sha256": "ac3f6bb542abb181107f6dbe00a91f167375f0c01c918f52ff7b4f58480b7f38",
+        "norm_min": 0.9999998669840879,
+        "norm_max": 1.0000001305977138,
+        "finite_normalized": true,
+        "recorded_new_rows": 39826,
+        "recorded_cache_rows": 0
+      },
+      {
+        "role": "query",
+        "rows": 30037,
+        "dimension": 1024,
+        "dtype": "float32",
+        "blocks": 235,
+        "artifact_bytes_verified": 123061632,
+        "logical_fp32_sha256": "811985be7045ca19dfd1264323b56225609728ef03a8bf87a847ac4656dbafd8",
+        "ordered_ids_sha256": "eaaf896aad229502384f9c4b4a3a9b406c8b647ca7fd1cd7aa702cd717a09c17",
+        "norm_min": 0.9999998851809663,
+        "norm_max": 1.0000001289460636,
+        "finite_normalized": true,
+        "recorded_new_rows": 30037,
+        "recorded_cache_rows": 0
+      }
+    ],
+    "checks": {
+      "complete_receipts": true,
+      "spec_source_metadata_binding": true,
+      "row_order_identity": true,
+      "independently_reconstructed_set_ids": true,
+      "all_vector_block_sha_size_shape_dtype_finiteness_norm": true
+    },
+    "source_metadata_files_sha_verified": 5,
+    "implementation_files_sha_verified": 57,
+    "producer_elapsed_seconds_after_initial_validation": 1043.3895752918907,
+    "producer_reported_role_encoding_seconds": {
+      "document": 485.5111217421945,
+      "query": 392.46276188082993
+    },
+    "timing_scope": "Recorded producer elapsed time begins after initial seal/dataset/adapter/cache validation; it is not end-to-end preparation or database time. Role durations are producer cached_encode measurements.",
+    "per_input_token_truncation_diagnostics": "unavailable; not measured zero truncation"
+  },
+  "E": "running",
+  "J": "pending",
+  "BM25": "pending",
+  "database_import": "pending",
+  "database_ready": false,
+  "final_readback_and_dump_restore": "pending",
+  "benchmark_runs": 0,
+  "independent_review_new_model_calls": 0,
+  "limitations": [
+    "No source media or model-weight seal rescan; source identity/media lineage relies on the pinned prior full audit.",
+    "Recorded adapter identity and producer usage are bound to the frozen spec; no new model instantiation or numerical re-encoding.",
+    "Artifact integrity and normalization do not measure semantic caption or retrieval quality. E output was not inspected.",
+    "G completion does not establish E/J, BM25, PostgreSQL readiness or benchmark accuracy.",
+    "Normal-stop captions and normalized vectors are not human semantic correctness measurements."
+  ]
+}
