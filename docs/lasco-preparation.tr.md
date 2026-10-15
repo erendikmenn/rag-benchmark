@@ -1,0 +1,29 @@
+# LaSCo: görsel ve metinle görsel arama hazırlığı
+
+LaSCo, erişimi beklenen CIRR yerine yeni çalışmalar için seçilen **ayrı bir veri kümesidir**. Eski CIRR manifesti, sonuçları ve donmuş benchmark paydası değiştirilmez. Bu aşamada yalnız kaynaklar, temsiller ve PostgreSQL saklama yapıları hazırlanır; retrieval, reranker veya soru cevaplama değerlendirmesi çalıştırılmaz.
+
+## Kaynak ve tam kapsam
+
+[Resmî LaSCo deposunun](https://github.com/levymsn/LaSCo) `311f4d7d4bc069fc2d8abd3bf523cdfae6b5800f` sürümü kullanılır. Validation bölümünde **39.826 galeri görseli ve 30.037 hedefi belirtilmiş sorgu** vardır. Her sorgu bir referans görsel ile değişiklik talimatından oluşur; hedef görsel yalnız ayrı qrel kaydındadır. Referans görsel sonraki aramada adaylardan dışlanır.
+
+Resmî dosyadaki altı boş/yalnız boşluk içeren değişiklik metni aynen korunur ve `transition_text_empty` ile işaretlenir. Bunlar görsel girdisi olan, değişiklik metni olmayan sorgulardır. 10.133 negatif sorgu kimliği de resmî ters yönlü kayıtlara aittir; negatif oldukları için silinmez. LaSCo'nun metinleri VQA2.0 çiftlerinden otomatik/GPT-3 ile türetilmiştir; tamamen insan yazımı göreli açıklamalar olarak sunulmaz.
+
+Galeri resmî COCO `val2014.zip` dosyasından alınır. Arşivin ilk gözlenen SHA-256 değeri yerel aktarım kimliğidir; yayıncının yayımladığı checksum kanıtı değildir. Kullanılan her ZIP üyesinin CRC'si, boyutu, dosya türü ve güvenli yolu; ardından bütün kaynak/medya SHA-256 değerleri doğrulanır. ZIP'in geri kalan görselleri LaSCo galerisine eklenmez. LaSCo anotasyonlarının MIT lisansı, COCO görsellerinin kendi lisanslarının yerine geçmez.
+
+## Planlanan temsiller
+
+| Kanal | Galeri girdisi | Sorgu girdisi |
+|---|---|---|
+| N / native EG2 | Görsel | Referans görsel + özgün değişiklik metni |
+| G / BGE-M3 | Yalnız kaynak görselden üretilen açıklama | Referansın açıklaması + özgün değişiklik metni |
+| E / EG2 metin | Aynı kaynak açıklaması | Aynı referans açıklaması + değişiklik metni |
+| J / EG2 birleşik | Görsel + kaynak açıklaması | Referans görsel + özgün değişiklik metni |
+| B / BM25 | Aynı kaynak açıklaması | Aynı referans açıklaması + değişiklik metni |
+
+G/E/B için hedef görselin etiketi veya hedefe özel açıklama sorguya eklenmez. Galeri açıklaması sorgulardan bağımsız, yalnız piksel içeriğiyle üretilir. Native N hazırlığı açıklama beklemez. N özgün görünümde; G/E/J ve BM25 ayrı türetilmiş görünümde saklanır. Dört yoğun kanalın iki rolü toplam **8 set / 279.452 dense vektör** planlar; BM25 ayrı bir lexical indekstir. Bu sayılar hazırlık tamamlanma kanıtı veya benchmark sonucu değildir.
+
+## Çevrimdışı içe aktarma
+
+`python -m rag_benchmark.lasco_data download --raw-dir ...` yalnız açıkça istenen indirmeyi yapar. Ağdan bağımsız `import` komutu, pinli iki anotasyon dosyası ve SHA-256 değeri belirtilen yerel COCO arşivi ister. Tam galeri/sorgu sayıları, her referans ve hedefin galeride bulunması, referansın hedef olmaması ve tekil kimlikler zorunludur. Dizin yayını atomiktir ve mevcut hedefi değiştiremez. Yarım hazırlık tam veri olarak açılmaz.
+
+Kaynaklar, model çıktıları ve özel bağlantı bilgileri GitHub'a yüklenmez. Mevcut 26 görünüm / 176 set ve doğrulanmış yedek korunur. Yeni hazırlık ancak tam embedding kapsamı, PostgreSQL'den bütün değerlerin geri okunması ve yeni yedek doğrulaması tamamlandıktan sonra tamamlanmış sayılır.
