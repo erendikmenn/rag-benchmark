@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "observed_at": "2026-10-15T22:02:00.509164+00:00",
-  "status": "G_completed_verified_E_running",
+  "observed_at": "2026-10-15T22:15:54.507120+00:00",
+  "status": "G_E_completed_verified_J_running",
   "scope": "LaSCo source preparation only; no retrieval, reranker, answer generation or benchmark evaluation",
   "dataset_identity": "44bf0b956376eadb94b541ff7311c33ae1b94c2da1c9d012cbf147892e4c544c",
   "caption_audit_report": "lasco-haiku-caption-independent-audit.json",
   "native_N_vectors_retained": 69863,
   "native_N_new_encoding": 0,
   "new_G_E_J_vectors_planned": 209589,
-  "new_G_E_J_vectors_completed_verified": 69863,
+  "new_G_E_J_vectors_completed_verified": 139726,
   "G": {
     "status": "completed_independently_verified",
     "model": "BGE-M3",
@@ -64,10 +64,80 @@
       "query": 392.46276188082993
     },
     "timing_scope": "Recorded producer elapsed time begins after initial seal/dataset/adapter/cache validation; it is not end-to-end preparation or database time. Role durations are producer cached_encode measurements.",
-    "per_input_token_truncation_diagnostics": "unavailable; not measured zero truncation"
+    "per_input_token_truncation_diagnostics": "unavailable; not measured zero truncation",
+    "independent_review_limitations": [
+      "No source media or model-weight seal rescan; source identity/media lineage relies on the pinned prior full audit.",
+      "Recorded adapter identity and producer usage are bound to the frozen spec; no new model instantiation or numerical re-encoding.",
+      "Artifact integrity and normalization do not measure semantic caption or retrieval quality. E output was not inspected."
+    ]
   },
-  "E": "running",
-  "J": "pending",
+  "E": {
+    "status": "completed_independently_verified",
+    "model": "EmbeddingGemma 2, text mode",
+    "dimension": 768,
+    "dtype": "float32",
+    "result_sha256": "306a7486e75a302dddf0f6422d20332ed5b7b7e51cc41e6a7281e48e1f20725e",
+    "canonical_preparation_identity": "7b338155c53844a65a300d21c6e2723daa69955d5853790eef68370d70af04eb",
+    "independent_private_review_sha256": "f7a29c751e9477faeb1d93f5c0ae206a919ed0a15f714ca88ad1c6cef401bf35",
+    "roles": [
+      {
+        "role": "document",
+        "rows": 39826,
+        "dimension": 768,
+        "dtype": "float32",
+        "blocks": 312,
+        "artifact_bytes_verified": 122385408,
+        "logical_fp32_sha256": "d6925cc420d895f7c218799ba8d57876572cacf98e073b7237b573ff07b21b6e",
+        "ordered_ids_sha256": "ac3f6bb542abb181107f6dbe00a91f167375f0c01c918f52ff7b4f58480b7f38",
+        "norm_min": 0.9999998857289722,
+        "norm_max": 1.000000136914518,
+        "finite_normalized": true,
+        "recorded_new_rows": 39826,
+        "recorded_cache_rows": 0,
+        "producer_recorded_inference_seconds": 411.9763748680707,
+        "timing_scope": "producer receipt for this role; unchanged, not an independent timing measurement"
+      },
+      {
+        "role": "query",
+        "rows": 30037,
+        "dimension": 768,
+        "dtype": "float32",
+        "blocks": 235,
+        "artifact_bytes_verified": 92303744,
+        "logical_fp32_sha256": "b91570ed6bcf4e769c67392a9211f0b56d73c34e2c2596a28fce3d10e6777040",
+        "ordered_ids_sha256": "eaaf896aad229502384f9c4b4a3a9b406c8b647ca7fd1cd7aa702cd717a09c17",
+        "norm_min": 0.999999885325357,
+        "norm_max": 1.0000001345306309,
+        "finite_normalized": true,
+        "recorded_new_rows": 30037,
+        "recorded_cache_rows": 0,
+        "producer_recorded_inference_seconds": 322.59295628010295,
+        "timing_scope": "producer receipt for this role; unchanged, not an independent timing measurement"
+      }
+    ],
+    "checks": {
+      "complete_receipts": true,
+      "spec_source_metadata_binding": true,
+      "row_order_identity": true,
+      "independently_reconstructed_set_ids": true,
+      "all_vector_block_sha_size_shape_dtype_finiteness_norm": true
+    },
+    "source_metadata_files_sha_verified": 5,
+    "implementation_files_sha_verified": 57,
+    "producer_elapsed_seconds_after_initial_validation": 898.7151342080906,
+    "producer_reported_role_encoding_seconds": {
+      "document": 411.9763748680707,
+      "query": 322.59295628010295
+    },
+    "timing_scope": "Recorded producer elapsed time begins after initial seal/dataset/adapter/cache validation; it is not end-to-end preparation or database time. Role durations are producer cached_encode measurements.",
+    "per_input_token_truncation_diagnostics": "unavailable; not measured zero truncation",
+    "independent_review_limitations": [
+      "No source media or model-weight seal rescan; source identity/media lineage relies on the pinned prior full audit.",
+      "Recorded adapter identity and producer usage are bound to the frozen spec; no new model instantiation or numerical re-encoding.",
+      "Artifact integrity and normalization do not measure semantic caption or retrieval quality. J production files were not inspected."
+    ]
+  },
+  "J": "running",
   "BM25": "pending",
   "database_import": "pending",
   "database_ready": false,
@@ -75,10 +145,8 @@
   "benchmark_runs": 0,
   "independent_review_new_model_calls": 0,
   "limitations": [
-    "No source media or model-weight seal rescan; source identity/media lineage relies on the pinned prior full audit.",
-    "Recorded adapter identity and producer usage are bound to the frozen spec; no new model instantiation or numerical re-encoding.",
-    "Artifact integrity and normalization do not measure semantic caption or retrieval quality. E output was not inspected.",
-    "G completion does not establish E/J, BM25, PostgreSQL readiness or benchmark accuracy.",
-    "Normal-stop captions and normalized vectors are not human semantic correctness measurements."
+    "G/E completion does not establish J, BM25, PostgreSQL readiness or benchmark accuracy.",
+    "Normal-stop captions and normalized vectors are not human semantic correctness measurements.",
+    "Independent artifact checks do not repeat neural encoding; source-media lineage relies on the pinned prior full audit."
   ]
 }
