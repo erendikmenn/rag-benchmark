@@ -2,6 +2,10 @@
 
 LaSCo, erişimi beklenen CIRR yerine yeni çalışmalar için seçilen **ayrı bir veri kümesidir**. Eski CIRR manifesti, sonuçları ve donmuş benchmark paydası değiştirilmez. Bu aşamada yalnız kaynaklar, temsiller ve PostgreSQL saklama yapıları hazırlanır; retrieval, reranker veya soru cevaplama değerlendirmesi çalıştırılmaz.
 
+**15 Ekim 2026 kullanıcı durdurma talimatı:** Yerel açıklama üretimi, devam kuyruğu ve kendi Gemma sunucusu kapatıldı. Gemma E4B, projector ve eski Gemma 26B ağırlıkları önbellekteki hardlink/snapshot kopyalarıyla birlikte doğrudan silindi; Çöp Kutusu'na taşınmadı. Tekil model ağırlıkları toplamı 20.585.857.120 byte idi; ayrıca bu işe ait llama.cpp çalışma ortamı kaldırıldı. İşletim sisteminin erişim vermediği Çöp Kutusu'nun önceden var olan içeriği doğrulanamadı. BGE, EmbeddingGemma 2 ve diğer arama bağımlılıkları, hazırlanmış veriler, vektörler ve mevcut PostgreSQL veritabanı korundu. Haiku, OpenRouter veya başka bir model başlatılmadı; sonraki çalışma kullanıcı talimatını bekler.
+
+Native N hazırlığı iki rolün tamamında bitti: 39.826 görsel + 30.037 sorgu = **69.863 vektör**, diskte korunuyor. Açıklamalarda **4.254 / 39.826** teknik kabul kaydı var; bir sonraki kesilmiş claim korunuyor ve otomatik tekrar yapılmıyor. Bunlar tam galeri veya insan tarafından doğrulanmış açıklamalar değildir. LaSCo G/E/J, BM25 ve yeni veritabanı aktarımı başlamadı; yeni LaSCo veritabanı yazımı ve benchmark sayısı sıfır. Aşağıdaki yerel üretim politikası tarihsel hazırlık kaydıdır, yeniden çalıştırma talimatı değildir.
+
 ## Kaynak ve tam kapsam
 
 [Resmî LaSCo deposunun](https://github.com/levymsn/LaSCo) `311f4d7d4bc069fc2d8abd3bf523cdfae6b5800f` sürümü kullanılır. Validation bölümünde **39.826 galeri görseli ve 30.037 hedefi belirtilmiş sorgu** vardır. Her sorgu bir referans görsel ile değişiklik talimatından oluşur; hedef görsel yalnız ayrı qrel kaydındadır. Referans görsel sonraki aramada adaylardan dışlanır.
