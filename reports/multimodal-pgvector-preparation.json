@@ -3,15 +3,15 @@
   "status": "supported_scope_verified_with_gaps",
   "preparation_scope": "Authorized preparation/storage only; benchmark execution remains paused.",
   "current_manifest_artifacts": {
-    "snapshots": 26,
-    "sets": 176,
-    "dense_items": 744591,
+    "snapshots": 28,
+    "sets": 184,
+    "dense_items": 1024043,
     "ragged_items": 21671
   },
   "expected_final_manifest_artifacts": {
-    "snapshots": 26,
-    "sets": 176,
-    "dense_items": 744591,
+    "snapshots": 28,
+    "sets": 184,
+    "dense_items": 1024043,
     "ragged_items": 21671
   },
   "modalities": {
@@ -46,9 +46,9 @@
       "ragged_items": 0
     },
     "photo": {
-      "snapshots": 4,
-      "sets": 20,
-      "dense_items": 108165,
+      "snapshots": 6,
+      "sets": 28,
+      "dense_items": 387617,
       "ragged_items": 0
     }
   },
@@ -63,9 +63,13 @@
     ],
     "table_count": 12,
     "catalog_sha256": "69a8643c16c47a97116ad0d5e50ea88c7a7341c9ad5e49be1be23b13e25038b6",
-    "source_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
-    "restored_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
-    "database_roles_or_permissions_independently_verified": false
+    "source_fingerprint_sha256": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "restored_fingerprint_sha256": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "database_roles_or_permissions_independently_verified": false,
+    "source_recheck_sha256": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "source_unchanged_after_restore": true,
+    "owned_verification_database_removed": true,
+    "private_verification_dsn_removed": true
   },
   "ragturk_separate": {
     "dense_vectors": 104082,
@@ -74,96 +78,78 @@
     "independent_storage_proof_in_this_summary": true
   },
   "bm25_preparation": {
-    "collections": 20,
-    "corpus_view_records": 213580,
-    "native_index_files": 120,
-    "artifacts_including_order_and_provenance": 160,
-    "artifact_bytes": 130057686,
+    "collections": 21,
+    "corpus_view_records": 253406,
+    "native_index_files": 126,
+    "artifacts_including_order_and_provenance": 168,
+    "artifact_bytes": 155266598,
     "native_bm25s_not_sql_bm25_search": true,
-    "ragturk_index_separate": true
+    "ragturk_index_separate": true,
+    "lasco_prepared_sha256": "ae2116fa5b826cac1fa8c963a7103f5b2fd9865592e10dc208ca59e80562e6ac"
   },
-  "manifest_sha256": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
-  "bm25_preparation_summary_sha256": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
-  "bm25_preparation_summary_scope": "Pinned aggregate candidate binds historical18 summary and two actual prepared.json proofs.",
+  "manifest_sha256": "2d38594a89a47789937e44ad103fed16be22d552250f809fc3c85272595a232a",
+  "bm25_preparation_summary_scope": "Historical 20 multimodal indexes plus the independently verified LaSCo prepared index; RAGTurk index remains separate.",
   "benchmark_runs": 0,
   "retrieval_evaluation_runs": 0,
   "reranker_calls": 0,
   "answer_generation_calls": 0,
   "blocked_or_unprepared": [
-    "CIRR official media access remains blocked; no substitute gallery claimed."
+    "Official CIRR media remains unavailable; LaSCo is a separately identified accessible alternative, not official CIRR data."
   ],
   "limits": [
-    "26 overlapping original/derived snapshots are not independent datasets or unique source counts.",
+    "28 overlapping original/derived snapshots are not independent datasets or unique source counts.",
     "Ragged items remain native token matrices; no averaging into pgvector.",
     "Conditional captions retain legacy/new generator provenance; semantic accuracy is unmeasured.",
-    "CIRR official media access remains blocked; no alternate gallery claimed.",
-    "Historical CUDA/MPS conditions remain distinct; storage does not promote failed benchmarks."
+    "Official CIRR media remains unavailable; LaSCo remains a separately identified accessible alternative.",
+    "Historical CUDA/MPS conditions remain distinct; storage does not promote failed benchmarks.",
+    "LaSCo source-only captions have mixed provider/conditional concise policy lineage; human semantic accuracy remains unmeasured. Full storage completion is not completion of the research benchmark."
   ],
-  "verified_at_utc": "2026-10-15T10:13:28.489387+00:00",
+  "verified_at_utc": "2026-10-16T03:31:48.654301+00:00",
   "combined_counts": {
-    "dense_vectors": 848673,
+    "dense_vectors": 1128125,
     "ragged_item_matrices": 21671,
     "ragged_token_vectors": 14559743,
     "ragged_token_dimension": 128,
-    "native_bm25_indexes": 21
+    "native_bm25_indexes": 22
   },
   "docker_postgres": {
     "status": "verified_after_restored_backup_cleanup",
-    "observed_at_utc": "2026-10-15T10:13:28.489387+00:00",
-    "container": "ragturk-prepared-db-1",
-    "image": "pgvector/pgvector@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
-    "persistent_volume": "ragturk-prepared_ragturk_pgvector_data",
-    "container_health": "healthy",
-    "loopback_only": true,
-    "host_port": 55433,
-    "postgres_version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
-    "pgvector_version": "0.8.7",
-    "source_database_bytes": 25270539967,
-    "complete_multimodal_sets": 176,
-    "verification_database_removed": true
+    "complete_multimodal_sets": 184,
+    "verification_database_removed": true,
+    "runtime_configuration_report_scope": "Container configuration and live health observations in historical_snapshots are historical; no new live runtime query performed for this publication."
   },
   "private_backup": {
-    "file_name": "prepared-photo-75c54a33f79ff09b-ff25f1e5f8760cb2.dump",
+    "file_name": "prepared-lasco-api-postaudit-v1-2d38594a89a47789-9d765b019116bd79.dump",
     "format": "PostgreSQL custom",
-    "bytes": 22854578574,
-    "sha256": "6d470a9a8175fd41f256945c2b373959e546c311c74f0906bc5cac1e7b877256",
-    "actual_restore_verified": true
+    "bytes": 31132538022,
+    "sha256": "933d320c332f4bda7109740884865592c8c65a900e5ae52a9f3e2440f1058ac8",
+    "actual_restore_verified": true,
+    "archive_sha_scope": "Completed finalizer archive hash independently recomputed from all closed archive bytes; size, stable file identity and PGDMP magic also verified."
   },
   "independent_multimodal_storage_audit": {
-    "unique_blobs_verified": 25646,
-    "blob_bytes_verified": 12497010752,
-    "sets_verified": 176,
+    "unique_blobs_verified": 65488,
+    "blob_bytes_verified": 19156462959,
+    "sets_verified": 184,
     "readonly": true
   },
   "model_inventory": {
     "report": "multimodal-representation-inventory.json",
     "sha256": "6663339261a82bd96e73beb41f63aa4a4a41a9c0af26cbd38c6318a82b9c05c3",
-    "exact_document_query_pairs": 88
+    "exact_document_query_pairs": 88,
+    "scope": "Historical 176-set inventory; LaSCo adds four document/query pairs, summarized separately below."
   },
   "evidence_sha256": {
-    "manifest": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
-    "old_manifest": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
-    "db_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
-    "pair_inventory": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
-    "photo_tr": "16a084dc8d02b5919400cfcdc3ae868e4392932bfe9e1cb5848e5744b16f4dca",
-    "photo_en": "c5bbff4fb28a1ffa3d15a201980a7156eb64720e6f89f493504f4c99f7bc185c",
-    "baseline": "b9e956fe410134f936f30a74cc76b90e17abf63b35438e982e67ff9e6c697409",
-    "old_bm25": "e09b1a8753d8f1a71cd4f3ba4f7cceb12674f3bf978366fa96a5922e4e9bd77b",
-    "new_bm25_tr": "f820a23edf4676149dee23a2952980dcf56488b91985d6597f12a667c76f042f",
-    "new_bm25_en": "a27acfe26d7165a701ae2a40322c89da6e91cd49692db00986903dfaa1a86c55",
-    "rag_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
-    "old_fingerprint": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
-    "backup": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
-    "source_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
-    "restored_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
-    "cleanup": "8d8ab01332c9ee98995a07066cb97073d1c83173aae64e10d8d86cfa07ae2f80",
-    "summary_candidate": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
-    "summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221",
-    "multimodal_database_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
-    "ragturk_database_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
-    "metadata_pair_audit": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
-    "backup_restore_proof": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
-    "safe_summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221"
+    "manifest": "2d38594a89a47789937e44ad103fed16be22d552250f809fc3c85272595a232a",
+    "old_manifest": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+    "multimodal_database_audit": "3487239dd8a990e6a299e3c1ff186e54eca695fa2b1325cce5608d033203c594",
+    "backup_restore_proof": "2213f962e7a69e3499665680c4a8211794868d833216c24a373d85646907f8cb",
+    "source_fingerprint": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "restored_fingerprint": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "source_recheck": "c3efe2fadd1ed3e9e9f076f55d834bea8349316c6acc70b6e287649933c5e841",
+    "cleanup_completed": "0492a2c5f8a4119853c8419e5fa3e38e136c996a7417bad71c0dcf7925b10c7e",
+    "closed_readback_receipt_review": "b56f21a3aedb523a8b5d20f26b08ad74297ed908af04cd71e0a1f23d5fd9c2b3",
+    "assembly_review": "8b145abcd215bbddb7fefae0fc38a48a3aa5a75b8bc3528fef3fe994be052048",
+    "closed_final_storage_independent_review": "5827f09906ddd7c90c5a5eea573ead7ba151db798a1d22e95fe7a325e1c6fee5"
   },
   "photo_caption_preparation": {
     "tr": {
@@ -175,5 +161,207 @@
       "repeat_penalty_1_1_rows": 3600
     },
     "semantic_accuracy_evaluated": false
-  }
+  },
+  "current_exact_document_query_pairs": 92,
+  "historical_snapshots": [
+    {
+      "scope": "Completed photo/TR/EN baseline before additive LaSCo preparation; immutable historical values retained.",
+      "published_report_sha256": "5f60dc167e364007605b8a6dee7145f487e883d4d26b73fd9670f271a9f7cedc",
+      "report": {
+        "schema_version": 1,
+        "status": "supported_scope_verified_with_gaps",
+        "preparation_scope": "Authorized preparation/storage only; benchmark execution remains paused.",
+        "current_manifest_artifacts": {
+          "snapshots": 26,
+          "sets": 176,
+          "dense_items": 744591,
+          "ragged_items": 21671
+        },
+        "expected_final_manifest_artifacts": {
+          "snapshots": 26,
+          "sets": 176,
+          "dense_items": 744591,
+          "ragged_items": 21671
+        },
+        "modalities": {
+          "code": {
+            "snapshots": 6,
+            "sets": 24,
+            "dense_items": 471918,
+            "ragged_items": 0
+          },
+          "document": {
+            "snapshots": 8,
+            "sets": 80,
+            "dense_items": 86684,
+            "ragged_items": 21671
+          },
+          "environment_audio": {
+            "snapshots": 4,
+            "sets": 28,
+            "dense_items": 58464,
+            "ragged_items": 0
+          },
+          "speech": {
+            "snapshots": 2,
+            "sets": 10,
+            "dense_items": 5360,
+            "ragged_items": 0
+          },
+          "video": {
+            "snapshots": 2,
+            "sets": 14,
+            "dense_items": 14000,
+            "ragged_items": 0
+          },
+          "photo": {
+            "snapshots": 4,
+            "sets": 20,
+            "dense_items": 108165,
+            "ragged_items": 0
+          }
+        },
+        "full_postgres_independent_audit_verified": true,
+        "final_manifest_bound_backup_verified": true,
+        "restore_verification": {
+          "actual_restore_verified": true,
+          "scope": "all table binary bytes and recorded table catalog in both preparation schemas",
+          "schemas": [
+            "ragturk_prepared",
+            "multimodal_prepared"
+          ],
+          "table_count": 12,
+          "catalog_sha256": "69a8643c16c47a97116ad0d5e50ea88c7a7341c9ad5e49be1be23b13e25038b6",
+          "source_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+          "restored_fingerprint_sha256": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+          "database_roles_or_permissions_independently_verified": false
+        },
+        "ragturk_separate": {
+          "dense_vectors": 104082,
+          "chunks": 37511,
+          "questions": 14530,
+          "independent_storage_proof_in_this_summary": true
+        },
+        "bm25_preparation": {
+          "collections": 20,
+          "corpus_view_records": 213580,
+          "native_index_files": 120,
+          "artifacts_including_order_and_provenance": 160,
+          "artifact_bytes": 130057686,
+          "native_bm25s_not_sql_bm25_search": true,
+          "ragturk_index_separate": true
+        },
+        "manifest_sha256": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+        "bm25_preparation_summary_sha256": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
+        "bm25_preparation_summary_scope": "Pinned aggregate candidate binds historical18 summary and two actual prepared.json proofs.",
+        "benchmark_runs": 0,
+        "retrieval_evaluation_runs": 0,
+        "reranker_calls": 0,
+        "answer_generation_calls": 0,
+        "blocked_or_unprepared": [
+          "CIRR official media access remains blocked; no substitute gallery claimed."
+        ],
+        "limits": [
+          "26 overlapping original/derived snapshots are not independent datasets or unique source counts.",
+          "Ragged items remain native token matrices; no averaging into pgvector.",
+          "Conditional captions retain legacy/new generator provenance; semantic accuracy is unmeasured.",
+          "CIRR official media access remains blocked; no alternate gallery claimed.",
+          "Historical CUDA/MPS conditions remain distinct; storage does not promote failed benchmarks."
+        ],
+        "verified_at_utc": "2026-10-15T10:13:28.489387+00:00",
+        "combined_counts": {
+          "dense_vectors": 848673,
+          "ragged_item_matrices": 21671,
+          "ragged_token_vectors": 14559743,
+          "ragged_token_dimension": 128,
+          "native_bm25_indexes": 21
+        },
+        "docker_postgres": {
+          "status": "verified_after_restored_backup_cleanup",
+          "observed_at_utc": "2026-10-15T10:13:28.489387+00:00",
+          "container": "ragturk-prepared-db-1",
+          "image": "pgvector/pgvector@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
+          "persistent_volume": "ragturk-prepared_ragturk_pgvector_data",
+          "container_health": "healthy",
+          "loopback_only": true,
+          "host_port": 55433,
+          "postgres_version": "PostgreSQL 18.6 (Debian 18.6-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+          "pgvector_version": "0.8.7",
+          "source_database_bytes": 25270539967,
+          "complete_multimodal_sets": 176,
+          "verification_database_removed": true
+        },
+        "private_backup": {
+          "file_name": "prepared-photo-75c54a33f79ff09b-ff25f1e5f8760cb2.dump",
+          "format": "PostgreSQL custom",
+          "bytes": 22854578574,
+          "sha256": "6d470a9a8175fd41f256945c2b373959e546c311c74f0906bc5cac1e7b877256",
+          "actual_restore_verified": true
+        },
+        "independent_multimodal_storage_audit": {
+          "unique_blobs_verified": 25646,
+          "blob_bytes_verified": 12497010752,
+          "sets_verified": 176,
+          "readonly": true
+        },
+        "model_inventory": {
+          "report": "multimodal-representation-inventory.json",
+          "sha256": "6663339261a82bd96e73beb41f63aa4a4a41a9c0af26cbd38c6318a82b9c05c3",
+          "exact_document_query_pairs": 88
+        },
+        "evidence_sha256": {
+          "manifest": "75c54a33f79ff09b90574b51f04af984e5e5502ecf5f93d63336fea47f439286",
+          "old_manifest": "b1a5170f3b8ad0e74bfbd7985ef0ff154717eb072197174cebc75d7eeb5aa32a",
+          "db_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
+          "pair_inventory": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
+          "photo_tr": "16a084dc8d02b5919400cfcdc3ae868e4392932bfe9e1cb5848e5744b16f4dca",
+          "photo_en": "c5bbff4fb28a1ffa3d15a201980a7156eb64720e6f89f493504f4c99f7bc185c",
+          "baseline": "b9e956fe410134f936f30a74cc76b90e17abf63b35438e982e67ff9e6c697409",
+          "old_bm25": "e09b1a8753d8f1a71cd4f3ba4f7cceb12674f3bf978366fa96a5922e4e9bd77b",
+          "new_bm25_tr": "f820a23edf4676149dee23a2952980dcf56488b91985d6597f12a667c76f042f",
+          "new_bm25_en": "a27acfe26d7165a701ae2a40322c89da6e91cd49692db00986903dfaa1a86c55",
+          "rag_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
+          "old_fingerprint": "502442e69e6ed11207952a002933a5f4ea87095cc02dc79710b0dfdddbc336ba",
+          "backup": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
+          "source_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+          "restored_fingerprint": "2a272de99fa80c4c7e177e35477a085272a2b85cf7d6b5f49ac8f2f16b641ffb",
+          "cleanup": "8d8ab01332c9ee98995a07066cb97073d1c83173aae64e10d8d86cfa07ae2f80",
+          "summary_candidate": "bdf78aa72d11ba10cedd372bc9ea647e740ba267707234b85eb358dcd1b794de",
+          "summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221",
+          "multimodal_database_audit": "8ad4a559c27b20e9a42ea97bfa6eb8bf88e09bba1b11659589d5d39a89bcc11f",
+          "ragturk_database_audit": "1abb840aa0d286fafa7d8f9e4fa3484507c022eaf50e17ee89ebaff98e467966",
+          "metadata_pair_audit": "e46da609203f6bdb75aeb99d193149b3ecb65de7df6a6876486876abc9e09423",
+          "backup_restore_proof": "fd6b080860b25134c359757adb3cd2fb9fcf43a98becce7620e14037624e9a5d",
+          "safe_summary_builder": "27f431f4fcf51bf3e1ea563400e4ef8185b8f9258a4efb7b606ac914e619a221"
+        },
+        "photo_caption_preparation": {
+          "tr": {
+            "legacy_rows": 1446,
+            "repeat_penalty_1_1_rows": 2154,
+            "diagnostic_reused_rows": 1
+          },
+          "en": {
+            "repeat_penalty_1_1_rows": 3600
+          },
+          "semantic_accuracy_evaluated": false
+        }
+      }
+    }
+  ],
+  "lasco_preparation": {
+    "source_images": 39826,
+    "queries": 30037,
+    "native_vectors_retained": 69863,
+    "new_G_E_J_vectors": 209589,
+    "total_added_dense_vectors": 279452,
+    "added_views": 2,
+    "added_sets": 8,
+    "old_176_sets_preserved": true,
+    "old_ragturk_5_tables_binary_unchanged": true,
+    "caption_semantic_accuracy_evaluated": false,
+    "source_only_caption_audit_report": "lasco-haiku-caption-independent-audit.json",
+    "embedding_report": "lasco-haiku-embedding-progress.json",
+    "cirr_scope": "LaSCo is a separately identified composed-retrieval preparation track; it does not supply or replace missing official CIRR media."
+  },
+  "database_ready": true
 }

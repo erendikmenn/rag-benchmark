@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "observed_at": "2026-10-16T02:47:43.979567+00:00",
-  "status": "G_E_J_BM25_imported_readback_verified_backup_restore_pending",
+  "observed_at": "2026-10-16T03:33:26.970783+00:00",
+  "status": "completed_preparation_and_storage_verified",
   "scope": "LaSCo source preparation only; no retrieval, reranker, answer generation or benchmark evaluation",
   "dataset_identity": "44bf0b956376eadb94b541ff7311c33ae1b94c2da1c9d012cbf147892e4c544c",
   "caption_audit_report": "lasco-haiku-caption-independent-audit.json",
@@ -271,15 +271,15 @@
     "independent_private_review_sha256": "ed67dd4eb5b911a814d82cc8e750655585694107e8a8e98f7ec52b6b75075545"
   },
   "database_import": "completed_full_readback_verified",
-  "database_ready": false,
-  "final_readback_and_dump_restore": "readback_passed_backup_restore_pending",
+  "database_ready": true,
+  "final_readback_and_dump_restore": "completed_verified",
   "benchmark_runs": 0,
   "independent_review_new_model_calls": 0,
   "limitations": [
-    "Imported embeddings and completed full readback do not establish backup restoration success or benchmark accuracy.",
+    "Complete preparation and verified backup restoration do not measure benchmark accuracy.",
     "Normal-stop captions and normalized vectors are not human semantic correctness measurements.",
     "Independent artifact checks do not repeat neural encoding; source-media lineage relies on the pinned prior full audit."
   ],
   "storage_verification_report": "lasco-haiku-storage-verification-progress.json",
-  "storage_verification_report_sha256": "080deffaaf5263fabecbcf241787af58f22d0d9f1d4e365779429082bc6a9fb8"
+  "storage_verification_report_sha256": "55142078e921053c57f38b99d2ad66b757299cf9c4c69324de1dfbafa216fe6c"
 }

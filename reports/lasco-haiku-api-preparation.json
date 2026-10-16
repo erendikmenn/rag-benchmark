@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "observed_at": "2026-10-16T02:47:43.979567+00:00",
-  "status": "captions_embeddings_bm25_imported_full_readback_verified_restore_pending",
+  "observed_at": "2026-10-16T03:33:26.970783+00:00",
+  "status": "completed_preparation_and_storage_verified",
   "scope": "source-only API captions, embeddings, BM25 and PostgreSQL preparation; no benchmark evaluation",
   "dataset": "lasco-validation",
   "gallery_images": 39826,
@@ -107,7 +107,7 @@
     "prior_preserved_rows": 39810,
     "final_result_sha256": "529553338d0be1935ca7e12cc7721dfce13b68327bb5edd1fa8f02172984bac8",
     "final_plan_sha256": "44eaa92621ac0d0b55170360449a185c7feb646fa32644dae0b52a699ad5b201",
-    "workflow_phase": "dumping"
+    "workflow_phase": "completed_storage_verified"
   },
   "planned_after_closed_policy": {
     "status": "executed_closed_successfully",
@@ -210,7 +210,7 @@
     "does_not_replace_full_dataset_audit": true
   },
   "downstream_preparation": {
-    "status": "reviewed_fix_actual_cpu_passed_owned_workflow_running",
+    "status": "completed_storage_verified",
     "failure_stage": "prepare_embedding_specs",
     "failure_code": "symlink_path",
     "new_embedding_calls": null,
@@ -218,20 +218,24 @@
     "caption_regeneration_required": false,
     "old_claims_preserved": true,
     "failure_resolved": true,
-    "current_phase": "dumping",
+    "current_phase": "completed_storage_verified",
     "recovery_report": "lasco-haiku-post-audit-recovery.json",
-    "recovery_report_sha256": "6ac585784ba7e69c32c241b10994b5235f490199627194cf1d8044135f9c6a7a",
+    "recovery_report_sha256": "0f33ebf97c33e9c3aeea6fe438a70ef0c64664ddcb1ada9744774e092b1f3394",
     "original_failed_sequence_embedding_calls": 0,
     "new_embedding_calls_available": false,
     "new_completed_embedding_rows": 209589,
     "embedding_progress_report": "lasco-haiku-embedding-progress.json",
-    "embedding_progress_report_sha256": "84dbd0317294e1d7005391bd895c5fd252bd4c82a51725fb06fca3b2f0c54d34",
+    "embedding_progress_report_sha256": "102500cd38b2cba58309b8a48e0de25722e060f17d158463a011482b71dca926",
     "completed_embedding_artifact_review": "G_E_J_passed_209589_rows",
     "storage_verification_report": "lasco-haiku-storage-verification-progress.json",
-    "storage_verification_report_sha256": "080deffaaf5263fabecbcf241787af58f22d0d9f1d4e365779429082bc6a9fb8"
+    "storage_verification_report_sha256": "55142078e921053c57f38b99d2ad66b757299cf9c4c69324de1dfbafa216fe6c",
+    "database_ready": true,
+    "final_backup_restore_verified": true
   },
   "verified_database_views": 28,
   "verified_multimodal_sets": 184,
   "verified_dense_vectors_including_ragturk": 1128125,
-  "existing_database_counts_scope": "Historical baseline before this additive LaSCo import; verified_database fields describe the imported snapshot."
+  "existing_database_counts_scope": "Historical baseline before this additive LaSCo import; verified_database fields describe the imported snapshot.",
+  "database_ready": true,
+  "backup_restore_verified": true
 }

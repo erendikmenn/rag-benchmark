@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "observed_at": "2026-10-16T02:47:43.979567+00:00",
-  "status": "reviewed_actual_cpu_preflight_passed_owned_sequence_running",
+  "observed_at": "2026-10-16T03:33:26.970783+00:00",
+  "status": "completed_storage_verified",
   "scope": "post-audit embedding, BM25 and PostgreSQL preparation only",
   "original_failure": "Strict merged-source path validation rejected legitimate pinned Hugging Face model snapshot aliases.",
   "fix": "Only the exact BGE and EmbeddingGemma model snapshots permit recorded one-hop or two-hop leaf aliases to their own immutable model blobs. Runtime alias and target byte hashes are retained; source/data symlinks and revision traversal remain rejected.",
@@ -16,7 +16,7 @@
   "new_gej_vectors": 209589,
   "native_vectors_reused": 69863,
   "expected_gej_sets": 6,
-  "new_workflow_phase": "dumping",
+  "new_workflow_phase": "completed_storage_verified",
   "post_audit_plan_sha256": "da9b847d2828af3021f71f890ab5daf2ac2d8deb645833ec1a636b13595efc0f",
   "builder_sha256": "03df13a6c990863ef90b1f291cc21ef8e81e66605c385ed67ba5bbc344d30128",
   "coordinator_sha256": "8cce09448b2f6eb99f1af1bbb562836f7b27c2d013b1e8e9d0f24775ba69b706",
@@ -30,11 +30,7 @@
     "ruff": "passed",
     "scope": "CPU fake fixtures plus actual offline source/model-artifact checks; no neural inference"
   },
-  "remaining": [
-    "private pg_dump completion",
-    "actual isolated restore and equal source/restored/source-recheck 12-table fingerprints",
-    "owned temporary verification database cleanup"
-  ],
+  "remaining": [],
   "limitations": [
     "CPU readiness is not completed encoding, database readiness, benchmark accuracy or an inference speed measurement.",
     "The model-cache alias exception is limited to these pinned model snapshots.",
@@ -42,5 +38,5 @@
   ],
   "new_gej_vectors_completed": 209589,
   "storage_verification_report": "lasco-haiku-storage-verification-progress.json",
-  "storage_verification_report_sha256": "080deffaaf5263fabecbcf241787af58f22d0d9f1d4e365779429082bc6a9fb8"
+  "storage_verification_report_sha256": "55142078e921053c57f38b99d2ad66b757299cf9c4c69324de1dfbafa216fe6c"
 }
