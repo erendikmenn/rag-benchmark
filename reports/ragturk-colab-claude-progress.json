@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_20_query_diagnostic_pilot_complete_512_cap_rejected_30_percent_logical_outputs",
+  "status": "full_20_query_cap2048_pilot_complete_independent_audit_passed_full_dispatch_preparation",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -73,8 +73,7 @@
     "other_unchanged_source_model_files": 49
   },
   "remaining": [
-    "separate_explicit_2048_token_protocol_pilot_without_merging_512_outcomes",
-    "full_dev_and_test_runs_with_frozen_protocol",
+    "review_and_launch_full_dev_and_test_runs_with_frozen_cap2048_protocol",
     "subsequent_multimodal_execution"
   ],
   "whole_benchmark_eta": null,
@@ -113,5 +112,41 @@
     "nominal_single_L4_scoring_hours": 19.998580806118003,
     "scope": "scoring_proxy_only_excludes_setup_transport_audits_length_mix_session_loss_and_CLI_quota",
     "full_job_started": false
+  },
+  "claude_transport_v3": {
+    "protocol": "ragturk-claude-stream-outcomes-pilot-v3",
+    "model": "claude-haiku-5-5",
+    "concurrency": 3,
+    "requested_output_cap": 2048,
+    "queries": 20,
+    "split": "dev",
+    "logical_conditions": 200,
+    "unique_requests": 192,
+    "valid_requests": 192,
+    "terminal_invalid_requests": 0,
+    "valid_logical_conditions": 200,
+    "terminal_invalid_logical_conditions": 0,
+    "first_technical_requests_reused": 3,
+    "new_requests_in_completion": 189,
+    "completion_stage_wall_seconds": 211.61907491693273,
+    "wall_scope": "189_new_calls_plus_3_retained_outcomes_and_local_final_validation_excludes_initial_pilot_and_retrieval_Laya",
+    "independent_metric_audit_sha256": "edd07fb55543798f00747886f0bb3bd293ae481d23abfec3bdf1ac3e1b88060f",
+    "reported_output_tokens_min": 24,
+    "reported_output_tokens_max": 1992,
+    "raw_rate_events_explicitly_overage_false": 192,
+    "semantic_judge_used": false,
+    "full_run_promoted": false,
+    "server_second_request_prevention_guaranteed": false,
+    "api_fallback_enabled": false,
+    "v1_v2_outcomes_merged": false
+  },
+  "colab_runtime_transition": {
+    "old_pilot_runtime": "absent_from_official_assignment_list",
+    "loss_cause": "unknown",
+    "pilot_artifacts_verified_on_Mac": true,
+    "replacement_allocated": true,
+    "replacement_setup_only": true,
+    "full_inference_started": false,
+    "credit_purchase": false
   }
 }
