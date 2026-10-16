@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T14:32:03.221591+00:00",
+  "as_of_utc": "2026-10-16T14:53:04.907506+00:00",
   "full_qa": {
     "status": "running_never_sent_ready_requests_with_three_immutable_unresolved_requests",
     "model": "claude-haiku-5-5",
@@ -168,21 +168,24 @@
     "snapshot_requests": {
       "claimed": 4,
       "fatal": 1,
-      "ready": 74473,
-      "terminal_invalid": 40,
-      "valid": 9485
+      "ready": 74605,
+      "terminal_invalid": 42,
+      "valid": 10233
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "claimed": 4,
+        "claimed": 2,
         "fatal": 1,
-        "ready": 10178,
+        "ready": 9896,
         "terminal_invalid": 41,
-        "valid": 9776
+        "valid": 10060
       },
       "test": {
-        "pending_laya": 57610,
-        "ready": 67690
+        "claimed": 2,
+        "pending_laya": 56650,
+        "ready": 68154,
+        "terminal_invalid": 2,
+        "valid": 492
       }
     },
     "retained_exact_prior_valid_requests": 95,
@@ -210,8 +213,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 188,
-    "admitted_laya_question_prefix": 3008,
+    "admitted_closed_checkpoint_blocks": 200,
+    "admitted_laya_question_prefix": 3200,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -235,12 +238,12 @@
     },
     "snapshot_admitted_laya_queries_by_split": {
       "dev": 2000,
-      "test": 1008
+      "test": 1200
     },
     "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
-    "snapshot_logical_closed": 9817,
+    "snapshot_logical_closed": 10595,
     "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
-    "snapshot_evidence_sha256": "7fdb38748a6d095e499e31133a195743a5cbc237bf427d3653b27bbaa675c5f6",
+    "snapshot_evidence_sha256": "6d74f1a532af47765ee741f6774f5bccd02a5df931272baec9641623caf6bb1f",
     "stopped_batch_review": {
       "observed_at_utc": "2026-10-16T14:07:39.957870+00:00",
       "classification": "synthetic_server_error_api_error_rejected_by_stream_guard",
@@ -262,7 +265,7 @@
     "previous_v2_supervisor_source_sha256": "5d9b3c1c3d778d482e68751058731268c51e313f22aeb80bd1c3808370e7f972",
     "previous_v2_supervisor_plan_sha256": "8ffd59afda7f079c5decf7be039547b428d58f643cc3903369b8cc659518da70",
     "ready_only_continuation": {
-      "status": "started_first_three_new_closed_outcomes_independently_verified",
+      "status": "first_500_new_requests_closed_independently_reviewed_next_batch_running",
       "exceptions_manifest_sha256": "713ec377c6cde17887dfeeebff87a21b82dd10f73f17404e01f6736a609fae2b",
       "independent_cpu_review_sha256": "7d5e8f025c0f1d02ece29ba605b5a58be9da041c851616cb29bd6daa1eac285e",
       "root_boundary_review_sha256": "4e0fd00ae5c1997477fe58746a14c0f3a9fcd867d90c8c18f5bba8fbaff6889a",
@@ -296,11 +299,36 @@
         "independent_review_sha256": "56363f5ef91d42cbd20e3ee12607fed15f68aa191034280b8d03bb38b1e01542",
         "quality_evaluated": false
       },
-      "snapshot_new_batch_unique_states": {
+      "startup_scope": "first_three_startup_review_retained; first_500_separately_independently_audited; active_second_batch_counts_are_single_transaction_snapshot_only",
+      "snapshot_active_second_batch_unique_states": {
         "claimed": 2,
-        "valid": 54
+        "valid": 304
       },
-      "startup_scope": "first_three_new_closed_outcomes_only; later_live_counts_are_single_transaction_snapshot_not_full_independent_outcome_audit"
+      "first_closed_500_requests": {
+        "new_requests": 500,
+        "valid_requests": 498,
+        "terminal_invalid_requests": 2,
+        "terminal_invalid_codes": {
+          "terminal_stop_max_tokens": 2
+        },
+        "terminal_invalid_metric_policy": "zero_EM_and_F1_for_each_alias_no_retry",
+        "batch_summary_sha256": "725ef9693ecf4920c9292c7408b9f59b577f3a5d19508155415b0537d0dc1cd2",
+        "independent_review_sha256": "2ed9802dab41934162114e4367a845a63cca0bca267897d65f441c136f62ac58",
+        "all_raw_receipt_request_provider_cap_and_ledger_bindings_verified": true,
+        "receipt_file_count": 3002,
+        "receipt_seals_digest": "6d45fcf5c466aa422c38cca932b46d55358d4914dca2b2605924a7d51a021740",
+        "valid_output_tokens_min": 24,
+        "valid_output_tokens_max": 1955,
+        "observed_rate_events": 499,
+        "observed_rate_events_overage_false_and_rejected": 499,
+        "rate_event_scope": "observed_events_only_not_a_claim_of_one_event_per_outcome",
+        "elapsed_seconds": 735.2276433748193,
+        "elapsed_scope": "one_500_request_dispatch_batch_after_initial_validation_excludes_checkpoint_admission_other_batches_transport_and_final_audits_not_ETA",
+        "old_three_request_rows_artifacts_and_old_batch_unchanged": true,
+        "prior_dispatched_requests_reissued": false,
+        "quality_evaluated": false,
+        "scope": "closed_first_ready_only_batch_only_not_active_second_batch_or_full_experiment"
+      }
     }
   },
   "colab_full_laya": {
@@ -441,11 +469,11 @@
       "approval_status": "direct_user_reply_approved",
       "executed": true,
       "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
-      "transport_observed_at_utc": "2026-10-16T14:23:28+00:00",
-      "verified_local_question_prefix": 2976,
-      "verified_local_chunks": 186,
-      "verified_local_lists": 14880,
-      "verified_local_pairs": 743953,
+      "transport_observed_at_utc": "2026-10-16T14:53:16+00:00",
+      "verified_local_question_prefix": 3328,
+      "verified_local_chunks": 208,
+      "verified_local_lists": 16640,
+      "verified_local_pairs": 831953,
       "prior_sealed_files_unchanged": true,
       "gpu_restarted": false,
       "qa_restarted": false,
@@ -464,9 +492,9 @@
         "independent_closed_triple_validation_passed": true
       },
       "latest_incremental_local_verification": {
-        "observed_at_utc": "2026-10-16T14:23:28+00:00",
-        "control_sha256": "5ce8c7e6da2060fc7554622aabb43e1ac1cf335a245619d3d6e3547cbba9d942",
-        "safe_observation_sha256": "73865437852e09a7b622210024a3e5daa3f952e1b1ebe79c00672b1c3e61e084",
+        "observed_at_utc": "2026-10-16T14:53:16+00:00",
+        "control_sha256": "9b21a240fc99e0a7269126351b1789dddc4a7e8f8599026945ccbc021924844a",
+        "safe_observation_sha256": "131a1a03573cf69ae1f59c6d051a5ee2fe8a02739ce2edaaff77de791a439764",
         "new_triples_verified": 11,
         "new_candidate_pairs_verified": 44000,
         "prior_148_file_stamps_unchanged": true,
