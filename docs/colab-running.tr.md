@@ -1,4 +1,6 @@
-# Google Colab çalışma kaydı — durduruldu
+# Google Colab çalışma kaydı
+
+**16 Ekim yeni protokolü:** mevcut Colab hakkıyla RAGTurk için ayrı L4 pilotu ve Claude CLI abonelik cevapları yetkilendirildi. [Güncel çalışma düzeni](ragturk-colab-claude.tr.md). Aşağıdaki 14 Ekim kuyrukları tarihsel ve kapalıdır; yeni pilot bu kuyrukları yeniden başlatmaz.
 
 **Çalışma kullanıcı isteğiyle durduruldu — 14 Ekim, 21:13 Europe/Istanbul.** Bize ait iki Colab tahsisi kapatıldı; otomatik deney takibi duraklatıldı. Yeni deney planlanmıyor. Physics ve Pharmaceuticals CUDA arama sonuçları (126'şar koşul) ve doğrulanmış yerel yedekleri korunuyor; ana kapsam **2.052 / 18.460**. Industrial kısmi: doğrulanmış checkpoint B/G/E/N kanallarını içeriyor; sonrasındaki yarım S çalışması yedeklenmedi. Tamamlanmış yeni CUDA reranker sonucu yok. Pharmaceuticals'ın yarım reranker çalışmasının kapanmış, doğrulanmış yedeği bulunmuyor. Şimdiki çalışma repo mimarisi ve modüler/dağıtık deney düzeninin tasarımıdır. [Durdurma kaydı](../reports/colab-execution-stop.json).
 

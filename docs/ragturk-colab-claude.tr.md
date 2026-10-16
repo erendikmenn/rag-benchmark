@@ -1,0 +1,46 @@
+# RAGTurk: hazır vektörlerden Colab ve Claude CLI ile çalışma
+
+16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
+
+## Kaynaklar ve ortak hesaplama
+
+37.511 chunk ve 14.530 sorunun BGE-M3 / EmbeddingGemma 2 vektörleri ile özgün BM25 indeksi hazırdır. Kaynak, model, sıralama ve dosya kimlikleri eşleşen bu nesneler tekrar kullanılır. Yeni embedding üretilmez. Geliştirme (2.000) ve test (12.530) sonuçları ayrı tutulur; etiketler cevap üreten modele gönderilmez.
+
+Hazır FP32 matrislerde CPU batch araması ve BM25 ile bütün 14.530 soru için beş yöntemden **72.650 aday listesi** üretildi. Kaynaklar, 114 çıktı bloğu, sıra, galeri üyeliği ve RRF birleşimleri bağımsız doğrulandı. BM25'de dört liste 50'den kısa; hiçbiri boş değil. Liste uzatmak için yapay aday eklenmez. Bu kayıtlar henüz cevap doğruluğu ölçümü değildir. Batch matris çarpımı, tarihsel tek-sorgu hesaplamasıyla byte eşitliği iddiası taşımaz.
+
+## On koşul
+
+| Koşul | Arama | Yeniden sıralama | Cevap modeli |
+|---|---|---|---|
+| 1 | BM25 | Yok | Claude Haiku 5.5 |
+| 2 | BM25 | Laya | Aynı model ve istem |
+| 3 | BGE-M3 dense | Yok | Aynı model ve istem |
+| 4 | BGE-M3 dense | Laya | Aynı model ve istem |
+| 5 | EmbeddingGemma 2 dense | Yok | Aynı model ve istem |
+| 6 | EmbeddingGemma 2 dense | Laya | Aynı model ve istem |
+| 7 | BM25 + BGE, RRF | Yok | Aynı model ve istem |
+| 8 | BM25 + BGE, RRF | Laya | Aynı model ve istem |
+| 9 | BM25 + EmbeddingGemma 2, RRF | Yok | Aynı model ve istem |
+| 10 | BM25 + EmbeddingGemma 2, RRF | Laya | Aynı model ve istem |
+
+Her kanalın ilk 100 adayı bir kez hesaplanır; RRF sabiti 60'tır. Her koşulun en çok 50 adayı vardır; cevap aşamasına ilk beş pasaj girer. Aynı kaynak listesi none/Laya kollarının ortak başlangıcıdır. Laya bu listeyi yeniden sıralar. Farklı retrieval yöntemlerinin embedding kimlikleri birleştirilmez. Tam istem ve model/adapter kimliği aynıysa bir tamamlanmış cevap birden fazla koşulda kullanılabilir; her koşulun etiketi ve değerlendirmesi ayrı kalır.
+
+## Yürütme ve paralellik
+
+Mevcut Colab hakkından bir NVIDIA L4 tahsisi doğrulandı. Laya'nın sabit revision'ı `1720e3e3357cfe1e281542e223f8273b0890ca34`; SDK/eager, CUDA, FP32, batch 8, max_len 8192, eşik kapalıdır. Bu yeni CUDA koşulu tarihsel MPS sonucu olarak etiketlenmez. Aynı GPU'da bir model sahibi, aday listelerinin kuyruğunu işler. Bağımsız LLM istekleri Mac'teki CLI üzerinden uzak Claude hizmetinde paralel ilerler. Mantıksal on koşul, on GPU veya on model kopyası anlamına gelmez.
+
+İlk kontrol 20 geliştirme sorusudur: 100 aday listesi ve none/Laya birlikte 200 mantıksal soru-koşul satırı. Bu, tam veri kapsamının yerine geçmez. Üç paralel CLI isteğinin ikisi kabul edildi; üçüncü istekte CLI kendi çıktı-sınırı devam mesajını ekledi, iki tur/842 toplam token üretti ve katı kontrol bunu reddetti. `--max-turns 1` ve HTTP retry kapatma bu iç devam yolunu engellemedi. Yeni akış denetimi hazırlanıyor; eski başarısız claim tekrar çalıştırılmaz. Laya 100 liste/5.000 çift için kayıt yazdı ancak SDK'nın tokenizer ayar dosyasını değiştirmesi son hash kontrolünü durdurdu; bağımsız dönüşüm denetimi bitmeden bu kayıtlar tamamlanmış sayılmaz. [Güncel güvenli durum](../reports/ragturk-colab-claude-progress.json).
+
+İlk tam koşulara geçerken geliştirme/test ayrımı ve protokol sabit tutulur. Genel amaçlı bütün modaliteleri çalıştıran yeni dağıtık scheduler henüz tamamlanmış değildir.
+
+LLM tam kimliği **`claude-haiku-5-5`**, taşıma **Claude Code CLI 2.1.291 / abonelik oturumu**. Çocuk süreç ortamından API anahtarı ve sağlayıcı/model yönlendirmeleri çıkarılır; ilk taraf abonelik girişi her çağrı öncesi kontrol edilir. Araçlar/MCP kapalı, taze oturum, yalnız soru ve kaynak pasajlar kullanılır. İstenen çıktı sınırı 512 token; reasoning `adaptive/low` olarak kaydedilir. CLI temperature/seed ayarı sunmadığı için bunlar sıfırmış gibi raporlanmaz. Kesik veya model kimliği uyuşmayan cevap kabul edilmez.
+
+Kullanıcı ek kullanımın kapalı olduğunu doğruladı. İlk gerçek teknik yanıtın kullanım kaydı da `isUsingOverage=false` gösterdi. CLI'ın dolar tahmini fatura değildir. Birden çok CLI ortak hesap limitini kullanır; paralellik kota oluşturmaz. Colab hakkı tükenirse uyumlu arama/reranker işleri Mac'te ayrı runtime kimliğiyle sürebilir. Claude abonelik kotası dolarsa cevap işi reseti bekler; ücretli API veya yerel üretici LLM'e otomatik geçiş yoktur.
+
+Her gönderim yeni özel claim ve kapalı çıktı kanıtıyla kaydedilir. Başarısız/belirsiz istek otomatik tekrarlanmaz. Tamamlanan veri aynı istem kimliğiyle doğrulanmadan cache olarak kabul edilmez. Ham soru, kaynak metin, yanıt ve kimlik bilgileri GitHub'a konmaz. Yayımlanan sayılar, yöntemler, süreler ve hash kanıtları içerik taşımaz.
+
+## Ölçüm sınırları
+
+20 soruluk pilot, model kalitesinin tam veri sonucu değildir. Geçerli cevap sayısı, normal bitiş, doğru kaynak bağlama ve kapsama kontrolünden sonra cevap EM/token-F1 ve retrieval metrikleri hesaplanır. İstem paylaşımı yapılan yanıtların latency'si yeni çağrı latency'si olarak sayılmaz. Colab tahsisi ve Claude kotası değişken olduğu için tam bitiş saati henüz ölçülmüş değildir.
+
+Claude'un [abonelikle programatik kullanım](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan), [headless CLI](https://code.claude.com/docs/en/headless) ve [ek kullanım](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans) belgeleri bu taşımanın hesabın ortak kullanım sınırlarına tabi olduğunu açıklar.
