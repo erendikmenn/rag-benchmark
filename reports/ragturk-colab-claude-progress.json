@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_qa_ready_only_continuation_running_with_immutable_unresolved_requests",
+  "status": "qa_and_checkpoint_transport_stopped_requires_review",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -153,9 +153,9 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T14:53:04.907506+00:00",
+  "as_of_utc": "2026-10-16T16:40:47.311578+00:00",
   "full_qa": {
-    "status": "running_never_sent_ready_requests_with_three_immutable_unresolved_requests",
+    "status": "stopped_after_second_ready_only_batch_failure_six_unresolved_requests",
     "model": "claude-haiku-5-5",
     "transport": "first_party_Max_subscription_CLI",
     "output_cap": 2048,
@@ -167,10 +167,10 @@
     "test_logical_conditions": 125300,
     "snapshot_requests": {
       "claimed": 4,
-      "fatal": 1,
-      "ready": 74605,
+      "fatal": 2,
+      "ready": 74510,
       "terminal_invalid": 42,
-      "valid": 10233
+      "valid": 10327
     },
     "snapshot_logical_conditions": {
       "dev": {
@@ -182,10 +182,11 @@
       },
       "test": {
         "claimed": 2,
+        "fatal": 1,
         "pending_laya": 56650,
-        "ready": 68154,
+        "ready": 68059,
         "terminal_invalid": 2,
-        "valid": 492
+        "valid": 586
       }
     },
     "retained_exact_prior_valid_requests": 95,
@@ -241,9 +242,9 @@
       "test": 1200
     },
     "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
-    "snapshot_logical_closed": 10595,
+    "snapshot_logical_closed": 10689,
     "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
-    "snapshot_evidence_sha256": "6d74f1a532af47765ee741f6774f5bccd02a5df931272baec9641623caf6bb1f",
+    "snapshot_evidence_sha256": "11e9243f5a73fac6b0a3002fc7c5cd402977c6128fbfb4b3f1aac497aa0b9cd5",
     "stopped_batch_review": {
       "observed_at_utc": "2026-10-16T14:07:39.957870+00:00",
       "classification": "synthetic_server_error_api_error_rejected_by_stream_guard",
@@ -265,7 +266,7 @@
     "previous_v2_supervisor_source_sha256": "5d9b3c1c3d778d482e68751058731268c51e313f22aeb80bd1c3808370e7f972",
     "previous_v2_supervisor_plan_sha256": "8ffd59afda7f079c5decf7be039547b428d58f643cc3903369b8cc659518da70",
     "ready_only_continuation": {
-      "status": "first_500_new_requests_closed_independently_reviewed_next_batch_running",
+      "status": "stopped_after_second_batch_failure_no_automatic_continuation",
       "exceptions_manifest_sha256": "713ec377c6cde17887dfeeebff87a21b82dd10f73f17404e01f6736a609fae2b",
       "independent_cpu_review_sha256": "7d5e8f025c0f1d02ece29ba605b5a58be9da041c851616cb29bd6daa1eac285e",
       "root_boundary_review_sha256": "4e0fd00ae5c1997477fe58746a14c0f3a9fcd867d90c8c18f5bba8fbaff6889a",
@@ -299,11 +300,7 @@
         "independent_review_sha256": "56363f5ef91d42cbd20e3ee12607fed15f68aa191034280b8d03bb38b1e01542",
         "quality_evaluated": false
       },
-      "startup_scope": "first_three_startup_review_retained; first_500_separately_independently_audited; active_second_batch_counts_are_single_transaction_snapshot_only",
-      "snapshot_active_second_batch_unique_states": {
-        "claimed": 2,
-        "valid": 304
-      },
+      "startup_scope": "first_three_and_first_500_reviews_retained; stopped_second_batch_review_verifies_398_stored_proof_hashes_and_three_unresolved_request_boundaries_not_answer_quality",
       "first_closed_500_requests": {
         "new_requests": 500,
         "valid_requests": 498,
@@ -328,11 +325,43 @@
         "prior_dispatched_requests_reissued": false,
         "quality_evaluated": false,
         "scope": "closed_first_ready_only_batch_only_not_active_second_batch_or_full_experiment"
+      },
+      "snapshot_stopped_second_batch_unique_states": {
+        "valid": 398,
+        "claimed": 2,
+        "fatal": 1
+      },
+      "total_unresolved_unique_requests": 6,
+      "total_unresolved_logical_conditions": 6,
+      "second_batch_stop_review": {
+        "observed_at_utc": "2026-10-16T16:40:47.311578+00:00",
+        "local_supervisor_failure_file_mtime_utc": "2026-10-16T15:03:44.034791+00:00",
+        "supervisor_failure_sha256": "efb369858b0320233bfdad36e0868e9e2f927dc85d6e3597736d570d55d26dde",
+        "batch_failure_sha256": "05f1bd41a6af0146f8bed0f8fccf272ed8beeebd9d6774d1f94b3218f99ddf03",
+        "independent_review_sha256": "11e9243f5a73fac6b0a3002fc7c5cd402977c6128fbfb4b3f1aac497aa0b9cd5",
+        "classification": {
+          "trigger": "synthetic_assistant_server_error_envelope",
+          "adapter_rejection": "unexpected_stream_model",
+          "actual_alternative_model_inference_evidence": false,
+          "quota_or_auth_error_evidence_observed": false,
+          "transport_network_error_wording_observed": true,
+          "sibling_interruptions": "two_claimed_rows_have_interrupted_transport_receipts",
+          "root_cause": "not_established_from_local_receipts"
+        },
+        "closed_valid_results_preserved_and_stored_proof_hash_verified": 398,
+        "new_fatal": 1,
+        "new_interrupted_claimed": 2,
+        "old_three_exact_rows_artifacts_and_batch_unchanged": true,
+        "first_closed_500_summary_unchanged": true,
+        "request_reissue_reset_or_relaunch_performed": false,
+        "new_automatic_continuation_authorized": false,
+        "unresolved_counted_as_terminal_invalid_zero": false,
+        "scope": "closed_stop_boundary_and_stored_proof_hash_review; no_full_raw_replay_of_398_or_quality_or_fullcompletion_claim"
       }
     }
   },
   "colab_full_laya": {
-    "status": "running_partial_closed_checkpoints_preserved",
+    "status": "checkpoint_transport_stopped_remote_worker_current_state_unverified",
     "gpu": "NVIDIA L4",
     "questions": 14530,
     "candidate_lists": 72650,
@@ -435,7 +464,7 @@
       "underlying_timeout_cause_proven": false
     },
     "checkpoint_transport_continuation_v3": {
-      "status": "direct_human_approved_running_first_new_triple_independently_verified",
+      "status": "closed_after_assignment_lookup_ConnectionError_no_automatic_continuation",
       "plan_sha256": "91441585a81a4480b2c15fc7eb97bf536b6b076bc6e85e4995b108659cdb6db5",
       "helper_sha256": "cb1c6d7046366a780ca498dc729d6bb1060a371f3eadd2dc07380b1bd5d07926",
       "wrapper_sha256": "4086e4b852f198a6b4ca678ddc68d203e40010f82ed41c424db33ea5ca574e5f",
@@ -469,11 +498,11 @@
       "approval_status": "direct_user_reply_approved",
       "executed": true,
       "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
-      "transport_observed_at_utc": "2026-10-16T14:53:16+00:00",
-      "verified_local_question_prefix": 3328,
-      "verified_local_chunks": 208,
-      "verified_local_lists": 16640,
-      "verified_local_pairs": 831953,
+      "transport_observed_at_utc": "2026-10-16T16:39:36.517492+00:00",
+      "verified_local_question_prefix": 3360,
+      "verified_local_chunks": 210,
+      "verified_local_lists": 16800,
+      "verified_local_pairs": 839953,
       "prior_sealed_files_unchanged": true,
       "gpu_restarted": false,
       "qa_restarted": false,
@@ -492,16 +521,37 @@
         "independent_closed_triple_validation_passed": true
       },
       "latest_incremental_local_verification": {
-        "observed_at_utc": "2026-10-16T14:53:16+00:00",
-        "control_sha256": "9b21a240fc99e0a7269126351b1789dddc4a7e8f8599026945ccbc021924844a",
-        "safe_observation_sha256": "131a1a03573cf69ae1f59c6d051a5ee2fe8a02739ce2edaaff77de791a439764",
-        "new_triples_verified": 11,
-        "new_candidate_pairs_verified": 44000,
+        "observed_at_utc": "2026-10-16T16:39:36.517492+00:00",
+        "safe_observation_sha256": "65d6adc2fc71fb1d7c78263fcb46cc132a13201b5c58ed16778f3b1ce6af23ef",
+        "new_triples_verified": 2,
+        "new_candidate_pairs_verified": 8000,
         "prior_148_file_stamps_unchanged": true,
-        "scope": "incremental_local_only_no_network_no_restart; new triples validated, earlier 148 file identity stamps unchanged; not a fresh byte rehash of the full prefix",
+        "scope": "Only newly committed triples after prior local prefix hashed; previous growing prefix not rehashed; full immutable proof-GET audit sequence checked; local process checks only; no remote/network/GPU/model/DB/evaluation/retry",
         "candidate_pair_count_scope": "actual_candidate_pairs_in_closed_triples_not_queries_times_250",
-        "final_failure_present": false
+        "final_failure_present": true,
+        "partial_files": 0,
+        "proof_audit_outcomes": {
+          "HTTP200": 166,
+          "HTTP404": 157,
+          "ReadTimeout": 15
+        },
+        "inflight_intent": false
+      },
+      "closed_failure": {
+        "elapsed_seconds": 0.03756887488998473,
+        "error_type": "ConnectionError",
+        "next_query": 3360,
+        "request_phase": "assignment_lookup",
+        "sha256": "f594b11b6f2cde40f404cc0f66b756366820ba6c8cfa064b599997e17e0d76f1",
+        "status": "transport_continuation_failed_no_retry",
+        "local_failure_file_mtime_utc": "2026-10-16T15:03:45.695477+00:00",
+        "underlying_remote_gpu_or_assignment_failure_proven": false,
+        "automatic_continuation_authorized": false,
+        "assignment_error_retried": false,
+        "independent_review_sha256": "65d6adc2fc71fb1d7c78263fcb46cc132a13201b5c58ed16778f3b1ce6af23ef"
       }
-    }
+    },
+    "remote_worker_current_state": "not_newly_observed_after_local_transport_failure",
+    "local_launcher_cli_process_present_at_failure_review": true
   }
 }
