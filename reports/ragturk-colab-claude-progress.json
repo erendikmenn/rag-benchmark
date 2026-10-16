@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_20_query_cap2048_pilot_complete_independent_audit_passed_full_dispatch_preparation",
+  "status": "full_l4_scoring_and_qa_running_with_reviewed_source_projection_continuation",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -73,7 +73,9 @@
     "other_unchanged_source_model_files": 49
   },
   "remaining": [
-    "review_and_launch_full_dev_and_test_runs_with_frozen_cap2048_protocol",
+    "complete_current_full_dev_and_test_runs",
+    "full_Laya_source_model_end_seal_and_checkpoint_audit",
+    "full_145300_alias_qa_metrics_and_paired_independent_audit",
     "subsequent_multimodal_execution"
   ],
   "whole_benchmark_eta": null,
@@ -111,7 +113,7 @@
     "pilot_warm_seconds": 98.10966100899975,
     "nominal_single_L4_scoring_hours": 19.998580806118003,
     "scope": "scoring_proxy_only_excludes_setup_transport_audits_length_mix_session_loss_and_CLI_quota",
-    "full_job_started": false
+    "full_job_started": true
   },
   "claude_transport_v3": {
     "protocol": "ragturk-claude-stream-outcomes-pilot-v3",
@@ -135,18 +137,104 @@
     "reported_output_tokens_max": 1992,
     "raw_rate_events_explicitly_overage_false": 192,
     "semantic_judge_used": false,
-    "full_run_promoted": false,
+    "full_run_promoted": true,
     "server_second_request_prevention_guaranteed": false,
     "api_fallback_enabled": false,
-    "v1_v2_outcomes_merged": false
+    "v1_v2_outcomes_merged": false,
+    "promotion_scope": "fixed_protocol_execution_after_closed_pilot_integrity_audit_not_quality_winner_selection"
   },
   "colab_runtime_transition": {
     "old_pilot_runtime": "absent_from_official_assignment_list",
     "loss_cause": "unknown",
     "pilot_artifacts_verified_on_Mac": true,
     "replacement_allocated": true,
-    "replacement_setup_only": true,
-    "full_inference_started": false,
-    "credit_purchase": false
+    "replacement_setup_only": false,
+    "full_inference_started": true,
+    "credit_purchase": false,
+    "actual_remote_worker_confirmed": true
+  },
+  "as_of_utc": "2026-10-16T10:21:58.923765+00:00",
+  "full_qa": {
+    "status": "versioned_continuation_running",
+    "model": "claude-haiku-5-5",
+    "transport": "first_party_Max_subscription_CLI",
+    "output_cap": 2048,
+    "concurrency": 3,
+    "max_new_requests_per_batch": 500,
+    "queries": 14530,
+    "declared_logical_conditions": 145300,
+    "dev_logical_conditions": 20000,
+    "test_logical_conditions": 125300,
+    "snapshot_requests": {
+      "ready": 70430,
+      "valid": 695
+    },
+    "snapshot_logical_conditions": {
+      "dev": {
+        "pending_laya": 9200,
+        "ready": 10094,
+        "valid": 706
+      },
+      "test": {
+        "pending_laya": 62650,
+        "ready": 62650
+      }
+    },
+    "retained_exact_prior_valid_requests": 95,
+    "plan_sha256": "630b478525f7eff72b7d38a314f42ed3a66db6e4ac23d70bb1dcb158005a2557",
+    "dispatcher_source_sha256": "3eae32cc4e327fa8de13e04c3d147eb5ffb523fe3e235faff45f4f9aa9d254ba",
+    "supervisor_plan_sha256": "8ffd59afda7f079c5decf7be039547b428d58f643cc3903369b8cc659518da70",
+    "supervisor_source_sha256": "5d9b3c1c3d778d482e68751058731268c51e313f22aeb80bd1c3808370e7f972",
+    "first_three_new_requests_closed_valid": true,
+    "automatic_retry": false,
+    "quality_evaluation_complete": false,
+    "final_Laya_closure_required": true,
+    "checkpoint_admission_status": "closed_checkpoints_admitted_after_exact_id_title_text_projection",
+    "snapshot_consistency": "single_SQLite_read_transaction",
+    "original_dispatcher_source_sha256": "a0e6610952f174e5d264edd37240f3f5dde4b96d50061f6fa4430b2c064799f5",
+    "original_supervisor_source_sha256": "baea17f912a70f0e513c1caf046ec812af8b58428ab622a0bf3cd7d2a32a61d6",
+    "original_supervisor_plan_sha256": "ef29947e884e1751c307222782f446de834de2355b942b1629996dc5211de18c",
+    "continuation_manifest_sha256": "579c3443a2b5298caf77f24e38c2e9f83d3d1c6fdfd120d2cad005aa1faf9639",
+    "same_ledger_plan_prompt_provider_and_cap": true,
+    "prior_requests_reset": false,
+    "first_500_new_requests": {
+      "closed_valid": 500,
+      "terminal_invalid": 0,
+      "batch_summary_sha256": "50d64bc2701f03e8bc613849e6f9508cb83b7380105d70de1caccd4e35143a8f",
+      "independent_review_sha256": "4b824a0f9d654549bc6b4765f6f4b1c81d58186186b14cb22eb1f2168c78c67e",
+      "elapsed_seconds": 585.7198359169997,
+      "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
+    },
+    "admitted_closed_checkpoint_blocks": 10,
+    "admitted_laya_question_prefix": 160
+  },
+  "colab_full_laya": {
+    "status": "running_partial_closed_checkpoints_preserved",
+    "gpu": "NVIDIA L4",
+    "questions": 14530,
+    "candidate_lists": 72650,
+    "candidate_pairs": 3632412,
+    "new_allocations_after_replacement": 0,
+    "plan_sha256": "dd8ba230ab69d39d8fc4977aea1ac23992e194eb7c88a602d660539ea1f67d63",
+    "worker_sha256": "645bed0cb22379b6cbd7ff7caab5ddae22ca7c919ade6695eb13ef69288225c3",
+    "closed_cpu_admission_sha256": "11fcf5289462bcfeb6ff11353d0e7fce7e5e37ea31be380cc1210d76062ee351",
+    "actual_runtime_proof_sha256": "b5000f2730a5620f7854d6f06f973892cf4cc09ca5b1c4d246a317e5ba9f442b",
+    "first_local_checkpoints": {
+      "questions": 32,
+      "candidate_lists": 160,
+      "candidate_pairs": 8000,
+      "archives": 2,
+      "sha256": [
+        "f8725804de39ab88f448cc55744d65e608ba5edb402b67c488eb4ba64426892e",
+        "3f623ea051dc06600ddb78cfc3b3bf40b03824509612738de6cebb245c9e34f7"
+      ],
+      "transport_verified": true,
+      "full_scoring_audit_complete": false,
+      "partial_independent_source_ranking_audit_sha256": "ad4e4241a7595deb9c0b91362e6e5932d8137c58abf8af33d2ac07f39aca2838",
+      "partial_independent_source_ranking_audit_passed_with_exact_projection": true
+    },
+    "automatic_gpu_retry": false,
+    "final_source_model_end_seals_pending": true,
+    "benchmark_complete": false
   }
 }
