@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "bounded_pilot_identified_transport_and_sdk_compatibility_issues",
+  "status": "full_20_query_diagnostic_pilot_complete_512_cap_rejected_30_percent_logical_outputs",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -9,7 +9,13 @@
     "queries": 14530,
     "dev_queries": 2000,
     "test_queries": 12530,
-    "methods": ["bm25", "bge", "embeddinggemma", "bm25_bge", "bm25_embeddinggemma"],
+    "methods": [
+      "bm25",
+      "bge",
+      "embeddinggemma",
+      "bm25_bge",
+      "bm25_embeddinggemma"
+    ],
     "candidate_lists": 72650,
     "blocks": 114,
     "bm25_lists_shorter_than_50": 4,
@@ -55,21 +61,57 @@
     "questions": 20,
     "lists_written": 100,
     "candidate_pairs_written": 5000,
-    "completion_accepted": false,
+    "completion_accepted": true,
     "failure_stage": "end_sealed_input_validation",
     "observed_changed_file": "tokenizer_config.json",
-    "sdk_normalization_forensic_audit": "pending",
+    "sdk_normalization_forensic_audit": "passed_root_and_independent_CPU_review",
     "new_model_retry": false,
-    "historical_MPS_equivalence_claimed": false
+    "historical_MPS_equivalence_claimed": false,
+    "original_worker_status": "failed_no_automatic_retry",
+    "acceptance_type": "separate_root_accepted_exact_sdk_normalization_artifact",
+    "root_acceptance_sha256": "1780e9eacfd907a39fe72695726827e3457fe24c9e8db4013d8e527003365b0b",
+    "other_unchanged_source_model_files": 49
   },
   "remaining": [
-    "review_first_stop_streaming_policy_for_CLI_internal_continuations",
-    "independent_Laya_SDK_normalization_and_closed_artifact_audit",
-    "complete_new_20_query_ten_condition_pilot_with_all_terminal_outcomes_counted",
+    "separate_explicit_2048_token_protocol_pilot_without_merging_512_outcomes",
     "full_dev_and_test_runs_with_frozen_protocol",
     "subsequent_multimodal_execution"
   ],
   "whole_benchmark_eta": null,
   "new_completed_main_matrix_conditions": 0,
-  "raw_content_published": false
+  "raw_content_published": false,
+  "claude_transport_v2": {
+    "protocol": "claude-cli-subscription-stream-outcomes-pilot-v2",
+    "model": "claude-haiku-5-5",
+    "concurrency": 3,
+    "requested_output_cap": 512,
+    "queries": 20,
+    "split": "dev",
+    "logical_conditions": 200,
+    "unique_requests": 192,
+    "valid_requests": 133,
+    "terminal_invalid_requests": 59,
+    "valid_logical_conditions": 140,
+    "terminal_invalid_logical_conditions": 60,
+    "terminal_invalid_logical_rate": 0.3,
+    "first_technical_requests_reused": 3,
+    "new_requests_in_completion": 189,
+    "completion_stage_wall_seconds": 183.76356020802632,
+    "wall_scope": "189_new_calls_plus_3_retained_outcomes_and_local_final_validation_excludes_initial_pilot_and_retrieval_Laya",
+    "independent_metric_audit_sha256": "84d8a59c8afdd4b856ea36a1ae81fd50e7c2bf56ad7dc427f1fa332d9401feb2",
+    "terminal_invalid_denominator_policy": "zero_answer_EM_and_F1_for_each_alias_no_retry",
+    "semantic_judge_used": false,
+    "full_run_promoted": false,
+    "server_second_request_prevention_guaranteed": false,
+    "api_fallback_enabled": false
+  },
+  "laya_full_scoring_estimate": {
+    "actual_pairs": 3632412,
+    "actual_lists": 72650,
+    "pilot_warm_pairs": 4950,
+    "pilot_warm_seconds": 98.10966100899975,
+    "nominal_single_L4_scoring_hours": 19.998580806118003,
+    "scope": "scoring_proxy_only_excludes_setup_transport_audits_length_mix_session_loss_and_CLI_quota",
+    "full_job_started": false
+  }
 }
