@@ -43,6 +43,8 @@ LLM tam kimliği **`claude-haiku-5-5`**, taşıma **Claude Code CLI 2.1.291 / ab
 
 Kullanıcı ek kullanımın kapalı olduğunu doğruladı. İlk gerçek teknik yanıtın kullanım kaydı da `isUsingOverage=false` gösterdi. CLI'ın dolar tahmini fatura değildir. Birden çok CLI ortak hesap limitini kullanır; paralellik kota oluşturmaz. Colab hakkı tükenirse uyumlu arama/reranker işleri Mac'te ayrı runtime kimliğiyle sürebilir. Claude abonelik kotası dolarsa cevap işi reseti bekler; ücretli API veya yerel üretici LLM'e otomatik geçiş yoktur.
 
+Tam veri koşusundaki ilk kapalı geçersiz cevap, 2.048 token sınırında `max_tokens` ile durduğu için bağımsız doğrulandı. Bu kayıt yeniden gönderilmez ve cevap EM/F1 hesabına sıfır katkıyla dahil edilir. Kaynak bütünlüğü veya faturalama koruması hatası değildir; 20 soruluk pilotun tüm cevaplarının geçerli olması, tam veride kesilme olmayacağını garanti etmez.
+
 Her gönderim yeni özel claim ve kapalı çıktı kanıtıyla kaydedilir. Başarısız/belirsiz istek otomatik tekrarlanmaz. Tamamlanan veri aynı istem kimliğiyle doğrulanmadan cache olarak kabul edilmez. Ham soru, kaynak metin, yanıt ve kimlik bilgileri GitHub'a konmaz. Yayımlanan sayılar, yöntemler, süreler ve hash kanıtları içerik taşımaz.
 
 ## Ölçüm sınırları
