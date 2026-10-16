@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_l4_scoring_and_qa_running_with_reviewed_source_projection_continuation",
+  "status": "full_qa_running_checkpoint_transport_stopped_after_proof_read_timeout",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T10:55:27.659565+00:00",
+  "as_of_utc": "2026-10-16T11:25:21.148980+00:00",
   "full_qa": {
     "status": "versioned_continuation_running",
     "model": "claude-haiku-5-5",
@@ -166,16 +166,18 @@
     "dev_logical_conditions": 20000,
     "test_logical_conditions": 125300,
     "snapshot_requests": {
-      "ready": 70198,
-      "terminal_invalid": 8,
-      "valid": 2187
+      "claimed": 3,
+      "ready": 70231,
+      "terminal_invalid": 18,
+      "valid": 3409
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "pending_laya": 7840,
-        "ready": 9927,
-        "terminal_invalid": 8,
-        "valid": 2225
+        "claimed": 3,
+        "pending_laya": 6480,
+        "ready": 10037,
+        "terminal_invalid": 19,
+        "valid": 3461
       },
       "test": {
         "pending_laya": 62650,
@@ -207,8 +209,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 27,
-    "admitted_laya_question_prefix": 432,
+    "admitted_closed_checkpoint_blocks": 44,
+    "admitted_laya_question_prefix": 704,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -232,7 +234,7 @@
     }
   },
   "colab_full_laya": {
-    "status": "running_partial_closed_checkpoints_preserved",
+    "status": "kernel_busy_at_readonly_probe_checkpoint_receiver_closed",
     "gpu": "NVIDIA L4",
     "questions": 14530,
     "candidate_lists": 72650,
@@ -281,8 +283,8 @@
       "continuation_failure_sha256": "606c85c76c03df9de48cfc97664ced7d2c9de6e564e3be31b1347c213cb84eb5"
     },
     "checkpoint_transport_continuation_v2": {
-      "status": "explicit_reviewed_continuation_running_first_new_triple_verified",
-      "transport_observed_at_utc": "2026-10-16T10:54:29.079303+00:00",
+      "status": "closed_after_proof_contents_ReadTimeout_no_automatic_retry",
+      "transport_observed_at_utc": "2026-10-16T11:16:01+00:00",
       "resumed_from_question_prefix": 368,
       "preserved_prior_chunks": 23,
       "preserved_prior_triple_files": 69,
@@ -302,15 +304,72 @@
       "first_new_archive_sha256": "b1ed0976844fdcded4069e04d97b6d1d29d0c3a5aa45f1491f5c8dcc24ee2311",
       "first_new_proof_sha256": "9037394cdccb215e6bd1e9de27f7caf50f16bab5cfab1e7340a6da231216ec22",
       "first_new_transport_receipt_sha256": "1d62b57e6b17af3412d84b92297e9b6c7a1081f42c6e1c71e64483db453688aa",
-      "verified_local_question_prefix": 480,
-      "verified_local_chunks": 30,
-      "verified_local_lists": 2400,
-      "verified_local_pairs": 120000,
+      "verified_local_question_prefix": 704,
+      "verified_local_chunks": 44,
+      "verified_local_lists": 3520,
+      "verified_local_pairs": 176000,
       "prior_files_unchanged": true,
       "automatic_retry": false,
       "gpu_restarted": false,
       "qa_restarted": false,
-      "full_scoring_audit_complete": false
+      "full_scoring_audit_complete": false,
+      "closed_failure": {
+        "sha256": "62b415b5b4c2b2e9755604d0f4b19ca69ad71b5a2aad453ff997d18ae2c206fb",
+        "request_phase": "proof_contents",
+        "error_type": "ReadTimeout",
+        "elapsed_seconds": 30.325174750061706,
+        "next_query": 704,
+        "automatic_retry": false,
+        "phase_scope": "combined_Contents_response_headers_and_body_underlying_cause_unproven"
+      }
+    },
+    "latest_readonly_transport_probe": {
+      "observed_at_utc": "2026-10-16T11:18:44.239152+00:00",
+      "evidence_sha256": "36ada998483cc9ce8fc207a0fb7de385fa7e8512d13b23b1da9e22ef1a23a3ca",
+      "exact_owned_assignment_present": true,
+      "kernel_state": "busy",
+      "contents_proof_http_status": 200,
+      "contents_proof_elapsed_seconds": 1.468008124968037,
+      "read_timeout_seconds_diagnostic_only": 90,
+      "response_exceeded_original_30_seconds": false,
+      "archive_transferred": false,
+      "receiver_restarted": false,
+      "underlying_timeout_cause_proven": false
+    },
+    "checkpoint_transport_proposal_v3": {
+      "status": "proposal_prepared_not_authorised_or_executed",
+      "plan_sha256": "91441585a81a4480b2c15fc7eb97bf536b6b076bc6e85e4995b108659cdb6db5",
+      "helper_sha256": "cb1c6d7046366a780ca498dc729d6bb1060a371f3eadd2dc07380b1bd5d07926",
+      "wrapper_sha256": "4086e4b852f198a6b4ca678ddc68d203e40010f82ed41c424db33ea5ca574e5f",
+      "start_query": 704,
+      "preserved_chunks": 44,
+      "prior_checkpoint_files": 132,
+      "total_sealed_files": 148,
+      "retry_policy": {
+        "absolute_fetch_seconds": 300,
+        "archive_retries": 0,
+        "assignment_retries": 0,
+        "backoff_seconds": [
+          2,
+          5
+        ],
+        "connect_timeout_seconds": 8,
+        "error_type": "ReadTimeout",
+        "max_total_gets": 3,
+        "model_calls": 0,
+        "phase": "proof_contents",
+        "read_timeout_seconds": 30
+      },
+      "max_hours": 24.0,
+      "automatic_continuation_retry": false,
+      "execution_requires_direct_human_approval": true,
+      "human_approval_created": false,
+      "new_execution_output_exists": false,
+      "root_cpu_tests_passed": 44,
+      "independent_review_passed": true,
+      "independent_review_sha256": "20aee9c997810396e8901edf53a0b589719c09ad6fbb64305b3142fa7fbce0cf",
+      "approval_status": "pending_direct_user_reply",
+      "executed": false
     }
   }
 }
