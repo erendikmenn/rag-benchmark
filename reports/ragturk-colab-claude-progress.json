@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_qa_running_checkpoint_transport_stopped_after_proof_read_timeout",
+  "status": "full_qa_and_human_approved_checkpoint_transport_running",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T11:25:21.148980+00:00",
+  "as_of_utc": "2026-10-16T11:47:58.729439+00:00",
   "full_qa": {
     "status": "versioned_continuation_running",
     "model": "claude-haiku-5-5",
@@ -167,17 +167,17 @@
     "test_logical_conditions": 125300,
     "snapshot_requests": {
       "claimed": 3,
-      "ready": 70231,
-      "terminal_invalid": 18,
-      "valid": 3409
+      "ready": 69102,
+      "terminal_invalid": 22,
+      "valid": 4534
     },
     "snapshot_logical_conditions": {
       "dev": {
         "claimed": 3,
         "pending_laya": 6480,
-        "ready": 10037,
-        "terminal_invalid": 19,
-        "valid": 3461
+        "ready": 8886,
+        "terminal_invalid": 23,
+        "valid": 4608
       },
       "test": {
         "pending_laya": 62650,
@@ -234,7 +234,7 @@
     }
   },
   "colab_full_laya": {
-    "status": "kernel_busy_at_readonly_probe_checkpoint_receiver_closed",
+    "status": "running_partial_closed_checkpoints_preserved",
     "gpu": "NVIDIA L4",
     "questions": 14530,
     "candidate_lists": 72650,
@@ -336,8 +336,8 @@
       "receiver_restarted": false,
       "underlying_timeout_cause_proven": false
     },
-    "checkpoint_transport_proposal_v3": {
-      "status": "proposal_prepared_not_authorised_or_executed",
+    "checkpoint_transport_continuation_v3": {
+      "status": "direct_human_approved_running_first_new_triple_independently_verified",
       "plan_sha256": "91441585a81a4480b2c15fc7eb97bf536b6b076bc6e85e4995b108659cdb6db5",
       "helper_sha256": "cb1c6d7046366a780ca498dc729d6bb1060a371f3eadd2dc07380b1bd5d07926",
       "wrapper_sha256": "4086e4b852f198a6b4ca678ddc68d203e40010f82ed41c424db33ea5ca574e5f",
@@ -363,13 +363,36 @@
       "max_hours": 24.0,
       "automatic_continuation_retry": false,
       "execution_requires_direct_human_approval": true,
-      "human_approval_created": false,
-      "new_execution_output_exists": false,
+      "human_approval_created": true,
+      "new_execution_output_exists": true,
       "root_cpu_tests_passed": 44,
       "independent_review_passed": true,
       "independent_review_sha256": "20aee9c997810396e8901edf53a0b589719c09ad6fbb64305b3142fa7fbce0cf",
-      "approval_status": "pending_direct_user_reply",
-      "executed": false
+      "approval_status": "direct_user_reply_approved",
+      "executed": true,
+      "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
+      "transport_observed_at_utc": "2026-10-16T11:48:31.178561+00:00",
+      "verified_local_question_prefix": 848,
+      "verified_local_chunks": 53,
+      "verified_local_lists": 4240,
+      "verified_local_pairs": 212000,
+      "prior_sealed_files_unchanged": true,
+      "gpu_restarted": false,
+      "qa_restarted": false,
+      "full_scoring_audit_complete": false,
+      "startup_independent_review_sha256": "7d8a583443c47d1ded9b10f0fcb49f5d3cd0c196c431cec372f0979c304f8487",
+      "first_new_checkpoint": {
+        "start_query": 704,
+        "stop_query": 720,
+        "archive_sha256": "33ace2cebe87886c120cfae438056b1fe5c90776716fc1ddeedf3a1786782a0e",
+        "proof_sha256": "94ab731bf232fb5962e6e985a0429b74a0fe1ea9fe93c2109bae45461e5effc5",
+        "transport_receipt_sha256": "9b63070bace4e60447fcdd05ce193b34cc59be6d2bc0b5928724e8572ab2eed1",
+        "intent_sha256": "1a73c8e4bf38263e89ed0a1b1646ebbbc2e35b8ee0a1ca451ed567e4deede2c3",
+        "outcome_sha256": "d96027a013d7316bf5f2cf93e63f0918b3347eaa7e18c9c6a16e4137a0e6057b",
+        "proof_get_attempts": 1,
+        "proof_http_status": 200,
+        "independent_closed_triple_validation_passed": true
+      }
     }
   }
 }
