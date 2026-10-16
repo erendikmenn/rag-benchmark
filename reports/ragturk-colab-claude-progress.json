@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_qa_stopped_requires_review_checkpoint_transport_running",
+  "status": "full_qa_ready_only_continuation_running_with_immutable_unresolved_requests",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -153,9 +153,9 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T14:07:39.957870+00:00",
+  "as_of_utc": "2026-10-16T14:32:03.221591+00:00",
   "full_qa": {
-    "status": "stopped_requires_review",
+    "status": "running_never_sent_ready_requests_with_three_immutable_unresolved_requests",
     "model": "claude-haiku-5-5",
     "transport": "first_party_Max_subscription_CLI",
     "output_cap": 2048,
@@ -166,30 +166,30 @@
     "dev_logical_conditions": 20000,
     "test_logical_conditions": 125300,
     "snapshot_requests": {
-      "claimed": 2,
+      "claimed": 4,
       "fatal": 1,
-      "ready": 72828,
+      "ready": 74473,
       "terminal_invalid": 40,
-      "valid": 9431
+      "valid": 9485
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "claimed": 2,
+        "claimed": 4,
         "fatal": 1,
-        "ready": 10237,
+        "ready": 10178,
         "terminal_invalid": 41,
-        "valid": 9719
+        "valid": 9776
       },
       "test": {
-        "pending_laya": 59450,
-        "ready": 65850
+        "pending_laya": 57610,
+        "ready": 67690
       }
     },
     "retained_exact_prior_valid_requests": 95,
     "plan_sha256": "630b478525f7eff72b7d38a314f42ed3a66db6e4ac23d70bb1dcb158005a2557",
-    "dispatcher_source_sha256": "3eae32cc4e327fa8de13e04c3d147eb5ffb523fe3e235faff45f4f9aa9d254ba",
-    "supervisor_plan_sha256": "8ffd59afda7f079c5decf7be039547b428d58f643cc3903369b8cc659518da70",
-    "supervisor_source_sha256": "5d9b3c1c3d778d482e68751058731268c51e313f22aeb80bd1c3808370e7f972",
+    "dispatcher_source_sha256": "155ae79a6e2456a57c683f589d40616ed108b0628352ae1a2a689ca4d6d32b39",
+    "supervisor_plan_sha256": "517698229a64624598856929cee86025d378cdd9dde900df481689ee359de09f",
+    "supervisor_source_sha256": "39afbaa78671deada99ad7a0af1dc0ae0c4853202d00c8fe694041609bc50959",
     "first_three_new_requests_closed_valid": true,
     "automatic_retry": false,
     "quality_evaluation_complete": false,
@@ -210,8 +210,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 165,
-    "admitted_laya_question_prefix": 2640,
+    "admitted_closed_checkpoint_blocks": 188,
+    "admitted_laya_question_prefix": 3008,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -235,12 +235,12 @@
     },
     "snapshot_admitted_laya_queries_by_split": {
       "dev": 2000,
-      "test": 640
+      "test": 1008
     },
     "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
-    "snapshot_logical_closed": 9760,
+    "snapshot_logical_closed": 9817,
     "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
-    "snapshot_evidence_sha256": "37a183824b1250a8aa284c4c2c7591f5f9929d7ada0c5d0480d850e71e5dd6d0",
+    "snapshot_evidence_sha256": "7fdb38748a6d095e499e31133a195743a5cbc237bf427d3653b27bbaa675c5f6",
     "stopped_batch_review": {
       "observed_at_utc": "2026-10-16T14:07:39.957870+00:00",
       "classification": "synthetic_server_error_api_error_rejected_by_stream_guard",
@@ -254,9 +254,53 @@
       "quota_reset_time_proven": false,
       "underlying_server_error_cause_proven": false,
       "request_retry_or_reset_performed": false,
-      "continuation_status": "ready_only_versioned_proposal_in_preparation_not_executed",
+      "continuation_status": "reviewed_ready_only_v3_started_once; prior_dispatched_failures_preserved_without_reissue",
       "unresolved_requests_counted_as_zero_scored_terminal_invalid": false,
       "full_completion_blocked": true
+    },
+    "previous_v2_dispatcher_source_sha256": "3eae32cc4e327fa8de13e04c3d147eb5ffb523fe3e235faff45f4f9aa9d254ba",
+    "previous_v2_supervisor_source_sha256": "5d9b3c1c3d778d482e68751058731268c51e313f22aeb80bd1c3808370e7f972",
+    "previous_v2_supervisor_plan_sha256": "8ffd59afda7f079c5decf7be039547b428d58f643cc3903369b8cc659518da70",
+    "ready_only_continuation": {
+      "status": "started_first_three_new_closed_outcomes_independently_verified",
+      "exceptions_manifest_sha256": "713ec377c6cde17887dfeeebff87a21b82dd10f73f17404e01f6736a609fae2b",
+      "independent_cpu_review_sha256": "7d5e8f025c0f1d02ece29ba605b5a58be9da041c851616cb29bd6daa1eac285e",
+      "root_boundary_review_sha256": "4e0fd00ae5c1997477fe58746a14c0f3a9fcd867d90c8c18f5bba8fbaff6889a",
+      "final_readonly_preflight_sha256": "781a5f0b31cf6f43a3d3038b84b560a0929e2098d41bd3fb579f48a95bd0fec0",
+      "focused_cpu_tests_passed": 47,
+      "prior_closed_outcomes_revalidated": 9471,
+      "prior_closed_valid": 9431,
+      "prior_closed_terminal_invalid": 40,
+      "old_failed_batch_selection_counts": {
+        "selected": 500,
+        "worker_dispatch_traces": 279,
+        "selected_never_sent": 221
+      },
+      "batch_selection_alone_is_dispatch_evidence": false,
+      "eligibility": "pristine_ready_with_no_prior_reservation_worker_input_or_receipt_trace",
+      "immutable_prior_fatal_unique_requests": 1,
+      "immutable_prior_interrupted_claimed_unique_requests": 2,
+      "snapshot_quarantined_logical_conditions": 3,
+      "prior_batch_and_three_request_tuples_and_artifacts_unchanged": true,
+      "prior_requests_reissued_or_reset": false,
+      "unresolved_requests_counted_as_terminal_invalid_zero": false,
+      "full_completion_blocked": true,
+      "original_deadline_utc": "2026-10-18T10:20:04.110815+00:00",
+      "original_48_hour_budget_extended": false,
+      "new_failure_automatic_continuation": false,
+      "first_three_new_closed_outcomes": {
+        "valid": 3,
+        "terminal_invalid": 0,
+        "strict_stream_request_provider_cap_replay_passed": true,
+        "raw_usage_events_reported_overage_false": 3,
+        "independent_review_sha256": "56363f5ef91d42cbd20e3ee12607fed15f68aa191034280b8d03bb38b1e01542",
+        "quality_evaluated": false
+      },
+      "snapshot_new_batch_unique_states": {
+        "claimed": 2,
+        "valid": 54
+      },
+      "startup_scope": "first_three_new_closed_outcomes_only; later_live_counts_are_single_transaction_snapshot_not_full_independent_outcome_audit"
     }
   },
   "colab_full_laya": {
@@ -397,11 +441,11 @@
       "approval_status": "direct_user_reply_approved",
       "executed": true,
       "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
-      "transport_observed_at_utc": "2026-10-16T14:07:47+00:00",
-      "verified_local_question_prefix": 2800,
-      "verified_local_chunks": 175,
-      "verified_local_lists": 14000,
-      "verified_local_pairs": 699953,
+      "transport_observed_at_utc": "2026-10-16T14:23:28+00:00",
+      "verified_local_question_prefix": 2976,
+      "verified_local_chunks": 186,
+      "verified_local_lists": 14880,
+      "verified_local_pairs": 743953,
       "prior_sealed_files_unchanged": true,
       "gpu_restarted": false,
       "qa_restarted": false,
@@ -420,9 +464,9 @@
         "independent_closed_triple_validation_passed": true
       },
       "latest_incremental_local_verification": {
-        "observed_at_utc": "2026-10-16T14:07:47+00:00",
-        "control_sha256": "c9b16fd8f0f53c76bdfde14c89c9384da097f18e50fac5580bc7523b970c60ec",
-        "safe_observation_sha256": "034825507e67f2ace3d08529cc2ef5a6bdd89c6e603b34cca5900f654f57fe89",
+        "observed_at_utc": "2026-10-16T14:23:28+00:00",
+        "control_sha256": "5ce8c7e6da2060fc7554622aabb43e1ac1cf335a245619d3d6e3547cbba9d942",
+        "safe_observation_sha256": "73865437852e09a7b622210024a3e5daa3f952e1b1ebe79c00672b1c3e61e084",
         "new_triples_verified": 11,
         "new_candidate_pairs_verified": 44000,
         "prior_148_file_stamps_unchanged": true,
