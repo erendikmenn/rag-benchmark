@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "observed_at": "2026-10-15T22:15:54.507120+00:00",
-  "status": "G_E_completed_verified_J_running",
+  "observed_at": "2026-10-16T01:51:22.503593+00:00",
+  "status": "G_E_J_BM25_completed_verified_storage_preparation_running",
   "scope": "LaSCo source preparation only; no retrieval, reranker, answer generation or benchmark evaluation",
   "dataset_identity": "44bf0b956376eadb94b541ff7311c33ae1b94c2da1c9d012cbf147892e4c544c",
   "caption_audit_report": "lasco-haiku-caption-independent-audit.json",
   "native_N_vectors_retained": 69863,
   "native_N_new_encoding": 0,
   "new_G_E_J_vectors_planned": 209589,
-  "new_G_E_J_vectors_completed_verified": 139726,
+  "new_G_E_J_vectors_completed_verified": 209589,
   "G": {
     "status": "completed_independently_verified",
     "model": "BGE-M3",
@@ -137,15 +137,146 @@
       "Artifact integrity and normalization do not measure semantic caption or retrieval quality. J production files were not inspected."
     ]
   },
-  "J": "running",
-  "BM25": "pending",
+  "J": {
+    "status": "completed_independently_verified",
+    "model": "EmbeddingGemma 2, joint image/text mode",
+    "dimension": 768,
+    "dtype": "float32",
+    "result_sha256": "809e390d668904a377db60e57b69b088742d7b84667ca02abec743b0ed8472fe",
+    "canonical_preparation_identity": "796d58a39c4ac8fbf2e63727370bca68e9393ae880a88aa237a68d4d1c550e11",
+    "independent_private_review_sha256": "bb546df19833995b6597fc549e3dd0c7884e48d0b9904f69369db4bb411a6ed8",
+    "roles": [
+      {
+        "role": "document",
+        "rows": 39826,
+        "dimension": 768,
+        "dtype": "float32",
+        "blocks": 312,
+        "artifact_bytes_verified": 122385408,
+        "logical_fp32_sha256": "ead075faa6c6daa9e95ea7e9e80777e55143294bc09ba4c3d8307b73d21cd414",
+        "ordered_ids_sha256": "ac3f6bb542abb181107f6dbe00a91f167375f0c01c918f52ff7b4f58480b7f38",
+        "norm_min": 0.999999870448432,
+        "norm_max": 1.0000001536995609,
+        "finite_normalized": true,
+        "recorded_new_rows": 39826,
+        "recorded_cache_rows": 0,
+        "producer_recorded_inference_seconds": 7590.65634787851,
+        "timing_scope": "producer receipt for this role; unchanged, not an independent timing measurement"
+      },
+      {
+        "role": "query",
+        "rows": 30037,
+        "dimension": 768,
+        "dtype": "float32",
+        "blocks": 235,
+        "artifact_bytes_verified": 92303744,
+        "logical_fp32_sha256": "6653385f29a9b290215eb5065c7ba344c0379772d084b2a4cb96447e6e53552a",
+        "ordered_ids_sha256": "eaaf896aad229502384f9c4b4a3a9b406c8b647ca7fd1cd7aa702cd717a09c17",
+        "norm_min": 0.9999998867507045,
+        "norm_max": 1.0000001448456222,
+        "finite_normalized": true,
+        "recorded_new_rows": 30037,
+        "recorded_cache_rows": 0,
+        "producer_recorded_inference_seconds": 5488.507625545375,
+        "timing_scope": "producer receipt for this role; unchanged, not an independent timing measurement"
+      }
+    ],
+    "checks": {
+      "completed_child_closed": true,
+      "complete_receipts": true,
+      "spec_source_metadata_binding": true,
+      "row_order_identity": true,
+      "independently_reconstructed_set_ids": true,
+      "all_vector_block_sha_size_shape_dtype_finiteness_norm": true
+    },
+    "source_metadata_files_sha_verified": 5,
+    "implementation_files_sha_verified": 57,
+    "producer_elapsed_seconds_after_initial_validation": 13244.73043995793,
+    "producer_reported_role_encoding_seconds": {
+      "document": 7590.65634787851,
+      "query": 5488.507625545375
+    },
+    "timing_scope": "Recorded producer elapsed time begins after initial seal/dataset/adapter/cache validation; it is not end-to-end preparation or database time. Role durations are producer cached_encode measurements.",
+    "producer_adapter_diagnostic_aggregates": {
+      "document": {
+        "status": "complete",
+        "total_rows": 39826,
+        "reported_rows": 39826,
+        "missing_rows": 0,
+        "expanded_tokens_max": 643,
+        "observed_truncated_text_items": 0,
+        "original_tokens_total": null,
+        "retained_tokens_total": null,
+        "truncated_text_items": null
+      },
+      "query": {
+        "status": "complete",
+        "total_rows": 30037,
+        "reported_rows": 30037,
+        "missing_rows": 0,
+        "expanded_tokens_max": 303,
+        "observed_truncated_text_items": 0,
+        "original_tokens_total": null,
+        "retained_tokens_total": null,
+        "truncated_text_items": null
+      }
+    },
+    "diagnostic_scope": "Producer records cover all rows; zero observed truncation reports do not turn null original/retained token totals or null truncated-text totals into measured zero. Independent artifact review binds the receipt without rerunning tokenization or inference.",
+    "independent_review_limitations": [
+      "No source media or model-weight seal rescan; source identity/media lineage relies on the pinned prior full audit.",
+      "Recorded adapter identity and producer usage are bound to the frozen spec; no new model/tokenizer instantiation or numerical re-encoding.",
+      "Artifact integrity and normalization do not measure semantic caption or retrieval quality. No production pipeline actions were dispatched."
+    ]
+  },
+  "BM25": {
+    "protocol": "multimodal-native-bm25-index-only-v1",
+    "prepared_sha256": "ae2116fa5b826cac1fa8c963a7103f5b2fd9865592e10dc208ca59e80562e6ac",
+    "identity": "3db837302e3db226ee3489c86c62c905d498aab765dd54b133f6c690729e32b4",
+    "dataset_identity": "44bf0b956376eadb94b541ff7311c33ae1b94c2da1c9d012cbf147892e4c544c",
+    "documents": 39826,
+    "payload_files": 7,
+    "total_files": 8,
+    "payload_bytes_verified": 25208912,
+    "item_order_sha256": "ac3f6bb542abb181107f6dbe00a91f167375f0c01c918f52ff7b4f58480b7f38",
+    "document_lengths_sha256": "e9b302ce6be777ff13a6452e75f9003f8d7c4e868223f3f3fe3201ecb18a6529",
+    "corpus_hash": "26fea59b7665589c9cf7d269ebad900561a5ca02f8b8d170e264facc012c6545",
+    "source_metadata_files_sha_verified": 5,
+    "implementation_files_sha_verified": 5,
+    "native_csc": {
+      "scores": 2943429,
+      "columns": 30252,
+      "score_dtype": "float32",
+      "indices_dtype": "int32",
+      "pointer_dtype": "int64",
+      "empty_token_sentinel": true
+    },
+    "checks": {
+      "closed_coordinator_advanced": true,
+      "protocol_identity_settings": true,
+      "source_metadata_and_implementation_sha": true,
+      "exact_7_payloads_sha_size": true,
+      "source_document_order_and_token_lengths": true,
+      "ready_corpus_hash": true,
+      "source_identity_from_pinned_asset_metadata": true,
+      "csc_shape_dtype_finiteness_bounds": true,
+      "vocabulary_column_and_empty_sentinel": true,
+      "preparation_only_counters": true
+    },
+    "limitations": [
+      "No retrieval, ranking, evaluation, or retrieval-quality claim.",
+      "No new BM25 build or producer helper execution; structural arrays were inspected directly. Producer recorded loadback verification was not rerun.",
+      "Source identity reconstructed from unchanged source files and pinned asset hash metadata; source image bytes were not rescanned."
+    ],
+    "status": "completed_independently_verified",
+    "independent_private_review_sha256": "ed67dd4eb5b911a814d82cc8e750655585694107e8a8e98f7ec52b6b75075545"
+  },
   "database_import": "pending",
   "database_ready": false,
   "final_readback_and_dump_restore": "pending",
   "benchmark_runs": 0,
   "independent_review_new_model_calls": 0,
   "limitations": [
-    "G/E completion does not establish J, BM25, PostgreSQL readiness or benchmark accuracy.",
+    "G/E/J artifact completion does not establish PostgreSQL readiness or benchmark accuracy.",
     "Normal-stop captions and normalized vectors are not human semantic correctness measurements.",
     "Independent artifact checks do not repeat neural encoding; source-media lineage relies on the pinned prior full audit."
   ]

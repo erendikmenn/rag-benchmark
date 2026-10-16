@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "observed_at": "2026-10-15T22:15:54.507120+00:00",
+  "observed_at": "2026-10-16T01:49:46.070335+00:00",
   "status": "captions_independently_verified_post_audit_preparation_running",
   "scope": "source-only API captions, embeddings, BM25 and PostgreSQL preparation; no benchmark evaluation",
   "dataset": "lasco-validation",
@@ -107,7 +107,7 @@
     "prior_preserved_rows": 39810,
     "final_result_sha256": "529553338d0be1935ca7e12cc7721dfce13b68327bb5edd1fa8f02172984bac8",
     "final_plan_sha256": "44eaa92621ac0d0b55170360449a185c7feb646fa32644dae0b52a699ad5b201",
-    "workflow_phase": "embedding_J"
+    "workflow_phase": "assemble_storage"
   },
   "planned_after_closed_policy": {
     "status": "executed_closed_successfully",
@@ -218,14 +218,14 @@
     "caption_regeneration_required": false,
     "old_claims_preserved": true,
     "failure_resolved": true,
-    "current_phase": "embedding_J",
+    "current_phase": "assemble_storage",
     "recovery_report": "lasco-haiku-post-audit-recovery.json",
-    "recovery_report_sha256": "1c06894bfedb11e5c5b49732eb2015405f18069e66a57bc1c6356047f23a1166",
+    "recovery_report_sha256": "f3282e0a9db40b7eefc8e848c40c69b0a08dbcc7413e04954c91acfa4616ed8a",
     "original_failed_sequence_embedding_calls": 0,
     "new_embedding_calls_available": false,
-    "new_completed_embedding_rows": 139726,
+    "new_completed_embedding_rows": 209589,
     "embedding_progress_report": "lasco-haiku-embedding-progress.json",
-    "embedding_progress_report_sha256": "4217e639bc67acf711c21919eaf9c1b9b6cc505b87a83a4926ae966a45be3a95",
-    "completed_embedding_artifact_review": "G_E_passed_139726_rows"
+    "embedding_progress_report_sha256": "401c963ed18c43dd5f262d2faeb541d085ff0900ccf6f6b1e56029a12dafaeac",
+    "completed_embedding_artifact_review": "G_E_J_passed_209589_rows"
   }
 }
