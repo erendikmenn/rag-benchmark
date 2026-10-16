@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T10:26:22.919874+00:00",
+  "as_of_utc": "2026-10-16T10:34:36.332919+00:00",
   "full_qa": {
     "status": "versioned_continuation_running",
     "model": "claude-haiku-5-5",
@@ -167,17 +167,17 @@
     "test_logical_conditions": 125300,
     "snapshot_requests": {
       "claimed": 3,
-      "ready": 70204,
-      "terminal_invalid": 1,
-      "valid": 917
+      "ready": 70049,
+      "terminal_invalid": 2,
+      "valid": 1296
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "claimed": 4,
-        "pending_laya": 9200,
-        "ready": 9861,
-        "terminal_invalid": 1,
-        "valid": 934
+        "claimed": 3,
+        "pending_laya": 8960,
+        "ready": 9715,
+        "terminal_invalid": 2,
+        "valid": 1320
       },
       "test": {
         "pending_laya": 62650,
@@ -209,8 +209,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 10,
-    "admitted_laya_question_prefix": 160,
+    "admitted_closed_checkpoint_blocks": 13,
+    "admitted_laya_question_prefix": 208,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -220,6 +220,17 @@
       "billing_guard_failure": false,
       "independent_review_sha256": "251cc5079c661ec082cc2c28d7c4f98fa89d567b301f53fc1b036283ffde5cd8",
       "scope": "first_closed_terminal_invalid_only_not_entire_active_batch"
+    },
+    "first_500_request_batch_after_projection_fix": {
+      "new_requests": 500,
+      "valid_requests": 498,
+      "terminal_invalid_requests": 2,
+      "terminal_invalid_reason": "terminal_stop_max_tokens",
+      "requested_output_cap": 2048,
+      "automatic_retry": false,
+      "old_500_receipt_seals_unchanged": true,
+      "independent_review_sha256": "3a0cc67a6738a3bd8248a9c779fc2111eb5d0149c962dd11cb01519bbb181b0f",
+      "quality_evaluated": false
     }
   },
   "colab_full_laya": {
@@ -249,6 +260,26 @@
     },
     "automatic_gpu_retry": false,
     "final_source_model_end_seals_pending": true,
-    "benchmark_complete": false
+    "benchmark_complete": false,
+    "checkpoint_transport_continuation": {
+      "status": "explicit_reviewed_continuation_running",
+      "previous_stop": "ReadTimeout",
+      "previous_preserved_queries": 208,
+      "previous_closed_chunks": 13,
+      "failure_record_sha256": "328fe7ef17e25b314eb18845f3f329a6ad7c2adf35e4c6646cb564ba259d9ec6",
+      "failure_request_phase": "not_recorded",
+      "old_artifacts_and_failure_preserved": true,
+      "unchanged_fetch_helper_sha256": "94531c74e2af183429217a388b4aea9e8ab32c29c5f00e3cdc4de314ac6cefba",
+      "continuation_wrapper_sha256": "38191c0c50b082c94de1fef3fa8b03e47a80886b09207f5a7d0dfafc7ed0edaf",
+      "continuation_plan_sha256": "b1593d7ebcd9034fac0d57a531ce1f065a2c677f0abd0314ee07432d7b60516f",
+      "first_new_archive_sha256": "b4ca3c5d669c6aa9c072b580988e09625ac40500d23f16fb5ac2c08621899d25",
+      "verified_local_question_prefix": 304,
+      "verified_local_lists": 1520,
+      "verified_local_pairs": 76000,
+      "verified_local_chunks": 19,
+      "automatic_retry": false,
+      "gpu_restarted": false,
+      "full_scoring_audit_complete": false
+    }
   }
 }
