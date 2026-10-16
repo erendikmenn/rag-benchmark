@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-16",
-  "status": "full_qa_and_human_approved_checkpoint_transport_running",
+  "status": "full_qa_stopped_requires_review_checkpoint_transport_running",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -153,9 +153,9 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T13:07:17.587347+00:00",
+  "as_of_utc": "2026-10-16T14:07:39.957870+00:00",
   "full_qa": {
-    "status": "versioned_continuation_running",
+    "status": "stopped_requires_review",
     "model": "claude-haiku-5-5",
     "transport": "first_party_Max_subscription_CLI",
     "output_cap": 2048,
@@ -166,21 +166,23 @@
     "dev_logical_conditions": 20000,
     "test_logical_conditions": 125300,
     "snapshot_requests": {
-      "claimed": 3,
-      "ready": 71985,
-      "terminal_invalid": 39,
-      "valid": 7376
+      "claimed": 2,
+      "fatal": 1,
+      "ready": 72828,
+      "terminal_invalid": 40,
+      "valid": 9431
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "claimed": 3,
-        "ready": 12407,
-        "terminal_invalid": 40,
-        "valid": 7550
+        "claimed": 2,
+        "fatal": 1,
+        "ready": 10237,
+        "terminal_invalid": 41,
+        "valid": 9719
       },
       "test": {
-        "pending_laya": 62570,
-        "ready": 62730
+        "pending_laya": 59450,
+        "ready": 65850
       }
     },
     "retained_exact_prior_valid_requests": 95,
@@ -208,8 +210,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 126,
-    "admitted_laya_question_prefix": 2016,
+    "admitted_closed_checkpoint_blocks": 165,
+    "admitted_laya_question_prefix": 2640,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -233,12 +235,29 @@
     },
     "snapshot_admitted_laya_queries_by_split": {
       "dev": 2000,
-      "test": 16
+      "test": 640
     },
     "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
-    "snapshot_logical_closed": 7590,
+    "snapshot_logical_closed": 9760,
     "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
-    "snapshot_evidence_sha256": "27a107a64ebe4cbb5893a7b17b4ec2e73aec2faee322eb7cb6953e2daadf456d"
+    "snapshot_evidence_sha256": "37a183824b1250a8aa284c4c2c7591f5f9929d7ada0c5d0480d850e71e5dd6d0",
+    "stopped_batch_review": {
+      "observed_at_utc": "2026-10-16T14:07:39.957870+00:00",
+      "classification": "synthetic_server_error_api_error_rejected_by_stream_guard",
+      "independent_review_sha256": "f1ba54515fe38ca19c5a0146b1926b1fec918bac98076fb25eb2bbc0b6df39f6",
+      "supervisor_failure_sha256": "cf0932d808be3098d2f3eb13e50a43066303af1d805459f5264ab9d744023ef2",
+      "batch_failure_sha256": "05f1bd41a6af0146f8bed0f8fccf272ed8beeebd9d6774d1f94b3218f99ddf03",
+      "last_batch_valid_preserved": 276,
+      "fatal_requests": 1,
+      "interrupted_unsettled_claims": 2,
+      "quota_exhaustion_proven": false,
+      "quota_reset_time_proven": false,
+      "underlying_server_error_cause_proven": false,
+      "request_retry_or_reset_performed": false,
+      "continuation_status": "ready_only_versioned_proposal_in_preparation_not_executed",
+      "unresolved_requests_counted_as_zero_scored_terminal_invalid": false,
+      "full_completion_blocked": true
+    }
   },
   "colab_full_laya": {
     "status": "running_partial_closed_checkpoints_preserved",
@@ -378,11 +397,11 @@
       "approval_status": "direct_user_reply_approved",
       "executed": true,
       "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
-      "transport_observed_at_utc": "2026-10-16T13:08:01+00:00",
-      "verified_local_question_prefix": 2096,
-      "verified_local_chunks": 131,
-      "verified_local_lists": 10480,
-      "verified_local_pairs": 523953,
+      "transport_observed_at_utc": "2026-10-16T14:07:47+00:00",
+      "verified_local_question_prefix": 2800,
+      "verified_local_chunks": 175,
+      "verified_local_lists": 14000,
+      "verified_local_pairs": 699953,
       "prior_sealed_files_unchanged": true,
       "gpu_restarted": false,
       "qa_restarted": false,
@@ -401,9 +420,9 @@
         "independent_closed_triple_validation_passed": true
       },
       "latest_incremental_local_verification": {
-        "observed_at_utc": "2026-10-16T13:08:01+00:00",
-        "control_sha256": "0718ba84995f5b1d284e5b9a649a2763107524d34c4344703c6e225e6a2e0c2a",
-        "safe_observation_sha256": "b028a0d6cbe0bce49b108a0acb93a707284c23ac875d94cc4bb2b685087b9043",
+        "observed_at_utc": "2026-10-16T14:07:47+00:00",
+        "control_sha256": "c9b16fd8f0f53c76bdfde14c89c9384da097f18e50fac5580bc7523b970c60ec",
+        "safe_observation_sha256": "034825507e67f2ace3d08529cc2ef5a6bdd89c6e603b34cca5900f654f57fe89",
         "new_triples_verified": 11,
         "new_candidate_pairs_verified": 44000,
         "prior_148_file_stamps_unchanged": true,
