@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T10:34:36.332919+00:00",
+  "as_of_utc": "2026-10-16T10:55:27.659565+00:00",
   "full_qa": {
     "status": "versioned_continuation_running",
     "model": "claude-haiku-5-5",
@@ -166,18 +166,16 @@
     "dev_logical_conditions": 20000,
     "test_logical_conditions": 125300,
     "snapshot_requests": {
-      "claimed": 3,
-      "ready": 70049,
-      "terminal_invalid": 2,
-      "valid": 1296
+      "ready": 70198,
+      "terminal_invalid": 8,
+      "valid": 2187
     },
     "snapshot_logical_conditions": {
       "dev": {
-        "claimed": 3,
-        "pending_laya": 8960,
-        "ready": 9715,
-        "terminal_invalid": 2,
-        "valid": 1320
+        "pending_laya": 7840,
+        "ready": 9927,
+        "terminal_invalid": 8,
+        "valid": 2225
       },
       "test": {
         "pending_laya": 62650,
@@ -209,8 +207,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 13,
-    "admitted_laya_question_prefix": 208,
+    "admitted_closed_checkpoint_blocks": 27,
+    "admitted_laya_question_prefix": 432,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -262,7 +260,7 @@
     "final_source_model_end_seals_pending": true,
     "benchmark_complete": false,
     "checkpoint_transport_continuation": {
-      "status": "explicit_reviewed_continuation_running",
+      "status": "closed_after_second_ReadTimeout_no_automatic_retry",
       "previous_stop": "ReadTimeout",
       "previous_preserved_queries": 208,
       "previous_closed_chunks": 13,
@@ -273,12 +271,45 @@
       "continuation_wrapper_sha256": "38191c0c50b082c94de1fef3fa8b03e47a80886b09207f5a7d0dfafc7ed0edaf",
       "continuation_plan_sha256": "b1593d7ebcd9034fac0d57a531ce1f065a2c677f0abd0314ee07432d7b60516f",
       "first_new_archive_sha256": "b4ca3c5d669c6aa9c072b580988e09625ac40500d23f16fb5ac2c08621899d25",
-      "verified_local_question_prefix": 304,
-      "verified_local_lists": 1520,
-      "verified_local_pairs": 76000,
-      "verified_local_chunks": 19,
+      "verified_local_question_prefix": 368,
+      "verified_local_lists": 1840,
+      "verified_local_pairs": 92000,
+      "verified_local_chunks": 23,
       "automatic_retry": false,
       "gpu_restarted": false,
+      "full_scoring_audit_complete": false,
+      "continuation_failure_sha256": "606c85c76c03df9de48cfc97664ced7d2c9de6e564e3be31b1347c213cb84eb5"
+    },
+    "checkpoint_transport_continuation_v2": {
+      "status": "explicit_reviewed_continuation_running_first_new_triple_verified",
+      "transport_observed_at_utc": "2026-10-16T10:54:29.079303+00:00",
+      "resumed_from_question_prefix": 368,
+      "preserved_prior_chunks": 23,
+      "preserved_prior_triple_files": 69,
+      "prior_evidence_seals_verified": 79,
+      "helper_sha256": "939e1d8b99e2bd8a5657e11ab733bd1728a9b882f51f37db84d4b75b0cb0f904",
+      "wrapper_sha256": "2a2c0d5dd224dd9bfb42f19edf31950a2dca8500e6f8a0be5e03a585a6520dc8",
+      "plan_sha256": "5b8d5ae5c337d2eabccc4fcd4f48ef3ca620fb1f5c5c90ac90585781dfcb522e",
+      "metadata_probe_sha256": "1a1d38b70bc59b6be07b0282c4832c7c9df6e2bcecbcf5d7fe5a28a7701ae7e7",
+      "historical_timeout_phase": "unknown",
+      "diagnostic_change": "record_safe_request_phase_original_error_type_and_total_fetch_elapsed",
+      "http_connect_timeout_seconds": 8,
+      "http_read_timeout_seconds": 30,
+      "absolute_fetch_deadline_seconds": 300,
+      "timeout_policy_changed": false,
+      "root_cpu_regressions_passed": 47,
+      "independent_cpu_review_passed": true,
+      "first_new_archive_sha256": "b1ed0976844fdcded4069e04d97b6d1d29d0c3a5aa45f1491f5c8dcc24ee2311",
+      "first_new_proof_sha256": "9037394cdccb215e6bd1e9de27f7caf50f16bab5cfab1e7340a6da231216ec22",
+      "first_new_transport_receipt_sha256": "1d62b57e6b17af3412d84b92297e9b6c7a1081f42c6e1c71e64483db453688aa",
+      "verified_local_question_prefix": 480,
+      "verified_local_chunks": 30,
+      "verified_local_lists": 2400,
+      "verified_local_pairs": 120000,
+      "prior_files_unchanged": true,
+      "automatic_retry": false,
+      "gpu_restarted": false,
+      "qa_restarted": false,
       "full_scoring_audit_complete": false
     }
   }
