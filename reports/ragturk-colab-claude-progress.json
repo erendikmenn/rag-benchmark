@@ -153,7 +153,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T11:47:58.729439+00:00",
+  "as_of_utc": "2026-10-16T13:07:17.587347+00:00",
   "full_qa": {
     "status": "versioned_continuation_running",
     "model": "claude-haiku-5-5",
@@ -167,21 +167,20 @@
     "test_logical_conditions": 125300,
     "snapshot_requests": {
       "claimed": 3,
-      "ready": 69102,
-      "terminal_invalid": 22,
-      "valid": 4534
+      "ready": 71985,
+      "terminal_invalid": 39,
+      "valid": 7376
     },
     "snapshot_logical_conditions": {
       "dev": {
         "claimed": 3,
-        "pending_laya": 6480,
-        "ready": 8886,
-        "terminal_invalid": 23,
-        "valid": 4608
+        "ready": 12407,
+        "terminal_invalid": 40,
+        "valid": 7550
       },
       "test": {
-        "pending_laya": 62650,
-        "ready": 62650
+        "pending_laya": 62570,
+        "ready": 62730
       }
     },
     "retained_exact_prior_valid_requests": 95,
@@ -209,8 +208,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 44,
-    "admitted_laya_question_prefix": 704,
+    "admitted_closed_checkpoint_blocks": 126,
+    "admitted_laya_question_prefix": 2016,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -231,7 +230,15 @@
       "old_500_receipt_seals_unchanged": true,
       "independent_review_sha256": "3a0cc67a6738a3bd8248a9c779fc2111eb5d0149c962dd11cb01519bbb181b0f",
       "quality_evaluated": false
-    }
+    },
+    "snapshot_admitted_laya_queries_by_split": {
+      "dev": 2000,
+      "test": 16
+    },
+    "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
+    "snapshot_logical_closed": 7590,
+    "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
+    "snapshot_evidence_sha256": "27a107a64ebe4cbb5893a7b17b4ec2e73aec2faee322eb7cb6953e2daadf456d"
   },
   "colab_full_laya": {
     "status": "running_partial_closed_checkpoints_preserved",
@@ -371,11 +378,11 @@
       "approval_status": "direct_user_reply_approved",
       "executed": true,
       "human_approval_sha256": "2d57de8338f390eccbc2ee64e7edb4c1d4eab287c5c6ebb77062886150df2aaa",
-      "transport_observed_at_utc": "2026-10-16T11:48:31.178561+00:00",
-      "verified_local_question_prefix": 848,
-      "verified_local_chunks": 53,
-      "verified_local_lists": 4240,
-      "verified_local_pairs": 212000,
+      "transport_observed_at_utc": "2026-10-16T13:08:01+00:00",
+      "verified_local_question_prefix": 2096,
+      "verified_local_chunks": 131,
+      "verified_local_lists": 10480,
+      "verified_local_pairs": 523953,
       "prior_sealed_files_unchanged": true,
       "gpu_restarted": false,
       "qa_restarted": false,
@@ -392,6 +399,17 @@
         "proof_get_attempts": 1,
         "proof_http_status": 200,
         "independent_closed_triple_validation_passed": true
+      },
+      "latest_incremental_local_verification": {
+        "observed_at_utc": "2026-10-16T13:08:01+00:00",
+        "control_sha256": "0718ba84995f5b1d284e5b9a649a2763107524d34c4344703c6e225e6a2e0c2a",
+        "safe_observation_sha256": "b028a0d6cbe0bce49b108a0acb93a707284c23ac875d94cc4bb2b685087b9043",
+        "new_triples_verified": 11,
+        "new_candidate_pairs_verified": 44000,
+        "prior_148_file_stamps_unchanged": true,
+        "scope": "incremental_local_only_no_network_no_restart; new triples validated, earlier 148 file identity stamps unchanged; not a fresh byte rehash of the full prefix",
+        "candidate_pair_count_scope": "actual_candidate_pairs_in_closed_triples_not_queries_times_250",
+        "final_failure_present": false
       }
     }
   }

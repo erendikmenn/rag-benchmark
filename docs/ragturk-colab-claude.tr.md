@@ -2,6 +2,8 @@
 
 16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
 
+16 Ekim 2026 saat 16:07 İstanbul gözleminde 145.300 mantıksal sonucun **7.590’ı teknik olarak kapanmıştır**: 7.550 geçerli, 40 geçersiz koşul. Bu sayılar tek SQLite okuma işleminin aynı anlık görüntüsünden alınmıştır; doğruluk oranı değildir. QA kuyruğu 2.000 geliştirme sorusunun tamamına ve ilk 16 test sorusuna ait kapalı Laya kaynaklarını kabul etmiştir. Saat 16:08’de ayrı doğrulanan kalıcı aktarım kapsamı **2.096 soru / 131 blok / 10.480 liste / 523.953 gerçek aday çifti** olmuştur. Son aktarım kontrolü 11 yeni bloğu doğrulamış; önceki 148 dosyanın kimlik damgaları değişmemiştir. Kısa BM25 listeleri nedeniyle çift sayısı soru sayısının 250 katı olarak hesaplanmaz. Geliştirme cevapları, tam Laya kaynak/model son mühürleri ve bağımsız dev/test metrik denetimi henüz tamamlanmamıştır.
+
 ## Kaynaklar ve ortak hesaplama
 
 37.511 chunk ve 14.530 sorunun BGE-M3 / EmbeddingGemma 2 vektörleri ile özgün BM25 indeksi hazırdır. Kaynak, model, sıralama ve dosya kimlikleri eşleşen bu nesneler tekrar kullanılır. Yeni embedding üretilmez. Geliştirme (2.000) ve test (12.530) sonuçları ayrı tutulur; etiketler cevap üreten modele gönderilmez.
