@@ -2,7 +2,19 @@
 
 16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
 
-## Güncel kurtarma durumu
+## Güncel süre uzatımı ve devam
+
+17 Ekim 2026 saat 00:43:01 İstanbul gözleminde **QA ve sonuç aktarımı, genel süre sınırı olmadan tamamlanana kadar çalışacak ayrı sürümlere devredildi.** Kullanıcının doğrudan süre uzatma talimatı uygulanmıştır; önceki 48 saat sınırı güncel QA veya alıcıyı durdurmaz. Tek QA sahibi, aynı ledger/istem/model, üç paralel CLI ve 2.048 token sınırıyla kalan cevapları üretiyor. Devirdeki **20.866 kabul edilmiş kayıt**, ilk 10.369 kayıt ve eski altı isteğin çözüm geçmişi korunmuştur. Önceki üretici, bütün çağrıları kapandıktan sonra kontrollü devredildi; dosya ve SQL kanıtları bağımsız doğrulandı. Yeni üreticinin ilk üç gerçek cevabı da akış, istek, model, normal bitiş, çıktı sınırı, ek kullanım ve SQL bağları açısından bağımsız incelemeden geçti. Bu üç cevap, sonraki cevapların tamamının veya anlamsal doğruluğun denetimi değildir.
+
+Aynı salt okunur SQLite işleminde **21.410 / 145.300 mantıksal koşul (%14,74) teknik olarak kapalıdır**: 21.315 geçerli + 95 teknik geçersiz. Üç yeni çağrı çalışıyordu; eski altı belirsiz isteğin etkin sonuçları geçerlidir. QA, 369 blok / 5.904 Laya sorusunun kaynaklarını kabul etmiştir. Dev ve test paydaları 20.000 / 125.300 olarak korunur; bu sayılar cevap doğruluğu veya tamamlanmış metrik denetimi değildir.
+
+Aktarımın ayrı **17 Ekim 00:16:32 İstanbul** yerel denetiminde **5.600 soru / 350 blok / 28.000 liste / 1.399.949 gerçek aday çifti** kalıcı olarak doğrulanmıştır. Yalnız son 16 blok / 64.000 çift yeni byte, kaynak ve sıralama denetiminden geçti; eski 657 kimlik damgası değişmedi ve eski önek yeniden taranmadı. Önceki alıcı, 5.248 sorudan sonra arşiv gövdesindeki bağlantı hatasıyla kapanmıştı. Kapalı sonuçlar ve sıfır baytlık tarihsel yarım dosya korundu; ayrı devam yalnız aktarılmamış arşivi aldı. GPU hesabı tekrarlanmadı. Yeni alıcının genel süre sınırı yoktur; 8/30 saniyelik HTTP ve 300 saniyelik aktarım sınırları ile sınırlı tekrar kayıtları korunur. Bu aktarım zamanı QA görüntüsünden ayrıdır.
+
+Çalışan GPU başlatıcısının ayrı **30 saatlik kesicisi hâlâ vardır**; etkin kaynağı değiştirilmemiştir. Yerel istemcinin bekleme sınırı GPU'yu sonlandırmaz; uzak başlatıcının sınırı sonlandırabilir. Aynı sahibi, 18 Ekim 03:02:46 İstanbul olan en erken sınıra en az iki saat kala, gerekirse mevcut kullanım hakkıyla ve kapanmış işleri tekrar hesaplamadan güvenli devamı hazırlayıp uygular. Sağlıklı GPU işi şu an kesilmemiş veya yeniden başlatılmamıştır; bütün zaman sınırlarının kaldırıldığı iddia edilmez.
+
+Ek kullanım kapalıdır. Ücretli API, ek kredi ve yerel üretici model kullanılmaz; tamamlanmış geçerli veya teknik geçersiz cevaplar yeniden gönderilmez. İstek başına en çok üç CLI denemesi, 30/120 saniye bekleme ve çağrı süre sınırları değişmedi. Kota, giriş, ücretlendirme, bütünlük veya bilinmeyen hatalar kapanarak incelenir; belirsiz kayıtlar körlemesine sıfırlanmaz. Eski 3.360 soruluk VM aralığının son kaynak/model mührü eksikliği açık kalır. Tüm bloklar, 145.300 koşul, bağımsız dev/test metrik ve eşleştirilmiş karşılaştırma denetimi tamamlanmadan nihai benchmark sonucu yayımlanmaz. [Güncel güvenli durum](../reports/ragturk-colab-claude-progress.json).
+
+## 16 Ekim 21:28 tarihli kurtarma gözlemi
 
 16 Ekim 2026 saat 21:28:49 İstanbul gözleminde Claude QA devamı yeniden çalışıyor. Kullanıcının sonuçları koruyarak kurtarma ve devam talimatıyla, geçici sunucu/bağlantı hatalarını katı cevap kabulünden ayrı sınıflandıran sürüm devreye alındı. Geçerli veya çıktı sınırında teknik geçersiz kapanmış cevaplar tekrar gönderilmez. Yeni denemeler ayrı kayıtlarla tutulur; istek başına eski deneme dahil en çok üç CLI çağrısı, 30/120 saniye bekleme ve üç paralel çağrı sınırı vardır. Geçici hata sırasında sağlıklı paralel çağrıların kapanması beklenir. Kota, giriş, ek kullanım, model/kimlik veya bilinmeyen hatada otomatik devam yapılmaz.
 
