@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-17",
-  "status": "completion_driven_qa_and_receiver_running_GPU_launcher_guard_tracked",
+  "status": "qa_running_full_Laya_transport_closed_postclosure_byte_range_audit_passed_final_QA_audits_pending",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -73,9 +73,9 @@
     "other_unchanged_source_model_files": 49
   },
   "remaining": [
-    "complete_current_full_dev_and_test_runs",
-    "full_Laya_checkpoint_and_cross_runtime_provenance_audit_with_old_end_seal_gap_disclosed",
-    "full_145300_effective_alias_qa_metrics_and_paired_independent_audit"
+    "complete_current_full_dev_and_test_QA_runs",
+    "full_145300_effective_alias_raw_source_and_metric_audit_with_dev_test_paired_comparison",
+    "independent_final_review_with_documented_old_runtime_end_seal_gap"
   ],
   "whole_benchmark_eta": null,
   "new_completed_main_matrix_conditions": 0,
@@ -152,7 +152,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-16T21:43:01.137900+00:00",
+  "as_of_utc": "2026-10-17T10:09:09.662760+00:00",
   "full_qa": {
     "status": "completion_driven_v5_running_original_six_resolved",
     "model": "claude-haiku-5-5",
@@ -165,10 +165,10 @@
     "dev_logical_conditions": 20000,
     "test_logical_conditions": 125300,
     "snapshot_requests": {
-      "claimed": 3,
-      "ready": 76546,
-      "terminal_invalid": 92,
-      "valid": 20800
+      "claimed": 2,
+      "ready": 75320,
+      "terminal_invalid": 229,
+      "valid": 59744
     },
     "snapshot_logical_conditions": {
       "dev": {
@@ -177,11 +177,10 @@
         "valid": 10063
       },
       "test": {
-        "claimed": 3,
-        "pending_laya": 43130,
-        "ready": 70861,
-        "terminal_invalid": 54,
-        "valid": 11252
+        "claimed": 2,
+        "ready": 73715,
+        "terminal_invalid": 194,
+        "valid": 51389
       }
     },
     "retained_exact_prior_valid_requests": 95,
@@ -209,8 +208,8 @@
       "elapsed_seconds": 585.7198359169997,
       "elapsed_scope": "one_500_request_batch_excludes_other_batches_Laya_transport_and_full_audit_not_end_to_end_ETA"
     },
-    "admitted_closed_checkpoint_blocks": 369,
-    "admitted_laya_question_prefix": 5904,
+    "admitted_closed_checkpoint_blocks": 909,
+    "admitted_laya_question_prefix": 14530,
     "first_closed_terminal_invalid_review": {
       "reviewed_requests": 1,
       "reason": "terminal_stop_max_tokens",
@@ -234,12 +233,12 @@
     },
     "snapshot_admitted_laya_queries_by_split": {
       "dev": 2000,
-      "test": 3904
+      "test": 12530
     },
-    "admitted_source_scope": "Closed checkpoint source/rank/claim admission only; complete Laya model/source end audit and QA metric audit remain pending.",
-    "snapshot_logical_closed": 21410,
+    "admitted_source_scope": "All909closed checkpoints admitted for QA; postclosure byte/range stage audit passed separately. Full effective raw outcome/source replay, QA metrics and independent final review remain pending.",
+    "snapshot_logical_closed": 61687,
     "snapshot_logical_closed_scope": "valid plus terminal_invalid aliases; technical closure, not answer correctness or final metric audit",
-    "snapshot_evidence_sha256": "cf1406526c57d64f429e5ef5c4f70ff2b3de1b58571132a8c7a43d590d4739b0",
+    "snapshot_evidence_sha256": "22dcb4f43888b724bc0882b2f12e8a3abc64c05634313e4171e774f580d8354f",
     "stopped_batch_review": {
       "observed_at_utc": "2026-10-16T14:07:39.957870+00:00",
       "classification": "synthetic_server_error_api_error_rejected_by_stream_guard",
@@ -475,10 +474,12 @@
       "per_invocation_time_limits_preserved": true,
       "cost_auth_integrity_and_unknown_errors_fail_closed": true,
       "closed_attempt_review_required_before_future_invocation": true
-    }
+    },
+    "snapshot_transaction_started_utc": "2026-10-17T10:07:44.666515+00:00",
+    "snapshot_transaction_finished_utc": "2026-10-17T10:07:46.007017+00:00"
   },
   "colab_full_laya": {
-    "status": "remaining_range_GPU_work_preserved_completion_driven_receiver_running",
+    "status": "full_transport_and_owned_scoring_closed_postclosure_byte_range_audit_passed",
     "gpu": "NVIDIA L4",
     "questions": 14530,
     "candidate_lists": 72650,
@@ -503,7 +504,7 @@
       "partial_independent_source_ranking_audit_passed_with_exact_projection": true
     },
     "automatic_gpu_retry": false,
-    "final_source_model_end_seals_pending": true,
+    "final_source_model_end_seals_pending": false,
     "benchmark_complete": false,
     "checkpoint_transport_continuation": {
       "status": "closed_after_second_ReadTimeout_no_automatic_retry",
@@ -668,12 +669,12 @@
         "independent_review_sha256": "65d6adc2fc71fb1d7c78263fcb46cc132a13201b5c58ed16778f3b1ce6af23ef"
       }
     },
-    "remote_worker_current_state": "new durable chunks observed locally; latest verification did not poll remote process state",
+    "remote_worker_current_state": "exact_owned_remote_worker_absent_and_kernel_idle_at_independent_closure_observation",
     "local_launcher_cli_process_present_at_failure_review": true,
     "old_runtime_final_source_model_end_seal_available": false,
-    "final_source_model_end_seals_scope": "new recovery range only; old runtime final seal is unavailable and cannot be retroactively asserted",
+    "final_source_model_end_seals_scope": "New recovery range independently observed after completion; not an original worker-emitted final seal. Old3360questionruntime final seal remains unavailable; full QA resolver source/rank replay and final review still pending.",
     "recovery_v1": {
-      "status": "actual_remaining_range_scoring_started",
+      "status": "remaining_range_scoring_transport_and_postclosure_byte_range_audit_passed",
       "resumed_from_query": 3360,
       "new_execution_plan_sha256": "9720243800ff7ebdd22f8587fe59bea5ed92ba5a763491da1aca0d047e01a59b",
       "new_worker_sha256": "0d984a37a6c4d340ebfd057aa3ef1e99979b364eeff3d6c9c3c302e4dfccf380",
@@ -720,38 +721,79 @@
         "qa_admission_included_in_earlier_qa_snapshot": false
       },
       "latest_incremental_local_verification": {
-        "observed_at_utc": "2026-10-16T21:16:32.323853+00:00",
-        "status": "passed_incremental_closed_chunks_current_receiver_healthy",
-        "incremental_start_query": 5344,
-        "incremental_stop_query": 5600,
-        "new_chunks": 16,
-        "new_questions": 256,
-        "new_lists": 1280,
-        "new_actual_pairs": 64000,
-        "combined_durable_blocks": 350,
-        "combined_durable_questions": 5600,
-        "combined_durable_lists": 28000,
-        "combined_durable_actual_pairs": 1399949,
+        "observed_at_utc": "2026-10-17T10:00:29.601270+00:00",
+        "status": "passed_closed_prefix_receiver_stopped",
+        "incremental_start_query": 14432,
+        "incremental_stop_query": 14530,
+        "new_chunks": 7,
+        "new_questions": 98,
+        "new_lists": 490,
+        "new_actual_pairs": 24500,
+        "combined_durable_blocks": 909,
+        "combined_durable_questions": 14530,
+        "combined_durable_lists": 72650,
+        "combined_durable_actual_pairs": 3632412,
         "original657_identity_stamps_unchanged": true,
         "old210_full_replay_repeated": false,
         "old_runtime_final_end_seals_available": false,
         "new_range_final_end_seals_pending": true,
         "audit_outcomes": {
-          "HTTP200": 59,
-          "HTTP404": 15,
-          "ReadTimeout": 4
+          "HTTP200": 382,
+          "HTTP404": 144,
+          "ReadTimeout": 19
         },
-        "bounded_retry_intents": 4,
+        "bounded_retry_intents": 19,
         "pending_intent_at_snapshot": false,
-        "terminal_receiver_failure": null,
         "network_calls": 0,
         "model_calls": 0,
         "benchmark_evaluations": 0,
-        "independent_review_sha256": "25a15487e28a806dfd8ff31e0ea05f1ba7341e500131387d339f68c4d8e10fb7",
-        "scope": "Only 16 new triples since the previous 5344-question verification; earlier byte/source/rank checks retained, not repeated. QA snapshot time is separate."
+        "independent_review_sha256": "1f45b27688a29ad2e6380cabd21ab5bc4f220bb488b4142810ece7fec1d21888",
+        "scope": "Only final7closedchunks98questions24500pairs newly audited; previous prefix retained, original657stamps unchanged, no full old210 replay; full source/model end-byte and range audit pending.",
+        "historical_predecessor_receiver_failure": {
+          "elapsed_seconds": 34.57614704198204,
+          "error_type": "ConnectionError",
+          "next_query": 5248,
+          "request_phase": "archive_body",
+          "sha256": "fe616f636f79610f3001cc80916f51233a28d3b5cf3e05478b9215ce1d468757",
+          "status": "stopped_requires_review"
+        },
+        "terminal_receiver_failure": null,
+        "audit_outcomes_scope": "Retained historical receiver audit events; not a claim of current final receiver failure."
       },
       "previous_receiver_config_sha256": "44c33b5baa3d72421c45dce418dc09013312231bc835a7f8b5be16ba29b1f985",
       "completion_driven_receiver": {
+        "source_sha256": "92d5aa82de626eadc2a796f02940db5f7237aad0bc408dcfca491ee697fb00b6",
+        "config_sha256": "e6a05c05cd662f852c830405b49b031a11bf3a42d4526deaf840b2dc59220f0e",
+        "claim_sha256": "b2a58ddcbff8982ae6ab8e0dcfb9128c2923aa8867ae3838bebb6efdfb31834b",
+        "predecessor_failure_sha256": "cef93644ec14a7dcbec06b8645b0beccc7682ee19333741c0399dbdcfe85d1d0",
+        "overall_elapsed_cutoff": null,
+        "completed_triples_refetched": 0,
+        "GPU_recomputation": false,
+        "http_connect_read_seconds": [
+          8,
+          30
+        ],
+        "absolute_transfer_seconds": 300,
+        "bounded_assignment_or_proof_attempts": 3,
+        "backoff_seconds": [
+          2,
+          5
+        ],
+        "archive_body_automatic_retry": 0,
+        "old_zero_byte_partial_preserved": true,
+        "status": "closed_full_transport",
+        "completed_sha256": "c9322b079d89167c399a73736048033b807a731e40ede25ac8e467422e439d38"
+      },
+      "remaining_launcher_guard": {
+        "remote_launcher_lifetime_seconds": 108000,
+        "active_launcher_changed": false,
+        "earliest_guard_utc": "2026-10-18T00:02:46+00:00",
+        "protection_review_by_utc": "2026-10-17T22:02:46+00:00",
+        "local_client_wait_is_not_worker_termination_guard": true,
+        "scope": "Historical30hourguard was not removed or modified; exact owned scoring closure and worker absence were observed before it. No further GPU handoff is needed for this completed scoring range.",
+        "status": "historical_guard_owned_scoring_completed_before_cutoff"
+      },
+      "previous_completion_driven_receiver": {
         "source_sha256": "475c5f379be3e9617798102cda8e120a0529f09e5a544de5931479cf18ec46f3",
         "config_sha256": "c1490cf58dd74cf386c1db40593c57f7a654a7875aa6a6fa5bba46dcc12dec1f",
         "claim_sha256": "ccccbff4483609cb0b62c2819c4b412a8adf63e15509add9353b3ae31cc458c4",
@@ -771,15 +813,62 @@
           5
         ],
         "archive_body_automatic_retry": 0,
-        "old_zero_byte_partial_preserved": true
+        "old_zero_byte_partial_preserved": true,
+        "status": "historical_failed_receiver_preserved"
       },
-      "remaining_launcher_guard": {
-        "remote_launcher_lifetime_seconds": 108000,
-        "active_launcher_changed": false,
-        "earliest_guard_utc": "2026-10-18T00:02:46+00:00",
-        "protection_review_by_utc": "2026-10-17T22:02:46+00:00",
-        "local_client_wait_is_not_worker_termination_guard": true,
-        "scope": "Remote launcher guard remains; existing owner prepares completion-driven same-runtime handoff from verified retained work if still needed. No current GPU restart or new allocation."
+      "full_transport_and_owned_scoring_closure": {
+        "transport_questions": 14530,
+        "transport_blocks": 909,
+        "transport_lists": 72650,
+        "transport_actual_pairs": 3632412,
+        "receiver_completed_sha256": "c9322b079d89167c399a73736048033b807a731e40ede25ac8e467422e439d38",
+        "local_closure_observed_at_utc": "2026-10-17T10:02:22.082432+00:00",
+        "local_closure_sha256": "e34a0271d1dd72e13460424e80eac0561e7376be859b5566d21a0e2ac3d5d7e7",
+        "independent_local_closure_sha256": "a8abf19f65b23519a760aeff003b4d1c1bd1785916502b11024a586460106343",
+        "remote_closure_observed_at_utc": "2026-10-17T10:02:10.340820+00:00",
+        "remote_observation_sha256": "8c76f5b251e515f84f219658d0f22bb7eec54bb56ecd16b482210bb31ac69ca9",
+        "actual_closed_receipt_sha256": "e9d3397e027fa2bde7a53bec51e977a81f33ad404347ad81ed95fb223cbb9ef9",
+        "worker_absent": true,
+        "kernel_idle": true,
+        "local_receiver_and_client_closed": true,
+        "final_source_model_byte_and_range_audit": "passed_stage_audit_and_independent_binding_review_full_QA_audits_pending",
+        "old_runtime_3360_questions_final_end_seal_available": false,
+        "QA_admission_is_separate": true,
+        "answer_quality_evaluated": false,
+        "full_benchmark_complete": false,
+        "range_audit_sha256": "261a7fcb63b2ac2f66a068a42e11daae7b2d8eae125cfef8012d17a4adcf7ed2"
+      },
+      "new_range_postclosure_end_bytes_verified": true,
+      "postclosure_byte_and_range_audit": {
+        "status": "passed_independent_recovery_range_scoring_audit",
+        "observed_at_utc": "2026-10-17T10:09:09.662760+00:00",
+        "questions": 14530,
+        "lists": 72650,
+        "pairs": 3632412,
+        "new_range_questions": 11170,
+        "new_range_lists": 55850,
+        "new_range_pairs": 2792459,
+        "source_model_files_checked": 174,
+        "model_files_checked": 8,
+        "new_archive_byte_hashes_rechecked": 699,
+        "old_archive_full_replay_repeated": false,
+        "seal_observation_timing": "independent_postclosure_observation",
+        "worker_internal_final_validate_exported_as_dedicated_seal": false,
+        "postclosure_end_byte_seal_sha256": "2b2b97326c606538bd7cb84296acfdf831bb53729045dd16839748a615993c52",
+        "end_byte_collector_sha256": "7a5c34810304978cf0c7be445daf82f4d5895ad15e734727a5115ad98fea2f27",
+        "source_request_rank_audit_scope": "prior_incremental_CPU_audits_plus_final_QA_resolver_independent_replay_required",
+        "scoring_rows_replayed_here": 0,
+        "old_prefix_end_seal_available": false,
+        "old_runtime_final_end_seal_available": false,
+        "model_calls": 0,
+        "benchmark_evaluations": 0,
+        "audit_sha256": "261a7fcb63b2ac2f66a068a42e11daae7b2d8eae125cfef8012d17a4adcf7ed2",
+        "audit_config_sha256": "44cdcd3ded212ead620194bb4122a780884a46d204b8d48b6d66f5911068215a",
+        "independent_final_review_status": "pending_full_QA_raw_source_metric_and_publication_review",
+        "full_QA_raw_source_metric_audit_complete": false,
+        "full_benchmark_complete": false,
+        "independent_stage_binding_review_status": "passed",
+        "independent_stage_binding_review_sha256": "f8cc326428abbc29b1e255c4b648b4b50cfb64fa1d6b7025115b68bd74b129e2"
       }
     }
   },
