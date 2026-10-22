@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "as_of_utc": "2026-10-22T14:52:40.480032+00:00",
+  "as_of_utc": "2026-10-22T15:05:04.642266+00:00",
   "scope": "RAGTurk_Claude_Haiku_5_5_full_dev_test_separate_from_historical_Gemma_MPS",
-  "status": "audit_and_metrics_independently_reviewed_publication_and_exact_CI_pending",
+  "status": "complete_for_verified_metrics_publication_revision",
   "model": "claude-haiku-5-5",
   "transport": "first_party_Max_subscription_CLI",
   "output_cap": 2048,
@@ -29,15 +29,16 @@
     "new_model_calls": 0,
     "database_writes": 0,
     "independent_actual_review_complete": true,
-    "publication_complete": false,
-    "exact_commit_CI_complete": false,
-    "full_RAGTurk_benchmark_complete": false,
+    "publication_complete": true,
+    "exact_commit_CI_complete": true,
+    "full_RAGTurk_benchmark_complete": true,
     "measured_total_duration_seconds": 6016.656,
     "measured_scientific_stage_duration_seconds": 5903.336,
     "duration_scope": "this_single_RAGTurk_CPU_audit_not_all_benchmarks_or_a_future_ETA",
     "independent_actual_reviewed_at_utc": "2026-10-22T14:51:50.385360+00:00",
     "root_actual_audit_and_metrics_accepted_at_utc": "2026-10-22T14:52:40.480032+00:00",
-    "independent_publication_review_complete": false
+    "independent_publication_review_complete": true,
+    "completion_scope": "RAGTurk_scientific_and_metric_publication_revision_only_other_modalities_excluded"
   },
   "metric_conventions": {
     "score_range": [
@@ -1402,6 +1403,26 @@
     "root_execution_outcome_sha256": "91fd679aa2b0eccd2e0a27109f331d201af943c506c4dfbbc3ae65b8d58189a1",
     "final_audit_claim_sha256": "cfd6ff101bef7245565734bb4b7cb50a67807f0701a3ce6acc505c2fff304d8d",
     "independent_actual_scientific_metric_review_sha256": "f88031eecb47ed3329de4b0b6282153537b42d4ead45424feef6bbc1c7696ff1",
-    "root_actual_audit_and_metrics_acceptance_sha256": "ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656"
-  }
+    "root_actual_audit_and_metrics_acceptance_sha256": "ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656",
+    "independent_publication_review_sha256": "8d0cf0e85febcf15d1723103fe8b2a75aa288170b0939fea17e4b9d51dc087b2",
+    "root_metric_publication_exact_CI_receipt_sha256": "d18bea8a887ca6deef5c6039a92504186c41ca4c6a90dac52bf4312dc392358f"
+  },
+  "metrics_publication_revision": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+  "exact_metric_publication_CI": {
+    "run_id": 39801110850,
+    "url": "https://github.com/erendikmenn/rag-benchmark/actions/runs/39801110850",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+    "event": "push",
+    "branch": "main",
+    "workflow_id": 376785511,
+    "workflow_path": ".github/workflows/ci.yml",
+    "run_number": 144,
+    "test_job": "passed",
+    "Ruff": "passed",
+    "pytest": "passed",
+    "scope": "primary_successful_exact_metric_publication_run_no_claim_about_other_workflow_runs"
+  },
+  "completion_record": "completion.json"
 }

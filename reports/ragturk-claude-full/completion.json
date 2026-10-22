@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "scope": "RAGTurk_Claude_Haiku_5_5_full_dev_test_only",
+  "status": "complete_for_verified_metrics_publication_revision",
+  "observed_at_utc": "2026-10-22T15:05:04.642266+00:00",
+  "metrics_publication_revision": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+  "metrics_publication_revision_url": "https://github.com/erendikmenn/rag-benchmark/commit/a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+  "metrics_report": "summary.json",
+  "full_RAGTurk_benchmark_complete": true,
+  "completed_checks": {
+    "production_closed": true,
+    "raw_request_source_rank_provider_cap_stop_audit": true,
+    "separate_dev_test_lexical_and_retrieval_metrics": true,
+    "paired_descriptive_comparisons": true,
+    "independent_actual_scientific_metric_review": true,
+    "independent_publication_review": true,
+    "metrics_publication": true,
+    "exact_metric_publication_commit_CI": true
+  },
+  "exact_metric_publication_CI": {
+    "run_id": 39801110850,
+    "url": "https://github.com/erendikmenn/rag-benchmark/actions/runs/39801110850",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+    "event": "push",
+    "branch": "main",
+    "workflow_id": 376785511,
+    "workflow_path": ".github/workflows/ci.yml",
+    "run_number": 144,
+    "test_job": "passed",
+    "Ruff": "passed",
+    "pytest": "passed",
+    "scope": "primary_successful_exact_metric_publication_run_no_claim_about_other_workflow_runs"
+  },
+  "provenance": {
+    "final_audit_result_sha256": "6e284d5a73fee4dc83b8959e72979eb8442c371c596fceba04e7705760954856",
+    "final_audit_completed_sha256": "67f682ecd7bbefa2c6190cdc65fe460a016df1820ed474dab28396b8ecaaa2f0",
+    "safe_aggregate_projection_sha256": "20304db4c048c5bf233d4c1feb316f0569d1af96e5fe5b6d33a467358875eba1",
+    "independent_actual_scientific_metric_review_sha256": "f88031eecb47ed3329de4b0b6282153537b42d4ead45424feef6bbc1c7696ff1",
+    "root_actual_audit_and_metrics_acceptance_sha256": "ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656",
+    "independent_publication_review_sha256": "8d0cf0e85febcf15d1723103fe8b2a75aa288170b0939fea17e4b9d51dc087b2",
+    "root_metric_publication_exact_CI_receipt_sha256": "d18bea8a887ca6deef5c6039a92504186c41ca4c6a90dac52bf4312dc392358f"
+  },
+  "record_binding_policy": "This completion record attests the named metrics revision and its exact CI run; it does not assert the future commit or CI of this metadata update itself.",
+  "preserved_limits": {
+    "lexical_metrics_are_not_semantic_accuracy": true,
+    "paired_results_are_descriptive_without_confidence_intervals_or_p_values": true,
+    "historical_attempts_and_12_resolution_records_preserved": true,
+    "two_historical_V8_provider_completion_unknowns_preserved": true,
+    "historical_V10_retry_provider_completion_unknown_preserved": true,
+    "original_VM_first_3360_questions_final_end_seal_gap_preserved": true,
+    "global_unrecorded_detached_descendant_absence_not_claimed": true
+  },
+  "other_benchmark_modalities": "outside_this_completion_scope_not_claimed_complete",
+  "raw_content_published": false
+}

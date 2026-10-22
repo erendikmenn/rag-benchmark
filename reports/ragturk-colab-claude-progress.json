@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "as_of": "2026-10-22",
-  "status": "all_145300_QA_outcomes_audited_metrics_independently_reviewed_publication_and_exact_CI_pending",
+  "status": "RAGTurk_complete_at_verified_metrics_publication_revision",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -72,10 +72,7 @@
     "root_acceptance_sha256": "1780e9eacfd907a39fe72695726827e3457fe24c9e8db4013d8e527003365b0b",
     "other_unchanged_source_model_files": 49
   },
-  "remaining": [
-    "independent_publication_review",
-    "final_results_publication_and_exact_commit_CI"
-  ],
+  "remaining": [],
   "whole_benchmark_eta": null,
   "new_completed_main_matrix_conditions": 10,
   "raw_content_published": false,
@@ -151,7 +148,7 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-22T14:52:40.480032+00:00",
+  "as_of_utc": "2026-10-22T15:05:04.642266+00:00",
   "historical_full_qa_20261017": {
     "status": "completion_driven_v5_running_original_six_resolved",
     "model": "claude-haiku-5-5",
@@ -480,7 +477,7 @@
     "historical_observation_only": true
   },
   "full_qa": {
-    "status": "all_effective_qa_outcomes_full_raw_source_metric_audit_and_independent_actual_review_passed",
+    "status": "all_effective_qa_outcomes_audit_metrics_independent_reviews_publication_and_exact_CI_complete",
     "model": "claude-haiku-5-5",
     "transport": "first_party_Max_subscription_CLI",
     "output_cap": 2048,
@@ -513,14 +510,14 @@
     "final_audit_invocations": 1,
     "final_audit_complete": true,
     "independent_final_review_complete": true,
-    "full_benchmark_complete": false,
-    "current_stage": "audit_and_metrics_independently_reviewed_publication_and_exact_CI_pending",
+    "full_benchmark_complete": true,
+    "current_stage": "complete_at_verified_metrics_publication_revision",
     "permanent_original_role_closure_fix_accepted": true,
     "final_audit_started_at_utc": "2026-10-22T13:02:28.184765+00:00",
     "scientific_stage_entered_at_utc": "2026-10-22T13:03:23.330899+00:00",
     "final_audit_claim_sha256": "cfd6ff101bef7245565734bb4b7cb50a67807f0701a3ce6acc505c2fff304d8d",
     "full_scientific_audit_entered_sha256": "cbde37a4d889d4141307df241a243f0dd8b82ab118fe270060d8545f61d4808d",
-    "audit_milestone_scope": "one_actual_CPU_full_raw_source_metric_audit_completed_exit0_and_independent_actual_review_passed_publication_and_exact_CI_pending",
+    "audit_milestone_scope": "one_actual_CPU_full_raw_source_metric_audit_completed_exit0_independent_reviews_and_exact_metric_publication_CI_passed",
     "new_model_requests_for_finalization": 0,
     "prior_requests_reset": false,
     "paid_fallback": false,
@@ -547,18 +544,39 @@
     "paired_inferential_claim": false,
     "model_calls_during_final_audit": 0,
     "database_writes_during_final_audit": 0,
-    "publication_complete": false,
-    "exact_commit_CI_complete": false,
+    "publication_complete": true,
+    "exact_commit_CI_complete": true,
     "measured_final_audit_duration_seconds": 6016.656,
     "measured_scientific_stage_duration_seconds": 5903.336,
     "audit_duration_scope": "one_RAGTurk_CPU_audit_not_a_future_ETA_or_other_benchmarks",
-    "independent_final_review_scope": "actual_scientific_execution_and_metrics_publication_review_is_separate",
+    "independent_final_review_scope": "actual_scientific_execution_metrics_and_published_metric_revision_independently_reviewed",
     "independent_actual_scientific_metric_review_complete": true,
-    "independent_publication_review_complete": false,
+    "independent_publication_review_complete": true,
     "independent_actual_scientific_metric_review_sha256": "f88031eecb47ed3329de4b0b6282153537b42d4ead45424feef6bbc1c7696ff1",
     "root_actual_audit_and_metrics_acceptance_sha256": "ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656",
     "independent_actual_reviewed_at_utc": "2026-10-22T14:51:50.385360+00:00",
-    "root_actual_audit_and_metrics_accepted_at_utc": "2026-10-22T14:52:40.480032+00:00"
+    "root_actual_audit_and_metrics_accepted_at_utc": "2026-10-22T14:52:40.480032+00:00",
+    "full_benchmark_completion_scope": "RAGTurk_only_at_metrics_publication_revision_a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+    "metrics_publication_revision": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+    "exact_metric_publication_CI": {
+      "run_id": 39801110850,
+      "url": "https://github.com/erendikmenn/rag-benchmark/actions/runs/39801110850",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "a6e572cd5e41c69e9713ad9e8d033c96b4366812",
+      "event": "push",
+      "branch": "main",
+      "workflow_id": 376785511,
+      "workflow_path": ".github/workflows/ci.yml",
+      "run_number": 144,
+      "test_job": "passed",
+      "Ruff": "passed",
+      "pytest": "passed",
+      "scope": "primary_successful_exact_metric_publication_run_no_claim_about_other_workflow_runs"
+    },
+    "completion_record": "reports/ragturk-claude-full/completion.json",
+    "independent_publication_review_sha256": "8d0cf0e85febcf15d1723103fe8b2a75aa288170b0939fea17e4b9d51dc087b2",
+    "root_metric_publication_exact_CI_receipt_sha256": "d18bea8a887ca6deef5c6039a92504186c41ca4c6a90dac52bf4312dc392358f"
   },
   "colab_full_laya": {
     "status": "full_transport_and_owned_scoring_closed_postclosure_byte_range_audit_passed",
@@ -587,7 +605,7 @@
     },
     "automatic_gpu_retry": false,
     "final_source_model_end_seals_pending": false,
-    "benchmark_complete": false,
+    "benchmark_complete": true,
     "checkpoint_transport_continuation": {
       "status": "closed_after_second_ReadTimeout_no_automatic_retry",
       "previous_stop": "ReadTimeout",
@@ -754,7 +772,7 @@
     "remote_worker_current_state": "exact_owned_remote_worker_absent_and_kernel_idle_at_independent_closure_observation",
     "local_launcher_cli_process_present_at_failure_review": true,
     "old_runtime_final_source_model_end_seal_available": false,
-    "final_source_model_end_seals_scope": "New recovery range independently observed after completion; not an original worker-emitted final seal. Old3360questionruntime final seal remains unavailable; full QA raw/source/rank/metric audit and independent actual scientific/metric review passed, publication and exact CI pending.",
+    "final_source_model_end_seals_scope": "New recovery range independently observed after completion; not an original worker-emitted final seal. Old3360questionruntime final seal remains unavailable; full QA audit, metrics, independent reviews and exact metric publication CI are complete for the accepted RAGTurk revision.",
     "recovery_v1": {
       "status": "remaining_range_scoring_transport_and_postclosure_byte_range_audit_passed",
       "resumed_from_query": 3360,
@@ -955,7 +973,8 @@
     },
     "current_full_QA_raw_source_metric_audit_complete": true,
     "current_full_QA_result_sha256": "6e284d5a73fee4dc83b8959e72979eb8442c371c596fceba04e7705760954856",
-    "dated_stage_records_preserved": "Historical stage-only pending fields below retain their original observation scope; current full QA audit status is in full_qa."
+    "dated_stage_records_preserved": "Historical stage-only pending fields below retain their original observation scope; current full QA audit status is in full_qa.",
+    "benchmark_completion_scope": "RAGTurk_only_at_verified_metrics_publication_revision"
   },
   "outside_current_RAGTurk_scope": [
     "subsequent_multimodal_execution"
