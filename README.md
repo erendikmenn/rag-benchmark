@@ -1,6 +1,6 @@
 # rag-benchmark
 
-**Current execution — 16 October:** all 14,530 RAGTurk questions now have 72,650 independently verified candidate lists from prepared vectors. The new answer model is **Haiku 5.5 (`claude-haiku-5-5`) through a Claude Code subscription session**. A bounded Colab L4 and three-concurrent-CLI pilot is being checked; the full ten-condition result is not complete. No local generative LLM is installed. [New protocol and ten conditions, Turkish](docs/ragturk-colab-claude.tr.md).
+**Current execution — 22 October:** RAGTurk answer production closed all **145,300 question–condition outcomes**: **144,862 technically valid + 438 terminal-invalid**, with no unresolved effective requests. These are producer counters, not answer-accuracy scores. All 14,530 questions have 72,650 verified retrieval lists; Laya scoring and transfer are complete. **The full QA audit, dev/test metrics and final independent review remain pending.** The approved worker-closure implementation is being completed before the final audit. Closed answers are preserved; finalization requires no new paid model calls or GPU allocation. [Current protocol and dated evidence, Turkish](docs/ragturk-colab-claude.tr.md).
 
 **Historical stop — 14 October, 21:13:** the previous Colab queues remain closed. Physics/Pharmaceuticals CUDA retrieval results and verified backups are retained; Industrial was partial and no full CUDA reranker result was claimed. Previous main coverage remains **2,052 / 18,460**. [Stop record](reports/colab-execution-stop.json).
 

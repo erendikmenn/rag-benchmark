@@ -1,6 +1,6 @@
 # rag-benchmark
 
-**Güncel yürütme — 16 Ekim:** Hazır RAGTurk vektörlerinden bütün 14.530 soru için 72.650 aday listesi üretildi ve bağımsız doğrulandı. Yeni cevap modeli, Claude Code abonelik oturumu üzerinden **Haiku 5.5 (`claude-haiku-5-5`)**. Colab L4 ve üç paralel CLI isteğiyle küçük pilot kontrolü yapılıyor; tam on koşulun başarı sonucu henüz yok. Yerel üretici LLM kurulmaz. [Yeni protokol ve on koşul](docs/ragturk-colab-claude.tr.md).
+**Güncel durum — 22 Ekim:** RAGTurk yanıt üretiminde **145.300 soru–koşul sonucunun tamamı kapandı**: **144.862 teknik olarak geçerli + 438 terminal geçersiz**, çözümsüz etkin istek sıfır. Bunlar üretici sayaçlarıdır; cevap doğruluğu ölçümü değildir. Bütün 14.530 soru için 72.650 arama listesi doğrulandı; Laya puanlaması ve aktarımı tamamlandı. **Tam QA denetimi, dev/test metrikleri ve nihai bağımsız inceleme henüz bitmedi.** Son denetimden önce onaylı işçi kapanış kuralının uygulaması tamamlanıyor. Kapalı cevaplar korunur; nihai aşama yeni ücretli model çağrısı veya GPU tahsisi gerektirmez. [Güncel protokol ve tarihli kanıt](docs/ragturk-colab-claude.tr.md).
 
 **Tarihsel durdurma — 14 Ekim, 21:13:** önceki Colab kuyrukları kapalı kalır. Physics/Pharmaceuticals CUDA arama sonuçları ve doğrulanmış yedekler korunur; Industrial kısmi, tam CUDA reranker sonucu yoktu. Önceki ana kapsam **2.052 / 18.460** değişmedi. [Durdurma kaydı](reports/colab-execution-stop.json).
 

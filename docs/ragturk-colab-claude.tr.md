@@ -2,7 +2,15 @@
 
 16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
 
-## Güncel süre uzatımı ve devam
+## 22 Ekim: üretim tamamlandı, son denetim bekliyor
+
+V11 üreticisinin değişmez tamamlanma kaydı **145.300 / 145.300 mantıksal koşulun kapandığını** gösteriyor: **144.862 teknik olarak geçerli + 438 terminal geçersiz**, çözümsüz etkin istek sıfır. Dev kapsamı **19.934 geçerli + 66 geçersiz = 20.000**; test kapsamı **124.928 geçerli + 372 geçersiz = 125.300**. Tamamlanma dosyasının zamanı 19 Ekim 2026 **03:59:46 İstanbul**; bu dosya sistemi değişiklik zamanıdır, içeride üretilmiş zaman damgası değildir. Kaydın SHA-256 değeri `5f4e8e5b1910903a2282e6c33f761bb2a03f59607c38526944777671257adaac`.
+
+Bu sayılar üretici kapanışıdır; yeni SQL sayımı, bütün ham cevapların bağımsız denetimi veya cevap doğruluğu sonucu değildir. Eski başarısız/belirsiz denemeler ve 12 ayrı çözüm kaydı korunur. İki tarihsel V8 denemesinin ve önceki bir tekrar denemesinin sağlayıcı tamamlanma belirsizliği silinmez. Terminal geçersiz sonuçlar her koşulun EM/F1 paydasında sıfır kalır. Ortak cevap kullanımı koşulların ayrı paydalarını birleştirmez.
+
+22 Ekim itibarıyla **nihai CPU denetimi henüz başlatılmadı**. Kaynak kayıtlarına bağlı, sabit özgün işçi çağrılarını kapsayan onaylı toplu kapanış kuralı uygulanıyor. Bağımsız kaynak ve gerçek kapanış kanıtı incelemeleri, diğer süreç kontrolleri ve kesin denetim yapılandırması geçtikten sonra bütün ham cevap/istek/kaynak/sıra/model/token/bitiş denetimi yapılacak. Dev/test metrikleri, beş Laya açık/kapalı eşleştirilmiş karşılaştırması, bağımsız son inceleme ve nihai yayın bekliyor. Bütün sonuçlar korunur; yeni ücretli API, GPU tahsisi veya kapalı cevapların yeniden üretimi gerekmez. Eski VM'nin ilk 3.360 soruya ait son mühür eksikliği açık kalır. Aşağıdaki üretim sürüyor ifadeleri tarihli geçmiş gözlemlerdir.
+
+## 17 Ekim: tarihsel süre uzatımı ve devam
 
 17 Ekim 2026 saat **13:02 İstanbul** kapanış denetiminde Laya'nın bütün **14.530 soru / 909 blok / 72.650 liste / 3.632.412 gerçek aday çifti** bilgisayara kalıcı aktarıldı. Son 7 blok / 98 soru / 24.500 çift yeni byte, kaynak ve sıralama denetiminden geçti; önceki önek korundu, özgün 657 kimlik damgası değişmedi ve eski 210 blok yeniden taranmadı. Son alıcı, yerel istemci ve tam puanlama işi kapandı. Ayrı uzak sahiplik gözleminde gerçek işçinin bulunmadığı ve kernel'in boşta olduğu doğrulandı. Bu, **tam aktarım ve puanlama sürecinin kapanışıdır**; tamamlanma sonrası bağımsız byte ve aralık aşaması denetimi **13:09 İstanbul** gözleminde geçti. Denetim 174 kaynak/model/girdi dosyası ve yeni aralığın 699 arşivini kontrol etti; eski 210 arşivin tam taraması tekrarlanmadı. Bu aşamanın byte, receipt, sahiplik ve zaman bağları ayrı bağımsız incelemeden de geçti; bu inceleme tam benchmark denetimi değildir. Bu gözlem özgün işçinin ürettiği son mühür değildir; QA’nın tam ham yanıt/kaynak yeniden doğrulaması, metrik denetimi ve nihai bağımsız inceleme hâlâ bekliyor. Eski ilk 3.360 sorunun runtime son mührü eksikliği kalıcı olarak açıkça korunur.
 

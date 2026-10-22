@@ -1,5 +1,9 @@
 # Results and validation status
 
+**Current Claude/Colab protocol — 22 October:** production closed all 145,300 RAGTurk question–condition outcomes (144,862 technically valid and 438 terminal-invalid; no unresolved effective requests). The full raw/source audit has not started; dev/test metrics, paired comparisons and independent final review remain pending. Producer completion does not establish answer accuracy. [Current execution record](ragturk-colab-claude.tr.md) · [Structured progress](../reports/ragturk-colab-claude-progress.json).
+
+The remaining tables describe the separate historical Gemma/MPS protocol. Its unrun full-data stages must not be confused with the completed Claude production above.
+
 **The ten-variant pilot is complete: 20 development questions × ten variants, 200/200 outputs.** All retrieval methods searched the full 37,511-passage corpus. A separate BM25 retrieval baseline covers all 2,000 development questions; the ten-variant full-development comparison and 12,530-question final test have not run. These pilot results do not establish a general model winner.
 
 ## Evidence ledger
@@ -20,7 +24,7 @@
 
 Update this ledger only from actual commands, manifests and inspected artifacts. Include the checked code/config revision and exact scope when changing a row.
 
-The [68-test CI run](https://github.com/erendikmenn/rag-benchmark/actions/runs/37527343627) succeeded for commit `e094aa4719a381ce9786e21d9503a2f61596ee76`; local tests and Ruff also passed. Real-model checks are separate from CI. The run reports, completion markers and summaries below were inspected; the final test split remains untouched.
+The [68-test CI run](https://github.com/erendikmenn/rag-benchmark/actions/runs/37527343627) succeeded for commit `e094aa4719a381ce9786e21d9503a2f61596ee76`; local tests and Ruff also passed. Real-model checks are separate from CI. The historical run reports, completion markers and summaries below were inspected; that Gemma pilot did not evaluate the final test split.
 
 ## Complete ten-variant development pilot
 

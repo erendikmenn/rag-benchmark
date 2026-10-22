@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-17",
-  "status": "qa_running_full_Laya_transport_closed_postclosure_byte_range_audit_passed_final_QA_audits_pending",
+  "as_of": "2026-10-22",
+  "status": "all_145300_QA_outcomes_producer_closed_final_audit_and_metrics_pending",
   "scope": "new_prepared_embedding_protocol_separate_from_historical_Gemma_MPS",
   "prepared_retrieval": {
     "status": "completed_independent_integrity_audit_passed",
@@ -73,9 +73,10 @@
     "other_unchanged_source_model_files": 49
   },
   "remaining": [
-    "complete_current_full_dev_and_test_QA_runs",
+    "complete_approved_source_bound_worker_closure_and_retained_process_checks",
     "full_145300_effective_alias_raw_source_and_metric_audit_with_dev_test_paired_comparison",
-    "independent_final_review_with_documented_old_runtime_end_seal_gap"
+    "independent_final_review_with_documented_old_runtime_end_seal_gap",
+    "final_results_publication_and_exact_commit_CI"
   ],
   "whole_benchmark_eta": null,
   "new_completed_main_matrix_conditions": 0,
@@ -152,8 +153,8 @@
     "credit_purchase": false,
     "actual_remote_worker_confirmed": true
   },
-  "as_of_utc": "2026-10-17T10:09:09.662760+00:00",
-  "full_qa": {
+  "as_of_utc": "2026-10-22T10:54:40.380180+00:00",
+  "historical_full_qa_20261017": {
     "status": "completion_driven_v5_running_original_six_resolved",
     "model": "claude-haiku-5-5",
     "transport": "first_party_Max_subscription_CLI",
@@ -476,7 +477,55 @@
       "closed_attempt_review_required_before_future_invocation": true
     },
     "snapshot_transaction_started_utc": "2026-10-17T10:07:44.666515+00:00",
-    "snapshot_transaction_finished_utc": "2026-10-17T10:07:46.007017+00:00"
+    "snapshot_transaction_finished_utc": "2026-10-17T10:07:46.007017+00:00",
+    "historical_as_of_utc": "2026-10-17T10:09:09.662760+00:00",
+    "historical_observation_only": true
+  },
+  "full_qa": {
+    "status": "all_effective_qa_outcomes_closed_pending_final_audits",
+    "model": "claude-haiku-5-5",
+    "transport": "first_party_Max_subscription_CLI",
+    "output_cap": 2048,
+    "queries": 14530,
+    "declared_logical_conditions": 145300,
+    "dev_logical_conditions": 20000,
+    "test_logical_conditions": 125300,
+    "logical_closed": 145300,
+    "valid_logical_conditions": 144862,
+    "terminal_invalid_logical_conditions": 438,
+    "effective_logical_by_split": {
+      "dev": {
+        "terminal_invalid": 66,
+        "valid": 19934
+      },
+      "test": {
+        "terminal_invalid": 372,
+        "valid": 124928
+      }
+    },
+    "unresolved_original_requests": 0,
+    "counter_source": "immutable_producer_completion_receipt_not_fresh_SQL_or_full_raw_audit",
+    "producer_completed_sha256": "5f4e8e5b1910903a2282e6c33f761bb2a03f59607c38526944777671257adaac",
+    "producer_completion_file_mtime_utc": "2026-10-19T00:59:46.993536+00:00",
+    "completion_time_scope": "filesystem_mtime_not_an_embedded_producer_timestamp",
+    "producer_plan_sha256": "d6d0cab9b715953872b93f4177f1d7033bead847b24eec05bd32ccce36ffda60",
+    "producer_source_sha256": "68938fa4142abfdf60e545a64dbf4f60a9a70d779651e4dcb0f91e3407578e27",
+    "quality_evaluation_complete": false,
+    "final_metric_audit_complete": false,
+    "final_audit_invocations": 0,
+    "full_benchmark_complete": false,
+    "current_stage": "approved_worker_closure_implementation_before_exact_final_audit_admission",
+    "new_model_requests_for_finalization": 0,
+    "prior_requests_reset": false,
+    "paid_fallback": false,
+    "terminal_invalid_denominator_policy": "zero_answer_EM_and_F1_for_each_logical_condition_no_retry",
+    "historical_failed_or_unknown_records_preserved": true,
+    "separate_resolution_records": 12,
+    "two_historical_V8_provider_completion_unknowns_preserved": true,
+    "historical_retry_provider_completion_unknown_preserved": true,
+    "old_runtime_final_end_seal_gap_preserved": true,
+    "same_scope_worker_closure_authorized": true,
+    "current_stage_is_not_final_audit_acceptance": true
   },
   "colab_full_laya": {
     "status": "full_transport_and_owned_scoring_closed_postclosure_byte_range_audit_passed",
