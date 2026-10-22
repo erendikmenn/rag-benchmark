@@ -1,0 +1,4994 @@
+{
+  "ASR_inference_count": 0,
+  "actual_workflow_this_launch_wall_seconds": 414.250402667,
+  "answer_generation_performed": false,
+  "budget": {
+    "bm25_positive_scores_only": true,
+    "candidate_k_maximum": 50,
+    "primary_mode": "total",
+    "primary_total_retrieval": 100,
+    "rrf_k": 60,
+    "secondary_mode": "per_channel",
+    "secondary_per_channel_retrieval": 100
+  },
+  "candidate_pair_occurrences": 940505,
+  "cell_count": 124,
+  "cells": [
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 3,
+        "sum": 14585
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B"
+      ],
+      "key": "B-total-none",
+      "metrics": {
+        "hit@1": 0.9802631578947368,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.993421052631579,
+        "hit@5": 0.9835526315789473,
+        "map@16": 0.9802899175020885,
+        "mrr@1": 0.9802631578947368,
+        "mrr@10": 0.982456140350877,
+        "mrr@20": 0.982456140350877,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9802631578947368,
+        "ndcg@10": 0.9835278837660308,
+        "ndcg@20": 0.9839138037709838,
+        "ndcg@5": 0.9793061164418354,
+        "recall@1": 0.5,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9917763157894737,
+        "recall@5": 0.9797149122807017
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 3,
+        "sum": 14585
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B"
+      ],
+      "key": "B-total-laya",
+      "metrics": {
+        "hit@1": 0.9671052631578947,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.993421052631579,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9704077903091061,
+        "mrr@1": 0.9671052631578947,
+        "mrr@10": 0.9754973370927318,
+        "mrr@20": 0.9754973370927318,
+        "mrr@5": 0.9746162280701753,
+        "ndcg@1": 0.9671052631578947,
+        "ndcg@10": 0.9761326425739799,
+        "ndcg@20": 0.9770410904710995,
+        "ndcg@5": 0.9732799924195813,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9873903508771928,
+        "recall@20": 0.9901315789473685,
+        "recall@5": 0.9791666666666665
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 3,
+        "sum": 14585
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B"
+      ],
+      "key": "B-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9802631578947368,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.993421052631579,
+        "hit@5": 0.9835526315789473,
+        "map@16": 0.9802899175020885,
+        "mrr@1": 0.9802631578947368,
+        "mrr@10": 0.982456140350877,
+        "mrr@20": 0.982456140350877,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9802631578947368,
+        "ndcg@10": 0.9835278837660308,
+        "ndcg@20": 0.9839138037709838,
+        "ndcg@5": 0.9793061164418354,
+        "recall@1": 0.5,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9917763157894737,
+        "recall@5": 0.9797149122807017
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 3,
+        "sum": 14585
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B"
+      ],
+      "key": "B-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9671052631578947,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.993421052631579,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9704077903091061,
+        "mrr@1": 0.9671052631578947,
+        "mrr@10": 0.9754973370927318,
+        "mrr@20": 0.9754973370927318,
+        "mrr@5": 0.9746162280701753,
+        "ndcg@1": 0.9671052631578947,
+        "ndcg@10": 0.9761326425739799,
+        "ndcg@20": 0.9770410904710995,
+        "ndcg@5": 0.9732799924195813,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9873903508771928,
+        "recall@20": 0.9901315789473685,
+        "recall@5": 0.9791666666666665
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G"
+      ],
+      "key": "G-total-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G"
+      ],
+      "key": "G-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9776761980709349,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9832001879699247,
+        "mrr@20": 0.9836723612260316,
+        "mrr@5": 0.9827302631578947,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9823224978929878,
+        "ndcg@20": 0.9843792959626658,
+        "ndcg@5": 0.9794375603521374,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G"
+      ],
+      "key": "G-per_channel-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G"
+      ],
+      "key": "G-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9776761980709349,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9832001879699247,
+        "mrr@20": 0.9836723612260316,
+        "mrr@5": 0.9827302631578947,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9823224978929878,
+        "ndcg@20": 0.9843792959626658,
+        "ndcg@5": 0.9794375603521374,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E"
+      ],
+      "key": "E-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9986293859649122,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9989915342224251,
+        "ndcg@20": 0.9989915342224251,
+        "ndcg@5": 0.9989915342224251,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E"
+      ],
+      "key": "E-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9730277398040554,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9772243107769425,
+        "mrr@20": 0.9775822829131654,
+        "mrr@5": 0.9764254385964913,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9783711531184367,
+        "ndcg@20": 0.9811248909272594,
+        "ndcg@5": 0.9744686501936013,
+        "recall@1": 0.4912280701754385,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9791666666666665
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E"
+      ],
+      "key": "E-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9986293859649122,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9989915342224251,
+        "ndcg@20": 0.9989915342224251,
+        "ndcg@5": 0.9989915342224251,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E"
+      ],
+      "key": "E-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9730277398040554,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9772243107769425,
+        "mrr@20": 0.9775822829131654,
+        "mrr@5": 0.9764254385964913,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9783711531184367,
+        "ndcg@20": 0.9811248909272594,
+        "ndcg@5": 0.9744686501936013,
+        "recall@1": 0.4912280701754385,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9791666666666665
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N"
+      ],
+      "key": "N-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9876939033189034,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9950657894736842,
+        "mrr@20": 0.9953648325358853,
+        "mrr@5": 0.9950657894736842,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9917768798940569,
+        "ndcg@20": 0.9931746240683857,
+        "ndcg@5": 0.9885685268608603,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 0.9956140350877192,
+        "recall@20": 1.0,
+        "recall@5": 0.9884868421052632
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N"
+      ],
+      "key": "N-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753511382623226,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9795321637426903,
+        "mrr@20": 0.9799570540935673,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9803698394557926,
+        "ndcg@20": 0.9826811219334459,
+        "ndcg@5": 0.9768027121904831,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N"
+      ],
+      "key": "N-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9876939033189034,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9950657894736842,
+        "mrr@20": 0.9953648325358853,
+        "mrr@5": 0.9950657894736842,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9917768798940569,
+        "ndcg@20": 0.9931746240683857,
+        "ndcg@5": 0.9885685268608603,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 0.9956140350877192,
+        "recall@20": 1.0,
+        "recall@5": 0.9884868421052632
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N"
+      ],
+      "key": "N-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753511382623226,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9795321637426903,
+        "mrr@20": 0.9799570540935673,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9803698394557926,
+        "ndcg@20": 0.9826811219334459,
+        "ndcg@5": 0.9768027121904831,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "J"
+      ],
+      "key": "J-total-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "J"
+      ],
+      "key": "J-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753548534798535,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9803806390977443,
+        "mrr@20": 0.9807918233082706,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.98045645234004,
+        "ndcg@20": 0.9827779226025124,
+        "ndcg@5": 0.976915824583619,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "J"
+      ],
+      "key": "J-per_channel-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "J"
+      ],
+      "key": "J-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753548534798535,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9803806390977443,
+        "mrr@20": 0.9807918233082706,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.98045645234004,
+        "ndcg@20": 0.9827779226025124,
+        "ndcg@5": 0.976915824583619,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G"
+      ],
+      "key": "BG-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9944724105085947,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9946089181286549,
+        "mrr@20": 0.9946089181286549,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.995654984522471,
+        "ndcg@20": 0.9960855831743402,
+        "ndcg@5": 0.9940256214201342,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9989035087719297,
+        "recall@20": 1.0,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G"
+      ],
+      "key": "BG-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9797594446854314,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9836440058479532,
+        "mrr@20": 0.9838970422852003,
+        "mrr@5": 0.9827302631578947,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9840873166008337,
+        "ndcg@20": 0.9856514628877497,
+        "ndcg@5": 0.9808312184592728,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9939692982456139,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G"
+      ],
+      "key": "BG-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9938322368421053,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9942434210526315,
+        "mrr@20": 0.9942434210526315,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9947440669359834,
+        "ndcg@20": 0.9947440669359834,
+        "ndcg@5": 0.9940256214201342,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 0.9967105263157895,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G"
+      ],
+      "key": "BG-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.993421052631579,
+        "map@16": 0.9790713763575605,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9840277777777778,
+        "mrr@20": 0.9842627401837928,
+        "mrr@5": 0.9836622807017543,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9839210200653596,
+        "ndcg@20": 0.9854573816665301,
+        "ndcg@5": 0.9816051874033145,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9939692982456139,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9873903508771928
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E"
+      ],
+      "key": "BE-total-none",
+      "metrics": {
+        "hit@1": 0.9901315789473685,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9926477853287065,
+        "mrr@1": 0.9901315789473685,
+        "mrr@10": 0.9925986842105263,
+        "mrr@20": 0.9928517206477734,
+        "mrr@5": 0.9925986842105263,
+        "ndcg@1": 0.9901315789473685,
+        "ndcg@10": 0.9935300200727315,
+        "ndcg@20": 0.9947165042059437,
+        "ndcg@5": 0.9928115745568823,
+        "recall@1": 0.5043859649122806,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 1.0,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E"
+      ],
+      "key": "BE-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9774984335839597,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9819666353383457,
+        "mrr@20": 0.9823843462823726,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9819176030210999,
+        "ndcg@20": 0.9841949862187672,
+        "ndcg@5": 0.9785235900683519,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E"
+      ],
+      "key": "BE-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9901315789473685,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9921875,
+        "mrr@1": 0.9901315789473685,
+        "mrr@10": 0.9925986842105263,
+        "mrr@20": 0.9925986842105263,
+        "mrr@5": 0.9925986842105263,
+        "ndcg@1": 0.9901315789473685,
+        "ndcg@10": 0.9935300200727315,
+        "ndcg@20": 0.9935300200727315,
+        "ndcg@5": 0.9928115745568823,
+        "recall@1": 0.5043859649122806,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 0.9967105263157895,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E"
+      ],
+      "key": "BE-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9763965201465201,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9820253759398496,
+        "mrr@20": 0.982471910829109,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9814303282263787,
+        "ndcg@20": 0.9837365206479398,
+        "ndcg@5": 0.9779242903611937,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N"
+      ],
+      "key": "BN-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9930447567783094,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9945723684210527,
+        "mrr@20": 0.9945723684210527,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9945223171922949,
+        "ndcg@20": 0.9953700770837441,
+        "ndcg@5": 0.9933576480796283,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9978070175438596,
+        "recall@20": 1.0,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N"
+      ],
+      "key": "BN-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.975847941349586,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9795778508771931,
+        "mrr@20": 0.9801118563454091,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.980496240043572,
+        "ndcg@20": 0.9829296888948281,
+        "ndcg@5": 0.9774675389881823,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.982456140350877
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N"
+      ],
+      "key": "BN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9920230263157894,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9942434210526315,
+        "mrr@20": 0.9942434210526315,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9938478834520124,
+        "ndcg@20": 0.9938478834520124,
+        "ndcg@5": 0.9931294379361632,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 0.9967105263157895,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N"
+      ],
+      "key": "BN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9756222669873985,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9795778508771931,
+        "mrr@20": 0.980129930376641,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9803703618605502,
+        "ndcg@20": 0.9828315953975523,
+        "ndcg@5": 0.9773998891396192,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.982456140350877
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "J"
+      ],
+      "key": "BJ-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9942925221708117,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9942434210526315,
+        "mrr@20": 0.9944964574898786,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9947440669359834,
+        "ndcg@20": 0.9959305510691955,
+        "ndcg@5": 0.9940256214201342,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 1.0,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "J"
+      ],
+      "key": "BJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9763294956140351,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9820449561403509,
+        "mrr@20": 0.9824440466976265,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.981417685406254,
+        "ndcg@20": 0.9836834143133897,
+        "ndcg@5": 0.9779242903611937,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "J"
+      ],
+      "key": "BJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9938322368421053,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9942434210526315,
+        "mrr@20": 0.9942434210526315,
+        "mrr@5": 0.9942434210526315,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9947440669359834,
+        "ndcg@20": 0.9947440669359834,
+        "ndcg@5": 0.9940256214201342,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 0.9967105263157895,
+        "recall@5": 0.9950657894736842
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "J"
+      ],
+      "key": "BJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9751677370509606,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9804589598997495,
+        "mrr@20": 0.9808580504570249,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9806226372577778,
+        "ndcg@20": 0.9828815684878202,
+        "ndcg@5": 0.9769384239268746,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E"
+      ],
+      "key": "GE-total-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9994517543859649,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 0.9997359236485138,
+        "ndcg@20": 0.9997359236485138,
+        "ndcg@5": 0.9997359236485138,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E"
+      ],
+      "key": "GE-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9752545426065162,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9795582706766917,
+        "mrr@20": 0.9799237677527152,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9803974301415243,
+        "ndcg@20": 0.982638938830625,
+        "ndcg@5": 0.97638910691877,
+        "recall@1": 0.49232456140350883,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9802631578947368
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E"
+      ],
+      "key": "GE-per_channel-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9994517543859649,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 0.9997359236485138,
+        "ndcg@20": 0.9997359236485138,
+        "ndcg@5": 0.9997359236485138,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E"
+      ],
+      "key": "GE-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9756789309009704,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9819666353383457,
+        "mrr@20": 0.9824131702276052,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9808731880981946,
+        "ndcg@20": 0.9832344490342809,
+        "ndcg@5": 0.9774855509489377,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N"
+      ],
+      "key": "GN-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9957510964912282,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9967105263157895,
+        "mrr@20": 0.9967105263157895,
+        "mrr@5": 0.9967105263157895,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9973364145324041,
+        "ndcg@20": 0.9973364145324041,
+        "ndcg@5": 0.9962995677875055,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N"
+      ],
+      "key": "GN-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9768063990103462,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9813596491228072,
+        "mrr@20": 0.9817954340980658,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9814752486224498,
+        "ndcg@20": 0.9838284085704483,
+        "ndcg@5": 0.9784618210467051,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N"
+      ],
+      "key": "GN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9957510964912282,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9967105263157895,
+        "mrr@20": 0.9967105263157895,
+        "mrr@5": 0.9967105263157895,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9973364145324041,
+        "ndcg@20": 0.9973364145324041,
+        "ndcg@5": 0.9962995677875055,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N"
+      ],
+      "key": "GN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9766355994152045,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.981140350877193,
+        "mrr@20": 0.9814983230134159,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9814384756151991,
+        "ndcg@20": 0.9829959436667197,
+        "ndcg@5": 0.9785830179779637,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9961622807017543,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "J"
+      ],
+      "key": "GJ-total-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "J"
+      ],
+      "key": "GJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753472222222221,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9805372807017545,
+        "mrr@20": 0.9809393274853802,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.980524769993465,
+        "ndcg@20": 0.9828363196288409,
+        "ndcg@5": 0.976915824583619,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "J"
+      ],
+      "key": "GJ-per_channel-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "J"
+      ],
+      "key": "GJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9759881474519634,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9820253759398496,
+        "mrr@20": 0.982438172637476,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.981152069820163,
+        "ndcg@20": 0.983482363154663,
+        "ndcg@5": 0.9776819774518608,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N"
+      ],
+      "key": "EN-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9953307748538011,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9975086245349969,
+        "ndcg@20": 0.9975086245349969,
+        "ndcg@5": 0.9964717777900983,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N"
+      ],
+      "key": "EN-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9730368772309562,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9778091060985797,
+        "mrr@20": 0.9781853530886039,
+        "mrr@5": 0.9769736842105263,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9784543082445695,
+        "ndcg@20": 0.9812479875595472,
+        "ndcg@5": 0.9749953678584503,
+        "recall@1": 0.4906798245614036,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9802631578947368
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N"
+      ],
+      "key": "EN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9953307748538011,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9975086245349969,
+        "ndcg@20": 0.9975086245349969,
+        "ndcg@5": 0.9964717777900983,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N"
+      ],
+      "key": "EN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9771675281954885,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9818843984962405,
+        "mrr@20": 0.9820575286901465,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9817639160627629,
+        "ndcg@20": 0.9829026907597558,
+        "ndcg@5": 0.9790397693509753,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9950657894736842,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "J"
+      ],
+      "key": "EJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9986293859649122,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9989915342224251,
+        "ndcg@20": 0.9989915342224251,
+        "ndcg@5": 0.9989915342224251,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "J"
+      ],
+      "key": "EJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9724447838345863,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9778547932330826,
+        "mrr@20": 0.9782675899307091,
+        "mrr@5": 0.9769736842105263,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9785634180845874,
+        "ndcg@20": 0.9808719707592616,
+        "ndcg@5": 0.9745792277894499,
+        "recall@1": 0.4906798245614036,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9802631578947368
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "J"
+      ],
+      "key": "EJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9986293859649122,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9989915342224251,
+        "ndcg@20": 0.9989915342224251,
+        "ndcg@5": 0.9989915342224251,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "J"
+      ],
+      "key": "EJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9730987625313282,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9779187552213869,
+        "mrr@20": 0.9783070958646617,
+        "mrr@5": 0.9770833333333332,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9790106879424851,
+        "ndcg@20": 0.981266504984073,
+        "ndcg@5": 0.9756230507932283,
+        "recall@1": 0.4906798245614036,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N",
+        "J"
+      ],
+      "key": "NJ-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9928910818713449,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9961622807017543,
+        "mrr@20": 0.9961622807017543,
+        "mrr@5": 0.9961622807017543,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9954877721227919,
+        "ndcg@20": 0.9959049333623723,
+        "ndcg@5": 0.9943880322874881,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 0.9989035087719297,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N",
+        "J"
+      ],
+      "key": "NJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9748139880952381,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9797736528822055,
+        "mrr@20": 0.9801817454821264,
+        "mrr@5": 0.9788925438596491,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9800726634806645,
+        "ndcg@20": 0.9820091746111853,
+        "ndcg@5": 0.9772921832287091,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N",
+        "J"
+      ],
+      "key": "NJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9928910818713449,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9961622807017543,
+        "mrr@20": 0.9961622807017543,
+        "mrr@5": 0.9961622807017543,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9954877721227919,
+        "ndcg@20": 0.9959049333623723,
+        "ndcg@5": 0.9943880322874881,
+        "recall@1": 0.5071271929824561,
+        "recall@10": 0.9989035087719297,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "N",
+        "J"
+      ],
+      "key": "NJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753380847953215,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9795778508771931,
+        "mrr@20": 0.9799444795231114,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9805835715739568,
+        "ndcg@20": 0.9824669723155248,
+        "ndcg@5": 0.9777041647558512,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "key": "BGE-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9969115497076024,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9961622807017543,
+        "mrr@20": 0.9961622807017543,
+        "mrr@5": 0.9961622807017543,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9977359042949558,
+        "ndcg@20": 0.9977359042949558,
+        "ndcg@5": 0.9977359042949558,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "key": "BGE-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9777699456975772,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9821820175438598,
+        "mrr@20": 0.9825901101437807,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9821579311576746,
+        "ndcg@20": 0.9840656962079167,
+        "ndcg@5": 0.9785235900683519,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "key": "BGE-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.995364513045434,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9949287280701754,
+        "mrr@20": 0.9949287280701754,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9957851403764416,
+        "ndcg@20": 0.9966077484554715,
+        "ndcg@5": 0.9952981635491952,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9978070175438596,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E"
+      ],
+      "key": "BGE-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753851959444065,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9819078947368421,
+        "mrr@20": 0.9822745233827602,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9803489021764159,
+        "ndcg@20": 0.9831410493764456,
+        "ndcg@5": 0.9775532007975009,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "key": "BGN-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9963633040935672,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9961622807017543,
+        "mrr@20": 0.9961622807017543,
+        "mrr@5": 0.9961622807017543,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9974718279434697,
+        "ndcg@20": 0.9974718279434697,
+        "ndcg@5": 0.9974718279434697,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "key": "BGN-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9777674354154617,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9816337719298246,
+        "mrr@20": 0.9821609311740891,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9818178228198504,
+        "ndcg@20": 0.9842854469263177,
+        "ndcg@5": 0.9799276431358824,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9857456140350876
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "key": "BGN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.994883594719121,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9948830409356726,
+        "mrr@20": 0.9948830409356726,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9959450047841967,
+        "ndcg@20": 0.9963756034360657,
+        "ndcg@5": 0.995034087197709,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9989035087719297,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N"
+      ],
+      "key": "BGN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9762386918636918,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9812225877192983,
+        "mrr@20": 0.9814575501253133,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9806111547533143,
+        "ndcg@20": 0.9824211776088085,
+        "ndcg@5": 0.9777041647558512,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9950657894736842,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "key": "BGJ-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9969115497076024,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9961622807017543,
+        "mrr@20": 0.9961622807017543,
+        "mrr@5": 0.9961622807017543,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9977359042949558,
+        "ndcg@20": 0.9977359042949558,
+        "ndcg@5": 0.9977359042949558,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "key": "BGJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9772489115416746,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9822916666666667,
+        "mrr@20": 0.9826679136566907,
+        "mrr@5": 0.9817434210526316,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9819494157430393,
+        "ndcg@20": 0.9842157393551536,
+        "ndcg@5": 0.9788999487134419,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "key": "BGJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9954069200779726,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9948830409356726,
+        "mrr@20": 0.9948830409356726,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.996209081135683,
+        "ndcg@20": 0.9966262423752631,
+        "ndcg@5": 0.9952981635491952,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9989035087719297,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "J"
+      ],
+      "key": "BGJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9759947928533454,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.981203007518797,
+        "mrr@20": 0.9816141917293233,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.98104311098433,
+        "ndcg@20": 0.9833897330592215,
+        "ndcg@5": 0.9775971515436443,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15197
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "key": "BEN-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9946023913951546,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9950657894736842,
+        "mrr@20": 0.9950657894736842,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.996321417597725,
+        "ndcg@20": 0.996321417597725,
+        "ndcg@5": 0.9947700108462229,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15197
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "key": "BEN-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9758295478279029,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9805372807017545,
+        "mrr@20": 0.9810072055137845,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9806502535985249,
+        "ndcg@20": 0.9826509202328656,
+        "ndcg@5": 0.9770228377958257,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "key": "BEN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9942904926457558,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9948830409356726,
+        "mrr@20": 0.9948830409356726,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9952347048358932,
+        "ndcg@20": 0.9960824647273426,
+        "ndcg@5": 0.9947700108462229,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9978070175438596,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N"
+      ],
+      "key": "BEN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9755861006683375,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9804589598997495,
+        "mrr@20": 0.9808459568037741,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9807697706103738,
+        "ndcg@20": 0.9830353110871153,
+        "ndcg@5": 0.977152450351288,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 43,
+        "sum": 15189
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "key": "BEJ-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9953748006379586,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9948464912280702,
+        "mrr@20": 0.9948464912280702,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9957443871460123,
+        "ndcg@20": 0.9965921470374618,
+        "ndcg@5": 0.9952981635491952,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9978070175438596,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 43,
+        "sum": 15189
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "key": "BEJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9764019423558896,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9821036967418548,
+        "mrr@20": 0.9825164934394812,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9814764632238449,
+        "ndcg@20": 0.9837410453327834,
+        "ndcg@5": 0.9779242903611937,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "key": "BEJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 0.9967105263157895,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.995251951995373,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9945175438596491,
+        "mrr@20": 0.9947705802968961,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9952981635491952,
+        "ndcg@20": 0.9964846476824071,
+        "ndcg@5": 0.9952981635491952,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9967105263157895,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "J"
+      ],
+      "key": "BEJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9733454730576442,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9781289160401002,
+        "mrr@20": 0.9785159129441251,
+        "mrr@5": 0.977247807017544,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9792122210628613,
+        "ndcg@20": 0.981477761539603,
+        "ndcg@5": 0.9757898072116117,
+        "recall@1": 0.4912280701754385,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 44,
+        "sum": 15191
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "key": "BNJ-total-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9951506370091895,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9950657894736842,
+        "mrr@20": 0.9950657894736842,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9965854939492113,
+        "ndcg@20": 0.9965854939492113,
+        "ndcg@5": 0.995034087197709,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 44,
+        "sum": 15191
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "key": "BNJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9753883406432747,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9804002192982457,
+        "mrr@20": 0.9808130159958721,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9806369793377139,
+        "ndcg@20": 0.9829135074686833,
+        "ndcg@5": 0.9776960802177285,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "key": "BNJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9948265550239235,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9948464912280702,
+        "mrr@20": 0.9948464912280702,
+        "mrr@5": 0.9945175438596491,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9954803107945261,
+        "ndcg@20": 0.9963280706859755,
+        "ndcg@5": 0.995034087197709,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 0.9978070175438596,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "N",
+        "J"
+      ],
+      "key": "BNJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.975047645154553,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9796365914786969,
+        "mrr@20": 0.9800153137778655,
+        "mrr@5": 0.9786184210526315,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9803523229051752,
+        "ndcg@20": 0.9822516383689474,
+        "ndcg@5": 0.9766956989782763,
+        "recall@1": 0.49067982456140347,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "GEN-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.998081140350877,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987775077980118,
+        "ndcg@20": 0.9987775077980118,
+        "ndcg@5": 0.9987775077980118,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "GEN-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9758856777360067,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9808114035087719,
+        "mrr@20": 0.9811997441520468,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9809127876955946,
+        "ndcg@20": 0.9831754991954166,
+        "ndcg@5": 0.9784395370000144,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "GEN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.998081140350877,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987775077980118,
+        "ndcg@20": 0.9987775077980118,
+        "ndcg@5": 0.9987775077980118,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "GEN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.977580136420597,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9828477443609023,
+        "mrr@20": 0.9830208745548079,
+        "mrr@5": 0.9819078947368421,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9818462454680347,
+        "ndcg@20": 0.9834156188168963,
+        "ndcg@5": 0.97947028682428,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9895833333333333,
+        "recall@20": 0.9950657894736842,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 46,
+        "sum": 15189
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "GEJ-total-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 46,
+        "sum": 15189
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "GEJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9765871007647323,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9822916666666667,
+        "mrr@20": 0.9826786635706914,
+        "mrr@5": 0.9817434210526316,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9816340437319823,
+        "ndcg@20": 0.9839191110432207,
+        "ndcg@5": 0.9791968324902549,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "GEJ-per_channel-none",
+      "metrics": {
+        "hit@1": 1.0,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 1.0,
+        "mrr@1": 1.0,
+        "mrr@10": 1.0,
+        "mrr@20": 1.0,
+        "mrr@5": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@10": 1.0,
+        "ndcg@20": 1.0,
+        "ndcg@5": 1.0,
+        "recall@1": 0.5104166666666666,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "GEJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9744393535923139,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9803218984962405,
+        "mrr@20": 0.9806885271421588,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9802014051533812,
+        "ndcg@20": 0.9824483986593463,
+        "ndcg@5": 0.9768031242297482,
+        "recall@1": 0.49232456140350883,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 49,
+        "sum": 15199
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "GNJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9979166666666667,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987098579494489,
+        "ndcg@20": 0.9987098579494489,
+        "ndcg@5": 0.9987098579494489,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 49,
+        "sum": 15199
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "GNJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9755586883876358,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9806743421052632,
+        "mrr@20": 0.9810734326625387,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9807111061676523,
+        "ndcg@20": 0.9830017586504547,
+        "ndcg@5": 0.9783325237878079,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "GNJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9979166666666667,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987098579494489,
+        "ndcg@20": 0.9987098579494489,
+        "ndcg@5": 0.9987098579494489,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "GNJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 0.9967105263157895,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9776903195488721,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9829260651629074,
+        "mrr@20": 0.9831088137009191,
+        "mrr@5": 0.9819078947368421,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9823675649161256,
+        "ndcg@20": 0.9835590975812538,
+        "ndcg@5": 0.9794516631180051,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9950657894736842,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 46,
+        "sum": 15166
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "ENJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9974780701754387,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9985351948886789,
+        "ndcg@20": 0.9985351948886789,
+        "ndcg@5": 0.9985351948886789,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 46,
+        "sum": 15166
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "ENJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9703947368421053,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9733573398458267,
+        "mrr@1": 0.9703947368421053,
+        "mrr@10": 0.9781615497076025,
+        "mrr@20": 0.978560640264878,
+        "mrr@5": 0.977247807017544,
+        "ndcg@1": 0.9703947368421053,
+        "ndcg@10": 0.9786445080646649,
+        "ndcg@20": 0.981472845800971,
+        "ndcg@5": 0.9756601946561495,
+        "recall@1": 0.4906798245614036,
+        "recall@10": 0.9890350877192982,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "ENJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9974780701754387,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9985351948886789,
+        "ndcg@20": 0.9985351948886789,
+        "ndcg@5": 0.9985351948886789,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "ENJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9769436612364245,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9819666353383457,
+        "mrr@20": 0.982333263984264,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9816818235292761,
+        "ndcg@20": 0.9835652242708439,
+        "ndcg@5": 0.9788999487134419,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15196
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "BGEN-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9977339181286551,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9978070175438596,
+        "mrr@20": 0.9978070175438596,
+        "mrr@5": 0.9978070175438596,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9984802937210443,
+        "ndcg@20": 0.9984802937210443,
+        "ndcg@5": 0.9984802937210443,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15196
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "BGEN-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9757466583124477,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9805372807017545,
+        "mrr@20": 0.9809915413533835,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9807324280498436,
+        "ndcg@20": 0.9830783648216609,
+        "ndcg@5": 0.9770228377958257,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "BGEN-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.996610014619883,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9973684210526316,
+        "mrr@20": 0.9973684210526316,
+        "mrr@5": 0.9973684210526316,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9978163973068517,
+        "ndcg@20": 0.9978163973068517,
+        "ndcg@5": 0.9967795505619531,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N"
+      ],
+      "key": "BGEN-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9757192460317462,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9811442669172932,
+        "mrr@20": 0.9815108955632115,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9811445934737921,
+        "ndcg@20": 0.98301226792355,
+        "ndcg@5": 0.9777041647558512,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 45,
+        "sum": 15184
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "BGEJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.99828216374269,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9978070175438596,
+        "mrr@20": 0.9978070175438596,
+        "mrr@5": 0.9978070175438596,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987443700725305,
+        "ndcg@20": 0.9987443700725305,
+        "ndcg@5": 0.9987443700725305,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 45,
+        "sum": 15184
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "BGEJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9771929824561404,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9821820175438598,
+        "mrr@20": 0.9825932017543861,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9817471088820315,
+        "ndcg@20": 0.9840490523100069,
+        "ndcg@5": 0.9781196930793323,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "BGEJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9976177422723475,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9972587719298246,
+        "mrr@20": 0.9972587719298246,
+        "mrr@5": 0.9967105263157895,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9982619330672918,
+        "ndcg@20": 0.9982619330672918,
+        "ndcg@5": 0.9967105263157895,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "J"
+      ],
+      "key": "BGEJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9762348579782791,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9820253759398496,
+        "mrr@20": 0.982381254671767,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9813479669643032,
+        "ndcg@20": 0.9835670194872879,
+        "ndcg@5": 0.9779242903611937,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15188
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "BGNJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.99828216374269,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9978070175438596,
+        "mrr@20": 0.9978070175438596,
+        "mrr@5": 0.9978070175438596,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9987443700725305,
+        "ndcg@20": 0.9987443700725305,
+        "ndcg@5": 0.9987443700725305,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 47,
+        "sum": 15188
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "BGNJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9762935985797828,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9806469298245615,
+        "mrr@20": 0.9811011904761905,
+        "mrr@5": 0.9800986842105263,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9809419537571502,
+        "ndcg@20": 0.9833036168207777,
+        "ndcg@5": 0.9785833490640449,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "BGNJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.997765246449457,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9973684210526316,
+        "mrr@20": 0.9973684210526316,
+        "mrr@5": 0.9973684210526316,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9983721331891814,
+        "ndcg@20": 0.9983721331891814,
+        "ndcg@5": 0.9973077032649256,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9978070175438596
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "N",
+        "J"
+      ],
+      "key": "BGNJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9762577015455305,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9812225877192983,
+        "mrr@20": 0.9816109283625731,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9812335992547642,
+        "ndcg@20": 0.9835055080384422,
+        "ndcg@5": 0.9777041647558512,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 40,
+        "sum": 15165
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BENJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.997423245614035,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9975328947368421,
+        "mrr@20": 0.9975328947368421,
+        "mrr@5": 0.9975328947368421,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9982583236287905,
+        "ndcg@20": 0.9982583236287905,
+        "ndcg@5": 0.9977084537111385,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9989035087719297
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 40,
+        "sum": 15165
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BENJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9756156215860162,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9805372807017545,
+        "mrr@20": 0.9810096153846154,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9805655232238942,
+        "ndcg@20": 0.9825743757781589,
+        "ndcg@5": 0.976915824583619,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9972587719298245,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BENJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.993421052631579,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 0.9967105263157895,
+        "map@16": 0.9956531954887219,
+        "mrr@1": 0.993421052631579,
+        "mrr@10": 0.9956140350877194,
+        "mrr@20": 0.9956140350877194,
+        "mrr@5": 0.9950657894736842,
+        "ndcg@1": 0.993421052631579,
+        "ndcg@10": 0.9969671081006549,
+        "ndcg@20": 0.9969671081006549,
+        "ndcg@5": 0.9954379841867285,
+        "recall@1": 0.5076754385964911,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9967105263157895
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BENJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9756983604845447,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9804002192982457,
+        "mrr@20": 0.9807764662882698,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9808073990269266,
+        "ndcg@20": 0.9830541958045442,
+        "ndcg@5": 0.9779327059853974,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9830043859649122
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 35,
+        "sum": 14883
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "GENJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9983552631578947,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9988845210102184,
+        "ndcg@20": 0.9988845210102184,
+        "ndcg@5": 0.9988845210102184,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 35,
+        "sum": 14883
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "GENJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9901315789473685,
+        "map@16": 0.9753700657894736,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9808114035087719,
+        "mrr@20": 0.9811984004127968,
+        "mrr@5": 0.9802631578947368,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9807882054223886,
+        "ndcg@20": 0.983045488047881,
+        "ndcg@5": 0.9783325237878079,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9846491228070174
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "GENJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9983552631578947,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9983552631578947,
+        "mrr@20": 0.9983552631578947,
+        "mrr@5": 0.9983552631578947,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9988845210102184,
+        "ndcg@20": 0.9988845210102184,
+        "ndcg@5": 0.9988845210102184,
+        "recall@1": 0.5087719298245613,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "GENJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9769736842105263,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9763877022100708,
+        "mrr@1": 0.9769736842105263,
+        "mrr@10": 0.9820253759398496,
+        "mrr@20": 0.9823725981620718,
+        "mrr@5": 0.9810855263157895,
+        "ndcg@1": 0.9769736842105263,
+        "ndcg@10": 0.9810186945207977,
+        "ndcg@20": 0.9829610346171866,
+        "ndcg@5": 0.9779242903611937,
+        "recall@1": 0.4934210526315789,
+        "recall@10": 0.9895833333333333,
+        "recall@20": 0.9961622807017543,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 39,
+        "sum": 14988
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BGENJ-total-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.9977339181286551,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9978070175438596,
+        "mrr@20": 0.9978070175438596,
+        "mrr@5": 0.9978070175438596,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9984802937210443,
+        "ndcg@20": 0.9984802937210443,
+        "ndcg@5": 0.9984802937210443,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 1.0
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "total",
+      "candidate_count": {
+        "max": 50,
+        "min": 39,
+        "sum": 14988
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BGENJ-total-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9756526733500417,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9805372807017545,
+        "mrr@20": 0.9809758771929825,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9806862930523778,
+        "ndcg@20": 0.983012631058373,
+        "ndcg@5": 0.9770228377958257,
+        "recall@1": 0.4917763157894737,
+        "recall@10": 0.9906798245614034,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": true,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BGENJ-per_channel-none",
+      "metrics": {
+        "hit@1": 0.9967105263157895,
+        "hit@10": 1.0,
+        "hit@20": 1.0,
+        "hit@5": 1.0,
+        "map@16": 0.997423245614035,
+        "mrr@1": 0.9967105263157895,
+        "mrr@10": 0.9975328947368421,
+        "mrr@20": 0.9975328947368421,
+        "mrr@5": 0.9975328947368421,
+        "ndcg@1": 0.9967105263157895,
+        "ndcg@10": 0.9982583236287905,
+        "ndcg@20": 0.9982583236287905,
+        "ndcg@5": 0.9977084537111385,
+        "recall@1": 0.5093201754385964,
+        "recall@10": 1.0,
+        "recall@20": 1.0,
+        "recall@5": 0.9989035087719297
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "none",
+      "scores_shared_from_query_union": false,
+      "status": "completed"
+    },
+    {
+      "budget_mode": "per_channel",
+      "candidate_count": {
+        "max": 50,
+        "min": 50,
+        "sum": 15200
+      },
+      "candidate_k": 50,
+      "channels": [
+        "B",
+        "G",
+        "E",
+        "N",
+        "J"
+      ],
+      "key": "BGENJ-per_channel-laya",
+      "metrics": {
+        "hit@1": 0.9736842105263158,
+        "hit@10": 0.993421052631579,
+        "hit@20": 1.0,
+        "hit@5": 0.9868421052631579,
+        "map@16": 0.9750490691691349,
+        "mrr@1": 0.9736842105263158,
+        "mrr@10": 0.9803218984962405,
+        "mrr@20": 0.9806777772281581,
+        "mrr@5": 0.9794407894736842,
+        "ndcg@1": 0.9736842105263158,
+        "ndcg@10": 0.9800349284836283,
+        "ndcg@20": 0.9826763218072332,
+        "ndcg@5": 0.9770454371390812,
+        "recall@1": 0.4923245614035087,
+        "recall@10": 0.9895833333333333,
+        "recall@20": 0.9983552631578947,
+        "recall@5": 0.9813596491228069
+      },
+      "per_cell_latency_measured": false,
+      "primary": false,
+      "query_count": 304,
+      "reranker": "laya",
+      "scores_shared_from_query_union": true,
+      "status": "completed"
+    }
+  ],
+  "channel_legend": {
+    "B": "BM25 on Whisper text",
+    "E": "EG2 on Whisper text",
+    "G": "BGE-M3 on Whisper text",
+    "J": "EG2 audio plus Whisper text gallery",
+    "N": "EG2 native audio gallery"
+  },
+  "combined_329_report": false,
+  "completed_at_utc": "2026-10-22T22:05:30.502756+00:00",
+  "completed_query_cells": 37696,
+  "document_inference_count": 0,
+  "gallery_count": 743,
+  "human_validated": false,
+  "latency_reference": "25-query pilot is a separate paired None/Laya timing experiment; no pooled timing or 329-query metrics",
+  "laya_input": "written query and candidate Whisper text; no raw audio",
+  "limitations": [
+    "All 329 source groups had previously been evaluated with literal queries; this is not an untouched test set.",
+    "Queries were agent meaning-reviewed; transferred source-group qrels have no human or full-gallery semantic validation.",
+    "Existing document vectors lack generation-time checksum attestation; present verification is not retroactive attestation.",
+    "Union pointwise batching differs from the 25-query pilot per-list batching; no bitwise equality or latency equivalence claim.",
+    "No answer generation, spoken-query, noise-robustness, long-audio or general-model-winner claim.",
+    "The historical 25-query pilot is preserved separately; no pooled 329-query metric is produced."
+  ],
+  "new_closed_queries_this_launch": 304,
+  "new_fresh_unique_laya_pairs_this_launch": 47184,
+  "new_query_inference_count_this_launch": 1216,
+  "old_pilot_query_or_score_cache_reused": false,
+  "per_cell_latency_measured": false,
+  "pilot_queries_reissued": 0,
+  "pipeline_end_to_end_measured": false,
+  "protocol": "fleurs-remaining-shared-quality-v1",
+  "provenance": {
+    "actual_summary_sha256": "d55aa86617fe55ab3880a5962e7aa11df8c8cab3911eccf18dce070a2f2151c8",
+    "actual_wait_exit_code": 0,
+    "actual_wait_sha256": "a269a7093de6f3b9c96549c574c310b81ec58a37d48ecdd39ee2edb3e7379c22",
+    "claim_sha256": "41bdbcc0553aacfe5d5c4c4693f2f799063196eb6072b28daea56618179ab9cb",
+    "completed_sha256": "2a8da8e09eca93807d56f0498b72a96b7afc1de3a8d8eabe6c8de3d1fbb23660",
+    "config_sha256": "30f43605eef61000ac9c1325616e356cef7f06d5fcfbc149d52fcec5ab6cae54",
+    "data_config_sha256": "116eb3b909f2cfcdb33e25ef8bf199484dccee58ce3f0b844556b1085031f5f2",
+    "independent_actual_review_sha256": "bf25a7d196637bacb27556d3881ac6930cb9e73cc06630e99de3c734702b7d23",
+    "independent_actual_review_status": "PASS_INDEPENDENT_ACTUAL_OUTPUT_REVIEW",
+    "independent_meaning_review_sha256": "dfadb891e5cf1f96ad8f15bb2106d7710ecb2835b49b3ffba9bf9f380d026e85",
+    "independent_safe_findings_sha256": "770972107d2e08d1f2ec00bd4727ef3cfac88410518cda983136262b76d13d93",
+    "runner_sha256": "b2e1e685409e30698cc124ae30925fc36a5671851eda138be76dcc77a527a17f"
+  },
+  "publication_schema": "fleurs-remaining304-public-numeric-sha-v1",
+  "qrels_full_validation": false,
+  "qrels_policy": "source_group_transferred_exploratory_agent_reviewed",
+  "query_cache_hits": 0,
+  "query_count": 304,
+  "query_modality": "written_turkish_text",
+  "recorded_fresh_unique_laya_pairs": 47184,
+  "recorded_query_inference_count": 1216,
+  "relevance_labels": {
+    "agent_meaning_reviewed_queries": 304,
+    "full_gallery_semantic_qrels": false,
+    "human_validated": false,
+    "positive_source_group_edges": 689
+  },
+  "reused_closed_queries_this_launch": 0,
+  "scope": "complete_remaining304_query_cohort_exploratory_source_group_retrieval",
+  "scoring_policy": "four fresh query encodes per query; one fresh Laya pointwise score per query/document union across 62 candidate lists; exact lookup/scatter; stable input-order ties",
+  "semantic_ground_truth_verified": false,
+  "status": "completed",
+  "subset_count": 31,
+  "timing_scope": "actual shared quality workflow including verification, loading, warmup and receipt work; not per-cell or online retrieval pipeline latency",
+  "topology": "local MPS; all models resident; serial query stages; concurrency 1; query batch 1; no E/N/J encode sharing",
+  "within_query_score_reuses": 893321
+}
