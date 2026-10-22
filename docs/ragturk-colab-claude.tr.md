@@ -2,15 +2,77 @@
 
 16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
 
-## 22 Ekim: üretim tamamlandı, son denetim başladı
+## 22 Ekim: tam denetim ve dev/test metrikleri tamamlandı
 
-V11 üreticisinin değişmez tamamlanma kaydı **145.300 / 145.300 mantıksal koşulun kapandığını** gösteriyor: **144.862 teknik olarak geçerli + 438 terminal geçersiz**, çözümsüz etkin istek sıfır. Dev kapsamı **19.934 geçerli + 66 geçersiz = 20.000**; test kapsamı **124.928 geçerli + 372 geçersiz = 125.300**. Tamamlanma dosyasının zamanı 19 Ekim 2026 **03:59:46 İstanbul**; bu dosya sistemi değişiklik zamanıdır, içeride üretilmiş zaman damgası değildir. Kaydın SHA-256 değeri `5f4e8e5b1910903a2282e6c33f761bb2a03f59607c38526944777671257adaac`.
+V11 üretimi ve son CPU denetimi **145.300 / 145.300 soru–koşul sonucunu** kapsıyor: **144.862 teknik olarak geçerli + 438 terminal geçersiz**, çözümsüz etkin istek sıfır. Geliştirme kapsamında **19.934 geçerli + 66 geçersiz = 20.000**, testte **124.928 geçerli + 372 geçersiz = 125.300** sonuç var. Üretici tamamlanma kaydının SHA-256 değeri `5f4e8e5b1910903a2282e6c33f761bb2a03f59607c38526944777671257adaac`; dosyanın 19 Ekim **03:59:46 İstanbul** zamanı dosya sistemi değişiklik zamanıdır, gömülü üretici zamanı değildir.
 
-Bu sayılar üretici kapanışıdır; yeni SQL sayımı, bütün ham cevapların bağımsız denetimi veya cevap doğruluğu sonucu değildir. Eski başarısız/belirsiz denemeler ve 12 ayrı çözüm kaydı korunur. İki tarihsel V8 denemesinin ve önceki bir tekrar denemesinin sağlayıcı tamamlanma belirsizliği silinmez. Terminal geçersiz sonuçlar her koşulun EM/F1 paydasında sıfır kalır. Ortak cevap kullanımı koşulların ayrı paydalarını birleştirmez.
+Tek nihai denetim 22 Ekim **16:02:28 İstanbul / 13:02:28 UTC** tarihinde başladı; **16:03:23 / 13:03:23** tarihinde tam bilimsel aşamaya girdi. Bilimsel aşama **17:41:46 / 14:41:46** tarihinde döndü; son kontroller ve tamamlanma kaydı **17:42:44.841079 / 14:42:44.841079** tarihinde bitti. Gerçek bekleme sonucu çıkış kodu **0**. Tek denetimin ölçülmüş toplam süresi **100 dakika 16,656 saniye**, bilimsel aşaması **98 dakika 23,336 saniye** oldu. Bu yalnız bu RAGTurk CPU koşusunun süresidir; gelecek süre tahmini veya diğer benchmarkların toplamı değildir. Ham yanıt, istek, kaynak, sıralama, sağlayıcı, token sınırı, bitiş ve metrik bağları denetlendi. **Dev/test metrikleri hesaplandı; gerçek bilimsel denetimin ve metriklerin bağımsız incelemesi geçti. Yayın ve kesin commit CI doğrulaması henüz bekliyor.** Tam benchmark tamamlandı iddiası yok; kapsam yalnız RAGTurk'tür.
 
-22 Ekim 2026 **16:02:28 İstanbul / 13:02:28 UTC** tarihinde **nihai CPU denetimi bir kez başlatıldı**. **16:03:23 İstanbul / 13:03:23 UTC** tarihli aşama kaydı, tam ham yanıt/kaynak denetimine girildiğini doğruluyor. Özgün süreçlerin kapanış kanıtını esas alan kalıcı düzeltme; bağımsız kaynak, gerçek kapanış kanıtı ve kesin yapılandırma incelemelerinden geçerek kabul edildi. Diğer süreç ve bütünlük kontrolleri korunuyor. Çalışan denetim bütün ham cevap/istek/kaynak/sıra/model/token/bitiş bağlarını kapsıyor; henüz başarıyla tamamlandı sayılmıyor. Dev/test metrikleri, beş Laya açık/kapalı eşleştirilmiş karşılaştırması, bağımsız son inceleme ve nihai yayın bekliyor. Tam benchmark tamamlanmış değildir. Bütün sonuçlar korunur; yeni ücretli API, GPU tahsisi veya kapalı cevapların yeniden üretimi gerekmez. Eski VM'nin ilk 3.360 soruya ait son mühür eksikliği açık kalır. Aşağıdaki üretim sürüyor ifadeleri tarihli geçmiş gözlemlerdir.
+Özgün süreçlerin kapanış kanıtını esas alan kalıcı düzeltme, diğer bütünlük kontrolleri korunarak kabul edildi. Denetim **yeni model çağrısı ve veritabanı yazımı yapmadı**; ücretli API veya yeni GPU tahsisi kullanılmadı. Kapalı cevaplar, 12 ayrı çözüm kaydı ve eski başarısız/belirsiz denemeler aynen korunur. İki tarihsel V8 denemesinin ve bir V10 tekrar denemesinin sağlayıcı tamamlanması hâlâ bilinmiyor. Özgün VM'nin ilk **3.360 soru** için son mühür eksikliği devam eder; sonraki gözlem özgün işçinin son mührü değildir. Kayıtsız, ayrılmış alt süreçlerin tamamının yokluğu iddia edilmez.
 
-Tek denetim başlangıcının SHA-256 kaydı `cfd6ff101bef7245565734bb4b7cb50a67807f0701a3ce6acc505c2fff304d8d`; tam bilimsel denetim aşamasına giriş kaydı `cbde37a4d889d4141307df241a243f0dd8b82ab118fe270060d8545f61d4808d`. Bunlar yürütme kanıtıdır; metrik veya nihai kabul sonucu değildir. [Güvenli yapılandırılmış ilerleme](../reports/ragturk-colab-claude-progress.json).
+### Metriklerin kapsamı
+
+Beş arama yöntemi × Laya kapalı/açık için her koşulun paydası **geliştirmede 2.000**, **testte 12.530** sorudur. Terminal geçersiz cevaplar kendi koşullarında **sıfır EM/F1** alır; ortak cevap kullanımı koşul paydalarını birleştirmez. Teknik geçerlilik cevap doğruluğu değildir. Tablolar **[0, 1]** ölçeğinde dört ondalığa yuvarlanmıştır. [Ayrı Claude sonuç JSON'u](../reports/ragturk-claude-full/summary.json) tam duyarlığı, 20 kanonik ve 17 ikincil arama metriğini, ayrıca yalnız geçerli cevaplara ait ikincil tanısal metrikleri içerir.
+
+EM ve token F1, referansla **sözcüksel örtüşme** ölçer; anlamsal doğruluk, kaynağa sadakat veya atıf desteği ölçümü değildir. Bilinen sağlanmış kaynak atıfları mevcut puanlayıcıyla çıkarılır. İlk beş bağlam recall değeri, modele verilen beş pasajdaki altın kanıt kapsamıdır; soru hit oranı değildir. nDCG@10 tam aday sıralamasından hesaplanır. Arama metrikleri cevap geçerliliğinden bağımsız bütün soruları içerir. Altın etiketler yalnız CPU puanlayıcıda kullanıldı, cevap modeline verilmedi.
+
+**Laya, iki bölümün tamamında beş yöntemin hepsinde F1'i, ilk beş bağlam kapsamını ve nDCG@10'u düşürdü.** Test F1 farkları **−6,03 ile −7,62 yüzde puan**, bağlam kapsamı farkları **−21,71 ile −28,56 puan** arasında. Geliştirme EM sonucu tek yönlü değildir: EmbeddingGemma 2'de +0,25 puan artış vardır. Eşleştirilmiş farklar betimseldir; **güven aralığı, p-değeri veya istatistiksel anlamlılık iddiası yoktur**. Bu sonuç her Laya/reranker kullanımının aynı davranacağı anlamına gelmez.
+
+### Geliştirme: on koşul (her koşulda 2.000 soru)
+
+| Arama | Laya | N | Geçersiz | Cevap EM | Token F1 | İlk beş bağlam recall | nDCG@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BM25 | Kapalı | 2000 | 5 | 0.0065 | 0.3627 | 0.8591 | 0.8434 |
+| BM25 | Açık | 2000 | 4 | 0.0050 | 0.3054 | 0.6564 | 0.6033 |
+| BGE-M3 | Kapalı | 2000 | 13 | 0.0080 | 0.3675 | 0.9008 | 0.8689 |
+| BGE-M3 | Açık | 2000 | 5 | 0.0060 | 0.2972 | 0.6377 | 0.5925 |
+| EmbeddingGemma 2 | Kapalı | 2000 | 11 | 0.0050 | 0.3615 | 0.8754 | 0.8403 |
+| EmbeddingGemma 2 | Açık | 2000 | 7 | 0.0075 | 0.3001 | 0.6362 | 0.5904 |
+| BM25 + BGE-M3 | Kapalı | 2000 | 4 | 0.0085 | 0.3721 | 0.9192 | 0.8909 |
+| BM25 + BGE-M3 | Açık | 2000 | 5 | 0.0070 | 0.2988 | 0.6396 | 0.5917 |
+| BM25 + EmbeddingGemma 2 | Kapalı | 2000 | 8 | 0.0090 | 0.3681 | 0.9089 | 0.8818 |
+| BM25 + EmbeddingGemma 2 | Açık | 2000 | 4 | 0.0060 | 0.2986 | 0.6462 | 0.5948 |
+
+### Geliştirme: beş eşleştirilmiş karşılaştırma (Laya − kapalı)
+
+| Arama | Eşleşen N | Δ EM | Δ Token F1 | Δ İlk beş bağlam recall | Δ nDCG@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 2000 | -0.0015 | -0.0573 | -0.2027 | -0.2401 |
+| BGE-M3 | 2000 | -0.0020 | -0.0703 | -0.2632 | -0.2764 |
+| EmbeddingGemma 2 | 2000 | +0.0025 | -0.0614 | -0.2392 | -0.2499 |
+| BM25 + BGE-M3 | 2000 | -0.0015 | -0.0733 | -0.2797 | -0.2993 |
+| BM25 + EmbeddingGemma 2 | 2000 | -0.0030 | -0.0694 | -0.2628 | -0.2870 |
+
+### Test: on koşul (her koşulda 12.530 soru)
+
+| Arama | Laya | N | Geçersiz | Cevap EM | Token F1 | İlk beş bağlam recall | nDCG@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BM25 | Kapalı | 12530 | 40 | 0.0069 | 0.3614 | 0.8604 | 0.8378 |
+| BM25 | Açık | 12530 | 22 | 0.0063 | 0.3011 | 0.6433 | 0.5912 |
+| BGE-M3 | Kapalı | 12530 | 38 | 0.0058 | 0.3670 | 0.8979 | 0.8649 |
+| BGE-M3 | Açık | 12530 | 43 | 0.0056 | 0.2977 | 0.6232 | 0.5745 |
+| EmbeddingGemma 2 | Kapalı | 12530 | 56 | 0.0065 | 0.3642 | 0.8837 | 0.8449 |
+| EmbeddingGemma 2 | Açık | 12530 | 32 | 0.0053 | 0.2980 | 0.6253 | 0.5788 |
+| BM25 + BGE-M3 | Kapalı | 12530 | 46 | 0.0071 | 0.3725 | 0.9110 | 0.8876 |
+| BM25 + BGE-M3 | Açık | 12530 | 31 | 0.0060 | 0.2963 | 0.6254 | 0.5743 |
+| BM25 + EmbeddingGemma 2 | Kapalı | 12530 | 35 | 0.0062 | 0.3733 | 0.9081 | 0.8814 |
+| BM25 + EmbeddingGemma 2 | Açık | 12530 | 29 | 0.0050 | 0.2971 | 0.6261 | 0.5771 |
+
+### Test: beş eşleştirilmiş karşılaştırma (Laya − kapalı)
+
+| Arama | Eşleşen N | Δ EM | Δ Token F1 | Δ İlk beş bağlam recall | Δ nDCG@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 12530 | -0.0006 | -0.0603 | -0.2171 | -0.2467 |
+| BGE-M3 | 12530 | -0.0002 | -0.0694 | -0.2747 | -0.2904 |
+| EmbeddingGemma 2 | 12530 | -0.0012 | -0.0662 | -0.2584 | -0.2661 |
+| BM25 + BGE-M3 | 12530 | -0.0011 | -0.0762 | -0.2856 | -0.3133 |
+| BM25 + EmbeddingGemma 2 | 12530 | -0.0012 | -0.0762 | -0.2819 | -0.3043 |
+
+On koşulun tümü üzerinden ortalama EM/F1, geliştirmede **0,00685 / 0,333218**, testte **0,006089 / 0,332866** oldu. Bu ortalamalar matris özetidir; tek bir sistemin başarı olasılığı değildir. Laya kapalı BM25 + BGE-M3 geliştirmede en yüksek gözlenen F1'i (0,372130), Laya kapalı BM25 + EmbeddingGemma 2 testte en yüksek gözlenen F1'i (0,373310) aldı. Test sıralaması betimseldir; yeni ayarlama veya anlamlı fark iddiası taşımaz.
+
+Bağımsız gerçek bilimsel denetim/metrik incelemesi SHA-256: `f88031eecb47ed3329de4b0b6282153537b42d4ead45424feef6bbc1c7696ff1`; root kabulü: `ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656`. Bu kabul 22 Ekim **17:52:40 İstanbul / 14:52:40 UTC** gözlemine bağlıdır; yayın incelemesi ve CI ayrı bekleyen adımlardır.
+
+Denetim sonuç SHA-256: `6e284d5a73fee4dc83b8959e72979eb8442c371c596fceba04e7705760954856`. Tamamlanma kaydı: `67f682ecd7bbefa2c6190cdc65fe460a016df1820ed474dab28396b8ecaaa2f0`. Güvenli metrik özeti: `20304db4c048c5bf233d4c1feb316f0569d1af96e5fe5b6d33a467358875eba1`. [Yapılandırılmış ilerleme](../reports/ragturk-colab-claude-progress.json). Aşağıdaki üretim sürüyor veya denetim bekliyor ifadeleri **tarihli geçmiş gözlemleridir**; eski Gemma/MPS sonuçları ayrı deney olarak korunur.
 
 ## 17 Ekim: tarihsel süre uzatımı ve devam
 

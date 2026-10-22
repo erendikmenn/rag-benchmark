@@ -1,8 +1,76 @@
 # Results and validation status
 
-**Current Claude/Colab protocol — 22 October, 13:03 UTC:** production closed all 145,300 RAGTurk question–condition outcomes (144,862 technically valid and 438 terminal-invalid; no unresolved effective requests). The permanent original-process closure fix was accepted, and the full raw/source audit has started once and is running. Dev/test metrics, paired comparisons and independent final review remain pending; the full benchmark is not yet complete. Producer completion does not establish answer accuracy. [Current execution record](ragturk-colab-claude.tr.md) · [Structured progress](../reports/ragturk-colab-claude-progress.json).
+## Claude Haiku 5.5: full RAGTurk development and test results
 
-The remaining tables describe the separate historical Gemma/MPS protocol. Its unrun full-data stages must not be confused with the completed Claude production above.
+**22 October, 14:52 UTC:** the single CPU audit completed with exit code 0, covering all **145,300 question–condition outcomes** and their raw/request/source/rank/provider/token/stop bindings. Separate development and test metrics are now computed. **Independent review of the actual scientific audit and metrics passed. Publication and exact-commit CI remain pending; full benchmark completion is not yet claimed.** This covers RAGTurk, not the remaining benchmark modalities.
+
+The matrix contains five retrieval methods × Laya off/on, each evaluated on **2,000 development questions** and **12,530 test questions**. There are **144,862 technically valid and 438 terminal-invalid outcomes**, with no unresolved effective requests. The 66 development and 372 test invalid outcomes contribute **zero answer EM and token F1** in their own condition's full denominator. Shared answers do not merge condition denominators. Technical validity is not answer correctness.
+
+All table scores are means in **[0, 1]**, rounded to four decimals; [the separate Claude JSON](../reports/ragturk-claude-full/summary.json) retains full precision, all 20 canonical retrieval metrics, 17 secondary binary retrieval metrics, and secondary valid-only answer diagnostics. EM and token F1 measure **lexical reference overlap**, not semantic correctness, faithfulness or citation support. Known supplied source citations are stripped by the existing scorer. Top-five context recall measures gold-evidence coverage in the five supplied passages; it is not a question hit rate. nDCG@10 uses the full candidate ranking. Retrieval metrics retain all questions irrespective of answer validity. Gold was used only in CPU scoring, not sent to the answer model.
+
+**Laya reduced token F1, top-five context recall and nDCG@10 for every retrieval method on both splits.** On test, the F1 changes range from **−6.03 to −7.62 percentage points**, and top-five context recall from **−21.71 to −28.56 points**. EM is not uniformly worse on development: EmbeddingGemma 2 gains 0.25 points. These are paired descriptive means, with **no confidence intervals, p-values or significance claim**. They do not establish that every use of Laya or reranking will behave this way.
+
+### Development: ten conditions (2,000 questions per condition)
+
+| Retrieval | Laya | N | Invalid | Answer EM | Token F1 | Top-five context recall | nDCG@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BM25 | Off | 2000 | 5 | 0.0065 | 0.3627 | 0.8591 | 0.8434 |
+| BM25 | On | 2000 | 4 | 0.0050 | 0.3054 | 0.6564 | 0.6033 |
+| BGE-M3 | Off | 2000 | 13 | 0.0080 | 0.3675 | 0.9008 | 0.8689 |
+| BGE-M3 | On | 2000 | 5 | 0.0060 | 0.2972 | 0.6377 | 0.5925 |
+| EmbeddingGemma 2 | Off | 2000 | 11 | 0.0050 | 0.3615 | 0.8754 | 0.8403 |
+| EmbeddingGemma 2 | On | 2000 | 7 | 0.0075 | 0.3001 | 0.6362 | 0.5904 |
+| BM25 + BGE-M3 | Off | 2000 | 4 | 0.0085 | 0.3721 | 0.9192 | 0.8909 |
+| BM25 + BGE-M3 | On | 2000 | 5 | 0.0070 | 0.2988 | 0.6396 | 0.5917 |
+| BM25 + EmbeddingGemma 2 | Off | 2000 | 8 | 0.0090 | 0.3681 | 0.9089 | 0.8818 |
+| BM25 + EmbeddingGemma 2 | On | 2000 | 4 | 0.0060 | 0.2986 | 0.6462 | 0.5948 |
+
+### Development: five paired comparisons (Laya − none)
+
+| Retrieval | Paired N | Δ EM | Δ Token F1 | Δ Top-five context recall | Δ nDCG@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 2000 | -0.0015 | -0.0573 | -0.2027 | -0.2401 |
+| BGE-M3 | 2000 | -0.0020 | -0.0703 | -0.2632 | -0.2764 |
+| EmbeddingGemma 2 | 2000 | +0.0025 | -0.0614 | -0.2392 | -0.2499 |
+| BM25 + BGE-M3 | 2000 | -0.0015 | -0.0733 | -0.2797 | -0.2993 |
+| BM25 + EmbeddingGemma 2 | 2000 | -0.0030 | -0.0694 | -0.2628 | -0.2870 |
+
+### Test: ten conditions (12,530 questions per condition)
+
+| Retrieval | Laya | N | Invalid | Answer EM | Token F1 | Top-five context recall | nDCG@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BM25 | Off | 12530 | 40 | 0.0069 | 0.3614 | 0.8604 | 0.8378 |
+| BM25 | On | 12530 | 22 | 0.0063 | 0.3011 | 0.6433 | 0.5912 |
+| BGE-M3 | Off | 12530 | 38 | 0.0058 | 0.3670 | 0.8979 | 0.8649 |
+| BGE-M3 | On | 12530 | 43 | 0.0056 | 0.2977 | 0.6232 | 0.5745 |
+| EmbeddingGemma 2 | Off | 12530 | 56 | 0.0065 | 0.3642 | 0.8837 | 0.8449 |
+| EmbeddingGemma 2 | On | 12530 | 32 | 0.0053 | 0.2980 | 0.6253 | 0.5788 |
+| BM25 + BGE-M3 | Off | 12530 | 46 | 0.0071 | 0.3725 | 0.9110 | 0.8876 |
+| BM25 + BGE-M3 | On | 12530 | 31 | 0.0060 | 0.2963 | 0.6254 | 0.5743 |
+| BM25 + EmbeddingGemma 2 | Off | 12530 | 35 | 0.0062 | 0.3733 | 0.9081 | 0.8814 |
+| BM25 + EmbeddingGemma 2 | On | 12530 | 29 | 0.0050 | 0.2971 | 0.6261 | 0.5771 |
+
+### Test: five paired comparisons (Laya − none)
+
+| Retrieval | Paired N | Δ EM | Δ Token F1 | Δ Top-five context recall | Δ nDCG@10 |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 12530 | -0.0006 | -0.0603 | -0.2171 | -0.2467 |
+| BGE-M3 | 12530 | -0.0002 | -0.0694 | -0.2747 | -0.2904 |
+| EmbeddingGemma 2 | 12530 | -0.0012 | -0.0662 | -0.2584 | -0.2661 |
+| BM25 + BGE-M3 | 12530 | -0.0011 | -0.0762 | -0.2856 | -0.3133 |
+| BM25 + EmbeddingGemma 2 | 12530 | -0.0012 | -0.0762 | -0.2819 | -0.3043 |
+
+Across all ten conditions, mean lexical EM/F1 is **0.00685 / 0.333218** on development and **0.006089 / 0.332866** on test. These pooled means describe the matrix; they are not a selected system's success probability. BM25 + BGE-M3 without Laya has the highest development F1 (0.372130); BM25 + EmbeddingGemma 2 without Laya has the highest observed test F1 (0.373310). This observed test ordering is descriptive, not a new tuning or significance claim.
+
+The single CPU audit took **100 minutes 16.656 seconds** from claim to completed receipt; its scientific stage took **98 minutes 23.336 seconds**. This is a measured duration for this RAGTurk audit, not a future ETA or a total for other benchmarks. The audit made **zero model calls and zero database writes**. Twelve separate resolution records and historical failed attempts remain intact. Two earlier V8 attempts and one V10 retry retain unknown provider-completion status; they are not relabeled as successes. The original VM's final end seal for the first 3,360 questions remains unavailable, and later observations do not replace that original seal. Original-process closure evidence is not a claim of global absence of unrecorded detached descendants.
+
+Independent actual scientific/metric review SHA-256: `f88031eecb47ed3329de4b0b6282153537b42d4ead45424feef6bbc1c7696ff1`; root acceptance: `ca8a545d9ddec54bfe37d5266c23406a2fd1ebc24ee254c0132da9537a779656`. The publication review and CI are separate outstanding steps.
+
+Selected SHA-256 provenance: audit result `6e284d5a73fee4dc83b8959e72979eb8442c371c596fceba04e7705760954856`; completed receipt `67f682ecd7bbefa2c6190cdc65fe460a016df1820ed474dab28396b8ecaaa2f0`; safe metric projection `20304db4c048c5bf233d4c1feb316f0569d1af96e5fe5b6d33a467358875eba1`. [Dated protocol and retained limitations, Turkish](ragturk-colab-claude.tr.md) · [Structured progress](../reports/ragturk-colab-claude-progress.json).
+
+## Historical Gemma/MPS protocol — separate results
+
+Everything below records the earlier Gemma/MPS experiment. Its unrun full-data stages and semantic pilots do not describe the completed Claude metric computation above.
 
 **The ten-variant pilot is complete: 20 development questions × ten variants, 200/200 outputs.** All retrieval methods searched the full 37,511-passage corpus. A separate BM25 retrieval baseline covers all 2,000 development questions; the ten-variant full-development comparison and 12,530-question final test have not run. These pilot results do not establish a general model winner.
 
