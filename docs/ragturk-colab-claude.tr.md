@@ -2,13 +2,15 @@
 
 16 Ekim 2026 tarihli kullanıcı talimatı yeni deney yürütmesini yetkilendirir. Bu protokol, önceki Gemma/MPS deneyinden ayrı kaydedilir. Eski deney kuyrukları ve kapatılmış otomasyon yeniden başlatılmaz.
 
-## 22 Ekim: üretim tamamlandı, son denetim bekliyor
+## 22 Ekim: üretim tamamlandı, son denetim başladı
 
 V11 üreticisinin değişmez tamamlanma kaydı **145.300 / 145.300 mantıksal koşulun kapandığını** gösteriyor: **144.862 teknik olarak geçerli + 438 terminal geçersiz**, çözümsüz etkin istek sıfır. Dev kapsamı **19.934 geçerli + 66 geçersiz = 20.000**; test kapsamı **124.928 geçerli + 372 geçersiz = 125.300**. Tamamlanma dosyasının zamanı 19 Ekim 2026 **03:59:46 İstanbul**; bu dosya sistemi değişiklik zamanıdır, içeride üretilmiş zaman damgası değildir. Kaydın SHA-256 değeri `5f4e8e5b1910903a2282e6c33f761bb2a03f59607c38526944777671257adaac`.
 
 Bu sayılar üretici kapanışıdır; yeni SQL sayımı, bütün ham cevapların bağımsız denetimi veya cevap doğruluğu sonucu değildir. Eski başarısız/belirsiz denemeler ve 12 ayrı çözüm kaydı korunur. İki tarihsel V8 denemesinin ve önceki bir tekrar denemesinin sağlayıcı tamamlanma belirsizliği silinmez. Terminal geçersiz sonuçlar her koşulun EM/F1 paydasında sıfır kalır. Ortak cevap kullanımı koşulların ayrı paydalarını birleştirmez.
 
-22 Ekim itibarıyla **nihai CPU denetimi henüz başlatılmadı**. Kaynak kayıtlarına bağlı, sabit özgün işçi çağrılarını kapsayan onaylı toplu kapanış kuralı uygulanıyor. Bağımsız kaynak ve gerçek kapanış kanıtı incelemeleri, diğer süreç kontrolleri ve kesin denetim yapılandırması geçtikten sonra bütün ham cevap/istek/kaynak/sıra/model/token/bitiş denetimi yapılacak. Dev/test metrikleri, beş Laya açık/kapalı eşleştirilmiş karşılaştırması, bağımsız son inceleme ve nihai yayın bekliyor. Bütün sonuçlar korunur; yeni ücretli API, GPU tahsisi veya kapalı cevapların yeniden üretimi gerekmez. Eski VM'nin ilk 3.360 soruya ait son mühür eksikliği açık kalır. Aşağıdaki üretim sürüyor ifadeleri tarihli geçmiş gözlemlerdir.
+22 Ekim 2026 **16:02:28 İstanbul / 13:02:28 UTC** tarihinde **nihai CPU denetimi bir kez başlatıldı**. **16:03:23 İstanbul / 13:03:23 UTC** tarihli aşama kaydı, tam ham yanıt/kaynak denetimine girildiğini doğruluyor. Özgün süreçlerin kapanış kanıtını esas alan kalıcı düzeltme; bağımsız kaynak, gerçek kapanış kanıtı ve kesin yapılandırma incelemelerinden geçerek kabul edildi. Diğer süreç ve bütünlük kontrolleri korunuyor. Çalışan denetim bütün ham cevap/istek/kaynak/sıra/model/token/bitiş bağlarını kapsıyor; henüz başarıyla tamamlandı sayılmıyor. Dev/test metrikleri, beş Laya açık/kapalı eşleştirilmiş karşılaştırması, bağımsız son inceleme ve nihai yayın bekliyor. Tam benchmark tamamlanmış değildir. Bütün sonuçlar korunur; yeni ücretli API, GPU tahsisi veya kapalı cevapların yeniden üretimi gerekmez. Eski VM'nin ilk 3.360 soruya ait son mühür eksikliği açık kalır. Aşağıdaki üretim sürüyor ifadeleri tarihli geçmiş gözlemlerdir.
+
+Tek denetim başlangıcının SHA-256 kaydı `cfd6ff101bef7245565734bb4b7cb50a67807f0701a3ce6acc505c2fff304d8d`; tam bilimsel denetim aşamasına giriş kaydı `cbde37a4d889d4141307df241a243f0dd8b82ab118fe270060d8545f61d4808d`. Bunlar yürütme kanıtıdır; metrik veya nihai kabul sonucu değildir. [Güvenli yapılandırılmış ilerleme](../reports/ragturk-colab-claude-progress.json).
 
 ## 17 Ekim: tarihsel süre uzatımı ve devam
 

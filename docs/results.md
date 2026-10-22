@@ -1,6 +1,6 @@
 # Results and validation status
 
-**Current Claude/Colab protocol — 22 October:** production closed all 145,300 RAGTurk question–condition outcomes (144,862 technically valid and 438 terminal-invalid; no unresolved effective requests). The full raw/source audit has not started; dev/test metrics, paired comparisons and independent final review remain pending. Producer completion does not establish answer accuracy. [Current execution record](ragturk-colab-claude.tr.md) · [Structured progress](../reports/ragturk-colab-claude-progress.json).
+**Current Claude/Colab protocol — 22 October, 13:03 UTC:** production closed all 145,300 RAGTurk question–condition outcomes (144,862 technically valid and 438 terminal-invalid; no unresolved effective requests). The permanent original-process closure fix was accepted, and the full raw/source audit has started once and is running. Dev/test metrics, paired comparisons and independent final review remain pending; the full benchmark is not yet complete. Producer completion does not establish answer accuracy. [Current execution record](ragturk-colab-claude.tr.md) · [Structured progress](../reports/ragturk-colab-claude-progress.json).
 
 The remaining tables describe the separate historical Gemma/MPS protocol. Its unrun full-data stages must not be confused with the completed Claude production above.
 
