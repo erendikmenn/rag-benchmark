@@ -1,0 +1,136 @@
+{
+  "interpretation": "Different timing scopes; no speedup ratio or subtraction. V2 Finance has14 successful score children covering224 queries;7 more accepted closed queries have no terminal segment wait. Energy229 V4 queries have score-call timing but no separate successful-process wall total here.",
+  "known_child_utc_lifecycle_spans": [
+    {
+      "dataset_id": "vidore-v3-energy-fr",
+      "finalizer_process_utc_spans_seconds": [
+        22.043782
+      ],
+      "finalizer_processes": 1,
+      "generation": "v2",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 545.365439,
+        "min": 498.32936,
+        "sum": 2615.684304
+      },
+      "score_processes": 5
+    },
+    {
+      "dataset_id": "vidore-v3-finance_en-en",
+      "finalizer_process_utc_spans_seconds": [],
+      "finalizer_processes": 0,
+      "generation": "v2",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 847.039619,
+        "min": 534.654422,
+        "sum": 9159.057974
+      },
+      "score_processes": 14
+    },
+    {
+      "dataset_id": "vidore-v3-finance_en-en",
+      "finalizer_process_utc_spans_seconds": [
+        22.76799
+      ],
+      "finalizer_processes": 1,
+      "generation": "v3",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 658.317911,
+        "min": 479.212474,
+        "sum": 2966.894542
+      },
+      "score_processes": 5
+    },
+    {
+      "dataset_id": "vidore-v3-finance_fr-fr",
+      "finalizer_process_utc_spans_seconds": [
+        23.218024
+      ],
+      "finalizer_processes": 1,
+      "generation": "v3",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 715.281698,
+        "min": 594.46629,
+        "sum": 12988.1153
+      },
+      "score_processes": 20
+    },
+    {
+      "dataset_id": "vidore-v3-hr-en",
+      "finalizer_process_utc_spans_seconds": [
+        22.922748
+      ],
+      "finalizer_processes": 1,
+      "generation": "v3",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 907.71858,
+        "min": 427.483418,
+        "sum": 11673.948341
+      },
+      "score_processes": 20
+    },
+    {
+      "dataset_id": "vidore-v3-pharmaceuticals-en",
+      "finalizer_process_utc_spans_seconds": [
+        24.726197
+      ],
+      "finalizer_processes": 1,
+      "generation": "v3",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 364.064861,
+        "min": 209.787448,
+        "sum": 6000.638568
+      },
+      "score_processes": 23
+    },
+    {
+      "dataset_id": "vidore-v3-physics-fr",
+      "finalizer_process_utc_spans_seconds": [
+        19.940215
+      ],
+      "finalizer_processes": 1,
+      "generation": "v3",
+      "scope": "Recorded successful child launch-to-wait UTC timestamp differences; includes process work and overhead; not a monotonic measurement, per-cell online latency, or total historical compute.",
+      "score_process_utc_spans_seconds": {
+        "max": 214.18077,
+        "min": 124.4571,
+        "sum": 3120.044605
+      },
+      "score_processes": 19
+    }
+  ],
+  "laya_successful_score_calls": "See summary.json: exact successful shared-union score-call sums by generation, excluding loading, cleanup, validation and historical unknown attempts.",
+  "missing_durations": {
+    "full_historical_none_inference": null,
+    "historical_unknown_attempt_scoring": null,
+    "isolated_cache_cleanup": null,
+    "isolated_model_reload": null,
+    "old_interrupted_child_terminal_wall": null,
+    "online_p95": null,
+    "online_per_cell_latency": null
+  },
+  "none_retained_cache_completion": [
+    {
+      "cpu_exact_search_seconds": 0.050651334051508456,
+      "dataset_id": "vidore-v3-finance_fr-fr",
+      "embedding_inference_seconds": null,
+      "queries": 320,
+      "workflow_seconds": 10.845185999991372
+    },
+    {
+      "cpu_exact_search_seconds": 0.029691957985050976,
+      "dataset_id": "vidore-v3-hr-en",
+      "embedding_inference_seconds": null,
+      "queries": 318,
+      "workflow_seconds": 8.256723167025484
+    }
+  ],
+  "none_scope": "Retained-cache CPU validation, missing-channel exact search, matrix derivation and writing. No new embedding; times cannot be treated as end-to-end retrieval inference or subtracted from Laya score sums.",
+  "schema": "vidore-laya-all-six-timing-scopes-v1"
+}
